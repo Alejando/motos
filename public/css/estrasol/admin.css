@@ -1,0 +1,53 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22/07/2016, 01:30:29 PM
+    Author     : jdiaz
+*/
+
+body header section  ul li > a,
+body header section  ul li.dropdown a.dropdown-toggle {
+    color: white;
+}
+body header section  ul li.dropdown a.dropdown-toggle:hover,
+body header section  ul li.dropdown a,
+body header section  ul li.dropdown.open a.dropdown-toggle{
+    color: #337ab7;
+}
+
+body{
+    background: #ebebeb;
+}
+
+.shadow {
+    -webkit-box-shadow: 7px 6px 28px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 7px 6px 28px -8px rgba(0,0,0,0.75);
+    box-shadow: 7px 6px 28px -8px rgba(0,0,0,0.75);
+}
+div.content {
+    background-color: white;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 15px;
+}
+
+div.title-section {
+    padding-top: 15px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 25px;
+    /*margin: 20px;*/
+    background-color: rgba(166, 165, 166,0.15);
+}
+.title-section {
+    color: rgba(0,0,0,0.2);
+}
+.title-section span {
+    color:  rgb(213, 160, 15);
+}
+.title-section span:first-child {
+    color: rgb(0, 124, 133);
+}
