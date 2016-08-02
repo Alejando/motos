@@ -41,8 +41,10 @@ Route::group(['prefix' => 'api'], function () {
             ]
         ];
     };
-    $addAPI = function ($url, $controller, $name){                
-                Route::resource($url, $controller, [ 'names' => [
+    $addAPI = function ($name, $controller){      
+//        echo "Api\\{$controller}Controller";
+//        die();
+                Route::resource($name, "Api\\{$controller}Controller", [ 'names' => [
                         'index'   => $name.'',
                         'create'  => $name.'.create',
                         'store'   => $name.'.store',
@@ -52,12 +54,12 @@ Route::group(['prefix' => 'api'], function () {
                         'destroy' => $name.'.destroy'
                     ]
                 ]);
-                Route::get($url.'/{id}/relation/{relation}',[                  
+                Route::get($name.'/{id}/relation/{relation}',[                  
                     'as' => $name.'.relation',
-                    'uses' => $controller.'@relation']
+                    'uses' => 'Api\\'.$controller.'Controller@relation']
                 );
     };
-    
+    $addAPI('category','Category');
     Route::resource('auction', 'Api\\AuctionController', $getNames('auction'));
 });
 // Route::resource('api/auction','Api\\AuctionController');

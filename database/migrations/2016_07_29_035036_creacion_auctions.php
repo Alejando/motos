@@ -13,14 +13,25 @@ class CreacionAuctions extends Migration {
     public function up() {
         Schema::create('auctions', function(Blueprint $table){
             $table->increments('id');
-            $table->string('title');
-            $table->longText('description');
-            $table->integer('maxBid');
-            $table->integer('minBid');
-            $table->integer('maxOffer');
-            $table->integer('userTop');
-            $table->integer('delay');
+            
+            $table->integer('category_id');
+            $table->integer('subCategory');
             $table->integer('target');
+            $table->string('code',15);
+            $table->string('barcode',50);
+            $table->string('title',150);
+            $table->integer('realPrice');
+            $table->integer('cover');
+            $table->integer('minOffer');
+            $table->integer('maxOffer');
+            $table->integer('bids');
+            $table->integer('maxPrice');
+            $table->integer('userQuota');
+            $table->integer('usersLimit');
+            $table->integer('delay');
+            $table->integer('maxUserQuiet');
+            $table->integer('deathTime');
+            $table->longText('description');
             $table->dateTime('startDate');
             $table->dateTime('endDate');
             $table->boolean('published');
