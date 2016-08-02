@@ -1,8 +1,8 @@
 <div class="row content shadow">
     <form class="form-horizontal col-sm-12" >
         <div class="form-group">
-            <label class="col-sm-3 control-labelc">Titulo</label>
-            <input type="email" class="col-sm-offset-1 col-sm-10" id="titulo_seccion" ng-model="titulo">
+            <label class="col-sm-2 control-labelc">Título</label>
+            <input type="text" class="col-sm-offset-1 col-sm-10" id="titulo_seccion" ng-model="titulo">
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-labelc">Información</label>
@@ -15,7 +15,6 @@ Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el
         </div>
         <div class="form-group col-sm-12 text-center">           
             <button class="btn btn-primary">Guardar</button>
-            <button class="btn btn-primary">Publicar</button>
             <button class="btn btn-primary">Cancelar</button>
         </div>
     </form>

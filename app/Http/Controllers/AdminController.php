@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace GlimGlam\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 

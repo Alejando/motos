@@ -36,9 +36,9 @@
             
             
             <div class="form-group ">
-                <div class="col-md-12 " style="background-color: red">
-                    <div class="checkbox text-left">
-                        <label class="txt-registro-login ">
+                <div class="col-md-12 ">
+                    <div class="checkbox ">
+                        <label class="txt-registro-login remeber-me">
                             <input type="checkbox" name="remember"> No cerrar sesión
                         </label>
                     </div>
@@ -53,8 +53,8 @@
             <div class="txt-registro-login">
                 ¿Aún no tienes una cuenta? <a href="{{asset('registro.php')}}">Regístrate aquí</a>
             </div>
-            <div class="txt-registro-login">
-                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+            <div class="txt-registro-login txt-registro-login">
+                <a href="{{ url('/password/reset') }}">¿Has olvidado la contraseña?</a>
             </div>
         </form>
     </div>

@@ -1,11 +1,12 @@
 <?php
 
-namespace App;
+namespace GlimGlam\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+    const PROFILE_CLIENT = 1;
+    const PROFILE_ADMIN = 2;
     /**
      * The attributes that are mass assignable.
      *
@@ -23,4 +24,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function isAdmin() {
+        return $this->perfil == self::PROFILE_ADMIN;
+    }
+    
+    public function isClient() {
+        return $this->profile == self::PROFILE_ADMIN;
+    }
+
 }

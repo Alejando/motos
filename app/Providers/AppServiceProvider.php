@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace GlimGlam\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

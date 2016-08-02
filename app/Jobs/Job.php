@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace GlimGlam\Jobs;
 
 use Illuminate\Bus\Queueable;
 

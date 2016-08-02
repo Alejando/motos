@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace GlimGlam\Http\Controllers;
 
-use App\Http\Requests;
+use GlimGlam\Http\Requests;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

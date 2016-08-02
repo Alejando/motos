@@ -1,5 +1,5 @@
 var elixir = require('laravel-elixir');
-
+require('laravel-elixir-livereload');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -13,4 +13,10 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.sass('app.scss');
+    mix.sass('**/*.scss');
+    mix.scripts([
+        '../../angular/admin/app.js',
+        '../../angular/admin/**/*.js'
+    ],'public/js/estrasol/admin.js');
+    mix.livereload();
 });

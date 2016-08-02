@@ -1,5 +1,11 @@
 <div class="bienvenido">
-    Hola<br><span id="nombre-usr">@Karla</span>
+    Hola<br><span id="nombre-usr">
+        @if(Auth::check())
+            @Karla
+        @else
+        <a href="">Registrate</a>
+        @endif
+    </span>
 </div>
 <a href="{{ url('/login') }}" class="item-header text-center link-perfil" id="link-perfil" data-toggle="tooltip" title="Mi Perfil">
     <i class="fa fa-user" aria-hidden="true"></i>

@@ -7,7 +7,7 @@
             </a>
         </div>
 
-        <div class="header-menu col-lg-4 col-lg-offset-5 col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-6 text-right">
+        <div class="header-menu col-lg-4 col-lg-offset-5 col-md-4 col-md-offset-5 col-sm-6 col-sm-offset-2 col-xs-6 text-right">
             @if(trim($__env->yieldContent('nav-top')))
                 @yield('nav-top')
             @else

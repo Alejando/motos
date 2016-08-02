@@ -1,0 +1,38 @@
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/07/2016, 01:33:16 PM
+    Author     : jdiaz
+*/
+form.subastas-form {
+  width: 99%; }
+  form.subastas-form .input-group.timepicker input {
+    height: 34px; }
+  form.subastas-form .input-datetimes {
+    padding: 0; }
+  form.subastas-form .input-datetimes input.timepicker {
+    width: 35%;
+    float: right; }
+  form.subastas-form .input-datetimes div.datepicker {
+    width: 60%;
+    float: left; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25/07/2016, 04:50:49 PM
+    Author     : jdiaz
+*/
+.remeber-me {
+  text-align: left !important;
+  padding: 0 !important;
+  margin-left: 9px; }
+
+/*# sourceMappingURL=app.css.map */

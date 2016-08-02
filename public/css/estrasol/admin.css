@@ -29,6 +29,7 @@ body{
 }
 div.content {
     background-color: white;
+
     padding: 10px;
     margin: 20px;
     border-radius: 15px;
@@ -50,4 +51,39 @@ div.title-section {
 }
 .title-section span:first-child {
     color: rgb(0, 124, 133);
+}
+
+.subastas-form .dropzone{
+
+    border-style: groove;
+    border-width: 1px;
+    min-height: 150px;
+}
+.subastas-form .dropzone {
+    background-color: #e9e8e8;width: 95%; padding: 10px; margin: 0 auto; border-radius: 10px;
+    border-style: dashed;
+    border-width: 2px;
+    border-color: rgba(59, 57, 58, 0.6);
+
+}
+.subastas-form .dropzone .dz-default.dz-message {    
+    background-image: url(../../img/cloud-upload-128.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50px;
+    opacity: 0.3;
+
+}
+.subastas-form .dropzone .dz-default.dz-message span {
+    display:inline-block;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 95px;
+}
+
+.subastas-form input,
+.subastas-form textarea {
+    border: solid 1px #c0c0c0;
+    
 }

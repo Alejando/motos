@@ -1,7 +1,9 @@
 <?php
 
 return [
-
+    'name' => "SIOSP",
+    'socketIOServer' => env('SOCKET_IO_SERVER', 'socketIOServer'),
+    'entidadesPorPagina' => 50,
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -151,10 +153,12 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        GlimGlam\Providers\AppServiceProvider::class,
+        GlimGlam\Providers\AuthServiceProvider::class,
+        GlimGlam\Providers\EventServiceProvider::class,
+        GlimGlam\Providers\RouteServiceProvider::class,
+        
+         Lord\Laroute\LarouteServiceProvider::class,
 
     ],
 

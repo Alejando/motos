@@ -33,5 +33,8 @@
             <!-- <li><a class="transition-0-3" href="">Testimoniales</a></li> -->
             <li><a class="transition-0-3" href="">Aviso de privacidad</a></li>
             <li><a class="transition-0-3" href="">Terminos y Condiciones</a></li>
+            @if (!Auth::guest())
+                <li><a class="transition-0-3" href="{{ url('/logout') }}">Salir</a></li>
+            @endif
         </ul>
     </nav>
