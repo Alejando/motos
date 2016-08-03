@@ -5,8 +5,14 @@ namespace GlimGlam\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable {
+    use \GlimGlam\Libs\CoreUtils\traits\MethodsModelBase;
+    protected $guarded = ['id'];    
+    public $timestamps = false;
+    
+    
     const PROFILE_CLIENT = 1;
     const PROFILE_ADMIN = 2;
+    
     /**
      * The attributes that are mass assignable.
      *
