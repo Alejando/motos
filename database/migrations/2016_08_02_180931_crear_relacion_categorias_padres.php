@@ -11,10 +11,10 @@ class CrearRelacionCategoriasPadres extends Migration
      * @return void
      */
     public function up()
-    {parentCategory
+    { //
         Schema::table('categories', function(Blueprint $table) {
             $table
-            ->foreign('')
+            ->foreign('parentCategory')
             ->references('id')->on('categories');
         });
     }

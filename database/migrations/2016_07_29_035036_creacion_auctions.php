@@ -14,7 +14,7 @@ class CreacionAuctions extends Migration {
         Schema::create('auctions', function(Blueprint $table){
             $table->increments('id');
             
-            $table->integer('category_id');
+            $table->integer('category');
             $table->integer('subCategory');
             $table->integer('target');
             $table->string('code',15);

@@ -60,6 +60,7 @@ Route::group(['prefix' => 'api'], function () {
                 );
     };
     $addAPI('category','Category');
+    $addAPI('preference','Preference');
     Route::resource('auction', 'Api\\AuctionController', $getNames('auction'));
 });
 // Route::resource('api/auction','Api\\AuctionController');
