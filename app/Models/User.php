@@ -31,12 +31,45 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
     
+    public function preferences(){
+        return $this->belongsToMany('\GlimGlam\Models\Preference');
+    }
+    
     public function isAdmin() {
         return $this->perfil == self::PROFILE_ADMIN;
     }
     
     public function isClient() {
         return $this->profile == self::PROFILE_ADMIN;
+    }
+    
+    public function enroll($auction, $cover){
+        $idAuction = is_object($auction) ? $auction->id: $auction;
+        return Enrollment::create([
+            'user' => $this->id,
+            'auction' => $idAuction,
+            'cover' => $cover,
+            'totalbids' => 0,
+            'bids' => 10,
+            'offer' => 0
+        ]);
+    }
+    
+    public function bid($enrollment, $offer) {
+        if(is_a($enrollment, Enrollment::class)){
+            $objEnrollment  = $enrollment;
+        } else if(is_numeric($enrollment)){
+            $objEnrollment = Enrollment::getById($enrollment);
+        } else {
+            throw new Exception("Subasta no valida");
+        }
+        
+        $this = new Bid([
+            'offer' => $offer,
+            'enrollment' => $objEnrollment->id,
+            'auction' => $objEnrollment->acution()->id
+        ]);
+        $this->binds()->add($this);
     }
 
 }
