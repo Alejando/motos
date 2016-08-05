@@ -34,6 +34,9 @@
     {{-- Js para datatables --}}
     <script src="{{asset('js/bower_components/datatables/media/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/bower_components/angular-datatables/dist/angular-datatables.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/bower_components/datatables/media/js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js')}}" type="text/javascript"></script>
+    
     
     {{-- Js para dropzone --}}
     <script src="{{asset('js/bower_components/dropzone/downloads/dropzone.min.js')}}" type="text/javascript"></script>
@@ -51,8 +54,9 @@
     <link href="{{asset('js/bower_components/textAngular/dist/textAngular.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('js/bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
     {{-- Estilos para datatables--}}
-    <link href="{{asset('js/bower_components/angular-datatables/dist/css/angular-datatables.min.css')}}" rel="stylesheet" type="text/css"/>
+    <!--<link href="{{asset('js/bower_components/angular-datatables/dist/css/angular-datatables.min.css')}}" rel="stylesheet" type="text/css"/>-->
     <link href="{{asset('js/bower_components/datatables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
+    
 @stop
 @section('nav-top')
     <ul class="nav nav-pills">

@@ -1,6 +1,6 @@
 <div class="row content shadow">
     
-    <table datatable="" class="row-border hover">
+    <table datatable="" class="table table-striped table-bordered">
     <thead>
     <tr>
         <th>ID</th>

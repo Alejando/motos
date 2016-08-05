@@ -5,7 +5,8 @@ var glimglam = angular.module("glimglamAdmin", [
     'ui.bootstrap.datetimepicker',
     'ngDropzone',
     'textAngular',
-    'datatables'
+    'datatables',
+    'datatables.bootstrap'
 ]);
 
 glimglam.constant('uiDatetimePickerConfig', {
