@@ -91,12 +91,7 @@ glimglam.controller('nuevaSubastaCtrl', function ($scope, $log, Auction) {
     $scope.openCalendar = function (e, picker) {
         $scope[picker].open = true;
     };
-    $scope.pics = [
-//        'http://demo.estrasol.com.mx/glimglam/img/productos/producto02.png',
-//        'http://demo.estrasol.com.mx/glimglam/img/productos/producto02.png',        
-//        "http://demo.estrasol.com.mx/glimglam/img/productos/producto02a.png",
-//        "http://demo.estrasol.com.mx/glimglam/img/productos/producto02b.png"
-    ];
+    $scope.pics = [];
     $scope.creando = false;
     
 
