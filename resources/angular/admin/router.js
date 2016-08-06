@@ -21,11 +21,15 @@ glimglam.config(function ($routeProvider) {
         templateUrl: 'pages/admin/subastas-admin.html',
         controller: 'subastasCtrl'
     });
-    $routeProvider.when('/subasta/:id',{
+    $routeProvider.when('/subasta/:code',{
         templateUrl: 'pages/admin/subasta.html',
         controller: 'subastaCtrl'
     });     
     
+    $routeProvider.when('/contenidos/:slug', {
+        templateUrl: 'pages/admin/form-contenidos.html',
+        controller: 'edicionContenidoCtrl'
+    });
     $routeProvider.
             when('/subastas/editar', {
                 templateUrl: 'pages/admin/subastas-form.html',
@@ -39,22 +43,25 @@ glimglam.config(function ($routeProvider) {
                 templateUrl: 'pages/admin/usuarios-lista.html',
                 controller: 'edicionDeUsuarioCtrl'
             }).
-            when('/subastas/edicion', {
-                templateUrl: 'pages/admin/form-contenidos.html',
-                controller: 'edicionContenidoCtrl'
-            }).
-            when('/subastas/edicion/guia-de-uso', {
-                templateUrl: 'pages/admin/form-contenidos.html',
-                controller: 'edicionGuiaCtrl'
-            }).
-            when('/subastas/edicion/terminos', {
-                templateUrl: 'pages/admin/form-contenidos.html',
-                controller: 'edicionminosTerCtrl'
-            }).
-            when('/subastas/edicion/avisos', {
-                templateUrl: 'pages/admin/form-contenidos.html',
-                controller: 'edicionAvisoCtrl'
-            })
-
+            when('/clientes', {
+                templateUrl: 'pages/admin/lista-clientes.html',
+                controller: 'listaClienteCtrl'
+            });
+//            when('/contenidos/acerca-de', {
+//                templateUrl: 'pages/admin/form-contenidos.html',
+//                controller: 'edicionContenidoCtrl'
+//            }).
+//            when('/contenidos/guia-de-uso', {
+//                templateUrl: 'pages/admin/form-contenidos.html',
+//                controller: 'edicionGuiaCtrl'
+//            }).
+//            when('/contenidos/terminos', {
+//                templateUrl: 'pages/admin/form-contenidos.html',
+//                controller: 'edicionminosTerCtrl'
+//            }).
+//            when('/contenidos/avisos', {
+//                templateUrl: 'pages/admin/form-contenidos.html',
+//                controller: 'edicionAvisoCtrl'
+//            })
             ;
 });

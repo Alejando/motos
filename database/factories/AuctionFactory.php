@@ -1,4 +1,7 @@
 <?php
+class HelperFakerAuction{
+    public static $contador = 1;
+}
 $factory->define(GlimGlam\Models\Auction::class, function (Faker\Generator $faker) {
     $realPrice = $faker->numberBetween(500, 10000);
     $startDate = $faker->dateTimeBetween('-1 months', '+2 months');
@@ -6,13 +9,17 @@ $factory->define(GlimGlam\Models\Auction::class, function (Faker\Generator $fake
     $endDate->add(new DateInterval($faker->randomElement(['P1DT1H','P0DT5H','P3DT10H','P2DT0H','P1DT12H'])));
     $categoryRandom = GlimGlam\Models\Category::getRandomParentCategory();
     $subCatengory = $faker->randomElement( $categoryRandom->subCategories()->get()->all() );
+    $title = "Titulo Subasta " . HelperFakerAuction::$contador;
+    $code = 'SUB'.sprintf("%03d",  HelperFakerAuction::$contador);
+    HelperFakerAuction::$contador++;
+    
     return [
         'target' => rand(0, 2),
         'category' => $categoryRandom->id,
         'subCategory' => $subCatengory->id,
-        'code' => $faker->swiftBicNumber,
+        'code' => $code,
         'barcode' => $faker->isbn13,
-        'title' => $faker->sentence(10, true),
+        'title' => $title,
         'realPrice' => $realPrice,
         'cover' => $faker->randomElement([20,50,100,150,300,500,800,1000,15000]),
         'minOffer' => $faker->randomElement([10,50,100]),
@@ -29,8 +36,12 @@ $factory->define(GlimGlam\Models\Auction::class, function (Faker\Generator $fake
         'startDate' => $startDate,
         'endDate' => $endDate,
         'published' => $faker->boolean(80),
-        'status' => $faker->randomElement([0,0,0,0,0,1,1,2,2,2,3])
-     
-    ];
+        'status' => $faker->randomElement([0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3]),
+        'winner' => null,
+        'totalEnrollments' => rand(10, 100),
+        'inflows' => rand(3000, 15000),
+        'soldFor' => rand(3000, 7000)
+         
+   ];
 });
 

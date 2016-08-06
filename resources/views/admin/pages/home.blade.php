@@ -79,13 +79,15 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#/subastas/edicion">Acerca de</a></li>
-                <li><a href="#/subastas/edicion/guia-de-uso">Guía de uso</a></li>
-                <li><a href="#/subastas/edicion/avisos">Aviso de privacidad</a></li>
-                <li><a href="#/subastas/edicion/terminos">Términos y condiciones</a></li>
+                <li><a href="#/contenidos/acerca-de">Acerca de</a></li>
+                <li><a href="#/contenidos/guia-de-uso">Guía de uso</a></li>
+                <li><a href="#/contenidos/avisos">Aviso de privacidad</a></li>
+                <li><a href="#/contenidos/terminos">Términos y condiciones</a></li>
+                <li><a href="#/contenidos/preguntas-frecuentes">Preguntas frecuentes</a></li>
+                
             </ul>
         </li>
-        <li><a href="#">Usuarios</a></li>
+        <li><a href="#/clientes">Usuarios</a></li>
         <li><a href="http://demo.estrasol.com.mx/glimglam/">Salir</a></li>
     </ul>
 @stop

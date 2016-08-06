@@ -21,7 +21,7 @@ class User extends Authenticatable {
     protected $fillable = [
         'name', 'email', 'password',
     ];
-
+    protected $visible = array('name', 'email');
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -64,12 +64,14 @@ class User extends Authenticatable {
             throw new Exception("Subasta no valida");
         }
         
-        $this = new Bid([
+        $bid = new Bid([
             'offer' => $offer,
             'enrollment' => $objEnrollment->id,
             'auction' => $objEnrollment->acution()->id
         ]);
-        $this->binds()->add($this);
+        $this->binds()->add($bid);
     }
-
+    public function __construct(array $attributes = array()) {
+        parent::__construct($attributes);
+    }
 }

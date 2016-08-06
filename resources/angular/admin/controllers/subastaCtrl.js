@@ -3,6 +3,14 @@ glimglam.controller('subastaCtrl', function ($scope, $routeParams, Auction, $htt
     $scope.subSeccion = false;
     $scope.auction;
     $scope.photos = [];
+    
+    var code = $routeParams.code;
+    $scope.$parent.subSeccion="Detalle " + code;
+    $scope.auction;
+    Auction.getByCode(code).then(function (auction) {
+        $scope.auction = auction;
+    });
+    return ;
     Auction.getById($routeParams.id).then(function(a){
         $scope.auction = a;
         var url = laroute.route(Auction.aliasUrl())+'/'+a.id+"/photos/";

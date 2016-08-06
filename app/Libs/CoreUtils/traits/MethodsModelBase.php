@@ -3,7 +3,9 @@
     namespace GlimGlam\Libs\CoreUtils\traits;
 
     trait MethodsModelBase {
-
+        public static function getAllForDataTables() {
+            return static::getAll();
+        }
         public static function getAll($columns=['*']) {
             return static::get($columns);
         }

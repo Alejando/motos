@@ -5,7 +5,8 @@ var glimglam = angular.module("glimglamAdmin", [
     'ui.bootstrap.datetimepicker',
     'ngDropzone',
     'textAngular',
-    'datatables'
+    'datatables',
+    'datatables.bootstrap'
 ]);
 
 glimglam.constant('uiDatetimePickerConfig', {
@@ -79,11 +80,15 @@ glimglam.config(function ($routeProvider) {
         templateUrl: 'pages/admin/subastas-admin.html',
         controller: 'subastasCtrl'
     });
-    $routeProvider.when('/subasta/:id',{
+    $routeProvider.when('/subasta/:code',{
         templateUrl: 'pages/admin/subasta.html',
         controller: 'subastaCtrl'
     });     
     
+    $routeProvider.when('/contenidos/:slug', {
+        templateUrl: 'pages/admin/form-contenidos.html',
+        controller: 'edicionContenidoCtrl'
+    });
     $routeProvider.
             when('/subastas/editar', {
                 templateUrl: 'pages/admin/subastas-form.html',
@@ -97,23 +102,26 @@ glimglam.config(function ($routeProvider) {
                 templateUrl: 'pages/admin/usuarios-lista.html',
                 controller: 'edicionDeUsuarioCtrl'
             }).
-            when('/subastas/edicion', {
-                templateUrl: 'pages/admin/form-contenidos.html',
-                controller: 'edicionContenidoCtrl'
-            }).
-            when('/subastas/edicion/guia-de-uso', {
-                templateUrl: 'pages/admin/form-contenidos.html',
-                controller: 'edicionGuiaCtrl'
-            }).
-            when('/subastas/edicion/terminos', {
-                templateUrl: 'pages/admin/form-contenidos.html',
-                controller: 'edicionminosTerCtrl'
-            }).
-            when('/subastas/edicion/avisos', {
-                templateUrl: 'pages/admin/form-contenidos.html',
-                controller: 'edicionAvisoCtrl'
-            })
-
+            when('/clientes', {
+                templateUrl: 'pages/admin/lista-clientes.html',
+                controller: 'listaClienteCtrl'
+            });
+//            when('/contenidos/acerca-de', {
+//                templateUrl: 'pages/admin/form-contenidos.html',
+//                controller: 'edicionContenidoCtrl'
+//            }).
+//            when('/contenidos/guia-de-uso', {
+//                templateUrl: 'pages/admin/form-contenidos.html',
+//                controller: 'edicionGuiaCtrl'
+//            }).
+//            when('/contenidos/terminos', {
+//                templateUrl: 'pages/admin/form-contenidos.html',
+//                controller: 'edicionminosTerCtrl'
+//            }).
+//            when('/contenidos/avisos', {
+//                templateUrl: 'pages/admin/form-contenidos.html',
+//                controller: 'edicionAvisoCtrl'
+//            })
             ;
 });
 
@@ -125,9 +133,9 @@ glimglam.controller('edicionAvisoCtrl', function ($scope) {
     $scope.titulo = "Aviso de privacidad";
     $scope.$parent.subSeccion = "Edición Contenido \"Aviso de privacidad\"";
 });
-glimglam.controller('edicionContenidoCtrl', function ($scope) {
+glimglam.controller('edicionContenidoCtrl', function ($scope, $routeParams) {
     $scope.$parent.subSeccion = "Edición Contenido \"Acerca de\"";
-    $scope.titulo = "Acerca de ";
+    $scope.titulo = $routeParams.slug;
 });
 
 glimglam.controller('edicionDeUsuarioCtrl', function ($scope) {
@@ -146,6 +154,63 @@ glimglam.controller('edicionminosTerCtrl', function ($scope) {
 });
 glimglam.controller('homeCtrl', function ($scope) {
     $scope.msj = "Bienvenidos";
+});
+glimglam.controller('listaClienteCtrl', function ($scope, $routeParams, User, DTOptionsBuilder, DTColumnBuilder) {
+        $scope.$parent.subSeccion = "Listado de clientes registrados";
+
+
+    var status = $routeParams.status;
+    var self = this;
+    var btnsOptions = false;
+
+    
+    if($scope["fn_" + status]){
+        $scope["fn_" + status]();
+    }
+    $scope.allAuctions = [];
+    
+    $scope.dtOptions = DTOptionsBuilder.fromSource(User.getURLForAllDataTables())
+        .withOption('stateSave', true)
+        .withOption('scrollX', true)
+        .withPaginationType('full_numbers');
+    $scope.dtColumns = [];
+    
+    $scope.dtColumns.push(DTColumnBuilder.newColumn('id').withTitle('ID'));
+    if(btnsOptions){
+        var builder = DTColumnBuilder.newColumn(null).renderWith(btnsOptions).withTitle("Opciones");
+        $scope.dtColumns.push(builder);
+    }
+    
+    var getRandomInt = function(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    };
+    
+    $scope.dtColumns.push(DTColumnBuilder.newColumn('name').withTitle('Nombre')),
+//    $scope.dtColumns.push(DTColumnBuilder.newColumn('email').withTitle('email')),
+    $scope.dtColumns.push(DTColumnBuilder.newColumn(false).renderWith(function(){
+        return getRandomInt(0,30);
+    }).withTitle('Subastas Compradas'));
+    $scope.dtColumns.push(DTColumnBuilder.newColumn(false).renderWith(function(){
+        return getRandomInt(0,30);
+    }).withTitle('Subastas Ganadas'));
+    
+//        DTColumnBuilder.newColumn('lastName').withTitle('Last name').notVisible()
+    
+    $scope.newSource = User.getURLForAllDataTables();
+//    Auction.getAllForDataTables().then(function(datos){
+//        console.log("datos", datos);
+//    });
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 });
 glimglam.controller('mainCtrl', function ($scope) {
     $scope.msj = "Main Controller";
@@ -244,12 +309,7 @@ glimglam.controller('nuevaSubastaCtrl', function ($scope, $log, Auction) {
     $scope.openCalendar = function (e, picker) {
         $scope[picker].open = true;
     };
-    $scope.pics = [
-//        'http://demo.estrasol.com.mx/glimglam/img/productos/producto02.png',
-//        'http://demo.estrasol.com.mx/glimglam/img/productos/producto02.png',        
-//        "http://demo.estrasol.com.mx/glimglam/img/productos/producto02a.png",
-//        "http://demo.estrasol.com.mx/glimglam/img/productos/producto02b.png"
-    ];
+    $scope.pics = [];
     $scope.creando = false;
     
 
@@ -262,6 +322,14 @@ glimglam.controller('subastaCtrl', function ($scope, $routeParams, Auction, $htt
     $scope.subSeccion = false;
     $scope.auction;
     $scope.photos = [];
+    
+    var code = $routeParams.code;
+    $scope.$parent.subSeccion="Detalle " + code;
+    $scope.auction;
+    Auction.getByCode(code).then(function (auction) {
+        $scope.auction = auction;
+    });
+    return ;
     Auction.getById($routeParams.id).then(function(a){
         $scope.auction = a;
         var url = laroute.route(Auction.aliasUrl())+'/'+a.id+"/photos/";
@@ -278,10 +346,10 @@ glimglam.controller('subastaCtrl', function ($scope, $routeParams, Auction, $htt
         });
     });
 });
-glimglam.controller('subastasCtrl', function ($scope, $routeParams, Auction) {
+glimglam.controller('subastasCtrl', function ($scope, $routeParams, Auction, DTOptionsBuilder, DTColumnBuilder) {
     var status = $routeParams.status;
-    console.log(status);
     var self = this;
+    var btnsOptions = false;
     $scope['fn_en-proceso'] = function () {
         $scope.$parent.subSeccion = "Subastas en proceso";
         console.log("as");
@@ -289,15 +357,50 @@ glimglam.controller('subastasCtrl', function ($scope, $routeParams, Auction) {
     $scope['fn_terminadas'] = function () {
         $scope.titulo = "Terminados";
         $scope.$parent.subSeccion = "Subastas terminadas";
-        console.log("ok");
+       
     };
+    $scope['fn_sin-publicar'] = function () {
+        $scope.titulo = "No publicadas";
+        $scope.$parent.subSeccion = "Subastas sin publicar";  
+        btnsOptions = function() {
+            return "<button class=\"btn btn-primary\">Publicar</button>";
+        };
+    };
+    
     if($scope["fn_" + status]){
         $scope["fn_" + status]();
     }
     $scope.allAuctions = [];
-    Auction.getAll().then(function(allAuctions){
-        $scope.allAuctions = allAuctions;
-    });
+    
+//    Auction.getAll().then(function(allAuctions){
+//        $scope.allAuctions = allAuctions;
+//    });
+    
+    $scope.dtOptions = DTOptionsBuilder.fromSource(Auction.getURLForAllDataTables())
+        .withOption('stateSave', true)
+        .withOption('scrollX', true)
+        .withPaginationType('full_numbers');
+    $scope.dtColumns = [];
+    
+    $scope.dtColumns.push(DTColumnBuilder.newColumn('id').withTitle('ID'));
+    if(btnsOptions){
+        var builder = DTColumnBuilder.newColumn(null).renderWith(btnsOptions).withTitle("Opciones");
+        $scope.dtColumns.push(builder);
+    }
+    
+    $scope.dtColumns.push(DTColumnBuilder.newColumn(null).renderWith(function(data, type, full){
+            console.log(data, type, full);
+            return '<a href="#/subasta/'+full.code+'">'+full.code+'</a>';
+        }).withTitle('Código'));
+    $scope.dtColumns.push(DTColumnBuilder.newColumn('startDate').withTitle('Fecha de Inicio')),
+    $scope.dtColumns.push(DTColumnBuilder.newColumn('endDate').withTitle('Fecha de termino')),
+    $scope.dtColumns.push(DTColumnBuilder.newColumn('title').withTitle('Titulo'));
+//        DTColumnBuilder.newColumn('lastName').withTitle('Last name').notVisible()
+    
+    $scope.newSource = Auction.getURLForAllDataTables();
+//    Auction.getAllForDataTables().then(function(datos){
+//        console.log("datos", datos);
+//    });
 });
 glimglam.controller('usuariosListaCtrl', function ($scope) {
     $scope.titulo = "Lista de Usuarios";
@@ -557,6 +660,27 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
     ModelBase.save  = function () {
         console.log("pendiente crear método de creacion/actualizacion");
     };
+    //<editor-fold defaultstate="collapsed" desc="getURLForAllDataTables">
+    ModelBase.getURLForAllDataTables = function () {
+        var self = this;
+        var url = laroute.route(self.model().aliasUrl()  + '.all-for-datatables', {});
+        return url;
+    };
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="getallForDataTables">
+    ModelBase.getAllForDataTables = function() {
+        var self = this;
+        var url = self.getURLForAllDataTables();
+        var $defer = $q.defer();
+        $http({
+            'method' : 'GET',
+            'url' : url
+        }).then(function(result) {
+            $defer.resolve(result.data);
+        });
+        return $defer.promise;
+    };
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="getById">
     ModelBase.getById = function(id, args) {        
         var data = angular.extend(args || {} , {
@@ -591,11 +715,14 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
     return ModelBase;
 });
 
-glimglam.factory('Auction', function (ModelBase) {    
+glimglam.factory('Auction', function (ModelBase,$q,$http) {    
     var Auction = function (args) {
         ModelBase.apply(this, arguments);
     };
-    ModelBase.createModel(Auction , {        
+    ModelBase.createModel(Auction , {   
+        FINISHED : 2,
+        STARTED : 1,
+        STAND_BY : 0,
         alias: 'auction',
 //        cache : [],
         setters : {
@@ -615,10 +742,42 @@ glimglam.factory('Auction', function (ModelBase) {
             'startDate',
             'endDate',
             'published',
-            'status'
+            'status',
+            'totalEnrollments',
+            'inflows',
+            'soldFor',
+            'winner'
         ],
-        relations : []
-    }, {});    
+        relations : [],
+        getByCode : function (code){
+            var $defer = $q.defer();
+            var url = laroute.route('auction.getByCode', {
+                'code' : code
+            });
+            var self = this;
+            $http({
+                'method' : 'GET',
+                'url' :  url
+            }).then(function(result){
+                $defer.resolve(self.build(result.data));
+            });
+            return $defer.promise;
+        }
+    }, {
+        getStartDate : function () {
+            return "Fecha de inicio";
+        },
+        getEndDate : function () {
+            return "Fecha de Termino";
+        },
+        getStatusStr : function () {
+           switch(this.status){
+               case Auction.STARTED: return "Iniciada";
+               case Auction.FINISHED: return "Terminada";
+               case Auction.STAND_BY: return "En espera";
+           }
+        }
+    });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
     return Auction;
 });
@@ -653,5 +812,30 @@ glimglam.factory('Paginacion', function () {
         return new Paginacion(data);
     };
     return Paginacion;
+});
+glimglam.factory('User', function (ModelBase,$q,$http) {    
+    var User = function (args) {
+        ModelBase.apply(this, arguments);
+    };
+    ModelBase.createModel(User , {   
+        FINISHED : 2,
+        STARTED : 1,
+        STAND_BY : 0,
+        alias: 'user',
+//        cache : [],
+        setters : {
+            startDate : ModelBase.setDate,
+            endDate : ModelBase.setDate
+        },
+        attributes: [
+            'id',
+            'name',
+            'email'
+        ],
+        relations : []
+    }, {
+    });    
+    //<editor-fold defaultstate="collapsed" desc="buscarFolio">
+    return User;
 });
 //# sourceMappingURL=admin.js.map

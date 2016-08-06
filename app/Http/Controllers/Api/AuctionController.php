@@ -2,6 +2,7 @@
 namespace GlimGlam\Http\Controllers\Api;
 class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
     protected static $model = \GlimGlam\Models\Auction::class;
+    // <editor-fold defaultstate="collapsed" desc="addPhoto">
     public function addPhoto($id){
         $path = public_path()."/upload/auctions/$id/photos/";
         if(!file_exists($path)){
@@ -20,6 +21,8 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
         }
         move_uploaded_file($file['tmp_name'], $name);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getPhoto">
     public function getPhoto($id, $file){
         $path = public_path()."/upload/auctions/$id/photos/$file";
         $info = pathinfo($path);
@@ -39,6 +42,9 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
         }
         abort(404);
     }
+    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getPhotos">
     public function getPhotos($id){
         $path = public_path()."/upload/auctions/$id/photos/";
         $files = scandir($path);
@@ -51,4 +57,9 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
         }
         return $photos;
     }
+    // </editor-fold>
+    public function getByCode($code) {
+        return \GlimGlam\Models\Auction::getByCode($code);
+    }
+    
 }

@@ -253,6 +253,27 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
     ModelBase.save  = function () {
         console.log("pendiente crear método de creacion/actualizacion");
     };
+    //<editor-fold defaultstate="collapsed" desc="getURLForAllDataTables">
+    ModelBase.getURLForAllDataTables = function () {
+        var self = this;
+        var url = laroute.route(self.model().aliasUrl()  + '.all-for-datatables', {});
+        return url;
+    };
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="getallForDataTables">
+    ModelBase.getAllForDataTables = function() {
+        var self = this;
+        var url = self.getURLForAllDataTables();
+        var $defer = $q.defer();
+        $http({
+            'method' : 'GET',
+            'url' : url
+        }).then(function(result) {
+            $defer.resolve(result.data);
+        });
+        return $defer.promise;
+    };
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="getById">
     ModelBase.getById = function(id, args) {        
         var data = angular.extend(args || {} , {

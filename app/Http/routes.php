@@ -44,6 +44,10 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI = function ($name, $controller){      
 //        echo "Api\\{$controller}Controller";
 //        die();
+                Route::get($name.'/all-for-datatables',[
+                   'as' => $name.'.all-for-datatables',
+                    'uses' => 'Api\\'.$controller.'Controller@getAllForDatatables'
+                ]);
                 Route::resource($name, "Api\\{$controller}Controller", [ 'names' => [
                         'index'   => $name.'',
                         'create'  => $name.'.create',
@@ -58,10 +62,23 @@ Route::group(['prefix' => 'api'], function () {
                     'as' => $name.'.relation',
                     'uses' => 'Api\\'.$controller.'Controller@relation']
                 );
+//                echo $name.'/all-for-datatables';
+                
     };
+    Route::get('auction/code/{code}',[
+        'as' => 'auction.getByCode',
+        'uses' => 'Api\\AuctionController@getByCode'
+    ]);
+    Route::get('content/slug/{slug}', [
+        'as' => 'Content.slug',
+        'uses' => 'Api\\ContentController@slug'
+    ]);
     $addAPI('category','Category');
     $addAPI('preference','Preference');
     $addAPI('address','Address');
+    $addAPI('auction','Auction');
+    $addAPI('content','Content');
+    $addAPI('user','User');
     Route::resource('auction', 'Api\\AuctionController', $getNames('auction'));
 });
 // Route::resource('api/auction','Api\\AuctionController');

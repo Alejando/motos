@@ -1,4 +1,4 @@
-glimglam.controller('edicionContenidoCtrl', function ($scope) {
+glimglam.controller('edicionContenidoCtrl', function ($scope, $routeParams) {
     $scope.$parent.subSeccion = "Edición Contenido \"Acerca de\"";
-    $scope.titulo = "Acerca de ";
+    $scope.titulo = $routeParams.slug;
 });

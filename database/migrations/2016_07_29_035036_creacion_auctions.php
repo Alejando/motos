@@ -36,6 +36,10 @@ class CreacionAuctions extends Migration {
             $table->dateTime('endDate');
             $table->boolean('published');
             $table->smallInteger('status');
+            $table->integer('winner')->unsigned()->nullable();
+            $table->integer('totalEnrollments');
+            $table->decimal('inflows');
+            $table->decimal('soldFor');
             $table->timestamps();
         });
     }
