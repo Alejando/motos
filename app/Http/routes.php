@@ -85,3 +85,13 @@ Route::group(['prefix' => 'api'], function () {
 Route::post('api/auction/{id}/addPhoto','Api\\AuctionController@addPhoto');
 Route::get('api/auction/{id}/photos', 'Api\\AuctionController@getPhotos'); 
 Route::get('api/auction/{id}/photo/{file}', 'Api\\AuctionController@getPhoto');
+Route::get('api/auction/{code}/thumbailn/{version}', [
+    'uses' => 'Api\\AuctionController@getThumbnail',
+    'as'   => 'auction.getCover'
+])->where([
+    'version'=> "(?:vertical|horizontal|slider-upcoming)"
+]);
+/* @var $route \Illuminate\Routing\Router */
+$route = \Illuminate\Support\Facades\Route::getFacadeRoot();
+Route::controller('tests/pako','TestPakoCtrl');
+//die;

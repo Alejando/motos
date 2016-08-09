@@ -13,7 +13,10 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $this->visit('/')
-             ->see('Laravel 5');
+         $sub1 = GlimGlam\Models\Auction::getByCode('SUB-001');
+         $this->equalTo($sub1->id,1);
+//         dd();
+//        $this->visit('/')
+//             ->see('Laravel 5');
     }
 }

@@ -18,5 +18,10 @@ elixir(function(mix) {
         '../../angular/admin/app.js',
         '../../angular/admin/**/*.js'
     ],'public/js/estrasol/admin.js');
+    mix.scripts([
+        '../../angular/admin/public.js',
+        '../../angular/admin/factories/**/*.js',
+        '../../angular/admin/controllers/public/*.js'
+    ], 'public/js/estrasol/public.js');
     mix.livereload();
 });

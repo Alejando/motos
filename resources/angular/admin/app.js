@@ -1,4 +1,4 @@
-var glimglam = angular.module("glimglamAdmin", [
+var glimglam = angular.module("glimglam", [
     'ngRoute',
     'angular-clockpicker',
     'ui.bootstrap',

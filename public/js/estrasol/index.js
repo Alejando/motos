@@ -27,7 +27,7 @@ $(document).ready(function() {
 	$('.fancy-login, .cerrar-fancybox').click(function(){
 		$('.fancy-login').fadeOut(500);
 	});
-
+        return;
 	//Llamada de productos destacados
 	$.get("ajax_call/ws_destacados.php", function(data, status){
 		html = data;
@@ -41,6 +41,7 @@ $(document).ready(function() {
     });
 
     function get_products(pag){
+        return;
     	//Llamada de listado de productos
 		$.get("ajax_call/ws_listado_home.php", function(data, status){
 			html = data;
@@ -173,5 +174,4 @@ $(document).ready(function() {
         $(this).siblings('button').removeClass('perfil-activo');
         $(this).addClass('perfil-activo');
     });
-
 });

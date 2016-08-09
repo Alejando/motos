@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="glimglam">
     <head>
         <title>Glim Glam</title>
         @include('public.meta-tags')

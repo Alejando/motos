@@ -6,6 +6,10 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         FINISHED : 2,
         STARTED : 1,
         STAND_BY : 0,
+        //Tipos de portadas
+        COVER_HORIZOTAL : 'horizontal',
+        COVER_VERTICAL : 'vertical',
+        COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
 //        cache : [],
         setters : {
@@ -15,6 +19,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         attributes: [
             'id',
             'title',
+            'code',
             'description',
             'maxBid',
             'minBid',
@@ -47,6 +52,13 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             return $defer.promise;
         }
     }, {
+        getCover : function (version) {
+            var url = laroute.route('auction.getCover',{
+                version:version,
+                code: this.code
+            });
+            return url;
+        },
         getStartDate : function () {
             return "Fecha de inicio";
         },
@@ -54,7 +66,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             return "Fecha de Termino";
         },
         getStatusStr : function () {
-           switch(this.status){
+           switch(this.status) {
                case Auction.STARTED: return "Iniciada";
                case Auction.FINISHED: return "Terminada";
                case Auction.STAND_BY: return "En espera";

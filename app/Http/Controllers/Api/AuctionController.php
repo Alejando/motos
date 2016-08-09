@@ -58,8 +58,16 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
         return $photos;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getByCode">
     public function getByCode($code) {
-        return \GlimGlam\Models\Auction::getByCode($code);
+       $auction = \GlimGlam\Models\Auction::getByCode($code);
+       return $auction !=null ? $auction : abort(404);
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getThumbnail">
+    public function getThumbnail($code, $version) {
+        $thum = \GlimGlam\Models\Auction::getThumbnailByCode($code, $version);
+        return response($thum['data'])->header('Content-type', $thum['type']);
+    }
+    // </editor-fold>
 }
