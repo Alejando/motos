@@ -23,11 +23,18 @@ Route::post('/file-upload', function () {
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+/* @var $route \Illuminate\Routing\Router */
+$route = \Illuminate\Support\Facades\Route::getFacadeRoot();
+$route->controller('tests/pako','TestPakoCtrl');
 Route::auth();
 Route::get('/home', 'HomeController@index');
 Route::get('/login', function () {
     return view('public.pages.login');
 });
+$route->get('api/auction/upcoming/{n?}',[
+    'as'=> 'auction.upcoming',
+    'uses' =>  'Api\\AuctionController@getUpcoming'
+]);
 Route::group(['prefix' => 'api'], function () {
     $getNames = function ($name) {
         return [ 'names' => [
@@ -81,6 +88,7 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('user','User');
     Route::resource('auction', 'Api\\AuctionController', $getNames('auction'));
 });
+
 // Route::resource('api/auction','Api\\AuctionController');
 Route::post('api/auction/{id}/addPhoto','Api\\AuctionController@addPhoto');
 Route::get('api/auction/{id}/photos', 'Api\\AuctionController@getPhotos'); 
@@ -91,7 +99,3 @@ Route::get('api/auction/{code}/thumbailn/{version}', [
 ])->where([
     'version'=> "(?:vertical|horizontal|slider-upcoming)"
 ]);
-/* @var $route \Illuminate\Routing\Router */
-$route = \Illuminate\Support\Facades\Route::getFacadeRoot();
-Route::controller('tests/pako','TestPakoCtrl');
-//die;

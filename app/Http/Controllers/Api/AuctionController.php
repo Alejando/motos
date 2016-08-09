@@ -70,4 +70,13 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
         return response($thum['data'])->header('Content-type', $thum['type']);
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getUpcoming">
+    public function getUpcoming($n = 5) {
+        if($n>100){
+            $n=5;
+        }
+        return \GlimGlam\Models\Auction::getUpcoming($n)->get();
+    }
+    // </editor-fold>
+    
 }

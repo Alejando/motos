@@ -11,7 +11,6 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         COVER_VERTICAL : 'vertical',
         COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
-//        cache : [],
         setters : {
             startDate : ModelBase.setDate,
             endDate : ModelBase.setDate
@@ -50,9 +49,24 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 $defer.resolve(self.build(result.data));
             });
             return $defer.promise;
+        },
+        getUpcoming : function (n) {
+            var url = laroute.route('auction.upcoming', {
+                n:n
+            });
+            var $defer = $q.defer();
+            var self = this;
+            $http({
+                'method' : 'GET',
+                'url' :  url
+            }).then(function(result){
+                $defer.resolve(self.build(result.data));
+            });
+            return $defer.promise;
         }
     }, {
-        getCover : function (version) {
+        
+        getUrlCover : function (version) {
             var url = laroute.route('auction.getCover',{
                 version:version,
                 code: this.code

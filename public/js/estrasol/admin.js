@@ -729,7 +729,6 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         COVER_VERTICAL : 'vertical',
         COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
-//        cache : [],
         setters : {
             startDate : ModelBase.setDate,
             endDate : ModelBase.setDate
@@ -768,9 +767,24 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 $defer.resolve(self.build(result.data));
             });
             return $defer.promise;
+        },
+        getUpcoming : function (n) {
+            var url = laroute.route('auction.upcoming', {
+                n:n
+            });
+            var $defer = $q.defer();
+            var self = this;
+            $http({
+                'method' : 'GET',
+                'url' :  url
+            }).then(function(result){
+                $defer.resolve(self.build(result.data));
+            });
+            return $defer.promise;
         }
     }, {
-        getCover : function (version) {
+        
+        getUrlCover : function (version) {
             var url = laroute.route('auction.getCover',{
                 version:version,
                 code: this.code
@@ -854,14 +868,20 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
 glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
     $scope.titulo = "Hello";
     window.Auction = Auction;
-    Auction.getAll().then(function(all){
+    Auction.getAll().then(function(all) {
         console.log(all);
     });
-    Auction.getByCode("SUB-001").then(function(byCode){
+    Auction.getByCode("SUB-001").then(function(byCode) {
         console.log("Auction byCode=> %o", byCode);
-        console.log("cover horizontal => %a", byCode.getCover(Auction.COVER_HORIZOTAL));
-        console.log("cover vertical => %o", byCode.getCover(Auction.COVER_VERTICAL));
-        console.log('cover slider => %o',  byCode.getCover(Auction.COVER_SLIDER_UPCOMING));
+        console.log("cover horizontal => %o", byCode.getUrlCover(Auction.COVER_HORIZOTAL));
+        console.log("cover vertical => %o", byCode.getUrlCover(Auction.COVER_VERTICAL));
+        console.log('cover slider => %o',  byCode.getUrlCover(Auction.COVER_SLIDER_UPCOMING));
+    });
+    Auction.getUpcoming(10).then(function(auctions) {
+        console.log('diez proximas => %o', auctions);
+    });
+    Auction.getPage().then(function(result) {
+        console.log(result);
     });
     console.log("controlador Index");
     $scope.$parent.subSeccion = "Actualización Masiva";
