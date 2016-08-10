@@ -1,0 +1,12 @@
+
+Contacto
+
+url /contacto
+
+Método => PublicControllers@contact
+View -> public.pages.concat
+
+Angular
+    Mails.contact({
+        '
+    });
