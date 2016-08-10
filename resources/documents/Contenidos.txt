@@ -1,6 +1,6 @@
 Contenidos
 
-url : /contenido/{slug} 
+url : /{slug} 
 
 Methdo PublicController@content($slug);
 

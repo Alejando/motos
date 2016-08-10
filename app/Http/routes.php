@@ -104,5 +104,6 @@ Route::get('api/auction/{code}/thumbailn/{version}', [
 ])->where([
     'version'=> "(?:vertical|horizontal|slider-upcoming)"
 ]);
-$route->get('contenido/{slug}','PublicController@content');
+
 $route->get('tests/mail/{type}', 'TestsController@mail');
+$route->get('{slug}','PublicController@content');

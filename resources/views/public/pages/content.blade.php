@@ -1,1 +1,1 @@
-{{dd($objContent)}}
+{{($objContent->name)}}
