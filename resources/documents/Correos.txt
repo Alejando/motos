@@ -1,0 +1,51 @@
+URL Pruebas
+/tests/email/{type}
+
+Método TestsController@email($type)
+los tipos puede ser:
+ -- welcome
+ -- enrollment
+ -- confirmYouWin
+ -- payment
+ -- resetPassword
+
+Parametros GET
+  Send, enviará el correo de prueba al correo registrado en el archivo .env
+
+*** respetar mayusculas/minusculas
+
+
+--- Vistas y parametros
+
+puedes crear platillas en mails/frames y estas heredarlas a los coreos
+los correos de ejemplos implementan el frame mails.frames.common
+
+la plantilla y los parametros depende del tipo de correo
+
+welcome 
+ view mail.welcome
+   - user GlimGlam\model\User
+
+enrollment
+ view: mail.confirm-enrollment
+  - user GlimGlam\models\User, objeto del usuario 
+  - auction  GlimGlam\models\Auction, objeto de la subasta que gano
+  - payment *pendiente, este tedrá la información del pago 
+
+confirmYouWin
+ view: mail.confirm-you-win
+  - user GlimGlam\models\User, objeto del usuario 
+  - auction  GlimGlam\models\Auction, objeto de la subasta que gano
+
+
+payment
+ view: mail.confirm-payment
+  - user GlimGlam\models\User, objeto del usuario 
+  - auction  GlimGlam\models\Auction, objeto de la subasta que gano,
+  - payment *pendiente, este tedrá la información del pago 
+
+
+resetPassword
+ view: mail.resert-password
+    - user GlimGlam\models\User, objeto del usuario 
+    - auction  GlimGlam\models\Auction, objeto de la subasta que gano
