@@ -21,6 +21,12 @@ form.subastas-form {
     width: 60%;
     float: left; }
 
+.detalle {
+  text-align: right;
+  font-size: 150px;
+  color: white;
+  font-family: serif; }
+
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates

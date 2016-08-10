@@ -3,7 +3,7 @@
     <section class="row">
         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
             <a href="{{asset('')}}">
-                <img src="img/logo.png" alt="Glim Glam" title="Glim Glam &reg;" class="logo">
+                <img src="{{asset('img/logo.png')}}" alt="Glim Glam" title="Glim Glam &reg;" class="logo">
             </a>
         </div>
 

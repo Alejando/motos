@@ -2,7 +2,7 @@
             <div class="contenedor-registro">
                 <div class="cerrar-fancybox"></div>
                 <div class="img-mensaje">
-                    <img src="img/logo-mini.png" alt="Glim Glam &reg;" title="Glim Glam &reg;">
+                    <img src="{{asset('img/logo-mini.png')}}" alt="Glim Glam &reg;" title="Glim Glam &reg;">
                 </div>
                 <div class="registro-leyenda-1">
                     ¡UNETE!

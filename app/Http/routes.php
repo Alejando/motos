@@ -18,7 +18,7 @@ Route::get('/pages/admin/{view}.html','PagesCtrl@admin');
 Route::post('/file-upload', function () {
     print_r($_FILES);
 });
-
+//
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -26,6 +26,7 @@ Route::post('/file-upload', function () {
 /* @var $route \Illuminate\Routing\Router */
 $route = \Illuminate\Support\Facades\Route::getFacadeRoot();
 $route->controller('tests/pako','TestPakoCtrl');
+$route->controller('tests/jared', 'TestJaredCtrl');
 Route::auth();
 Route::get('/home', 'HomeController@index');
 Route::get('/login', function () {

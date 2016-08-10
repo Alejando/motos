@@ -32,5 +32,5 @@ class TestPakoCtrl extends BaseController {
                 ->paginate(4);
     }
     // </editor-fold>
-
+    
 }
