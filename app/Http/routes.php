@@ -35,8 +35,10 @@ Route::get('/login', function () {
 $route->get('api/auction/upcoming/{n?}',[
     'as'=> 'auction.upcoming',
     'uses' =>  'Api\\AuctionController@getUpcoming'
-]);
+]);  
+// <editor-fold defaultstate="collapsed" desc="/api">
 Route::group(['prefix' => 'api'], function () {
+    // <editor-fold defaultstate="collapsed" desc="$getNames">
     $getNames = function ($name) {
         return [ 'names' => [
                 'index'   => $name.'',
@@ -49,6 +51,8 @@ Route::group(['prefix' => 'api'], function () {
             ]
         ];
     };
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="$addAPI">
     $addAPI = function ($name, $controller){      
 //        echo "Api\\{$controller}Controller";
 //        die();
@@ -73,6 +77,7 @@ Route::group(['prefix' => 'api'], function () {
 //                echo $name.'/all-for-datatables';
                 
     };
+    // </editor-fold>
     Route::get('auction/code/{code}',[
         'as' => 'auction.getByCode',
         'uses' => 'Api\\AuctionController@getByCode'
@@ -87,10 +92,9 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('auction','Auction');
     $addAPI('content','Content');
     $addAPI('user','User');
-    Route::resource('auction', 'Api\\AuctionController', $getNames('auction'));
 });
-
-// Route::resource('api/auction','Api\\AuctionController');
+// </editor-fold>
+Route::get('mi-perfil/', 'UserController@profile' );
 Route::post('api/auction/{id}/addPhoto','Api\\AuctionController@addPhoto');
 Route::get('api/auction/{id}/photos', 'Api\\AuctionController@getPhotos'); 
 Route::get('api/auction/{id}/photo/{file}', 'Api\\AuctionController@getPhoto');
@@ -100,3 +104,4 @@ Route::get('api/auction/{code}/thumbailn/{version}', [
 ])->where([
     'version'=> "(?:vertical|horizontal|slider-upcoming)"
 ]);
+$route->get('contenido/{slug}','PublicController@content');

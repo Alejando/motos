@@ -1,0 +1,30 @@
+Contenidos
+
+url : /contenido/{slug} 
+
+Methdo PublicController@content($slug);
+
+-- View ----------------------------------
+public.pages.content
+  -content //Objeto Contenido 
+
+        Clase Content
+         ____________
+        |  Content   |
+        +------------+
+        | - id       | 
+        | - title    | // titulo del contenido
+        | - name     | // nombre o titulo corto, este es pensado para colocarlos en las ligas detro de menus
+        | - slug     | // slug
+        | - content  | // contenido, este será HTML libre
+        +------------+
+
+-- Seeder ---------------------------------
+comando:
+./artisan db:seeder class=ContentsSeeeder
+
+Rellena la tabla content con 4 contenidos aleatorios con los slugs
+ -acerca-de-glim-glam
+ -guia-de-uso
+ -aviso-de-privasidad
+ -terminos-y-condiciones
