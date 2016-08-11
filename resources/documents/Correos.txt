@@ -1,5 +1,5 @@
 URL Pruebas
-/tests/mail/{type}
+/tests/mail/{txt|html}{type}?send=
 
 Método TestsController@email($type)
 los tipos puede ser:

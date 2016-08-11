@@ -10,7 +10,8 @@
 
 @section('message')
 
-Welcome! <span class="welcome">{{$user->name}}</span>
+Welcome! <span class="welcome">s{{$user->name}}</span>
     {{$user->email}}
-
-@stop
+    {{env('EMAIL_TEST_DEVELOPER')}}
+    <img src="{{$message->embed("img/logo.png")}}">
+@stop   
