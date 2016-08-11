@@ -9,7 +9,10 @@ class TestsController extends BaseController {
         $mailClass = \GlimGlam\Libs\Helpers\Mail::class;
         if(method_exists($mailClass, $type)){
             $methodRef = new \ReflectionMethod($mailClass, $type);
-            $content = $methodRef->invokeArgs(null, [[], true, $request->get('send')==='1', $format]);
+            $args = [];
+            $to = $request->get('to');
+            $args['to'] = $to ? $to : [];            
+            $content = $methodRef->invokeArgs(null, [$args, true, $request->get('send')==='1', $format]);
             $response = \Response::make($content, '200');
             if($format === 'txt') {
                 $response->header('Content-Type', 'text/plain');
