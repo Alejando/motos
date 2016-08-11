@@ -16,7 +16,7 @@ class Mail{
         $txtView = 'mails.txt.'.$view;
         $htmlView = 'mails.html.'.$view;
         $strMsjTxt =  view($txtView, $args);
-        if($test == false || $send = true) {
+        if($send == true) {
             SendEmail::send([
                     'mails.frames.html', 
                     'mails.frames.txt'
@@ -32,6 +32,7 @@ class Mail{
                     if($test) { 
                       $to[] = env('EMAIL_TEST_DEVELOPER');
                     }
+                    $message->subject(isset($args['subject'])?$args['subject']:'No Subject');
                     $message->to($to);
                  }
             );
@@ -53,32 +54,33 @@ class Mail{
     public static function welcome($args, $test = false, $send = true, $format = 'html') {
         $user = \GlimGlam\Models\User::getRandom(); 
         $args['user'] = $user;
-        $args['to'] = 'jdiaz@estrasol.com.mx';
+        $args['to'] = [];
         return self::sendMail('welcome', $args, $test, $send, $format);
     }
     // </editor-fold>
-    public static function enrollment() {
-       return view('mails.confirm-enrollment',[
-           'user'=> \GlimGlam\Models\User::getRandom()
-       ]);
+    public static function enrollment($args = [], $test = false, $send = true, $format = 'html') {
+       $args['user'] = \GlimGlam\Models\User::getRandom();
+       return self::sendMail('confirm-enrollment', $args, $test, $send, $format);
+    }
+    // <editor-fold defaultstate="collapsed" desc="ConfirmYouWin">
+    public static function ConfirmYouWin($args = [], $test = false, $send = true, $format = 'html') {
+        $args['user'] = \GlimGlam\Models\User::getRandom();
+        $args['subject'] = "Ganaste una subasta!";
+        return self::sendMail('confirm-you-win', $args, $test, $send, $format);
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="payment">
+    public static function payment($args = [], $test = false, $send = true, $format = 'html') {
+        $args['subject'] = "Confirmación de pago";
+        return self::sendMail('confirm-payment', $args, $test, $send, $format);
     }
     
-    public static function ConfirmYouWin() {
-       return view('mails.confirm-you-win',[
-           'user'=> \GlimGlam\Models\User::getRandom()
-       ]);
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="resetPassword">
+    public static function resetPassword($args = [], $test = false, $send = true, $format = 'html') {
+        $args['subject'] = "Recupearación de Password";
+        return self::sendMail('reset-password', $args, $test, $send, $format);
     }
-    
-    public static function payment() {
-        return view('mails.confirm-payment',[
-           'user'=> \GlimGlam\Models\User::getRandom()
-       ]);
-    }
-    
-    public static function resetPassword() {
-        return view('mails.reset-password',[
-           'user'=> \GlimGlam\Models\User::getRandom()
-        ]);
-    }
-    
+    // </editor-fold>
+
 }

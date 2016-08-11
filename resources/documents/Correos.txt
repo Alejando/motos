@@ -1,5 +1,7 @@
 URL Pruebas
-/tests/mail/{txt|html}{type}?send=
+/tests/mail/{txt|html}/{type}?send=1|0&to=correos 
+*el correo de preuba de desarrollo es tomado del archivo .dev y con "to" puedes agregar otros correos.
+/tests/mail/html/resetPassword?send=0&to=wariodiaz@gmail.com
 
 Método TestsController@email($type)
 los tipos puede ser:
