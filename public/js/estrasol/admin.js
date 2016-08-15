@@ -406,7 +406,7 @@ glimglam.controller('subastasCtrl', function ($scope, $routeParams, Auction, DTO
 glimglam.controller('usuariosListaCtrl', function ($scope) {
     $scope.titulo = "Lista de Usuarios";
 });
-glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
+glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval) {
     //<editor-fold defaultstate="collapsed" desc="constructor">
     var ModelBase = function (args) {
         this.setProperties(args);
@@ -427,6 +427,31 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
                 }
                 self[attr] = data[attr];
             });
+        },
+        selfUpdate : function (milisecons, $scope) {
+            
+            var self = this;
+            $interval(function(){
+                console.log("Inicia --- re", milisecons);
+                self.refresh();
+            },milisecons);            
+        },
+        refresh : function () {
+            var data = {};
+            var self = this;
+            var $defer =  $q.defer();
+            var model = this.model();
+            data[model.aliasUrl()] = this.id;
+            var url = laroute.route(model.aliasUrl() + '.show', data);            
+            $http({
+                'method' : 'GET',
+                'url' : url
+            }).then(function(result) {
+                self.setProperties(result.data);
+            }, function(r) {                
+                $defer.reject(r);
+            });
+            return $defer;
         },
         getProperties : function () {
             var self = this;
@@ -587,13 +612,15 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
         var Model = this.model(), obj;
         if (angular.isArray(data)) {            
             var arrInst = [];
-            var i=0;
+            var i = 0;
             angular.forEach(data, function (d) {                
                 obj = Model.findCache(d);                                
                 if(obj) {
+                    console.log(d);
+                    obj.setProperties(d);
                     arrInst.push(obj);
                     i++;
-                    console.log("ya en cache " +i);
+//                    console.log("ya en cache " +i);
                 } else {
                     obj = Model.addCache(new Model(d));  
                     arrInst.push(obj);
@@ -730,28 +757,29 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
         setters : {
-            startDate : ModelBase.setDate,
-            endDate : ModelBase.setDate
+            start_date : ModelBase.setDate,
+            end_date : ModelBase.setDate
         },
         attributes: [
             'id',
             'title',
             'code',
             'description',
-            'maxBid',
-            'minBid',
-            'maxOffer',
-            'userTop',
+            'max_bid',
+            'min_bid',
+            'max_offer',
+            'user_top',
             'delay',
             'target',
-            'startDate',
-            'endDate',
+            'start_date',
+            'end_date',
             'published',
             'status',
-            'totalEnrollments',
+            'total_enrollments',
             'inflows',
-            'soldFor',
-            'winner'
+            'sold_for',
+            'winner',
+            'last_offer'
         ],
         relations : [],
         getByCode : function (code){
@@ -768,9 +796,11 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             });
             return $defer.promise;
         },
-        getUpcoming : function (n) {
+        getUpcoming : function (n, page) {
+            var _page = page?page:1;
             var url = laroute.route('auction.upcoming', {
-                n:n
+                n:n,
+                page : _page
             });
             var $defer = $q.defer();
             var self = this;
@@ -778,12 +808,43 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'method' : 'GET',
                 'url' :  url
             }).then(function(result){
-                $defer.resolve(self.build(result.data));
+                $defer.resolve(self.build(result.data.data));
+            });
+            return $defer.promise;
+        },
+        getFinished : function (n, page) {
+            var _page = page ? page : 1;
+            var url = laroute.route('auction.finished', {
+                n:n,
+                page : _page
+            });
+            var $defer = $q.defer();
+            var self = this;
+            $http({
+                'method': 'GET',
+                'url': url
+            }).then(function(result) {
+                $defer.resolve(self.build(result.data.data));
+            });
+            return $defer.promise;
+        },
+        getStarted : function (n, page){
+            var _page = page ? page:1;
+            var url = laroute.route('auction.started', {
+                n : n,
+                page : _page
+            });
+            var $defer = $q.defer();
+            var self = this;
+            $http({
+                'method' : 'GET',
+                'url' : url
+            }).then(function(result) {
+                $defer.resolve(self.build(result.data.data));
             });
             return $defer.promise;
         }
     }, {
-        
         getUrlCover : function (version) {
             var url = laroute.route('auction.getCover',{
                 version:version,
@@ -871,19 +932,28 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
     Auction.getAll().then(function(all) {
         console.log(all);
     });
-    Auction.getByCode("SUB-001").then(function(byCode) {
-        console.log("Auction byCode=> %o", byCode);
-        console.log("cover horizontal => %o", byCode.getUrlCover(Auction.COVER_HORIZOTAL));
-        console.log("cover vertical => %o", byCode.getUrlCover(Auction.COVER_VERTICAL));
-        console.log('cover slider => %o',  byCode.getUrlCover(Auction.COVER_SLIDER_UPCOMING));
+//    Auction.getByCode("SUB001").then(function(byCode) {
+//        console.log("Auction byCode=> %o", byCode);
+//        console.log("cover horizontal => %o", byCode.getUrlCover(Auction.COVER_HORIZOTAL));
+//        console.log("cover vertical => %o", byCode.getUrlCover(Auction.COVER_VERTICAL));
+//        console.log('cover slider => %o',  byCode.getUrlCover(Auction.COVER_SLIDER_UPCOMING));
+//    });
+//    Auction.getUpcoming(10).then(function(auctions) {
+//        console.log('diez proximas => %o', auctions);
+//    });
+//    Auction.getFinished(10).then(function(auctions) {
+//        console.log('las ultimas 10 terminadas => %o', auctions);
+//    });
+//    Auction.getStarted(10).then(function(auctions){
+//        console.log('las ultimas iniciadas => %o', auctions);
+//    });
+    
+    $scope.lastStarted = null;
+    
+    Auction.getStarted(1).then(function(auction) {
+        $scope.lastStarted = auction[0];
+        $scope.lastStarted.selfUpdate(1500000, $scope);    
     });
-    Auction.getUpcoming(10).then(function(auctions) {
-        console.log('diez proximas => %o', auctions);
-    });
-    Auction.getPage().then(function(result) {
-        console.log(result);
-    });
-    console.log("controlador Index");
     $scope.$parent.subSeccion = "Actualización Masiva";
 });
 //# sourceMappingURL=admin.js.map

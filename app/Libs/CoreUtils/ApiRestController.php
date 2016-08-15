@@ -14,7 +14,7 @@ class ApiRestController extends Controller {
      */
     public function index() {
         $campos = Input::get("campos");
-        $paginacion = Input::get("paginacion");
+        $paginacion = Input::get("paginacion");$model = \GlimGlam\Models\Address::class;
         if($paginacion == "false") {
             $refMethod = new \ReflectionMethod(static::$model, 'getAll'); 
             return $refMethod->invokeArgs(null, [$campos]);

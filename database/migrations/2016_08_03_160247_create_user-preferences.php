@@ -26,7 +26,7 @@ class CreateUserPreferences extends Migration {
      * @return void
      */
     public function down() {
-        Schema::drop('user_preferences');
+        Schema::drop('preference_user');
     }
 
 }

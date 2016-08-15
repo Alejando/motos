@@ -1,7 +1,42 @@
-@extends('layouts.app')
-
+<?php //-- @extends('layouts.app') }}
+?>
+@extends('public.base')
 <!-- Main Content -->
-@section('content')
+@section('body')
+<section class="container-fluid nopadding">
+    <div class="login-cont">
+        <div class="login-head">
+            <i class="fa fa-user"></i>
+            <p>Restablecer Contraseña</p>
+        </div>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+        <form class="login-form {{ $errors->has('email') ? ' has-error' : '' }}" method="POST" action="{{ url('/password/email') }}">
+            {{ csrf_field() }}
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <input type="email" name="email"  value="{{old('email') }}" class="form-control2 correo" placeholder="Correo electrónico">
+                </div>
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12 text-center">
+                    <button type="submit" class="btn-login btn-primary">Envíar Instrucciones</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+@stop
+<?php 
+/*
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -45,3 +80,4 @@
     </div>
 </div>
 @endsection
+*/?>

@@ -1,43 +1,62 @@
 <?php
 
 namespace GlimGlam\Models;
-
+use Carbon\Carbon;
 
 class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
     public $timestamps = true;
-
+    
     const STATUS_FINISHED = 2;
     const STATUS_STARTED = 1;
     const STATUS_STAND_BY = 0;
     const STATUS_CANCELED = 3;
-
+    
+    protected $dateFormat = 'Y-m-d H:i:s';
+    public $dates = ['start_date','end_date'];
+    
     const READY = 1;
     const COVER_HORIZONTAL = "horizontal";
     const COVER_VERTICAL = "vertical";
     const COVER_SLIDER_UPCOMING = "slider-upcoming"; 
+    const COVER_NOW = "now";
     
-    public static function getLastStarted() {
-        
+    protected $hidden = ['created_at', 'updated_at'];
+    public function getOfferType() {
+        return ['oferta-verde','oferta-naranja','oferta-rojo'][rand(0, 2)];
     }
-    
-    public static function getStarted(){
-        
+    // <editor-fold defaultstate="collapsed" desc="getStartDateAttribute">
+    public function getStartDateAttribute() {
+        return $this->datetimeFormat('start_date');
     }
-    
-    public static function getFinished(){
-        
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getEndDateAttribute">
+    public function getEndDateAttribute(){
+        return $this->datetimeFormat('end_date');
     }
-
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getStarted">
+    public static function getStarted( ) {
+        $now = new \DateTime();
+        return self::where('ready',"=",1)
+            ->where('status','=', self::STATUS_STARTED);
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getFinished">
+    public static function getFinished() {
+        return self::where('status', '=', self::STATUS_FINISHED)
+            ->where('ready','=', self::READY)
+            ->orderBy('start_date','desc');
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getUpcoming">
-    public static function getUpcoming($n) {
-        $now = new \DateTime();    
+    public static function getUpcoming() {
+        $now = new \DateTime(); 
         /* @var $query \Illuminate\Database\Eloquent\Builder */
-        $query = Auction::where('startDate','>',$now)
-            ->where('status', '!=', self::STATUS_CANCELED)
+        $query = Auction::where('start_date', '>', $now)
+            ->where('status', '!=', self::STATUS_STAND_BY)
             ->where('ready', '=', self::READY)
-            ->orderBy('startDate','asc')
-            ->take($n);
+            ->orderBy('start_date','asc');
         return $query;
     }
     // </editor-fold>
@@ -73,8 +92,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $pathBase = self::getAuctionFilesPath($code);
         $defaultImg =  public_path()."/img/edit-perfil-gg.png";
         $img = $defaultImg;
-        $coverJpg = $pathBase."covers/$version.jpg";
-        $coverPng = $pathBase."covers/$version.png";
+        $coverJpg = $pathBase."photos/cover.jpg";
+        $coverPng = $pathBase."photos/cover.png";
         if(file_exists ($coverPng)){
             $type = "png";
             $img = $coverPng;
@@ -83,17 +102,28 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             $type = 'jpg';
             $img = $coverJpg;
         }
-        $thumbnail = $pathBase."thumbnail/".$version.".".$type;
+        $thumbnailPath = $pathBase."thumbnail/";
+        
+        $thumbnail = $thumbnailPath.$version.".".$type;
         if(!file_exists($thumbnail)) {
             $source = $img;
+            if(!file_exists($thumbnailPath)) {
+                $oldmask = umask(0);
+                mkdir($thumbnailPath, 0777, true);
+                umask($oldmask);
+            }
             switch ($version) {
+                case 'now' :
+                    $width = 450;
+                    $height = 300;
+                    break;
                 case 'horizontal' :
                     $width = 240;
                     $height = 182;
                     break;
                 case 'slider-upcoming':
-                    $width = 504;
-                    $height = 372;
+                    $width = 980;
+                    $height = 500;
                     break;
                 case 'vertical':
                 default :
@@ -123,7 +153,10 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             }
             if($img != $defaultImg) {
                 $preverse->paste($resizeImg, new \Imagine\Image\Point($startX, $startY));
+                $oldmask = umask(0);
                 $preverse->save($thumbnail);
+                chmod($thumbnail, 0777);
+                umask($oldmask);
             } else {
                 $preverse->paste($resizeImg, new \Imagine\Image\Point($startX, $startY));
             }
@@ -155,4 +188,5 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return null;
     }
     // </editor-fold>
+    
 }

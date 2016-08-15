@@ -1,9 +1,9 @@
 <div class="bienvenido">
     Hola<br><span id="nombre-usr">
         @if(Auth::check())
-            @Karla
+            {{'@'}}{{Auth::user()->name}}
         @else
-        <a href="">Registrate</a>
+        <a href="{{url('/register')}}">Registrate</a>
         @endif
     </span>
 </div>

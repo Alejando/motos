@@ -72,11 +72,28 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getUpcoming">
     public function getUpcoming($n = 5) {
-        if($n>100){
-            $n=5;
-        }
-        return \GlimGlam\Models\Auction::getUpcoming($n)->get();
+        return \GlimGlam\Models\Auction::getUpcoming()->paginate((int)$n);
     }
     // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="getFinished">
+    public function getFinished($n = 5) {
+        return \GlimGlam\Models\Auction::getFinished()->paginate((int)$n);
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getStarted()">
+    public function getStarted($n = 5) {
+        return \GlimGlam\Models\Auction::getStarted()->paginate((int)$n);
+    }
+    // </editor-fold>
+
+    public function listUpcoming() {
+       $auctions =  \GlimGlam\Models\Auction::getUpcoming()->paginate(13);
+      if($auctions->count()){
+        return view('public.blocks.auctions-list', [
+            'auctions' => $auctions
+        ]);
+      }
+      return false;
+    }
 }

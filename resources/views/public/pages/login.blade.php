@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="txt-registro-login">
-                ¿Aún no tienes una cuenta? <a href="{{asset('registro.php')}}">Regístrate aquí</a>
+                ¿Aún no tienes una cuenta? <a href="{{url('register')}}">Regístrate aquí</a>
             </div>
             <div class="txt-registro-login txt-registro-login">
                 <a href="{{ url('/password/reset') }}">¿Has olvidado la contraseña?</a>

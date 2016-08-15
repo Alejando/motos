@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::auth();
 Route::get('/',"Home@index");
 Route::get('/admin',"AdminController@index");
 Route::get('/pages/admin/{view}.html','PagesCtrl@admin');
@@ -27,17 +27,14 @@ Route::post('/file-upload', function () {
 $route = \Illuminate\Support\Facades\Route::getFacadeRoot();
 $route->controller('tests/pako','TestPakoCtrl');
 $route->controller('tests/jared', 'TestJaredCtrl');
-Route::auth();
+
 Route::get('/home', 'HomeController@index');
 Route::get('/login', function () {
     return view('public.pages.login');
 });
-$route->get('api/auction/upcoming/{n?}',[
-    'as'=> 'auction.upcoming',
-    'uses' =>  'Api\\AuctionController@getUpcoming'
-]);  
+ 
 // <editor-fold defaultstate="collapsed" desc="/api">
-Route::group(['prefix' => 'api'], function () {
+Route::group(['prefix' => 'api'], function () use (&$route){
     // <editor-fold defaultstate="collapsed" desc="$getNames">
     $getNames = function ($name) {
         return [ 'names' => [
@@ -78,6 +75,18 @@ Route::group(['prefix' => 'api'], function () {
                 
     };
     // </editor-fold>
+    $route->get('auction/upcoming/{n?}',[
+        'as' => 'auction.upcoming',
+        'uses' =>  'Api\\AuctionController@getUpcoming'
+    ]); 
+    $route->get('auction/started/{n?}', [
+        'as' => 'auction.started',
+        'uses' => 'Api\\AuctionController@getStarted'
+    ]);
+    $route->get('auction/finished/{n?}', [
+        'as' => 'auction.finished',
+        'uses' => 'Api\\AuctionController@getFinished'
+    ]);
     Route::get('auction/code/{code}',[
         'as' => 'auction.getByCode',
         'uses' => 'Api\\AuctionController@getByCode'
@@ -86,24 +95,30 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'Content.slug',
         'uses' => 'Api\\ContentController@slug'
     ]);
+    Route::get('auction/list-upcoming', [
+        'as'    => 'auction.list-upcoming',
+        'uses' => 'Api\\AuctionController@listUpcoming'
+    ]);
     $addAPI('category','Category');
     $addAPI('preference','Preference');
     $addAPI('address','Address');
     $addAPI('auction','Auction');
     $addAPI('content','Content');
     $addAPI('user','User');
+    Route::post('auction/{id}/addPhoto','Api\\AuctionController@addPhoto');
+    Route::get('auction/{id}/photos', 'Api\\AuctionController@getPhotos'); 
+    Route::get('auction/{id}/photo/{file}', 'Api\\AuctionController@getPhoto');
+    Route::get('auction/{code}/thumbailn/{version}', [
+        'uses' => 'Api\\AuctionController@getThumbnail',
+        'as'   => 'auction.getCover'
+    ])->where([
+        'version'=> "(?:vertical|horizontal|slider-upcoming|now)"
+    ]);
+   
 });
 // </editor-fold>
 Route::get('mi-perfil/', 'UserController@profile' );
-Route::post('api/auction/{id}/addPhoto','Api\\AuctionController@addPhoto');
-Route::get('api/auction/{id}/photos', 'Api\\AuctionController@getPhotos'); 
-Route::get('api/auction/{id}/photo/{file}', 'Api\\AuctionController@getPhoto');
-Route::get('api/auction/{code}/thumbailn/{version}', [
-    'uses' => 'Api\\AuctionController@getThumbnail',
-    'as'   => 'auction.getCover'
-])->where([
-    'version'=> "(?:vertical|horizontal|slider-upcoming)"
-]);
+
 
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"

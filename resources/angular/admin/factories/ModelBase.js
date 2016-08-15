@@ -1,4 +1,4 @@
-glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
+glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval) {
     //<editor-fold defaultstate="collapsed" desc="constructor">
     var ModelBase = function (args) {
         this.setProperties(args);
@@ -19,6 +19,31 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
                 }
                 self[attr] = data[attr];
             });
+        },
+        selfUpdate : function (milisecons, $scope) {
+            
+            var self = this;
+            $interval(function(){
+                console.log("Inicia --- re", milisecons);
+                self.refresh();
+            },milisecons);            
+        },
+        refresh : function () {
+            var data = {};
+            var self = this;
+            var $defer =  $q.defer();
+            var model = this.model();
+            data[model.aliasUrl()] = this.id;
+            var url = laroute.route(model.aliasUrl() + '.show', data);            
+            $http({
+                'method' : 'GET',
+                'url' : url
+            }).then(function(result) {
+                self.setProperties(result.data);
+            }, function(r) {                
+                $defer.reject(r);
+            });
+            return $defer;
         },
         getProperties : function () {
             var self = this;
@@ -179,13 +204,15 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout) {
         var Model = this.model(), obj;
         if (angular.isArray(data)) {            
             var arrInst = [];
-            var i=0;
+            var i = 0;
             angular.forEach(data, function (d) {                
                 obj = Model.findCache(d);                                
                 if(obj) {
+                    console.log(d);
+                    obj.setProperties(d);
                     arrInst.push(obj);
                     i++;
-                    console.log("ya en cache " +i);
+//                    console.log("ya en cache " +i);
                 } else {
                     obj = Model.addCache(new Model(d));  
                     arrInst.push(obj);

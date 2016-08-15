@@ -26,6 +26,7 @@ class AuthController extends Controller {
     
     use ThrottlesLogins;
     
+    
     public function redirectPath() {
         if(\Auth::user() && \Auth::user()->profile===User::PROFILE_ADMIN){
             return "admin";

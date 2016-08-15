@@ -1,8 +1,11 @@
 <?php
 
     namespace GlimGlam\Libs\CoreUtils\traits;
-
+use Carbon\Carbon;
     trait MethodsModelBase {
+        public function datetimeFormat($attr){
+            return Carbon::createFromFormat($this->dateFormat, $this->attributes[$attr])->toIso8601String();
+        }
         public static function getAllForDataTables() {
             return static::getAll();
         }

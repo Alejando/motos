@@ -5,8 +5,14 @@ namespace GlimGlam\Http\Controllers;
 use Illuminate\Routing\Controller as BaseController;
 
 class Home extends BaseController {
-    public function index(){
+    public function index() {        
         $aucntions = \GlimGlam\Models\Auction::getAll();
-        return view("public.pages.home", ['aunctions' => $aucntions]);
+        $sliderAuctions = \GlimGlam\Models\Auction::getUpcoming()->take(5)->get();
+//        return $lastStarted = \GlimGlam\Models\Auction::getStarted()->take(1)->get();
+        return view("public.pages.home", [
+            'aunctions' => $aucntions,
+            'sliderAuctions' => $sliderAuctions,
+//            'lastStarted' => $lastStarted
+        ]);
     }
 }

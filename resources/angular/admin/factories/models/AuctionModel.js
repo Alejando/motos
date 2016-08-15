@@ -12,28 +12,29 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
         setters : {
-            startDate : ModelBase.setDate,
-            endDate : ModelBase.setDate
+            start_date : ModelBase.setDate,
+            end_date : ModelBase.setDate
         },
         attributes: [
             'id',
             'title',
             'code',
             'description',
-            'maxBid',
-            'minBid',
-            'maxOffer',
-            'userTop',
+            'max_bid',
+            'min_bid',
+            'max_offer',
+            'user_top',
             'delay',
             'target',
-            'startDate',
-            'endDate',
+            'start_date',
+            'end_date',
             'published',
             'status',
-            'totalEnrollments',
+            'total_enrollments',
             'inflows',
-            'soldFor',
-            'winner'
+            'sold_for',
+            'winner',
+            'last_offer'
         ],
         relations : [],
         getByCode : function (code){
@@ -50,9 +51,11 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             });
             return $defer.promise;
         },
-        getUpcoming : function (n) {
+        getUpcoming : function (n, page) {
+            var _page = page?page:1;
             var url = laroute.route('auction.upcoming', {
-                n:n
+                n:n,
+                page : _page
             });
             var $defer = $q.defer();
             var self = this;
@@ -60,12 +63,43 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'method' : 'GET',
                 'url' :  url
             }).then(function(result){
-                $defer.resolve(self.build(result.data));
+                $defer.resolve(self.build(result.data.data));
+            });
+            return $defer.promise;
+        },
+        getFinished : function (n, page) {
+            var _page = page ? page : 1;
+            var url = laroute.route('auction.finished', {
+                n:n,
+                page : _page
+            });
+            var $defer = $q.defer();
+            var self = this;
+            $http({
+                'method': 'GET',
+                'url': url
+            }).then(function(result) {
+                $defer.resolve(self.build(result.data.data));
+            });
+            return $defer.promise;
+        },
+        getStarted : function (n, page){
+            var _page = page ? page:1;
+            var url = laroute.route('auction.started', {
+                n : n,
+                page : _page
+            });
+            var $defer = $q.defer();
+            var self = this;
+            $http({
+                'method' : 'GET',
+                'url' : url
+            }).then(function(result) {
+                $defer.resolve(self.build(result.data.data));
             });
             return $defer.promise;
         }
     }, {
-        
         getUrlCover : function (version) {
             var url = laroute.route('auction.getCover',{
                 version:version,
