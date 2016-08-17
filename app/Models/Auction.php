@@ -1,7 +1,6 @@
 <?php
 
 namespace GlimGlam\Models;
-use Carbon\Carbon;
 
 class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
@@ -23,7 +22,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
     protected $hidden = ['created_at', 'updated_at'];
     public function getOfferType() {
-        return ['oferta-verde','oferta-naranja','oferta-rojo'][rand(0, 2)];
+        return 'oferta-verde';
+//        return ['oferta-verde','oferta-naranja','oferta-rojo'][rand(0, 2)];
     }
     // <editor-fold defaultstate="collapsed" desc="getStartDateAttribute">
     public function getStartDateAttribute() {
@@ -113,6 +113,10 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 umask($oldmask);
             }
             switch ($version) {
+                case 'fancy-box-small':
+                    $width = 224;
+                    $height = 337;
+                    break;
                 case 'now' :
                     $width = 450;
                     $height = 300;
@@ -145,10 +149,10 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 $preverse = $imagine->create($size);
             }
             $startX = $startY = 0;
-            if($widthR<$width) {
+            if($widthR < $width) {
                 $startX = ($width - $widthR) / 2;
             }
-            if($heightR<$height) {
+            if($heightR < $height) {
                 $startY = ($height - $heightR)/2;
             }
             if($img != $defaultImg) {
@@ -188,5 +192,95 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return null;
     }
     // </editor-fold>
+    public static function getPhotos($code) {
+        $path = public_path()."/upload/auctions/$code/photos/";
+        if(!file_exists($path)){
+           $umask= umask(0);
+           mkdir($path, 0777, true);
+           umask($umask);
+        }
+        $files = scandir($path);
+        $photos = [];        
+        foreach($files as $file){
+            if($file != '.' && $file!='..' && $file!='cover.png' && $file!='cover.jpg'){
+                $photos[] = $file;
+            }
+        }
+        return $photos;
+    }
     
+    private static function resizeImg($source, $width, $height, $pathCache, $returnData) {
+        $img = new \Imagine\Gd\Imagine();
+        $size = new \Imagine\Image\Box($width, $height);
+        $mode = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
+        $reziceImg = $img->open($source)->thumbnail($size, $mode);
+        $sizeR = $reziceImg->getSize();
+        $widthR = $sizeR->getWidth();
+        $heightR = $sizeR->getHeight();
+        $type =  pathinfo($source)['extension'];
+        if($type==='png'){
+            $palete = new \Imagine\Image\Palette\RGB();
+            $color = $palete->color('#000',0);
+            $out = $img->create($size, $color);
+        } else {
+            $out = $img->create($size);
+        }
+        $startX = $startY = 0;
+        if($widthR<$width){
+            $startX = ($width - $widthR)/2;
+        }
+        if($heightR <$height ){
+            $startY = ($height - $heightR) / 2;
+        }
+        $out->paste($reziceImg, new \Imagine\Image\Point($startX, $startY));
+        return $out->get($type);
+    }
+    
+    private static function getMime ($source) {
+        $type = pathinfo($source)['extension'];
+        switch($type) {
+            case 'jpg' : return 'image/jpg';
+            case 'png' : return 'image/png';
+        } 
+        return false;
+    }
+    
+    private static function getSizeByVersion($version) {
+        $sizes = config('app.img-sizes.'.$version);
+        if(!$sizes) {
+            abort(404);
+        }
+        return [
+            'width'  => $sizes['width'],
+            'height' => $sizes['height']
+        ];
+    }
+    public static function getImg($code, $version, $photo){
+        //@Todo falta el manejo de cache
+        $pathBase = self::getAuctionFilesPath($code).'photos/';
+        $source = $pathBase.$photo;                       
+        if(!file_exists($source)){
+            abort(404);
+        }        
+        $v = self::getSizeByVersion($version);
+        $data = self::resizeImg($source, $v['width'], $v['height'], $version, false, true);
+        return (new \Illuminate\Http\Response($data))->header('Content-type', self::getMime($source));
+    }
+    
+    public function getUrlImg() {
+        $imgs = $this->getPhotos($this->code);
+        $rImgs = [];
+        $versions = ["fancy-box-small","fancy-box-thumbailn","fancy-box-zoom"];
+        foreach($versions as $version){
+            $rImgs[$version] = [];
+            foreach($imgs as $img){
+                $rImgs[$version][] = route('auction.getImg',[
+                    'version' => $version,
+                    'code' => $this->code,
+                    'photos' => $img
+                ]);
+            }
+        }
+        return $rImgs;
+    }
 }

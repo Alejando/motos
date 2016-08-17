@@ -99,6 +99,10 @@ Route::group(['prefix' => 'api'], function () use (&$route){
         'as'    => 'auction.list-upcoming',
         'uses' => 'Api\\AuctionController@listUpcoming'
     ]);
+    Route::get('auction/fancy/{code}',[
+        'as' => 'auction.fancy',
+        'uses' => 'Api\\AuctionController@fancy'
+    ]);
     $addAPI('category','Category');
     $addAPI('preference','Preference');
     $addAPI('address','Address');
@@ -106,7 +110,7 @@ Route::group(['prefix' => 'api'], function () use (&$route){
     $addAPI('content','Content');
     $addAPI('user','User');
     Route::post('auction/{id}/addPhoto','Api\\AuctionController@addPhoto');
-    Route::get('auction/{id}/photos', 'Api\\AuctionController@getPhotos'); 
+    Route::get('auction/{code}/photos', 'Api\\AuctionController@getPhotos'); 
     Route::get('auction/{id}/photo/{file}', 'Api\\AuctionController@getPhoto');
     Route::get('auction/{code}/thumbailn/{version}', [
         'uses' => 'Api\\AuctionController@getThumbnail',
@@ -114,11 +118,23 @@ Route::group(['prefix' => 'api'], function () use (&$route){
     ])->where([
         'version'=> "(?:vertical|horizontal|slider-upcoming|now)"
     ]);
-   
+    Route::get('auction/{code}/photos/{version}/{photo}', [
+        'uses' => 'Api\\AuctionController@getImg',
+        'as' => 'auction.getImg'
+    ])->where([
+        'version' => "(?:fancy-box-small|fancy-box-zoom|fancy-box-thumbailn)"
+    ]);
+    
 });
 // </editor-fold>
 Route::get('mi-perfil/', 'UserController@profile' );
-
+Route::get('subasta/lugar-checkout/{auction}/', [
+    'as' => 'auction.enrollment-form',
+    'uses' =>  'AuctionCotroller@enrollmentPayment'
+]);
+Route::get('subastas/lugares/checkout/{code}',[
+    'as' => 'auciton.checkout'
+]);   
 
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"

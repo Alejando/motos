@@ -2,74 +2,8 @@
 @section('body')
 <div ng-controller="public.IndexCtrl">
     <section class="fancy-producto">
-        <div class="row">
-            <div class="col-sm-6 col-md-4 col-md-offset-1 text-center">
-                <div class="producto-fancy">
-                    <div class="recorte-superior"></div>
-                    <div class="producto-fancy-cover">
-                        <span class="precio-cover"> $ 0000.00</span>
-                        <span>Cover</span>
-                    </div>
-                    <div id="img-principal" class="producto-fancy-img">
-                        <img id="zoom_mw" src="img/productos/producto02.png" data-zoom-image="img/productos/producto02.png" alt="" title="">
-                    </div>
-                    <div class="producto-fancy-img-galeria">
-                        <div class="col-xs-4 nopadding">
-                            <div class="frame-galeria gal-1">
-                                <img src="img/productos/producto02.png" alt="" title="">
-                            </div>
-                        </div>
-                        <div class="col-xs-4 nopadding">
-                            <div class="frame-galeria gal-2">
-                                <img src="img/productos/producto02a.png" alt="" title="">
-                            </div>
-                        </div>
-                        <div class="col-xs-4 nopadding">
-                            <div class="frame-galeria gal-3">
-                                <img src="img/productos/producto02b.png" alt="" title="">
-                            </div>
-                        </div>
-                        <!-- <div class="col-xs-4 nopadding">
-                                <div class="frame-galeria">
-                                        <img src="img/productos/producto02.png" alt="" title="">
-                                </div>
-                        </div>
-                        <div class="col-xs-4 nopadding">
-                                <div class="frame-galeria">
-                                        <img src="img/productos/producto02.png" alt="" title="">
-                                </div>
-                        </div>
-                        <div class="col-xs-4 nopadding">
-                                <div class="frame-galeria">
-                                        <img src="img/productos/producto02.png" alt="" title="">
-                                </div>
-                        </div> -->
-                    </div>
-                    <div class="recorte-inferior"></div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-6 text-center">
-                <div class="descripcion-fancy">
-                    <div class="fancy-titulo">CARTIER ARISTÓCRATA 2017</div>
-                    <div class="leyenda-subasta">
-                        <div>Puedes subastar desde:</div>
-                        <div class="rango-ofertas">$0000.00 - $0000.00</div>
-                    </div>
-                    <div class="btns-descripcion"></div>
-                    <div class="fancy-txt">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates obcaecati excepturi accusantium voluptas odio eligendi deleniti magni, enim blanditiis magnam dolores praesentium perspiciatis velit. Unde inventore recusandae odit ullam quia!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates obcaecati excepturi accusantium voluptas odio eligendi deleniti magni, enim blanditiis magnam dolores praesentium perspiciatis velit. Unde inventore recusandae odit ullam quia!</p>
-                    </div>
-                    <div class="producto-boton-entrar">
-                        <a class="link-subasta transition-0-3" href="">
-                            <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
     </section>
-
     <section class="slideshow container-fluid" style="display: none">
         <div class="banner-container">
             <div class="banner" >
@@ -83,7 +17,7 @@
                         rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
                         rangomax="{{Currency::format($auction->max_price, config('app.currency'))}}" 
                         expiration="{{$auction->start_date}}">
-                        <img src="{{@$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}"  width="504" height="372">
+                        <img ng-src="{{@$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}"  width="504" height="372">
                         <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="1000" data-start="500">
                             <i class="fa fa-clock-o animated infinite pulse verde r-banner" aria-hidden="true"></i>
                         </div>
@@ -126,7 +60,7 @@
 			<a id_producto="001" class="producto big-producto oferta-verde" >
 				<div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
 				<div class="img-subasta">
-                                    <img src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
+                                    <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
 				</div>
                                 <div class="producto-nombre" >
 					- @{{lastStarted.title}} -
@@ -144,7 +78,7 @@
 					<div class="producto-actions">
 						<div class="producto-heart"></div>
 						<span class="producto-separador"></span>
-						<div class="producto-hammer" id_producto="001"></div>
+						<div class="producto-hammer" id_producto="@{{lastStarted.code}}"></div>
 					</div>
 					<div class="producto-cover">
 						$0,000.00

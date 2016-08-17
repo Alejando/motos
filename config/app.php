@@ -1,9 +1,21 @@
 <?php
 
 return [
+    'img-sizes' => [
+        'fancy-box-thumbailn' => [
+            'width' => 224,
+            'height'=> 337
+        ],
+        'fancy-box-small' => [
+            'width' => 88,
+            'height'=> 88
+        ],
+        'fancy-box-zoom' => [
+            'width' => 224*6,
+            'height'=> 337*6
+        ]
+    ],
     'currency' => 'MXN', 
-    'name' => "SIOSP",
-    'socketIOServer' => env('SOCKET_IO_SERVER', 'socketIOServer'),
     'entidadesPorPagina' => 50,
     /*
     |--------------------------------------------------------------------------

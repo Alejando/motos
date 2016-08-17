@@ -45,17 +45,8 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
     
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getPhotos">
-    public function getPhotos($id){
-        $path = public_path()."/upload/auctions/$id/photos/";
-        $files = scandir($path);
-        $base_url = route('auction').'/'.$id.'/photo/';
-        $photos = [];
-        foreach($files as $file){
-            if($file!='.' && $file!='..'){
-                $photos[] = $base_url.$file;
-            }
-        }
-        return $photos;
+    public function getPhotos($code){
+        return \GlimGlam\Models\Auction::getPhotos($code);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getByCode">
@@ -75,7 +66,6 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
         return \GlimGlam\Models\Auction::getUpcoming()->paginate((int)$n);
     }
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="getFinished">
     public function getFinished($n = 5) {
         return \GlimGlam\Models\Auction::getFinished()->paginate((int)$n);
@@ -86,7 +76,7 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
         return \GlimGlam\Models\Auction::getStarted()->paginate((int)$n);
     }
     // </editor-fold>
-
+    // <editor-fold defaultstate="collapsed" desc="listUpcoming">
     public function listUpcoming() {
        $auctions =  \GlimGlam\Models\Auction::getUpcoming()->paginate(13);
       if($auctions->count()){
@@ -94,6 +84,23 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
             'auctions' => $auctions
         ]);
       }
-      return false;
+      return "false";
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="fancy">
+    public function fancy($code) {
+        $auction = \GlimGlam\Models\Auction::getByCode($code);
+        if($auction) {
+            return view('public.blocks.fancy-product',[
+                'auction'=> $auction
+            ]);
+        }
+        abort(404);
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getImg">
+    function getImg($code, $version, $photo) {
+        return \GlimGlam\Models\Auction::getImg($code, $version, $photo);
+    }
+    // </editor-fold>
 }

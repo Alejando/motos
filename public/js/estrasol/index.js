@@ -17,10 +17,29 @@ $(document).ready(function () {
 
 
     //Fancybox producto
-    function open_fancy_product(id) {
-        $('.fancy-producto').fadeIn(500);
+    var $zomm = false;
+    function open_fancy_product(code) {
+        var url = laroute.route('auction.fancy',{code : code});
+        $.get(url,{},'html').done(function(html) {
+            var $html = $(html);
+            $zoom = $html.find(".zoom_mw").elevateZoom({scrollZoom : true,
+                borderSize : 1,
+                 zoomType : "lens",
+                lensShape : "round",
+                tintOpacity:1,
+                 easing:true,
+//                lensSize    : 250,
+//                zoomLevel : 4,  
+//                zoomWindowHeight : 250,
+                zIndex : 20005            
+            }); 
+            $('.zoomContainer').append()
+//            $zoom.css('zIndex',2002);
+//            console.log($zoom);
+            $('.fancy-producto').empty().append($html).fadeIn(500);
+        });
+        
     }
-
     $('.producto-fancy').on('click', function (e) {
         e.stopPropagation();
     });
@@ -30,8 +49,11 @@ $(document).ready(function () {
         open_fancy_product($(this).attr('id_producto'));
     });
 
-    $('.fancy-producto').click(function () {
-        $('.fancy-producto').fadeOut(500);
+    $('.fancy-producto').click(function (e) {
+        console.log(e.target);
+        if(e.target === this || $(e.target).is('.fancy-close')) {
+            $('.fancy-producto').fadeOut(500);
+        }        
     });
 
     //Fancybox login
@@ -58,17 +80,25 @@ $(document).ready(function () {
     });
 */
     var page = 1;
+    var stopGetProducts = false;
     function get_products(pag) {
+        if(stopGetProducts){
+            return;
+        }
         //Llamada de listado de productos
         var url = laroute.route('auction.list-upcoming');
         $.get(url, {
             page : page
         }, function (data, status) {
             html = data;
+            if(html=="false"){
+                stopGetProducts = true;
+                return;
+            }
             //Data será un JSON con los datos de los productos destacados
             if (status == "success") {
-                html += $('#listado-home .container-fluid .row').html();
-                $('#listado-home .container-fluid .row').html(html);
+//                html += $('#listado-home .container-fluid .row').html();
+                $('#listado-home .container-fluid .row').append(html);
                 //$('#destacados').html('<p>No se encontraron proudctos destacados</p>');
             } else {
                 $('#listado-home .container-fluid .row').append('<p>Hubo un error en la obtención de datos</p>');

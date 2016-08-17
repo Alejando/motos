@@ -927,11 +927,11 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
     return User;
 });
 glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
-    $scope.titulo = "Hello";
-    window.Auction = Auction;
-    Auction.getAll().then(function(all) {
-        console.log(all);
-    });
+//    $scope.titulo = "Hello";
+//    window.Auction = Auction;
+////    Auction.getAll().then(function(all) {
+//        console.log(all);
+//    });
 //    Auction.getByCode("SUB001").then(function(byCode) {
 //        console.log("Auction byCode=> %o", byCode);
 //        console.log("cover horizontal => %o", byCode.getUrlCover(Auction.COVER_HORIZOTAL));
@@ -949,6 +949,10 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
 //    });
     
     $scope.lastStarted = null;
+    
+    
+    //Fancybox producto
+    
     
     Auction.getStarted(1).then(function(auction) {
         $scope.lastStarted = auction[0];
