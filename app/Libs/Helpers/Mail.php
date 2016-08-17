@@ -27,7 +27,7 @@ class Mail{
                     $args['message'] = $message;
                     $body = view($htmlView, $args);
                     $message->getSwiftMessage()->setBody((new \Pelago\Emogrifier($body))-> emogrify());
-                    $message->from('jdiaz@estrasol.com.mx');
+                    $message->from([env('EMAIL_APP') => env('EMAIL_SENDERNAME')]);
                     $to = (array)$args['to'];
                     if($test) { 
                       $to[] = env('EMAIL_TEST_DEVELOPER');
@@ -55,6 +55,7 @@ class Mail{
         $user = \GlimGlam\Models\User::getRandom(); 
         $args['user'] = $user;
         $args['to'] = [];
+        $args['subject'] = '¡Bienvenido a GlimGlam!';
         return self::sendMail('welcome', $args, $test, $send, $format);
     }
     // </editor-fold>
