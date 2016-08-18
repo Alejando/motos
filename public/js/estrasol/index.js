@@ -197,7 +197,7 @@ $(document).ready(function () {
         var id = $('.current-sr-slide-visible').attr('id-producto');
         if (ant_exp != exp||true) {
             $('.subasta-tiempo').attr('expiration', exp);
-            $('.link-subasta').attr('href', '#' + id);
+//            $('.link-subasta').attr('href', '#' + id);
             $('.banner-name span').html(name);
             $('.rango-min').html(min);
             $('.rango-max').html(max);

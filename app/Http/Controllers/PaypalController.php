@@ -2,10 +2,11 @@
 
 namespace GlimGlam\Http\Controllers;
 
-use Illuminate\Foundation\Bus\DispatchesCommands;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 
+use Illuminate\Routing\Controller as BaseController;
+
+use Illuminate\Support\Facades\Session;
+use \Illuminate\Support\Facades\Input;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Amount;
@@ -15,19 +16,23 @@ use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
-use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 
 
-class PaypalController extends Controller {
+class PaypalController extends BaseController {
 
     private $_api_context;
 
     public function __construct() {
         // setup PayPal api context
-        $paypal_conf = \Config::get('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
+        $paypal_conf = \Config::get('paypal');             
+        $this->_api_context = new ApiContext(
+                new OAuthTokenCredential(
+                    $paypal_conf['client_id'], 
+                    $paypal_conf['secret']
+                )
+        );
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
     
@@ -35,18 +40,27 @@ class PaypalController extends Controller {
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
-        $currency = "MXN";
+        $currency = 'MXN';
+        
+        $cover = money_format('%!i', $auction->cover);
+        
         $item = new Item();
-        $item->setName("Tu lugar en el glimglam ".$auction->title);
+        $item->setName("Tu lugar en el glimglam en ".$auction->code);
         $item->setCurrency($currency);
-        $item->setDescription($auction->description);
+        $item->setDescription("descripcion del producto");
         $item->setQuantity(1);
-        $item->setPrice($auction->cover);       
+        $item->setPrice($cover);    
+        
         $itemsList = new ItemList();
-        $itemsList->addItem($item);
-        $subtotal = $auction->cover;
+        $itemsList->setItems([$item]);
+        
+        
+//        dd($auction->cover);
+         
+        $subtotal = $auction->cover;        
         $details = new Details();
-        $details->setSubtotal($subtotal);
+        $details->setSubtotal($cover)
+                ->setShipping("0.00");
         $total = $subtotal;
         
         $amount = new Amount();
@@ -55,36 +69,36 @@ class PaypalController extends Controller {
                 ->setDetails($details);
         
         $transaction = new Transaction();
-        $transaction->setAmount($currency)
+        $transaction->setAmount($amount)
             ->setItemList($itemsList)
             ->setDescription("Tu lugar en el glimglam ". $auction->title);
-        
+//        dd(route('enrollment.payment'));
         $redirect_url = new RedirectUrls();
         $redirect_url->setReturnUrl(route('enrollment.payment'))
-                ->setCancelUrl(route('enrollment.payment'))
-        ;
-        
+                ->setCancelUrl(route('enrollment.payment'));
         $payment =  new Payment();
         $payment->setIntent('Sale')
                 ->setPayer($payer)
                 ->setRedirectUrls($redirect_url)
-                ->addTransaction($transaction)
+                ->setTransactions([$transaction])
         ;
         
+//        echo $payment->toJSON();
+//        die();
         try {
-            $payment->create();
+           
+            $payment->create($this->_api_context);
         } catch(\PayPal\Exception\PayPalConnectionException $ex){
             if(\Config::get('app.debug')){
                 echo "Exception" . $ex->getMessage() . PHP_EOL;
-                json_decode($ex->getData(),true);
-                die();
+                 dd(json_decode($ex->getData(),true));
             } else {
                 die("Error al comunicarse con PayPal");
             }
         }
         
         $approvalLink = $payment->getApprovalLink();
-        \Sesssion::put('paypal_payment_id', $payment->getId());
+        \Session::put('paypal_payment_id', $payment->getId());
         if(isset($redirect_url)) {
             return \Redirect::away($approvalLink);
         }
@@ -93,27 +107,22 @@ class PaypalController extends Controller {
     
     public function enrrolmentPaymentStatus() {
         $payment_id = \Session::get('paypal_payment_id');
-        
-        \Session::forget('paypal_payment_id');
-        
-        $payerId = \Input::get('PayerID');
-        $token = \Input::get('token');
-        
+        Session::forget('paypal_payment_id');
+        $payerId =  Input::get('PayerID');
+        $token = Input::get('token');
         if(empty($payerId) || empty($token)){
             return "Algo paso al intentar conectar con PayPal";
         }
-        
         $payment = Payment::get($payment_id, $this->_api_context);
         $execution = new PaymentExecution();
-        $execution->setPayerId(\Input::get('payerId'));
-        
+        $execution->setPayerId($payerId);
         $result = $payment->execute($execution, $this->_api_context);
         
         if($result->getState() == 'approved'){
-            return "OK XD ";
+            return \redirect(route('acution.payment.approvate'));
         }
         
-        return "Se Cancelo :C";
+        return \redirect(route('acution.payment.approvate'));
     }
 
 }

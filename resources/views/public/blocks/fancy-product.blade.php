@@ -41,7 +41,7 @@
                     {{$auction->description}}
                 </div>
                 <div class="producto-boton-entrar">
-                    <a class="link-subasta transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->id])}}">
+                    <a class="link-subasta transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->code])}}">
                         <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
                     </a>
                 </div>

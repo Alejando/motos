@@ -6,7 +6,9 @@
     Check out Inscripcion subasta
 </h1>
     <div>
-        Pagar en Paypal
+        <a href="{{route('auciton.checkout',[
+            'code' => $code
+        ])}}">Pagar en Paypal</a>
     </div>
 </section>
 

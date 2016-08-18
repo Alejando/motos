@@ -133,9 +133,16 @@ Route::get('subasta/lugar-checkout/{auction}/', [
     'uses' =>  'AuctionCotroller@enrollmentPayment'
 ]);
 Route::get('subastas/lugares/checkout/{code}',[
-    'as' => 'auciton.checkout'
+    'as' => 'auciton.checkout',
+    'uses' => 'PaypalController@checkoutEnrollment'
 ]);   
-
+Route::get('subastas/loguares/estatus-pago',[
+    'as' => 'enrollment.payment',
+    'uses' => 'PaypalController@enrrolmentPaymentStatus'
+]);
+Route::get('hola-omar', function () {
+    return view("hola-omar");
+});
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"
 ]);
