@@ -36,6 +36,20 @@
                     @endif
                 </div>
             </div>
+            <div class="form-group row {{ $errors->has('gender') ? ' has-error' : '' }}">
+                <div class="col-sm-12">
+                    <select name="gender" class="form-control2">
+                        <option>Sexo</option>
+                        <option value="1">Hombre</option>
+                        <option value="0">Mujer</option>
+                    </select>
+                    @if ($errors->has('gender'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('gender') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
             <div class="form-group row {{ $errors->has('password') ? ' has-error' : '' }}">
                 <div class="col-sm-12">
                     <input type="password" name="password" class="form-control2" placeholder="Contraseña">

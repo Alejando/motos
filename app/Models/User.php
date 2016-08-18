@@ -12,7 +12,12 @@ class User extends Authenticatable {
     
     const PROFILE_CLIENT = 1;
     const PROFILE_ADMIN = 2;
-    
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 0;
+    public function isMale(){
+        return $this->gender=== self::GENDER_MALE;
+    }
+
     /**
      * The attributes that are mass assignable.
      *

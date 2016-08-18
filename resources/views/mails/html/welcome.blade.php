@@ -10,7 +10,8 @@
 
 @section('message')
 <div class="banner" style="background-image: url('{{asset('img/mail/bg-banner-mail.jpg')}}');padding: 18px 0;color: #fff;">
-        <h2 style="text-transform: uppercase;margin: 40px auto;font-weight: 100;font-size: 40px;">¡BIENVENIDA <span style="">Karla!</span></h2>
+        <h2 style="text-transform: uppercase;margin: 40px auto;font-weight: 100;font-size: 40px;">
+            {{ $user->isMale() ? '¡BIENVENIDO':'!BIENVENIDA'}} <span style="">{{$user->name}}!</span></h2>
 </div>
 <div class="mensaje" style="color: #003937; padding: 0 10%;">
         <p style="margin: 16px auto;font-size: 20px;margin-top: 30px;">Gracias por registrarse en <a href="http://glimglam.mx" style="color: #003937;">glimglam.mx</a></p>
@@ -23,10 +24,10 @@
 <div class="datos" style="background-color: #efefef; color: #003937;padding: 15px 30px;">
         <div style="width:49%;text-align: left;display: inline-block;vertical-align: top;">
                 <h3 style="text-align: center;">Tus datos</h3>
-                <p style="text-align: center;">Karla Pérez</p>
-                <p style="text-align: center;">kperez@gmail.com</p>
-                <p style="text-align: center;">Intereses:</p>
-                <table style="text-align: center; font-size: 12px;" width="100%">
+                <p style="text-align: center;">{{$user->name}}</p>
+                <p style="text-align: center;">{{$user->email}}</p>
+                <p style="display: none; text-align: center;">Intereses:</p>
+                <table style="display: none; text-align: center; font-size: 12px;" width="100%"> 
                     <tr>
                       <td style="padding: 7px 0;">Joyería</td>
                       <td style="padding: 7px 0;">Moda/Accesorios</td>
