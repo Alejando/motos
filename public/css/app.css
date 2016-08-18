@@ -45,4 +45,8 @@ and open the template in the editor.
   padding: 0 !important;
   margin-left: 9px; }
 
+.products-container h1 {
+  color: red;
+  font-size: 100px; }
+
 /*# sourceMappingURL=app.css.map */
