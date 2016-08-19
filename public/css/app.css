@@ -21,16 +21,6 @@ form.subastas-form {
     width: 60%;
     float: left; }
 
-.detalle {
-  text-align: right;
-  font-size: 150px;
-  color: white;
-  font-family: serif; }
-
-marquee h1 {
-  color: blue;
-  font-size: 100px; }
-
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -45,8 +35,63 @@ and open the template in the editor.
   padding: 0 !important;
   margin-left: 9px; }
 
-.products-container h1 {
-  color: red;
-  font-size: 100px; }
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18-ago-2016, 16:53:28
+    Author     : omarhernandez
+*/
+/* Doradito */
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18-ago-2016, 16:53:28
+    Author     : omarhernandez
+*/
+/* Doradito */
+.detalle-pago-subasta {
+  color: #000;
+  background-color: #fff;
+  padding: 20px 30px;
+  margin-top: 50px;
+  border-radius: 10px; }
+  .detalle-pago-subasta .subasta-nombre {
+    color: #d5a00f;
+    margin-top: 0;
+    text-transform: uppercase; }
+  .detalle-pago-subasta .subasta-cover {
+    color: #d5a00f;
+    font-size: 30px; }
+  .detalle-pago-subasta .subasta-participantes {
+    font-size: 20px; }
+  .detalle-pago-subasta .banner-data {
+    margin: 15px auto; }
+  .detalle-pago-subasta .subasta-datos {
+    margin-top: 10px; }
+  .detalle-pago-subasta .subasta-datos p {
+    font-size: 15px;
+    color: #747474; }
+  .detalle-pago-subasta .subasta-limite span {
+    font-weight: bold; }
+  .detalle-pago-subasta .subasta-registrados span {
+    font-weight: bold; }
+  .detalle-pago-subasta .subasta-boton-pago {
+    width: 70%;
+    margin: 0 auto; }
+  .detalle-pago-subasta .caja-contador {
+    width: 100%;
+    margin: auto; }
+  .detalle-pago-subasta .participacion-p,
+  .detalle-pago-subasta .ganado-p {
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 25px; }
 
 /*# sourceMappingURL=app.css.map */

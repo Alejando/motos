@@ -4,7 +4,7 @@
     <section class="fancy-producto">
       
     </section>
-    <section class="slideshow container-fluid" style="display: none">
+    <section class="slideshow container" style="display: none">
         <div class="banner-container">
             <div class="banner" >
                 <ul class="banner-list">
@@ -56,53 +56,53 @@
     <section id="destacados" class="products-container">
         <section class="container">
             <div class="row">
-                    <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<a id_producto="001" class="producto big-producto oferta-verde" >
-				<div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
-				<div class="img-subasta">
-                                    <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
-				</div>
-                                <div class="producto-nombre" >
-					- @{{lastStarted.title}} -
-				</div>
-				<div class="leyenda-subasta">
-					<div>Ultima Oferta:</div>
-					<div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
-				</div>
-				<div class="tiempo-producto">
-					<span class="tiempo-subasta-producto countdown" expiration="2016-03-14T20:12:00"></span>
-					<span>Para subastar</span>
-				</div>
-				<div class="producto-hover transition-0-3">
-					<div class="producto-titulo">Titulo de producto</div>
-					<div class="producto-actions">
-						<div class="producto-heart"></div>
-						<span class="producto-separador"></span>
-						<div class="producto-hammer" id_producto="@{{lastStarted.code}}"></div>
-					</div>
-					<div class="producto-cover">
-						$0,000.00
-					</div>
-					<div class="leyenda-cover">
-						COVER
-					</div>
-				</div>
-			</a>
-		</div>
-		<div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<a href="registro" class="producto producto-mensaje placeholder naranja">
-				<div class="img-mensaje"><img src="img/logo-icon.png" alt="Glim Glam &reg;" title="Glim Glam &reg;"></div>
-				<div class="mensaje-info">
-					<div class="mensaje-titulo">Hola</div>
-					<div class="mensaje-texto">dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </div>
-					<div class="mensaje-leyenda">¡COMENZAR YA!</div>
-					<div class="mensaje-link transition-0-3">
-						<span class="mensaje-link-icon mensaje-link-icon-registrarse transition-0-3"></span>
-						<span class="mensaje-link-texto transition-0-3">Registrate</span>
-					</div>
-				</div>
-			</a>
-		</div>
+                <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <a id_producto="001" class="producto big-producto oferta-verde" >
+                        <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
+                        <div class="img-subasta">
+                            <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
+                        </div>
+                        <div class="producto-nombre" >
+                            - @{{lastStarted.title}} -
+                        </div>
+                        <div class="leyenda-subasta">
+                            <div>Ultima Oferta:</div>
+                            <div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
+                        </div>
+                        <div class="tiempo-producto">
+                            <span class="tiempo-subasta-producto countdown" expiration="2016-03-14T20:12:00"></span>
+                            <span>Para subastar</span>
+                        </div>
+                        <div class="producto-hover transition-0-3">
+                            <div class="producto-titulo">Titulo de producto</div>
+                            <div class="producto-actions">
+                                <div class="producto-heart"></div>
+                                <span class="producto-separador"></span>
+                                <div class="producto-hammer" id_producto="@{{lastStarted.code}}"></div>
+                            </div>
+                            <div class="producto-cover">
+                                $0,000.00
+                            </div>
+                            <div class="leyenda-cover">
+                                COVER
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <a href="registro" class="producto producto-mensaje placeholder naranja">
+                        <div class="img-mensaje"><img src="img/logo-icon.png" alt="Glim Glam &reg;" title="Glim Glam &reg;"></div>
+                        <div class="mensaje-info">
+                            <div class="mensaje-titulo">Hola</div>
+                            <div class="mensaje-texto">dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </div>
+                            <div class="mensaje-leyenda">¡COMENZAR YA!</div>
+                            <div class="mensaje-link transition-0-3">
+                                <span class="mensaje-link-icon mensaje-link-icon-registrarse transition-0-3"></span>
+                                <span class="mensaje-link-texto transition-0-3">Registrate</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </section>
     </section>

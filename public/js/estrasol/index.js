@@ -107,7 +107,7 @@ $(document).ready(function () {
         });
     }
     get_products();
-    $('.slideshow.container-fluid').show();
+    $('.slideshow.container').show();
     var revSli = $('.banner').revolution({
         delay: 9000,
         startwidth: 960,
