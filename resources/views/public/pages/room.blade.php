@@ -1,12 +1,13 @@
 @extends('public.base')
 @section('body')
+<div ng-controller="public.roomCtrl">
         <section class="slideshow container-fluid patrongg">
             <div class="banner-container">
-                    <div class="galeria-detalle">
-                            <div class="imagen-principal">
-                                    <img src="{{$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}" alt="" class="img-responsive">
-                            </div>
+                <div class="galeria-detalle">
+                    <div class="imagen-principal">
+                        <img src="{{$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}" alt="" class="img-responsive">
                     </div>
+                </div>
             </div>
             <section class="banner-description container">
                     <div class="row">
@@ -35,38 +36,28 @@
     </div>
     <div class="fluid-container bg-blanco">
             <div class="container">
-            <div class="row">
+                <div class="row">
                     <div class="col-md-6 col-sm-6 rango-subasta">
-                            <p>Puedes subastar desde:</p>
-                            <div>
-                                    <div id="rango-smin" class="precio-rango">{{currency($auction->min_offer, config('app.currency'))}}</div><div id="rango-smax" class="precio-rango">{{currency($auction->max_offer, config('app.currency'))}}</div>
-                            </div>
+                        <p>Puedes subastar desde:</p>
+                        <div>
+                            <div id="rango-smin" class="precio-rango">{{currency($auction->min_offer, config('app.currency'))}}</div><div id="rango-smax" class="precio-rango">{{currency($auction->max_offer, config('app.currency'))}}</div>
+                        </div>
                     </div>
                     <div class="col-md-6 col-sm-6 total-subastado">
-                            <div id="subasta-actual" class="precio-subasta">{{currency($auction->last_offer, config('app.currency'))}}</div>
-                            <p>Ultima oferta</p>
+                        <div id="subasta-actual" class="precio-subasta">@{{objAuction.last_offer | currency : '$'}}</div>
+                        <p>Ultima oferta</p>
                     </div>
-            </div>
+                </div>
             </div>
     </div>
-    <div class="container-fluid nopadding bg-naranja">
+    <div class="container-fluid nopadding bg-naranja" ng-show="objAuction.isStarted()">
             <div class="container">
                     <div class="row">
                             <div class="col-md-6 panel-oferta">
                                     <p>Ingresa tu oferta</p>
+                                    <div style="font-size:55px">@{{rangeOferta.max  | currency : '$' }}</div>
                                     <div class="align-oferta">
-                                            <div id="quitar" class="boton-minus">
-                                                    <i class="fa fa-minus" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="ingreso-puja">
-                                                    <div class="input-group"> 
-                                                    <span class="input-group-addon">$</span>						        
-                                                    <input id="subastador" type="number" value="1000" class="form-control currency"/>
-                                                </div>
-                                            </div>
-                                            <div id="agregar" class="boton-plus">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </div>
+                                        <div  style="width: 350px;" range-slider  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
                                     </div>
                                     <div class="btn-w">Automático</div>
                             </div>
@@ -79,7 +70,7 @@
                                             </div>
                                             <div class="boleto-divider"></div>
                                             <div class="usr-postor">
-                                                    @Karlapost_rich
+                                                   @{{objAuction.username_top || '¡Se el primero!'}}
                                             </div>
                                     </div>
                                     <div class="rebase-der"></div>
@@ -213,6 +204,15 @@
                     </div>
             </div>
     </div>
+</div>
+
 
     <!-- /Contenido General -->
+@stop
+
+@section('head')
+<script type='text/javascript'>
+var auction =  {!! $auction !!}; 
+
+</script>
 @stop

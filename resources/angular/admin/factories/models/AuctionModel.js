@@ -23,6 +23,8 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'max_bid',
             'min_bid',
             'max_offer',
+            'min_offer',
+            'username_top',
             'user_top',
             'delay',
             'target',
@@ -119,6 +121,9 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                case Auction.FINISHED: return "Terminada";
                case Auction.STAND_BY: return "En espera";
            }
+        },
+        isStarted : function(){
+            return  this.status == Auction.STARTED;
         }
     });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">

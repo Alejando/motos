@@ -1,4 +1,4 @@
-var glimglam = angular.module("glimglam", []); 
+var glimglam = angular.module("glimglam", ['ui-rangeSlider']); 
 glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval) {
     //<editor-fold defaultstate="collapsed" desc="constructor">
     var ModelBase = function (args) {
@@ -361,6 +361,8 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'max_bid',
             'min_bid',
             'max_offer',
+            'min_offer',
+            'username_top',
             'user_top',
             'delay',
             'target',
@@ -457,6 +459,9 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                case Auction.FINISHED: return "Terminada";
                case Auction.STAND_BY: return "En espera";
            }
+        },
+        isStarted : function(){
+            return  this.status == Auction.STARTED;
         }
     });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
@@ -552,5 +557,15 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
         $scope.lastStarted.selfUpdate(1500000, $scope);    
     });
     $scope.$parent.subSeccion = "Actualización Masiva";
+});
+glimglam.controller('public.roomCtrl', function ($scope, Auction) {
+    $scope.objAuction = new Auction(auction);
+    $scope.rangeOferta = {
+         min: 0,
+         max: $scope.objAuction.min_offer,
+         limitMax: $scope.objAuction.max_offer,
+         limitMin: $scope.objAuction.min_offer
+    };
+    $scope.objAuction.selfUpdate(1000, $scope);
 });
 //# sourceMappingURL=public.js.map

@@ -1,1 +1,1 @@
-var glimglam = angular.module("glimglam", []); 
+var glimglam = angular.module("glimglam", ['ui-rangeSlider']); 
