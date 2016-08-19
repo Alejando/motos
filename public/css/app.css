@@ -147,11 +147,7 @@ and open the template in the editor.
 /* Doradito */
 /* Gris generico */
 /* Blanco */
-.content-room {
-  color: #747474;
-  background-color: #fff;
-  padding: 20px 30px;
-  margin-top: 50px;
-  border-radius: 10px; }
+.galeria-detalle {
+  max-height: none; }
 
 /*# sourceMappingURL=app.css.map */
