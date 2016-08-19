@@ -151,6 +151,10 @@ Route::get('subastas/error-en-pago', [
     'as' => 'auction.payment.failed',
     'uses' => 'AuctionController@paymentFailed'
 ]);
+Route::get('subastas/juego/{code}', [
+    'as' => 'auction.room',
+    'uses' => 'AuctionController@room'
+]);
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"
 ]);

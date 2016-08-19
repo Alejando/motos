@@ -1,4 +1,1 @@
-@extends('public.base')
-@section('body')
-    Checekout Ok
-@stop
+@include('public.pages.enrollment-payment', ['auction'=>$auction,'user'=>$user,'procesado'=>true])
