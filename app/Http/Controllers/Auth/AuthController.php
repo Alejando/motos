@@ -61,6 +61,7 @@ class AuthController extends Controller {
                     'name' => 'required|max:255',
                     'email' => 'required|email|max:255|unique:users',
                     'password' => 'required|min:6|confirmed',
+                    'gender' => 'required'
         ]);
     }
 
@@ -71,11 +72,16 @@ class AuthController extends Controller {
      * @return User
      */
     protected function create(array $data) {
-        return User::create([
+        $user = User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
                     'password' => bcrypt($data['password']),
         ]);
+        \GlimGlam\Libs\Helpers\Mail::welcome([
+            'user' => $user,
+            'to' => $user->email
+        ]);
+        return $user;
     }
 
     protected function getFailedLoginMessage() {
