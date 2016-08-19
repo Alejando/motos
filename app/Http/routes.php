@@ -128,21 +128,29 @@ Route::group(['prefix' => 'api'], function () use (&$route){
 });
 // </editor-fold>
 Route::get('mi-perfil/', 'UserController@profile' );
-Route::get('subasta/lugar-checkout/{auction}/', [
+Route::get('subasta/entradas-checkout/{code}', [
     'as' => 'auction.enrollment-form',
-    'uses' =>  'AuctionCotroller@enrollmentPayment'
+    'uses' =>  'AuctionController@enrollmentPayment'
 ]);
 Route::get('subastas/lugares/checkout/{code}',[
     'as' => 'auciton.checkout',
     'uses' => 'PaypalController@checkoutEnrollment'
 ]);   
-Route::get('subastas/loguares/estatus-pago',[
+Route::get('subastas/lugares/estatus-pago',[
     'as' => 'enrollment.payment',
     'uses' => 'PaypalController@enrrolmentPaymentStatus'
 ]);
 Route::get('hola-omar', function () {
     return view("hola-omar");
 });
+Route::get('subastas/confirmacion-pago', [
+    'as' => 'auction.payment.approvated',
+    'uses' => 'AuctionController@paymentApprovated'
+]);
+Route::get('subastas/error-en-pago', [
+    'as' => 'auction.payment.failed',
+    'uses' => 'AuctionController@paymentFailed'
+]);
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"
 ]);

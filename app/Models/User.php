@@ -15,7 +15,7 @@ class User extends Authenticatable {
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
     public function isMale(){
-        return $this->gender=== self::GENDER_MALE;
+        return $this->gender == self::GENDER_MALE;
     }
 
     /**
@@ -24,7 +24,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'gender'
     ];
     protected $visible = array('name', 'email');
     /**
