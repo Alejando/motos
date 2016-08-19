@@ -17,7 +17,7 @@ class AuctionController extends BaseController {
     }
     public function paymentApprovated() {        
         $code = \Session::get('payment_auction_code');
-        Session::forget('payment_auction_code');
+        \Session::forget('payment_auction_code');
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         return view ('public.pages.auction-approvated', [
             'auction' => $auction,
