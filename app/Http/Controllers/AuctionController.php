@@ -29,7 +29,10 @@ class AuctionController extends BaseController {
     public function paymentFailed() {
         return view ('auction-payment-failed');
     }
-    public function room() {
-        return view ('public.pages.room');
+    public function room($code) {
+        $auction = \GlimGlam\Models\Auction::getByCode($code);
+        return view ('public.pages.room', [
+            'auction' => $auction
+        ]);
     }
 }
