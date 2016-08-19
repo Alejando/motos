@@ -58,10 +58,19 @@ class AuthController extends Controller {
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-                    'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users',
-                    'password' => 'required|min:6|confirmed',
-                    'gender' => 'required'
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'gender' => 'required'
+        ],[
+           'gender.required' => 'Indica tu sexo',
+           'name.required' => 'Escribe tu nombre',
+           'email.required' => 'Escribe tu correo',
+           'password.required' => 'Escribe tu contraseñalarave',
+           'password.min' => "Tu contraseña debe de tener al menos :min caracteres",
+           'password.confirmed' => "Confirma tu contraseña",
+           'email.unique' => 'El correo ya ha sido registrado',
+           'required' => 'The :attribute field is required.',
         ]);
     }
 
@@ -75,6 +84,7 @@ class AuthController extends Controller {
         $user = User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
+                    'gender' => $data['gender']==="1",
                     'password' => bcrypt($data['password']),
         ]);
         \GlimGlam\Libs\Helpers\Mail::welcome([

@@ -119,7 +119,7 @@ class PaypalController extends BaseController {
         $result = $payment->execute($execution, $this->_api_context);
         
         if($result->getState() == 'approved'){
-            return \redirect(route('acution.payment.approvate'));
+            return \redirect(route('auction.payment.approvated'));
         }
         
         return \redirect(route('acution.payment.approvate'));

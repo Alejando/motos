@@ -36,11 +36,11 @@
                     @endif
                 </div>
             </div>
-            <div class="form-group row {{ $errors->has('gender') ? ' has-error' : '' }}">
+            <div class="form-group row {{$errors->has('gender') ? ' has-error' : '' }}">
                 <div class="col-sm-12">
                     <select name="gender" class="form-control2">
-                        <option>Sexo</option>
-                        <option value="1">Hombre</option>
+                        <option value="">Sexo</option>
+                        <option value="1">Hombre</option>The gender field is required
                         <option value="0">Mujer</option>
                     </select>
                     @if ($errors->has('gender'))
