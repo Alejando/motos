@@ -127,7 +127,12 @@ Route::group(['prefix' => 'api'], function () use (&$route){
     
 });
 // </editor-fold>
-Route::get('mi-perfil/', 'UserController@profile' );
+
+Route::get('mi-perfil/', [
+    'as' => 'my-profile',
+    'uses' => 'UserController@profile'
+]);
+
 Route::get('subasta/entradas-checkout/{code}', [
     'as' => 'auction.enrollment-form',
     'uses' =>  'AuctionController@enrollmentPayment'
