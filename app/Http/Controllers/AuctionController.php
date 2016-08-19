@@ -15,8 +15,15 @@ class AuctionController extends BaseController {
         }
         return redirect(url('/login'));
     }
-    public function paymentApprovated() {
-        return view ('public.pages.auction-approvated');
+    public function paymentApprovated() {        
+        $code = \Session::get('payment_auction_code');
+        Session::forget('payment_auction_code');
+        $auction = \GlimGlam\Models\Auction::getByCode($code);
+        return view ('public.pages.auction-approvated', [
+            'auction' => $auction,
+            'user' => Auth::User()
+            
+        ]);
     }
     public function paymentFailed() {
         return view ('auction-payment-failed');

@@ -99,6 +99,7 @@ class PaypalController extends BaseController {
         
         $approvalLink = $payment->getApprovalLink();
         \Session::put('paypal_payment_id', $payment->getId());
+        \Session::put('payment_auction_code', $code->code);
         if(isset($redirect_url)) {
             return \Redirect::away($approvalLink);
         }
