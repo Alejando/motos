@@ -1,0 +1,16 @@
+/* 
+    Created on : 19-ago-2016, 12:00:20
+    Author     : omarhernandez
+*/
+@import "../variables.scss";
+.content-room{
+    color: $color-textos;
+    background-color: $bg-generico;
+    padding: 20px 30px;
+    margin-top: 50px;
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    
+}

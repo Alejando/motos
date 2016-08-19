@@ -22,7 +22,11 @@
                 </div>
             </div>
             <div style="clear:both;"></div>
-            <a class="btn btn-block btn-primary subasta-boton-pago" href="{{route('auciton.checkout',['code' => $auction->code])}}">Únete</a>
+            @if (isset($procesado)) 
+                <a class="btn btn-block btn-primary subasta-boton-pago" href="{{route('auction.room',['code' => $auction->code])}}">Entrar al juego</a>
+            @else
+                <a class="btn btn-block btn-primary subasta-boton-pago" href="{{route('auction.checkout',['code' => $auction->code])}}">Únete</a>
+            @endif
         </div>
     </div>
     <div class="row banner-data transition-0-3">
@@ -45,6 +49,5 @@
         </div>
     </div>
 </section>
--->
 
 @stop

@@ -45,6 +45,39 @@ and open the template in the editor.
     Author     : omarhernandez
 */
 /* Doradito */
+/* Doradito */
+/* Gris generico */
+/* Blanco */
+
+/* 
+    Created on : 19-ago-2016, 10:07:55
+    Author     : omarhernandez
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18-ago-2016, 16:53:28
+    Author     : omarhernandez
+*/
+/* Doradito */
+/* Doradito */
+/* Gris generico */
+/* Blanco */
+.generic-content {
+  color: #000;
+  background-color: #fff;
+  padding: 20px 30px;
+  margin-top: 50px;
+  min-height: 300px;
+  border-radius: 10px; }
+  .generic-content .content-title {
+    color: #d5a00f;
+    text-transform: uppercase; }
+  .generic-content .content-text {
+    color: #747474; }
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -56,8 +89,11 @@ and open the template in the editor.
     Author     : omarhernandez
 */
 /* Doradito */
+/* Doradito */
+/* Gris generico */
+/* Blanco */
 .detalle-pago-subasta {
-  color: #000;
+  color: #747474;
   background-color: #fff;
   padding: 20px 30px;
   margin-top: 50px;
@@ -93,5 +129,29 @@ and open the template in the editor.
     height: auto;
     margin-top: 10px;
     margin-bottom: 25px; }
+
+/* 
+    Created on : 19-ago-2016, 12:00:20
+    Author     : omarhernandez
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18-ago-2016, 16:53:28
+    Author     : omarhernandez
+*/
+/* Doradito */
+/* Doradito */
+/* Gris generico */
+/* Blanco */
+.content-room {
+  color: #747474;
+  background-color: #fff;
+  padding: 20px 30px;
+  margin-top: 50px;
+  border-radius: 10px; }
 
 /*# sourceMappingURL=app.css.map */

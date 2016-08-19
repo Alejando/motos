@@ -138,7 +138,7 @@ Route::get('subasta/entradas-checkout/{code}', [
     'uses' =>  'AuctionController@enrollmentPayment'
 ]);
 Route::get('subastas/lugares/checkout/{code}',[
-    'as' => 'auciton.checkout',
+    'as' => 'auction.checkout',
     'uses' => 'PaypalController@checkoutEnrollment'
 ]);   
 Route::get('subastas/lugares/estatus-pago',[
@@ -155,6 +155,10 @@ Route::get('subastas/confirmacion-pago', [
 Route::get('subastas/error-en-pago', [
     'as' => 'auction.payment.failed',
     'uses' => 'AuctionController@paymentFailed'
+]);
+Route::get('subastas/juego/{code}', [
+    'as' => 'auction.room',
+    'uses' => 'AuctionController@room'
 ]);
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"

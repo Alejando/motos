@@ -1,0 +1,25 @@
+/* 
+    Created on : 19-ago-2016, 10:07:55
+    Author     : omarhernandez
+*/
+@import "../variables.scss";
+
+.generic-content{
+    color: #000;
+    background-color: $bg-generico;
+    padding: 20px 30px;
+    margin-top: 50px;
+    
+    min-height: 300px;
+    
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    .content-title{
+        color: $color-titulo;
+        text-transform: uppercase;
+    }
+    .content-text{
+        color: $color-textos;
+    }
+}
