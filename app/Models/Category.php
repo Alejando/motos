@@ -19,6 +19,6 @@ class Category extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
     
     public static function getByName ($name) {
-        return self::where('name','=', $name)->get(0)->get(0);
+        return self::where('name','=', $name)->get()->get(0);
     }
 }
