@@ -54,7 +54,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $now = new \DateTime(); 
         /* @var $query \Illuminate\Database\Eloquent\Builder */
         $query = Auction::where('start_date', '>', $now)
-            ->where('status', '!=', self::STATUS_STAND_BY)
+            ->where('status', '=', self::STATUS_STAND_BY)
             ->where('ready', '=', self::READY)
             ->orderBy('start_date','asc');
         return $query;
