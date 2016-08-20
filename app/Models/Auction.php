@@ -92,8 +92,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $pathBase = self::getAuctionFilesPath($code);
         $defaultImg =  public_path()."/img/edit-perfil-gg.png";
         $img = $defaultImg;
-        $coverJpg = $pathBase."photos/01.jpg";
-        $coverPng = $pathBase."photos/01.png";
+        $coverJpg = $pathBase."01.jpg";
+        $coverPng = $pathBase."01.png";
         if(file_exists ($coverPng)){
             $type = "png";
             $img = $coverPng;
