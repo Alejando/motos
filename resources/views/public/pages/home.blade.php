@@ -65,7 +65,7 @@
                         <div class="producto-nombre" >
                             - @{{lastStarted.title}} -
                         </div>
-                        <div class="leyenda-subasta">
+                        <div class="leyenda-subasta" ng-show="lastStarted.last_offer">
                             <div>Ultima Oferta:</div>
                             <div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
                         </div>

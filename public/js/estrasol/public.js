@@ -553,10 +553,17 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
     
     
     Auction.getStarted(1).then(function(auction) {
-        $scope.lastStarted = auction[0];
-        $scope.lastStarted.selfUpdate(1500000, $scope);    
+        if(auction.length) {
+            $scope.lastStarted = auction[0];
+            $scope.lastStarted.selfUpdate(1500000, $scope);
+        } else {
+            Auction.getUpcoming(1).then(function(auction){
+                console.log(auction);
+                $scope.lastStarted = auction[0];
+                $scope.lastStarted.selfUpdate(1500000, $scope);
+            });
+        }
     });
-    $scope.$parent.subSeccion = "Actualización Masiva";
 });
 glimglam.controller('public.roomCtrl', function ($scope, Auction) {
     $scope.objAuction = new Auction(auction);

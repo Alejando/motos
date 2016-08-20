@@ -83,8 +83,6 @@ class PaypalController extends BaseController {
                 ->setTransactions([$transaction])
         ;
         
-//        echo $payment->toJSON();
-//        die();
         try {
            
             $payment->create($this->_api_context);
@@ -99,7 +97,7 @@ class PaypalController extends BaseController {
         
         $approvalLink = $payment->getApprovalLink();
         \Session::put('paypal_payment_id', $payment->getId());
-        \Session::put('payment_auction_code', $code->code);
+        \Session::put('payment_auction_code', $code);
         if(isset($redirect_url)) {
             return \Redirect::away($approvalLink);
         }
@@ -107,8 +105,12 @@ class PaypalController extends BaseController {
     }
     
     public function enrrolmentPaymentStatus() {
+        $user = \Auth::User();
+        $args['user'] = $user;
+        $args['to'] = 'wariodiaz@gmail.com';
+        \GlimGlam\Libs\Helpers\Mail::payment($args);
         $payment_id = \Session::get('paypal_payment_id');
-        Session::forget('paypal_payment_id');
+//        Session::forget('paypal_payment_id');
         $payerId =  Input::get('PayerID');
         $token = Input::get('token');
         if(empty($payerId) || empty($token)){
@@ -118,6 +120,7 @@ class PaypalController extends BaseController {
         $execution = new PaymentExecution();
         $execution->setPayerId($payerId);
         $result = $payment->execute($execution, $this->_api_context);
+        return $result->toJSON();
         
         if($result->getState() == 'approved'){
             return \redirect(route('auction.payment.approvated'));

@@ -6,7 +6,7 @@
     <body>
         <div class="contenedor" style="min-width: 300px; max-width: 600px; border: 1px solid #284f53;margin: auto; text-align: center;font-family: Tahoma, Geneva, sans-serif;">
             <div class="cabeza" style="background-image: url('{{asset('img/mail/bg-head-mail.jpg')}}');background-repeat: no-repeat;">
-		<img src="{{$message->embed('img/mail/logo-glimglam.png')}}" alt="Logo Glim Glam" style="margin: 17px auto;">
+		<img src="{{asset('img/mail/logo-glimglam.png')}}" alt="Logo Glim Glam" style="margin: 17px auto;">
             </div>
             
             @yield('message')

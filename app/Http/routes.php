@@ -130,7 +130,8 @@ Route::group(['prefix' => 'api'], function () use (&$route){
 
 Route::get('mi-perfil/', [
     'as' => 'my-profile',
-    'uses' => 'UserController@profile'
+    'uses' => 'UserController@profile',
+    'middleware' => 'auth'
 ]);
 
 Route::get('subasta/entradas-checkout/{code}', [

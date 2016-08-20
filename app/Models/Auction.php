@@ -193,7 +193,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
     // </editor-fold>
     public static function getPhotos($code) {
-        $path = public_path()."/upload/auctions/$code/photos/";
+        $path = public_path()."/upload/auctions/$code/";
         if(!file_exists($path)){
            $umask= umask(0);
            mkdir($path, 0777, true);
@@ -202,7 +202,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $files = scandir($path);
         $photos = [];        
         foreach($files as $file){
-            if($file != '.' && $file!='..' && $file!='01.png' && $file!='01.jpg'){
+            if( $file != '.DS_Store' && $file != 'thumbnail' && $file!='photos' && $file != '.' && $file!='..' && $file!='01.png' && $file!='01.jpg'){
                 $photos[] = $file;
             }
         }
@@ -257,7 +257,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
     public static function getImg($code, $version, $photo){
         //@Todo falta el manejo de cache
-        $pathBase = self::getAuctionFilesPath($code).'photos/';
+        $pathBase = self::getAuctionFilesPath($code);
         $source = $pathBase.$photo;                       
         if(!file_exists($source)){
             abort(404);
