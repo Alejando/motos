@@ -14,18 +14,18 @@ class CreacionAuctions extends Migration {
         Schema::create('auctions', function(Blueprint $table){
             $table->increments('id');
             
-            $table->integer('category');
-            $table->integer('sub_category');
+            $table->integer('category')->unsigned()->nullable();
+            $table->integer('sub_category')->unsigned()->nullable();
             $table->integer('target');
             $table->string('code',15);
             $table->string('barcode',50);
             $table->string('title',150);
-            $table->integer('real_price');
-            $table->integer('cover');
-            $table->integer('min_offer');
-            $table->integer('max_offer');
+            $table->decimal('real_price');
+            $table->decimal('cover');
+            $table->decimal('min_offer');
+            $table->decimal('max_offer');
             $table->integer('bids');
-            $table->integer('max_price');
+            $table->decimal('max_price');
             $table->integer('user_quota');
             $table->integer('users_limit');
             $table->integer('delay');
