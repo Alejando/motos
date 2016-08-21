@@ -11,6 +11,12 @@
 |
 */
 Route::auth();
+
+Route::get('/holamundo',function(){
+    return view("holamundo");
+});
+
+
 Route::get('/',"Home@index");
 Route::get('/admin',"AdminController@index");
 Route::get('/pages/admin/{view}.html','PagesCtrl@admin');
@@ -165,3 +171,5 @@ $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"
 ]);
 $route->get('{slug}','PublicController@content');
+
+

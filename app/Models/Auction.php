@@ -21,6 +21,11 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     
     protected $hidden = ['created_at', 'updated_at'];
+    
+    public function getTotalBids() {
+        return rand(20, 50);
+    }
+
     public function getOfferType() {
         return 'oferta-verde';
 //        return ['oferta-verde','oferta-naranja','oferta-rojo'][rand(0, 2)];

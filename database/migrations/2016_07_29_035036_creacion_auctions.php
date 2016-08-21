@@ -32,7 +32,7 @@ class CreacionAuctions extends Migration {
             $table->integer('max_user_quiet');
             $table->integer('death_time');
             $table->longText('description');
-            $table->dateTime('start_date');
+            $table->dateTime('start_env.serverdate');
             $table->dateTime('end_date');
             $table->boolean('published');
             $table->smallInteger('status');

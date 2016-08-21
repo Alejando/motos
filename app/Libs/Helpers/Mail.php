@@ -52,8 +52,9 @@ class Mail{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="welcome">
     public static function welcome($args, $test = false, $send = true, $format = 'html') {
-        $user = \GlimGlam\Models\User::getRandom(); 
+        
         if(!isset($args['user'])){
+            $user = \GlimGlam\Models\User::getRandom(); 
             $args['user'] = $user;
             $args['to'] = [];
         }

@@ -17,6 +17,7 @@ return [
     ],
     'currency' => 'MXN', 
     'entidadesPorPagina' => 50,
+    'iva' => 0.16,
     /*
     |--------------------------------------------------------------------------
     | Application Environment
