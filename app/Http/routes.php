@@ -39,6 +39,21 @@ Route::get('/login', function () {
     return view('public.pages.login');
 });
  
+Route::get('/pago-ganador/{code}', [
+    'as'=>'payment.win',
+    'uses'=>'AuctionController@paymentWin'
+]);
+
+Route::get('/loginFacebook', [
+    'as'=>'facebook.login',
+    'uses'=>'FacebookController@login'
+]);
+
+Route::get('facebook-checkin/', [
+    'as'=>'facebook.checkin',
+    'uses'=>'FacebookController@checkin'
+]);
+ 
 // <editor-fold defaultstate="collapsed" desc="/api">
 Route::group(['prefix' => 'api'], function () use (&$route){
     // <editor-fold defaultstate="collapsed" desc="$getNames">
