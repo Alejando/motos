@@ -38,7 +38,14 @@ Route::get('/home', 'HomeController@index');
 Route::get('/login', function () {
     return view('public.pages.login');
 });
- 
+Route::get('cron/cerrar-subastas', [
+    'as'=>'close.auctions',
+    'uses'=>'ProcessController@closeAuctions'
+]);
+Route::get('cron/iniciar-subastas', [
+    'as'=>'start.auctions',
+    'uses'=>'ProcessController@startAuctions'
+]);
 Route::get('/pago-ganador/{code}', [
     'as'=>'payment.win',
     'uses'=>'AuctionController@paymentWin'

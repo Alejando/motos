@@ -22,14 +22,17 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
     protected $hidden = ['created_at', 'updated_at'];
     
+    // <editor-fold defaultstate="collapsed" desc="getTotalBids">
     public function getTotalBids() {
         return rand(20, 50);
     }
-
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getOfferType">
     public function getOfferType() {
         return 'oferta-verde';
 //        return ['oferta-verde','oferta-naranja','oferta-rojo'][rand(0, 2)];
     }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getStartDateAttribute">
     public function getStartDateAttribute() {
         return $this->datetimeFormat('start_date');
@@ -197,6 +200,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return null;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getPhotos">
     public static function getPhotos($code) {
         $path = public_path()."/upload/auctions/$code/";
         if(!file_exists($path)){
@@ -213,7 +217,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $photos;
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="resizeImg">
     private static function resizeImg($source, $width, $height, $pathCache, $returnData) {
         $img = new \Imagine\Gd\Imagine();
         $size = new \Imagine\Image\Box($width, $height);
@@ -240,7 +245,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $out->paste($reziceImg, new \Imagine\Image\Point($startX, $startY));
         return $out->get($type);
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getMime">
     private static function getMime ($source) {
         $type = pathinfo($source)['extension'];
         switch($type) {
@@ -249,7 +255,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         } 
         return false;
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getSizeByVersion">
     private static function getSizeByVersion($version) {
         $sizes = config('app.img-sizes.'.$version);
         if(!$sizes) {
@@ -260,6 +267,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'height' => $sizes['height']
         ];
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getImg">
     public static function getImg($code, $version, $photo){
         //@Todo falta el manejo de cache
         $pathBase = self::getAuctionFilesPath($code);
@@ -271,7 +280,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $data = self::resizeImg($source, $v['width'], $v['height'], $version, false, true);
         return (new \Illuminate\Http\Response($data))->header('Content-type', self::getMime($source));
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getUrlImg">
     public function getUrlImg() {
         $imgs = $this->getPhotos($this->code);
         $rImgs = [];
@@ -288,4 +298,23 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $rImgs;
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="startAuctions">
+    public static function startAuctions(){
+        $auctions = self::where('status','=',self::STATUS_STAND_BY)
+                ->where('ready','=',self::READY)
+                ->where('start_date','<', new \DateTime)
+                ->update(['status'=>self::STATUS_STARTED]);
+        return $auctions;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="closeAuctions">
+    public static function closeAuctions(){
+        $auctions = self::where('status','=',self::STATUS_STARTED)
+                ->where('end_date','<', new \DateTime)
+                ->update(['status'=>self::STATUS_FINISHED]);
+        return $auctions;
+    }
+    // </editor-fold>
+
 }
