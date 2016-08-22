@@ -63,7 +63,7 @@ form label{
 	line-height: 20px;
 }
 .subasta-verde{
-	color: #95c630;
+	color: #95c630  !important;
 }
 .subasta-naranja{
 	color: #fdb447;
