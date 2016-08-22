@@ -431,7 +431,7 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         selfUpdate : function (milisecons, $scope) {
             
             var self = this;
-            $interval(function(){
+            $interval(function() {
                 console.log("Inicia --- re", milisecons);
                 self.refresh();
             },milisecons);            
@@ -545,6 +545,9 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             return false;
         }
     };
+    ModelBase.setFloat = function (value) {
+        return parseFloat(value);
+    },
     //Helper para setear fechas 
     ModelBase.setDate = function (value) {
         if(angular.isString(value)) {
@@ -743,6 +746,63 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
     return ModelBase;
 });
 
+glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
+//    $scope.titulo = "Hello";
+//    window.Auction = Auction;
+////    Auction.getAll().then(function(all) {
+//        console.log(all);
+//    });
+//    Auction.getByCode("SUB001").then(function(byCode) {
+//        console.log("Auction byCode=> %o", byCode);
+//        console.log("cover horizontal => %o", byCode.getUrlCover(Auction.COVER_HORIZOTAL));
+//        console.log("cover vertical => %o", byCode.getUrlCover(Auction.COVER_VERTICAL));
+//        console.log('cover slider => %o',  byCode.getUrlCover(Auction.COVER_SLIDER_UPCOMING));
+//    });
+//    Auction.getUpcoming(10).then(function(auctions) {
+//        console.log('diez proximas => %o', auctions);
+//    });
+//    Auction.getFinished(10).then(function(auctions) {
+//        console.log('las ultimas 10 terminadas => %o', auctions);
+//    });
+//    Auction.getStarted(10).then(function(auctions){
+//        console.log('las ultimas iniciadas => %o', auctions);
+//    });
+    
+    $scope.lastStarted = null;
+    
+    
+    //Fancybox producto
+    
+    
+    Auction.getStarted(1).then(function(auction) {
+        if(auction.length) {
+            $scope.lastStarted = auction[0];
+            $scope.lastStarted.selfUpdate(1500000, $scope);
+        } else {
+            Auction.getUpcoming(1).then(function(auction){
+                console.log(auction);
+                $scope.lastStarted = auction[0];
+                $scope.lastStarted.selfUpdate(1500000, $scope);
+            });
+        }
+    });
+});
+glimglam.controller('public.roomCtrl', function ($scope, Auction) {
+    $scope.objAuction = new Auction(auction);
+    console.log($scope.objAuction );
+    $scope.rangeOferta = {
+         min: 0,
+         max: $scope.objAuction.min_offer,
+         limitMax: $scope.objAuction.max_offer,
+         limitMin: $scope.objAuction.min_offer
+    };
+    $scope.placeBid = function(){
+        $scope.objAuction.placeBid().then(function(data) {
+            $scope.objAuction.refresh();
+        });
+    };
+    $scope.objAuction.selfUpdate(1000, $scope);
+});
 glimglam.factory('Auction', function (ModelBase,$q,$http) {    
     var Auction = function (args) {
         ModelBase.apply(this, arguments);
@@ -757,8 +817,10 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
         setters : {
-            start_date : ModelBase.setDate,
-            end_date : ModelBase.setDate
+//            start_date : ModelBase.setDate,
+//            end_date : ModelBase.setDate,
+            max_offer : ModelBase.setFloat,
+            min_offer : ModelBase.setFloat
         },
         attributes: [
             'id',
@@ -795,6 +857,24 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'url' :  url
             }).then(function(result){
                 $defer.resolve(self.build(result.data));
+            });
+            return $defer.promise;
+        },
+        placeBid : function (bid) {
+            var $defer = $q.defer();
+            var url = laroute.route('auction.place-bid');
+            var data = {
+                code : this.code,
+                bid : bid
+            };
+            $http({
+                'method' : 'POST',
+                'url': url,
+                'data' : data
+            }).then(function(result) {
+                $defer.resolve(result.data);
+            }, function(r) {
+                $defer.reject(r);
             });
             return $defer.promise;
         },
@@ -930,56 +1010,5 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
     });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
     return User;
-});
-glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
-//    $scope.titulo = "Hello";
-//    window.Auction = Auction;
-////    Auction.getAll().then(function(all) {
-//        console.log(all);
-//    });
-//    Auction.getByCode("SUB001").then(function(byCode) {
-//        console.log("Auction byCode=> %o", byCode);
-//        console.log("cover horizontal => %o", byCode.getUrlCover(Auction.COVER_HORIZOTAL));
-//        console.log("cover vertical => %o", byCode.getUrlCover(Auction.COVER_VERTICAL));
-//        console.log('cover slider => %o',  byCode.getUrlCover(Auction.COVER_SLIDER_UPCOMING));
-//    });
-//    Auction.getUpcoming(10).then(function(auctions) {
-//        console.log('diez proximas => %o', auctions);
-//    });
-//    Auction.getFinished(10).then(function(auctions) {
-//        console.log('las ultimas 10 terminadas => %o', auctions);
-//    });
-//    Auction.getStarted(10).then(function(auctions){
-//        console.log('las ultimas iniciadas => %o', auctions);
-//    });
-    
-    $scope.lastStarted = null;
-    
-    
-    //Fancybox producto
-    
-    
-    Auction.getStarted(1).then(function(auction) {
-        if(auction.length) {
-            $scope.lastStarted = auction[0];
-            $scope.lastStarted.selfUpdate(1500000, $scope);
-        } else {
-            Auction.getUpcoming(1).then(function(auction){
-                console.log(auction);
-                $scope.lastStarted = auction[0];
-                $scope.lastStarted.selfUpdate(1500000, $scope);
-            });
-        }
-    });
-});
-glimglam.controller('public.roomCtrl', function ($scope, Auction) {
-    $scope.objAuction = new Auction(auction);
-    $scope.rangeOferta = {
-         min: 0,
-         max: $scope.objAuction.min_offer,
-         limitMax: $scope.objAuction.max_offer,
-         limitMin: $scope.objAuction.min_offer
-    };
-    $scope.objAuction.selfUpdate(1000, $scope);
 });
 //# sourceMappingURL=admin.js.map

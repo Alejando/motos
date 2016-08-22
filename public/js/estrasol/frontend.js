@@ -124,8 +124,35 @@ $(document).ready(function(){
 	$(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 	});
-
-
+        
+        // Función Mostrar Facturacion
+        $(".form-factura").hide();
+        $(".facturar").click(function() {
+            if($(this).is(":checked")) {
+                $(".form-factura").show(600);
+            } else {
+                $(".form-factura").hide(200);
+            }
+        });
+        
+        // Función Mostrar forma de pago
+        $(".tdec-cont").hide();
+        $(".tdec-select").click(function() {
+            if($(this).is(":checked")) {
+                $(".tdec-cont").show(600);
+                $(".paypal-cont").hide(600);
+            } else {
+                $(".paypal-cont").show(200);
+            }
+        });
+        $(".paypal-select").click(function() {
+            if($(this).is(":checked")) {
+                $(".tdec-cont").hide(600);
+                $(".paypal-cont").show(600);
+            } else {
+                $(".tdec-cont").hide(200);
+            }
+        });
 });
 
 
