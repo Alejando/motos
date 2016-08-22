@@ -36,6 +36,11 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
     
+    public function getPublicName(){
+        $name = split('@',$this->email);
+        return '@'.$name[0];
+    }
+    
     public function preferences(){
         return $this->belongsToMany('\GlimGlam\Models\Preference');
     }

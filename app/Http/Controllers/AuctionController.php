@@ -44,4 +44,14 @@ class AuctionController extends BaseController {
         ]);
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="placeBid">
+    public function placeBid(){
+        $user_id = \Auth::user()->id;
+        $code = \Input::post('code');
+        $bid = \Input::post('bid');
+        $success = \GlimGlam\Models\Auction::placeBid($user_id, $code, $bid);
+        return ['success' => $success];
+    }
+    // </editor-fold>
+
 }
