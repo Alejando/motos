@@ -62,13 +62,10 @@ class Mail{
         return self::sendMail('welcome', $args, $test, $send, $format);
     }
     // </editor-fold>
-    public static function enrollment($args = [], $test = false, $send = true, $format = 'html') {
-       $args['user'] = \GlimGlam\Models\User::getRandom();
-       return self::sendMail('confirm-enrollment', $args, $test, $send, $format);
-    }
     // <editor-fold defaultstate="collapsed" desc="ConfirmYouWin">
     public static function ConfirmYouWin($args = [], $test = false, $send = true, $format = 'html') {
         $args['user'] = \GlimGlam\Models\User::getRandom();
+        $args['auction'] = \GlimGlam\Models\Auction::getRandom();
         $args['subject'] = "Ganaste una subasta!";
         return self::sendMail('confirm-you-win', $args, $test, $send, $format);
     }
@@ -76,6 +73,7 @@ class Mail{
     // <editor-fold defaultstate="collapsed" desc="payment">
     public static function payment($args = [], $test = false, $send = true, $format = 'html') {
         $args['subject'] = "Confirmación de pago";
+        $args['auction'] = \GlimGlam\Models\Auction::getRandom();
         return self::sendMail('confirm-payment', $args, $test, $send, $format);
     }
     
@@ -86,5 +84,17 @@ class Mail{
         return self::sendMail('reset-password', $args, $test, $send, $format);
     }
     // </editor-fold>
-
+    // <editor-fold defaultstate="collapsed" desc="enrollment">
+    public static function enrollment($args = [], $test = false, $send = true, $format = 'html') {
+        $args['user'] = \GlimGlam\Models\User::getRandom();
+        return self::sendMail('confirm-enrollment', $args, $test, $send, $format);
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="recordatory">
+    public static function recordatory($args = [], $test = false, $send = true, $format = 'html') {
+        $args['subject'] = "Recordatorio de subasta";
+        $args['auction'] = \GlimGlam\Models\Auction::getRandom();
+        return self::sendMail('auction-recordatory', $args, $test, $send, $format);
+    }
+    // </editor-fold>
 }
