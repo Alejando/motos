@@ -6,10 +6,10 @@
         </div>
         <div class="leyenda-subasta">
             <div>Puedes subastar desde:</div>
-            <div class="rango-ofertas">{{currency($auction->min_offer, config('app.currency'))}} - {{Currency::format($auction->max_price, config('app.currency'))}}</div>
+            <div class="rango-ofertas">{{currency($auction->min_offer, config('app.currency'))}} - {{Currency::format($auction->max_offer, config('app.currency'))}}</div>
         </div>
         <div class="producto-hover transition-0-3">
-            <div class="producto-titulo">{{$auction->title}}</div>
+            <div class="producto-titulo{{strlen($auction->title) < 50 ? ' producto-titulo-grande' : '' }}">{{$auction->title}}</div>
             <div class="producto-actions">
                 <div class="producto-heart"></div>
                 <span class="producto-separador"></span>
