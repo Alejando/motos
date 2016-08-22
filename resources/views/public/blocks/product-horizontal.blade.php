@@ -2,7 +2,7 @@
     <div class="producto mini-producto oferta-verde col-md-12">
         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
         <div class="img-subasta">
-            <img src="{{$auction->getUrlCover($auction::COVER_HORIZONTAL)}}" alt="Producto 1" title="Producto 1">
+            <img src="{{$auction->getUrlCover($auction::COVER_HORIZONTAL)}}" alt="{{$auction->title}}" title="{{$auction->title}}">
         </div>
         <div class="producto-hover transition-0-3 col-md-12">
             <div class="producto-titulo">{{$auction->title}}</div>

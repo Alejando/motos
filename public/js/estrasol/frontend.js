@@ -5,6 +5,72 @@ var url = protocol + '//' + host + '/' + 'glimglam';
 
 
 $(document).ready(function(){
+    $('.gal-1').click(function () {
+        $('#img-principal').html('<img src="img/productos/producto02.png" alt="" title="" class="animated fadeIn">');
+    });
+
+    $('.gal-2').click(function () {
+        $('#img-principal').html('<img src="img/productos/producto02a.png" alt="" title="" class="animated fadeIn">');
+    });
+
+    $('.gal-3').click(function () {
+        $('#img-principal').html('<img src="img/productos/producto02b.png" alt="" title="" class="animated fadeIn">');
+    });
+
+    $("#zoom_mw").elevateZoom({tint: true, tintColour: '#F90', tintOpacity: 0.5});
+
+    //Fancybox producto
+    var $zomm = false;
+    function open_fancy_product(code) {
+        var url_ajax = laroute.route('enrollment.userIsEnrollment',{'auctionCode':code});
+        $.get(url_ajax,{},function(data){
+            if(data.enrollment){
+                var redirection = laroute.route('auction.room',{'code':code});
+                window.location = redirection;
+            }else{
+                var url = laroute.route('auction.fancy',{code : code});
+                $.get(url,{},'html').done(function(html) {
+                    var $html = $(html);
+                    $zoom = $html.find(".zoom_mw").elevateZoom({scrollZoom : true,
+                        borderSize : 1,
+                         zoomType : "lens",
+                        lensShape : "round",
+                        tintOpacity:1,
+                         easing:true,
+//                lensSize    : 250,
+//                zoomLevel : 4,  
+//                zoomWindowHeight : 250,
+                        zIndex : 20005            
+                    }); 
+                    $('.zoomContainer').append()
+//            $zoom.css('zIndex',2002);
+//            console.log($zoom);
+                    console.log($('.fancy-producto'));
+                    $('.fancy-producto').empty().append($html).fadeIn(500);
+                }); 
+            }
+                
+        });
+    }
+    $('.producto-fancy').on('click', function (e) {
+        e.stopPropagation();
+    });
+
+    $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row').on('click', '.producto-hammer', function (e) {
+        e.preventDefault();
+        open_fancy_product($(this).attr('id_producto'));
+    });
+
+    $('a.link-subasta').on('click', function(e){
+        e.preventDefault();
+        open_fancy_product($(this).attr('id_producto'));
+    });
+
+    $('.fancy-producto').click(function (e) {
+        if(e.target === this || $(e.target).is('.descripcion-fancy')) {
+            $('.fancy-producto').fadeOut(500);
+        }        
+    });
 	/* Funcionalidad scroll btn subir */
 	$(window).scroll(function(){
 		var top = $(window).scrollTop();
