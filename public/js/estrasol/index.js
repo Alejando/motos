@@ -23,7 +23,7 @@ $(document).ready(function () {
         $.get(url_ajax,{},function(data){
             if(data.enrollment){
                 var redirection = laroute.route('auction.room',{'code':code});
-                window.location(redirection);
+                window.location = redirection;
             }else{
                 var url = laroute.route('auction.fancy',{code : code});
                 $.get(url,{},'html').done(function(html) {
