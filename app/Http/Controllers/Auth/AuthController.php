@@ -61,7 +61,8 @@ class AuthController extends Controller {
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'gender' => 'required'
+            'gender' => 'required',
+            'terminos'=>'required'
         ],[
            'gender.required' => 'Indica tu sexo',
            'name.required' => 'Escribe tu nombre',
@@ -69,6 +70,7 @@ class AuthController extends Controller {
            'password.required' => 'Escribe tu contraseñalarave',
            'password.min' => "Tu contraseña debe de tener al menos :min caracteres",
            'password.confirmed' => "Confirma tu contraseña",
+           'terminos.required'=>'Debes aceptar los términos y condiciones',
            'email.unique' => 'El correo ya ha sido registrado',
            'required' => 'The :attribute field is required.',
         ]);

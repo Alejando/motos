@@ -4,6 +4,7 @@ namespace GlimGlam\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 class AuctionController extends BaseController {
     // <editor-fold defaultstate="collapsed" desc="enrollmentPayment">
     public function enrollmentPayment($code) {
@@ -44,4 +45,14 @@ class AuctionController extends BaseController {
         ]);
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="placeBid">
+    public function placeBid(){
+        $user_id = \Auth::user()->id;
+        $code = Input::get('code');
+        $bid = Input::get('bid');
+        $success = \GlimGlam\Models\Auction::placeBid($user_id, $code, $bid);
+        return ['success' => $success];
+    }
+    // </editor-fold>
+
 }

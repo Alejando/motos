@@ -11,4 +11,17 @@ class Enrollment extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return false;
     }
+    public static function getEnrollments($user_id = false,  $auction = false, $returnQuery = false) {
+        $query = Enrollment::query();
+        if($user_id){
+            $query->where('user', '=', $user_id);
+        }
+        if($auction){
+            $query->where('auction', '=', $auction);
+        }
+        if($returnQuery){
+            return $query;
+        }
+        return $query->get();
+    }
 }

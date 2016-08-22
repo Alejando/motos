@@ -327,4 +327,42 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return $query->get();
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="placeBid">
+    public static function placeBid($user_id, $code, $bid) {
+        $user = User::getById($user_id);
+        $auction = self::getByCode($code);
+        $enrollment = $auction->getEnrollment($user_id,$auction->id);
+        $close = false;
+        $auction->last_offer += $bid;
+        $auction->bids++;
+        $auction->sold_for = $auction->last_offer;
+        $auction->winner = $user_id;
+        $auction->winnername = $user->getPublicName();
+        if($auction->last_offer > $auction->max_price){
+           $auction->last_offer = $auction->max_price; 
+           $close = true;
+        }
+        \GlimGlam\Models\Bid::create([ 
+            'offer' => $auction->last_offer, 
+            'user' => $user_id,
+            'auction'=>$auction->id,
+            'enrollment'=>$enrollment->id
+        ]);   
+        $auction->save();
+        if($close) {
+            $auction->close();
+        }        
+        return true;
+    }
+    // </editor-fold>
+    public function close() {
+        $this->status=self::STATUS_FINISHED;
+        $this->save();
+    }
+    // <editor-fold defaultstate="collapsed" desc="getEnrollment">
+    public function getEnrollment($user_id, $auction){
+        return Enrollment::getEnrollments($user_id, $auction)->get(0);
+    }
+    // </editor-fold>
+
 }

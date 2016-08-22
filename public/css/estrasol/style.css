@@ -63,7 +63,7 @@ form label{
 	line-height: 20px;
 }
 .subasta-verde{
-	color: #95c630;
+	color: #95c630  !important;
 }
 .subasta-naranja{
 	color: #fdb447;
@@ -1168,6 +1168,10 @@ input.currency {
     font-weight: 600;
     color: #ea9f2e;
     display: inline-block;
+}
+.hey-ganado{
+    font-size: 36px;
+    line-height: 64px;
 }
 .hey-msje {
     display: inline-block;
