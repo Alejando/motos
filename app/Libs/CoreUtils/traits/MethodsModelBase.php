@@ -49,16 +49,16 @@ use Carbon\Carbon;
             } else {
                 $res = static::orderBy(\DB::raw('RAND()'))->limit(1);
                 if(!$returnQuery) {
-                    $res = $returnQuery->get();
+                    $res = $res->get();
                     if (count($res)) {
                         return $res[0];
                     }
                 }
             }
             if(!$returnQuery){
-                return $res;
+                return $res->get();
             }
-            return $returnQuery;
+            return $res;
         }
         
     }
