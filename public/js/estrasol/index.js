@@ -19,26 +19,34 @@ $(document).ready(function () {
     //Fancybox producto
     var $zomm = false;
     function open_fancy_product(code) {
-        var url = laroute.route('auction.fancy',{code : code});
-        $.get(url,{},'html').done(function(html) {
-            var $html = $(html);
-            $zoom = $html.find(".zoom_mw").elevateZoom({scrollZoom : true,
-                borderSize : 1,
-                 zoomType : "lens",
-                lensShape : "round",
-                tintOpacity:1,
-                 easing:true,
+        var url_ajax = laroute.route('enrollment.userIsEnrollment',{'auctionCode':code});
+        $.get(url_ajax,{},function(data){
+            if(data.enrollment){
+                var redirection = laroute.route('auction.room',{'code':code});
+                window.location(redirection);
+            }else{
+                var url = laroute.route('auction.fancy',{code : code});
+                $.get(url,{},'html').done(function(html) {
+                    var $html = $(html);
+                    $zoom = $html.find(".zoom_mw").elevateZoom({scrollZoom : true,
+                        borderSize : 1,
+                         zoomType : "lens",
+                        lensShape : "round",
+                        tintOpacity:1,
+                         easing:true,
 //                lensSize    : 250,
 //                zoomLevel : 4,  
 //                zoomWindowHeight : 250,
-                zIndex : 20005            
-            }); 
-            $('.zoomContainer').append()
+                        zIndex : 20005            
+                    }); 
+                    $('.zoomContainer').append()
 //            $zoom.css('zIndex',2002);
 //            console.log($zoom);
-            $('.fancy-producto').empty().append($html).fadeIn(500);
+                    $('.fancy-producto').empty().append($html).fadeIn(500);
+                }); 
+            }
+                
         });
-        
     }
     $('.producto-fancy').on('click', function (e) {
         e.stopPropagation();
