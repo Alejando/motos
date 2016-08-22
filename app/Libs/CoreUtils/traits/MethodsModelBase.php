@@ -43,16 +43,22 @@ use Carbon\Carbon;
             return static::where('id', $id)->with($relation)->get()->get(0)->getRelation($relation);
         }
 
-        public static function getRandom($limit = false) {
+        public static function getRandom($limit = false, $returnQuery = false) {
             if ($limit) {
-                $res = static::orderBy(\DB::raw('RAND()'))->limit($limit)->get();
+                $res = static::orderBy(\DB::raw('RAND()'))->limit($limit);
+            } else {
+                $res = static::orderBy(\DB::raw('RAND()'))->limit(1);
+                if(!$returnQuery) {
+                    $res = $returnQuery->get();
+                    if (count($res)) {
+                        return $res[0];
+                    }
+                }
+            }
+            if(!$returnQuery){
                 return $res;
             }
-            $res = static::orderBy(\DB::raw('RAND()'))->limit(1)->get();
-            if (count($res)) {
-                return $res[0];
-            }
-            return false;
+            return $returnQuery;
         }
         
     }
