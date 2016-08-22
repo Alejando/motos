@@ -38,7 +38,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/login', function () {
     return view('public.pages.login');
 });
-Route::get('/ofertar', [
+Route::post('/ofertar', [
     'as'=>'auction.place-bid',
     'uses'=>'AuctionController@placeBid'
 ]);

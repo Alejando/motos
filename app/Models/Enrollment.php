@@ -19,7 +19,7 @@ class Enrollment extends \GlimGlam\Libs\CoreUtils\ModelBase{
         if($auction){
             $query->where('auction', '=', $auction);
         }
-        if($retrunQuery){
+        if($returnQuery){
             return $query;
         }
         return $query->get();
