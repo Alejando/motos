@@ -12,8 +12,10 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
         setters : {
-            start_date : ModelBase.setDate,
-            end_date : ModelBase.setDate
+//            start_date : ModelBase.setDate,
+//            end_date : ModelBase.setDate,
+            max_offer : ModelBase.setFloat,
+            min_offer : ModelBase.setFloat
         },
         attributes: [
             'id',
@@ -50,6 +52,24 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'url' :  url
             }).then(function(result){
                 $defer.resolve(self.build(result.data));
+            });
+            return $defer.promise;
+        },
+        placeBid : function (bid) {
+            var $defer = $q.defer();
+            var url = laroute.route('auction.place-bid');
+            var data = {
+                code : this.code,
+                bid : bid
+            };
+            $http({
+                'method' : 'POST',
+                'url': url,
+                'data' : data
+            }).then(function(result) {
+                $defer.resolve(result.data);
+            }, function(r) {
+                $defer.reject(r);
             });
             return $defer.promise;
         },
