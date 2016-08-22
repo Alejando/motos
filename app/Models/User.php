@@ -37,7 +37,7 @@ class User extends Authenticatable {
     ];
     
     public function getPublicName(){
-        $name = split('@',$this->email);
+        $name = explode('@',$this->email);
         return '@'.$name[0];
     }
     

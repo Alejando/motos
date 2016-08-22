@@ -18,5 +18,16 @@ class UsersSeeder extends Seeder
             $preferences = GlimGlam\Models\Preference::getRandom(rand(1, 10));
             $user->preferences()->attach($preferences);
         });
+        
+        factory(\GlimGlam\Models\User::class, 1)->create([
+            'email' => 'test@glimglam.com'
+        ])->each(function($user){
+            
+            factory(\GlimGlam\Models\Address::class, rand(0, 2))
+                ->create(['user'=>$user->id]);
+            
+            $preferences = GlimGlam\Models\Preference::getRandom(rand(1, 10));
+            $user->preferences()->attach($preferences);
+        });
     }
 }

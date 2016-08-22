@@ -332,21 +332,33 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $user = User::getById($user_id);
         $auction = self::getByCode($code);
         $enrollment = $auction->getEnrollment($user_id,$auction->id);
-        $bid = \GlimGlam\Models\Bid::create([ 
-                'offer' => $bid, 
-                'user' => $user_id,
-                'auction'=>$auction->id,
-                'enrollment'=>$enrollment->id
-        ]);
-        $auction->last_offer = $bid;
-        $acution->bid++;
-        $acution->sold_for = $bid;
-        $acution->winner = $user_id;
+        $close = false;
+        $auction->last_offer += $bid;
+        $auction->bids++;
+        $auction->sold_for = $auction->last_offer;
+        $auction->winner = $user_id;
         $auction->winnername = $user->getPublicName();
+        if($auction->last_offer > $auction->max_price){
+           $auction->last_offer = $auction->max_price; 
+           $close = true;
+        }
+        \GlimGlam\Models\Bid::create([ 
+            'offer' => $auction->last_offer, 
+            'user' => $user_id,
+            'auction'=>$auction->id,
+            'enrollment'=>$enrollment->id
+        ]);   
         $auction->save();
+        if($close) {
+            $auction->close();
+        }        
         return true;
     }
     // </editor-fold>
+    public function close() {
+        $this->status=self::STATUS_FINISHED;
+        $this->save();
+    }
     // <editor-fold defaultstate="collapsed" desc="getEnrollment">
     public function getEnrollment($user_id, $auction){
         return Enrollment::getEnrollments($user_id, $auction)->get(0);

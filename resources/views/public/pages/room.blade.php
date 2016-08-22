@@ -73,7 +73,7 @@
                         </div>
                         <div class="boleto-divider"></div>
                         <div class="usr-postor">
-                            @{{objAuction.username_top || '¡Se el primero!'}}
+                            @{{objAuction.winnername || '¡Se el primero!'}}
                         </div>
                     </div>
                     <div class="rebase-der"></div>

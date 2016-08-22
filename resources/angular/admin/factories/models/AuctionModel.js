@@ -38,7 +38,8 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'inflows',
             'sold_for',
             'winner',
-            'last_offer'
+            'last_offer',
+            'winnername'
         ],
         relations : [],
         getByCode : function (code){
@@ -52,24 +53,6 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'url' :  url
             }).then(function(result){
                 $defer.resolve(self.build(result.data));
-            });
-            return $defer.promise;
-        },
-        placeBid : function (bid) {
-            var $defer = $q.defer();
-            var url = laroute.route('auction.place-bid');
-            var data = {
-                code : this.code,
-                bid : bid
-            };
-            $http({
-                'method' : 'POST',
-                'url': url,
-                'data' : data
-            }).then(function(result) {
-                $defer.resolve(result.data);
-            }, function(r) {
-                $defer.reject(r);
             });
             return $defer.promise;
         },
@@ -122,6 +105,25 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             return $defer.promise;
         }
     }, {
+        placeBid : function (bid) {
+            var $defer = $q.defer();
+            var url = laroute.route('auction.place-bid');
+            console.log(url);
+            var data = {
+                code : this.code,
+                bid : bid
+            };
+            $http({
+                'method' : 'POST',
+                'url': url,
+                'data' : data
+            }).then(function(result) {
+                $defer.resolve(result.data);
+            }, function(r) {
+                $defer.reject(r);
+            });
+            return $defer.promise;
+        },
         getUrlCover : function (version) {
             var url = laroute.route('auction.getCover',{
                 version:version,
