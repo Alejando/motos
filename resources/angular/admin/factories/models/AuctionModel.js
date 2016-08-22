@@ -146,6 +146,9 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         },
         isStarted : function(){
             return  this.status == Auction.STARTED;
+        },
+        isFinished : function () {
+            return this.status == Auction.FINISHED;
         }
     });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">

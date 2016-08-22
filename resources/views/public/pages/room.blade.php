@@ -47,16 +47,18 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 total-subastado">
-                    <div id="subasta-actual" class="precio-subasta">@{{objAuction.last_offer | currency : '$'}}</div>
+                    <div id="subasta-actual" class="precio-subasta" ng-class="{
+                            'subasta-verde': objAuction.winner == id_user
+                        }">@{{objAuction.last_offer | currency : '$'}}</div>
                     <p>Ultima oferta</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid nopadding bg-naranja" ng-show="objAuction.isStarted()">
+    <div class="container-fluid nopadding bg-naranja" ng-show="objAuction.isStarted() || objAuction.isFinished()">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 panel-oferta">
+                <div class="col-md-6 panel-oferta" ng-show="objAuction.isStarted()">
                     <p>Ingresa tu oferta</p>
                     <div style="font-size:55px">@{{rangeOferta.max  | currency : '$' }}</div>
                     <div class="align-oferta">
@@ -64,6 +66,13 @@
                     </div>
                     <div class="btn-w" ng-click="placeBid()">Ofertar</div>
                 </div>
+                
+                <div class="col-md-6 panel-oferta" ng-show="objAuction.isFinished()">
+                    <p>La Subasta ha terminado</p>
+                    
+                </div>
+                
+                
                 <div class="col-md-6 mejor-postor">
                     <div class="rebase-izq"></div>
                     <div class="boleto-postor">
@@ -115,6 +124,6 @@
 @section('head')
 <script type='text/javascript'>
 var auction =  {!! $auction !!}; 
-
+var id_user = {{\Auth::user()->id}};
 </script>
 @stop
