@@ -316,5 +316,15 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return $auctions;
     }
     // </editor-fold>
-
+    // <editor-fold defaultstate="collapsed" desc="getRelated">
+    public static function getRelated($code, $returnQuery = false){
+        //Se obtendran 4 productos relacionados a partir del codigo de producto
+        $query = \GlimGlam\Models\Auction::getRandom(4, true);
+        $query->where('status','=',  Auction::STATUS_STAND_BY)->where('ready','=',  Auction::READY);
+        if($returnQuery){
+            return $query;
+        }
+        return $query->get();
+    }
+    // </editor-fold>
 }
