@@ -1,6 +1,9 @@
 @extends('public.base')
 @section('body')
 <div ng-controller="public.roomCtrl">
+    <section class="fancy-producto">
+      
+    </section>
         <section class="slideshow container-fluid patrongg">
             <div class="banner-container">
                 <div class="galeria-detalle">
@@ -98,32 +101,7 @@
             <div class="container">
                     <div class="row">
                         @foreach ($related as $rel)
-                        <div class="product-container col-md-3 col-sm-6 col-xs-12">
-                            <div class="producto oferta-verde">
-                                <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
-                                <div class="img-subasta">
-                                    <img src="{{$rel->getUrlCover($rel::COVER_VERTICAL)}}" alt="{{$rel->title}}" title="{{$rel->title}}">
-                                </div>
-                                <div class="leyenda-subasta">
-                                    <div>Puedes subastar desde:</div>
-                                    <div class="rango-ofertas">{{currency($rel->min_offer, config('app.currency'))}} - {{currency($auction->max_offer, config('app.currency'))}}</div>
-                                </div>
-                                <div class="producto-hover transition-0-3">
-                                    <div class="producto-titulo">{{$rel->title}}</div>
-                                    <div class="producto-actions">
-                                        <div class="producto-heart"></div>
-                                        <span class="producto-separador"></span>
-                                        <div class="producto-hammer" id_producto="{{$rel->code}}"></div>
-                                    </div>
-                                    <div class="producto-cover">
-                                        {{currency($rel->cover, config('app.currency'))}}
-                                    </div>
-                                    <div class="leyenda-cover">
-                                        COVER
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            @include('public.blocks.product', ['auction'=> $rel,'room'=>true])
                         @endforeach
                     </div>
             </div>
