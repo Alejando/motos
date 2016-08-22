@@ -130,6 +130,11 @@ Route::group(['prefix' => 'api'], function () use (&$route){
     $addAPI('auction','Auction');
     $addAPI('content','Content');
     $addAPI('user','User');
+    Route::get('enrollment/iam-enrollment/{auctionCode}/', [
+        'as' => 'enrollment.userIsEnrollment',
+        'uses' => 'Api\\EnrollmentController@userIsEnrollment',
+        
+    ]);
     Route::post('auction/{id}/addPhoto','Api\\AuctionController@addPhoto');
     Route::get('auction/{code}/photos', 'Api\\AuctionController@getPhotos'); 
     Route::get('auction/{id}/photo/{file}', 'Api\\AuctionController@getPhoto');
