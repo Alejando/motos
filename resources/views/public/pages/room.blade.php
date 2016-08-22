@@ -57,7 +57,7 @@
                     <p>Ingresa tu oferta</p>
                     <div style="font-size:55px">@{{rangeOferta.max  | currency : '$' }}</div>
                     <div class="align-oferta">
-                        <div  style="width: 350px;" range-slider  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
+                        <div  style="width: 350px;" range-slider step="0.00" decimal-places="2"  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
                     </div>
                     <div class="btn-w" ng-click="placeBid()">Ofertar</div>
                 </div>
