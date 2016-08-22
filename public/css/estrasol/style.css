@@ -354,6 +354,7 @@ header.main-header{
 	width: 320px;
 	height: auto;
 	background-color: #1d1d1d;
+    padding-bottom: 45px;
 }
 .link-menu.menu-activo{
 	right: 321px;
@@ -610,8 +611,12 @@ header.main-header{
 .producto-hover .producto-titulo{
 	max-width: 230px;
 	margin:30px auto 0px;
-	font-size: 26px;
-	line-height: 30px;
+    font-size: 20px;
+    line-height: 24px;
+}
+.producto-hover .producto-titulo-grande{
+    font-size: 24px;
+    line-height: 28px;
 }
 .producto.mini-producto .producto-hover .producto-titulo{
 	margin: 10px auto 0px;
