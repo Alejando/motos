@@ -70,6 +70,16 @@
                     @endif
                 </div>
             </div>
+            <div class="form-group row {{ $errors->has('terminos') ? ' has-error' : '' }}">
+                <div class="col-sm-12">
+                    <input type="checkbox" name="terminos"> Acepto los términos y condiciones
+                    @if ($errors->has('terminos'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('terminos') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
                     <button type="submit" class="btn-login btn-primary">Registrate</button>

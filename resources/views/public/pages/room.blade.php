@@ -24,7 +24,7 @@
                                 </div>
                             </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
                                 <a class="link-subasta-cont" href="#fancy-subasta">
-                                    <span class="btn-contador"><span id="subasta-count">{{$auction->bids}}</span> Pujas</span>
+                                    <span class="btn-contador"><span id="subasta-count">{{$auction->bids}}</span> Ofertas</span>
                                 </a>
                             </div>
                         </div>
