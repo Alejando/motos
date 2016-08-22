@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'social'=>[
+        'fb'=>'https://www.facebook.com/GlimGlam.mx/',
+        'ig'=>'https://www.instagram.com/glimglammx/',
+        'yt'=>'https://www.youtube.com/GlimGlam.mx/',
+    ],
     'img-sizes' => [
         'fancy-box-thumbailn' => [
             'width' => 224,

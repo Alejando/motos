@@ -49,9 +49,13 @@ $(document).ready(function () {
         open_fancy_product($(this).attr('id_producto'));
     });
 
+    $('a.link-subasta').on('click', function(e){
+        e.preventDefault();
+        open_fancy_product($(this).attr('id_producto'));
+    });
+
     $('.fancy-producto').click(function (e) {
-        console.log(e.target);
-        if(e.target === this || $(e.target).is('.fancy-close')) {
+        if(e.target === this || $(e.target).is('.descripcion-fancy')) {
             $('.fancy-producto').fadeOut(500);
         }        
     });
@@ -197,7 +201,7 @@ $(document).ready(function () {
         var id = $('.current-sr-slide-visible').attr('id-producto');
         if (ant_exp != exp||true) {
             $('.subasta-tiempo').attr('expiration', exp);
-//            $('.link-subasta').attr('href', '#' + id);
+            $('.link-subasta').attr('id_producto',id);
             $('.banner-name span').html(name);
             $('.rango-min').html(min);
             $('.rango-max').html(max);

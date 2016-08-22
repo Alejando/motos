@@ -9,7 +9,7 @@
             <div class="producto-actions">
                 <div class="producto-heart"></div>
                 <span class="producto-separador"></span>
-                <div class="producto-hammer" id_producto="001"></div>
+                <div class="producto-hammer" id_producto="{{$auction->code}}"></div>
             </div>
             <div class="producto-cover">
                  {{Currency::format($auction->cover, config('app.currency'))}}
