@@ -23,7 +23,7 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         selfUpdate : function (milisecons, $scope) {
             
             var self = this;
-            $interval(function(){
+            $interval(function() {
                 console.log("Inicia --- re", milisecons);
                 self.refresh();
             },milisecons);            
@@ -137,6 +137,9 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             return false;
         }
     };
+    ModelBase.setFloat = function (value) {
+        return parseFloat(value);
+    },
     //Helper para setear fechas 
     ModelBase.setDate = function (value) {
         if(angular.isString(value)) {

@@ -59,7 +59,7 @@
                     <div class="align-oferta">
                         <div  style="width: 350px;" range-slider  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
                     </div>
-                    <div class="btn-w">Ofertar</div>
+                    <div class="btn-w" ng-click="placeBid()">Ofertar</div>
                 </div>
                 <div class="col-md-6 mejor-postor">
                     <div class="rebase-izq"></div>
