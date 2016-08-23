@@ -959,6 +959,12 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
     return User;
 });
+glimglam.controller('public.checkOutCtrl', function ($scope, Auction) {
+    $scope.pay = function () {
+        alert("PayPal");
+        console.log("a pay pal");
+    };
+});
 glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
 //    $scope.titulo = "Hello";
 //    window.Auction = Auction;

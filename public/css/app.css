@@ -5,28 +5,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 27/07/2016, 01:33:16 PM
-    Author     : jdiaz
-*/
-form.subastas-form {
-  width: 99%; }
-  form.subastas-form .input-group.timepicker input {
-    height: 34px; }
-  form.subastas-form .input-datetimes {
-    padding: 0; }
-  form.subastas-form .input-datetimes input.timepicker {
-    width: 35%;
-    float: right; }
-  form.subastas-form .input-datetimes div.datepicker {
-    width: 60%;
-    float: left; }
-
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
     Created on : 25/07/2016, 04:50:49 PM
     Author     : jdiaz
 */
@@ -141,7 +119,7 @@ and open the template in the editor.
     padding: 0 !important; }
   .detalle-pago-subasta .thumb-cover {
     width: 100%; }
-  .detalle-pago-subasta i.fa.fa-ticket.cover-t {
+  .detalle-pago-subasta i.fa.fa-ticket.cover-t, .detalle-pago-subasta i.fa.fa-trophy.cover-t {
     color: #fff;
     font-size: 25px;
     position: absolute;
@@ -208,6 +186,16 @@ and open the template in the editor.
     padding: 5px 30px; }
   .detalle-pago-subasta .tdec-cont form label {
     font-size: 12px; }
+  .detalle-pago-subasta .felicidades {
+    text-align: center;
+    font-size: 27px;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #007c85;
+    border-radius: 10px; }
 
 /* 
     Created on : 19-ago-2016, 12:00:20
@@ -228,5 +216,27 @@ and open the template in the editor.
 /* Blanco */
 .galeria-detalle {
   max-height: none; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/07/2016, 01:33:16 PM
+    Author     : jdiaz
+*/
+form.subastas-form {
+  width: 99%; }
+  form.subastas-form .input-group.timepicker input {
+    height: 34px; }
+  form.subastas-form .input-datetimes {
+    padding: 0; }
+  form.subastas-form .input-datetimes input.timepicker {
+    width: 35%;
+    float: right; }
+  form.subastas-form .input-datetimes div.datepicker {
+    width: 60%;
+    float: left; }
 
 /*# sourceMappingURL=app.css.map */
