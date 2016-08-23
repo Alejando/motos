@@ -36,7 +36,7 @@
                                 </div>
                             </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
                                 <a class="link-subasta-cont" href="#fancy-subasta">
-                                    <span class="btn-contador"><span id="subasta-count">@{{totalBids}}</span> Ofertas</span>
+                                    <span class="btn-contador"><span id="subasta-count">@{{objAuction.num_bids}}</span> Ofertas</span>
                                 </a>
                             </div>
                         </div>
@@ -55,7 +55,8 @@
                 <div class="col-md-6 col-sm-6 rango-subasta">
                     <p>Puedes subastar desde:</p>
                     <div>
-                        <div id="rango-smin" class="precio-rango">{{currency($auction->min_offer, config('app.currency'))}}</div><div id="rango-smax" class="precio-rango">{{currency($auction->max_offer, config('app.currency'))}}</div>
+                        <div id="rango-smin" class="precio-rango">{{currency($auction->min_offer, config('app.currency'))}}</div>
+                        <div id="rango-smax" class="precio-rango">{{currency($auction->max_offer, config('app.currency'))}}</div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 total-subastado">
@@ -77,14 +78,19 @@
                         <div class="align-oferta">
                             <div  style="width: 350px;" range-slider step="0.00" decimal-places="2"  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
                         </div>
-                        <br>
                         <div class="delay-bid"  ng-show="nextBid>now">
                                 <timer interval="1000" language="es"  class="subasta-tiempo" 
                                     end-time="nextBid">
                                         <small>Puedes ofertar en</small><br>@{{minutes}} min, @{{seconds}} seg
                                 </timer>
                         </div>
-                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now">Ofertar</div>
+                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now && !unqualified">Ofertar</div>
+                        <div class="col-sm-6 col-sm-offset-3 ofertas-restantes" ng-show="unqualified">
+                            Has sido descalificado <br>
+                            debido a que no completas <br>
+                            la cantidad de ofertas necesarias
+                            <a class="btn btn-block btn-primary subasta-boton-pago" href="{{asset('')}}">Entrar a otra sala</a>
+                        </div>
                     </section>
                     <section ng-show="objAuction.isFinished()">
                         <p>La Subasta ha terminado</p>
@@ -110,6 +116,12 @@
                             </div>
                         </div>
                         <div class="rebase-der"></div>
+                        <div class="ofertas-restantes">
+                            Te quedan @{{objAuction.bids - totalBids - totalFaults}} ofertas disponibles<br>
+                            Has ofertado @{{totalBids}} veces y has perdido @{{totalFaults}} oportunidades<br>
+                            <span ng-show="objAuction.min_bids - totalBids > 0">Necesitas realizar minimo @{{objAuction.min_bids}} ofertas para poder ser ganador
+                            Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas</span>
+                        </div>
                     </section>
                     <section ng-show="objAuction.isFinished()">
                         <div class="rebase-izq"></div>

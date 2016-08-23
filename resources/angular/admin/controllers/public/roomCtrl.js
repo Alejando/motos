@@ -7,6 +7,10 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     $interval(function() {
         $scope.now = new Date();
     }, 100);
+    $interval(function(){
+        console.log('10 seg');
+        $scope.getInfo();
+    }, 10000);
     $scope.rangeOferta = {
          min: 0,
          max: $scope.objAuction.min_offer,
@@ -21,6 +25,8 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
                 $scope.nextBid = new Date(info.nextbid);
                 $scope.help.nextBid = $scope.nextBid.getTime();
                 $scope.totalBids = info.totalbids;
+                $scope.totalFaults = info.faults;
+                $scope.unqualified = info.unqualified;
                 $element.find('.delay-bid').empty().append('<timer interval="1000" language="es"  class="subasta-tiempo" '+
                                   '  end-time="nextBid">' +
                                       '  <small>Puedes ofertar en</small><br>{{minutes}} min, {{seconds}} seg '+

@@ -81,6 +81,7 @@ class AuctionController extends BaseController {
 
     public function getInfoBid($code) {
         $user = \Auth::user();
+        /* @var $auction \GlimGlam\Models\Auction */
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         return $auction->getInfoBid($user->id);
     }

@@ -245,4 +245,10 @@ and open the template in the editor.
 .section-room .banner-info:first-child, .section-room .banner-info:last-child {
   height: auto; }
 
+.section-room .ofertas-restantes {
+  color: #fff;
+  margin-top: 10px;
+  font-size: 20px;
+  text-transform: none; }
+
 /*# sourceMappingURL=app.css.map */

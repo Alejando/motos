@@ -2,7 +2,8 @@
     var $pre = $('pre');
     var urls = [ 
         laroute.route('close.auctions'),
-        laroute.route('start.auctions')
+        laroute.route('start.auctions'),
+        laroute.route('check.faults')
     ];
     setInterval(function() {
         for(url in urls) {
