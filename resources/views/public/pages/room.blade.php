@@ -1,6 +1,6 @@
 @extends('public.base')
 @section('body')
-<div ng-controller="public.roomCtrl" class="section-room">
+<div ng-controller="public.roomCtrl" class="section-room" style="display: none">
     <section class="fancy-producto">
       
     </section>
@@ -36,7 +36,7 @@
                                 </div>
                             </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
                                 <a class="link-subasta-cont" href="#fancy-subasta">
-                                    <span class="btn-contador"><span id="subasta-count">{{$auction->bids}}</span> Ofertas</span>
+                                    <span class="btn-contador"><span id="subasta-count">@{{totalBids}}</span> Ofertas</span>
                                 </a>
                             </div>
                         </div>
@@ -77,12 +77,19 @@
                         <div class="align-oferta">
                             <div  style="width: 350px;" range-slider step="0.00" decimal-places="2"  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
                         </div>
-                        <div class="btn-w" ng-click="placeBid()">Ofertar</div>
+                        <br>
+                        <div class="delay-bid"  ng-show="nextBid>now">
+                                <timer interval="1000" language="es"  class="subasta-tiempo" 
+                                    end-time="nextBid">
+                                        <small>Puedes ofertar en</small><br>@{{minutes}} min, @{{seconds}} seg
+                                </timer>
+                        </div>
+                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now">Ofertar</div>
                     </section>
                     <section ng-show="objAuction.isFinished()">
                         <p>La Subasta ha terminado</p>
                         <div class="col-sm-4 col-sm-offset-4" ng-show="objAuction.winner != id_user">
-                            <a class="btn btn-block btn-primary subasta-boton-pago" href="{{asset('')}}">Regresar al inicio</a>
+                            <a class="btn btn-block btn-primary subasta-boton-pago" href="{{asset('')}}">Entrar a otra sala</a>
                         </div>
                         <div class="col-sm-4 col-sm-offset-4" ng-show="objAuction.winner == id_user">
                             <a class="btn btn-block btn-primary subasta-boton-pago" href="{{route('payment.win', ['code'=>$auction->code])}}">Pagar subasta</a>

@@ -119,6 +119,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'url': url,
                 'data' : data
             }).then(function(result) {
+                console.log(result);
                 $defer.resolve(result.data);
             }, function(r) {
                 $defer.reject(r);
@@ -153,6 +154,22 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         },
         isStandBy : function () {
             return this.status == Auction.STAND_BY;
+        },
+        getInfoBid : function(){
+            var $defer = $q.defer();
+            var url = laroute.route('auction.get-info-bid', {
+                'code':this.code
+            });
+            console.log(url);
+            $http({
+                'method' : 'GET',
+                'url': url
+            }).then(function(result) {
+                $defer.resolve(result.data);
+            }, function(r) {
+                $defer.reject(r);
+            });
+            return $defer.promise;
         }
     });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
