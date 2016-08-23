@@ -11,14 +11,14 @@ class CategorySeeder extends Seeder {
      */
     public function run() {
         $items = [
-            ['Bolsa', []],
+            ['Bolsas', []],
             ['Cinturones', []],
             ['Joyería', ['Aretes/Pulseras']],
-            ['Bolsa', []],
             ['Tarjeteros', []],
             ['Billeteras', []],
             ['Lentes de sol', []],
-            ['Textiles', ['Corbatas', 'Corbata/Pañuelos/Manuernas']]
+            ['Carteras', []],
+            ['Textiles', ['Corbatas', 'Corbatas/Pañuelos/Mancuernas']]
         ];
         foreach ($items as $item) {
             $parent = \GlimGlam\Models\Category::create([
