@@ -70,18 +70,18 @@
                             <div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
                         </div>
                         <div class="tiempo-producto">
-                            <span class="tiempo-subasta-producto countdown" start_date="2016-03-14T20:12:00"></span>
+                            <span class="tiempo-subasta-producto countdown" start_date="@{{lastStarted.start_date}}"></span>
                             <span>Para subastar</span>
                         </div>
                         <div class="producto-hover transition-0-3">
-                            <div class="producto-titulo">Titulo de producto</div>
+                            <div class="producto-titulo">@{{lastStarted.title}}</div>
                             <div class="producto-actions">
                                 <div class="producto-heart"></div>
                                 <span class="producto-separador"></span>
                                 <div class="producto-hammer" id_producto="@{{lastStarted.code}}"></div>
                             </div>
                             <div class="producto-cover">
-                                $0,000.00
+                                @{{lastStarted.cover | 'currency' : '$'}}
                             </div>
                             <div class="leyenda-cover">
                                 COVER
