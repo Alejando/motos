@@ -21,7 +21,6 @@ class ProcessController extends BaseController {
         foreach($auctions as $auction){
             $enrollments = \GlimGlam\Models\Enrollment::getEnrollments(false, $auction->id, true);
             $enrollments = $enrollments->where('unqualified','!=',true)->get();
-            dd($enrollments);
             foreach($enrollments as $enrollment){
                 $noOfers = false;
                 if($enrollment->last_bid_date != "0000-00-00 00:00:00"){
