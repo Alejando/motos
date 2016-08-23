@@ -66,7 +66,8 @@ class AuctionController extends BaseController {
             abort(404);
         }
     return view('public.pages.auction-checkout',[
-        'auction' => $auction
+        'auction' => $auction,
+        'user' => Auth::user()
     ]);
         
     }
