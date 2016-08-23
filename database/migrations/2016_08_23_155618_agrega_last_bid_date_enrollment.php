@@ -13,6 +13,7 @@ class AgregaLastBidDateEnrollment extends Migration {
     public function up() {
        Schema::table('enrollments', function(Blueprint $table){
            $table->dateTime('last_bid_date');
+           $table->integer('faults');
        } );
     }
 
@@ -24,6 +25,7 @@ class AgregaLastBidDateEnrollment extends Migration {
     public function down() {
         Schema::table('enrollments', function(Blueprint $table){
             $table->dropColumn('last_bid_date');
+            $table->dropColumn('faults');
         });
     }
 
