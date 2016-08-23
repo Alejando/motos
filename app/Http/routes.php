@@ -178,7 +178,7 @@ Route::get('subasta/entradas-checkout/{code}', [
 ]);
 Route::get('subastas/lugares/checkout/{code}', [
     'as' => 'auction.checkout',
-    'uses' => 'PaypalController@checkout'
+    'uses' => 'PaypalController@checkoutEnrollment'
 ]);   
 Route::get('subastas/finish/{code}', [
     'as' => 'auction.finish-payment',
