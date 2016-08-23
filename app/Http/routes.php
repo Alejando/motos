@@ -172,11 +172,15 @@ Route::get('subasta/entradas-checkout/{code}', [
     'as' => 'auction.enrollment-form',
     'uses' =>  'AuctionController@enrollmentPayment'
 ]);
-Route::get('subastas/lugares/checkout/{code}',[
+Route::get('subastas/lugares/checkout/{code}', [
     'as' => 'auction.checkout',
-    'uses' => 'PaypalController@checkoutEnrollment'
+    'uses' => 'PaypalController@checkout'
 ]);   
-Route::get('subastas/lugares/estatus-pago',[
+Route::get('subastas/finish/{code}', [
+    'as' => 'auction.finish-payment',
+    'uses' => 'AuctionController@confirmPayment'
+]);
+Route::get('subastas/lugares/estatus-pago', [
     'as' => 'enrollment.payment',
     'uses' => 'PaypalController@enrrolmentPaymentStatus'
 ]);

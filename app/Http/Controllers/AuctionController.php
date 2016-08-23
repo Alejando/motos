@@ -73,7 +73,12 @@ class AuctionController extends BaseController {
         
     }
     // </editor-fold>
-    
+    // <editor-fold defaultstate="collapsed" desc="confirmPayment">
+    public function confirmPayment($code) {
+        return view('public.pages.auction-confirm-payment');
+    }
+    // </editor-fold>
+
     public function getInfoBid($code) {
         $user = \Auth::user();
         $auction = \GlimGlam\Models\Auction::getByCode($code);
