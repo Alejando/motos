@@ -43,6 +43,10 @@ Route::post('/ofertar', [
     'as'=>'auction.place-bid',
     'uses'=>'AuctionController@placeBid'
 ]);
+Route::get('cron/revision-faltas', [
+    'as'=>'check.faults',
+    'uses'=>'ProcessController@checkFaults'
+]);
 Route::get('cron/cerrar-subastas', [
     'as'=>'close.auctions',
     'uses'=>'ProcessController@closeAuctions'
