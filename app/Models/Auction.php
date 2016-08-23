@@ -345,17 +345,20 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
            $auction->last_offer = $auction->max_price; 
            $close = true;
         }
+        $now = new \DateTime();
         \GlimGlam\Models\Bid::create([ 
             'offer' => $auction->last_offer, 
             'user' => $user_id,
             'auction'=>$auction->id,
             'enrollment'=>$enrollment->id,
-            'bid_at' => new \DateTime()
+            'bid_at' => $now
         ]);   
+        $enrollment->last_bid_date = $now;
+        $enrollment->save();
         $auction->save();
         if($close) {
             $auction->close();
-        }        
+        }
         return true;
     }
     // </editor-fold>
