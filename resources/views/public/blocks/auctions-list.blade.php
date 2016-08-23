@@ -1,3 +1,7 @@
+@foreach($auctions as $a)
+    @include('public.blocks.product',['auction'=> $a])
+@endforeach
+{{--
 @for($i=0; $i<4; $i++)
     @if(isset($auctions[$i]))
         @include('public.blocks.product',['auction'=> $auctions[$i]])
@@ -40,3 +44,4 @@
         'auction2' => isset($auctions[12]) ? $auctions[12] : false
     ])
 @endif 
+--}}
