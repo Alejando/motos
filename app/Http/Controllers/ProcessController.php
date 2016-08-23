@@ -21,8 +21,10 @@ class ProcessController extends BaseController {
         foreach($auctions as $auction){
             $enrollments = \GlimGlam\Models\Enrollment::getEnrollments(false, $auction->id);
             foreach($enrollments as $enrollment){
+                $noOfers = false;
                 if($enrollment->last_bid_date != "0000-00-00 00:00:00"){
                     $last_bid = new \DateTime($enrollment->last_bid_date);
+                    $noOfers = true;
                 }else{
                     $last_bid = new \DateTime($auction->start_date);
                 }
@@ -34,7 +36,11 @@ class ProcessController extends BaseController {
                 $diffMin = $hours*60+$minutes;
                 $faults = floor($diffMin/$auction->max_user_quiet);
                 
-                $enrollment->faults = $faults;
+                if($noOfers){
+                    $enrollment->faults = $faults;
+                }else{
+                    $enrollment->faults = $enrollment->faults+$faults;
+                }
                 $enrollment->save();
             }
         }
