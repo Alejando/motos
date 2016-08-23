@@ -58,34 +58,53 @@
     <div class="container-fluid nopadding bg-naranja" ng-show="objAuction.isStarted() || objAuction.isFinished()">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 panel-oferta" ng-show="objAuction.isStarted()">
-                    <p>Ingresa tu oferta</p>
-                    <div style="font-size:55px">@{{rangeOferta.max  | currency : '$' }}</div>
-                    <div class="align-oferta">
-                        <div  style="width: 350px;" range-slider step="0.00" decimal-places="2"  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
-                    </div>
-                    <div class="btn-w" ng-click="placeBid()">Ofertar</div>
+                <div class="col-md-6 panel-oferta">
+                    <section ng-show="objAuction.isStarted()">
+                        <p>Aumenta la oferta</p>
+                        <div style="font-size:55px">@{{rangeOferta.max  | currency : '$' }}</div>
+                        <div class="align-oferta">
+                            <div  style="width: 350px;" range-slider step="0.00" decimal-places="2"  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
+                        </div>
+                        <div class="btn-w" ng-click="placeBid()">Ofertar</div>
+                    </section>
+                    <section ng-show="objAuction.isFinished()">
+                        <p>La Subasta ha terminado</p>
+                        <div class="col-sm-4 col-sm-offset-4" ng-show="objAuction.winner != id_user">
+                            <a class="btn btn-block btn-primary subasta-boton-pago" href="{{asset('')}}">Regresar al inicio</a>
+                        </div>
+                        <div class="col-sm-4 col-sm-offset-4" ng-show="objAuction.winner == id_user">
+                            <a class="btn btn-block btn-primary subasta-boton-pago" href="{{route('payment.win', ['code'=>$auction->code])}}">Pagar subasta</a>
+                        </div>
+                    </section>
                 </div>
-                
-                <div class="col-md-6 panel-oferta" ng-show="objAuction.isFinished()">
-                    <p>La Subasta ha terminado</p>
-                    
-                </div>
-                
-                
                 <div class="col-md-6 mejor-postor">
-                    <div class="rebase-izq"></div>
-                    <div class="boleto-postor">
-                        <div class="msje-postor">
-                            <span class="hey">HEY!</span>
-                            <span class="hey-msje">Mira quién<br>lleva la delantera</span>
+                    <section ng-show="objAuction.isStarted()">
+                        <div class="rebase-izq"></div>
+                        <div class="boleto-postor">
+                            <div class="msje-postor">
+                                <span class="hey">HEY!</span>
+                                <span class="hey-msje">Mira quién<br>lleva la delantera</span>
+                            </div>
+                            <div class="boleto-divider"></div>
+                            <div class="usr-postor">
+                                @{{objAuction.winnername || '¡Se el primero!'}}
+                            </div>
                         </div>
-                        <div class="boleto-divider"></div>
-                        <div class="usr-postor">
-                            @{{objAuction.winnername || '¡Se el primero!'}}
+                        <div class="rebase-der"></div>
+                    </section>
+                    <section ng-show="objAuction.isFinished()">
+                        <div class="rebase-izq"></div>
+                        <div class="boleto-postor">
+                            <div class="msje-postor">
+                                <span class="hey hey-ganado">@{{objAuction.winner == id_user ? '¡Has ganado!' : '¡El ganador!'}}</span>
+                            </div>
+                            <div class="boleto-divider"></div>
+                            <div class="usr-postor">
+                                @{{objAuction.winnername || '¡No hay ganador!'}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="rebase-der"></div>
+                        <div class="rebase-der"></div>
+                    </section>
                 </div>
             </div>
         </div>

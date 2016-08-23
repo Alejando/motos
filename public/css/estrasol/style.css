@@ -1169,6 +1169,10 @@ input.currency {
     color: #ea9f2e;
     display: inline-block;
 }
+.hey-ganado{
+    font-size: 36px;
+    line-height: 64px;
+}
 .hey-msje {
     display: inline-block;
     line-height: 20px;

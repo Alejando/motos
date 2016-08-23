@@ -50,5 +50,108 @@
         height:  auto;
         margin-top: 10px;
         margin-bottom: 25px;
+        padding-top: 0px;
+        padding-bottom: 0px;
     }
+    .chk-head{
+        padding: 10px;
+        background-color: #8a8a8a;
+        color: #fff;
+        text-transform: uppercase;
+        margin: 0px auto 20px auto;
+    }
+    .nopadding{
+        padding: 0 !important;
+    }
+    .thumb-cover{
+        width: 100%;
+    }
+    i.fa.fa-ticket.cover-t {
+        color: #fff;
+        font-size: 25px;
+        position: absolute;
+        bottom: 0px;
+        right: 0;
+        background-color: rgba(0, 124, 133, 0.85);
+        padding: 5px;
+        text-align: right;
+    }
+    .borde-thumb{
+        border: 1px solid #f4f4f4;
+    }
+    .subasta-tiempo2 {
+        font-weight: 600;
+        font-size: 15px;
+        color: #18b0bb;
+    }
+    .chk-total{
+        text-align: right;
+        padding: 0 20px;
+        font-size: 18px;
+    }
+    .chk-total span:first-child{
+        text-align: right;
+        margin-right: 10px;
+    }
+    .chk-total span:last-child{
+        text-align: left;
+        width: 110px;
+        display: inline-block;
+    }
+    .form-factura form, .tdec-cont form{
+        width: 100% !important;
+        margin: 0px !important;
+    }
+    .form-factura input.form-control {
+        font-size: 14px;
+        font-size: 14px;
+        border: 1px solid #85d0d6;
+        border-radius: 0px;
+    }
+    .form-factura form label {
+        font-size: 14px;
+    }
+    .margen-top{
+        margin-top: 20px;
+    }
+    .paypal-cont, .tdec-cont{
+        border: 1px solid #85d0d6;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 12px;
+    }
+    .paypal-cont p{
+       padding: 10px; 
+    }
+    .paypal-cont img{
+        margin: auto;
+        width: 150px;
+    }
+    .tdec-form .form-group{
+        text-align: left;
+        width: 49%;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+     .tdec-form input.form-control {
+        font-size: 12px;
+        font-size: 12px;
+        border: 1px solid #85d0d6;
+        border-radius: 0px;
+    }
+    .form-group.full{
+        width: 100%;
+        display: block;
+    }
+    .tdec-form .form-group.btn{
+        text-align: center;
+    }
+    .tdec-form button.btn{
+        padding: 5px 30px;
+    }
+    .tdec-cont form label{
+        font-size: 12px;
+    }
+
+    
 }

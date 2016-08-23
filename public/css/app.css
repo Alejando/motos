@@ -128,7 +128,86 @@ and open the template in the editor.
   .detalle-pago-subasta .ganado-p {
     height: auto;
     margin-top: 10px;
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+    padding-top: 0px;
+    padding-bottom: 0px; }
+  .detalle-pago-subasta .chk-head {
+    padding: 10px;
+    background-color: #8a8a8a;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0px auto 20px auto; }
+  .detalle-pago-subasta .nopadding {
+    padding: 0 !important; }
+  .detalle-pago-subasta .thumb-cover {
+    width: 100%; }
+  .detalle-pago-subasta i.fa.fa-ticket.cover-t {
+    color: #fff;
+    font-size: 25px;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    background-color: rgba(0, 124, 133, 0.85);
+    padding: 5px;
+    text-align: right; }
+  .detalle-pago-subasta .borde-thumb {
+    border: 1px solid #f4f4f4; }
+  .detalle-pago-subasta .subasta-tiempo2 {
+    font-weight: 600;
+    font-size: 15px;
+    color: #18b0bb; }
+  .detalle-pago-subasta .chk-total {
+    text-align: right;
+    padding: 0 20px;
+    font-size: 18px; }
+  .detalle-pago-subasta .chk-total span:first-child {
+    text-align: right;
+    margin-right: 10px; }
+  .detalle-pago-subasta .chk-total span:last-child {
+    text-align: left;
+    width: 110px;
+    display: inline-block; }
+  .detalle-pago-subasta .form-factura form, .detalle-pago-subasta .tdec-cont form {
+    width: 100% !important;
+    margin: 0px !important; }
+  .detalle-pago-subasta .form-factura input.form-control {
+    font-size: 14px;
+    font-size: 14px;
+    border: 1px solid #85d0d6;
+    border-radius: 0px; }
+  .detalle-pago-subasta .form-factura form label {
+    font-size: 14px; }
+  .detalle-pago-subasta .margen-top {
+    margin-top: 20px; }
+  .detalle-pago-subasta .paypal-cont, .detalle-pago-subasta .tdec-cont {
+    border: 1px solid #85d0d6;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 12px; }
+  .detalle-pago-subasta .paypal-cont p {
+    padding: 10px; }
+  .detalle-pago-subasta .paypal-cont img {
+    margin: auto;
+    width: 150px; }
+  .detalle-pago-subasta .tdec-form .form-group {
+    text-align: left;
+    width: 49%;
+    display: inline-block;
+    margin-bottom: 5px; }
+  .detalle-pago-subasta .tdec-form input.form-control {
+    font-size: 12px;
+    font-size: 12px;
+    border: 1px solid #85d0d6;
+    border-radius: 0px; }
+  .detalle-pago-subasta .form-group.full {
+    width: 100%;
+    display: block; }
+  .detalle-pago-subasta .tdec-form .form-group.btn {
+    text-align: center; }
+  .detalle-pago-subasta .tdec-form button.btn {
+    padding: 5px 30px; }
+  .detalle-pago-subasta .tdec-cont form label {
+    font-size: 12px; }
 
 /* 
     Created on : 19-ago-2016, 12:00:20
