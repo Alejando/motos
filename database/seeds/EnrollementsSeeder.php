@@ -11,11 +11,6 @@ class EnrollementsSeeder extends Seeder {
      */
     public function run() {
         
-        GlimGlam\Models\Auction::getAll()->each(function($auntion){
-            GlimGlam\Models\User::getRandom(rand(0, 10))->each(function($user) use ($auntion) {
-                $user->enroll($auntion->id, rand(1000, 3000));
-            });
-        });
     }
 
 }
