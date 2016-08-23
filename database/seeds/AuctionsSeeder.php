@@ -50,8 +50,8 @@ Color: Negro/Latón antiguo
 Forro: Cuero
 Medidas: 22.86x14x5.70 cm.
 Correa : 56 cm.',
-                'start_date'=>'2016-07-19 15:01:19',
-                'end_date'=>'2016-08-12 04:00:04',
+                'start_date'=>'2016-08-25 00:00:00',
+                'end_date'=>'2016-08-26 00:00:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//2
