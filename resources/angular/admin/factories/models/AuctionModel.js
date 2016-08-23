@@ -12,8 +12,8 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
         setters : {
-//            start_date : ModelBase.setDate,
-//            end_date : ModelBase.setDate,
+           start_date : ModelBase.setDate,
+            end_date : ModelBase.setDate,
             max_offer : ModelBase.setFloat,
             min_offer : ModelBase.setFloat
         },
@@ -39,7 +39,8 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'sold_for',
             'winner',
             'last_offer',
-            'winnername'
+            'winnername',
+            'num_bids'
         ],
         relations : [],
         getByCode : function (code){
@@ -132,7 +133,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             return url;
         },
         getStartDate : function () {
-            return "Fecha de inicio";
+            return new Date(this.start_date);
         },
         getEndDate : function () {
             return "Fecha de Termino";
@@ -149,6 +150,9 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         },
         isFinished : function () {
             return this.status == Auction.FINISHED;
+        },
+        isStandBy : function () {
+            return this.status == Auction.STAND_BY;
         }
     });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">

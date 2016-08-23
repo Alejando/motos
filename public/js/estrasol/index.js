@@ -133,13 +133,13 @@ $(document).ready(function () {
     setInterval(function () {
 //        console.log($('.current-sr-slide-visible'));
 //        console.log($('.current-sr-slide-visible').attr('product-name'));
-        var exp = $('.current-sr-slide-visible').attr('expiration');
+        var exp = $('.current-sr-slide-visible').attr('start_date');
         var max = $('.current-sr-slide-visible').attr('rangomax');
         var min = $('.current-sr-slide-visible').attr('rangomin');
         var name = $('.current-sr-slide-visible').attr('product-name');
         var id = $('.current-sr-slide-visible').attr('id-producto');
         if (ant_exp != exp||true) {
-            $('.subasta-tiempo').attr('expiration', exp);
+            $('.subasta-tiempo').attr('start_date', exp);
             $('.link-subasta').attr('id_producto',id);
             $('.banner-name span').html(name);
             $('.rango-min').html(min);

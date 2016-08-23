@@ -13,7 +13,7 @@
                 <p style="margin: 0;">Acceso a:</p>
                 <p class="subasta-nombre">{{$auction->title}}</p>
                 <p style="margin: 0;">Fecha de inicio:</p>
-                <p><span class="subasta-tiempo2 countdown" expiration="{{$auction->start_date}}"></span></p>
+                <p><span class="subasta-tiempo2 countdown" start_date="{{$auction->start_date}}"></span></p>
                 
             </div>
             <div class="col-xs-6" style="display: none;">
