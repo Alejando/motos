@@ -202,7 +202,7 @@ class CreateCurrencyTable extends Migration
                 'symbol_right' => '',
                 'code' => 'MXN',
                 'decimal_place' => 2,
-                'value' => 12.63899994,
+                'value' => 1.00000000,
                 'decimal_point' => '.',
                 'thousand_point' => ',',
                 'status' => 1,
