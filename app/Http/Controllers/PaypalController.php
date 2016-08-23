@@ -35,7 +35,98 @@ class PaypalController extends BaseController {
         );
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
-    
+    public function checkout($code) {
+        $auction = \GlimGlam\Models\Auction::getByCode($code);
+        $user = \Auth::user();
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+        $currency = 'MXN';
+        $bid = \GlimGlam\Models\Bid::where('user','=', $user->id)
+            ->where('auction', '=', $auction->id)->orderBy('bid_at','desc')
+            ->take(1)
+            ->get()->get(0);
+        $amount = (float)$bid->amount;
+
+//        $amount = 1000;
+        $iva = ($amount -($amount /1.16));
+        $subTotal = $amount - $iva;
+        $shiping = 100;
+        $total = $subTotal + $iva;
+        $item = new Item();
+        $item->setName($auction->title);
+        $item->setCurrency($currency);
+        $item->setDescription($auction->description);
+        $item->setQuantity(1);
+        $item->setPrice($subTotal);
+        
+        $itemIva = new Item();
+        $itemIva->setName('IVA');
+        $itemIva->setCurrency($currency);
+        $itemIva->setDescription('ss');
+        $itemIva->setQuantity(1);
+        $itemIva->setPrice($iva);
+        
+        $tiemList = new ItemList();
+        $tiemList->setItems([$item, $itemIva]);
+        $details = new Details();
+        $details->setSubtotal($total);        
+        $details->setShipping($shiping);
+        $totalFinal = $total + $shiping;
+        
+        $obAmount = new Amount();
+        $obAmount->setCurrency($currency)
+                ->setTotal($totalFinal)
+                ->setDetails($details);
+        
+        $transaction = new Transaction();
+        $transaction->setAmount($obAmount);
+        $transaction->setItemList($tiemList);
+        $transaction->setDescription('Tu subasta en glimgam ' . $auction->title);
+        
+        $redirect_url = new RedirectUrls();
+        $redirect_url->setReturnUrl(route('auction.finish-payment',[
+                'code' => $code
+            ]))
+            ->setCancelUrl(route('auction.finish-payment', [
+                'code' => $code
+            ]));
+        $payment = new Payment();
+        $payment->setIntent('Sale')
+                ->setPayer($payer)
+                ->setRedirectUrls($redirect_url)
+                ->setTransactions([$transaction])
+        ;
+        try {           
+            $payment->create($this->_api_context);
+        } catch(\PayPal\Exception\PayPalConnectionException $ex){
+            if(\Config::get('app.debug')){
+                echo "Exception" . $ex->getMessage() . PHP_EOL;
+                 dd(json_decode($ex->getData(),true));
+            } else {
+                die("Error al comunicarse con PayPal");
+            }
+        }
+        $approvalLink = $payment->getApprovalLink();
+        \Session::put('paypal_payment_id', $payment->getId());
+        \Session::put('payment_auction_code', $code);
+        $ggPayment = new \GlimGlam\Models\Payment([
+            'user' => \Illuminate\Support\Facades\Auth::User()->id,
+            'folio' => time(),
+            'date_at' => new \DateTime(),
+            'description' => 'Pago de la subasta '.$code,
+            'type' => \GlimGlam\Models\Payment::TYPE_PAY_WIN,
+            'approved' => null,
+            'auction' => $auction->id,
+            'provider' => \GlimGlam\Models\Payment::PROVIDER_PAYPAL
+        ]);
+        $ggPayment->setAmountTotal($auction->cover);
+        $ggPayment->save();
+        \Session::put('payment_temp',$ggPayment->id);
+        if(isset($redirect_url)) {
+            return \Redirect::away($approvalLink);
+        }
+        return "Paso algo al intentar conectar con paypayl";
+    }
     public function checkoutEnrollment($code) {
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         $payer = new Payer();
