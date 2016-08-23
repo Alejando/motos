@@ -15,7 +15,7 @@
                         id-producto="{{$auction->code}}" 
                         product-name="{{$auction->title}}" 
                         rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
-                        rangomax="{{Currency::format($auction->max_price, config('app.currency'))}}" 
+                        rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
                         start_date="{{$auction->start_date}}">
                         <img ng-src="{{@$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}"  width="504" height="372">
                         <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="1000" data-start="500">
