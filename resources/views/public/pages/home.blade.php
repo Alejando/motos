@@ -16,7 +16,7 @@
                         product-name="{{$auction->title}}" 
                         rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
                         rangomax="{{Currency::format($auction->max_price, config('app.currency'))}}" 
-                        expiration="{{$auction->start_date}}">
+                        start_date="{{$auction->start_date}}">
                         <img ng-src="{{@$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}"  width="504" height="372">
                         <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="1000" data-start="500">
                             <i class="fa fa-clock-o animated infinite pulse verde r-banner" aria-hidden="true"></i>
@@ -40,7 +40,7 @@
                             <span class="banner-leyenda">Puedes subastar desde:</span>
                             <span class="banner-range"><span class="rango-min"></span> - <span class="rango-max"></span></span>
                         </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info subasta-verde">
-                            <span class="subasta-tiempo countdown" expiration=""></span>
+                            <span class="subasta-tiempo countdown" start_date=""></span>
                             <span class="subasta-leyenda">Para subastar</span>
                         </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info">
                             <a class="link-subasta transition-0-3" href="#fancy-subasta">
@@ -70,7 +70,7 @@
                             <div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
                         </div>
                         <div class="tiempo-producto">
-                            <span class="tiempo-subasta-producto countdown" expiration="2016-03-14T20:12:00"></span>
+                            <span class="tiempo-subasta-producto countdown" start_date="2016-03-14T20:12:00"></span>
                             <span>Para subastar</span>
                         </div>
                         <div class="producto-hover transition-0-3">

@@ -1,7 +1,8 @@
 glimglam.controller('public.roomCtrl', function ($scope, Auction) {
     $scope.id_user = window.id_user;
     $scope.objAuction = new Auction(auction);
-    console.log($scope.objAuction );
+           
+    console.log("...", $scope.objAuction); 
     $scope.rangeOferta = {
          min: 0,
          max: $scope.objAuction.min_offer,

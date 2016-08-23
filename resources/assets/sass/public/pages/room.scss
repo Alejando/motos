@@ -6,3 +6,11 @@
 .galeria-detalle{
     max-height: none;
 }
+.section-room{
+    .subasta-tiempo{
+        font-size:22px;
+    }
+    .banner-info:first-child, .banner-info:last-child{
+        height: auto;
+    }
+}

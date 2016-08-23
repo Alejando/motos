@@ -1,6 +1,6 @@
 @extends('public.base')
 @section('body')
-<div ng-controller="public.roomCtrl">
+<div ng-controller="public.roomCtrl" class="section-room">
     <section class="fancy-producto">
       
     </section>
@@ -17,7 +17,19 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="row banner-data transition-0-3">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info subasta-verde">
-                                <span class="subasta-tiempo countdown" expiration="{{$auction->start_date}}"></span>
+                                <timer interval="1000" language="es" class="subasta-tiempo" 
+                                    ng-show="objAuction.isStandBy()"
+                                    end-time="objAuction.start_date">
+                                        <small>Inicia en</small><br>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
+                                </timer>
+                                <timer interval="1000" language="es" class="subasta-tiempo" 
+                                    ng-show="objAuction.isStarted()"
+                                    end-time="objAuction.end_date">
+                                        <small>Finaliza en</small><br>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
+                                </timer>
+                                <div class="subasta-tiempo" ng-show="objAuction.isFinished()">
+                                    La subasta ha terminado
+                                </div>
                             </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
                                 <div id="titulo-detalle" class="t-detalle">
                                     - {{$auction->title}} -
