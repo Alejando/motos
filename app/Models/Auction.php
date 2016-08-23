@@ -334,7 +334,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $enrollment = $auction->getEnrollment($user_id,$auction->id);
         $close = false;
         $auction->last_offer += $bid;
-        $auction->bids++;
+        $auction->num_bids++;
         $auction->sold_for = $auction->last_offer;
         $auction->winner = $user_id;
         $auction->winnername = $user->getPublicName();
@@ -346,7 +346,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'offer' => $auction->last_offer, 
             'user' => $user_id,
             'auction'=>$auction->id,
-            'enrollment'=>$enrollment->id
+            'enrollment'=>$enrollment->id,
+            'bid_at' => new \DateTime()
         ]);   
         $auction->save();
         if($close) {
@@ -358,6 +359,28 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     public function close() {
         $this->status=self::STATUS_FINISHED;
         $this->save();
+    }
+    
+    public function getInfoBid($id_user){   
+        $c = Bid::where('user','=', $id_user)
+             ->where('auction','=', $this->id)
+            ->orderBy('bid_at','desc');
+        $res = $c->get();
+        $total  = count($res);
+        
+        if($total) {
+            $nextbid = $res->get(0)->bid_at;
+            $nextbid = new \DateTime($nextbid);
+            $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
+            return [
+                'totalbids' => $total,
+                'nextbid' => $nextbid->format(DATE_ISO8601)
+            ];
+        }
+        return [
+            'nextbid' => (new \DateTime())->format(DATE_ISO8601),
+            'totalbids' => 0
+        ];
     }
     // <editor-fold defaultstate="collapsed" desc="getEnrollment">
     public function getEnrollment($user_id, $auction){

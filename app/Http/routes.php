@@ -194,6 +194,10 @@ Route::get('subastas/juego/{code}', [
     'as' => 'auction.room',
     'uses' => 'AuctionController@room'
 ]);
+Route::get('subastas/juego/info/{code}', [
+    'as' => 'auction.get-info-bid',
+    'uses' => 'AuctionController@getInfoBid'
+]);
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"
 ]);
