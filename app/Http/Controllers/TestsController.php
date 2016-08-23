@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class TestsController extends BaseController {
+    public function crons(){
+        return view('public.pages.crons');
+    }
     public function mail(Request $request,$format='html',$type='welcome') {
         $mailClass = \GlimGlam\Libs\Helpers\Mail::class;
         if(method_exists($mailClass, $type)){

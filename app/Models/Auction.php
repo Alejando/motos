@@ -332,6 +332,9 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $user = User::getById($user_id);
         $auction = self::getByCode($code);
         $enrollment = $auction->getEnrollment($user_id,$auction->id);
+        if(!$enrollment){
+            throw new Exception("No se enctro el enrrollment");
+        }
         $close = false;
         $auction->last_offer += $bid;
         $auction->num_bids++;

@@ -47,6 +47,7 @@ class AuctionController extends BaseController {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="placeBid">
     public function placeBid(){
+//        dd(\Auth::user()->id); 
         $user_id = \Auth::user()->id;
         $code = Input::get('code');
         $bid = Input::get('bid');
