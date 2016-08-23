@@ -84,7 +84,7 @@
                                         <small>Puedes ofertar en</small><br>@{{minutes}} min, @{{seconds}} seg
                                 </timer>
                         </div>
-                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now">Ofertar</div>
+                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now && !unqualified">Ofertar</div>
                         <div class="col-sm-6 col-sm-offset-3 ofertas-restantes" ng-show="unqualified">
                             Has sido descalificado <br>
                             debido a que no completas <br>
