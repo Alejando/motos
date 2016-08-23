@@ -92,7 +92,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 margen-top">
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-6 col-sm-6 margen-top">
             <div class="chk-head">Formas de Pago</div>
             <div class="col-sm-4">
                   <div class="radio">

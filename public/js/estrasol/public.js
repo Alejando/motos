@@ -379,7 +379,8 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'inflows',
             'sold_for',
             'winner',
-            'last_offer'
+            'last_offer',
+            'winnername'
         ],
         relations : [],
         getByCode : function (code){
@@ -393,24 +394,6 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'url' :  url
             }).then(function(result){
                 $defer.resolve(self.build(result.data));
-            });
-            return $defer.promise;
-        },
-        placeBid : function (bid) {
-            var $defer = $q.defer();
-            var url = laroute.route('auction.place-bid');
-            var data = {
-                code : this.code,
-                bid : bid
-            };
-            $http({
-                'method' : 'POST',
-                'url': url,
-                'data' : data
-            }).then(function(result) {
-                $defer.resolve(result.data);
-            }, function(r) {
-                $defer.reject(r);
             });
             return $defer.promise;
         },
@@ -463,6 +446,25 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             return $defer.promise;
         }
     }, {
+        placeBid : function (bid) {
+            var $defer = $q.defer();
+            var url = laroute.route('auction.place-bid');
+            console.log(url);
+            var data = {
+                code : this.code,
+                bid : bid
+            };
+            $http({
+                'method' : 'POST',
+                'url': url,
+                'data' : data
+            }).then(function(result) {
+                $defer.resolve(result.data);
+            }, function(r) {
+                $defer.reject(r);
+            });
+            return $defer.promise;
+        },
         getUrlCover : function (version) {
             var url = laroute.route('auction.getCover',{
                 version:version,
@@ -485,6 +487,9 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         },
         isStarted : function(){
             return  this.status == Auction.STARTED;
+        },
+        isFinished : function () {
+            return this.status == Auction.FINISHED;
         }
     });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
@@ -589,6 +594,7 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
     });
 });
 glimglam.controller('public.roomCtrl', function ($scope, Auction) {
+    $scope.id_user = window.id_user;
     $scope.objAuction = new Auction(auction);
     console.log($scope.objAuction );
     $scope.rangeOferta = {
@@ -598,7 +604,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction) {
          limitMin: $scope.objAuction.min_offer
     };
     $scope.placeBid = function(){
-        $scope.objAuction.placeBid().then(function(data) {
+        $scope.objAuction.placeBid($scope.rangeOferta.max).then(function(data) {
             $scope.objAuction.refresh();
         });
     };
