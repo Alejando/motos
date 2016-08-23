@@ -54,5 +54,21 @@ class AuctionController extends BaseController {
         return ['success' => $success];
     }
     // </editor-fold>
-
+    
+    // <editor-fold defaultstate="collapsed" desc="checkout">
+    public function paymentWin($code) {
+        if(!Auth::check()){
+            abort(404);
+        }
+        $auction = \GlimGlam\Models\Auction::getByCode($code);
+        $me = \Auth::user();
+        if($auction->winner!=$me->id){
+            abort(404);
+        }
+    return view('public.pages.auction-checkout',[
+        'auction' => $auction
+    ]);
+        
+    }
+    // </editor-fold>
 }
