@@ -19,7 +19,9 @@ class ProcessController extends BaseController {
     public function checkFaults(){
         $auctions = \GlimGlam\Models\Auction::getStarted()->get();
         foreach($auctions as $auction){
-            $enrollments = \GlimGlam\Models\Enrollment::getEnrollments(false, $auction->id);
+            $enrollments = \GlimGlam\Models\Enrollment::getEnrollments(false, $auction->id, true);
+            $enrollments = $enrollments->where('unqualified','!=',true)->get();
+            dd($enrollments);
             foreach($enrollments as $enrollment){
                 $noOfers = false;
                 if($enrollment->last_bid_date != "0000-00-00 00:00:00"){
@@ -36,10 +38,14 @@ class ProcessController extends BaseController {
                 $diffMin = $hours*60+$minutes;
                 $faults = floor($diffMin/$auction->max_user_quiet);
                 
-                if($noOfers){
-                    $enrollment->faults = $faults;
+                if($faults <= ($auction->bids - $auction->min_offer) ){
+                    if($noOfers){
+                        $enrollment->faults = $faults;
+                    }else{
+                        $enrollment->faults = $enrollment->faults+$faults;
+                    }
                 }else{
-                    $enrollment->faults = $enrollment->faults+$faults;
+                    $enrollment->unqualified = true;
                 }
                 $enrollment->save();
             }

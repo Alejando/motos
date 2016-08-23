@@ -84,7 +84,13 @@
                                         <small>Puedes ofertar en</small><br>@{{minutes}} min, @{{seconds}} seg
                                 </timer>
                         </div>
-                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now">Ofertar</div>
+                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now && !unqualified">Ofertar</div>
+                        <div class="col-sm-6 col-sm-offset-3 ofertas-restantes" ng-show="unqualified">
+                            Has sido descalificado <br>
+                            debido a que no completas <br>
+                            la cantidad de ofertas necesarias
+                            <a class="btn btn-block btn-primary subasta-boton-pago" href="{{asset('')}}">Entrar a otra sala</a>
+                        </div>
                     </section>
                     <section ng-show="objAuction.isFinished()">
                         <p>La Subasta ha terminado</p>
@@ -111,8 +117,8 @@
                         </div>
                         <div class="rebase-der"></div>
                         <div class="ofertas-restantes">
-                            Te quedan @{{objAuction.bids - totalBids}} ofertas disponibles<br>
-                            Has ofertado @{{totalBids}} veces<br>
+                            Te quedan @{{objAuction.bids - totalBids - totalFaults}} ofertas disponibles<br>
+                            Has ofertado @{{totalBids}} veces y has perdido @{{totalFaults}} oportunidades<br>
                             <span ng-show="objAuction.min_bids - totalBids > 0">Necesitas realizar minimo @{{objAuction.min_bids}} ofertas para poder ser ganador
                             Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas</span>
                         </div>

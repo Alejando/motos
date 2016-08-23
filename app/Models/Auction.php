@@ -332,6 +332,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $user = User::getById($user_id);
         $auction = self::getByCode($code);
         $enrollment = $auction->getEnrollment($user_id,$auction->id);
+        //dd($enrollment);
         if(!$enrollment){
             throw new Exception("No se enctro el enrrollment");
         }
@@ -367,23 +368,29 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $this->save();
     }
     
-    public function getInfoBid($id_user){   
+    public function getInfoBid($id_user){
         $c = Bid::where('user','=', $id_user)
              ->where('auction','=', $this->id)
             ->orderBy('bid_at','desc');
         $res = $c->get();
         $total  = count($res);
+        $bid = $res->get(0);
         
         if($total) {
-            $nextbid = $res->get(0)->bid_at;
+            $nextbid = $bid->bid_at;
             $nextbid = new \DateTime($nextbid);
             $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
+            $enrollment = Enrollment::getById($bid->enrollment);
             return [
+                'unqualified'=> $enrollment->unqualified,
+                'faults' => $enrollment->faults,
                 'totalbids' => $total,
                 'nextbid' => $nextbid->format(DATE_ISO8601)
             ];
         }
         return [
+            'unqualified'=> $enrollment->unqualified,
+            'faults' => $enrollment->faults,
             'nextbid' => (new \DateTime())->format(DATE_ISO8601),
             'totalbids' => 0
         ];
