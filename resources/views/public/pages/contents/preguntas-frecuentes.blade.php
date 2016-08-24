@@ -1,6 +1,6 @@
-@extends('public.pages.base-content')
+@extends('public.pages.base-contents')
 
-@section('title')
+@section('content-title')
     Preguntas frecuentes
 @stop
 
