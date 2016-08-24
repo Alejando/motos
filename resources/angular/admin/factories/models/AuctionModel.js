@@ -22,6 +22,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'title',
             'code',
             'description',
+            'cover',
             'max_offer',
             'min_offer',
             'bids',

@@ -609,7 +609,6 @@ header.main-header{
     border-radius: 10px;
 }
 .producto-hover .producto-titulo{
-	max-width: 230px;
 	margin:30px auto 0px;
     font-size: 20px;
     line-height: 24px;
