@@ -1,4 +1,4 @@
-@extends('public.pages.base-content')
+@extends('public.pages.base-contents')
 
 @section('title')
     Aviso de privacidad
