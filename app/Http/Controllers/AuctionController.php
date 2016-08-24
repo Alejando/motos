@@ -9,6 +9,7 @@ class AuctionController extends BaseController {
     // <editor-fold defaultstate="collapsed" desc="enrollmentPayment">
     public function enrollmentPayment($code) {
         if(Auth::User()){
+            
             session(['login-redirect', url(route('auction.enrollment-form',['code'=>$code]))]);
             return view('public.pages.enrollment-payment',[
                 'auction' => \GlimGlam\Models\Auction::getByCode($code),
@@ -73,7 +74,12 @@ class AuctionController extends BaseController {
         
     }
     // </editor-fold>
-    
+    // <editor-fold defaultstate="collapsed" desc="confirmPayment">
+    public function confirmPayment($code) {
+        return view('public.pages.auction-confirm-payment');
+    }
+    // </editor-fold>
+
     public function getInfoBid($code) {
         $user = \Auth::user();
         /* @var $auction \GlimGlam\Models\Auction */

@@ -3,7 +3,9 @@ namespace GlimGlam\Models;
 
 class Payment extends \GlimGlam\Libs\CoreUtils\ModelBase {
     const TYPE_ENROLLMENT = 0;
-    
+    const TYPE_PAY_WIN = 1;
+
+
     const PROVIDER_PAYPAL = 1;
     
     public function setAmountTotal($amount) {
