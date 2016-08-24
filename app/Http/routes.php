@@ -210,6 +210,9 @@ Route::get('subastas/juego/info/{code}', [
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"
 ]);
-$route->get('{slug}','PublicController@content');
+$route->get('{slug}',[
+    'as'=>'content',
+    'uses'=>'PublicController@content'
+]);
 
 
