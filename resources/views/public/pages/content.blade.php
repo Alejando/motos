@@ -2,6 +2,6 @@
 @section('content-title')
     {!!($objContent->name)!!}
 @stop
-@section('body-title')
+@section('content-body')
     {!!$objContent->content!!}
 @stop
