@@ -1,7 +1,7 @@
 @extends('public.pages.base-contents')
 @section('content-title')
-    {{($objContent->name)}}
+    {!!($objContent->name)!!}
 @stop
 @section('body-title')
-    {{($objContent->content)}}
+    {!!$objContent->content!!}
 @stop
