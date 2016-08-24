@@ -1,6 +1,6 @@
 @extends('public.pages.base-contents')
 
-@section('title')
+@section('content-title')
     Aviso de privacidad
 @stop
 
