@@ -13,6 +13,10 @@ class PublicController extends BaseController {
                 'objContent' => $objContent
             ]);
         }
+        $view = 'public.pages.contents.' . $slug;
+        if(view()->exists($view)) {
+            return view($view);
+        }
         abort(404);
     }
     // </editor-fold>
