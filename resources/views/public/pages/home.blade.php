@@ -44,7 +44,7 @@
                             <span class="subasta-leyenda">Para subastar</span>
                         </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info">
                             <a class="link-subasta transition-0-3" href="#fancy-subasta">
-                                <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
+                                <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Detalles</span>
                             </a>
                         </div>
                     </div>

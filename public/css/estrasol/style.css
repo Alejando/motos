@@ -900,10 +900,10 @@ a#link-perfil:hover {
     text-transform: uppercase;
     /*font-weight: bold;*/
 }
-.bienvenido span{
-	color: #D5A00F;
-	font-weight: 100;
-	text-transform: none;
+.bienvenido span, #nombre-usr a{
+    color: #D5A00F !important;
+    font-weight: 100;
+    text-transform: none;
 }
 
 
