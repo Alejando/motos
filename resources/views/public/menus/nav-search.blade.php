@@ -1,4 +1,4 @@
-<nav class="menu-principal transition-0-5">
+<nav class="menu-lateral menu-search transition-0-5">
     <p class="label-menu label-gold first-label">Filtrar por:</p>
     <div class="cerrar-menu"></div>
     <div class="menu-solid-container">

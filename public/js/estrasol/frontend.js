@@ -95,12 +95,19 @@ $(document).ready(function(){
             return false;
     }
 
-    /* Funcionalidad general para menu */
-    $('.link-menu, .cerrar-menu').click(function(e){
+    /* Funcionalidad general para menu principal */
+    $('#link-menu, .cerrar-menu').click(function(e){
             e.preventDefault();
-            $('.link-menu').toggleClass("menu-activo");
+            $('#link-menu').toggleClass("menu-activo");
             $('.menu-principal').toggleClass('menu-activo');
-            $('body').toggleClass('no-scroll');
+            //$('body').toggleClass('no-scroll');
+    });
+    /* Funcionalidad general para menu busqueda */
+    $('#link-search, .cerrar-search').click(function(e){
+            e.preventDefault();
+            $('#link-search').toggleClass("menu-activo");
+            $('.menu-search').toggleClass('menu-activo');
+            //$('body').toggleClass('no-scroll');
     });
 
     /* Termina funcionalidad general para menu */

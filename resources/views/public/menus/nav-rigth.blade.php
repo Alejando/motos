@@ -1,4 +1,4 @@
-<nav class="menu-principal transition-0-5">
+<nav class="menu-lateral menu-principal transition-0-5">
     <ul class="listado-menu">
         <li><a class="transition-0-3" href="{{asset('acerca-de-glimglam')}}">Acerca de...</a></li>
         <li><a class="transition-0-3" href="{{asset('guía de uso')}}">Guía de uso</a></li>
