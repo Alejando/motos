@@ -10,7 +10,7 @@
                 <ul class="banner-list">
                     <!-- THE BOXSLIDE EFFECT EXAMPLES  WITH LINK ON THE MAIN SLIDE EXAMPLE --> 
                     @foreach($sliderAuctions as $auction)
-                    <li data-transition="fade" data-masterspeed="700" 
+                    <li class="link-subasta" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
                         data-slotamount="8" 
                         id-producto="{{$auction->code}}" 
                         product-name="{{$auction->title}}" 

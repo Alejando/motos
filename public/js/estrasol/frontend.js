@@ -61,7 +61,7 @@ $(document).ready(function(){
         open_fancy_product($(this).attr('id_producto'));
     });
 
-    $('a.link-subasta').on('click', function(e){
+    $('a.link-subasta, li.link-subasta').on('click', function(e){
         e.preventDefault();
         open_fancy_product($(this).attr('id_producto'));
     });

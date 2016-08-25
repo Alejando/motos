@@ -511,6 +511,9 @@ header.main-header{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
+.link-subasta:hover{
+    cursor: pointer;
+}
 .link-hammer,
 .link-subasta-text{
 	display: inline-block;
