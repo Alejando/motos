@@ -55,8 +55,8 @@ $(document).ready(function(){
     $('.producto-fancy').on('click', function (e) {
         e.stopPropagation();
     });
-
-    $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row').on('click', '.producto-hammer, .link-subasta', function (e) {
+    var $products = $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row');
+    $products.on('click', '.producto-hammer, .link-subasta', function (e) {
         e.preventDefault();
         open_fancy_product($(this).attr('id_producto'));
     });
@@ -65,6 +65,23 @@ $(document).ready(function(){
         e.preventDefault();
         open_fancy_product($(this).attr('id_producto'));
     });
+    $products.on('click','.producto-heart', function(e){
+        var $this = $(this);
+        var code = $this.closest('.link-subasta').attr('id_producto');
+        if(!$this.is('.in-fav')){
+            jsGlimglam.fn.auctions.addFav(code).done(function(){
+                $this.addClass('in-fav');
+            });
+//            
+        } else {
+            jsGlimglam.fn.auctions.removeFav(code).done(function(){
+                $this.removeClass('in-fav');
+            });
+        }
+        return false;
+    });
+    
+    
     var $fancyProducto = $('.fancy-producto');
     $fancyProducto.click(function (e) {
         if(e.target === this || $(e.target).is('.descripcion-fancy')) {

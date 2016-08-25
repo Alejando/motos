@@ -143,10 +143,17 @@ Route::group(['prefix' => 'api'], function () use (&$route){
     $addAPI('auction','Auction');
     $addAPI('content','Content');
     $addAPI('user','User');
+    Route::get('user/add-fav/{code}', [
+        'as' => 'user.add-fav',
+        'uses' => 'Api\\UserController@addFav'
+    ]);
+    Route::get('user/remove-fav/{code}', [
+        'as' => 'user.remove-fav',
+        'uses' => 'Api\\UserController@removeFav'
+    ]);
     Route::get('enrollment/iam-enrollment/{auctionCode}/', [
         'as' => 'enrollment.userIsEnrollment',
-        'uses' => 'Api\\EnrollmentController@userIsEnrollment',
-        
+        'uses' => 'Api\\EnrollmentController@userIsEnrollment',        
     ]);
     Route::post('auction/{id}/addPhoto','Api\\AuctionController@addPhoto');
     Route::get('auction/{code}/photos', 'Api\\AuctionController@getPhotos'); 

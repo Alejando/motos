@@ -35,7 +35,24 @@ class User extends Authenticatable {
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+    public function fav(){
+        return $this->belongsToMany(\GlimGlam\Models\Auction::class, 'auctions_fav');
+    }
+    // <editor-fold defaultstate="collapsed" desc="removeFav">
+    public function removeFav($auction) {
+        return $this->fav()->detach($auction);
+        
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="addFav">
+    public function addFav($auction) {
+        if(!$this->fav->contains($auction)){
+            $this->fav()->save($auction);
+            return true;
+        }
+        return false;
+    }
+    // </editor-fold>
     public function getPublicName(){
         $name = explode('@',$this->email);
         return '@'.$name[0];

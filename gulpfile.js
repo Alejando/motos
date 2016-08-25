@@ -14,11 +14,12 @@ require('laravel-elixir-livereload');
 elixir(function(mix) {
     mix.sass('app.scss');
     mix.sass('**/*.scss');
-    mix.scripts([
+    mix.scripts([        
         '../../angular/admin/app.js',
         '../../angular/admin/**/*.js'
     ],'public/js/estrasol/admin.js');
     mix.scripts([
+        '../../js/**/*.js',
         '../../angular/admin/public.js',
         '../../angular/admin/factories/**/*.js',
         '../../angular/admin/controllers/public/*.js'
