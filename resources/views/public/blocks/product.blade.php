@@ -8,7 +8,7 @@
             <div>Puedes subastar desde:</div>
             <div class="rango-ofertas">{{currency($auction->min_offer, config('app.currency'))}} - {{Currency::format($auction->max_offer, config('app.currency'))}}</div>
         </div>
-        <div class="producto-hover transition-0-3">
+        <div id_producto="{{$auction->code}}" class="producto-hover transition-0-3 link-subasta no-border">
             <div class="producto-titulo{{strlen($auction->title) < 50 ? ' producto-titulo-grande' : '' }}">{{$auction->title}}</div>
             <div class="producto-actions">
                 <div class="producto-heart"></div>

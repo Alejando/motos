@@ -56,7 +56,7 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row').on('click', '.producto-hammer', function (e) {
+    $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row').on('click', '.producto-hammer, .link-subasta', function (e) {
         e.preventDefault();
         open_fancy_product($(this).attr('id_producto'));
     });

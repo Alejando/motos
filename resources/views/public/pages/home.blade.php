@@ -10,7 +10,7 @@
                 <ul class="banner-list">
                     <!-- THE BOXSLIDE EFFECT EXAMPLES  WITH LINK ON THE MAIN SLIDE EXAMPLE --> 
                     @foreach($sliderAuctions as $auction)
-                    <li class="link-subasta" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
+                    <li class="link-subasta no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
                         data-slotamount="8" 
                         id-producto="{{$auction->code}}" 
                         product-name="{{$auction->title}}" 
@@ -57,7 +57,7 @@
         <section class="container">
             <div class="row">
                 <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <a id_producto="001" class="producto big-producto oferta-verde" >
+                    <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
                         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
                         <div class="img-subasta">
                             <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
