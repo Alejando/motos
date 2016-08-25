@@ -45,7 +45,7 @@ $(document).ready(function(){
                     $('.zoomContainer').append()
 //            $zoom.css('zIndex',2002);
 //            console.log($zoom);
-                    console.log($('.fancy-producto'));
+//            console.log($('.fancy-producto'));
                     $('.fancy-producto').empty().append($html).fadeIn(500);
                 }); 
             }
@@ -56,21 +56,27 @@ $(document).ready(function(){
         e.stopPropagation();
     });
 
-    $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row').on('click', '.producto-hammer', function (e) {
+    $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row').on('click', '.producto-hammer, .link-subasta', function (e) {
         e.preventDefault();
         open_fancy_product($(this).attr('id_producto'));
     });
 
-    $('a.link-subasta').on('click', function(e){
+    $('a.link-subasta, li.link-subasta').on('click', function(e){
         e.preventDefault();
         open_fancy_product($(this).attr('id_producto'));
     });
-
-    $('.fancy-producto').click(function (e) {
+    var $fancyProducto = $('.fancy-producto');
+    $fancyProducto.click(function (e) {
         if(e.target === this || $(e.target).is('.descripcion-fancy')) {
-            $('.fancy-producto').fadeOut(500);
+            $fancyProducto.fadeOut(500);
         }        
     });
+    $fancyProducto.on('click', '.fancybox-close', function(){
+        $fancyProducto.fadeOut(500);
+    });
+    
+    
+    
     /* Funcionalidad scroll btn subir */
     $(window).scroll(function(){
             var top = $(window).scrollTop();
@@ -199,10 +205,24 @@ $(document).ready(function(){
         
         // Función Mostrar Facturacion
         $(".form-factura").hide();
+        var $subTotal = $('#enroll-sub-total');
+        var $iva = $('#enroll-iva');
+        var $total = $('#enroll-total');
+        
         $(".facturar").click(function() {
             if($(this).is(":checked")) {
+                var total = parseFloat($total.attr('cant'));
+                var subTotal = (total / (window.ivaCant+1));
+                var iva = parseFloat(total - subTotal);
+                $iva.attr('cant',iva).html('$'+iva.toFixed(2));
+                $subTotal.attr('cant', subTotal).html('$'+subTotal.toFixed(2));
                 $(".form-factura").show(600);
             } else {
+                var subTotal = parseFloat($total.attr('cant'));
+                
+                $iva.attr('cant','0.00').html('$0.00');
+                $subTotal.attr('cant', subTotal.toFixed(2)).html('$'+subTotal.toFixed(2));
+                
                 $(".form-factura").hide(200);
             }
         });

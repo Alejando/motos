@@ -178,6 +178,9 @@ header.main-header{
 .fancy-login{
 	background-color: rgba(28,29,29,0.96);
 }
+.fancybox-close:hover{
+    cursor:pointer;
+}
 /* FANCYBOX LOGIN */
 .contenedor-registro{
 	position: absolute;
@@ -502,14 +505,20 @@ header.main-header{
 	font-size: 35px;
 }
 .link-subasta{
-	display: inline-block;
-	color: #00bcb6;
-	border: solid 1px #00bcb6;
-	background-color: transparent;
+    display: inline-block;
+    color: #00bcb6;
+    border: solid 1px #00bcb6;
+    background-color: transparent;
 
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.no-border{
+    border:0;
+}
+.link-subasta:hover{
+    cursor: pointer;
 }
 .link-hammer,
 .link-subasta-text{
@@ -533,7 +542,7 @@ header.main-header{
 	font-size: 18px;
 	line-height: 40px;
 }
-.link-subasta:hover{
+.link-subasta:hover:not(.producto-hover){
 	background-color: #08aea8;
 	color: #fff;
 	border-color: #fff;
@@ -592,7 +601,7 @@ header.main-header{
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
-    height: 430px;
+    height: auto;
 	width: calc(100% + 26px);
     margin: 2px -13px;
     padding: 10px;
@@ -602,27 +611,23 @@ header.main-header{
     border-radius: 10px;
 }
 .producto-hover{
-	opacity: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	color: #fff;
-	padding: 10px;
-	background-color: rgba(1, 100, 107, 0.96);
-	-webkit-border-radius: 10px;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    padding: 10px;
+    background-color: rgba(1, 100, 107, 0.96);
+    -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
 .producto-hover .producto-titulo{
-	margin:30px auto 0px;
-    font-size: 20px;
-    line-height: 24px;
-}
-.producto-hover .producto-titulo-grande{
-    font-size: 24px;
-    line-height: 28px;
+    margin:10px auto 0px;
+    font-size: 18px;
+    line-height: 22px;
 }
 .producto.mini-producto .producto-hover .producto-titulo{
 	margin: 10px auto 0px;
@@ -702,7 +707,7 @@ header.main-header{
     height: 40px;
 }
 .producto .img-subasta{
-	min-height: 350px;
+	min-height: 250px;
 	width: 100%;
 }
 .producto .img-subasta img{
@@ -762,9 +767,9 @@ header.main-header{
 
 /* VIDEOS */
 .video{
-	width: calc(100% + 20px);
-    height: calc(100% + 20px);
-    margin: -10px;
+    width: calc(100% + 20px);
+    height: 410px;
+    margin: -10px -10px -15px -10px;
     border-radius: 10px;
 }
 
@@ -793,8 +798,13 @@ header.main-header{
 .placeholder.verde:hover{
 	background-color: #BCE072;
 }
+.placeholder.naranja:focus{
+    color: #fff;
+    text-decoration: none;
+}
 .placeholder.naranja:hover{
-	background-color: #FFCB7F;
+    color:#fff;
+    background-color: #FFCB7F;
 }
 
 /* PRODUCT MESSAGES */
@@ -808,6 +818,9 @@ header.main-header{
 }
 .producto-mensaje .img-mensaje img{
 	max-height: 130px; 
+}
+.producto-mensaje .mensaje-info{
+    padding-bottom: 47px
 }
 .mensaje-titulo{
 	font-size: 18px;
@@ -900,10 +913,10 @@ a#link-perfil:hover {
     text-transform: uppercase;
     /*font-weight: bold;*/
 }
-.bienvenido span{
-	color: #D5A00F;
-	font-weight: 100;
-	text-transform: none;
+.bienvenido span, #nombre-usr a{
+    color: #D5A00F !important;
+    font-weight: 100;
+    text-transform: none;
 }
 
 
@@ -1570,16 +1583,6 @@ input[type=number]::-webkit-outer-spin-button {
     color: #fff;
     background-color: #00bcb6;
 }
-.fancy-producto,
-.fancy-login{
-	overflow: scroll;
-}
-
-
-
-
-
-
 
 /*-----Fancy JP-----*/
 .fancy-txt {
@@ -1602,6 +1605,8 @@ input[type=number]::-webkit-outer-spin-button {
     margin: auto;
     border: 1px solid #109296;
     border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .frame-galeria:hover {
     border: 1px solid #17b6bb;
@@ -1612,17 +1617,35 @@ input[type=number]::-webkit-outer-spin-button {
 	height: 100%;
 }
 .producto-fancy-img-galeria {
-    width: 99%;
-    display: inline-block;
+    width: 80%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    display: block;
+    clear:both;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
-.producto-fancy-img-galeria .frame-galeria {
-    margin-bottom: 5px;
+.producto-fancy-img-galeria img{
+    width: calc(100% - 5px);
+    height: auto;
 }
 section.fancy-producto {
     padding: 6% 0px;
 }
 .descripcion-fancy .leyenda-subasta {
     color: #b3870d;
+}
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* inline-block space fix */
+    margin-right:-4px;
 }
 
 
@@ -1635,114 +1658,117 @@ section.fancy-producto {
 
 /* RESPONSIVE ADJUST TO BOOTSTRAP SIZES */
 @media(max-width:767px){
-	body{
-		padding: 0;
-	}
-	header.main-header{
-	    position: relative;
-	    top: auto;
-	    /* bottom: 0; */
-	}
-	footer.main-footer {
-	    position: relative;
-	    top: auto;
-	    /* bottom: 0; */
-	}
+    body{
+            padding: 0;
+    }
+    header.main-header{
+        position: relative;
+        top: auto;
+        /* bottom: 0; */
+    }
+    footer.main-footer {
+        position: relative;
+        top: auto;
+        /* bottom: 0; */
+    }
 /*	header.main-header,
-	footer.main-footer{
-		position: relative;
-		top:auto;
-		bottom: auto;
-	}*/
-	.link-menu{
-		right: 0 !important;
-	}
-	.producto{
-		width: calc(100% + 26px);
-	}
-	.tp-leftarrow.default,
-	.tp-rightarrow.default,
-	.tp-bullets{
-		display: none;
-	}
-	.producto{
-		height: auto;
-		min-height: 212px;
-	}
-	.producto .img-subasta {
-		min-height: 0;
-		width: 100%;
-	}
-	.producto.big-producto .producto-nombre{
-		font-size: 18px;
-	}
-	.producto.big-producto .leyenda-subasta,
-	.producto.big-producto .tiempo-producto{
-		display: block;
-		width: auto;
-		font-size: 14px;
-		text-align: center;
-	}
-	.producto.big-producto .tiempo-producto .tiempo-subasta-producto{
-		font-size: 18px;
-	}
-	.subasta-tiempo{
-		font-size: 25px;
-	}
-	.video {
-		height: calc(212px + 20px);
-		margin: -10px -10px -15px;
-	}
-	.cerrar-menu{
-		cursor:pointer;
-		display: block;
-		position: absolute;
-		top: 15px;
-		right: 15px;
-		background: url(../../img/icon-close-fanybox.png) no-repeat center transparent;
-		background-size: 50px;
-		width: 50px;
-		height: 50px;
-	}
-	.subir{
-		bottom: 50px;
-		right: 25px;
-		width: 60px;
-		height: 60px;
-	}
-	.subir-activo{
-		opacity: 1;
-	}
-	.subir:hover{
-		opacity: 0;
-	}
-	.contenedor-registro{
-		top: 50px;
-	}
-	/*.producto-fancy{
-		top: 20px;
-	}*/
-	.fancy-login .img-mensaje img{
-		max-width: 100px;
-	}
-	.fancy-login .registro-leyenda-1{
-		font-size: 28px;
-	}
-	.fancy-login .registro-leyenda-2{
-		font-size: 15px;
-	}
-	.fancy-login .registro-leyenda-3{
-		font-size: 15px;
-	}
-	.login-facebook{
-		background-size: 150px;
-	}
-	.total-subastado {
-	    text-align: center;
-	}
-	.margen-tf{
-		margin-top: 15px;
-	}
+    footer.main-footer{
+            position: relative;
+            top:auto;
+            bottom: auto;
+    }*/
+    .link-menu{
+            right: 0 !important;
+    }
+    .producto{
+            width: calc(100% + 26px);
+    }
+    .tp-leftarrow.default,
+    .tp-rightarrow.default,
+    .tp-bullets{
+            display: none;
+    }
+    .producto{
+            height: auto;
+            min-height: 212px;
+    }
+    .producto .img-subasta {
+            min-height: 0;
+            width: 100%;
+    }
+    .producto.big-producto .producto-nombre{
+            font-size: 18px;
+    }
+    .producto.big-producto .leyenda-subasta,
+    .producto.big-producto .tiempo-producto{
+            display: block;
+            width: auto;
+            font-size: 14px;
+            text-align: center;
+    }
+    .producto.big-producto .tiempo-producto .tiempo-subasta-producto{
+            font-size: 18px;
+    }
+    .subasta-tiempo{
+            font-size: 25px;
+    }
+    .video {
+            height: calc(212px + 20px);
+            margin: -10px -10px -15px;
+    }
+    .cerrar-menu{
+            cursor:pointer;
+            display: block;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: url(../../img/icon-close-fanybox.png) no-repeat center transparent;
+            background-size: 50px;
+            width: 50px;
+            height: 50px;
+    }
+    .subir{
+            bottom: 50px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+    }
+    .subir-activo{
+            opacity: 1;
+    }
+    .subir:hover{
+            opacity: 0;
+    }
+    .contenedor-registro{
+            top: 50px;
+    }
+    /*.producto-fancy{
+            top: 20px;
+    }*/
+    .fancy-login .img-mensaje img{
+            max-width: 100px;
+    }
+    .fancy-login .registro-leyenda-1{
+            font-size: 28px;
+    }
+    .fancy-login .registro-leyenda-2{
+            font-size: 15px;
+    }
+    .fancy-login .registro-leyenda-3{
+            font-size: 15px;
+    }
+    .login-facebook{
+            background-size: 150px;
+    }
+    .total-subastado {
+        text-align: center;
+    }
+    .margen-tf{
+            margin-top: 15px;
+    }
+    .fancy-producto{
+            overflow: auto;
+    }
 }
 @media(min-width:768px){
 	

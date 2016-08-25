@@ -138,23 +138,27 @@ $(document).ready(function () {
     });
 
     var ant_exp;
+    var $bannerContainer = $('.banner-description');
     setInterval(function () {
+        var $itemLi = $('.current-sr-slide-visible');
+        var $bannerName = $('.banner-name');
+        var $bannerData = $('.banner-data');
 //        console.log($('.current-sr-slide-visible'));
 //        console.log($('.current-sr-slide-visible').attr('product-name'));
-        var exp = $('.current-sr-slide-visible').attr('start_date');
-        var max = $('.current-sr-slide-visible').attr('rangomax');
-        var min = $('.current-sr-slide-visible').attr('rangomin');
-        var name = $('.current-sr-slide-visible').attr('product-name');
-        var id = $('.current-sr-slide-visible').attr('id-producto');
+        var exp = $itemLi.attr('start_date');
+        var max = $itemLi.attr('rangomax');
+        var min = $itemLi.attr('rangomin');
+        var name = $itemLi.attr('product-name');
+        var id = $itemLi.attr('id-producto');
         if (ant_exp != exp||true) {
-            $('.subasta-tiempo').attr('start_date', exp);
-            $('.link-subasta').attr('id_producto',id);
-            $('.banner-name span').html(name);
-            $('.rango-min').html(min);
-            $('.rango-max').html(max);
+            $bannerContainer.find('.subasta-tiempo').attr('start_date', exp);
+            $bannerContainer.find('.link-subasta').attr('id_producto',id);
+            $bannerContainer.find('.banner-name span').html(name);
+            $bannerContainer.find('.rango-min').html(min);
+            $bannerContainer.find('.rango-max').html(max);
             setTimeout(function () {
-                $('.banner-name').css('opacity', '1');
-                $('.banner-data').css('opacity', '1');
+                $bannerName.css('opacity', '1');
+                $bannerData.css('opacity', '1');
             }, 800);
             ant_exp = exp;
         }

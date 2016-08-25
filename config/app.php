@@ -6,6 +6,7 @@ return [
         'ig'=>'https://www.instagram.com/glimglammx/',
         'yt'=>'https://www.youtube.com/GlimGlam.mx/',
     ],
+    'iva'=>1.16,
     'img-sizes' => [
         'fancy-box-thumbailn' => [
             'width' => 224,
