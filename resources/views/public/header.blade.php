@@ -16,6 +16,7 @@
         </div>
     </section>
     @include('public.menus.nav-rigth')
+    @include('public.menus.nav-search')
 </header>
 <div class="subir transition-0-5">
     <i class="fa fa-chevron-up" aria-hidden="true"></i>

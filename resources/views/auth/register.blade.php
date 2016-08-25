@@ -72,7 +72,7 @@
             </div>
             <div class="form-group row {{ $errors->has('terminos') ? ' has-error' : '' }}">
                 <div class="col-sm-12">
-                    <input type="checkbox" name="terminos"> Acepto los términos y condiciones
+                    <input type="checkbox" name="terminos"> Acepto los <a href="{{route('content', ['slug'=>'terminos-y-condiciones'])}}">términos y condiciones</a>
                     @if ($errors->has('terminos'))
                     <span class="help-block">
                         <strong>{{ $errors->first('terminos') }}</strong>

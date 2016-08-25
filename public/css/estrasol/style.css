@@ -154,6 +154,9 @@ header.main-header{
     background-color: #1d1d1d;
     font-size: 30px;
 }
+#link-search{
+    right: 1px;
+}
 .link-menu:hover {
     color: #d5a00f;
 }
@@ -344,23 +347,27 @@ header.main-header{
 	margin-bottom: 15px;
 }
 /* MENU */
-.menu-principal{
-	position: fixed;
-	z-index: 1000;
-	top: 0;
-	bottom: 0;
-	overflow-y: auto;
-	right: -320px;
-	width: 320px;
-	height: auto;
-	background-color: #1d1d1d;
+.menu-lateral{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    right: -320px;
+    width: 320px;
+    height: auto;
+    background-color: #1d1d1d;
     padding-bottom: 45px;
 }
-.link-menu.menu-activo{
-	right: 321px;
-	color: #d5a00f;
+#link-menu.menu-activo{
+    right: 321px;
+    color: #d5a00f;
 }
-.menu-principal.menu-activo{
+#link-search.menu-activo{
+    right: 248px;
+    color: #d5a00f;
+}
+.menu-lateral.menu-activo{
 	right: 0;
 }
 .menu-filtros{
@@ -431,7 +438,7 @@ header.main-header{
 	width: 100%;
 	height: 100%;
 	font-size: 20px;
-	line-height: 40px;
+	line-height: 52px;
 	color: #929293;
 	font-weight: 300;
 }
