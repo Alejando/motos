@@ -1,10 +1,11 @@
-(function videoGlim() {
+
+function videoGlim() {
     var $modal = $('#videoModal').modal("show").css('z-index','2002');
     var $frame = $modal.find('iframe').attr('src', 'http://www.youtube.com/embed/loFtozxZG0s?autoplay=1');
     $modal.find('button.close').click(function () {
             $frame.attr('src', "");
     });
-})();
+};
 $(document).ready(function () {
     //Fancybox login
     //$('.link-perfil').click(function(e){
