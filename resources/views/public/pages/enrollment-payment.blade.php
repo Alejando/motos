@@ -73,15 +73,15 @@
             <div class="col-sm-8">
                 <div class="chk-total">
                     <span>ASIENTO:</span>
-                    <span>{{currency($auction->cover, config('app.currency') )}}</span>
+                    <span id="enroll-sub-total" cant="{{$auction->cover}}">{{currency($auction->cover, config('app.currency') )}}</span>
                 </div>
                 <div class="chk-total">
                     <span>IVA:</span>
-                    <span>$0.00</span>
+                    <span id="enroll-iva" cant="0.00">$0.00</span>
                 </div>
                 <div class="chk-total">
                     <span><strong>TOTAL:</strong></span>
-                    <span>{{currency($auction->cover, config('app.currency') )}}</span>
+                    <span id="enroll-total" cant="{{$auction->cover}}">{{currency($auction->cover, config('app.currency') )}}</span>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -100,9 +100,11 @@
                   <div class="radio">
                       <label><input class="paypal-select" checked="checked" type="radio" name="optradio">PayPal</label>
                   </div>
+                  {{--
                   <div class="radio disabled">
                       <label><input class="tdec-select" type="radio" name="optradio">Tarjeta de Crédito</label>
                   </div>
+                  --}}
             </div>
             <div class="col-sm-8">
                 <div class="paypal-cont">
@@ -110,6 +112,7 @@
                     <p>Serás redireccionado a Paypal para efectuar tu pago.</p>
                     <a class="btn btn-block btn-primary subasta-boton-pago" href="{{route('auction.checkout',['code' => $auction->code])}}">Pagar</a>
                 </div>
+                {{--
                 <div class="tdec-cont">
                     <form class="tdec-form text-left">
                           <div class="form-group">
@@ -157,6 +160,7 @@
                           </div>
                     </form>
                 </div>
+                --}}
             </div>
         </div>
     </div>

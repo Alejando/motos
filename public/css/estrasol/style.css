@@ -178,6 +178,9 @@ header.main-header{
 .fancy-login{
 	background-color: rgba(28,29,29,0.96);
 }
+.fancybox-close:hover{
+    cursor:pointer;
+}
 /* FANCYBOX LOGIN */
 .contenedor-registro{
 	position: absolute;
@@ -1580,16 +1583,6 @@ input[type=number]::-webkit-outer-spin-button {
     color: #fff;
     background-color: #00bcb6;
 }
-.fancy-producto,
-.fancy-login{
-	overflow: scroll;
-}
-
-
-
-
-
-
 
 /*-----Fancy JP-----*/
 .fancy-txt {
@@ -1612,6 +1605,8 @@ input[type=number]::-webkit-outer-spin-button {
     margin: auto;
     border: 1px solid #109296;
     border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .frame-galeria:hover {
     border: 1px solid #17b6bb;
@@ -1622,17 +1617,35 @@ input[type=number]::-webkit-outer-spin-button {
 	height: 100%;
 }
 .producto-fancy-img-galeria {
-    width: 99%;
-    display: inline-block;
+    width: 80%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    display: block;
+    clear:both;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
-.producto-fancy-img-galeria .frame-galeria {
-    margin-bottom: 5px;
+.producto-fancy-img-galeria img{
+    width: calc(100% - 5px);
+    height: auto;
 }
 section.fancy-producto {
     padding: 6% 0px;
 }
 .descripcion-fancy .leyenda-subasta {
     color: #b3870d;
+}
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* inline-block space fix */
+    margin-right:-4px;
 }
 
 
@@ -1645,114 +1658,117 @@ section.fancy-producto {
 
 /* RESPONSIVE ADJUST TO BOOTSTRAP SIZES */
 @media(max-width:767px){
-	body{
-		padding: 0;
-	}
-	header.main-header{
-	    position: relative;
-	    top: auto;
-	    /* bottom: 0; */
-	}
-	footer.main-footer {
-	    position: relative;
-	    top: auto;
-	    /* bottom: 0; */
-	}
+    body{
+            padding: 0;
+    }
+    header.main-header{
+        position: relative;
+        top: auto;
+        /* bottom: 0; */
+    }
+    footer.main-footer {
+        position: relative;
+        top: auto;
+        /* bottom: 0; */
+    }
 /*	header.main-header,
-	footer.main-footer{
-		position: relative;
-		top:auto;
-		bottom: auto;
-	}*/
-	.link-menu{
-		right: 0 !important;
-	}
-	.producto{
-		width: calc(100% + 26px);
-	}
-	.tp-leftarrow.default,
-	.tp-rightarrow.default,
-	.tp-bullets{
-		display: none;
-	}
-	.producto{
-		height: auto;
-		min-height: 212px;
-	}
-	.producto .img-subasta {
-		min-height: 0;
-		width: 100%;
-	}
-	.producto.big-producto .producto-nombre{
-		font-size: 18px;
-	}
-	.producto.big-producto .leyenda-subasta,
-	.producto.big-producto .tiempo-producto{
-		display: block;
-		width: auto;
-		font-size: 14px;
-		text-align: center;
-	}
-	.producto.big-producto .tiempo-producto .tiempo-subasta-producto{
-		font-size: 18px;
-	}
-	.subasta-tiempo{
-		font-size: 25px;
-	}
-	.video {
-		height: calc(212px + 20px);
-		margin: -10px -10px -15px;
-	}
-	.cerrar-menu{
-		cursor:pointer;
-		display: block;
-		position: absolute;
-		top: 15px;
-		right: 15px;
-		background: url(../../img/icon-close-fanybox.png) no-repeat center transparent;
-		background-size: 50px;
-		width: 50px;
-		height: 50px;
-	}
-	.subir{
-		bottom: 50px;
-		right: 25px;
-		width: 60px;
-		height: 60px;
-	}
-	.subir-activo{
-		opacity: 1;
-	}
-	.subir:hover{
-		opacity: 0;
-	}
-	.contenedor-registro{
-		top: 50px;
-	}
-	/*.producto-fancy{
-		top: 20px;
-	}*/
-	.fancy-login .img-mensaje img{
-		max-width: 100px;
-	}
-	.fancy-login .registro-leyenda-1{
-		font-size: 28px;
-	}
-	.fancy-login .registro-leyenda-2{
-		font-size: 15px;
-	}
-	.fancy-login .registro-leyenda-3{
-		font-size: 15px;
-	}
-	.login-facebook{
-		background-size: 150px;
-	}
-	.total-subastado {
-	    text-align: center;
-	}
-	.margen-tf{
-		margin-top: 15px;
-	}
+    footer.main-footer{
+            position: relative;
+            top:auto;
+            bottom: auto;
+    }*/
+    .link-menu{
+            right: 0 !important;
+    }
+    .producto{
+            width: calc(100% + 26px);
+    }
+    .tp-leftarrow.default,
+    .tp-rightarrow.default,
+    .tp-bullets{
+            display: none;
+    }
+    .producto{
+            height: auto;
+            min-height: 212px;
+    }
+    .producto .img-subasta {
+            min-height: 0;
+            width: 100%;
+    }
+    .producto.big-producto .producto-nombre{
+            font-size: 18px;
+    }
+    .producto.big-producto .leyenda-subasta,
+    .producto.big-producto .tiempo-producto{
+            display: block;
+            width: auto;
+            font-size: 14px;
+            text-align: center;
+    }
+    .producto.big-producto .tiempo-producto .tiempo-subasta-producto{
+            font-size: 18px;
+    }
+    .subasta-tiempo{
+            font-size: 25px;
+    }
+    .video {
+            height: calc(212px + 20px);
+            margin: -10px -10px -15px;
+    }
+    .cerrar-menu{
+            cursor:pointer;
+            display: block;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: url(../../img/icon-close-fanybox.png) no-repeat center transparent;
+            background-size: 50px;
+            width: 50px;
+            height: 50px;
+    }
+    .subir{
+            bottom: 50px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+    }
+    .subir-activo{
+            opacity: 1;
+    }
+    .subir:hover{
+            opacity: 0;
+    }
+    .contenedor-registro{
+            top: 50px;
+    }
+    /*.producto-fancy{
+            top: 20px;
+    }*/
+    .fancy-login .img-mensaje img{
+            max-width: 100px;
+    }
+    .fancy-login .registro-leyenda-1{
+            font-size: 28px;
+    }
+    .fancy-login .registro-leyenda-2{
+            font-size: 15px;
+    }
+    .fancy-login .registro-leyenda-3{
+            font-size: 15px;
+    }
+    .login-facebook{
+            background-size: 150px;
+    }
+    .total-subastado {
+        text-align: center;
+    }
+    .margen-tf{
+            margin-top: 15px;
+    }
+    .fancy-producto{
+            overflow: auto;
+    }
 }
 @media(min-width:768px){
 	
