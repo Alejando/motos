@@ -179,6 +179,7 @@ return [
         
         Lord\Laroute\LarouteServiceProvider::class,
         \Torann\Currency\CurrencyServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -226,6 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Currency' => \Torann\Currency\Facades\Currency::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
