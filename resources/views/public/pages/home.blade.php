@@ -90,8 +90,9 @@
                     </a>
                 </div>
                 <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <a href="registro" class="producto producto-mensaje placeholder naranja">
-                        <div class="img-mensaje"><img src="img/logo-icon.png" alt="Glim Glam &reg;" title="Glim Glam &reg;"></div>
+                    @if(!Auth::check())
+                    <a href="{{asset('register')}}" class="producto producto-mensaje placeholder naranja">
+                        <div class="img-mensaje"><img src="{{asset('img/logo-icon.png')}}" alt="Glim Glam &reg;" title="Glim Glam &reg;"></div>
                         <div class="mensaje-info">
                             <div class="mensaje-titulo">Hola</div>
                             <div class="mensaje-texto">dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </div>
@@ -102,6 +103,45 @@
                             </div>
                         </div>
                     </a>
+                    @else
+                        @if(true)
+                        <div class="producto producto-mensaje placeholder naranja">
+                            <iframe class="video" src="http://www.youtube.com/embed/QH2-TGUlwu4?vq=hd1080&controls=0&iv_load_policy=3&rel=0&showinfo=0&color=white&disablekb=1" frameborder="0"></iframe>
+                        </div>
+                        @else
+                        <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
+                            <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
+                            <div class="img-subasta">
+                                <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
+                            </div>
+                            <div class="producto-nombre" >
+                                - @{{lastStarted.title}} -
+                            </div>
+                            <div class="leyenda-subasta" ng-show="lastStarted.last_offer">
+                                <div>Ultima Oferta:</div>
+                                <div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
+                            </div>
+                            <div class="tiempo-producto">
+                                <span class="tiempo-subasta-producto countdown" start_date="@{{lastStarted.start_date}}"></span>
+                                <span>Para subastar</span>
+                            </div>
+                            <div class="producto-hover transition-0-3">
+                                <div class="producto-titulo">@{{lastStarted.title}}</div>
+                                <div class="producto-actions">
+                                    <div class="producto-heart"></div>
+                                    <span class="producto-separador"></span>
+                                    <div class="producto-hammer" id_producto="@{{lastStarted.code}}"></div>
+                                </div>
+                                <div class="producto-cover">
+                                    @{{lastStarted.cover}}
+                                </div>
+                                <div class="leyenda-cover">
+                                    COVER
+                                </div>
+                            </div>
+                        </a>
+                        @endif
+                    @endif
                 </div>
             </div>
         </section>

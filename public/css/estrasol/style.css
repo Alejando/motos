@@ -764,9 +764,9 @@ header.main-header{
 
 /* VIDEOS */
 .video{
-	width: calc(100% + 20px);
-    height: calc(100% + 20px);
-    margin: -10px;
+    width: calc(100% + 20px);
+    height: 410px;
+    margin: -10px -10px -15px -10px;
     border-radius: 10px;
 }
 
@@ -795,8 +795,13 @@ header.main-header{
 .placeholder.verde:hover{
 	background-color: #BCE072;
 }
+.placeholder.naranja:focus{
+    color: #fff;
+    text-decoration: none;
+}
 .placeholder.naranja:hover{
-	background-color: #FFCB7F;
+    color:#fff;
+    background-color: #FFCB7F;
 }
 
 /* PRODUCT MESSAGES */
@@ -810,6 +815,9 @@ header.main-header{
 }
 .producto-mensaje .img-mensaje img{
 	max-height: 130px; 
+}
+.producto-mensaje .mensaje-info{
+    padding-bottom: 47px
 }
 .mensaje-titulo{
 	font-size: 18px;
