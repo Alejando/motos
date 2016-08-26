@@ -5,125 +5,434 @@
 @stop
 
 @section('content-body')
-    <h3>¿Qué son las subastas GlimGlam®?</h3>
-    <p>
-        Es una forma divertida y emocionante de comprar productos exclusivos a precios excepcionalmente bajos. ¡Juega comprando!
-    </p>
-    <h3>¿Desde donde puedo participar?</h3>
-    <p>
-        El servicio actualmente está disponible en la república Mexicana, contamos con una plataforma portable en dispositivos de escritorio y móviles que te permitirán tener una experiencia mas cómoda y amigable.
-    </p>
-    <h3>¿Todos los productos son originales?</h3>
-    <p>
-        Si, cada uno de los productos son adquiridos con distribuidores autorizados de las mejores marcas.
-    </p>
-    <h3>¿Para qué registrarme?</h3>
-    <p>
-        El registro no es obligatorio para navegar y consultar nuestra página pero si es indispensable para poder participar en cada una se nuestras salas, el registro te apoyara en la consulta de subastas en las que participaste, las subastas que lograste llevarte así como un conteo de descuentos y cupones  promocionales que puedes tener disponibles para ti.
-    </p>
-    <h3>¿Quién puede inscribirse?</h3>
-    <p>
-        Cualquier persona mayor de edad que tenga capacidad legal para contratar servicios. Si eres menor de 18 años puedes utilizar GlimGlam® solo con la supervisión de un padre o tutor.
-    </p>
-    <h3>¿Cómo me escribo?</h3>
-    <p>
-        Una vez que te has registrado e iniciado sesión, puedes solicitar tu acceso a la sala de tu interés. Deberás realizar el pago en línea por el acceso a la misma y esperar al arranque de la misma. Puedes lanzar ofertas bajo las condiciones especificadas dentro de la sala, toma en cuenta que hay un máximo y un mínimo de operaciones a realizar así como los montos que puedes ofertar por ser acreedor al producto en cuestión. Además existe penalización de turnos en caso de no lanzar ofertas dentro del lapso cronometrado dentro de la sala.
-    </p>
-    <p>
-        Para conocer mas detallas, visita los Términos y Condiciones. 
-    </p>
-    <h3>¿Qué es el asiento?</h3>
-    <p>
-        Es el lugar que compras para poder participar en la sala virtual del producto por el cual deseas subastar
-    </p>
-    <h3>¿Cómo obtener un asiento?</h3>
-    <p>
-        Regístrate, inicia sesión y selecciona el producto de tu interés y dale clic en oferta para que puedas registrar tu pago de asiento en línea.
-    </p>
-    <h3>¿El pago de mi asiento es reembolsable?</h3>
-    <p>
-        Un asiento no es reembolsable a menos que la subasta sea cancelada o suspendida por GlimGlam®
-    </p>
-    <h3>¿Cuánto dura una subasta?</h3>
-    <p>
-        La duración de cada subasta es distinta y se especifica dentro de la ficha de cada producto a subastar.
-    </p>
-    <h3>¿Qué paso si entro tarde a la subasta?</h3>
-    <p>
-        Si has comprado tu acceso previo al inicio de la subasta podrás integrarte siempre que ésta no haya terminado, considera que mientras mas participación tengas desde el inicio, mas oportunidad tendrás de obtener el producto.
-    </p>
-    <p>
-        Para conocer mas detallas, visita los Términos y Condiciones.
-    </p>
-    <h3>¿Cuándo me convierto en el dueño de un producto subastado?</h3>
-    <p>
-        Si has realizado la subasta mas alta de un producto dentro del tiempo establecido y efectuado el pago de la misma dentro de un plazo no mayor a 24 hrs tu producto será enviado a tu domicilio dentro de la república mexicana.
-    </p>
-    <p>
-        Para conocer mas detallas, visita los Términos y Condiciones.
-    </p>
-    <h3>¿Si no me llevo la subasta, pago lo que oferte durante el juego?</h3>
-    <p>
-        No, solo el que realizó la oferta más alta es el que paga por el producto.
-    </p>
-    <h3>¿En dónde pago la cantidad ofrecida en una subasta?</h3>
-    <p>
-        Al finalizar la subasta podrás realizar tu pago directamente en la página.
-    </p>
-    <h3>¿Cuáles son las formas de pago?</h3>
-    <p>
-        Podrás realizar tus pagos a través de PayPal con tarjeta de crédito, tarjeta de debido o con deposito a cuenta Bancaria.
-    </p>
-    <h3>¿Cuál es el tiempo de entrega de los productos?</h3>
-    <p>
-        El tiempo de entrega es de 2 a 3 semanas por mensajería elegida por GlimGlam®
-    </p>
-    <h3>¿Qué son los cupones de descuento?</h3>
-    <p>
-        Son documentos códigos que podrás ingresar al procesar tus transacciones de pago de subastas ganadas con la finalidad de obtener un descuento adicional otorgados por GlimGlam®
-    </p>
-    <h3>¿Cómo obtengo los cupones de descuento?</h3>
-    <p>
-        Hazte acreedor a un cupón de descuento llevando a cabo los siguientes pasos al cabo de ganar tu primer subasta:   CREO QUE “PRIMER” ESTA DE MAS, LOS VIDEOS SON PARA CADA QUE GANA UNA SUBASTA NO?
-    </p>
-    <p>
-        Graba tu experiencia al desempacar tu producto!.<br>
-        Te invitamos a compartirnos tu video en nuestra fanpage Facebook<br>
-        https://www.facebook.com/glimglam
-        <ol>
-            <li>Dale me gusta!</li>
-            <li>Comparte el video con el hastag #momentoglimglam</li>
-            <li>Recibe tu cupón de descuento para pagar tu próxima subasta</li>
-        </ol>
-    </p>
-    <h3>¿Cómo puedo aplicar los cupones de descuento?</h3>
-    <p>
-        Los cupones son de uso único y no son acumulables con otras promociones, es importante que consultes po cada cupón recibido su vigencia asignada.
-    </p>
-    <p>
-        Todos tus cupones de descuento puedes aplicarlo juntos o separados al momento de pago de una subasta.
-    </p>
-    <h3>¿Los cupones se pueden aplicar para pago de un asiento?</h3>
-    <p>
-        No, solo se pueden utilizar como "saldo a favor" en una subasta terminada.
-    </p>
-    <h3>¿Cómo funcionan las garantías de los productos?</h3>
-    <p>
-        Cada marca y/o producto cuenta con diferentes políticas de garantía. 
-    </p>
-    <p>
-        Si deseas hacer válida una garantía de un producto adquirido, porque presenta alguna falla o defecto de fábrica, te invitamos a contactarnos al vía correo electrónico a contacto@glimglam.mx y un asesor estará en contacto para brindarte el seguimiento correspondiente.
-    </p>
-    <h3>¿Quién cubre los gastos de devolución de mercancía en caso de que el producto tenga un defecto o garantía?</h3>
-    <p>
-        Todos los gastos correspondiente a flete para hacer valida garantias seran cubiertos por el cliente
-    </p>
-    <h3>Si el producto no es de mi total agrado, ¿existe la devolución del dinero?</h3>
-    <p>
-        No existen devolicion de mercancia para esos casos.
-    </p>
-    <h3>¿Cuál es la cantidad de participantes por sala?</h3>
-    <p>
-        La cantidad de participantes por sala varia según el tipo de producto, tomando en cuenta que el límite máximo para todos los productos es de 100 participantes.
-    </p>
+<div class="row faqs">
+    <div class="col-xs-12">
+    <div class="panel-group" id="accordion">
+
+        <!-- Inicio paneles izquierdos -->
+        <div class="panel-left col-sm-6">
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_1">
+                        ¿Qué son las subastas GlimGlam®?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_1" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Es una forma divertida y emocionante de comprar productos exclusivos a precios excepcionalmente bajos. ¡Juega comprando!
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_2">
+                        ¿Desde donde puedo participar?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        El servicio actualmente está disponible en la república Mexicana, contamos con una plataforma portable en dispositivos de escritorio y móviles que te permitirán tener una experiencia mas cómoda y amigable.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_3">
+                        ¿Todos los productos son originales?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Si, cada uno de los productos son adquiridos con distribuidores autorizados de las mejores marcas.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_4">
+                        ¿Para qué registrarme?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_4" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        El registro no es obligatorio para navegar y consultar nuestra página pero si es indispensable para poder participar en cada una se nuestras salas, el registro te apoyara en la consulta de subastas en las que participaste, las subastas que lograste llevarte así como un conteo de descuentos y cupones  promocionales que puedes tener disponibles para ti.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_5">
+                        ¿Quién puede inscribirse?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_5" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Cualquier persona mayor de edad que tenga capacidad legal para contratar servicios. Si eres menor de 18 años puedes utilizar GlimGlam® solo con la supervisión de un padre o tutor.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_6">
+                        ¿Cómo me escribo?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_6" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Una vez que te has registrado e iniciado sesión, puedes solicitar tu acceso a la sala de tu interés. Deberás realizar el pago en línea por el acceso a la misma y esperar al arranque de la misma. Puedes lanzar ofertas bajo las condiciones especificadas dentro de la sala, toma en cuenta que hay un máximo y un mínimo de operaciones a realizar así como los montos que puedes ofertar por ser acreedor al producto en cuestión. Además existe penalización de turnos en caso de no lanzar ofertas dentro del lapso cronometrado dentro de la sala.<br>Para conocer más detalles, visita los <a href="#" target="_blank">Términos y Condiciones</a>.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_7a">
+                        ¿Si no me llevo la subasta, pago lo que oferte durante el juego?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_7a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        No, solo el que realizó la oferta más alta es el que paga por el producto.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+             <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_8a">
+                        ¿En dónde pago la cantidad ofrecida en una subasta?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_8a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Al finalizar la subasta podrás realizar tu pago directamente en la página.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_9a">
+                        ¿Cuáles son las formas de pago?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_9a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Podrás realizar tus pagos a través de PayPal con tarjeta de crédito, tarjeta de debido o con deposito a cuenta Bancaria.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_10a">
+                        ¿Cuál es el tiempo de entrega de los productos?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_10a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        El tiempo de entrega es de 2 a 3 semanas por mensajería elegida por GlimGlam®
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_11a">
+                        ¿Qué son los cupones de descuento?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_11a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Son documentos códigos que podrás ingresar al procesar tus transacciones de pago de subastas ganadas con la finalidad de obtener un descuento adicional otorgados por GlimGlam®
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_12a">
+                        ¿Cómo obtengo los cupones de descuento?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_12a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>Hazte acreedor a un cupón de descuento llevando a cabo los siguientes pasos al cabo de ganar tu primer subasta:   CREO QUE “PRIMER” ESTA DE MAS, LOS VIDEOS SON PARA CADA QUE GANA UNA SUBASTA NO?</p>
+                        <p>Graba tu experiencia al desempacar tu producto!.<br>
+                            Te invitamos a compartirnos tu video en nuestra fanpage Facebook<br>
+                            <a href="https://www.facebook.com/glimglam" target="_blank">https://www.facebook.com/glimglam</a></p>
+
+                        <p>Dale me gusta!<br>
+                        Comparte el video con el hastag #momentoglimglam<br>
+                        Recibe tu cupón de descuento para pagar tu próxima subasta</p>
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+             <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_17a">
+                        Si el producto no es de mi total agrado, ¿existe la devolución del dinero?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_17a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        No existen devolicion de mercancia para esos casos.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+
+        </div> 
+        <!-- fin paneles izquierdos -->
+
+        <!-- Inicio paneles derechos -->
+        <div class="panel-left col-sm-6">
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_7">
+                        ¿Qué es el asiento?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_7" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Es el lugar que compras para poder participar en la sala virtual del producto por el cual deseas subastar.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_8">
+                        ¿Cómo obtener un asiento?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_8" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Regístrate, inicia sesión y selecciona el producto de tu interés y dale clic en oferta para que puedas registrar tu pago de asiento en línea.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_9">
+                        ¿El pago de mi asiento es reembolsable?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_9" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Un asiento no es reembolsable a menos que la subasta sea cancelada o suspendida por GlimGlam®
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_10">
+                        ¿Cuánto dura una subasta?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_10" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        La duración de cada subasta es distinta y se especifica dentro de la ficha de cada producto a subastar.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_11">
+                        ¿Qué paso si entro tarde a la subasta?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_11" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Si has comprado tu acceso previo al inicio de la subasta podrás integrarte siempre que ésta no haya terminado, considera que mientras mas participación tengas desde el inicio, mas oportunidad tendrás de obtener el producto.<br>Para conocer mas detallas, visita los <a href="#" target="_blank">Términos y Condiciones</a>.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_12">
+                        ¿Cuándo me convierto en el dueño de un producto subastado?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_12" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Si has realizado la subasta mas alta de un producto dentro del tiempo establecido y efectuado el pago de la misma dentro de un plazo no mayor a 24 hrs tu producto será enviado a tu domicilio dentro de la república mexicana.<br>Para conocer mas detallas, visita los <a href="#" target="_blank">Términos y Condiciones</a>.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_13a">
+                        ¿Cómo puedo aplicar los cupones de descuento?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_13a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Los cupones son de uso único y no son acumulables con otras promociones, es importante que consultes po cada cupón recibido su vigencia asignada.<br>Todos tus cupones de descuento puedes aplicarlo juntos o separados al momento de pago de una subasta.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_14a">
+                        ¿Los cupones se pueden aplicar para pago de un asiento?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_14a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        No, solo se pueden utilizar como "saldo a favor" en una subasta terminada.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_15a">
+                        ¿Cómo funcionan las garantías de los productos?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_15a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Cada marca y/o producto cuenta con diferentes políticas de garantía.<br>Si deseas hacer válida una garantía de un producto adquirido, porque presenta alguna falla o defecto de fábrica, te invitamos a contactarnos al vía correo electrónico a contacto@glimglam.mx y un asesor estará en contacto para brindarte el seguimiento correspondiente.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_16a">
+                        ¿Quién cubre los gastos de devolución de mercancía en caso de que el producto tenga un defecto o garantía?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_16a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Todos los gastos correspondiente a flete para hacer valida garantias seran cubiertos por el cliente
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+            
+            <!-- panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#cont_17a">
+                        ¿Cuál es la cantidad de participantes por sala?
+                     </a>
+                    </h4>
+                </div>
+                <div id="cont_17a" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        La cantidad de participantes por sala varia según el tipo de producto, tomando en cuenta que el límite máximo para todos los productos es de 100 participantes.
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+        </div> 
+        <!-- fin paneles derechos -->
+    </div>
+</div>
+</div>
 @stop

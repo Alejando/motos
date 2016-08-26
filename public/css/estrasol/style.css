@@ -1585,6 +1585,44 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #00bcb6;
 }
 
+.panel-default>.panel-heading {
+    background-color: #0099A5;
+    color: #fff !important;
+    border-color: transparent !important;
+    border-radius: 0 !important;
+}
+.panel-default:hover >.panel-heading {
+    background-color: #00676f;
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: rgb(222, 222, 222);
+    border: 0px solid #D5A00F;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0);
+    box-shadow: 0 1px 1px rgba(0,0,0,0);
+}
+.panel-group .panel {
+    margin-bottom: 0;
+    border-radius: 11px 11px 0 0;
+}
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 20px;
+    font-weight: 100;
+    color: inherit;
+}
+.panel-title a{
+    text-decoration: none;
+}
+.panel-group .panel+.panel {
+    margin-top: 15px;
+}
+.row.faqs {
+    margin: 30px auto;
+}
+
 /*-----Fancy JP-----*/
 .fancy-txt {
     text-align: left;

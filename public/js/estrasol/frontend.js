@@ -262,6 +262,11 @@ $(document).ready(function(){
                 $(".tdec-cont").hide(200);
             }
         });
+        
+        //FUNCIÓN PARA ACORDIONES
+        $('#accordion').on('show.bs.collapse', function () {
+        $('#accordion .in').collapse('hide');
+        });
 });
 
 
