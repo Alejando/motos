@@ -1,7 +1,7 @@
 <?php
 namespace GlimGlam\Http\Controllers\Api;
 class UserController extends \GlimGlam\Libs\CoreUtils\ApiRestController{
-    protected static $model = \GlimGlam\Models\Preference::class;
+    protected static $model = \GlimGlam\Models\User::class;
     
     public function addFav($code){
         $user = \Auth::user();

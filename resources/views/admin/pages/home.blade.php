@@ -11,8 +11,7 @@
 </div>
 @stop
 @section('js-scripts')
-    <script type="text/javascript" src="{{asset('js/bower_components/angular/angular.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/bower_components/angular-route/angular-route.min.js')}}"></script>
+    
     {{-- JS para el selector de horas--}}
     <script type="text/javascript" src="{{asset('js/bower_components/moment/min/moment.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bower_components/angular-moment/angular-moment.min.js')}}"></script>
@@ -21,7 +20,7 @@
     <script type="text/javascript" src="{{asset('js/bower_components/re-tree/re-tree.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bower_components/ng-device-detector/ng-device-detector.min.js')}}"></script>
     {{-- Js para el selector de fechas--}}
-    <script type="text/javascript" src="{{asset('js/estrasol/admin.js')}}"></script>
+    
     <script type="text/javascript" src="{{asset('js/bower_components/angular-bootstrap/ui-bootstrap-tpls.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bower_components/angular-i18n/angular-locale_es-mx.js')}}"></script>
@@ -43,6 +42,8 @@
     <script src="{{asset('js/bower_components/angular-dropzone/lib/angular-dropzone.js')}}" type="text/javascript"></script>
     <script type="text/javascript" src="{{asset('js/laroute.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
+    
+    <script type="text/javascript" src="{{asset('js/estrasol/admin.js')}}"></script>
 @stop
 @section('styles')
     <link rel="stylesheet" href="{{asset('css/estrasol/admin.css')}}">
