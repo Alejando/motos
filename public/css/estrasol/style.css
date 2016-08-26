@@ -661,7 +661,8 @@ header.main-header{
 	background-image: url(../../img/icon-heart-white.png);
 }
 .producto-hover .producto-hammer:hover,
-.producto-hover .producto-heart:hover{
+.producto-hover .producto-heart:hover,
+.producto-hover .producto-heart.in-fav{
 	background-position: center bottom;
 }
 .producto-hover .producto-cover{
