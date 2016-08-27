@@ -1,4 +1,30 @@
-var glimglam = angular.module("glimglam", ['ui-rangeSlider']); 
+!function () {
+    var g = window.jsGlimglam = {};
+    jsGlimglam.fn = {};
+}();
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+!function () {
+    window.jsGlimglam.fn.auctions = {
+        addFav : function (code) {
+            var url = laroute.route('user.add-fav',{
+                'code' : code
+            });
+            return $.get(url,{},$.noop,'json');
+        },
+        removeFav : function (code) {
+            var url = laroute.route('user.remove-fav',{
+                 'code' : code
+             });
+             return $.get(url,{},$.noop,'json');
+         }
+    };
+}();
+
+var glimglam = angular.module("glimglam", ['ui-rangeSlider','timer']);  
 glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval) {
     //<editor-fold defaultstate="collapsed" desc="constructor">
     var ModelBase = function (args) {
@@ -353,8 +379,8 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         COVER_SLIDER_UPCOMING :'slider-upcoming',
         alias: 'auction',
         setters : {
-//            start_date : ModelBase.setDate,
-//            end_date : ModelBase.setDate,
+           start_date : ModelBase.setDate,
+            end_date : ModelBase.setDate,
             max_offer : ModelBase.setFloat,
             min_offer : ModelBase.setFloat
         },
@@ -363,10 +389,11 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'title',
             'code',
             'description',
-            'max_bid',
-            'min_bid',
+            'cover',
             'max_offer',
             'min_offer',
+            'bids',
+            'min_bids',
             'username_top',
             'user_top',
             'delay',
@@ -380,7 +407,8 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'sold_for',
             'winner',
             'last_offer',
-            'winnername'
+            'winnername',
+            'num_bids'
         ],
         relations : [],
         getByCode : function (code){
@@ -459,6 +487,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'url': url,
                 'data' : data
             }).then(function(result) {
+                console.log(result);
                 $defer.resolve(result.data);
             }, function(r) {
                 $defer.reject(r);
@@ -473,7 +502,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             return url;
         },
         getStartDate : function () {
-            return "Fecha de inicio";
+            return new Date(this.start_date);
         },
         getEndDate : function () {
             return "Fecha de Termino";
@@ -490,6 +519,25 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         },
         isFinished : function () {
             return this.status == Auction.FINISHED;
+        },
+        isStandBy : function () {
+            return this.status == Auction.STAND_BY;
+        },
+        getInfoBid : function(){
+            var $defer = $q.defer();
+            var url = laroute.route('auction.get-info-bid', {
+                'code':this.code
+            });
+            console.log(url);
+            $http({
+                'method' : 'GET',
+                'url': url
+            }).then(function(result) {
+                $defer.resolve(result.data);
+            }, function(r) {
+                $defer.reject(r);
+            });
+            return $defer.promise;
         }
     });    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
@@ -527,11 +575,11 @@ glimglam.factory('Paginacion', function () {
     };
     return Paginacion;
 });
-glimglam.factory('User', function (ModelBase,$q,$http) {    
+glimglam.factory('User', function (ModelBase,$q,$http) {
     var User = function (args) {
         ModelBase.apply(this, arguments);
     };
-    ModelBase.createModel(User , {   
+    ModelBase.createModel(User , {
         FINISHED : 2,
         STARTED : 1,
         STAND_BY : 0,
@@ -544,11 +592,22 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
         attributes: [
             'id',
             'name',
-            'email'
+            'email',
+            'profile',
+            'birthday',
+            'gender'
         ],
         relations : []
     }, {
-    });    
+        fnGender : function(gender){
+            console.log(gender);
+            if(gender === undefined){
+                return this.gender.toString();
+            }
+            this.gender = parseInt(gender, 10);
+        }
+    });
+    
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
     return User;
 });
@@ -592,26 +651,63 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
             $scope.lastStarted.selfUpdate(1500000, $scope);
         } else {
             Auction.getUpcoming(1).then(function(auction){
-                console.log(auction);
                 $scope.lastStarted = auction[0];
                 $scope.lastStarted.selfUpdate(1500000, $scope);
+                console.log($scope.lastStarted);
             });
         }
     });
 });
-glimglam.controller('public.roomCtrl', function ($scope, Auction) {
+glimglam.controller('public.profileCtrl', function ($scope, User) {
+    
+    User.getById(5).then(function(user){
+        console.log(user);
+        $scope.user=user;
+        console.log(user.gender);
+    });
+    $scope.message='Hoa';
+});
+glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $element,$compile) {
     $scope.id_user = window.id_user;
     $scope.objAuction = new Auction(auction);
-    console.log($scope.objAuction );
+    $scope.totalBids = 0;
+    $scope.nextBid = new Date();
+    $('.section-room').fadeIn('slow');      
+    $interval(function() {
+        $scope.now = new Date();
+    }, 100);
+    $interval(function(){
+        console.log('10 seg');
+        $scope.getInfo();
+    }, 10000);
     $scope.rangeOferta = {
          min: 0,
          max: $scope.objAuction.min_offer,
          limitMax: $scope.objAuction.max_offer,
          limitMin: $scope.objAuction.min_offer
     };
+    $scope.help = {
+        nextBid : new Date()
+    }
+    $scope.getInfo = function (){
+        $scope.objAuction.getInfoBid().then(function(info){
+                $scope.nextBid = new Date(info.nextbid);
+                $scope.help.nextBid = $scope.nextBid.getTime();
+                $scope.totalBids = info.totalbids;
+                $scope.totalFaults = info.faults;
+                $scope.unqualified = info.unqualified;
+                $element.find('.delay-bid').empty().append('<timer interval="1000" language="es"  class="subasta-tiempo" '+
+                                  '  end-time="nextBid">' +
+                                      '  <small>Puedes ofertar en</small><br>{{minutes}} min, {{seconds}} seg '+
+                                "</timer>");
+                $compile($element.find('.delay-bid'))($scope);
+            });
+    }
+    $scope.getInfo();
     $scope.placeBid = function(){
         $scope.objAuction.placeBid($scope.rangeOferta.max).then(function(data) {
             $scope.objAuction.refresh();
+            $scope.getInfo();
         });
     };
     $scope.objAuction.selfUpdate(1000, $scope);

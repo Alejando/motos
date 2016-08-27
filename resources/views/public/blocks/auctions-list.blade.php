@@ -1,5 +1,5 @@
 @foreach($auctions as $a)
-    @include('public.blocks.product',['auction'=> $a])
+    @include('public.blocks.product',['auction'=> $a ,'favs' => $favs])
 @endforeach
 {{--
 @for($i=0; $i<4; $i++)

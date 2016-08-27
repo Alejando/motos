@@ -182,12 +182,19 @@ Route::get('mi-perfil/', [
 //Formulario de checkout de lugar  en la subasta
 Route::get('subastas/asiento-checkout/{code}', [ 
     'as' => 'auction.enrollment-form',
-    'uses' =>  'AuctionController@enrollmentPayment'
+    'uses' =>  'AuctionController@enrollmentPayment',
+    'middleware' => 'auth'
 ]);
 //Proceso de redireccion a PayPal para la compra de los lugares en la subasta
 Route::get('subastas/asientos-solicitud-pay-pal/{code}', [
     'as' => 'auction.checkout',
-    'uses' => 'PaypalController@checkoutEnrollment'
+    'uses' => 'PaypalController@checkoutEnrollment',
+    'middleware' => 'auth'
+]);   
+Route::get('subastas/finish/{code}', [
+    'as' => 'auction.finish-payment',
+    'uses' => 'AuctionController@confirmPayment',
+    'middleware' => 'auth'
 ]);
 //Callback de pago de lugar en subasata con paypal
 Route::get('subastas/lugares/estatus-pago', [

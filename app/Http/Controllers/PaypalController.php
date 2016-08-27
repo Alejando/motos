@@ -144,9 +144,6 @@ class PaypalController extends BaseController {
         
         $itemsList = new ItemList();
         $itemsList->setItems([$item]);
-        
-        
-//        dd($auction->cover);
          
         $subtotal = $auction->cover;        
         $details = new Details();
@@ -207,9 +204,8 @@ class PaypalController extends BaseController {
     public function enrrolmentPaymentStatus() {
         $user = \Auth::User();        
         $args['user'] = $user;
-        $args['to'] = 'wariodiaz@gmail.com';
-        $code = \Session::get('payment_auction_code');        
-             
+        $args['to'] = $user->email;
+        $code = \Session::get('payment_auction_code');                     
         \GlimGlam\Libs\Helpers\Mail::payment($args);
         $payment_id = \Session::get('paypal_payment_id');
         \Session::forget('paypal_payment_id');
@@ -223,14 +219,12 @@ class PaypalController extends BaseController {
         $execution = new PaymentExecution();
         $execution->setPayerId($payerId);
         $result = $payment->execute($execution, $this->_api_context);
-//        return $result->toJSON();
         if($result->getState() == 'approved') {
             $idPayment = \Session::get('payment_temp');
             $ggPayment = \GlimGlam\Models\Payment::getById($idPayment);
             $ggPayment->approved = true;
             $ggPayment->api_info = $api_info = $result->toJSON();
             $ggPayment->save();
-            
             $auction = \GlimGlam\Models\Auction::getByCode($code);
             $enrollment = new \GlimGlam\Models\Enrollment([
                 'user' => $user->id,
@@ -243,8 +237,7 @@ class PaypalController extends BaseController {
             Session::forget('payment_temp');
             return \redirect(route('auction.payment.approvated'));
         }
-        
-        return \redirect(route('acution.payment.approvate'));
+        return \redirect(route('auction.payment.failed'));
     }
 
 }

@@ -14,7 +14,6 @@
                 <p class="subasta-nombre">{{$auction->title}}</p>
                 <p style="margin: 0;">Fecha de inicio:</p>
                 <p><span class="subasta-tiempo2 countdown" start_date="{{$auction->start_date}}"></span></p>
-                
             </div>
             <div class="col-xs-6" style="display: none;">
                 <div class="caja-contador participacion-p">
@@ -162,6 +161,11 @@
                 </div>
                 --}}
             </div>
+            @if( isset($error) && $error == true )
+            <div class="col-xs-12">
+                <p class="message-error text-right">{{$message}}</p>
+            </div>
+            @endif
         </div>
     </div>
 </section>

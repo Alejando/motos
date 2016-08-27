@@ -1,4 +1,4 @@
-@extends('public.base')
+@extends('public.admin')
 @section('body')
 <div ng-app="glimglamAdmin" ng-controller="mainCtrl">
     <div class="title-section shadow" ng-show="subSeccion">
@@ -11,7 +11,13 @@
 </div>
 @stop
 @section('js-scripts')
+    <script>var ivaCant = {{config('app.iva')}};</script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{asset('js/thirdparty/zoom/jquery.elevatezoom.js')}}"></script>
     
+    <script type="text/javascript" src="{{asset('js/laroute.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bower_components/angular/angular.min.js')}}"></script>
     {{-- JS para el selector de horas--}}
     <script type="text/javascript" src="{{asset('js/bower_components/moment/min/moment.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bower_components/angular-moment/angular-moment.min.js')}}"></script>
@@ -36,11 +42,11 @@
     <script src="{{asset('js/bower_components/datatables/media/js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js')}}" type="text/javascript"></script>
     
+    <script src="{{asset('js/bower_components/angular-route/angular-route.min.js')}}" type="text/javascript"></script>
     
     {{-- Js para dropzone --}}
     <script src="{{asset('js/bower_components/dropzone/downloads/dropzone.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/bower_components/angular-dropzone/lib/angular-dropzone.js')}}" type="text/javascript"></script>
-    <script type="text/javascript" src="{{asset('js/laroute.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
     
     <script type="text/javascript" src="{{asset('js/estrasol/admin.js')}}"></script>

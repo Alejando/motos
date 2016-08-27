@@ -21,7 +21,9 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     
     protected $hidden = ['created_at', 'updated_at'];
-    
+    public function getNextAunctionBuyable($user){
+        
+    }
     // <editor-fold defaultstate="collapsed" desc="getTotalBids">
     public function getTotalBids() {
         return rand(20, 50);

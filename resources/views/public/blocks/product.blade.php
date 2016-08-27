@@ -11,7 +11,7 @@
         <div id_producto="{{$auction->code}}" class="producto-hover transition-0-3 link-subasta no-border">
             <div class="producto-titulo{{strlen($auction->title) < 50 ? ' producto-titulo-grande' : '' }}">{{$auction->title}}</div>
             <div class="producto-actions">
-                <div class="producto-heart"></div>
+                <div class="producto-heart{{ (isset($favs) && in_array($auction->id, $favs)) ? ' in-fav':''}}"></div>
                 <span class="producto-separador"></span>
                 <div class="producto-hammer" id_producto="{{$auction->code}}"></div>
             </div>
