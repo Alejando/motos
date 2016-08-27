@@ -240,4 +240,16 @@ $route->get('{slug}',[ //Contenido general
     'uses'=>'PublicController@content'
 ]);
 
+Route::get('usuario/info-facturacion', [
+    'as'=>'user.bills-info',
+    'uses'=>'BillsInfoCtrl@getInfo',
+    'middleware' => 'auth'
+]);
+
+Route::post('usuario/info-facturacion', [
+    'as'=>'user.bills-info',
+    'uses'=>'BillsInfoCtrl@setInfo',
+    'middleware' => 'auth'
+]);
+
 
