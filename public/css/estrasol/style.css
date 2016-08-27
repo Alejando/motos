@@ -1377,11 +1377,12 @@ form.fancy-form {
     margin: auto;
     position: relative;
     top: -306px;
-    
+    width: 190px;
+    height: auto;
     border-radius: 50%;
 }
 .foto-perfil img.img-profile:hover {
-    opacity: 0.4;
+    opacity: 0.7;
 }
 .participacion-actual {
     text-align: center;
