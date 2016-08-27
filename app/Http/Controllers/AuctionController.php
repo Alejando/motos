@@ -32,8 +32,10 @@ class AuctionController extends BaseController {
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="paymentFailed">
-    public function paymentFailed() {
-        return view ('auction-payment-failed');
+    public function paymentFailed($code) {
+        $user = \Auth::user();
+        $auction = \GlimGlam\Models\Auction::getByCode($code);
+        return view ('public.pages.auction-payment-failed', ['auction'=>$auction, 'user'=>$user]);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="room">
@@ -56,7 +58,6 @@ class AuctionController extends BaseController {
         return ['success' => $success];
     }
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="checkout">
     public function paymentWin($code) {
         if(!Auth::check()){
@@ -76,14 +77,17 @@ class AuctionController extends BaseController {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="confirmPayment">
     public function confirmPayment($code) {
-        return view('public.pages.auction-confirm-payment');
+        $user = \Auth::user();
+        $auction = \GlimGlam\Models\Auction::getByCode($code);
+        return view('public.pages.auction-confirm-payment', ['auction'=>$auction, 'user'=>$user]);
     }
     // </editor-fold>
-
+    // <editor-fold defaultstate="collapsed" desc="getInfoBid">
     public function getInfoBid($code) {
         $user = \Auth::user();
         /* @var $auction \GlimGlam\Models\Auction */
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         return $auction->getInfoBid($user->id);
     }
+    // </editor-fold>
 }

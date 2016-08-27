@@ -181,15 +181,18 @@ Route::get('mi-perfil/', [
 
 Route::get('subasta/entradas-checkout/{code}', [
     'as' => 'auction.enrollment-form',
-    'uses' =>  'AuctionController@enrollmentPayment'
+    'uses' =>  'AuctionController@enrollmentPayment',
+    'middleware' => 'auth'
 ]);
 Route::get('subastas/lugares/checkout/{code}', [
     'as' => 'auction.checkout',
-    'uses' => 'PaypalController@checkoutEnrollment'
+    'uses' => 'PaypalController@checkoutEnrollment',
+    'middleware' => 'auth'
 ]);   
 Route::get('subastas/finish/{code}', [
     'as' => 'auction.finish-payment',
-    'uses' => 'AuctionController@confirmPayment'
+    'uses' => 'AuctionController@confirmPayment',
+    'middleware' => 'auth'
 ]);
 Route::get('subastas/lugares/estatus-pago', [
     'as' => 'enrollment.payment',
@@ -202,7 +205,7 @@ Route::get('subastas/confirmacion-pago', [
     'as' => 'auction.payment.approvated',
     'uses' => 'AuctionController@paymentApprovated'
 ]);
-Route::get('subastas/error-en-pago', [
+Route::get('subastas/error-en-pago/{code}', [
     'as' => 'auction.payment.failed',
     'uses' => 'AuctionController@paymentFailed'
 ]);

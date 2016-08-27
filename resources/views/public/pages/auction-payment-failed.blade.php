@@ -1,0 +1,1 @@
+@include('public.pages.enrollment-payment',['auction'=>$auction,'user'=>$user,'error'=>true, 'message'=>'No se pudo procesar tu pago, intentalo nuevamente'])
