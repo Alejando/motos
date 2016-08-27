@@ -44,10 +44,11 @@
         <section class="container-fluid nopagging bg-blanco input-datos">
                 <div class="container">
                         <div class="row btns-perfil">
-                                <div class="col-md-6 col-md-offset-3">
-                                        <button class="btn-perfil sw-perfil perfil-activo" type="submit">Ajustar Perfil</button>
-                                        <button class="btn-perfil sw-detalles" type="submit">Detalles de Subastas</button>
-                                        <!-- <button class="btn-perfil sw-metodo" type="submit">Método de Pago</button> -->
+                                <div class="col-md-8 col-md-offset-2">
+                                        <button class="btn-perfil sw-perfil perfil-activo" type="submit">Mi Perfil</button>
+                                        <button class="btn-perfil sw-detalles" type="submit">Mi Subastas</button>
+                                        <button class="btn-perfil sw-detalles" type="submit">Próximas </button>
+                                        <button class="btn-perfil sw-metodo" type="submit">Mis Favoritas</button>
                                 </div>
                         </div>
                         <div id="cont-inputs" class="row">
@@ -55,7 +56,7 @@
                                 <!-- CONTENEDOR DE PERFIL -->
 
                                 <!-- CONTENEDOR DE SUBASTAS -->
-                                 <div class="col-md-3 inputs-mgn">
+                                <!-- <div class="col-md-3 inputs-mgn">
                                         <div class="caja-detalle">
                                                 <img src="img/caja.png" class="img-responsive">
                                                 <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
@@ -154,7 +155,7 @@
                                         <form class="login-form">
                                             <div class="form-group row">
                                                 <div class="col-sm-12">
--->                                                    <input type="email" name="correo" class="form-control2" placeholder="Correo electrónico"> </div><!--
+                                                    <input type="email" name="correo" class="form-control2" placeholder="Correo electrónico"> </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-sm-12">
@@ -166,7 +167,7 @@
                                                 </div>
                                             </div>
                                         </form>
-                                </div> 
+                                </div> -->
 
                         </div>
                 </div>

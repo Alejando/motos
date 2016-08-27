@@ -142,11 +142,16 @@ Route::group(['prefix' => 'api'], function () use (&$route){
     $addAPI('address','Address');
     $addAPI('auction','Auction');
     $addAPI('content','Content');
+    Route::get('user/auth', [
+        'as' => 'user.get-auth-user',
+        'uses' => 'Api\\UserController@getAuth'
+    ]);
     $addAPI('user','User');
     Route::get('user/add-fav/{code}', [
         'as' => 'user.add-fav',
         'uses' => 'Api\\UserController@addFav'
     ]);
+    
     Route::get('user/remove-fav/{code}', [
         'as' => 'user.remove-fav',
         'uses' => 'Api\\UserController@removeFav'

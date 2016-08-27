@@ -20,8 +20,28 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
             'birthday',
             'gender'
         ],
-        relations : []
+        relations : [],
+        getAuthUser : function () {
+            var $def = $q.defer();
+            var url = laroute.route('user.get-auth-user');
+            var self = this;
+            $http.get(url,{}).then(function(result){
+                var user = self.build(result.data);
+                $def.resolve(user);
+            });
+            return $def.promise;
+        },
     }, {
+        
+        getMyWinds : function () {
+            
+        },
+        getMyEnroledAuctions : function() {
+            
+        }, 
+        uploadProfile : function () {
+            
+        },
         fnGender : function(gender){
             console.log(gender);
             if(gender === undefined){
