@@ -26,7 +26,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $enrol = Enrollment::where('user', '=', $user->id)
                 ->where('auction', '=', $this->id)
                 ->get()->count();
-        return count($enrol)>0;
+        return $enrol > 0;
     }
     
     public static function getBuyables($user, $returnQuery = false){
