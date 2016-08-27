@@ -21,8 +21,27 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     
     protected $hidden = ['created_at', 'updated_at'];
-    public function getNextAunctionBuyable($user){
-        
+    
+    public function isEnrolled ($user){
+        $enrol = Enrollment::where('user', '=', $user->id)
+                ->where('auction', '=', $this->id)
+                ->get()->count();
+        return count($enrol)>0;
+    }
+    
+    public static function getBuyables($user, $returnQuery = false){
+        $timeLimit = new \DateTime;
+        $timeLimit->add(new \DateInterval('PT1H'));
+        $idAcutionsErrolmented = $user->enrolmensAuntionsIds();
+        $auctions = self::whereNotIn('id', $idAcutionsErrolmented)
+                ->where('ready','=', self::READY)
+                ->where('status','=', self::STATUS_STAND_BY)
+                ->where('start_date', '>', $timeLimit)
+                ->orderBy('start_date', 'asc');
+        return $returnQuery ? $auctions : $auctions->get();
+    }
+    public function getTotalEnrolments(){
+        return Enrollment::where('auction','=', $this->id)->get()->count();
     }
     // <editor-fold defaultstate="collapsed" desc="getTotalBids">
     public function getTotalBids() {

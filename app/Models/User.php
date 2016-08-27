@@ -62,6 +62,38 @@ class User extends Authenticatable {
         return $this->belongsToMany('\GlimGlam\Models\Preference');
     }
     
+    public function getMyEnrolmentsAuctions($returnQuery = false ) {
+        $enrolments = self::getMyEnrolments(true)->select('auction')->get();
+        $auctionsIds = [];
+        foreach($enrolments as $enrol) {
+            $auctionsIds[] = $enrol->auction;
+        }
+        $query = Auction::whereIn('id', $auctionsIds);
+        return $returnQuery ? $query : $query->get();
+    }
+    public function getMyEnrolments($returnQuery = false) {
+        $query = Enrollment::where('user', '=' , $this->id );
+        return $returnQuery? $query : $query->get();
+    }
+    
+    public function getMyWins($returnQuery = false) {
+        $ids = self::enrolmensAuntionsIds();
+        $query = Auction::whereIn('id', $ids)
+                ->where('status','=', Auction::STATUS_FINISHED)
+                ->where('winner', '=', $this->id );
+        return $returnQuery ? $query : $query->get();
+    }
+    
+    public function enrolmensAuntionsIds() {
+        $auctions = self::getMyEnrolments(true)->select('auction')->get();
+        $ids = [];
+        foreach($auctions as $ac){
+            $ids[] = $ac->auction;
+        }
+        return $ids;
+    }
+    
+    
     public function isAdmin() {
         return $this->perfil == self::PROFILE_ADMIN;
     }
