@@ -223,7 +223,7 @@ Route::get('subastas/error-en-pago', [ //Si ubo un error en el pago
 Route::get('subastas/juego/{code}', [ //Room de Juego
     'as' => 'auction.room',
     'uses' => 'AuctionController@room',
-    'middleware' => 'auth'
+    'middleware' => ['auth', 'enrolled:false']
 ]);
 Route::get('subastas/juego/info/{code}', [
     'as' => 'auction.get-info-bid',

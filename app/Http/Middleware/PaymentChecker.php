@@ -13,7 +13,7 @@ class PaymentChecker
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
+    public function handle($request, Closure $next, $redirectRoom = true) {
         $code = $request->route()->parameters()['code'];
         $payment = false;
         $auction = \GlimGlam\Models\Auction::getByCode($code);
@@ -22,7 +22,11 @@ class PaymentChecker
         $payment = $auction->isEnrolled($user);
         
         if(!$payment) {
-            return redirect(asset('subastas/asiento-checkout/'.$code));
+            return redirect(route('auction.enrollment-form',['code'=>$code]));
+        }else{
+            if($redirectRoom != 'false'){
+                return redirect(route('auction.room',['code'=>$code]));
+            }
         }
         return $next($request);
         
