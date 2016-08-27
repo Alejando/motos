@@ -100,6 +100,15 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return $path;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
+    public function getCoverAttribute() {
+        
+        if( (new \DateTime() )->format('N') == config('app.diaPreventa')){
+            return $this->attributes['preorder_cover'];
+        }
+        return $this->attributes['cover'];
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getCovers">
     public function getCovers(){
         return [
@@ -384,10 +393,12 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return true;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="close">
     public function close() {
         $this->status=self::STATUS_FINISHED;
         $this->save();
     }
+    // </editor-fold>
     
     public function getInfoBid($id_user){
         $c = Bid::where('user','=', $id_user)
