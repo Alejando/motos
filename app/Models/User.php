@@ -35,9 +35,11 @@ class User extends Authenticatable {
     protected $hidden = [
         'password', 'remember_token',
     ];
+    // <editor-fold defaultstate="collapsed" desc="fav">
     public function fav(){
         return $this->belongsToMany(\GlimGlam\Models\Auction::class, 'auctions_fav');
     }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="removeFav">
     public function removeFav($auction) {
         return $this->fav()->detach($auction);
@@ -53,10 +55,17 @@ class User extends Authenticatable {
         return false;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getPublicName">
     public function getPublicName(){
         $name = explode('@',$this->email);
         return '@'.$name[0];
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="billsInfo">
+    public function billsInfo(){
+        return $this->hasOne(BillsInfo::class);
+    }
+    // </editor-fold>
     
     public function preferences(){
         return $this->belongsToMany('\GlimGlam\Models\Preference');

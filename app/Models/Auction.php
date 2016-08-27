@@ -26,7 +26,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $enrol = Enrollment::where('user', '=', $user->id)
                 ->where('auction', '=', $this->id)
                 ->get()->count();
-        return count($enrol)>0;
+        return $enrol > 0;
     }
     
     public static function getBuyables($user, $returnQuery = false){
@@ -98,6 +98,15 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     private static function getAuctionFilesPath ($code) {
         $path = public_path()."/upload/auctions/$code/";
         return $path;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
+    public function getCoverAttribute() {
+        
+        if( (new \DateTime() )->format('N') == config('app.diaPreventa')){
+            return $this->attributes['preorder_cover'];
+        }
+        return $this->attributes['cover'];
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getCovers">
@@ -384,10 +393,12 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return true;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="close">
     public function close() {
         $this->status=self::STATUS_FINISHED;
         $this->save();
     }
+    // </editor-fold>
     
     public function getInfoBid($id_user){
         $c = Bid::where('user','=', $id_user)

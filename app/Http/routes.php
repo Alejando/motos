@@ -57,7 +57,8 @@ Route::get('cron/iniciar-subastas', [
 ]);
 Route::get('/pago-ganador/{code}', [
     'as'=>'payment.win',
-    'uses'=>'AuctionController@paymentWin'
+    'uses'=>'AuctionController@paymentWin',
+    'middleware' => 'auth'
 ]);
 Route::get('/loginFacebook', [
     'as'=>'facebook.login',
@@ -199,7 +200,7 @@ Route::get('subastas/asientos-solicitud-pay-pal/{code}', [
 Route::get('subastas/finish/{code}', [
     'as' => 'auction.finish-payment',
     'uses' => 'AuctionController@confirmPayment',
-    'middleware' => 'auth'
+    'middleware' => ['auth', 'enrolled']
 ]);
 //Callback de pago de lugar en subasata con paypal
 Route::get('subastas/lugares/estatus-pago', [
@@ -207,19 +208,16 @@ Route::get('subastas/lugares/estatus-pago', [
     'uses' => 'PaypalController@enrrolmentPaymentStatus'
 ]);
 
-Route::get('subastas/finish/{code}', [
-    'as' => 'auction.finish-payment',
-    'uses' => 'AuctionController@confirmPayment'
-]);
-
 Route::get('subastas/lugar/error-pago',[ //Pagina de error si paypal no aprueva el pago del lugar
     'as' => 'acution.payment.reject',
-    'uses' => 'AuctionController@paymentEnrrolmentReject'
+    'uses' => 'AuctionController@paymentEnrrolmentReject',
+    'middleware' => 'auth'
 ]);
 
 Route::get('subastas/confirmacion-pago', [ //Pagna de confirmación de pago de lugar
     'as' => 'auction.payment.approvated',
-    'uses' => 'AuctionController@paymentApprovated'
+    'uses' => 'AuctionController@paymentApprovated',
+    'middleware' => 'auth'
 ]);
 
 Route::get('subastas/error-en-pago', [ //Si ubo un error en el pago
@@ -229,11 +227,13 @@ Route::get('subastas/error-en-pago', [ //Si ubo un error en el pago
 
 Route::get('subastas/juego/{code}', [ //Room de Juego
     'as' => 'auction.room',
-    'uses' => 'AuctionController@room'
+    'uses' => 'AuctionController@room',
+    'middleware' => ['auth', 'enrolled:false']
 ]);
 Route::get('subastas/juego/info/{code}', [
     'as' => 'auction.get-info-bid',
-    'uses' => 'AuctionController@getInfoBid'
+    'uses' => 'AuctionController@getInfoBid',
+    'middleware' => 'auth'
 ]);
 
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
@@ -243,6 +243,18 @@ $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
 $route->get('{slug}',[ //Contenido general
     'as'=>'content',
     'uses'=>'PublicController@content'
+]);
+
+Route::get('usuario/info-facturacion', [
+    'as'=>'user.bills-info',
+    'uses'=>'BillsInfoCtrl@getInfo',
+    'middleware' => 'auth'
+]);
+
+Route::post('usuario/info-facturacion', [
+    'as'=>'user.bills-info',
+    'uses'=>'BillsInfoCtrl@setInfo',
+    'middleware' => 'auth'
 ]);
 
 

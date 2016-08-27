@@ -50,5 +50,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \GlimGlam\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'enrolled' => \GlimGlam\Http\Middleware\PaymentChecker::class,//Para revisión de pago de enrollment
     ];
 }
