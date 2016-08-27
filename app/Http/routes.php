@@ -179,34 +179,43 @@ Route::get('mi-perfil/', [
     'middleware' => 'auth'
 ]);
 
-Route::get('subasta/entradas-checkout/{code}', [
+//Formulario de checkout de lugar  en la subasta
+Route::get('subastas/asiento-checkout/{code}', [ 
     'as' => 'auction.enrollment-form',
     'uses' =>  'AuctionController@enrollmentPayment'
 ]);
-Route::get('subastas/lugares/checkout/{code}', [
+//Proceso de redireccion a PayPal para la compra de los lugares en la subasta
+Route::get('subastas/asientos-solicitud-pay-pal/{code}', [
     'as' => 'auction.checkout',
     'uses' => 'PaypalController@checkoutEnrollment'
-]);   
-Route::get('subastas/finish/{code}', [
-    'as' => 'auction.finish-payment',
-    'uses' => 'AuctionController@confirmPayment'
 ]);
+//Callback de pago de lugar en subasata con paypal
 Route::get('subastas/lugares/estatus-pago', [
     'as' => 'enrollment.payment',
     'uses' => 'PaypalController@enrrolmentPaymentStatus'
 ]);
-Route::get('hola-omar', function () {
-    return view("hola-omar");
-});
-Route::get('subastas/confirmacion-pago', [
+
+Route::get('subastas/finish/{code}', [
+    'as' => 'auction.finish-payment',
+    'uses' => 'AuctionController@confirmPayment'
+]);
+
+Route::get('subastas/lugar/error-pago',[ //Pagina de error si paypal no aprueva el pago del lugar
+    'as' => 'acution.payment.reject',
+    'uses' => 'AuctionController@paymentEnrrolmentReject'
+]);
+
+Route::get('subastas/confirmacion-pago', [ //Pagna de confirmación de pago de lugar
     'as' => 'auction.payment.approvated',
     'uses' => 'AuctionController@paymentApprovated'
 ]);
-Route::get('subastas/error-en-pago', [
+
+Route::get('subastas/error-en-pago', [ //Si ubo un error en el pago
     'as' => 'auction.payment.failed',
     'uses' => 'AuctionController@paymentFailed'
 ]);
-Route::get('subastas/juego/{code}', [
+
+Route::get('subastas/juego/{code}', [ //Room de Juego
     'as' => 'auction.room',
     'uses' => 'AuctionController@room'
 ]);
@@ -214,10 +223,12 @@ Route::get('subastas/juego/info/{code}', [
     'as' => 'auction.get-info-bid',
     'uses' => 'AuctionController@getInfoBid'
 ]);
+
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"
 ]);
-$route->get('{slug}',[
+
+$route->get('{slug}',[ //Contenido general
     'as'=>'content',
     'uses'=>'PublicController@content'
 ]);
