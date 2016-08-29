@@ -82,7 +82,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn-login btn-primary">Registrate</button>
+                    <button type="submit" class="btn-login btn-primary">Regístrate</button>
                 </div>
             </div>
             <div class="txt-registro-login">
