@@ -1,4 +1,9 @@
-<?php $imgs = $auction->getUrlImg();?>
+<?php 
+$imgs = $auction->getUrlImg();
+/* @var $fechaInicio DateTime */
+$fechaInicio = new \DateTime($auction->start_date); 
+$fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
+?>
 <div class="fancy-close">
     <div class="">
         <div class="col-sm-6 col-sm-push-5 col-md-6 text-center">
@@ -15,6 +20,7 @@
                 <div class="fancy-txt">
                     {{$auction->description}}
                 </div>
+                <div style="padding: 10px">Inicia el <b>{{$fechaInicio->format('d/m/Y')}}</b> a las <b>{{$fechaInicio->format('H:i')}}</b></div>
                 <div class="producto-boton-entrar">
                     <a class="link-subasta transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->code])}}">
                         <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
@@ -28,7 +34,7 @@
                 <div class="recorte-superior"></div>
                 <div class="producto-fancy-cover">
                     <span class="precio-cover">{{Currency::format($auction->cover, config('app.currency'))}}</span>
-                    <span>Tu Lugar</span>
+                    <span>Tu asiento</span>
                 </div>
                 <div id="img-principal" class="producto-fancy-img">
                     <img class="zoom_mw" src="{{$imgs['fancy-box-thumbailn'][0]}}" data-zoom-image="{{$imgs['fancy-box-zoom'][0]}}" alt="{{$auction->title}}" title="{{$auction->title}}">
