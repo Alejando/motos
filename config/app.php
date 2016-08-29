@@ -4,7 +4,7 @@ return [
     'social'=>[
         'fb'=>'https://www.facebook.com/GlimGlam.mx/',
         'ig'=>'https://www.instagram.com/glimglammx/',
-        'tw'=>'https://twitter.com/',
+        'tw'=>'https://twitter.com/GlimGlamMx',
         'yt'=>'https://www.youtube.com/',
     ],
     'diaPreventa'=>2,

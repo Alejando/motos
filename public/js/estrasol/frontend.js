@@ -5,20 +5,30 @@ var url = protocol + '//' + host + '/' + 'glimglam';
 
 
 $(document).ready(function(){
-    $('.gal-1').click(function () {
-        $('#img-principal').html('<img src="img/productos/producto02.png" alt="" title="" class="animated fadeIn">');
+    $('.fancy-producto').on('click', '.frame-galeria', function(e){
+        e.preventDefault();
+        var zoomConfig = {
+            scrollZoom : true,
+            gallery: 'galeria-fancy',
+            borderSize : 1,
+            zoomType : "lens",
+            lensShape : "round",
+            tintOpacity:1,
+            easing:true,
+            zIndex : 20005            
+        };
+        var zoomImage = $('#fancy-zoom');
+        
+        // Remove old instance od EZ
+        $('.zoomContainer').remove();
+        zoomImage.removeData('elevateZoom');
+        // Update source for images
+        zoomImage.attr('src', $(this).data('image'));
+        zoomImage.data('zoom-image', $(this).data('zoom-image'));
+        // Reinitialize EZ
+        zoomImage.elevateZoom(zoomConfig);
     });
-
-    $('.gal-2').click(function () {
-        $('#img-principal').html('<img src="img/productos/producto02a.png" alt="" title="" class="animated fadeIn">');
-    });
-
-    $('.gal-3').click(function () {
-        $('#img-principal').html('<img src="img/productos/producto02b.png" alt="" title="" class="animated fadeIn">');
-    });
-
-    $("#zoom_mw").elevateZoom({tint: true, tintColour: '#F90', tintOpacity: 0.5});
-
+                
     //Fancybox producto
     var $zomm = false;
     function open_fancy_product(code) {
@@ -31,12 +41,14 @@ $(document).ready(function(){
                 var url = laroute.route('auction.fancy',{code : code});
                 $.get(url,{},'html').done(function(html) {
                     var $html = $(html);
-                    $zoom = $html.find(".zoom_mw").elevateZoom({scrollZoom : true,
+                    $zoom = $html.find(".zoom_mw").elevateZoom({
+                        scrollZoom : true,
+                        gallery: 'galeria-fancy',
                         borderSize : 1,
-                         zoomType : "lens",
+                        zoomType : "lens",
                         lensShape : "round",
                         tintOpacity:1,
-                         easing:true,
+                        easing:true,
 //                lensSize    : 250,
 //                zoomLevel : 4,  
 //                zoomWindowHeight : 250,
@@ -47,7 +59,7 @@ $(document).ready(function(){
 //            console.log($zoom);
 //            console.log($('.fancy-producto'));
                     $('.fancy-producto').empty().append($html).fadeIn(500);
-                }); 
+                });
             }
                 
         });
