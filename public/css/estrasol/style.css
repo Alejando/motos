@@ -1619,6 +1619,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .panel-default>.panel-heading {
+    display: block;
     background-color: #0099A5;
     color: #fff !important;
     border-color: transparent !important;
