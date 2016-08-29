@@ -1421,17 +1421,26 @@ form.fancy-form {
     font-size: 20px;
 }
 .participacion-actual span {
-    position: absolute;
+    position: relative;
     color: #13B9C5;
-    left: 127px;
+    /* left: 127px; */
     top: 54px;
+    /* text-align: center; */
+    /* padding-top: 38px; */
 }
+
+
 .img-actual {
     background-color: #fff;
     padding: 20px 0;
     width: 210px;
     margin: auto;
     border-radius: 5px;
+}
+.img-actual:hover {
+-webkit-box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
+-moz-box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
+box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
 }
 .img-actual img {
     margin: auto;
