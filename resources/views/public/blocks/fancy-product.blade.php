@@ -20,6 +20,10 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
                 <div class="fancy-txt">
                     {{$auction->description}}
                 </div>
+                <div style="padding: 10px">
+                    Llévatelo por menos de <b>{{Currency::format(ceil($auction->max_price), config('app.currency'))}}</b>
+                    en lugar de <b>{{Currency::format(ceil($auction->real_price), config('app.currency'))}}</b> (precio real)
+                </div>
                 <div style="padding: 10px">Inicia el <b>{{$fechaInicio->format('d/m/Y')}}</b> a las <b>{{$fechaInicio->format('H:i')}}</b></div>
                 <div class="producto-boton-entrar">
                     <a class="link-subasta transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->code])}}">

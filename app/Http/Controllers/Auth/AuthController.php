@@ -39,7 +39,7 @@ class AuthController extends Controller {
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/mi-perfil/';
 
     /**
      * Create a new authentication controller instance.

@@ -28,7 +28,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
-                    <button type="submit" class="btn-login btn-primary">Envíar Instrucciones</button>
+                    <button type="submit" class="btn-login btn-primary">Enviar Instrucciones</button>
                 </div>
             </div>
         </form>

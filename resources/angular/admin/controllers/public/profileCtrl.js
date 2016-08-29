@@ -1,9 +1,11 @@
 glimglam.controller('public.profileCtrl', function ($scope, User) {
     var setBrithday = function () {
         var birth = $scope.user.birthday;
-        $scope.brithday.day = birth.getDate().toString();
-        $scope.brithday.month = (birth.getMonth() + 1).toString();
-        $scope.brithday.year = birth.getFullYear().toString();
+        if(birth){
+            $scope.brithday.day = birth.getDate().toString();
+            $scope.brithday.month = (birth.getMonth() + 1).toString();
+            $scope.brithday.year = birth.getFullYear().toString();
+        }        
     };
     //<editor-fold defaultstate="collapsed" desc="getAuthUser">
     User.getAuthUser().then(function (user) {

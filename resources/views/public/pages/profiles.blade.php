@@ -18,8 +18,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="row">
-                                    <div class="col-xs-6 caja-responsive">
-                                        <div class="caja-contador participacion-p">
+                                    <div class="col-xs-6 caja-responsive"  style="display: none">
+                                        <div class="caja-contador participacion-p" >
                                             <span class="cant-participacion">@{{myTotalEnrollments | numberFixedLen:4}}</span>
                                             <p>En las que has participado</p>
                                         </div>
@@ -33,15 +33,17 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-md-offset-4">
-                                <div class="participacion-actual">
-                                    <div class="img-actual"><span>Subasta Actual</span><img src="img/caja.png" class="img-responsive"></div>
-                                </div>
+                                <a href='{{asset("")}}' class="upcoming-btn">
+                                    <div class="participacion-actual">
+                                        <div class="img-actual"><span>Proximas subastas</span><img src="img/caja.png" class="img-responsive"></div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+       
     </section>
         <section class="container-fluid nopagging bg-blanco input-datos">
                 <div class="container">

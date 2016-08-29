@@ -106,7 +106,13 @@ class User extends Authenticatable {
         $query = Enrollment::where('user', '=' , $this->id );
         return $returnQuery? $query : $query->get();
     }
-    
+    public static function defaultAvatarType(){
+        return 'image/png';
+    }
+    public static function defaultAvatar(){
+        $img = base_path('public/img/perfil-gg.png');
+        return file_get_contents($img);
+    }
     public function getCurrentAuction(){
         return false;
     }

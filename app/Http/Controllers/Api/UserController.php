@@ -98,7 +98,7 @@ class UserController extends \GlimGlam\Libs\CoreUtils\ApiRestController {
         }
         return response($data)->header('Content-type', $type);
     }
-
+   
     public function removeFav($code) {
         $user = \Auth::user();
         $auction = \GlimGlam\Models\Auction::getByCode($code);
