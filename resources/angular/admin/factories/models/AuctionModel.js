@@ -19,31 +19,55 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         },
         attributes: [
             'id',
-            'title',
-            'code',
-            'description',
-            'cover',
-            'max_offer',
-            'min_offer',
-            'bids',
-            'min_bids',
-            'username_top',
-            'user_top',
-            'delay',
+            'category',
+            'sub_category',
             'target',
+            'code',
+            'barcode',
+            'title',
+            'real_price',
+            'cover',
+            'min_offer',
+            'max_offer',
+            'bids',
+            'max_price',
+            'user_quota',
+            'users_limit',
+            'delay',
+            'max_user_quiet',
+            'death_time',
+            'description',
             'start_date',
             'end_date',
-            'published',
+            'ready',
             'status',
+            'winner',
             'total_enrollments',
             'inflows',
             'sold_for',
-            'winner',
             'last_offer',
+            'create_at',
+            'update_at',
             'winnername',
-            'num_bids'
+            'num_bids',
+            'mid_bids'
         ],
         relations : [],
+        getFavByUser : function (user) {
+            var $defer = $q.defer();
+            var self = this;
+            var url = laroute.route('user.get-fav',{
+                'userId' : user.id
+            });
+            $http({
+                'method' : 'GET',
+                'url' : url
+            }).then(function(result){
+                var objs = self.build(result.data);
+                $defer.resolve(objs);
+            });
+            return $defer.promise;
+        },
         getByCode : function (code){
             var $defer = $q.defer();
             var url = laroute.route('auction.getByCode', {

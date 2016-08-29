@@ -147,6 +147,34 @@ Route::group(['prefix' => 'api'], function () use (&$route){
         'as' => 'user.get-auth-user',
         'uses' => 'Api\\UserController@getAuth'
     ]);
+    Route::post('user/update-avatar',[
+        'as' => 'user.save-img-profile',
+        'uses' => 'Api\\UserController@updateAvatar'
+    ]);
+    Route::get('user/{userId}/avatar/', [
+        'as'   => 'user.img-avatar',
+        'uses' => 'Api\\UserController@getAvatar'
+    ]);
+    Route::get('user/{userId}/fav',[
+        'as' => 'user.get-fav',
+        'uses' => 'Api\\UserController@getFav'
+    ]);
+    Route::get('user/{userId}/wins',[
+        'as' => 'user.get-my-wins',
+        'uses' => 'Api\\UserController@getWins'
+    ]);
+    Route::get('user/{userId}/enrollements',[
+        'as' => 'user.get-my-enrollments',
+        'uses' => 'Api\\UserController@enrollments'
+    ]);
+    Route::get('user/{userId}/auctions-info',[
+        'as' => 'user.get-auctions-info',
+        'uses' => 'Api\\UserController@auctionsInfo'
+    ]);
+    Route::get('user/{userId}/subasta-actual',[
+        'as' => 'user.get-current-auction',
+        'uses' => 'Api\\UserController@getCurrentAuction'
+    ]);
     $addAPI('user','User');
     Route::get('user/add-fav/{code}', [
         'as' => 'user.add-fav',
@@ -235,6 +263,8 @@ Route::get('subastas/juego/info/{code}', [
     'uses' => 'AuctionController@getInfoBid',
     'middleware' => 'auth'
 ]);
+
+
 
 $route->get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"

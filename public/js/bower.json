@@ -24,6 +24,7 @@
     "textAngular": "^1.5.2",
     "angular-datatables": "^0.5.4",
     "angular-timer": "^1.3.4",
-    "angular-route": "^1.5.8"
+    "angular-route": "^1.5.8",
+    "bootbox.js": "^4.4.0"
   }
 }

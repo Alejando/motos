@@ -14,6 +14,19 @@ class User extends Authenticatable {
     const PROFILE_ADMIN = 2;
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
+    
+    public function avatarFile(){
+        return public_path('upload/avatars/'.$this->id.'.jpg');
+    }
+    
+    public function existsAvatar(){
+        return file_exists($this->avatarFile());
+    }
+    
+    public function getAvatar() {               
+        return \GlimGlam\Libs\Helpers\Img::resizeImg($this->avatarFile(), 190, 190, false , true);
+    }
+    
     public function isMale(){
         return $this->gender == self::GENDER_MALE;
     }
@@ -24,7 +37,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'gender'
+        'name', 'email', 'password', 'gender','birthday'
     ];
     protected $visible = array('id','name', 'email', 'profile', 'birthday','gender');
     /**
@@ -67,8 +80,16 @@ class User extends Authenticatable {
     }
     // </editor-fold>
     
-    public function preferences(){
+    public function preferences() {
         return $this->belongsToMany('\GlimGlam\Models\Preference');
+    }
+    
+    public function getAunctionsInfo(){
+        $info = [
+            'totalEnrollments' => $this->getMyEnrolmentsAuctions(true)->count(),
+            'totalWins' => $this->getWins(true)->count()
+        ];
+        return $info;
     }
     
     public function getMyEnrolmentsAuctions($returnQuery = false ) {
@@ -80,18 +101,26 @@ class User extends Authenticatable {
         $query = Auction::whereIn('id', $auctionsIds);
         return $returnQuery ? $query : $query->get();
     }
+    
     public function getMyEnrolments($returnQuery = false) {
         $query = Enrollment::where('user', '=' , $this->id );
         return $returnQuery? $query : $query->get();
     }
     
-    public function getMyWins($returnQuery = false) {
+    public function getCurrentAuction(){
+        return false;
+    }
+    public function getUpcomingAuctition(){
+        return false;
+    }
+    
+    public function getWins($returnQuery = false) {
         $ids = self::enrolmensAuntionsIds();
         $query = Auction::whereIn('id', $ids)
                 ->where('status','=', Auction::STATUS_FINISHED)
                 ->where('winner', '=', $this->id );
         return $returnQuery ? $query : $query->get();
-    }
+    } 
     
     public function enrolmensAuntionsIds() {
         $auctions = self::getMyEnrolments(true)->select('auction')->get();
@@ -100,8 +129,7 @@ class User extends Authenticatable {
             $ids[] = $ac->auction;
         }
         return $ids;
-    }
-    
+    }   
     
     public function isAdmin() {
         return $this->perfil == self::PROFILE_ADMIN;

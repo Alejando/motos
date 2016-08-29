@@ -50,11 +50,11 @@ glimglam.controller('nuevaSubastaCtrl', function ($scope, $log, Auction) {
         parallelUploads: 3,
         maxFileSize: 30,
         url: 'file-upload',
-        dictDefaultMessage:'Click o arrastra una imagen aquí',
+        dictDefaultMessage:'Click o arrastra una imagen aquí'
         
     };
     $scope.dzProcessing = function () {
-      this.options.url = "/api/auction/"+$scope.auction.id+"/addPhoto";
+        this.options.url = "/api/auction/"+$scope.auction.id+"/addPhoto";
     };
     $scope.dzAddedFile = function (file) {
        $scope.$apply(function () {

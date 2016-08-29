@@ -80,7 +80,9 @@ class ApiRestController extends Controller {
     {
        throw new Exception("Formulario no implementado");
     }
-
+    public function getInputs(){
+        return Input::all();
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -94,7 +96,7 @@ class ApiRestController extends Controller {
         if($obj === null) {
             abort(404);
         }
-        $obj->fill(Input::all());
+        $obj->fill($this->getInputs());
         $obj->save();
         return ['succes' => true, 'model'=> $obj];
     }

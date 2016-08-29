@@ -1,4 +1,4 @@
-glimglam.factory('User', function (ModelBase,$q,$http) {
+glimglam.factory('User', function (ModelBase, Auction, $q, $http) {
     var User = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -10,7 +10,11 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
 //        cache : [],
         setters : {
             startDate : ModelBase.setDate,
-            endDate : ModelBase.setDate
+            endDate : ModelBase.setDate,
+            birthday : ModelBase.setDate
+        },
+        preparers:{
+            birthday : ModelBase.prepareDate
         },
         attributes: [
             'id',
@@ -18,7 +22,9 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
             'email',
             'profile',
             'birthday',
-            'gender'
+            'gender',
+            'password',
+            'newPassword'
         ],
         relations : [],
         getAuthUser : function () {
@@ -30,20 +36,67 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
                 $def.resolve(user);
             });
             return $def.promise;
-        },
+        }
     }, {
-        
-        getMyWinds : function () {
-            
+        getFavs : function ( ){
+            return Auction.getFavByUser(this);
         },
-        getMyEnroledAuctions : function() {
-            
-        }, 
-        uploadProfile : function () {
-            
+        getWins : function () {
+            var $def = $q.defer();
+            var url = laroute.route('user.get-my-wins',{
+                'userId' : this.id
+            });
+            $http({
+                'url':url,
+                'method' : 'GET'
+            }).then(function(r) {
+                var wins = Auction.build(r.data);
+                $def.resolve(wins);
+            });
+            return $def.promise;
         },
-        fnGender : function(gender){
-            console.log(gender);
+        getCurrentAuctions : function () {
+            var $def = $q.defer();
+            var url = laroute.route('user.get-current-auction',{
+                'userId' : this.id
+            });
+            $http({
+                url : url,
+                method : 'GET'
+            }).then(function(res) {
+                var auction = Auction.build(res.data);
+                $def.resolve(auction);
+            });
+            return $def.promise;
+        },
+        getAuctionsInfo : function (){
+            var $def = $q.defer();
+            var url = laroute.route('user.get-auctions-info',{
+                'userId' : this.id
+            });
+            $http({
+                'url':url,
+                'method' : 'GET'
+            }).then(function(res){
+                $def.resolve(res.data);
+            });
+            return $def.promise;
+        },
+        getEnrolled : function() {
+            var $def = $q.defer();
+            var url = laroute.route('user.get-my-enrollments',{
+                'userId' : this.id
+            });
+            $http({
+                'url':url,
+                'method':'GET'
+            }).then(function(res){
+                var enrolleds = Auction.build(res.data);
+                $def.resolve(enrolleds);
+            });
+            return $def.promise; 
+        },
+        fnGender : function(gender){            
             if(gender === undefined){
                 return this.gender.toString();
             }

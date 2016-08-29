@@ -5,10 +5,12 @@
         <div class="banner-perfil ">
             <div class="datos-perfil">
                 <div class="container">
-                    <div class="foto-perfil">
+                    <div class="foto-perfil" ng-click="changeImg();">
                         <img src="img/edit-perfil-gg.png" class="img-responsive editar-img">
-                        <a href="javascript:void(0);"><img id="foto-perfil" src="img/perfil-gg.png" class="img-responsive img-profile"></a>
+                       <a href="javascript:void(0);"><img id="foto-perfil" src="{{route('user.img-avatar',['userId'=>$user->id])}}" class="img-responsive img-profile"></a>
                     </div>
+                     <input type="file" name="img-profile" id="img-profile" style="display: none">
+                        
                     <div class="nombre-usr-perfil">
                         <span>¡Hola!</span>
                         @{{user.name}} 
@@ -18,13 +20,13 @@
                                 <div class="row">
                                     <div class="col-xs-6 caja-responsive">
                                         <div class="caja-contador participacion-p">
-                                            <span class="cant-participacion">0000</span>
+                                            <span class="cant-participacion">@{{myTotalEnrollments | numberFixedLen:4}}</span>
                                             <p>En las que has participado</p>
                                         </div>
                                     </div>
                                     <div class="col-xs-6 caja-responsive2">
                                         <div class="caja-contador ganado-p">
-                                            <span class="cant-ganado">0000</span>
+                                            <span class="cant-ganado">@{{myTotalWins | numberFixedLen:4}}</span>
                                             <p>Las que ya ganaste</p>
                                         </div>
                                     </div>
@@ -44,131 +46,26 @@
         <section class="container-fluid nopagging bg-blanco input-datos">
                 <div class="container">
                         <div class="row btns-perfil">
-                                <div class="col-md-8 col-md-offset-2">
-                                        <button class="btn-perfil sw-perfil perfil-activo" type="submit">Mi Perfil</button>
-                                        <button class="btn-perfil sw-detalles" type="submit">Mi Subastas</button>
-                                        <button class="btn-perfil sw-detalles" type="submit">Próximas </button>
-                                        <button class="btn-perfil sw-metodo" type="submit">Mis Favoritas</button>
-                                </div>
+                            <div class="col-md-8 col-md-offset-2">
+                                <button ng-click="setSection('profile');"class="btn-perfil sw-perfil perfil-activo_" type="submit">Mi Perfil</button>
+                                <button ng-click="setSection('myEnrolmentsAuctions');" class="btn-perfil sw-detalles" type="submit">Mis Subastas</button>
+                                <button ng-click="setSection('wins');" class="btn-perfil sw-detalles" type="submit">Ganadas </button>
+                                <button ng-click="setSection('favs');" class="btn-perfil sw-metodo" type="submit">Mis Favoritas</button>
+                            </div>
                         </div>
-                        <div id="cont-inputs" class="row">
-
-                                <!-- CONTENEDOR DE PERFIL -->
-
-                                <!-- CONTENEDOR DE SUBASTAS -->
-                                <!-- <div class="col-md-3 inputs-mgn">
-                                        <div class="caja-detalle">
-                                                <img src="img/caja.png" class="img-responsive">
-                                                <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
-                                                <div id="fecha-subasta" class="fecha-subasta">00/00/00</div>
-                                                <div id="precio-inicial" class="precio-inicial">Cantidad inicial<span style="text-align: right;float: right;font-weight: bold;">$500.00</span></div>
-                                                <div id="precio-final" class="precio-final">GANASTE<span style="text-align: right;float: right;font-weight: bold;">$2300.00</span></div>
-                                        </div>
-                                </div>
-                                <div class="col-md-3 inputs-mgn">
-                                        <div class="caja-detalle">
-                                                <img src="img/caja.png" class="img-responsive">
-                                                <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
-                                                <div id="fecha-subasta" class="fecha-subasta">00/00/00</div>
-                                                <div id="precio-inicial" class="precio-inicial">Cantidad inicial<span style="text-align: right;float: right;font-weight: bold;">$500.00</span></div>
-                                                <div id="precio-final" class="precio-final">GANASTE<span style="text-align: right;float: right;font-weight: bold;">$2300.00</span></div>
-                                        </div>
-                                </div>
-                                <div class="col-md-3 inputs-mgn">
-                                        <div class="caja-detalle">
-                                                <img src="img/caja.png" class="img-responsive">
-                                                <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
-                                                <div id="fecha-subasta" class="fecha-subasta">00/00/00</div>
-                                                <div id="precio-inicial" class="precio-inicial">Cantidad inicial<span style="text-align: right;float: right;font-weight: bold;">$500.00</span></div>
-                                                <div id="precio-final" class="precio-final">GANASTE<span style="text-align: right;float: right;font-weight: bold;">$2300.00</span></div>
-                                        </div>
-                                </div>
-                                <div class="col-md-3 inputs-mgn">
-                                        <div class="caja-detalle">
-                                                <img src="img/caja.png" class="img-responsive">
-                                                <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
-                                                <div id="fecha-subasta" class="fecha-subasta">00/00/00</div>
-                                                <div id="precio-inicial" class="precio-inicial">Cantidad inicial<span style="text-align: right;float: right;font-weight: bold;">$500.00</span></div>
-                                                <div id="precio-final" class="precio-final">GANASTE<span style="text-align: right;float: right;font-weight: bold;">$2300.00</span></div>
-                                        </div>
-                                </div>
-                                <div class="col-md-3 inputs-mgn">
-                                        <div class="caja-detalle">
-                                                <img src="img/caja.png" class="img-responsive">
-                                                <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
-                                                <div id="fecha-subasta" class="fecha-subasta">00/00/00</div>
-                                                <div id="precio-inicial" class="precio-inicial">Cantidad inicial<span style="text-align: right;float: right;font-weight: bold;">$500.00</span></div>
-                                                <div id="precio-final" class="precio-final">GANASTE<span style="text-align: right;float: right;font-weight: bold;">$2300.00</span></div>
-                                        </div>
-                                </div>
-                                <div class="col-md-3 inputs-mgn">
-                                        <div class="caja-detalle">
-                                                <img src="img/caja.png" class="img-responsive">
-                                                <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
-                                                <div id="fecha-subasta" class="fecha-subasta">00/00/00</div>
-                                                <div id="precio-inicial" class="precio-inicial">Cantidad inicial<span style="text-align: right;float: right;font-weight: bold;">$500.00</span></div>
-                                                <div id="precio-final" class="precio-final">GANASTE<span style="text-align: right;float: right;font-weight: bold;">$2300.00</span></div>
-                                        </div>
-                                </div>
-                                <div class="col-md-3 inputs-mgn">
-                                        <div class="caja-detalle">
-                                                <img src="img/caja.png" class="img-responsive">
-                                                <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
-                                                <div id="fecha-subasta" class="fecha-subasta">00/00/00</div>
-                                                <div id="precio-inicial" class="precio-inicial">Cantidad inicial<span style="text-align: right;float: right;font-weight: bold;">$500.00</span></div>
-                                                <div id="precio-final" class="precio-final">GANASTE<span style="text-align: right;float: right;font-weight: bold;">$2300.00</span></div>
-                                        </div>
-                                </div>
-                                <div class="col-md-3 inputs-mgn">
-                                        <div class="caja-detalle">
-                                                <img src="img/caja.png" class="img-responsive">
-                                                <div id="titulo-en-detalle" class="titulo-en-detalle">Reloj Mediterraneo</div>
-                                                <div id="fecha-subasta" class="fecha-subasta">00/00/00</div>
-                                                <div id="precio-inicial" class="precio-inicial">Cantidad inicial<span style="text-align: right;float: right;font-weight: bold;">$500.00</span></div>
-                                                <div id="precio-final" class="precio-final">GANASTE<span style="text-align: right;float: right;font-weight: bold;">$2300.00</span></div>
-                                        </div>
-                                </div> -->
-
-                                <!-- CONTENEDOR METODO DE PAGO -->
-                                <!-- <div class="col-md-4 inputs-mgn">
-                                        <div class="caja-metodo">
-                                                <img src="img/paypal.png" class="img-responsive">
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                                <p>Para utilizar PayPal solo necesitas registrar un correo electrónico y una tarjeta de débito o crédito.</p>
-                                        </div>
-                                </div>
-                                <div class="col-md-4 inputs-mgn">
-                                        <div class="caja-metodo">
-                                                <img src="img/mercadopago.png" class="img-responsive">
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
-                                                <p>Ingresas los datos de tu tarjeta una sola vez. En las futuras compras solo te pediremos el código de seguridad.</p>
-                                        </div>
-                                </div>
-                                <div class="col-md-4 inputs-mgn">
-                                        <div class="caja-metodo">
-                                                <img src="img/conekta.png" class="img-responsive">
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
-                                                <p>Ahora podrás cobrar sin enviar a tus clientes a una página externa, pedirles crear una cuenta o autenticarse.</p>
-                                        </div>
-                                </div>
-                                <div class="col-md-12">
-                                        <form class="login-form">
-                                            <div class="form-group row">
-                                                <div class="col-sm-12">
-                                                    <input type="email" name="correo" class="form-control2" placeholder="Correo electrónico"> </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-12">
-                                                    <input type="password" name="password_paypal" class="form-control2" placeholder="Contraseña"> </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-12 text-center">
-                                                    <button type="submit" class="btn-login btn-primary">Guardar</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                </div> -->
-
+                    <div id="cont-inputs" class="row" ng-switch on="section">
+                            <div ng-switch-default="profile">
+                                @include('public.pages.profile.info')
+                            </div>
+                            <div  ng-switch-when="myEnrolmentsAuctions">
+                                @include('public.pages.profile.my-auctions')
+                            </div>
+                            <div  ng-switch-when="wins">
+                                @include('public.pages.profile.wins')
+                            </div>
+                            <div  ng-switch-when="favs">
+                                 @include('public.pages.profile.my-favs')
+                            </div>
                         </div>
                 </div>
         </section>

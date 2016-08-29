@@ -1,12 +1,28 @@
-glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval) {
+glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval, $filter) {
     //<editor-fold defaultstate="collapsed" desc="constructor">
     var ModelBase = function (args) {
         this.setProperties(args);
         this.relations = {};
+        this._bk_attrs = {};
     };
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Metodos de Instancia (prototype)">
     ModelBase.prototype = {
+        backup : function() {
+            var self = this;
+            var attributes = self.model().attributes; 
+            angular.forEach(attributes, function(attr){
+                self._bk_attrs[attr] = self[attr];
+            });
+            return this;
+        },
+        rollback : function() {
+            var self = this;
+            angular.forEach(self._bk_attrs, function(i ,attr){
+                self[attr] = self._bk_attrs[attr];
+            });
+            return this;
+        },
         //<editor-fold defaultstate="collapsed" desc="setProperties">
         setProperties: function (data) {            
             var self = this;
@@ -74,7 +90,30 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             return $defer.promise;
         },
         update : function () {
-            console.log("Flata implementar actualizacion");
+            var self = this;
+            var data = {};
+            var atributes = self.model().attributes; 
+            var preparers = self.model().preparers;
+            angular.forEach(atributes, function (attr) {
+                if(preparers[attr]){
+                    data[attr] = preparers[attr].apply(self,[self[attr]]);
+                    return;
+                }
+                data[attr] = self[attr];
+            });
+            var alias= this.model().alias;
+            var datalaroute = {};
+            datalaroute[alias] = this.id;
+            var url = laroute.route(alias+'.update', datalaroute);
+            var $def = $q.defer();
+            $http({
+                url : url,
+                method : 'PUT',
+                data : data
+            }).then(function(r){
+                $def.resolve(r.data);
+            });
+            return $def.promise;
         },
         save : function () {
             if(this.id){
@@ -138,14 +177,33 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         }
     };
     ModelBase.setFloat = function (value) {
-        return parseFloat(value);
+        if(value){
+            return parseFloat(value);
+        }
+        return undefined;
     },
     //Helper para setear fechas 
+   
     ModelBase.setDate = function (value) {
         if(angular.isString(value)) {
-            return new Date(value);
+            var date = new Date(value);
+            if(isNaN(date.getTime())){
+                return null;
+            }
+            return date;
         }
         return value;
+    };
+    ModelBase.prepareDate = function (date){
+        var dateTemp = new Date(date);
+        dateTemp.setHours(0);
+        dateTemp.setMinutes(0);
+        dateTemp.setSeconds(0);
+        if(dateTemp.getTime && !isNaN(dateTemp.getTime())){
+            return $filter('date')(dateTemp,'yyyy-MM-ddTHH:mm:ssZ');;
+        } else {
+            return undefined;
+        }
     };
     ModelBase.model = function () {
         return this.prototype.model();
@@ -211,17 +269,14 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             angular.forEach(data, function (d) {                
                 obj = Model.findCache(d);                                
                 if(obj) {
-                    console.log(d);
                     obj.setProperties(d);
                     arrInst.push(obj);
                     i++;
-//                    console.log("ya en cache " +i);
                 } else {
                     obj = Model.addCache(new Model(d));  
                     arrInst.push(obj);
                 }
             });
-//            console.log(arrInst);
             return arrInst;
         }
         obj = Model.findCache(data);
@@ -230,7 +285,6 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         } else {                        
             obj = Model.addCache(new Model(data));
         }
-        
         return obj;
     };
     //</editor-fold>

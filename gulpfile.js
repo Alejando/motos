@@ -22,6 +22,7 @@ elixir(function(mix) {
         '../../js/**/*.js',
         '../../angular/public/public.js',        
         '../../angular/admin/factories/**/*.js',
+        '../../angular/admin/filters/**/*.js',
         '../../angular/admin/controllers/public/*.js'
     ], 'public/js/estrasol/public.js');
     mix.livereload();

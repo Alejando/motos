@@ -9,7 +9,7 @@ class UserController extends BaseController {
 //        return view("public.pages.profile", ['aunctions' => $aucntions]);
     }
     public function profile(){
-        return view('public.pages.profiles',[
+        return view('public.pages.profiles', [
             'user'=> \Auth::user()
         ]);
     }

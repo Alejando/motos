@@ -41,9 +41,9 @@
     <script src="{{asset('js/bower_components/angular-datatables/dist/angular-datatables.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/bower_components/datatables/media/js/dataTables.bootstrap.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/bower_components/bootbox.js/bootbox.js')}}" type="text/javascript"></script>
     
     <script src="{{asset('js/bower_components/angular-route/angular-route.min.js')}}" type="text/javascript"></script>
-    
     {{-- Js para dropzone --}}
     <script src="{{asset('js/bower_components/dropzone/downloads/dropzone.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/bower_components/angular-dropzone/lib/angular-dropzone.js')}}" type="text/javascript"></script>

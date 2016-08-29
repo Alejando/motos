@@ -11,6 +11,7 @@
         <script type="text/javascript" src="{{asset('js/laroute.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bower_components/angular/angular.min.js')}}"></script>
          {{-- RangeSlider --}}
+         <script src="{{asset('js/bower_components/bootbox.js/bootbox.js')}}" type="text/javascript"></script>
         <script type="text/javascript" src="{{asset('js/thirdparty/angular-rangeslider/angular.rangeSlider.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bower_components/humanize-duration/humanize-duration.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bower_components/angular-timer/dist/angular-timer.min.js')}}"></script>
