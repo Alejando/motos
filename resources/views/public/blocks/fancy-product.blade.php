@@ -41,7 +41,7 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
                     <span>Tu asiento</span>
                 </div>
                 <div id="img-principal" class="producto-fancy-img">
-                    <img class="zoom_mw" src="{{$imgs['fancy-box-thumbailn'][0]}}" data-zoom-image="{{$imgs['fancy-box-zoom'][0]}}" alt="{{$auction->title}}" title="{{$auction->title}}">
+                    <img id="fancy-zoom" class="zoom_mw" src="{{$imgs['fancy-box-thumbailn'][0]}}" data-zoom-image="{{$imgs['fancy-box-zoom'][0]}}" alt="{{$auction->title}}" title="{{$auction->title}}">
                 </div>
                 <div class="recorte-inferior"></div>
             </div>
@@ -51,12 +51,12 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
 
         </div>
         @endif
-        <div class="producto-fancy-img-galeria row-centered bg-blanco">
-            @foreach($imgs["fancy-box-small"] as $i =>  $img)
+        <div id="galeria-fancy" class="producto-fancy-img-galeria row-centered bg-blanco">
+            @foreach($imgs["fancy-box-small"] as $i => $img)
             <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 col-centered nopadding">
-                <div class="frame-galeria gal-1">
-                    <img src="{{$img}}" alt="{{$auction->title}}" title="{{$auction->title}}">
-                </div>
+                <a href="#" class="frame-galeria gal-1" data-img="{{$imgs["fancy-box-small"][$i]}}" data-image="{{$imgs["fancy-box-thumbailn"][$i]}}" data-zoom-img="{{$imgs["fancy-box-zoom"][$i]}}">
+                    <img src="{{$imgs["fancy-box-small"][$i]}}" alt="{{$auction->title}}" title="{{$auction->title}}">
+                </a>
             </div>
             @endforeach
             <div style="clear: both;"></div>
