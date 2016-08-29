@@ -3,7 +3,7 @@
         @if(Auth::check())
             {{'@'}}{{Auth::user()->name}}
         @else
-            <a href="{{url('/register')}}">¡Registrate!</a>
+            <a href="{{url('/register')}}">¡Regístrate!</a>
         @endif
     </span>
 </div>
