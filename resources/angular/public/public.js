@@ -1,0 +1,1 @@
+var glimglam = angular.module("glimglam", ['ui-rangeSlider','timer']);  
