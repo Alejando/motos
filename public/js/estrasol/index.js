@@ -57,6 +57,7 @@ $(document).ready(function () {
             page++;
         });
     }
+    
     get_products();
     $('.slideshow.container').show();
     var revSli = $('.banner').revolution({

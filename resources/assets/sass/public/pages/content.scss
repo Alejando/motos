@@ -9,7 +9,7 @@
     background-color: $bg-generico;
     padding: 20px 30px;
     margin-top: 50px;
-    
+    text-align: justify;
     min-height: 300px;
     
     -webkit-border-radius: 10px;
@@ -19,7 +19,7 @@
         color: $color-titulo;
         text-transform: uppercase;
     }
-    .content-text{
+    .content-body{
         color: $color-textos;
     }
 }

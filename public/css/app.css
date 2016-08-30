@@ -71,12 +71,13 @@ and open the template in the editor.
   background-color: #fff;
   padding: 20px 30px;
   margin-top: 50px;
+  text-align: justify;
   min-height: 300px;
   border-radius: 10px; }
   .generic-content .content-title {
     color: #d5a00f;
     text-transform: uppercase; }
-  .generic-content .content-text {
+  .generic-content .content-body {
     color: #747474; }
 
 /*
