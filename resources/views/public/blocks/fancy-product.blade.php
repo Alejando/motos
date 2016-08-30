@@ -45,7 +45,7 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
             <div class="producto-fancy ">
                 <div class="recorte-superior"></div>
                 <div class="producto-fancy-cover">
-                    <span class="precio-cover">{{Currency::format($auction->cover, config('app.currency'))}}</span>
+                    <span class="precio-cover"><span>@if($auction->isPreventDay()) {{Currency::format($auction->getOriginalCover(), config('app.currency'))}}</span> @endif{{Currency::format($auction->cover, config('app.currency'))}}</span>
                     <span>Tu asiento</span>
                 </div>
                 <div id="img-principal" class="producto-fancy-img">

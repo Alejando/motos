@@ -16,10 +16,10 @@
                 <div class="producto-hammer" id_producto="{{$auction->code}}"></div>
             </div>
             <div class="producto-cover">
-                {{Currency::format($auction->cover, config('app.currency'))}}
+                @if($auction->isPreventDay())<span>{{Currency::format($auction->getOriginalCover() ,config('app.currency'))}}</span> @endif{{Currency::format($auction->getCoverAttribute(), config('app.currency'))}}
             </div>
             <div class="leyenda-cover">
-                Tu Lugar
+                Tu asiento
             </div>
         </div>
     </div>

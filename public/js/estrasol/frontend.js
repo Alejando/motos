@@ -33,7 +33,15 @@ $(document).ready(function(){
     
     function changeGalImg($element){
         var zoomConfig = {
-            oye
+            scrollZoom : true,
+            gallery: 'galeria-fancy',
+            borderSize : 1,
+            zoomType : "Inner",
+            lensShape : "round",
+            tintOpacity:1,
+            easing:true,
+            zIndex : 20005            
+        };
         var zoomImage = $('#fancy-zoom');
         
         // Remove old instance od EZ

@@ -281,13 +281,26 @@ header.main-header{
     text-align: center;
 }*/
 .producto-fancy {
-    max-width: 45%;
-    /*max-height: 642px;*/
-    min-width: 308px;
+    max-width: 320px;
     padding: 10px 10px 20px;
     background-color: #fff;
     text-align: center;
     margin: 10% auto;
+}
+.producto-fancy-img{
+    position: relative;
+}
+.fancy-gallery-control{
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% - 20px);
+    color: #d5a00f;
+}
+.fancy-gallery-control.control-right{
+    right: 0px;
+}
+.fancy-gallery-control.control-left{
+    left: 0px;
 }
 .descripcion-fancy {
     width: 90%;
@@ -321,11 +334,11 @@ header.main-header{
 }
 .recorte-superior{
 	top:-12px;
-	background: url(../../img/recorte-superior.png) repeat-x bottom transparent;
+	background: url(../../img/recorte-superior.png) repeat-x center bottom transparent;
 }
 .recorte-inferior{
 	bottom:-12px;
-	background: url(../../img/recorte-inferior.png) repeat-x bottom transparent;
+	background: url(../../img/recorte-inferior.png) repeat-x left bottom transparent;
 }
 .producto-fancy-cover{
 	font-size: 20px;
@@ -334,6 +347,11 @@ header.main-header{
 }
 .producto-fancy-cover span{
 	display: block;
+}
+.producto-fancy-cover > span > span{
+    text-decoration: line-through;
+    font-size: 22px;
+    color: #fb5f60;
 }
 .producto-fancy-cover .precio-cover{
 	font-size: 32px;
@@ -667,6 +685,11 @@ header.main-header{
 }
 .producto-hover .producto-cover{
 	font-size: 26px;
+}
+.producto-hover .producto-cover span{
+    display: block;
+    text-decoration: line-through;
+    font-size: 18px;
 }
 .producto-hover .producto-leyenda-cover{
 	font-size: 22px;
@@ -1681,22 +1704,24 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 25px 0 20px;
     text-transform: uppercase;
 }
-.frame-galeria {
-    display: block;
+.fancy-gallery{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.frame-gallery{
+    display: inline-block;
     width: 90px;
     height: 90px;
-    margin: auto;
+    margin: 10px 5px;
     border: 1px solid #109296;
     border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
-.frame-galeria:hover {
+.frame-gallery:hover {
     border: 1px solid #17b6bb;
     box-shadow: 1px 1px 3px rgba(11, 103, 106, 0.77);
     cursor: pointer;
 }
-.frame-galeria img{
+.frame-gallery img{
 	height: 100%;
 }
 .producto-fancy-img-galeria {
