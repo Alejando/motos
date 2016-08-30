@@ -22,13 +22,23 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
     protected $hidden = ['created_at', 'updated_at'];
     
+    // <editor-fold defaultstate="collapsed" desc="isBuyable">
+    public function isBuyable(){
+        $now = new \DateTime;
+        $start_date = new \DateTime($this->start_date);
+        
+        return true;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="isEnrolled">
     public function isEnrolled ($user){
         $enrol = Enrollment::where('user', '=', $user->id)
                 ->where('auction', '=', $this->id)
                 ->get()->count();
         return $enrol > 0;
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getBuyables">
     public static function getBuyables($user, $returnQuery = false){
         $timeLimit = new \DateTime;
         $timeLimit->add(new \DateInterval('PT1H'));
@@ -40,9 +50,12 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 ->orderBy('start_date', 'asc');
         return $returnQuery ? $auctions : $auctions->get();
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getTotalEnrollments">
     public function getTotalEnrolments(){
         return Enrollment::where('auction','=', $this->id)->get()->count();
     }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getTotalBids">
     public function getTotalBids() {
         return rand(20, 50);
@@ -102,10 +115,19 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
     public function getCoverAttribute() {
-        
         if( (new \DateTime() )->format('N') == config('app.diaPreventa')){
             return $this->attributes['preorder_cover'];
         }
+        return $this->attributes['cover'];
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="isPreventDay">
+    public function isPreventDay(){
+        return true;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getOriginalCover">
+    public function getOriginalCover(){
         return $this->attributes['cover'];
     }
     // </editor-fold>
@@ -399,7 +421,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $this->save();
     }
     // </editor-fold>
-    
+    // <editor-fold defaultstate="collapsed" desc="getInfoBid">
     public function getInfoBid($id_user){
         $c = Bid::where('user','=', $id_user)
              ->where('auction','=', $this->id)
@@ -427,6 +449,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'totalbids' => 0
         ];
     }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getEnrollment">
     public function getEnrollment($user_id, $auction){
         return Enrollment::getEnrollments($user_id, $auction)->get(0);

@@ -5,29 +5,46 @@ var url = protocol + '//' + host + '/' + 'glimglam';
 
 
 $(document).ready(function(){
-    $('.fancy-producto').on('click', '.frame-galeria', function(e){
+    $('.fancy-producto').on('click', '.fancy-gallery-control',function(){
+        var $control = $(this);
+        var $container = $('.fancy-gallery');
+        var position = $container.scrollLeft();
+        var numGal = parseInt($('.frame-gallery.active').attr('gal-num'));
+        
+        $('.frame-gallery.active').removeClass('active');
+        
+        if($control.hasClass('control-right') && numGal <= numItems){
+            $container.scrollLeft(position+104);
+            numGal += 1;
+        }else if(numGal >= 0){
+            $container.scrollLeft(position-104);
+            numGal -= 1;
+        }
+        console.log(numGal);
+        $('.frame-gallery.gal-'+numGal).addClass('active');
+        changeGalImg($('.frame-gallery.active'));
+    });
+    
+    $('.fancy-producto').on('click', '.frame-gallery', function(e){
         e.preventDefault();
+        var $element = $(this);
+        changeGalImg($element);
+    });
+    
+    function changeGalImg($element){
         var zoomConfig = {
-            scrollZoom : true,
-            gallery: 'galeria-fancy',
-            borderSize : 1,
-            zoomType : "lens",
-            lensShape : "round",
-            tintOpacity:1,
-            easing:true,
-            zIndex : 20005            
-        };
+            oye
         var zoomImage = $('#fancy-zoom');
         
         // Remove old instance od EZ
         $('.zoomContainer').remove();
         zoomImage.removeData('elevateZoom');
         // Update source for images
-        zoomImage.attr('src', $(this).data('image'));
-        zoomImage.data('zoom-image', $(this).data('zoom-image'));
+        zoomImage.attr('src', $element.data('image'));
+        zoomImage.data('zoom-image', $element.data('zoom-image'));
         // Reinitialize EZ
         zoomImage.elevateZoom(zoomConfig);
-    });
+    }
                 
     //Fancybox producto
     var $zomm = false;
@@ -45,14 +62,11 @@ $(document).ready(function(){
                         scrollZoom : true,
                         gallery: 'galeria-fancy',
                         borderSize : 1,
-                        zoomType : "lens",
+                        zoomType : "inner",
                         lensShape : "round",
                         tintOpacity:1,
                         easing:true,
-//                lensSize    : 250,
-//                zoomLevel : 4,  
-//                zoomWindowHeight : 250,
-                        zIndex : 20005            
+                        zIndex : 20005
                     }); 
                     $('.zoomContainer').append()
 //            $zoom.css('zIndex',2002);

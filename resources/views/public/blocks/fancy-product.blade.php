@@ -1,10 +1,16 @@
 <?php 
 $imgs = $auction->getUrlImg();
+$numItems = count($imgs['fancy-box-small']);
+$widthGallery = $numItems * 104;
+$widthGallery = 'width: '.$widthGallery.'px';
 /* @var $fechaInicio DateTime */
 $fechaInicio = new \DateTime($auction->start_date); 
 $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
 ?>
 <div class="fancy-close">
+    <script>
+        var numItems = {{$numItems}};
+    </script>
     <div class="">
         <div class="col-sm-6 col-sm-push-5 col-md-6 text-center">
             <div class="descripcion-fancy">
@@ -25,11 +31,13 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
                     en lugar de <b>{{Currency::format(ceil($auction->real_price), config('app.currency'))}}</b> (precio real)
                 </div>
                 <div style="padding: 10px">Inicia el <b>{{$fechaInicio->format('d/m/Y')}}</b> a las <b>{{$fechaInicio->format('H:i')}}</b></div>
+                @if($auction->isBuyable())
                 <div class="producto-boton-entrar">
                     <a class="link-subasta transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->code])}}">
                         <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
                     </a>
                 </div>
+                @endif
             </div>
         </div>
         @if(isset($imgs['fancy-box-thumbailn'][0]))
@@ -41,8 +49,19 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
                     <span>Tu asiento</span>
                 </div>
                 <div id="img-principal" class="producto-fancy-img">
+                    <div class="fancy-gallery-control control-left"><i class="fa fa-angle-left fa-3x" aria-hidden="true"></i></div>
+                    <div class="fancy-gallery-control control-right"><i class="fa fa-angle-right fa-3x" aria-hidden="true"></i></div>
                     <img id="fancy-zoom" class="zoom_mw" src="{{$imgs['fancy-box-thumbailn'][0]}}" data-zoom-image="{{$imgs['fancy-box-zoom'][0]}}" alt="{{$auction->title}}" title="{{$auction->title}}">
                 </div>
+                <section class="fancy-gallery">
+                    <div class="fancy-fallery-container" style="{{$widthGallery}}">
+                        @foreach($imgs["fancy-box-small"] as $i => $img)
+                        <a href="#" class="frame-gallery gal-{{$i}}{{$i == 0 ? ' active' : ''}}" gal-num="{{$i}}" data-image="{{$imgs["fancy-box-thumbailn"][$i]}}" data-zoom-image="{{$imgs["fancy-box-zoom"][$i]}}">
+                            <img src="{{$imgs["fancy-box-small"][$i]}}" alt="{{$auction->title}}" title="{{$auction->title}}">
+                        </a>
+                        @endforeach
+                    </div>
+                </section>
                 <div class="recorte-inferior"></div>
             </div>
         </div>
@@ -51,15 +70,5 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
 
         </div>
         @endif
-        <div id="galeria-fancy" class="producto-fancy-img-galeria row-centered bg-blanco">
-            @foreach($imgs["fancy-box-small"] as $i => $img)
-            <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2 col-centered nopadding">
-                <a href="#" class="frame-galeria gal-1" data-img="{{$imgs["fancy-box-small"][$i]}}" data-image="{{$imgs["fancy-box-thumbailn"][$i]}}" data-zoom-img="{{$imgs["fancy-box-zoom"][$i]}}">
-                    <img src="{{$imgs["fancy-box-small"][$i]}}" alt="{{$auction->title}}" title="{{$auction->title}}">
-                </a>
-            </div>
-            @endforeach
-            <div style="clear: both;"></div>
-        </div>
     </div>
 </div>
