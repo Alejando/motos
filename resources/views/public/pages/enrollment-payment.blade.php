@@ -15,6 +15,7 @@
                 <p style="margin: 0;">Fecha de inicio:</p>
                 <p><span class="subasta-tiempo2 countdown" start_date="{{$auction->start_date}}"></span></p>
             </div>
+            {{--
             <div class="col-xs-6" style="display: none;">
                 <div class="caja-contador participacion-p">
                     <span class="cant-participacion">{{$auction->users_limit}}</span>
@@ -26,6 +27,10 @@
                     <span class="cant-ganado">{{$auction->total_enrollments}}</span>
                     <p>Participantes registrados</p>
                 </div>
+            </div>
+            --}}
+            <div class="col-sm-12">
+                <a class="btn btn-block btn-primary subasta-boton-pago" onclick="window.history.back()">Regresar</a>
             </div>
             <div style="clear:both;"></div>
         </div>
