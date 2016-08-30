@@ -11,7 +11,7 @@
             <p style="display: none"><span style="color: #D5A00F; font-size: 20px;">¡Cumple tu deseo!</span></p>
         </div>
         <div class="btn-facebook">
-            <a href="/facebook/login/"><img src="img/facebook-login.png" alt="Iniciar sesión con facebook"></a>
+            <a href="{{route('facebook.login')}}"><img src="img/facebook-login.png" alt="Iniciar sesión con facebook"></a>
         </div>
         <div class="sep-login"></div>
         <form class="login-form" role="form" method="POST" action="{{ url('/register') }}">
