@@ -241,7 +241,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $files = scandir($path);
         $photos = [];        
         foreach($files as $file){
-            if( $file != '.DS_Store' && $file != 'thumbnail' && $file!='photos' && $file != '.' && $file!='..' && $file!='01.png' && $file!='01.jpg'){
+            if( $file != '.DS_Store' && $file != 'thumbnail' && $file!='photos' && $file != '.' && $file!='..'){
                 $photos[] = $file;
             }
         }
