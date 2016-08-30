@@ -7,10 +7,10 @@
             <i class="fa fa-user"></i>
             <p>Iniciar Sesión</p>
         </div>
-        <div class="btn-facebook" style="display: none"> 
+        <div class="btn-facebook"> 
             <a href="{{route('facebook.login')}}"><img src="img/facebook-login.png" alt="Iniciar sesión con facebook"></a>
         </div>
-        <div class="sep-login" style="display: none"></div>
+        <div class="sep-login"></div>
         <form class="login-form" method="POST" action="{{ url('/login') }}">
             {{ csrf_field() }}
             <div class="form-group row">
