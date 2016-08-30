@@ -10,7 +10,6 @@ $(document).ready(function(){
         var $container = $('.fancy-gallery');
         var position = $container.scrollLeft();
         var numGal = parseInt($('.frame-gallery.active').attr('gal-num'));
-        
         $('.frame-gallery.active').removeClass('active');
         
         if($control.hasClass('control-right') && numGal <= numItems){
@@ -28,6 +27,10 @@ $(document).ready(function(){
     $('.fancy-producto').on('click', '.frame-gallery', function(e){
         e.preventDefault();
         var $element = $(this);
+        
+        $('.frame-gallery.active').removeClass('active');
+        $element.addClass('active');
+        
         changeGalImg($element);
     });
     
@@ -36,11 +39,11 @@ $(document).ready(function(){
             scrollZoom : true,
             gallery: 'galeria-fancy',
             borderSize : 1,
-            zoomType : "Inner",
+            zoomType : "inner",
             lensShape : "round",
             tintOpacity:1,
             easing:true,
-            zIndex : 20005            
+            zIndex : 20005
         };
         var zoomImage = $('#fancy-zoom');
         
@@ -55,7 +58,6 @@ $(document).ready(function(){
     }
                 
     //Fancybox producto
-    var $zomm = false;
     function open_fancy_product(code) {
         var url_ajax = laroute.route('enrollment.userIsEnrollment',{'auctionCode':code});
         $.get(url_ajax,{},function(data){
