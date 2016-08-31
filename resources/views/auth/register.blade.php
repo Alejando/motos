@@ -40,7 +40,7 @@
                 <div class="col-sm-12">
                     <select name="gender" class="form-control2">
                         <option value="">Sexo</option>
-                        <option value="1">Hombre</option>The gender field is required
+                        <option value="1">Hombre</option>El campo de genero es obligatorio
                         <option value="0">Mujer</option>
                     </select>
                     @if ($errors->has('gender'))
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group row {{ $errors->has('terminos') ? ' has-error' : '' }}">
                 <div class="col-sm-12">
-                    <input type="checkbox" name="terminos"> Acepto los <a href="{{route('content', ['slug'=>'terminos-y-condiciones'])}}">términos y condiciones</a>
+                    <input type="checkbox" name="terminos"> Acepto los <a class="link-terminos" href="{{route('content', ['slug'=>'terminos-fancybox'])}}">términos y condiciones</a>
                     @if ($errors->has('terminos'))
                     <span class="help-block">
                         <strong>{{ $errors->first('terminos') }}</strong>
@@ -174,3 +174,26 @@
 */?>
 @endsection
 
+@section('js-scripts')
+<script>
+    $('.link-terminos').click(function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            url: $(this).attr('href'),
+            success: function(data) {
+                bootbox.dialog({
+                    message: data,
+                    title: "Terminos y condiciones de uso",
+                    buttons: {
+                        success: {
+                            label: "Entendido",
+                            className: "btn-success",
+                        },
+                    }
+                });
+            }
+            });
+    });
+</script>
+@endsection
