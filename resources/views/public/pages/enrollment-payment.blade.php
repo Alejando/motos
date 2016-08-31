@@ -1,7 +1,7 @@
 @extends('public.base')
 @section('body')
 
-<section class="container detalle-pago-subasta">
+<section class="container detalle-pago-subasta" ng-controller="public.checkoutEnrollCtrl">
     <div class="row">
         <div class="col-sm-6">
             <div class="chk-head">Detalles de tu asiento</div>
@@ -41,36 +41,35 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="rfc">RFC</label>
-                            <input type="text" class="form-control" id="rfc" placeholder="" required>
+                            <input type="text" ng-model="billInfo.rfc" class="form-control" id="rfc" placeholder="" required>
                           </div>
                           <div class="form-group">
                             <label for="razon">Razón Social</label>
-                            <input type="text" class="form-control" id="razon-social" placeholder="" required>
+                            <input type="text" class="form-control" ng-model="billInfo.business_name" id="razon-social" placeholder="" required>
                           </div>
                             <div class="form-group">
                               <label for="domicilio">Domicilio</label>
-                              <input type="text" class="form-control" id="domicilio" placeholder="" required>
+                              <input type="text" class="form-control" ng-model="billInfo.address" id="domicilio" placeholder="" required>
                             </div>
                             <div class="form-group">
                               <label for="colonia">Colonia</label>
-                              <input type="text" class="form-control" id="colonia" placeholder="" required>
+                              <input type="text" class="form-control" ng-model="billInfo.neighborhood" id="colonia" placeholder="" required>
                             </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                           <label for="postal">Código Postal</label>
-                          <input type="text" class="form-control" id="postal" placeholder="" required>
+                          <input type="text" class="form-control" ng-model="billInfo.postal_code" id="postal" placeholder="" required>
                         </div>
                         <div class="form-group">
                           <label for="ciudad">Ciudad</label>
-                          <input type="text" class="form-control" id="ciudad" placeholder="" required>
+                          <input type="text" class="form-control" ng-model="billInfo.city" id="ciudad" placeholder="" required>
                         </div>
                         <div class="form-group">
                           <label for="estado">Estado</label>
-                          <input type="text" class="form-control" id="estado" placeholder="" required>
+                          <input type="text" class="form-control" ng-model="billInfo.state" id="estado" placeholder="" required>
                         </div>
                         <p style="font-size: 12px;font-style: italic;">Todos los campos son requeridos</p>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                   </form>
             </div>
