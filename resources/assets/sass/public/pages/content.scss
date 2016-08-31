@@ -22,4 +22,12 @@
     .content-body{
         color: $color-textos;
     }
+    .panel-left{
+        padding-top: 20px;
+    }
+    @media(min-width:992px){
+        .panel-left{
+            padding-top: 0;
+        }
+    }
 }

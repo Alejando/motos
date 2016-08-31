@@ -4,33 +4,34 @@
 html, body{
 	font-family: 'Open Sans';
 }
-a:hover{
-	text-decoration: none;
+a:hover,
+a:focus{
+    text-decoration: none;
 }
 /* TRANSISIONES */
 .transition-0-3{
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	-ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
 }
 .transition-0-5{
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
 }
 .transition-1-0{
-	-webkit-transition: all 1.0s ease;
-	-moz-transition: all 1.0s ease;
-	-o-transition: all 1.0s ease;
-	-ms-transition: all 1.0s ease;
+    -webkit-transition: all 1.0s ease;
+    -moz-transition: all 1.0s ease;
+    -o-transition: all 1.0s ease;
+    -ms-transition: all 1.0s ease;
 }
 .transition-1-5{
-	-webkit-transition: all 1.5s ease;
-	-moz-transition: all 1.5s ease;
-	-o-transition: all 1.5s ease;
-	-ms-transition: all 1.5s ease;
+    -webkit-transition: all 1.5s ease;
+    -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease;
+    -ms-transition: all 1.5s ease;
 }
 .nowrap{
 	white-space: nowrap;
@@ -1524,6 +1525,12 @@ box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
     border: 1px solid #408488;
     color: #fff;
     background-color: #00bcb6;
+}
+#cont-inputs h2{
+    font-size: 20px;
+    margin: 20px auto;
+    display: block;
+    width: 80%;
 }
 .caja-detalle {
     display: block;
