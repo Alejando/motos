@@ -1,7 +1,7 @@
 @include('public.blocks.fancy-login')
 <header class="container-fluid main-header">
     <section class="row">
-        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+        <div class="logo-container col-lg-3 col-md-3 col-sm-4 col-xs-12">
             <a href="{{asset('')}}">
                 <img src="{{asset('img/logo.png')}}" alt="Glim Glam" title="Glim Glam &reg;" class="logo">
             </a>

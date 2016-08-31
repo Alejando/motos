@@ -6,11 +6,10 @@
 
 @section('content-body')
 <div class="row faqs">
-    <div class="col-xs-12">
     <div class="panel-group" id="accordion">
 
         <!-- Inicio paneles izquierdos -->
-        <div class="panel-left col-sm-6">
+        <div class="panel-left col-xs-12 col-sm-6">
             <!-- panel -->
             <div class="panel panel-default">
                 <a class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#cont_1">
@@ -244,7 +243,7 @@
         <!-- fin paneles izquierdos -->
 
         <!-- Inicio paneles derechos -->
-        <div class="panel-left col-sm-6">
+        <div class="panel-left col-xs-12 col-sm-6">
             <!-- panel -->
             <div class="panel panel-default">
                 <a class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#cont_7">
@@ -433,6 +432,5 @@
         </div> 
         <!-- fin paneles derechos -->
     </div>
-</div>
 </div>
 @stop

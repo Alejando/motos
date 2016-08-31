@@ -5,28 +5,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 27/07/2016, 01:33:16 PM
-    Author     : jdiaz
-*/
-form.subastas-form {
-  width: 99%; }
-  form.subastas-form .input-group.timepicker input {
-    height: 34px; }
-  form.subastas-form .input-datetimes {
-    padding: 0; }
-  form.subastas-form .input-datetimes input.timepicker {
-    width: 35%;
-    float: right; }
-  form.subastas-form .input-datetimes div.datepicker {
-    width: 60%;
-    float: left; }
-
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
     Created on : 25/07/2016, 04:50:49 PM
     Author     : jdiaz
 */
@@ -79,6 +57,17 @@ and open the template in the editor.
     text-transform: uppercase; }
   .generic-content .content-body {
     color: #747474; }
+  .generic-content .panel-left {
+    padding-top: 20px; }
+  @media (min-width: 992px) {
+    .generic-content .panel-left {
+      padding-top: 0; } }
+  @media (max-width: 768px) {
+    .generic-content .content-title {
+      font-size: 22px; }
+    .generic-content .content-body h3 {
+      font-size: 18px;
+      line-height: 24px; } }
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -253,5 +242,27 @@ and open the template in the editor.
   margin-top: 10px;
   font-size: 20px;
   text-transform: none; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/07/2016, 01:33:16 PM
+    Author     : jdiaz
+*/
+form.subastas-form {
+  width: 99%; }
+  form.subastas-form .input-group.timepicker input {
+    height: 34px; }
+  form.subastas-form .input-datetimes {
+    padding: 0; }
+  form.subastas-form .input-datetimes input.timepicker {
+    width: 35%;
+    float: right; }
+  form.subastas-form .input-datetimes div.datepicker {
+    width: 60%;
+    float: left; }
 
 /*# sourceMappingURL=app.css.map */
