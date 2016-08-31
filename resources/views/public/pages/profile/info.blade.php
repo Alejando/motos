@@ -16,14 +16,6 @@
                         <input ng-model="user.email" type="email" name="correo" class="form-control2" placeholder="Correo electrónico">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <div class="col-sm-12">
-                        <select ng-model="user.fnGender" ng-model-options="{getterSetter: true}" name="sexo" class="form-control2">
-                            <option value="1">Hombre</option>
-                            <option value="0">Mujer</option>
-                        </select>
-                    </div>
-                </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group row">
@@ -91,19 +83,12 @@
                     </div>
                 </div>   
                 <div class="form-group row">
-                    <div class="col-sm-6">
-                        <input ng-model="$parent.newPassword" type="password" name="newPassword" class="pass form-control2" placeholder="Nueva contraseña">
-                    </div>
-                    <div class="col-sm-6">
-                        <input ng-model="$parent.confirmPassword" type="password" name="confirmPassword" class="pass form-control2" placeholder="Confirma tu contraseña">
-                    </div>
-                    <div  ng-show="errors.confirmPassword" class=col-sm-12 error-message">* @{{errors.confirmPassword}}</div>
-                </div>
-                <div class="form-group row">
                     <div class="col-sm-12">
-                        <input ng-model="user.password" type="password" name="password" class="pass form-control2" placeholder="Password actual">
+                        <select ng-model="user.fnGender" ng-model-options="{getterSetter: true}" name="sexo" class="form-control2">
+                            <option value="1">Hombre</option>
+                            <option value="0">Mujer</option>
+                        </select>
                     </div>
-                    <div  ng-show="errors.password" class=col-sm-12 error-message">* @{{errors.password}}</div>
                 </div>
                 <div class="form-group row" style="display: none">
                     <div class="col-sm-12">
@@ -118,7 +103,30 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
+        <div class="form-group row">
+            <fieldset class="password-fieldset">
+                <legend>Cambiar password</legend>
+                <div class="col-sm-6">
+                    <input ng-model="$parent.newPassword" type="password" name="newPassword" class="pass form-control2" placeholder="Nueva contraseña">
+                </div>
+                <div class="col-sm-6">
+                    <input ng-model="$parent.confirmPassword" type="password" name="confirmPassword" class="pass form-control2" placeholder="Confirma tu contraseña">
+                </div>
+                <div  ng-show="errors.confirmPassword" class=col-sm-12 error-message">* @{{errors.confirmPassword}}</div>
+            </fieldset>
+        </div>
+        <div class="form-group row">
+            <fieldset class="password-fieldset">
+                <legend>Confirma todos tus cambios con tu password actual</legend>
+                <div class="form-group row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <input ng-model="user.password" type="password" name="password" class="pass form-control2" placeholder="Password actual">
+                    </div>
+                    <div  ng-show="errors.password" class=col-sm-12 error-message">* @{{errors.password}}</div>
+                </div>
+            </fieldset>
+        </div>
         <div class="form-group row">
             <div class="col-sm-12 text-center">
                 <button type="submit" class="btn-login btn-primary" ng-click="updateProfile()">Guardar</button>

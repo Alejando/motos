@@ -1379,8 +1379,15 @@ form.login-form {
 form.fancy-form {
     width: auto;
 }
-
-
+.password-fieldset{
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+.password-fieldset legend{
+  float: left;
+  padding-left: 15px;
+}
 /*-----SECCION PERFIL------*/
 .datos-perfil {
     margin-top: 110px;
