@@ -1388,11 +1388,11 @@ form.fancy-form {
     background-color: #274A4C;
 }
 .caja-contador {
-    width: 150px;
+    width: 170px;
     margin:auto;
 }
 .participacion-p {
-	height: 146px;
+    height: 146px;
     text-align: center;
     color: #18B0BB;
     border: 1px solid #18B0BB;
@@ -1405,12 +1405,15 @@ form.fancy-form {
     letter-spacing: 2px;
 }
 .ganado-p {
-	height: 146px;
+    height: 170px;
     text-align: center;
     color: #EAC151;
     border: 1px solid #EAC151;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+.ganado-p p{
+    margin-top: 20px
 }
 .ganado-p span {
     font-size: 45px;
@@ -1469,14 +1472,14 @@ box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
     margin: auto;
 }
 .input-datos{
-	padding-bottom: 80px;
+    padding-bottom: 80px;
 }
 .btns-perfil {
     text-align: center;
-    margin-top: 30px;
+    padding-top: 30px;
 }
 .inputs-mgn{
-	margin-top: 45px;
+    margin-top: 45px;
 }
 .btn-perfil {
     display: inline-block;
@@ -1507,8 +1510,11 @@ box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
     background-color: #00bcb6;
 }
 .caja-detalle {
+    display: block;
+    width: 90%;
     border: 1px solid #18B0BB;
     border-radius: 5px;
+    margin: 0 auto;
     padding: 20px;
     line-height: 22px;
 }

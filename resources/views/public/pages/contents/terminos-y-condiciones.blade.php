@@ -143,15 +143,8 @@
         Le recordamos que el producto se envía hasta que se acredite el pago.
     </p>
     <p>
-        <b>PayPal</b>
+        <b>Facturación</b>
     </p>
-    <p>
-        Al elegir esta opción, el cliente será re direccionado a una página segura de la entidad PayPal donde se llevará a cabo toda la transacción y por ultimo será enviado de regreso a nuestra página, una vez que el pago haya sido aprobado le será enviada una confirmación a su correo electrónico, no es necesario que el cliente reporte su pago posteriormente.
-    </p>
-    <p>
-        <b>PayPal</b>
-    </p>
-    <h3></h3>
     <p>
         Los Usuarios que adquieran artículos en las subastas podrán solicitar la factura de los mismos al momento de realizar el pago. Por ninguna razón se emitirán facturas posteriores a la fecha en que se efectuó la transacción.
     </p>

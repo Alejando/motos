@@ -12,10 +12,14 @@ $(document).ready(function(){
         var numGal = parseInt($('.frame-gallery.active').attr('gal-num'));
         $('.frame-gallery.active').removeClass('active');
         
-        if($control.hasClass('control-right') && numGal <= numItems){
+        console.log(numGal);
+        console.log(numItems);
+        console.log(numGal < numItems);
+        
+        if($control.hasClass('control-right') && numGal < numItems){
             $container.scrollLeft(position+104);
             numGal += 1;
-        }else if(numGal >= 0){
+        }else if($control.hasClass('control-left') && numGal > 0){
             $container.scrollLeft(position-104);
             numGal -= 1;
         }
