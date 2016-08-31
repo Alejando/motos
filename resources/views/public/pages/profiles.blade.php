@@ -1,76 +1,74 @@
 @extends('public.base')
 @section('body')
 <section ng-controller="public.profileCtrl">
-    <section class="container-fluid nopadding">
+    <section class="container">
         <div class="banner-perfil ">
             <div class="datos-perfil">
-                <div class="container">
+                <div>
                     <div class="foto-perfil" ng-click="changeImg();">
                         <img src="img/edit-perfil-gg.png" class="img-responsive editar-img">
                        <a href="javascript:void(0);"><img id="foto-perfil" src="{{route('user.img-avatar',['userId'=>$user->id])}}" class="img-responsive img-profile"></a>
                     </div>
                      <input type="file" name="img-profile" id="img-profile" style="display: none">
-                        
                     <div class="nombre-usr-perfil">
                         <span>¡Hola!</span>
                         @{{user.name}} 
                     </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-xs-6 caja-responsive"  style="display: none">
-                                        <div class="caja-contador participacion-p" >
-                                            <span class="cant-participacion">@{{myTotalEnrollments | numberFixedLen:4}}</span>
-                                            <p>En las que has participado</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 caja-responsive2">
-                                        <div class="caja-contador ganado-p">
-                                            <span class="cant-ganado">@{{myTotalWins | numberFixedLen:4}}</span>
-                                            <p>Las que ya ganaste</p>
-                                        </div>
-                                    </div>
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            {{--
+                            <div class="col-xs-6 caja-responsive"  style="display: none">
+                                <div class="caja-contador participacion-p" >
+                                    <span class="cant-participacion">@{{myTotalEnrollments | numberFixedLen:4}}</span>
+                                    <p>En las que has participado</p>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-md-offset-4">
-                                <a href='{{asset("")}}' class="upcoming-btn">
-                                    <div class="participacion-actual">
-                                        <div class="img-actual"><span>Proximas subastas</span><img src="img/caja.png" class="img-responsive"></div>
-                                    </div>
-                                </a>
+                            --}}
+                            <div class="caja-responsive2">
+                                <div class="caja-contador ganado-p">
+                                    <span class="cant-ganado">@{{myTotalWins | numberFixedLen:4}}</span>
+                                    <p>Las que ya ganaste</p>
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-4 text-center">
+                            <a href='{{asset("")}}' class="upcoming-btn">
+                                <div class="participacion-actual">
+                                    <div class="img-actual"><span>Proximas subastas</span><img src="img/caja.png" class="img-responsive"></div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-       
+        </div>
     </section>
-        <section class="container-fluid nopagging bg-blanco input-datos">
-                <div class="container">
-                        <div class="row btns-perfil">
-                            <div class="col-md-8 col-md-offset-2">
-                                <button ng-click="setSection('profile');"class="btn-perfil sw-perfil perfil-activo_" type="submit">Mi Perfil</button>
-                                <button ng-click="setSection('myEnrolmentsAuctions');" class="btn-perfil sw-detalles" type="submit">Mis Subastas</button>
-                                <button ng-click="setSection('wins');" class="btn-perfil sw-detalles" type="submit">Ganadas </button>
-                                <button ng-click="setSection('favs');" class="btn-perfil sw-metodo" type="submit">Mis Favoritas</button>
-                            </div>
-                        </div>
-                    <div id="cont-inputs" class="row" ng-switch on="section">
-                            <div ng-switch-default="profile">
-                                @include('public.pages.profile.info')
-                            </div>
-                            <div  ng-switch-when="myEnrolmentsAuctions">
-                                @include('public.pages.profile.my-auctions')
-                            </div>
-                            <div  ng-switch-when="wins">
-                                @include('public.pages.profile.wins')
-                            </div>
-                            <div  ng-switch-when="favs">
-                                 @include('public.pages.profile.my-favs')
-                            </div>
-                        </div>
+    <section class="container">
+            <div class="bg-blanco input-datos">
+                <div class="row btns-perfil">
+                    <div class="col-md-8 col-md-offset-2">
+                        <button ng-click="setSection('profile');"class="btn-perfil sw-perfil perfil-activo_" type="submit">Mi Perfil</button>
+                        <button ng-click="setSection('myEnrolmentsAuctions');" class="btn-perfil sw-detalles" type="submit">Mis Subastas</button>
+                        <button ng-click="setSection('wins');" class="btn-perfil sw-detalles" type="submit">Ganadas </button>
+                        <button ng-click="setSection('favs');" class="btn-perfil sw-metodo" type="submit">Mis Favoritas</button>
+                    </div>
                 </div>
-        </section>
+                <div id="cont-inputs" class="row" ng-switch on="section">
+                    <div ng-switch-default="profile">
+                        @include('public.pages.profile.info')
+                    </div>
+                    <div  ng-switch-when="myEnrolmentsAuctions">
+                        @include('public.pages.profile.my-auctions')
+                    </div>
+                    <div  ng-switch-when="wins">
+                        @include('public.pages.profile.wins')
+                    </div>
+                    <div  ng-switch-when="favs">
+                         @include('public.pages.profile.my-favs')
+                    </div>
+                </div>
+            </div>
+    </section>
 </section>
     
 @stop
