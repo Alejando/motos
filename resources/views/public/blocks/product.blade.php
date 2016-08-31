@@ -1,4 +1,4 @@
-<div class="product-container {{ isset($room) && $room ?  'col-lg-3' : 'col-lg-2'}} col-md-3 col-sm-6 col-xs-12">
+<div class="product-container {{ isset($room) && $room ?  'col-lg-3' : 'col-lg-2'}} col-md-3 col-sm-6 col-xs-12" data-slug="{{str_slug($auction->title,'-')}}">
     <div class="producto  {{$auction->getOfferType()}}">
         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
         <div class="img-subasta">
@@ -19,7 +19,7 @@
                 @if($auction->isPreventDay())<span>{{Currency::format($auction->getOriginalCover() ,config('app.currency'))}}</span> @endif{{Currency::format($auction->getCoverAttribute(), config('app.currency'))}}
             </div>
             <div class="leyenda-cover">
-                Tu asiento
+                <!--Tu asiento-->
             </div>
         </div>
     </div>

@@ -6,32 +6,10 @@ function videoGlim() {
             $frame.attr('src', "");
     });
 };
-$(document).ready(function () {
-    //Fancybox login
-    //$('.link-perfil').click(function(e){
-    //	e.preventDefault();
-    //	$('.fancy-login').fadeIn(500);
-    //});
 
-    $('.fancy-login, .cerrar-fancybox').click(function () {
-        $('.fancy-login').fadeOut(500);
-    });
-    //return;
-    //Llamada de productos destacados
-    /*
-    $.get("ajax_call/ws_destacados.php", function (data, status) {
-        html = data;
-        //Data será un JSON con los datos de los productos destacados
-        if (status == "success") {
-            $('#destacados .container .row').html(html);
-            //$('#destacados').html('<p>No se encontraron proudctos destacados</p>');
-        } else {
-            $('#destacados .container .row').html('<p>Hubo un error en la obtención de datos</p>');
-        }
-    });
-*/
-    var page = 1;
-    var stopGetProducts = false;
+
+
+$(document).ready(function () {
     function get_products(pag) {
         if(stopGetProducts){
             return;
@@ -57,6 +35,47 @@ $(document).ready(function () {
             page++;
         });
     }
+    window.openFancyByHash = function(hash){
+        var h = hash.replace("#!","").split("/")[0];
+        open_fancy_product(h);
+    };
+    var cLocation = history.location || document.location;
+     if(cLocation.hash){
+        openFancyByHash(cLocation.hash);
+     }
+     
+    $( window ).bind( 'popstate', function( e ) {
+//        open_fancy_product($(this).attr('id_producto'));
+        var cLocation = history.location || document.location;
+        openFancyByHash(cLocation.hash);
+    });
+    
+    //Fancybox login
+    //$('.link-perfil').click(function(e){
+    //	e.preventDefault();
+    //	$('.fancy-login').fadeIn(500);
+    //});
+    
+    $('.fancy-login, .cerrar-fancybox').click(function () {
+        
+        $('.fancy-login').fadeOut(500);
+    });
+    //return;
+    //Llamada de productos destacados
+    /*
+    $.get("ajax_call/ws_destacados.php", function (data, status) {
+        html = data;
+        //Data será un JSON con los datos de los productos destacados
+        if (status == "success") {
+            $('#destacados .container .row').html(html);
+            //$('#destacados').html('<p>No se encontraron proudctos destacados</p>');
+        } else {
+            $('#destacados .container .row').html('<p>Hubo un error en la obtención de datos</p>');
+        }
+    });
+*/
+    var page = 1;
+    var stopGetProducts = false;
     
     get_products();
     $('.slideshow.container').show();

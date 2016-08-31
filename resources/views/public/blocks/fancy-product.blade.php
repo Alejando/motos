@@ -12,10 +12,10 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
         var numItems = {{$numItems}}-1;
     </script>
     <div class="">
-        <div class="col-sm-6 col-sm-push-5 col-md-6 text-center">
+        <div class="col-sm-6 col-sm-push-5 col-md-6 text-center close-fancy">
             <div class="descripcion-fancy">
                 <div class="fancybox-close text-right">
-                    <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-times fa-2x close-fancy" aria-hidden="true"></i>
                 </div>
                 <div class="fancy-titulo">{{$auction->title}}</div>
                 <div class="leyenda-subasta">
@@ -41,7 +41,7 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
             </div>
         </div>
         @if(isset($imgs['fancy-box-thumbailn'][0]))
-        <div class="col-sm-6 col-sm-pull-6 col-md-4 col-md-offset-1 text-center">
+        <div class="col-sm-6 col-sm-pull-6 col-md-4 col-md-offset-1 text-center close-fancy">
             <div class="producto-fancy ">
                 <div class="recorte-superior"></div>
                 <div class="producto-fancy-cover">

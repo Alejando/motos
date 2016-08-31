@@ -58,14 +58,16 @@ $(document).ready(function () {
     }
 
     //Fancybox producto
-    function open_fancy_product(code) {
+    window.open_fancy_product = function (code) {
+        console.log("open" + code);
         var url_ajax = laroute.route('enrollment.userIsEnrollment', {'auctionCode': code});
+        console.log(url_ajax);
         $.get(url_ajax, {}, function (data) {
             if (data.enrollment) {
                 var redirection = laroute.route('auction.room', {'code': code});
                 window.location = redirection;
             } else {
-                history.pushState(null, null, "#!" + code);
+//                history.pushState(null, null, "#!" + code);
 //                console.log(this);
                 var url = laroute.route('auction.fancy', {code: code});
                 $.get(url, {}, 'html').done(function (html) {
@@ -96,13 +98,14 @@ $(document).ready(function () {
     var $products = $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row');
     $products.on('click', '.producto-hammer, .link-subasta', function (e) {
         e.preventDefault();
-        open_fancy_product($(this).attr('id_producto'));
+        var $this =$(this);
+        var code = $this.attr('id_producto');
+        var slug = $this.closest('.product-container').data('slug');
+        var title = this.dataset.slug;
+        history.pushState( null, null, "#!" + code + '/' + slug );
+        openFancyByHash(code);
     });
 
-    $('a.link-subasta, li.link-subasta').on('click', function (e) {
-        e.preventDefault();
-//        open_fancy_product($(this).attr('id_producto'));
-    });
     $products.on('click', '.producto-heart', function (e) {
         var $this = $(this);
         var code = $this.closest('.link-subasta').attr('id_producto');
