@@ -35,10 +35,7 @@ $(document).ready(function () {
             page++;
         });
     }
-    window.openFancyByHash = function(hash){
-        var h = hash.replace("#!","").split("/")[0];
-        open_fancy_product(h);
-    };
+    
     var cLocation = history.location || document.location;
      if(cLocation.hash){
         openFancyByHash(cLocation.hash);
@@ -147,12 +144,10 @@ $(document).ready(function () {
          fullScreenOffsetContainer:"#header-offset, #offsetSlider",
          */
     });
-    console.log($('.tp-bgimg').css('background-size','auto'));
+//    console.log($('.tp-bgimg').css('background-size','auto'));
     
     
     revSli.bind("revolution.slide.onchange", function (e, data) {
-        console.log("change");
-        //$('.subasta-tiempo').css('opacity','0');
         $('.banner-name').css('opacity', '0');
         $('.banner-data').css('opacity', '0');
     });

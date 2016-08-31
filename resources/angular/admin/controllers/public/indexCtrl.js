@@ -24,7 +24,7 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
     
     
     //Fancybox producto
-    
+     
     
     Auction.getStarted(1).then(function(auction) {
         if(auction.length) {
@@ -33,8 +33,7 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
         } else {
             Auction.getUpcoming(1).then(function(auction){
                 $scope.lastStarted = auction[0];
-                $scope.lastStarted.selfUpdate(1500000, $scope);
-                console.log($scope.lastStarted);
+                $scope.lastStarted.selfUpdate(1500000, $scope); 
             });
         }
     });

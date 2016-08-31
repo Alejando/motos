@@ -7,8 +7,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     $interval(function() {
         $scope.now = new Date();
     }, 100);
-    $interval(function(){
-        console.log('10 seg');
+    $interval(function() {
         $scope.getInfo();
     }, 10000);
     $scope.rangeOferta = {
@@ -19,7 +18,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     };
     $scope.help = {
         nextBid : new Date()
-    }
+    };
     $scope.getInfo = function (){
         $scope.objAuction.getInfoBid().then(function(info){
                 $scope.nextBid = new Date(info.nextbid);
@@ -33,7 +32,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
                                 "</timer>");
                 $compile($element.find('.delay-bid'))($scope);
             });
-    }
+    };
     $scope.getInfo();
     $scope.placeBid = function(){
         $scope.objAuction.placeBid($scope.rangeOferta.max).then(function(data) {
