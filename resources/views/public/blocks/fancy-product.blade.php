@@ -24,7 +24,7 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
                 </div>
                 <div class="btns-descripcion"></div>
                 <div class="fancy-txt">
-                    {{$auction->description}}
+                    {!!nl2br($auction->description)!!}
                 </div>
                 <div style="padding: 10px">
                     Llévatelo por menos de <b>{{Currency::format(ceil($auction->max_price), config('app.currency'))}}</b>
