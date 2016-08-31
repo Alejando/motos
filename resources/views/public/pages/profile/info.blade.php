@@ -21,7 +21,10 @@
                 <div class="form-group row">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-xs-4 nac">
+                            <div class="col-xs-4">
+                                <span class="leyenda-fecha-nac">Fecha de nacimiento</span>
+                            </div>
+                            <div class="col-xs-2 nac">
                                 <select name="dia" ng-model="brithday.day" class="form-control2" placeholder="Día">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -56,7 +59,7 @@
                                     <option value="31">31</option>
                                 </select>
                             </div>
-                            <div class="col-xs-4 nac margen-nac">
+                            <div class="col-xs-3 nac margen-nac">
                                 <select name="mes" ng-model="brithday.month" class="form-control2" placeholder="Mes">
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
@@ -72,7 +75,7 @@
                                     <option value="12">Diciembre</option>
                                 </select>
                             </div>
-                            <div class="col-xs-4 nac">
+                            <div class="col-xs-3 nac">
                                 <select name="year" ng-model="brithday.year" class="form-control2" placeholder="Año">
                                     @for($i=1916;$i< date('Y')-15; $i++)
                                         <option value="{{$i}}">{{$i}}</option>

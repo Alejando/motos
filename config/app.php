@@ -12,7 +12,7 @@ return [
     'img-sizes' => [
         'fancy-box-thumbailn' => [
             'width' => 224,
-            'height'=> 337
+            'height'=> 250
         ],
         'fancy-box-small' => [
             'width' => 88,

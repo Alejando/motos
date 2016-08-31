@@ -162,7 +162,7 @@ $(document).ready(function () {
     }
 
     /* Funcionalidad general para menu principal */
-    $('#link-menu, .cerrar-menu').click(function (e) {
+    $('#link-menu, .cerrar-principal').click(function (e) {
         e.preventDefault();
         $('#link-menu').toggleClass("menu-activo");
         $('.menu-principal').toggleClass('menu-activo');

@@ -59,7 +59,7 @@
                     <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
                         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
                         <div class="img-subasta">
-                            <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
+                            <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4">
                         </div>
                         <div class="producto-nombre" >
                             - @{{lastStarted.title}} -
