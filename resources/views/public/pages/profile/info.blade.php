@@ -106,7 +106,7 @@
         </div>
         <div class="form-group row">
             <fieldset class="password-fieldset">
-                <legend>Cambiar password</legend>
+                <legend>Cambiar contraseña</legend>
                 <div class="col-sm-6">
                     <input ng-model="$parent.newPassword" type="password" name="newPassword" class="pass form-control2" placeholder="Nueva contraseña">
                 </div>
@@ -118,10 +118,10 @@
         </div>
         <div class="form-group row">
             <fieldset class="password-fieldset">
-                <legend>Confirma todos tus cambios con tu password actual</legend>
+                <legend>Confirma todos tus cambios con tu contraseña actual</legend>
                 <div class="form-group row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        <input ng-model="user.password" type="password" name="password" class="pass form-control2" placeholder="Password actual">
+                        <input ng-model="user.password" type="password" name="password" class="pass form-control2" placeholder="Contrasñea actual">
                     </div>
                     <div  ng-show="errors.password" class=col-sm-12 error-message">* @{{errors.password}}</div>
                 </div>
