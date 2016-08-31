@@ -59,20 +59,16 @@ $(document).ready(function () {
 
     //Fancybox producto
     window.open_fancy_product = function (code) {
-        console.log("open" + code);
         var url_ajax = laroute.route('enrollment.userIsEnrollment', {'auctionCode': code});
-        console.log(url_ajax);
         $.get(url_ajax, {}, function (data) {
             if (data.enrollment) {
                 var redirection = laroute.route('auction.room', {'code': code});
                 window.location = redirection;
             } else {
-//                history.pushState(null, null, "#!" + code);
-//                console.log(this);
                 var url = laroute.route('auction.fancy', {code: code});
                 $.get(url, {}, 'html').done(function (html) {
                     var $html = $(html);
-                    $zoom = $html.find(".zoom_mw").elevateZoom({
+                    var $zoom = $html.find(".zoom_mw").elevateZoom({
                         scrollZoom: true,
                         gallery: 'galeria-fancy',
                         borderSize: 1,
@@ -82,16 +78,24 @@ $(document).ready(function () {
                         easing: true,
                         zIndex: 20005
                     });
-                    $('.zoomContainer').append()
+//                    $('.zoomContainer').append()
 //            $zoom.css('zIndex',2002);
 //            console.log($zoom);
 //            console.log($('.fancy-producto'));
                     $('.fancy-producto').empty().append($html).fadeIn(500);
+                    var $link = $('.fancy-producto').empty().append($html).find('.link-subasta');
+                    $link.click(function(){
+                        window.open(this.href,'_self');
+                    });
                 });
             }
 
         });
-    }
+    };
+    window.openFancyByHash = function(hash){
+        var h = hash.replace("#!","").split("/")[0];
+        open_fancy_product(h);
+    };
     $('.producto-fancy').on('click', function (e) {
         e.stopPropagation();
     });
@@ -127,8 +131,9 @@ $(document).ready(function () {
     $fancyProducto.click(function (e) {
         if ($(e.target).is('.fancy-producto') ||
                 $(e.target).is('.close-fancy')) {
-            console.log("sadfa");
-            $fancyProducto.fadeOut(500);
+            $fancyProducto.fadeOut(500,function(){
+                history.pushState( null, null, "#" );
+            });
         } else {
             return false;
         }
