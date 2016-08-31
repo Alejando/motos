@@ -180,10 +180,11 @@
     var auction =  {!! $auction !!}; 
     var id_user = {{\Auth::user()->id}};
 
-    $('share-room').on('click', function() {
+    $('#share-room').on('click', function() {
         FB.ui({
           method: 'share',
           display: 'popup',
+          picture: {!!json_encode($auction->getUrlCover($auction::COVER_HORIZONTAL))!!},
           href: this.href,
         }, function(response){});
     });
