@@ -185,6 +185,9 @@
           method: 'share',
           display: 'popup',
           picture: {!!json_encode($auction->getUrlCover($auction::COVER_HORIZONTAL))!!},
+          description: {!!json_encode($auction->description)!!},
+          name: {!!json_encode($auction->title)!!},
+          caption: 'GlimGlam subastas online',
           href: this.href,
         }, function(response){});
     });
