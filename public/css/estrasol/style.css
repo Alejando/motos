@@ -1816,17 +1816,19 @@ section.fancy-producto {
         margin: 0 auto;
         min-height: 0;
     }
-/*	header.main-header,
-    footer.main-footer{
-            position: relative;
-            top:auto;
-            bottom: auto;
-    }*/
     .item-header{
         float: left;
         width: 33.3333333%;
     }
+    .logo-container{
+        text-align: center;
+    }
     .bienvenido{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .bienvenido br{
         display: none;
     }
     .listado-menu {
@@ -1891,24 +1893,22 @@ section.fancy-producto {
             width: 50px;
             height: 50px;
     }
-    .subir{
-            bottom: 50px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
+    .subir {
+        bottom: 80px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
     }
     .subir-activo{
             opacity: 1;
     }
-    .subir:hover{
-            opacity: 0;
+    .subir i {
+        font-size: 25px;
+        margin: 8px;
     }
     .contenedor-registro{
             top: 50px;
     }
-    /*.producto-fancy{
-            top: 20px;
-    }*/
     .fancy-login .img-mensaje img{
         max-width: 100px;
     }
@@ -1950,6 +1950,50 @@ section.fancy-producto {
     .producto-fancy-cover .precio-cover{
         font-size: 24px;
     }
+    .nombre-usr-perfil {
+        height: auto;
+        top: auto;
+        margin-bottom: 30px;
+    }
+    .datos-perfil {
+        position: relative;
+        padding-top: 100px;
+        margin-top: 130px;
+    }
+    .foto-perfil img.editar-img{
+        position: absolute;
+        top: -116px;
+        left: calc(50% - 98px);
+    }
+    .foto-perfil img.img-profile{
+        position: absolute;
+        top: -116px;
+        left: calc(50% - 94px);
+    }
+    .img-actual{
+        width: 100%;
+        max-width: 200px;
+    }
+    .participacion-actual{
+        margin-top: 30px;
+    }
+    .social-icon{
+        width: 40px;
+        height: 40px;
+        background-size: 250px;
+    }
+    .social-fb, .social-fb:hover{
+        background-position: -40px 0;
+    }
+    .social-ig, .social-ig:hover{
+        background-position: -125px 0;
+    }
+    .social-tw, .social-tw:hover{
+        background-position: 0 0;
+    }
+    .social-yt, .social-yt:hover{
+        background-position: -210px 0;
+    }
 }
 @media(min-width:992px){
     .banner-info:first-child{
@@ -1975,9 +2019,6 @@ section.fancy-producto {
 @media(max-width:992px){
     .t-detalle {
         margin-bottom: 10px;
-    }
-    .participacion-actual{
-        margin-top: 30px;
     }
     .producto-fancy .recorte-superior {
         width: 107%;
@@ -2017,11 +2058,6 @@ section.fancy-producto {
     }
     .ingreso-puja {
         width: 212px;
-    }
-}
-@media(max-width:680px){
-    .caja-responsive, .caja-responsive2{
-        margin-top: 165px;
     }
 }
 @media(max-width:365px){

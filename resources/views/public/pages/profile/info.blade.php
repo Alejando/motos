@@ -113,7 +113,7 @@
                 <div class="col-sm-6">
                     <input ng-model="$parent.newPassword" type="password" name="newPassword" class="pass form-control2" placeholder="Nueva contraseña">
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 margen-nac">
                     <input ng-model="$parent.confirmPassword" type="password" name="confirmPassword" class="pass form-control2" placeholder="Confirma tu contraseña">
                 </div>
                 <div  ng-show="errors.confirmPassword" class=col-sm-12 error-message">* @{{errors.confirmPassword}}</div>
@@ -122,12 +122,10 @@
         <div class="form-group row">
             <fieldset class="password-fieldset">
                 <legend>Confirma todos tus cambios con tu contraseña actual</legend>
-                <div class="form-group row">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <input ng-model="user.password" type="password" name="password" class="pass form-control2" placeholder="Contrasñea actual">
-                    </div>
-                    <div  ng-show="errors.password" class=col-sm-12 error-message">* @{{errors.password}}</div>
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input ng-model="user.password" type="password" name="password" class="pass form-control2" placeholder="Contrasñea actual">
                 </div>
+                <div  ng-show="errors.password" class=col-sm-12 error-message">* @{{errors.password}}</div>
             </fieldset>
         </div>
         <div class="form-group row">

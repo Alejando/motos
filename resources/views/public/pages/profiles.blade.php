@@ -14,8 +14,8 @@
                         <span>¡Hola!</span>
                         @{{user.name}} 
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 text-center">
+                    <div class="">
+                        <div class="col-xs-12 col-sm-4 text-center">
                             {{--
                             <div class="col-xs-6 caja-responsive"  style="display: none">
                                 <div class="caja-contador participacion-p" >
@@ -31,13 +31,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 col-md-offset-4 text-center">
+                        <div class="col-xs-12 col-sm-6 col-sm-4 col-sm-offset-4 text-center">
                             <a href='{{asset("")}}' class="upcoming-btn">
                                 <div class="participacion-actual">
                                     <div class="img-actual"><span>Proximas subastas</span><img src="img/caja.png" class="img-responsive"></div>
                                 </div>
                             </a>
                         </div>
+                        <div style="clear:both;"></div>
                     </div>
                 </div>
             </div>

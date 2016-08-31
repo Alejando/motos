@@ -1,5 +1,5 @@
 <div class="bienvenido">
-    Hola<br><span id="nombre-usr">
+    Hola <br><span id="nombre-usr">
         @if(Auth::check())
             {{'@'}}{{Auth::user()->name}}
         @else
