@@ -113,7 +113,7 @@
                 <div class="paypal-cont">
                     <img src="{{asset('img/logo-paypal.png')}}" class="img-responsive">
                     <p>Serás redireccionado a Paypal para efectuar tu pago.</p>
-                    <a class="btn btn-block btn-primary subasta-boton-pago" href="{{route('auction.checkout',['code' => $auction->code])}}">Pagar</a>
+                    <a  data-code="{{$auction->code}}" class="btn btn-block btn-primary subasta-boton-pago" href="#" >Pagar</a>
                 </div>
                 {{--
                 <div class="tdec-cont">

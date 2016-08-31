@@ -220,7 +220,7 @@ Route::get('subastas/asiento-checkout/{code}', [
     'middleware' => 'auth'
 ]);
 //Proceso de redireccion a PayPal para la compra de los lugares en la subasta
-Route::get('subastas/asientos-solicitud-pay-pal/{code}', [
+Route::get('subastas/asientos-solicitud-pay-pal/{code}/{bill}', [
     'as' => 'auction.checkout',
     'uses' => 'PaypalController@checkoutEnrollment',
     'middleware' => 'auth'

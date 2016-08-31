@@ -180,13 +180,14 @@
     var auction =  {!! $auction !!}; 
     var id_user = {{\Auth::user()->id}};
 
-    $('#share-room').on('click', function() {
+    $('#share-room').on('click', function(e) {
+        e.preventDefault();
         FB.ui({
           method: 'share',
           display: 'popup',
           picture: {!!json_encode($auction->getUrlCover($auction::COVER_HORIZONTAL))!!},
           description: {!!json_encode($auction->description)!!},
-          name: {!!json_encode($auction->title)!!},
+          title: "asdfasdfa ANASD",
           caption: 'GlimGlam subastas online',
           href: this.href,
         }, function(response){});

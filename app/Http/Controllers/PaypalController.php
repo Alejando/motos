@@ -127,7 +127,7 @@ class PaypalController extends BaseController {
         }
         return "Paso algo al intentar conectar con paypayl";
     }
-    public function checkoutEnrollment($code) {
+    public function checkoutEnrollment($code, $bill) {
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
@@ -182,6 +182,7 @@ class PaypalController extends BaseController {
         $approvalLink = $payment->getApprovalLink();
         \Session::put('paypal_payment_id', $payment->getId());
         \Session::put('payment_auction_code', $code);
+        \Session::put('bill', $bill === 'true' );
         $ggPayment = new \GlimGlam\Models\Payment([
             'user' => \Illuminate\Support\Facades\Auth::User()->id,
             'folio' => time(),
@@ -195,6 +196,7 @@ class PaypalController extends BaseController {
         $ggPayment->setAmountTotal($auction->cover);
         $ggPayment->save();
         \Session::put('payment_temp',$ggPayment->id);
+        
         if(isset($redirect_url)) {
             return \Redirect::away($approvalLink);
         }
@@ -209,7 +211,8 @@ class PaypalController extends BaseController {
         \GlimGlam\Libs\Helpers\Mail::payment($args);
         $payment_id = \Session::get('paypal_payment_id');
         \Session::forget('paypal_payment_id');
-        \Session::forget('payment_auction_code');   
+//        \Session::forget('payment_auction_code');   
+        $bill = \Session::get('bill');   
         $payerId =  Input::get('PayerID');
         $token = Input::get('token');
         if(empty($payerId) || empty($token)){
@@ -220,6 +223,7 @@ class PaypalController extends BaseController {
         $execution->setPayerId($payerId);
         $result = $payment->execute($execution, $this->_api_context);
         if($result->getState() == 'approved') {
+            
             $idPayment = \Session::get('payment_temp');
             $ggPayment = \GlimGlam\Models\Payment::getById($idPayment);
             $ggPayment->approved = true;
@@ -234,6 +238,25 @@ class PaypalController extends BaseController {
                 'offer' => 0,
             ]);
             $enrollment->save();
+            if($bill){
+                $info = $user->billsInfo;
+                $requestBillData = [
+                    'rfc' => $info->rfc,
+                    'business_name' =>  $info->business_name,
+                    'address' => $info->address,
+                    'neighborhood' => $info->neighborhood,
+                    'postal_code' => $info->postal_code,
+                    'city' => $info->city,
+                    'state' => $info->state,
+                    'user_id' => $user->id,
+                    'type' => \GlimGlam\Models\RequestBill::TYPE_BY_ENROLLMENT,
+                    'enrollment_id' => $enrollment->id,
+                    'invoiced' => false
+                ];
+                \GlimGlam\Models\RequestBill::create($requestBillData);
+                
+                Session::forget('bill');
+            }
             Session::forget('payment_temp');
             return \redirect(route('auction.payment.approvated'));
         }

@@ -1,7 +1,4 @@
 glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $http) {
-//    $scope.pay = function () {
-//        alert("CheckOut");
-//    };
    $scope.billInfo = {
         rfc: '1',
         business_name: '2',
@@ -19,19 +16,29 @@ glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $htt
     
     $('.subasta-boton-pago').click(function(e){
         e.preventDefault();
-        var href = this.href;
+        var self = this;
+        var code = self.dataset.code;
         if($(".facturar").is(':checked')) {
-            var url = laroute.route('user.bills-info');            
+            var url = laroute.route('user.bills-info');
             $scope.$apply(function(){
                 $http({
+                    'method' : 'POST',
                     'url' : url,
                     'data' : $scope.billInfo
                 }).then(function(){
+                    var href = laroute.route('auction.checkout',{
+                        'code' : code,
+                        'bill' : true
+                    });
                     $scope.send(href);
                 });
             });
         } else {
             $scope.$apply(function(){
+                var href = laroute.route('auction.checkout',{
+                    'code' : code,
+                    'bill' : false
+                });
                 $scope.send(href);
             });
         }
