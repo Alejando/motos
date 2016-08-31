@@ -10,12 +10,13 @@
         <script type="text/javascript" src="{{asset('js/estrasol/frontend.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/laroute.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bower_components/angular/angular.min.js')}}"></script>
-         {{-- RangeSlider --}}
-         <script src="{{asset('js/bower_components/bootbox.js/bootbox.js')}}" type="text/javascript"></script>
+        {{-- RangeSlider --}}
+        <script type="text/javascript" src="{{asset('js/bower_components/bootbox.js/bootbox.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/thirdparty/angular-rangeslider/angular.rangeSlider.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bower_components/humanize-duration/humanize-duration.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bower_components/angular-timer/dist/angular-timer.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/bower_components/moment/min/moment-with-locales.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/bower_components/angular-slugify/angular-slugify.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/estrasol/public.js')}}"></script>
         @yield('js-scripts')
         
