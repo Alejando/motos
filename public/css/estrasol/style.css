@@ -88,7 +88,7 @@ header.main-header,
 footer.main-footer{
 	position: fixed;
 	width: 100%;
-	z-index: 2000;
+	z-index: 1000;
 	color: #fff;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#403e3f+9,343233+96 */
 	background: rgb(64,62,63); /* Old browsers */
@@ -1379,8 +1379,15 @@ form.login-form {
 form.fancy-form {
     width: auto;
 }
-
-
+.password-fieldset{
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+.password-fieldset legend{
+  float: left;
+  padding-left: 15px;
+}
 /*-----SECCION PERFIL------*/
 .datos-perfil {
     margin-top: 110px;
@@ -1533,8 +1540,9 @@ box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
 .fecha-subasta{
 	color: #CCC;
 }
-.precio-inicial{
-
+.price-range{
+    text-align: center;
+    margin-bottom: 10px;
 }
 .precio-final{
     color: #18B0BB;

@@ -30,7 +30,7 @@
             </div>
             --}}
             <div class="col-sm-12">
-                <a class="btn btn-block btn-primary subasta-boton-pago" onclick="{{asset('#!'.$auction->code)}}">Regresar</a>
+                <a class="btn btn-block btn-primary subasta-boton-pago" onclick="window.history.back();">Regresar</a>
             </div>
             <div style="clear:both;"></div>
         </div>

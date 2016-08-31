@@ -98,7 +98,7 @@ class User extends Authenticatable {
         foreach($enrolments as $enrol) {
             $auctionsIds[] = $enrol->auction;
         }
-        $query = Auction::whereIn('id', $auctionsIds);
+        $query = Auction::whereIn('id', $auctionsIds)->orderBy('start_date', 'ASC');
         return $returnQuery ? $query : $query->get();
     }
     
