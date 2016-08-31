@@ -285,29 +285,7 @@ $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
 
-    // Función Mostrar Facturacion
-    $(".form-factura").hide();
-    var $subTotal = $('#enroll-sub-total');
-    var $iva = $('#enroll-iva');
-    var $total = $('#enroll-total');
-
-    $(".facturar").click(function () {
-        if ($(this).is(":checked")) {
-            var total = parseFloat($total.attr('cant'));
-            var subTotal = (total / (window.ivaCant + 1));
-            var iva = parseFloat(total - subTotal);
-            $iva.attr('cant', iva).html('$' + iva.toFixed(2));
-            $subTotal.attr('cant', subTotal).html('$' + subTotal.toFixed(2));
-            $(".form-factura").show(600);
-        } else {
-            var subTotal = parseFloat($total.attr('cant'));
-
-            $iva.attr('cant', '0.00').html('$0.00');
-            $subTotal.attr('cant', subTotal.toFixed(2)).html('$' + subTotal.toFixed(2));
-
-            $(".form-factura").hide(200);
-        }
-    });
+    
 
     // Función Mostrar forma de pago
     $(".tdec-cont").hide();
