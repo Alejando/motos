@@ -152,15 +152,6 @@
                     <a id="share-room" target="_blank" href="{{URL::to('/#!'.$auction->code.'/'.str_slug($auction->title))}}">
                         <img src="{{asset('img/contacto.png')}}" class="img-responsive">
                     </a>
-                    <script>
-                    document.getElementById('share-room').onclick = function() {
-                        FB.ui({
-                          method: 'share',
-                          display: 'popup',
-                          href: 'https://developers.facebook.com/docs/',
-                        }, function(response){});
-                    }
-                    </script>
                     
                 </div>
                 <div class="col-md-6 video-producto">
@@ -184,9 +175,17 @@
     <!-- /Contenido General -->
 @stop
 
-@section('head')
+@section('js-scripts')
 <script type='text/javascript'>
-var auction =  {!! $auction !!}; 
-var id_user = {{\Auth::user()->id}};
+    var auction =  {!! $auction !!}; 
+    var id_user = {{\Auth::user()->id}};
+
+    $('share-room').on('click', function() {
+        FB.ui({
+          method: 'share',
+          display: 'popup',
+          href: this.href,
+        }, function(response){});
+    });
 </script>
 @stop
