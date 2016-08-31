@@ -8,15 +8,11 @@ use Illuminate\Support\Facades\Input;
 class AuctionController extends BaseController {
     // <editor-fold defaultstate="collapsed" desc="enrollmentPayment">
     public function enrollmentPayment($code) {
-        if(Auth::User()){
-            
-            session(['login-redirect', url(route('auction.enrollment-form',['code'=>$code]))]);
-            return view('public.pages.enrollment-payment',[
-                'auction' => \GlimGlam\Models\Auction::getByCode($code),
-                'user' => Auth::User()
-            ]);
-        }
-        return redirect(url('/login'));
+        session(['login-redirect', url(route('auction.enrollment-form',['code'=>$code]))]);
+        return view('public.pages.enrollment-payment',[
+            'auction' => \GlimGlam\Models\Auction::getByCode($code),
+            'user' => Auth::User()
+        ]);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="paymentApprovated">

@@ -148,7 +148,20 @@
                     <div>{{$auction->description}}</div>
                     <div class="info-divider"></div>
                     <h3>¡Cuéntale a un amigo!</h3>
-                    <img src="{{asset('img/contacto.png')}}" class="img-responsive">
+                    
+                    <a id="share-room" target="_blank" href="{{URL::to('/#!'.$auction->code.'/'.str_slug($auction->title))}}">
+                        <img src="{{asset('img/contacto.png')}}" class="img-responsive">
+                    </a>
+                    <script>
+                    document.getElementById('share-room').onclick = function() {
+                        FB.ui({
+                          method: 'share',
+                          display: 'popup',
+                          href: 'https://developers.facebook.com/docs/',
+                        }, function(response){});
+                    }
+                    </script>
+                    
                 </div>
                 <div class="col-md-6 video-producto">
                     <iframe width="420" height="315" src="http://www.youtube.com/embed/QH2-TGUlwu4?vq=hd1080&controls=0&iv_load_policy=3&rel=0&showinfo=0&color=white&disablekb=1" frameborder="0"></iframe>

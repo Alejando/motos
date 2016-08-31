@@ -1,4 +1,5 @@
 <nav class="menu-lateral menu-principal transition-0-5">
+    <div class="cerrar-menu cerrar-principal hidden-sm"></div>
     <ul class="listado-menu">
         {{--
         <li><a class="transition-0-3" href="{{asset('acerca-de-glimglam')}}">Acerca de...</a></li>
@@ -7,7 +8,7 @@
         <li><a class="transition-0-3" href="{{asset('preguntas-frecuentes')}}">Preguntas frecuentes</a></li>
         <li><a class="transition-0-3" href="{{asset('../blog')}}">Blog</a></li>
         {{--
-        <li><a class="transition-0-3" href="">Testimoniales</a></li>
+        <li><a class="transition-0-3" href="{{asset('testimoniales')}}">Testimoniales</a></li>
         --}}
         <li><a class="transition-0-3" href="{{asset('aviso-de-privacidad')}}">Aviso de privacidad</a></li>
         <li><a class="transition-0-3" href="{{asset('terminos-y-condiciones')}}">Términos y Condiciones</a></li>

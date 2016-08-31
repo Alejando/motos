@@ -136,10 +136,11 @@ header.main-header{
 	line-height: 73px;
 }
 .item-header{
-	position: relative;
-	display: inline-block;
-	width: 73px;
-	height: 73px;
+    float: none;
+    position: relative;
+    display: inline-block;
+    width: 73px;
+    height: 73px;
 }
 .link-menu,
 .link-perfil{
@@ -497,11 +498,11 @@ header.main-header{
 	border-radius:15px;
 }
 .banner-name{
-	font-size: 22px;
-	line-height: 26px;
-	text-transform: uppercase;
-	color: #adadad;
-	margin: 10px 0;
+        font-size: 22px;
+        line-height: 26px;
+        text-transform: uppercase;
+        color: #adadad;
+        margin: 10px 0;
 }
 .banner-info:first-child,
 .banner-info:last-child{
@@ -600,6 +601,9 @@ header.main-header{
 }
 .tp-leftarrow:hover, .tp-rightarrow:hover {
     background-position: bottom left;
+}
+.tp-bgimg{
+    background-size: 100% !important;
 }
 /* PRODUCTS */
 .products-container{
@@ -764,7 +768,7 @@ header.main-header{
 	min-height: 300px;
 }
 .producto.big-producto .img-subasta img{
-	max-width: 450px;
+	max-width: 100%;
 	max-height: 350px;
 	width: auto;
 	height: auto;
@@ -1372,6 +1376,11 @@ form.login-form {
     margin: auto;
     width: 90%;
 }
+.leyenda-fecha-nac{
+    display: block;
+    font-size: 15px;
+    padding-top: 18px;
+}
 .logo-registro img {
     margin: 8px auto;
     width: 60%;
@@ -1709,9 +1718,6 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 25px;
     vertical-align: middle;
 }
-.fancy-titulo{
-	font-size: 20px;
-}
 .fancy-titulo {
     font-size: 25px;
     color: #0b676a;
@@ -1799,22 +1805,48 @@ section.fancy-producto {
         top: auto;
         /* bottom: 0; */
     }
+    .producto.big-producto .img-subasta{
+        margin: 0 auto;
+        min-height: 0;
+    }
 /*	header.main-header,
     footer.main-footer{
             position: relative;
             top:auto;
             bottom: auto;
     }*/
+    .item-header{
+        float: left;
+        width: 33.3333333%;
+    }
+    .bienvenido{
+        display: none;
+    }
+    .listado-menu {
+        margin-top: 73px;
+    }
     .link-menu{
             right: 0 !important;
     }
     .producto{
-            width: calc(100% + 26px);
+            width: calc(100%);
     }
     .tp-leftarrow.default,
     .tp-rightarrow.default,
     .tp-bullets{
             display: none;
+    }
+    .banner-name{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .banner-range{
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .subasta-tiempo{
+        font-size: 20px;
+        line-height: 24px;
     }
     .producto{
             height: auto;
@@ -1836,9 +1868,6 @@ section.fancy-producto {
     }
     .producto.big-producto .tiempo-producto .tiempo-subasta-producto{
             font-size: 18px;
-    }
-    .subasta-tiempo{
-            font-size: 25px;
     }
     .video {
             height: calc(212px + 20px);
@@ -1874,133 +1903,136 @@ section.fancy-producto {
             top: 20px;
     }*/
     .fancy-login .img-mensaje img{
-            max-width: 100px;
+        max-width: 100px;
     }
     .fancy-login .registro-leyenda-1{
-            font-size: 28px;
+        font-size: 28px;
     }
     .fancy-login .registro-leyenda-2{
-            font-size: 15px;
+        font-size: 15px;
     }
     .fancy-login .registro-leyenda-3{
-            font-size: 15px;
+        font-size: 15px;
     }
     .login-facebook{
-            background-size: 150px;
+        background-size: 150px;
     }
     .total-subastado {
         text-align: center;
     }
     .margen-tf{
-            margin-top: 15px;
+        margin-top: 15px;
     }
     .fancy-producto{
             overflow: auto;
     }
-}
-@media(min-width:768px){
-	
+    .fancy-txt {
+        padding: 5px;
+    }
+    .fancy-titulo {
+        font-size: 20px;
+        padding: 10px auto;
+    }
+    .descripcion-fancy{
+        width: 100%;
+        margin: auto;
+    }
+    .producto-fancy-cover > span > span{
+        font-size: 18px;
+    }
+    .producto-fancy-cover .precio-cover{
+        font-size: 24px;
+    }
 }
 @media(min-width:992px){
-	.banner-info:first-child{
-	border-right: dotted 1px #a9a9aa;
-	}
-	.banner-info:last-child{
-		border-left: dotted 1px #a9a9aa;
-	}
-	.tp-leftarrow.default{
-		left: -100px !important;
-		width: 82px;
-		height: 82px;
-		background-size: auto;
-	}
-	.tp-rightarrow.default {
-		right: -100px !important;
-		width: 82px;
-		height: 82px;
-		background-size: auto;
-	}
+    .banner-info:first-child{
+        border-right: dotted 1px #a9a9aa;
+    }
+    .banner-info:last-child{
+        border-left: dotted 1px #a9a9aa;
+    }
+    .tp-leftarrow.default{
+        left: -100px !important;
+        width: 82px;
+        height: 82px;
+        background-size: auto;
+    }
+    .tp-rightarrow.default {
+        right: -100px !important;
+        width: 82px;
+        height: 82px;
+        background-size: auto;
+    }
 }
 
 @media(max-width:992px){
-	.t-detalle {
-	    margin-bottom: 10px;
-	}
-	.participacion-actual{
-		margin-top: 30px;
-	}
-	.producto-fancy .recorte-superior {
-    	width: 107%;
-	}
-	.producto-fancy .recorte-inferior {
-	    width: 107%;
-	}
+    .t-detalle {
+        margin-bottom: 10px;
+    }
+    .participacion-actual{
+        margin-top: 30px;
+    }
+    .producto-fancy .recorte-superior {
+        width: 107%;
+    }
+    .producto-fancy .recorte-inferior {
+        width: 107%;
+    }
 }
-@media(min-width:1200px){
-	
-}
-
 @media(max-width:525px){
-	.bienvenido{
-		display: none;
-	}
-	.video-producto iframe {
-	    width: 95%;
-	    height: 300px;
-	    border-radius: 10px;
-	}
-	.login-cont {
-	    width: 90%;
-	}
-	.login-cont {
-	    margin: 50px auto 130px auto;
-	}
-	.listado-menu {
-	    margin-bottom: 100px;
-	}
+    .video-producto iframe {
+        width: 95%;
+        height: 300px;
+        border-radius: 10px;
+    }
+    .login-cont {
+        width: 90%;
+    }
+    .login-cont {
+        margin: 50px auto 130px auto;
+    }
 }
 @media(max-width:490px){
-	.rebase-izq, .rebase-der {
-	    height: 192px;
-	}
-	.mejor-postor {
-	    padding: 0px 0px 60px;
-	}
-	.boton-minus, .boton-plus {
-	    margin: 0px 15px;
-	}
-	.input-group-addon {
-	    padding: 6px 10px;
-	}
-	.input-group .form-control {
-	    width: 175px;
-	}
-	.ingreso-puja {
-	    width: 212px;
-	}
-
+    .rebase-izq, .rebase-der {
+        height: 192px;
+    }
+    .mejor-postor {
+        padding: 0px 0px 60px;
+    }
+    .boton-minus, .boton-plus {
+        margin: 0px 15px;
+    }
+    .input-group-addon {
+        padding: 6px 10px;
+    }
+    .input-group .form-control {
+        width: 175px;
+    }
+    .ingreso-puja {
+        width: 212px;
+    }
 }
 @media(max-width:680px){
-	.caja-responsive, .caja-responsive2{
-		margin-top: 165px;
-	}
+    .caja-responsive, .caja-responsive2{
+        margin-top: 165px;
+    }
 }
 @media(max-width:365px){
-	.col-xs-6.caja-responsive {
-    width: 100%;
-	}
-	.col-xs-6.caja-responsive2{
-		width: 100%;
-		margin-top:20px;
-	}
+    .col-xs-6.caja-responsive {
+        width: 100%;
+    }
+    .col-xs-6.caja-responsive2{
+        width: 100%;
+        margin-top:20px;
+    }
 }
 @media(max-width:420px){
-	.col-xs-4.nac{
-		width: 100%;
-	}
-	.margen-nac{
-		margin: 15px 0;
-	}
+    .col-xs-4.nac{
+        width: 100%;
+    }
+    .margen-nac{
+        margin: 15px 0;
+    }
 }
 
 
