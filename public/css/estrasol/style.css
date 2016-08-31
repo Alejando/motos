@@ -1510,8 +1510,11 @@ box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
     background-color: #00bcb6;
 }
 .caja-detalle {
+    display: block;
+    width: 90%;
     border: 1px solid #18B0BB;
     border-radius: 5px;
+    margin: 0 auto;
     padding: 20px;
     line-height: 22px;
 }
