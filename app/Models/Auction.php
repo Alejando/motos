@@ -23,10 +23,28 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     protected $hidden = ['created_at', 'updated_at'];
     
     // <editor-fold defaultstate="collapsed" desc="isBuyable">
-    public function isBuyable(){
-        $now = new \DateTime;
-        $start_date = new \DateTime($this->start_date);
+    public function isBuyable() {
+        return true;
+        $utcMx = new \DateTimeZone("America/Mexico_City");
+        $now = new \DateTime(null, $utcMx);
+        dd($now->format(DATE_ATOM));
         
+        $start_date = new \DateTime($this->start_date);
+        $start_date->setTimezone($utcMx);
+        $now->setTimezone($utcMx);
+        
+        $thuBefore = date("Y-m-d 00:00", strtotime("last ".Config('app.preventdate'), $start_date->getTimestamp()));
+        $lastThursday = new \DateTime($thuBefore, $utcMx);
+//        $lastThursday->format(DATE_ATOM);
+        
+        if($lastThursday > $now){
+            dd("false");
+        }
+//        $lastThursday = new \DateTime($thuBefore);
+//        date(DATE_ATOM, );
+        
+        dd($start_date->format(DATE_ATOM));
+        dd("---");
         return true;
     }
     // </editor-fold>
@@ -123,7 +141,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="isPreventDay">
     public function isPreventDay(){
-        return true;
+        return !true;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getOriginalCover">
