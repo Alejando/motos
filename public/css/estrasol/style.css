@@ -283,6 +283,7 @@ header.main-header{
     text-align: center;
 }*/
 .producto-fancy {
+    position: relative;
     max-width: 320px;
     padding: 10px 10px 20px;
     background-color: #fff;
@@ -313,13 +314,6 @@ header.main-header{
     text-align: center;
     margin: 11% auto;
 }
-/*.producto-fancy .recorte-superior,
-.producto-fancy .recorte-inferior{
-	position: absolute;
-	left: 0;
-	width: 286px;
-	height: 13px;
-}*/
 .producto-fancy .recorte-superior {
     position: relative;
     left: -10px;
@@ -342,6 +336,21 @@ header.main-header{
 	bottom:-12px;
 	background: url(../../img/recorte-inferior.png) repeat-x left bottom transparent;
 }
+.label-preventa{
+    position: absolute;
+    z-index: 2;
+    left:-11px;
+    width:100px;
+    height:100px;
+    background: url(../../img/oferta.png) no-repeat left top transparent;
+    background-size: 100px;
+}
+.producto .label-preventa{
+    top:-7px;
+}
+.producto-fancy .label-preventa{
+    top:-15px;
+}
 .producto-fancy-cover{
 	font-size: 20px;
 	color: #0b676a;
@@ -350,9 +359,11 @@ header.main-header{
 .producto-fancy-cover span{
 	display: block;
 }
-.producto-fancy-cover > span > span{
+.producto-fancy-cover span.strike{
     text-decoration: line-through;
     font-size: 22px;
+}
+.producto-fancy-cover span.oferta{
     color: #fb5f60;
 }
 .producto-fancy-cover .precio-cover{
@@ -639,6 +650,7 @@ header.main-header{
 .producto-hover{
     opacity: 0;
     position: absolute;
+    z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
