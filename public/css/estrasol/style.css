@@ -369,6 +369,9 @@ header.main-header{
 .producto-fancy .leyenda-subasta{
 	margin-bottom: 15px;
 }
+.modal-body{
+    text-align: justify;
+}
 /* MENU */
 .menu-lateral{
     position: fixed;

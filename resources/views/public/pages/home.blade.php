@@ -114,11 +114,11 @@
                                 <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
                             </div>
                             <div class="producto-nombre" >
-                                - @{{lastStarted.title}} -
+                                @{{lastStarted.title}}
                             </div>
                             <div class="leyenda-subasta" ng-show="lastStarted.last_offer">
                                 <div>Ultima Oferta:</div>
-                                <div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
+                                <div class="rango-ofertas">$@{{lastStarted.last_offer}}</div>
                             </div>
                             <div class="tiempo-producto">
                                 <span class="tiempo-subasta-producto countdown" start_date="@{{lastStarted.start_date}}"></span>

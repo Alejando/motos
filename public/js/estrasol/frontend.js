@@ -34,18 +34,21 @@ $(document).ready(function () {
 
         changeGalImg($element);
     });
-
+    var zoomConfig = {
+        responsive: true,
+        scrollZoom: true,
+        gallery: 'galeria-fancy',
+        borderSize: 1,
+        zoomType: "window",
+        zoomWindowWidth: 400,
+        zoomWindowHeight: 400,
+        zoomWindowOffetx:60,
+        zoomWindowOffety:-30,
+        tintOpacity: 1,
+        easing: true,
+        zIndex: 20005
+    };
     function changeGalImg($element) {
-        var zoomConfig = {
-            scrollZoom: true,
-            gallery: 'galeria-fancy',
-            borderSize: 1,
-            zoomType: "inner",
-            lensShape: "round",
-            tintOpacity: 1,
-            easing: true,
-            zIndex: 20005
-        };
         var zoomImage = $('#fancy-zoom');
 
         // Remove old instance od EZ
@@ -69,16 +72,7 @@ $(document).ready(function () {
                 var url = laroute.route('auction.fancy', {code: code});
                 $.get(url, {}, 'html').done(function (html) {
                     var $html = $(html);
-                    var $zoom = $html.find(".zoom_mw").elevateZoom({
-                        scrollZoom: true,
-                        gallery: 'galeria-fancy',
-                        borderSize: 1,
-                        zoomType: "inner",
-                        lensShape: "round",
-                        tintOpacity: 1,
-                        easing: true,
-                        zIndex: 20005
-                    });
+                    var $zoom = $html.find(".zoom_mw").elevateZoom(zoomConfig);
 //                    $('.zoomContainer').append()
 //            $zoom.css('zIndex',2002);
 //            console.log($zoom);

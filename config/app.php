@@ -19,8 +19,8 @@ return [
             'height'=> 88
         ],
         'fancy-box-zoom' => [
-            'width' => 224*6,
-            'height'=> 337*6
+            'width' => 224*4.5,
+            'height'=> 250*4.5
         ]
     ],
     'currency' => 'MXN', 
