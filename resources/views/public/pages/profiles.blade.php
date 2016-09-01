@@ -48,10 +48,10 @@
             <div class="bg-blanco input-datos">
                 <div class="row btns-perfil">
                     <div class="col-md-8 col-md-offset-2">
-                        <button ng-click="setSection('profile');"class="btn-perfil sw-perfil perfil-activo_" type="submit">Mi Perfil</button>
-                        <button ng-click="setSection('myEnrolmentsAuctions');" class="btn-perfil sw-detalles" type="submit">Mis Subastas</button>
-                        <button ng-click="setSection('wins');" class="btn-perfil sw-detalles" type="submit">Ganadas </button>
-                        <button ng-click="setSection('favs');" class="btn-perfil sw-metodo" type="submit">Mis Favoritas</button>
+                        <button ng-click="setSection('profile');" ng-class="{'perfil-activo':section=='profile'}" class="btn-perfil sw-perfil" type="submit">Mi Perfil</button>
+                        <button ng-click="setSection('myEnrolmentsAuctions');" ng-class="{'perfil-activo':section=='myEnrolmentsAuctions'}" class="btn-perfil sw-detalles" type="submit">Mis Subastas</button>
+                        <button ng-click="setSection('wins');" ng-class="{'perfil-activo':section=='wins'}" class="btn-perfil sw-detalles" type="submit">Ganadas </button>
+                        <button ng-click="setSection('favs');" ng-class="{'perfil-activo':section=='favs'}" class="btn-perfil sw-metodo" type="submit">Mis Favoritas</button>
                     </div>
                 </div>
                 <div id="cont-inputs" class="row" ng-switch on="section">

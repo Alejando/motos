@@ -1,5 +1,6 @@
 <div class="col-md-3 inputs-mgn" ng-repeat="fav in favs">
-    <a href="{{asset('')}}/@{{auction.code}}-@{{auction.title | slugify}}" class="caja-detalle">
+    <a href="{{asset('')}}#!@{{fav.code}}/@{{fav.title | slugify}}" class="caja-detalle">
+        <div class="remove-fav" ng-click="removeFav(fav, $event);"><i class="fa fa-times" aria-hidden="true" code="@{{fav.code}}"></i></div>
         <img ng-src="@{{fav.getUrlCover('horizontal')}}" class="img-responsive">
         <div id="titulo-en-detalle" class="titulo-en-detalle">
             @{{fav.title}}

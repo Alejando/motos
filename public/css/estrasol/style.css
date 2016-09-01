@@ -1533,6 +1533,7 @@ box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
     width: 80%;
 }
 .caja-detalle {
+    position: relative;
     display: block;
     width: 90%;
     border: 1px solid #18B0BB;
@@ -1542,8 +1543,15 @@ box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
     line-height: 18px;
 }
 .caja-detalle:hover{
-	background-color: #F4FEFF;
-	cursor: pointer;
+    background-color: #F4FEFF;
+    cursor: pointer;
+}
+.remove-fav{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    font-size: 20px;
 }
 .caja-detalle img {
     margin: auto;

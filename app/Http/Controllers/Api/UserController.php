@@ -4,6 +4,7 @@ namespace GlimGlam\Http\Controllers\Api;
 
 use Illuminate\Support\Facades\Input;
 use GlimGlam\Models\User;
+use GlimGlam\Models\Auction;
 
 class UserController extends \GlimGlam\Libs\CoreUtils\ApiRestController {
 
@@ -71,11 +72,12 @@ class UserController extends \GlimGlam\Libs\CoreUtils\ApiRestController {
         return $user->getMyEnrolmentsAuctions();
     }
     public function getCurrentAuction(){
+        $user = \Auth::user();
         $current = $user->getCurrentAuction();
         $uncoming = $user->getUpcomingAuctition();
         
         $upcoming = Auction::getUpcoming()->get();
-        $upcoming->get()->get(rand(0, $upcoming->count()-1));
+        $upcoming->get(rand(0, $upcoming->count()-1));
         return $upcoming;
     }
     public function auctionsInfo($userId) {

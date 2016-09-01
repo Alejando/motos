@@ -105,7 +105,7 @@
                     @else
                         @if(true)
                         <div class="producto producto-mensaje placeholder naranja">
-                            <iframe class="video" src="https://www.youtube.com/embed/JTmp1y1i-l0" frameborder="0"></iframe>
+                            <iframe class="video" src="https://www.youtube.com/embed/JTmp1y1i-l0?rel=0" frameborder="0"></iframe>
                         </div>
                         @else
                         <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
