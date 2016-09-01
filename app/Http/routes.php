@@ -202,7 +202,7 @@ Route::group(['prefix' => 'api'], function () use (&$route){
         'uses' => 'Api\\AuctionController@getImg',
         'as' => 'auction.getImg'
     ])->where([
-        'version' => "(?:fancy-box-small|fancy-box-zoom|fancy-box-thumbailn)"
+        'version' => "(?:fancy-box-small|fancy-box-zoom|fancy-box-thumbailn|slider-upcoming)"
     ]);
     
 });

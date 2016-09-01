@@ -352,10 +352,9 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getUrlImg">
-    public function getUrlImg() {
+    public function getUrlImg($versions = ["fancy-box-small","fancy-box-thumbailn","fancy-box-zoom"]) {
         $imgs = $this->getPhotos($this->code);
         $rImgs = [];
-        $versions = ["fancy-box-small","fancy-box-thumbailn","fancy-box-zoom"];
         foreach($versions as $version){
             $rImgs[$version] = [];
             foreach($imgs as $img){

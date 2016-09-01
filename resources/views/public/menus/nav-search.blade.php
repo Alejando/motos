@@ -15,7 +15,7 @@
             <p class="label-menu">Sub tipo</p>
         </div>
         <div class="menu-filtros">
-            <p class="label-menu label-gold">Rango de cover</p>
+            <p class="label-menu label-gold">Rango de oferta</p>
             <div class="min-max-container">
                 <input type="text" placeholder="$10000.00" id="input-min" class="input-filtros input-rango input-min"/>
                 <label class="label-menu">Mínimo</label>

@@ -2,14 +2,26 @@
 @section('body')
 <div ng-controller="public.roomCtrl" class="section-room" style="display: none">
     <section class="fancy-producto">
-      
     </section>
+            
+    
         <section class="slideshow container-fluid patrongg">
             <div class="banner-container">
-                <div class="galeria-detalle">
-                    <div class="imagen-principal">
-                        <img src="{{$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}" alt="" class="img-responsive">
-                    </div>
+                <div class="banner" >
+                    <ul class="banner-list">
+                        <?php $urlCovers = $auction->getUrlImg([$auction::COVER_SLIDER_UPCOMING])[$auction::COVER_SLIDER_UPCOMING]?>
+                        @foreach($urlCovers as $url)
+                        <li class="link-subasta no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
+                            data-slotamount="8" 
+                            id-producto="{{$auction->code}}" 
+                            product-name="{{$auction->title}}" 
+                            rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
+                            rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
+                            start_date="{{$auction->start_date}}">
+                            <img src="{{$url}}"/>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
             <section class="banner-description container">
@@ -193,4 +205,5 @@
         }, function(response){});
     });
 </script>
+<script type="text/javascript" src="{{asset('js/estrasol/room.js')}}"></script>
 @stop

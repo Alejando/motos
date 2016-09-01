@@ -99,6 +99,14 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
             $scope.enrolleds = enrolleds;
         });
     };
+    $scope.removeFav = function(auction, $event){
+        $event.preventDefault();
+        jsGlimglam.fn.auctions.removeFav(auction.code).done(function () {
+            $scope.$apply(function(){
+                $scope.favs.splice($scope.favs.indexOf(auction), 1);
+            });
+        });
+    };
     
     //<editor-fold defaultstate="collapsed" desc="updateProfile">
     $scope.updateProfile = function () {

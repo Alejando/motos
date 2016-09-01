@@ -9,7 +9,7 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
 ?>
 <div class="fancy-close">
     <script>
-        var numItems = {{$numItems}}-1;
+        var numItems = {{$numItems}} - 1;
     </script>
     <div class="">
         <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5 text-center close-fancy">
@@ -44,8 +44,12 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
         <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7 text-center close-fancy">
             <div class="producto-fancy ">
                 <div class="recorte-superior"></div>
+                @if($auction->isPreventDay())<div class="label-preventa"></div>@endif
                 <div class="producto-fancy-cover">
-                    <span class="precio-cover"><span>@if($auction->isPreventDay()) {{Currency::format($auction->getOriginalCover(), config('app.currency'))}}</span> @endif{{Currency::format($auction->cover, config('app.currency'))}}</span>
+                    <span class="precio-cover">
+                        @if($auction->isPreventDay())<span class="strike">{{Currency::format($auction->getOriginalCover(), config('app.currency'))}}</span>@endif
+                        <span class="{{$auction->isPreventDay() ? 'oferta':''}}">{{Currency::format($auction->cover, config('app.currency'))}}</span>
+                    </span>
                     <span>Tu asiento</span>
                 </div>
                 <div id="img-principal" class="producto-fancy-img">

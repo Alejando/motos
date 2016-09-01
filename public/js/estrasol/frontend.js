@@ -3,7 +3,6 @@ var protocol = pathArray[0];
 var host = pathArray[2];
 var url = protocol + '//' + host + '/' + 'glimglam';
 
-
 $(document).ready(function () {
     $('.fancy-producto').on('click', '.fancy-gallery-control', function () {
         var $control = $(this);
@@ -11,8 +10,7 @@ $(document).ready(function () {
         var position = $container.scrollLeft();
         var numGal = parseInt($('.frame-gallery.active').attr('gal-num'));
         $('.frame-gallery.active').removeClass('active');
-
-        if ($control.hasClass('control-right') && numGal <= numItems) {
+        if ($control.hasClass('control-right') && numGal < numItems) {
             $container.scrollLeft(position + 104);
             numGal += 1;
         } else if ($control.hasClass('control-left') && numGal > 0) {
@@ -33,18 +31,21 @@ $(document).ready(function () {
 
         changeGalImg($element);
     });
-
+    var zoomConfig = {
+        responsive: true,
+        scrollZoom: true,
+        gallery: 'galeria-fancy',
+        borderSize: 1,
+        zoomType: "window",
+        zoomWindowWidth: 400,
+        zoomWindowHeight: 400,
+        zoomWindowOffetx:60,
+        zoomWindowOffety:-30,
+        tintOpacity: 1,
+        easing: true,
+        zIndex: 20005
+    };
     function changeGalImg($element) {
-        var zoomConfig = {
-            scrollZoom: true,
-            gallery: 'galeria-fancy',
-            borderSize: 1,
-            zoomType: "inner",
-            lensShape: "round",
-            tintOpacity: 1,
-            easing: true,
-            zIndex: 20005
-        };
         var zoomImage = $('#fancy-zoom');
 
         // Remove old instance od EZ
@@ -68,20 +69,7 @@ $(document).ready(function () {
                 var url = laroute.route('auction.fancy', {code: code});
                 $.get(url, {}, 'html').done(function (html) {
                     var $html = $(html);
-                    var $zoom = $html.find(".zoom_mw").elevateZoom({
-                        scrollZoom: true,
-                        gallery: 'galeria-fancy',
-                        borderSize: 1,
-                        zoomType: "inner",
-                        lensShape: "round",
-                        tintOpacity: 1,
-                        easing: true,
-                        zIndex: 20005
-                    });
-//                    $('.zoomContainer').append()
-//            $zoom.css('zIndex',2002);
-//            console.log($zoom);
-//            console.log($('.fancy-producto'));
+                    var $zoom = $html.find(".zoom_mw").elevateZoom(zoomConfig);
                     $('.fancy-producto').empty().append($html).fadeIn(500);
                     var $link = $('.fancy-producto').empty().append($html).find('.link-subasta');
                     $link.click(function(){

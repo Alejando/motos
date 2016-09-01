@@ -20,9 +20,11 @@
                         <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="1000" data-start="500">
                             <i class="fa fa-clock-o animated infinite pulse verde r-banner" aria-hidden="true"></i>
                         </div>
+                        {{--
                         <a href="#" class="like-subasta caption randomrotate rojo" data-x="right" data-y="bottom" data-hoffset="-20" data-voffset="-20" data-speed="1000" data-start="500">
                             <i class="fa fa-heart-o c-banner favorito" aria-hidden="true"></i>
                         </a>
+                        --}}
                     </li>
                     @endforeach
                 </ul>
@@ -31,7 +33,7 @@
         <section class="banner-description container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center banner-name transition-0-3">
-                    - <span></span> -
+                    <span></span>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="row banner-data transition-0-3">
@@ -57,16 +59,17 @@
             <div class="row">
                 <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
+                        <div ng-show="{{$auction->isPreventDay()}}" class="label-preventa"></div>
                         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
                         <div class="img-subasta">
                             <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4">
                         </div>
                         <div class="producto-nombre" >
-                            - @{{lastStarted.title}} -
+                            @{{lastStarted.title}}
                         </div>
                         <div class="leyenda-subasta" ng-show="lastStarted.last_offer">
                             <div>Ultima Oferta:</div>
-                            <div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
+                            <div class="rango-ofertas">$@{{lastStarted.last_offer}}</div>
                         </div>
                         <div class="tiempo-producto">
                             <span class="tiempo-subasta-producto countdown" start_date="@{{lastStarted.start_date}}"></span>
@@ -83,7 +86,7 @@
                                 @{{lastStarted.cover}}
                             </div>
                             <div class="leyenda-cover">
-                                COVER
+                                Tu asiento
                             </div>
                         </div>
                     </a>
@@ -105,7 +108,7 @@
                     @else
                         @if(true)
                         <div class="producto producto-mensaje placeholder naranja">
-                            <iframe class="video" src="https://www.youtube.com/embed/JTmp1y1i-l0" frameborder="0"></iframe>
+                            <iframe class="video" src="https://www.youtube.com/embed/JTmp1y1i-l0?rel=0" frameborder="0"></iframe>
                         </div>
                         @else
                         <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
@@ -114,11 +117,11 @@
                                 <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4" style="height:300px">
                             </div>
                             <div class="producto-nombre" >
-                                - @{{lastStarted.title}} -
+                                @{{lastStarted.title}}
                             </div>
                             <div class="leyenda-subasta" ng-show="lastStarted.last_offer">
                                 <div>Ultima Oferta:</div>
-                                <div class="rango-ofertas">$- @{{lastStarted.last_offer}} -</div>
+                                <div class="rango-ofertas">$@{{lastStarted.last_offer}}</div>
                             </div>
                             <div class="tiempo-producto">
                                 <span class="tiempo-subasta-producto countdown" start_date="@{{lastStarted.start_date}}"></span>
@@ -135,7 +138,7 @@
                                     @{{lastStarted.cover}}
                                 </div>
                                 <div class="leyenda-cover">
-                                    COVER
+                                    Tu asiento
                                 </div>
                             </div>
                         </a>
