@@ -24,28 +24,19 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
     // <editor-fold defaultstate="collapsed" desc="isBuyable">
     public function isBuyable() {
-        return true;
         $utcMx = new \DateTimeZone("America/Mexico_City");
         $now = new \DateTime(null, $utcMx);
-        dd($now->format(DATE_ATOM));
-        
         $start_date = new \DateTime($this->start_date);
         $start_date->setTimezone($utcMx);
         $now->setTimezone($utcMx);
-        
-        $thuBefore = date("Y-m-d 00:00", strtotime("last ".Config('app.preventdate'), $start_date->getTimestamp()));
+        $thuBefore = date("Y-m-d 00:00", strtotime("last ".Config('app.presaleday'), $start_date->getTimestamp()));
         $lastThursday = new \DateTime($thuBefore, $utcMx);
-//        $lastThursday->format(DATE_ATOM);
-        
-        if($lastThursday > $now){
-            dd("false");
-        }
-//        $lastThursday = new \DateTime($thuBefore);
-//        date(DATE_ATOM, );
-        
-        dd($start_date->format(DATE_ATOM));
-        dd("---");
-        return true;
+        $afterPreSale = $lastThursday <= $now;
+        $dieHr = clone $start_date;
+        $dieHr->sub(new \DateInterval('PT1H'));
+        $inTime  = $now<=$dieHr;
+        $cupo = $this->total_enrollments<$this->users_limit;
+        return $inTime && $afterPreSale && $cupo;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="isEnrolled">

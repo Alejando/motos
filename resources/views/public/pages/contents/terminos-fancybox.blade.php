@@ -114,7 +114,7 @@
     <b>Retardos</b>
 </p>
 <p>
-    El Usuario que tenga su Asiento pagado, y llegue tarde a la Sala, será penalizado con una oportunidad menos de oferta por cada 2 minutos de retardo. Debiendo de tomar en cuenta que se requieren de mínimo 12 ofertas para poder llevarse la subasta.
+    El Usuario que tenga su Asiento pagado, y llegue tarde a la Sala, será penalizado con una oportunidad menos de oferta por cada minuto de retardo. Debiendo de tomar en cuenta que se requieren de mínimo 12 ofertas para poder llevarse la subasta.
 </p>
 <h3>POLITICAS DE PAGO</h3>
 <p>
