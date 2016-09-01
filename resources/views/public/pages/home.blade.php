@@ -83,7 +83,7 @@
                                 @{{lastStarted.cover}}
                             </div>
                             <div class="leyenda-cover">
-                                COVER
+                                Tu asiento
                             </div>
                         </div>
                     </a>
@@ -135,7 +135,7 @@
                                     @{{lastStarted.cover}}
                                 </div>
                                 <div class="leyenda-cover">
-                                    COVER
+                                    Tu asiento
                                 </div>
                             </div>
                         </a>

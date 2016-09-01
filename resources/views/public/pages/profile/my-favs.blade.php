@@ -21,7 +21,7 @@
             </div>
         </div>
         <div id="precio-inicial" class="precio-inicial">
-            Cover <span style="text-align: right;float: right;font-weight: bold;">@{{fav.cover|currency:"$"}}</span>
+            Tu asiento <span style="text-align: right;float: right;font-weight: bold;">@{{fav.cover|currency:"$"}}</span>
         </div>
     </a>
 </div>

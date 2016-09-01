@@ -15,7 +15,7 @@
                  {{Currency::format($auction->cover, config('app.currency'))}}
             </div>
             <div class="leyenda-cover">
-                Tu Lugar
+                Tu asiento
             </div>
         </div>
     </div>
