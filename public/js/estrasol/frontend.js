@@ -3,7 +3,6 @@ var protocol = pathArray[0];
 var host = pathArray[2];
 var url = protocol + '//' + host + '/' + 'glimglam';
 
-
 $(document).ready(function () {
     $('.fancy-producto').on('click', '.fancy-gallery-control', function () {
         var $control = $(this);
@@ -11,8 +10,6 @@ $(document).ready(function () {
         var position = $container.scrollLeft();
         var numGal = parseInt($('.frame-gallery.active').attr('gal-num'));
         $('.frame-gallery.active').removeClass('active');
-        console.log('numGal: '+numGal);
-        console.log('numItems: '+numItems);
         if ($control.hasClass('control-right') && numGal < numItems) {
             $container.scrollLeft(position + 104);
             numGal += 1;
@@ -73,10 +70,6 @@ $(document).ready(function () {
                 $.get(url, {}, 'html').done(function (html) {
                     var $html = $(html);
                     var $zoom = $html.find(".zoom_mw").elevateZoom(zoomConfig);
-//                    $('.zoomContainer').append()
-//            $zoom.css('zIndex',2002);
-//            console.log($zoom);
-//            console.log($('.fancy-producto'));
                     $('.fancy-producto').empty().append($html).fadeIn(500);
                     var $link = $('.fancy-producto').empty().append($html).find('.link-subasta');
                     $link.click(function(){

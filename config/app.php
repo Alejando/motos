@@ -21,7 +21,11 @@ return [
         'fancy-box-zoom' => [
             'width' => 224*4.5,
             'height'=> 250*4.5
-        ]
+        ],
+       'slider-upcoming' => [
+           'width' => 980,
+            'height'=> 500 
+       ]
     ],
     'currency' => 'MXN', 
     'entidadesPorPagina' => 50,

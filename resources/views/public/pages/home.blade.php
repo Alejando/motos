@@ -20,9 +20,11 @@
                         <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="1000" data-start="500">
                             <i class="fa fa-clock-o animated infinite pulse verde r-banner" aria-hidden="true"></i>
                         </div>
+                        {{--
                         <a href="#" class="like-subasta caption randomrotate rojo" data-x="right" data-y="bottom" data-hoffset="-20" data-voffset="-20" data-speed="1000" data-start="500">
                             <i class="fa fa-heart-o c-banner favorito" aria-hidden="true"></i>
                         </a>
+                        --}}
                     </li>
                     @endforeach
                 </ul>
