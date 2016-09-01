@@ -9,19 +9,23 @@
             <timer interval="1000" language="es" class="subasta-tiempo-perfil" 
                 ng-show="auction.isStandBy()"
                 end-time="auction.start_date">
-                    <small>Inicia en</small><br>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
+                <small>Inicia en</small><br>
+                <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
+                <span ng-show="hours > 0">@{{hours}} hr,</span>
+                <span ng-show="minutes > 0">@{{minutes}} min,</span>
+                @{{seconds}} seg
             </timer>
-            <timer interval="1000" language="es" class="subasta-tiempo" 
+            <timer interval="1000" language="es" class="subasta-tiempo-perfil" 
                 ng-show="auction.isStarted()"
                 end-time="auction.end_date">
                     <small>Finaliza en</small><br>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
             </timer>
-            <div class="subasta-tiempo" ng-show="auction.isFinished()">
+            <div class="subasta-tiempo-perfil" ng-show="auction.isFinished()">
                 La subasta ha terminado
             </div>
         </div>
         <div id="precio-inicial" class="precio-inicial">Tu asiento<span style="text-align: right;float: right;font-weight: bold;">@{{auction.cover|currency:"$"}}</span></div>
-        <div id="precio-final" class="precio-final">Mi Oferta<span style="text-align: right;float: right;font-weight: bold;">@{{auction.sold_for|currency:"$"}}</span></div>
+        <div id="precio-final" class="precio-final" ng-show="auction.isStarted()">Ultima oferta<span style="text-align: right;float: right;font-weight: bold;">@{{auction.last_offer|currency:"$"}}</span></div>
     </a>
 </div>
 <div ng-hide="enrolleds.length" class="text-center">

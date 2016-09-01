@@ -134,7 +134,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         placeBid : function (bid) {
             var $defer = $q.defer();
             var url = laroute.route('auction.place-bid');
-            console.log(url);
+            //console.log(url);
             var data = {
                 code : this.code,
                 bid : bid
@@ -144,7 +144,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'url': url,
                 'data' : data
             }).then(function(result) {
-                console.log(result);
+                //console.log(result);
                 $defer.resolve(result.data);
             }, function(r) {
                 $defer.reject(r);
@@ -185,7 +185,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             var url = laroute.route('auction.get-info-bid', {
                 'code':this.code
             });
-            console.log(url);
+            //console.log(url);
             $http({
                 'method' : 'GET',
                 'url': url
