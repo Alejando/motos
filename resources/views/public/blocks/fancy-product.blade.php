@@ -9,7 +9,7 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
 ?>
 <div class="fancy-close">
     <script>
-        var numItems = {{$numItems}}-1;
+        var numItems = {{$numItems}} - 1;
     </script>
     <div class="">
         <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5 text-center close-fancy">
