@@ -1725,6 +1725,8 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: left;
     padding: 25px;
     vertical-align: middle;
+    max-width: 560px;
+    margin: 0 auto;
 }
 .fancy-titulo {
     font-size: 25px;
