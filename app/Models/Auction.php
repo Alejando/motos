@@ -144,16 +144,22 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     public function isPreSaleDay(){
         $utcMx = new \DateTimeZone("America/Mexico_City");
         $now = new \DateTime(null, $utcMx);
-        $start_date = new \DateTime($this->start_date);
-        $start_date->setTimezone($utcMx);
         $now->setTimezone($utcMx);
-        $thuBefore = date("Y-m-d 00:00", strtotime("last ".Config('app.presaleday'), $start_date->getTimestamp()));
-        $presaleDay = new \DateTime($thuBefore, $utcMx);
+        $presaleDay = $this->getPreSaleDate($utcMx);
         $endPresaleDay = clone $presaleDay;
         $endPresaleDay->setTime(23, 59, 59);
         return ($now<$endPresaleDay) && ($now>$presaleDay);
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getPreSaleDate">
+    public function getPreSaleDate($timeZone){
+        $start_date = new \DateTime($this->start_date);
+        $start_date->setTimezone($timeZone);
+        $thuBefore = date("Y-m-d 00:00", strtotime("last ".Config('app.presaleday'), $start_date->getTimestamp()));
+        return new \DateTime($thuBefore, $timeZone);
+    }
+    // </editor-fold>
+
     // <editor-fold defaultstate="collapsed" desc="getOriginalCover">
     public function getOriginalCover(){
         return $this->attributes['cover'];

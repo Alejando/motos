@@ -538,7 +538,8 @@ header.main-header{
     font-weight: 600;
     font-size: 35px;
 }
-.link-subasta{
+.link-subasta,
+.google-calendar{
     display: inline-block;
     color: #00bcb6;
     border: solid 1px #00bcb6;
@@ -547,6 +548,14 @@ header.main-header{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+.google-calendar{
+    margin-top: 10px;
+    padding: 10px;
+    color: #b3870d;
+}
+.google-calendar:hover{
+    color:#0b676a;
 }
 .no-border{
     border:0;
