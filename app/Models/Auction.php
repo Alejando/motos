@@ -21,7 +21,17 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     
     protected $hidden = ['created_at', 'updated_at'];
-    
+    // <editor-fold defaultstate="collapsed" desc="get">
+    public function getMaxPriceAttribute(){
+        $round = 500;
+        $maxPrice = $this->attributes['max_price'];
+        $intdiv = \floor($maxPrice/500);
+        if($maxPrice %$round){
+            $intdiv++;
+        }
+        return $intdiv*$round;
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="isBuyable">
     public function isBuyable() {
         $utcMx = new \DateTimeZone("America/Mexico_City");
@@ -124,7 +134,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
     public function getCoverAttribute() {
-        if( (new \DateTime() )->format('N') == config('app.diaPreventa')){
+        if( $this->isPreSaleDay()){
             return $this->attributes['preorder_cover'];
         }
         return $this->attributes['cover'];
