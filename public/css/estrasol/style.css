@@ -1000,7 +1000,10 @@ a#link-perfil:hover {
     margin-right: 20px;
     color: #0099A5;
     text-transform: uppercase;
-    /*font-weight: bold;*/
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .bienvenido span, #nombre-usr a{
     color: #D5A00F !important;
