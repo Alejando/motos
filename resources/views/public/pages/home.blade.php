@@ -9,7 +9,7 @@
             <div class="banner" >
                 <ul class="banner-list">
                     @foreach($sliderAuctions as $auction)
-                    <li class="link-subasta no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
+                    <li data-slug="{{str_slug($auction->title)}}" class="link-subasta no-border element-banner-list" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="100" 
                         data-slotamount="8" 
                         id-producto="{{$auction->code}}" 
                         product-name="{{$auction->title}}" 
@@ -17,7 +17,7 @@
                         rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
                         start_date="{{$auction->start_date}}">
                         <img ng-src="{{@$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}"  width="504" height="372">
-                        <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="1000" data-start="500">
+                        <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="500" data-start="100">
                             <i class="fa fa-clock-o animated infinite pulse verde r-banner" aria-hidden="true"></i>
                         </div>
                         {{--
@@ -30,7 +30,7 @@
                 </ul>
             </div>
         </div>
-        <section class="banner-description container">
+        <section class="banner-description container" data-slug="">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center banner-name transition-0-3">
                     <span></span>
@@ -44,7 +44,7 @@
                             <span class="subasta-tiempo countdown" start_date=""></span>
                             <span class="subasta-leyenda">Para subastar</span>
                         </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info">
-                            <a class="link-subasta transition-0-3" href="#fancy-subasta">
+                            <a class="link-subasta transition-0-3" id_producto="" href="">
                                 <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Detalles</span>
                             </a>
                         </div>
@@ -57,7 +57,7 @@
     <section id="destacados" class="products-container">
         <section class="container">
             <div class="row">
-                <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12" data-slug="@{{lastStarted.title | slugify}}">
                     <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
                         <div ng-show="{{$auction->isPreSaleDay()}}" class="label-preventa"></div>
                         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
