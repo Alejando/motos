@@ -2,7 +2,14 @@ var pathArray = location.href.split('/');
 var protocol = pathArray[0];
 var host = pathArray[2];
 var url = protocol + '//' + host + '/' + 'glimglam';
-
+function slugify(text){
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
 $(document).ready(function () {
     $('.fancy-producto').on('click', '.fancy-gallery-control', function () {
         var $control = $(this);
@@ -91,12 +98,12 @@ $(document).ready(function () {
     $('.producto-fancy').on('click', function (e) {
         e.stopPropagation();
     });
-    var $products = $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row');
+    var $products = $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row, .banner-description, .banner-list');
     $products.on('click', '.producto-hammer, .link-subasta', function (e) {
         e.preventDefault();
         var $this =$(this);
         var code = $this.attr('id_producto');
-        var slug = $this.closest('.product-container').data('slug');
+        var slug = $this.closest('.product-container, .banner-description, .element-banner-list').data('slug');
         var title = this.dataset.slug;
         history.pushState( null, null, "#!" + code + '/' + slug );
         openFancyByHash(code);

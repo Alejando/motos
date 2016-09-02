@@ -103,49 +103,7 @@ $(document).ready(function () {
         slideshowOn: true,
         useGlobalDelay: true,
         openOnRollover: true
-        /*
-         hideThumbsUnderResoluition:0,
-         keyboardNavigation:"on",
-         hideThumbs:0,
-         
-         thumbWidth:100,
-         thumbHeight:50,
-         thumbAmount:3,
-         
-         hideThumbsOnMobile:"off",
-         hideNavDelayOnMobile:1500,
-         
-         navigationHAlign:"center",
-         navigationVAlign:"bottom",
-         navigationHOffset:30,
-         navigationVOffset:30,
-         
-         soloArrowLeftHalign:"left",
-         soloArrowLeftValign:"center",
-         soloArrowLeftHOffset:20,
-         soloArrowLeftVOffset:0,
-         
-         soloArrowRightHalign:"right",
-         soloArrowRightValign:"center",
-         soloArrowRightHOffset:20,
-         soloArrowRightVOffset:0,
-         
-         hideCaptionAtLimit:0,
-         hideAllCaptionAtLilmit:0,
-         hideSliderAtLimit:0,
-         
-         dottedOverlay:"none",
-         
-         spinned:"spinner4",
-         
-         fullWidth:"off",
-         forceFullWidth:"off",
-         fullScreen:"off",
-         fullScreenOffsetContainer:"#header-offset, #offsetSlider",
-         */
     });
-//    console.log($('.tp-bgimg').css('background-size','auto'));
-    
     
     revSli.bind("revolution.slide.onchange", function (e, data) {
         $('.banner-name').css('opacity', '0');
@@ -158,16 +116,15 @@ $(document).ready(function () {
         var $itemLi = $('.current-sr-slide-visible');
         var $bannerName = $('.banner-name');
         var $bannerData = $('.banner-data');
-//        console.log($('.current-sr-slide-visible'));
-//        console.log($('.current-sr-slide-visible').attr('product-name'));
         var exp = $itemLi.attr('start_date');
         var max = $itemLi.attr('rangomax');
         var min = $itemLi.attr('rangomin');
-        var name = $itemLi.attr('product-name');
+        var name = slugify($itemLi.attr('product-name'));
         var id = $itemLi.attr('id-producto');
         if (ant_exp != exp||true) {
             $bannerContainer.find('.subasta-tiempo').attr('start_date', exp);
-            $bannerContainer.find('.link-subasta').attr('id_producto',id);
+            $bannerContainer.find('.link-subasta').attr('href','#!'+id+'/'+name).attr('id_producto', id);
+            $bannerContainer.attr('data-slug', name);
             $bannerContainer.find('.banner-name span').html(name);
             $bannerContainer.find('.rango-min').html(min);
             $bannerContainer.find('.rango-max').html(max);
