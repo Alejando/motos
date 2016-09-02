@@ -72,7 +72,7 @@
             </div>
             <div class="form-group row {{ $errors->has('terminos') ? ' has-error' : '' }}">
                 <div class="col-sm-12">
-                    <input type="checkbox" name="terminos"> Acepto los <a class="link-terminos" title="Términos y condiciones" href="{{route('content', ['slug'=>'terminos-fancybox'])}}">términos y condiciones</a> he leído el <a class="link-terminos" title="Aviso de privacidad" href="{{route('content', ['slug'=>'aviso-fancybox'])}}">aviso de privacidad</a>
+                    <input type="checkbox" name="terminos"> Acepto los <a class="link-terminos" title="Términos y condiciones" href="{{route('content', ['slug'=>'terminos-fancybox'])}}">términos y condiciones</a> y he leído el <a class="link-terminos" title="Aviso de privacidad" href="{{route('content', ['slug'=>'aviso-fancybox'])}}">aviso de privacidad</a>
                     @if ($errors->has('terminos'))
                     <span class="help-block">
                         <strong>{{ $errors->first('terminos') }}</strong>
