@@ -346,14 +346,15 @@ header.main-header{
     left:-11px;
     width:100px;
     height:100px;
+    transform: rotateZ(-90deg);
     background: url(../../img/oferta.png) no-repeat left top transparent;
     background-size: 100px;
 }
 .producto .label-preventa{
-    top:-7px;
+    top:-12px;
 }
 .producto-fancy .label-preventa{
-    top:-15px;
+    top:-23px;
 }
 .producto-fancy-cover{
 	font-size: 20px;
@@ -988,9 +989,15 @@ footer.main-footer a.color-estrasol:hover{
     background: url('../../img/iconos-sociales.png') no-repeat transparent;
 }
 .share-room.share-fb{
-    background-position: -55px -60px;
+    background-position: -55px -2px;
 }
 .share-room.share-tw{
+    background-position: 0 -2px;
+}
+.share-room.share-fb:hover{
+    background-position: -55px -60px;
+}
+.share-room.share-tw:hover{
     background-position: 0 -60px;
 }
 /*CLASES JP*/
