@@ -29,5 +29,5 @@
     </a>
 </div>
 <div ng-hide="enrolleds.length" class="text-center">
-    <h2>Aun no has apartado tu lugar para alguna subasta</h2>
+    <h2><a href="{{asset("")}}" style="color:black" >Compra tu asiento en nuestras próximas subastas</a></h2>
 </div>

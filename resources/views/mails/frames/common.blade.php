@@ -16,7 +16,7 @@
                             <a href="{{Config('app.social.fb')}}"><img src="{{asset('img/mail/ico-facebook.png')}}" target="_blank"></a>
                             <a href="{{Config('app.social.ig')}}"><img src="{{asset('img/mail/ico-instagram.png')}}" target="_blank"></a>
                             <a href="{{Config('app.social.yt')}}"><img src="{{asset('img/mail/ico-youtube.png')}}" target="_blank"></a>
-                            <a href="{{Config('app.social.tw')}}"><img src="{{asset('img/mail/menu_twitter_34.jpg')}}" target="_blank"></a>
+                            <a href="{{Config('app.social.tw')}}"><img src="{{asset('img/mail/ico-twitter.png')}}" target="_blank"></a>
                     </div>
                     <div style="text-align: right;display: inline-block;float: right;margin-right: 10px;">
                             <img src="{{asset('img/mail/logo-glimglam-footer.png')}}">

@@ -7,6 +7,6 @@
         <div id="precio-final" class="precio-final">Mi oferta<span style="text-align: right;float: right;font-weight: bold;">@{{auction.sold_for|currency:"$"}}</span></div>
     </a>
 </div>
-<div ng-hide="wins.length" class="text-center">
-    <h2>Aun no has ganado, participa en nuestras proximas subastas</h2>
+<div ng-hide="wins.length" class="text-center"> 
+    <h2><a href="{{asset("")}}" style="color:black" >Participa en nuestras proximas subastas</a></h2>
 </div>
