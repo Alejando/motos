@@ -627,7 +627,7 @@ header.main-header{
     background-position: bottom left;
 }
 .tp-bgimg{
-    background-size: 100% !important;
+    background-size: cover !important;
 }
 /* PRODUCTS */
 .products-container{
