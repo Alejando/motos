@@ -138,7 +138,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
     public function getCoverAttribute() {
-        if( (new \DateTime() )->format('N') == config('app.diaPreventa')){
+        if( $this->isPreSaleDay()){
             return $this->attributes['preorder_cover'];
         }
         return $this->attributes['cover'];

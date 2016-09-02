@@ -52,11 +52,11 @@ class Mail{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="welcome">
     public static function welcome($args, $test = false, $send = true, $format = 'html') {
-        
-        if(!isset($args['user'])){
+        if(!isset($args['user'])) {
             $user = \GlimGlam\Models\User::getRandom(); 
             $args['user'] = $user;
             $args['to'] = [];
+            $args['rawPassword'] = str_random(8); 
         }
         $args['subject'] = '¡Bienvenido a GlimGlam!';
         return self::sendMail('welcome', $args, $test, $send, $format);

@@ -7,14 +7,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable {
     use \GlimGlam\Libs\CoreUtils\traits\MethodsModelBase;
     protected $guarded = ['id'];    
-    public $timestamps = false;
+    public $timestamps = true;
     
     
     const PROFILE_CLIENT = 1;
     const PROFILE_ADMIN = 2;
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
-    
+    public function sendMailWelcome($rawPassword = false){
+        \GlimGlam\Libs\Helpers\Mail::welcome([
+            'user' => $this,
+            'to' => $this->email,
+            'rawPassword' => $rawPassword
+        ]);
+    }
     public function avatarFile(){
         return public_path('upload/avatars/'.$this->id.'.jpg');
     }

@@ -24,16 +24,32 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
     };
 }();
 
-var glimglam = angular.module("glimglam", ['ui-rangeSlider','timer']);  
-glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval) {
+var glimglam = angular.module("glimglam", ['ui-rangeSlider','timer', 'slugifier']);  
+glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval, $filter) {
     //<editor-fold defaultstate="collapsed" desc="constructor">
     var ModelBase = function (args) {
         this.setProperties(args);
         this.relations = {};
+        this._bk_attrs = {};
     };
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Metodos de Instancia (prototype)">
     ModelBase.prototype = {
+        backup : function() {
+            var self = this;
+            var attributes = self.model().attributes; 
+            angular.forEach(attributes, function(attr){
+                self._bk_attrs[attr] = self[attr];
+            });
+            return this;
+        },
+        rollback : function() {
+            var self = this;
+            angular.forEach(self._bk_attrs, function(i ,attr){
+                self[attr] = self._bk_attrs[attr];
+            });
+            return this;
+        },
         //<editor-fold defaultstate="collapsed" desc="setProperties">
         setProperties: function (data) {            
             var self = this;
@@ -101,7 +117,30 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             return $defer.promise;
         },
         update : function () {
-            console.log("Flata implementar actualizacion");
+            var self = this;
+            var data = {};
+            var atributes = self.model().attributes; 
+            var preparers = self.model().preparers;
+            angular.forEach(atributes, function (attr) {
+                if(preparers[attr]){
+                    data[attr] = preparers[attr].apply(self,[self[attr]]);
+                    return;
+                }
+                data[attr] = self[attr];
+            });
+            var alias= this.model().alias;
+            var datalaroute = {};
+            datalaroute[alias] = this.id;
+            var url = laroute.route(alias+'.update', datalaroute);
+            var $def = $q.defer();
+            $http({
+                url : url,
+                method : 'PUT',
+                data : data
+            }).then(function(r){
+                $def.resolve(r.data);
+            });
+            return $def.promise;
         },
         save : function () {
             if(this.id){
@@ -165,14 +204,33 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         }
     };
     ModelBase.setFloat = function (value) {
-        return parseFloat(value);
+        if(value){
+            return parseFloat(value);
+        }
+        return undefined;
     },
     //Helper para setear fechas 
+   
     ModelBase.setDate = function (value) {
         if(angular.isString(value)) {
-            return new Date(value);
+            var date = new Date(value);
+            if(isNaN(date.getTime())){
+                return null;
+            }
+            return date;
         }
         return value;
+    };
+    ModelBase.prepareDate = function (date){
+        var dateTemp = new Date(date);
+        dateTemp.setHours(0);
+        dateTemp.setMinutes(0);
+        dateTemp.setSeconds(0);
+        if(dateTemp.getTime && !isNaN(dateTemp.getTime())){
+            return $filter('date')(dateTemp,'yyyy-MM-ddTHH:mm:ssZ');;
+        } else {
+            return undefined;
+        }
     };
     ModelBase.model = function () {
         return this.prototype.model();
@@ -238,17 +296,14 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             angular.forEach(data, function (d) {                
                 obj = Model.findCache(d);                                
                 if(obj) {
-                    console.log(d);
                     obj.setProperties(d);
                     arrInst.push(obj);
                     i++;
-//                    console.log("ya en cache " +i);
                 } else {
                     obj = Model.addCache(new Model(d));  
                     arrInst.push(obj);
                 }
             });
-//            console.log(arrInst);
             return arrInst;
         }
         obj = Model.findCache(data);
@@ -257,7 +312,6 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         } else {                        
             obj = Model.addCache(new Model(data));
         }
-        
         return obj;
     };
     //</editor-fold>
@@ -386,31 +440,55 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         },
         attributes: [
             'id',
-            'title',
-            'code',
-            'description',
-            'cover',
-            'max_offer',
-            'min_offer',
-            'bids',
-            'min_bids',
-            'username_top',
-            'user_top',
-            'delay',
+            'category',
+            'sub_category',
             'target',
+            'code',
+            'barcode',
+            'title',
+            'real_price',
+            'cover',
+            'min_offer',
+            'max_offer',
+            'bids',
+            'max_price',
+            'user_quota',
+            'users_limit',
+            'delay',
+            'max_user_quiet',
+            'death_time',
+            'description',
             'start_date',
             'end_date',
-            'published',
+            'ready',
             'status',
+            'winner',
             'total_enrollments',
             'inflows',
             'sold_for',
-            'winner',
             'last_offer',
+            'create_at',
+            'update_at',
             'winnername',
-            'num_bids'
+            'num_bids',
+            'mid_bids'
         ],
         relations : [],
+        getFavByUser : function (user) {
+            var $defer = $q.defer();
+            var self = this;
+            var url = laroute.route('user.get-fav',{
+                'userId' : user.id
+            });
+            $http({
+                'method' : 'GET',
+                'url' : url
+            }).then(function(result){
+                var objs = self.build(result.data);
+                $defer.resolve(objs);
+            });
+            return $defer.promise;
+        },
         getByCode : function (code){
             var $defer = $q.defer();
             var url = laroute.route('auction.getByCode', {
@@ -477,7 +555,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         placeBid : function (bid) {
             var $defer = $q.defer();
             var url = laroute.route('auction.place-bid');
-            console.log(url);
+            //console.log(url);
             var data = {
                 code : this.code,
                 bid : bid
@@ -487,7 +565,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
                 'url': url,
                 'data' : data
             }).then(function(result) {
-                console.log(result);
+                //console.log(result);
                 $defer.resolve(result.data);
             }, function(r) {
                 $defer.reject(r);
@@ -528,7 +606,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             var url = laroute.route('auction.get-info-bid', {
                 'code':this.code
             });
-            console.log(url);
+            //console.log(url);
             $http({
                 'method' : 'GET',
                 'url': url
@@ -575,7 +653,7 @@ glimglam.factory('Paginacion', function () {
     };
     return Paginacion;
 });
-glimglam.factory('User', function (ModelBase,$q,$http) {
+glimglam.factory('User', function (ModelBase, Auction, $q, $http) {
     var User = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -587,7 +665,11 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
 //        cache : [],
         setters : {
             startDate : ModelBase.setDate,
-            endDate : ModelBase.setDate
+            endDate : ModelBase.setDate,
+            birthday : ModelBase.setDate
+        },
+        preparers:{
+            birthday : ModelBase.prepareDate
         },
         attributes: [
             'id',
@@ -595,12 +677,81 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
             'email',
             'profile',
             'birthday',
-            'gender'
+            'gender',
+            'password',
+            'newPassword'
         ],
-        relations : []
+        relations : [],
+        getAuthUser : function () {
+            var $def = $q.defer();
+            var url = laroute.route('user.get-auth-user');
+            var self = this;
+            $http.get(url,{}).then(function(result){
+                var user = self.build(result.data);
+                $def.resolve(user);
+            });
+            return $def.promise;
+        }
     }, {
-        fnGender : function(gender){
-            console.log(gender);
+        getFavs : function ( ){
+            return Auction.getFavByUser(this);
+        },
+        getWins : function () {
+            var $def = $q.defer();
+            var url = laroute.route('user.get-my-wins',{
+                'userId' : this.id
+            });
+            $http({
+                'url':url,
+                'method' : 'GET'
+            }).then(function(r) {
+                var wins = Auction.build(r.data);
+                $def.resolve(wins);
+            });
+            return $def.promise;
+        },
+        getCurrentAuctions : function () {
+            var $def = $q.defer();
+            var url = laroute.route('user.get-current-auction',{
+                'userId' : this.id
+            });
+            $http({
+                url : url,
+                method : 'GET'
+            }).then(function(res) {
+                var auction = Auction.build(res.data);
+                $def.resolve(auction);
+            });
+            return $def.promise;
+        },
+        getAuctionsInfo : function (){
+            var $def = $q.defer();
+            var url = laroute.route('user.get-auctions-info',{
+                'userId' : this.id
+            });
+            $http({
+                'url':url,
+                'method' : 'GET'
+            }).then(function(res){
+                $def.resolve(res.data);
+            });
+            return $def.promise;
+        },
+        getEnrolled : function() {
+            var $def = $q.defer();
+            var url = laroute.route('user.get-my-enrollments',{
+                'userId' : this.id
+            });
+            $http({
+                'url':url,
+                'method':'GET'
+            }).then(function(res){
+                var enrolleds = Auction.build(res.data);
+                $def.resolve(enrolleds);
+            });
+            return $def.promise; 
+        },
+        fnGender : function(gender){            
             if(gender === undefined){
                 return this.gender.toString();
             }
@@ -611,11 +762,123 @@ glimglam.factory('User', function (ModelBase,$q,$http) {
     //<editor-fold defaultstate="collapsed" desc="buscarFolio">
     return User;
 });
+glimglam.filter('numberFixedLen', function () {
+    return function (n, len) {
+        var num = parseInt(n, 10);
+        len = parseInt(len, 10);
+        if (isNaN(num) || isNaN(len)) {
+            return n;
+        }
+        num = '' + num; 
+        while (num.length < len) { 
+            num = '0' + num;
+        }
+        return num;
+    };
+});
 glimglam.controller('public.checkOutCtrl', function ($scope, Auction) {
     $scope.pay = function () {
         alert("PayPal");
         console.log("a pay pal");
     };
+});
+glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $http) {
+    var url = laroute.route('user.bills-info');
+    $scope.billInfo = {
+        rfc: '',
+        business_name: '',
+        address: '',
+        neighborhood: '',
+        postal_code: '',
+        city: '',
+        state: '',
+        user_id: ''
+    };
+    $http({
+        'url' : url,
+        'meethod' : 'GET'
+    }).then(function(r){
+        if(!r.data.error) {
+            $scope.billInfo.rfc = r.data.rfc;
+            $scope.billInfo.business_name = r.data.business_name;
+            $scope.billInfo.address = r.data.address;
+            $scope.billInfo.neighborhood = r.data.neighborhood;
+            $scope.billInfo.postal_code = r.data.postal_code;
+            $scope.billInfo.city = r.data.city;
+            $scope.billInfo.state = r.data.state;
+            $scope.billInfo.user_id = r.data.user_id;
+        }
+    });
+    
+    $(".form-factura").hide();
+    
+    
+    var $subTotal = $('#enroll-sub-total');
+    var $iva = $('#enroll-iva');
+    var $total = $('#enroll-total');    
+    $scope.errors = {};
+    $('.subasta-boton-pago').click(function(e){
+        e.preventDefault();
+        var self = this;
+        var code = self.dataset.code;
+        if($(".facturar").is(':checked')) {            
+            $scope.valido = true;
+            $scope.$apply(function(){
+                $scope.errors.rfc = false;
+                if(!/^([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/.test($scope.billInfo.rfc)){
+                    $scope.errors.rfc = "* El RFC ingresado no cumple con el formato requerido";
+                    $scope.valido = false;
+                } 
+                angular.forEach($scope.billInfo, function(e, i) {
+                    if(!$scope.billInfo[e]){
+                        $scope.errors[i]="* Campo obligatorio.";
+                        $scope.valido = false;
+                    }
+                });
+            });
+            if($scope.valido){
+                $scope.$apply(function(){
+                    $http({
+                        'method' : 'POST',
+                        'url' : url,
+                        'data' : $scope.billInfo
+                    }).then(function(){
+                        var href = laroute.route('auction.checkout',{
+                            'code' : code,
+                            'bill' : true
+                        });
+                        $scope.send(href);
+                    });
+                });
+            }
+        } else {
+            $scope.$apply(function(){
+                var href = laroute.route('auction.checkout',{
+                    'code' : code,
+                    'bill' : false
+                });
+                $scope.send(href);
+            });
+        }
+    });
+    $scope.send = function (href) {
+        window.open(href, '_self');
+    };
+    $(".facturar").click(function () {
+        if ($(this).is(":checked")) {
+            var total = parseFloat($total.attr('cant'));
+            var subTotal = (total / (window.ivaCant + 1));
+            var iva = parseFloat(total - subTotal);
+            $iva.attr('cant', iva).html('$' + iva.toFixed(2));
+            $subTotal.attr('cant', subTotal).html('$' + subTotal.toFixed(2));
+            $(".form-factura").show(600);
+        } else {
+            var subTotal = parseFloat($total.attr('cant'));
+            $iva.attr('cant', '0.00').html('$0.00');
+            $subTotal.attr('cant', subTotal.toFixed(2)).html('$' + subTotal.toFixed(2));
+            $(".form-factura").hide(200);
+        }
+    });
 });
 glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
 //    $scope.titulo = "Hello";
@@ -643,7 +906,7 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
     
     
     //Fancybox producto
-    
+     
     
     Auction.getStarted(1).then(function(auction) {
         if(auction.length) {
@@ -652,20 +915,186 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
         } else {
             Auction.getUpcoming(1).then(function(auction){
                 $scope.lastStarted = auction[0];
-                $scope.lastStarted.selfUpdate(1500000, $scope);
-                console.log($scope.lastStarted);
+                $scope.lastStarted.selfUpdate(1500000, $scope); 
             });
         }
     });
 });
 glimglam.controller('public.profileCtrl', function ($scope, User) {
-    
-    User.getById(5).then(function(user){
-        console.log(user);
-        $scope.user=user;
-        console.log(user.gender);
+    var setBrithday = function () {
+        var birth = $scope.user.birthday;
+        if(birth){
+            $scope.brithday.day = birth.getDate().toString();
+            $scope.brithday.month = (birth.getMonth() + 1).toString();
+            $scope.brithday.year = birth.getFullYear().toString();
+        }        
+    };
+    //<editor-fold defaultstate="collapsed" desc="getAuthUser">
+    User.getAuthUser().then(function (user) {
+        $('.div-profile').slideDown('slow');
+        $scope.user = user;
+        $scope.user.backup();
+        setBrithday();
+        $scope.getWins();
+        $scope.getEnrolled();
+        $scope.user.getCurrentAuctions().then(function(actual){
+            console.log(actual);
+            $scope.actual = actual;
+        });
+        $scope.user.getAuctionsInfo().then(function(info){
+        $scope.myTotalEnrollments = info.totalEnrollments;
+        $scope.myTotalWins = info.totalWins;
+            console.log(info);
+        });
     });
-    $scope.message='Hoa';
+    //</editor-fold>
+    $scope.section = 'profile';
+    //<editor-fold defaultstate="collapsed" desc="setSection">
+    $scope.setSection = function (section) {
+        
+        $scope.section = section;
+        if(section === 'favs') {
+            $scope.getFavs();
+        }
+        $scope.user.rollback();
+        $scope.newPassword = "";
+        $scope.confirmPassword = '';
+        $scope.password = '';
+    };
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Imagen de perfil">
+    $('#img-profile').change(function () {
+        var file = this.files[0];
+        if (file) {
+            console.log(file.type);
+            if (file.type !== 'image/jpeg' && file.type !== 'image/jpg') {
+                alert("Solo se admiten imagenes JPG");
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                var data = new FormData();
+                data.append('img', file);
+                var url = laroute.route('user.save-img-profile');
+                $.ajax({
+                    url: url,
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: 'POST',
+                    success: function (data) {
+                        var urlImg = laroute.route('user.img-avatar', {
+                            'userId': $scope.user.id
+                        }) + '?' + (new Date).getTime();
+                        console.log(urlImg);
+                        $('#foto-perfil').attr('src', urlImg);
+                    }
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    $scope.changeImg = function () {
+        $('#img-profile').click();
+    };
+
+    //</editor-fold>
+    $scope.brithday = {
+        'day': "0",
+        'month': "0",
+        'year': "0"
+    };
+    $scope.errors = {};
+    $scope.getFavs = function () {
+        $scope.user.getFavs().then(function(favs) {
+            $scope.favs = favs;
+        });
+    };
+    $scope.getWins = function () {
+        $scope.user.getWins().then(function(wins) { 
+            $scope.wins = wins;
+        });
+    };
+    $scope.getEnrolled = function() {
+        $scope.user.getEnrolled().then(function(enrolleds) {
+            $scope.enrolleds = enrolleds;
+        });
+    };
+    $scope.removeFav = function(auction, $event){
+        $event.preventDefault();
+        jsGlimglam.fn.auctions.removeFav(auction.code).done(function () {
+            $scope.$apply(function(){
+                $scope.favs.splice($scope.favs.indexOf(auction), 1);
+            });
+        });
+    };
+    
+    //<editor-fold defaultstate="collapsed" desc="updateProfile">
+    $scope.updateProfile = function () {
+        console.log($scope.brithday.day, $scope.brithday.month, $scope.brithday.year);
+        if(
+            $scope.brithday.day==0 ||
+            $scope.brithday.month==0 ||
+            $scope.brithday.year==0
+                
+        ) {
+            bootbox.alert("Por favor ingresa tu fecha de nacimiento");
+            return;
+        }
+        if(!$scope.user.password){
+            bootbox.alert("Ingresa tu contraseña actual para autorizar los cambios");
+            return ;
+        }
+        if ($scope.newPassword) {
+            if ($scope.confirmPassword !== $scope.newPassword) {
+                $scope.errors.confirmPassword = "Tu confirmación no coicide";
+                return;
+            } else {
+                $scope.errors.confirmPassword = "";
+            }
+            $scope.user.newPassword = $scope.newPassword;
+        }
+        if($scope.user.birthday === null) {
+            $scope.user.birthday = new Date();
+        }
+        var birthday = $scope.user.birthday;
+        birthday.setDate($scope.brithday.day);
+        birthday.setMonth($scope.brithday.month - 1);
+        birthday.setYear($scope.brithday.year);
+        $scope.user.save().then(function (res) {
+            if (res.error) {
+                $scope.errors.password = res.msj;
+                if($scope.errors.password){
+                    bootbox.alert(res.msj);
+                    return;
+                }
+                $scope.errors.confirmPassword = "";
+                return;
+            }
+            $scope.errors.password = false;
+            $('#nombre-usr').html("@" + $scope.user.email.split('@')[0]);
+            $('.pass').val("");
+            var $box = bootbox.alert("Tus datos fueron actualizados correctamente");
+            $box.css('zIndex', 2000);
+        });
+    };
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="rollback">
+    $scope.rollback = function () {
+        $scope.user.rollback();
+        $('.pass').val("");
+        if ($scope.user.birthday !== null) {
+            setBrithday();
+        } else {
+            $scope.brithday.day = "0";
+            $scope.brithday.month = "0";
+            $scope.brithday.year = "0";
+        }
+    };
+    //</editor-fold>
+
 });
 glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $element,$compile) {
     $scope.id_user = window.id_user;
@@ -676,8 +1105,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     $interval(function() {
         $scope.now = new Date();
     }, 100);
-    $interval(function(){
-        console.log('10 seg');
+    $interval(function() {
         $scope.getInfo();
     }, 10000);
     $scope.rangeOferta = {
@@ -688,7 +1116,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     };
     $scope.help = {
         nextBid : new Date()
-    }
+    };
     $scope.getInfo = function (){
         $scope.objAuction.getInfoBid().then(function(info){
                 $scope.nextBid = new Date(info.nextbid);
@@ -702,7 +1130,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
                                 "</timer>");
                 $compile($element.find('.delay-bid'))($scope);
             });
-    }
+    };
     $scope.getInfo();
     $scope.placeBid = function(){
         $scope.objAuction.placeBid($scope.rangeOferta.max).then(function(data) {

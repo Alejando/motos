@@ -36,38 +36,45 @@
         </div>
         <div class="col-sm-6">
             <div class="chk-head">Checkout</div>
-            <div class="form-factura">
+            <div class="form-factura" style="display: none">
                 <form>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="rfc">RFC</label>
                             <input type="text" ng-model="billInfo.rfc" class="form-control" id="rfc" placeholder="" required>
-                          </div>
+                            <span class="error-message" ng-show="errors.rfc">@{{errors.rfc}}</span>
+                            </div>
                           <div class="form-group">
                             <label for="razon">Razón Social</label>
                             <input type="text" class="form-control" ng-model="billInfo.business_name" id="razon-social" placeholder="" required>
+                            <span class="error-message" ng-show="errors.address">@{{errors.business_name}}</span>
                           </div>
                             <div class="form-group">
                               <label for="domicilio">Domicilio</label>
                               <input type="text" class="form-control" ng-model="billInfo.address" id="domicilio" placeholder="" required>
+                              <span class="error-message" ng-show="errors.address">@{{errors.address}}</span>
                             </div>
                             <div class="form-group">
                               <label for="colonia">Colonia</label>
                               <input type="text" class="form-control" ng-model="billInfo.neighborhood" id="colonia" placeholder="" required>
+                              <span class="error-message" ng-show="errors.neighborhood">@{{errors.neighborhood}}</span>
                             </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                           <label for="postal">Código Postal</label>
                           <input type="text" class="form-control" ng-model="billInfo.postal_code" id="postal" placeholder="" required>
+                          <span class="error-message" ng-show="errors.postal_code">@{{errors.postal_code}}</span>
                         </div>
                         <div class="form-group">
                           <label for="ciudad">Ciudad</label>
                           <input type="text" class="form-control" ng-model="billInfo.city" id="ciudad" placeholder="" required>
+                          <span class="error-message" ng-show="errors.city">@{{errors.city}}</span>
                         </div>
                         <div class="form-group">
                           <label for="estado">Estado</label>
                           <input type="text" class="form-control" ng-model="billInfo.state" id="estado" placeholder="" required>
+                          <span class="error-message" ng-show="errors.state">@{{errors.state}}</span>
                         </div>
                         <p style="font-size: 12px;font-style: italic;">Todos los campos son requeridos</p>
                     </div>

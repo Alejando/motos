@@ -13,9 +13,10 @@
             
             <div class="pie" style="background-color: #343233;padding: 5px 0;height: 40px;">
                     <div style="text-align: left;display: inline-block;float: left;margin-left: 10px;margin-top: 3px;">
-                            <a href="https://www.facebook.com/GlimGlam.mx/"><img src="{{asset('img/mail/ico-facebook.png')}}"></a>
-                            <a href="https://www.instagram.com/glimglammx/"><img src="{{asset('img/mail/ico-instagram.png')}}"></a>
-                            <a href="https://www.youtube.com/GlimGlam.mx/"><img src="{{asset('img/mail/ico-youtube.png')}}"></a>
+                            <a href="{{Config('app.social.fb')}}"><img src="{{asset('img/mail/ico-facebook.png')}}" target="_blank"></a>
+                            <a href="{{Config('app.social.ig')}}"><img src="{{asset('img/mail/ico-instagram.png')}}" target="_blank"></a>
+                            <a href="{{Config('app.social.yt')}}"><img src="{{asset('img/mail/ico-youtube.png')}}" target="_blank"></a>
+                            <a href="{{Config('app.social.tw')}}"><img src="{{asset('img/mail/menu_twitter_34.jpg')}}" target="_blank"></a>
                     </div>
                     <div style="text-align: right;display: inline-block;float: right;margin-right: 10px;">
                             <img src="{{asset('img/mail/logo-glimglam-footer.png')}}">
