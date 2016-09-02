@@ -14,8 +14,8 @@
             {{ $user->isMale() ? '¡BIENVENIDO':'!BIENVENIDA'}} <span style="">{{$user->name}}!</span></h2>
 </div>
 <div class="mensaje" style="color: #003937; padding: 0 10%;">
-        <p style="margin: 16px auto;font-size: 20px;margin-top: 30px;">Gracias por registrarse en <a href="http://glimglam.mx" style="color: #003937;">glimglam.mx</a></p>
-        <p style="margin: 16px auto;">A partir de este momento, podrás acceder a las subastas de nuestros productos exclusivos, asimismo recibirás notificaciones de subastas por comenzar.</p>
+        <p style="margin: 16px auto;font-size: 20px;margin-top: 30px;">Gracias por registrarte en <a href="http://glimglam.mx" style="color: #003937;">glimglam.mx</a></p>
+        <p style="margin: 16px auto;">A partir de este momento, podrás acceder a las subastas de nuestros productos exclusivos y recibirás notificaciones de subastas por comenzar.</p>
         <hr>
         <a href="http://glimglam.mx/login" style="color: #fff; text-decoration: none;">
             <div style="margin: 10px auto 30px auto;border: 1px solid #3c9ba2;padding: 10px; width: 100px;background-color: #00bcb6;display: inline-block;">Iniciar Sesión</div>
