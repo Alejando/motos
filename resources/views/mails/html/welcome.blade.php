@@ -47,7 +47,7 @@
         </div>
         <div style="width:49%;display: inline-block;vertical-align: top;">
                 <h3 style="text-align: center;">Acerca de GlimGlam</h3>
-                <img src="{{asset('img/mail/btn-videoplayoverlay.png')}}" style="width: 90%;">
+                <a href="{{asset("/#!video")}}" target="_blank"><img src="{{asset('img/mail/btn-videoplayoverlay.png')}}" style="width: 90%;" ></a>
         </div>
 </div>
 <p style="font-size: 14px;"><span style="font-size: 22px; font-weight: bold;">Gracias,</span><br>Equipo GlimGlam</p>

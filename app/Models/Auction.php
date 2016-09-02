@@ -22,17 +22,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
     protected $hidden = ['created_at', 'updated_at'];
     
-    //<editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
-    public function getMaxPriceAttribute(){
-        $round = 500;
-        $maxPrice = $this->attributes['max_price'];
-        $intdiv = \floor($maxPrice/500);
-        if($maxPrice %$round){
-            $intdiv++;
-        }
-        return $intdiv*$round;
-    }
-    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="isStarted">
     public function isStarted(){
         return  $this->status == self::STATUS_STARTED;

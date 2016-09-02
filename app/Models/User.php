@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable {
     use \GlimGlam\Libs\CoreUtils\traits\MethodsModelBase;
     protected $guarded = ['id'];    
-    public $timestamps = false;
+    public $timestamps = true;
     
     
     const PROFILE_CLIENT = 1;
