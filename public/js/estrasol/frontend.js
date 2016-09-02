@@ -71,9 +71,13 @@ $(document).ready(function () {
                     var $html = $(html);
                     var $zoom = $html.find(".zoom_mw").elevateZoom(zoomConfig);
                     $('.fancy-producto').empty().append($html).fadeIn(500);
-                    var $link = $('.fancy-producto').empty().append($html).find('.link-subasta');
+                    var $link = $('.fancy-producto').empty().append($html).find('.link-subasta, .google-calendar');
                     $link.click(function(){
-                        window.open(this.href,'_self');
+                        if($(this).is('.google-calendar')){
+                            window.open(this.href,'_blank');
+                        }else{
+                            window.open(this.href,'_self');
+                        }
                     });
                 });
             }

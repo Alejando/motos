@@ -6,6 +6,26 @@ $widthGallery = 'width: '.$widthGallery.'px';
 /* @var $fechaInicio DateTime */
 $fechaInicio = new \DateTime($auction->start_date); 
 $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
+
+$text = 'Subasta+de+'. urlencode($auction->title);
+$details='Subasta+en+sitio+GlimGlam';
+$location=asset('subastas/juego').'/'.$auction->code;
+$startdate = $auction->getPreSaleDate(new \DateTimeZone("America/Mexico_City"))->format('Ymd\T000000\Z');
+$enddate = $auction->getPreSaleDate(new \DateTimeZone("America/Mexico_City"))->format('Ymd\T230000\Z');
+$preSaleDate = $auction->getPreSaleDate(new \DateTimeZone("America/Mexico_City"))->format('d/m/Y');
+$calendarLink = sprintf('http://www.google.com/calendar/event?'.
+        'action=TEMPLATE&'.
+        'text=%s&'.
+        'dates=%s/%s&'.
+        'details=%s&'.
+        'location=%s&',
+        $text, 
+        $startdate, 
+        $enddate, 
+        $details, 
+        $location
+);
+
 ?>
 <div class="fancy-close">
     <script>
@@ -37,6 +57,12 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
                         <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
                     </a>
                 </div>
+                @else
+                <span>Fecha de preventa: <b>{{$preSaleDate}}</b></span><br>
+                <a class="google-calendar" href="{{$calendarLink}}"
+                    target="_blank">
+                    Agregar a Google Calendar<br>
+                </a>
                 @endif
             </div>
         </div>
