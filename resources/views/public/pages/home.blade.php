@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
-                        <div ng-show="{{$auction->isPreventDay()}}" class="label-preventa"></div>
+                        <div ng-show="{{$auction->isPreSaleDay()}}" class="label-preventa"></div>
                         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
                         <div class="img-subasta">
                             <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4">

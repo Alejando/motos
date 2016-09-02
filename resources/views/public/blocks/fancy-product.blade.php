@@ -44,11 +44,11 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
         <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7 text-center close-fancy">
             <div class="producto-fancy ">
                 <div class="recorte-superior"></div>
-                @if($auction->isPreventDay())<div class="label-preventa"></div>@endif
+                @if($auction->isPreSaleDay())<div class="label-preventa"></div>@endif
                 <div class="producto-fancy-cover">
                     <span class="precio-cover">
-                        @if($auction->isPreventDay())<span class="strike">{{Currency::format($auction->getOriginalCover(), config('app.currency'))}}</span>@endif
-                        <span class="{{$auction->isPreventDay() ? 'oferta':''}}">{{Currency::format($auction->cover, config('app.currency'))}}</span>
+                        @if($auction->isPreSaleDay())<span class="strike">{{Currency::format($auction->getOriginalCover(), config('app.currency'))}}</span>@endif
+                        <span class="{{$auction->isPreSaleDay() ? 'oferta':''}}">{{Currency::format($auction->cover, config('app.currency'))}}</span>
                     </span>
                     <span>Tu asiento</span>
                 </div>
