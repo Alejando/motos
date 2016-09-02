@@ -103,7 +103,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getStarted">
     public static function getStarted( ) {
-        $now = new \DateTime();
         return self::where('ready',"=",1)
             ->where('status','=', self::STATUS_STARTED);
     }

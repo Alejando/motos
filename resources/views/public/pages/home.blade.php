@@ -107,7 +107,7 @@
                     </a>
                 </div>
                 <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    @if(!Auth::check())
+                    @if(false)
                     <a href="{{asset('register')}}" class="producto producto-mensaje placeholder naranja">
                         <div class="img-mensaje"><img src="{{asset('img/logo-icon.png')}}" alt="Glim Glam &reg;" title="Glim Glam &reg;"></div>
                         <div class="mensaje-info">

@@ -81,7 +81,7 @@ class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController {
     }
 
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getStarted()">
+    // <editor-fold defaultstate="collapsed" desc="getStarted">
     public function getStarted($n = 5) {
         return \GlimGlam\Models\Auction::getStarted()->paginate((int) $n);
     }
