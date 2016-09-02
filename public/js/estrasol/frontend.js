@@ -78,10 +78,12 @@ $(document).ready(function () {
                     var $html = $(html);
                     var $zoom = $html.find(".zoom_mw").elevateZoom(zoomConfig);
                     $('.fancy-producto').empty().append($html).fadeIn(500);
-                    var $link = $('.fancy-producto').empty().append($html).find('.link-subasta, .google-calendar');
+                    var $link = $('.fancy-producto').empty().append($html).find('.link-subasta, .google-calendar, .share-room');
                     $link.click(function(){
                         if($(this).is('.google-calendar')){
                             window.open(this.href,'_blank');
+                        }else if($(this).is('.share-room.share-tw')){
+                            $(this).customerPopup(e);
                         }else{
                             window.open(this.href,'_self');
                         }

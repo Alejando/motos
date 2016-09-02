@@ -970,8 +970,12 @@ footer.main-footer a.color-estrasol:hover{
 .social-yt:hover{
     background-position: -160px -30px;
 }
-.share-room-container{
+.share-room-container,
+.share-fancy-container{
     text-align: center;
+}
+.share-fancy-container{
+    margin-top: 10px;
 }
 .share-room{
     display: inline-block;

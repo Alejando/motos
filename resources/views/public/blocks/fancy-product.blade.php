@@ -61,9 +61,13 @@ $calendarLink = sprintf('http://www.google.com/calendar/event?'.
                 <span>Fecha de preventa: <b>{{$preSaleDate}}</b></span><br>
                 <a class="google-calendar" href="{{$calendarLink}}"
                     target="_blank">
-                    Agregar a Google Calendar<br>
+                    Agregar preventa a Google Calendar<br>
                 </a>
                 @endif
+                <div class="share-fancy-container">
+                    <a id="share-room" class="share-room share-fb" target="popup" href="{{URL::to('/#!'.$auction->code.'/'.str_slug($auction->title))}}"></a>
+                    <a class="share-room share-tw" href="http://twitter.com/share?url={{URL::to('/sub/'.$auction->code)}}&text=¡{{$auction->title}} está siendo subastado!&hashtags=glimglam,subastaonline" title="GlimGlam subastas online" target="popup"></a>
+                </div>
             </div>
         </div>
         @if(isset($imgs['fancy-box-thumbailn'][0]))
@@ -104,3 +108,35 @@ $calendarLink = sprintf('http://www.google.com/calendar/event?'.
         @endif
     </div>
 </div>
+<script>
+    $('.share-room.share-fb').on('click', function(e) {
+        e.preventDefault();
+        FB.ui({
+          method: 'share',
+          display: 'popup',
+          picture: {!!json_encode($auction->getUrlCover($auction::COVER_HORIZONTAL))!!},
+          description: {!!json_encode($auction->description)!!},
+          title: "asdfasdfa ANASD",
+          caption: 'GlimGlam subastas online',
+          href: this.href,
+        }, function(response){});
+    });
+    
+    $('.share-room.share-tw').on("click", function(e) {
+        $(this).customerPopup(e);
+    });
+    
+    $.fn.customerPopup = function (e, intWidth, intHeight, blnResize) {
+        // Prevent default anchor event
+        e.preventDefault();
+        // Set values for window
+        intWidth = intWidth || '500';
+        intHeight = intHeight || '400';
+        strResize = (blnResize ? 'yes' : 'no');
+
+        // Set title and open popup with focus on it
+        var strTitle = ((typeof this.attr('title') !== 'undefined') ? this.attr('title') : 'GlimGlam subastas online'),
+            strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,            
+            objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
+    }
+</script>
