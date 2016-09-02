@@ -79,9 +79,6 @@ $calendarLink = sprintf('http://www.google.com/calendar/event?'.
                         @endif
                         <span class="{{$auction->isPreSaleDay() ? 'oferta':''}}">{{Currency::format($auction->cover, config('app.currency'))}}</span>
                     </span>
-                    @if($auction->isPreSaleDay())
-                    <span>¡Precio preventa!</span>
-                    @endif
                 </div>
                 <div id="img-principal" class="producto-fancy-img">
                     <div class="fancy-gallery-control control-left"><i class="fa fa-angle-left fa-3x" aria-hidden="true"></i></div>
