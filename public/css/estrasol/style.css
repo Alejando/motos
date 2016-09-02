@@ -961,7 +961,21 @@ footer.main-footer a.color-estrasol:hover{
 .social-yt:hover{
     background-position: -160px -30px;
 }
-
+.share-room-container{
+    text-align: center;
+}
+.share-room{
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    background: url('../../img/iconos-sociales.png') no-repeat transparent;
+}
+.share-room.share-fb{
+    background-position: -55px -60px;
+}
+.share-room.share-tw{
+    background-position: 0 -60px;
+}
 /*CLASES JP*/
 
 /*-----HEADER-----*/

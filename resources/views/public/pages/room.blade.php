@@ -32,7 +32,11 @@
                                 <timer interval="1000" language="es" class="subasta-tiempo" 
                                     ng-show="objAuction.isStandBy()"
                                     end-time="objAuction.start_date">
-                                        <small>Inicia en</small><br>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
+                                    <small>Inicia en</small><br>
+                                    <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
+                                    <span ng-show="hours > 0">@{{hours}} hr,</span>
+                                    <span ng-show="minutes > 0">@{{minutes}} min,</span>
+                                    @{{seconds}} seg
                                 </timer>
                                 <timer interval="1000" language="es" class="subasta-tiempo" 
                                     ng-show="objAuction.isStarted()"
@@ -44,7 +48,7 @@
                                 </div>
                             </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
                                 <div id="titulo-detalle" class="t-detalle">
-                                    - {{$auction->title}} -
+                                    {{$auction->title}}
                                 </div>
                             </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
                                 <a class="link-subasta-cont" href="#fancy-subasta">
@@ -160,11 +164,10 @@
                     <div>{{$auction->description}}</div>
                     <div class="info-divider"></div>
                     <h3>¡Cuéntale a un amigo!</h3>
-                    
-                    <a id="share-room" target="_blank" href="{{URL::to('/#!'.$auction->code.'/'.str_slug($auction->title))}}">
-                        <img src="{{asset('img/contacto.png')}}" class="img-responsive">
-                    </a>
-                    
+                    <div class="share-room-container">
+                        <a id="share-room" class="share-room share-fb" target="_blank" href="{{URL::to('/#!'.$auction->code.'/'.str_slug($auction->title))}}"></a>
+                        <a class="share-room share-tw" href="http://twitter.com/share?url={{URL::to('/sub/'.$auction->code)}}&text=¡{{$auction->title}} está siendo subastado!&hashtags=glimglam,subastaonline" title="GlimGlam subastas online" target="_blank"></a>
+                    </div>
                 </div>
                 <div class="col-md-6 video-producto">
                     <iframe width="420" height="315" src="http://www.youtube.com/embed/QH2-TGUlwu4?vq=hd1080&controls=0&iv_load_policy=3&rel=0&showinfo=0&color=white&disablekb=1" frameborder="0"></iframe>
@@ -192,7 +195,7 @@
     var auction =  {!! $auction !!}; 
     var id_user = {{\Auth::user()->id}};
 
-    $('#share-room').on('click', function(e) {
+    $('.share-room.share-fb').on('click', function(e) {
         e.preventDefault();
         FB.ui({
           method: 'share',
@@ -204,6 +207,24 @@
           href: this.href,
         }, function(response){});
     });
+    
+    $('.share-room.share-tw').on("click", function(e) {
+        $(this).customerPopup(e);
+    });
+    
+    $.fn.customerPopup = function (e, intWidth, intHeight, blnResize) {
+        // Prevent default anchor event
+        e.preventDefault();
+        // Set values for window
+        intWidth = intWidth || '500';
+        intHeight = intHeight || '400';
+        strResize = (blnResize ? 'yes' : 'no');
+
+        // Set title and open popup with focus on it
+        var strTitle = ((typeof this.attr('title') !== 'undefined') ? this.attr('title') : 'GlimGlam subastas online'),
+            strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,            
+            objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
+    }
 </script>
 <script type="text/javascript" src="{{asset('js/estrasol/room.js')}}"></script>
 @stop
