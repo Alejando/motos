@@ -10,10 +10,24 @@ $fechaInicio->setTimezone(new \DateTimeZone("America/Mexico_City"));
 $text = 'Subasta+de+'. urlencode($auction->title);
 $details='Subasta+en+sitio+GlimGlam';
 $location=asset('subastas/juego').'/'.$auction->code;
-$startdate = $auction->getPreSaleDate(new \DateTimeZone("America/Mexico_City"))->format('Ymd\T000000\Z');
-$enddate = $auction->getPreSaleDate(new \DateTimeZone("America/Mexico_City"))->format('Ymd\T230000\Z');
-$preSaleDate = $auction->getPreSaleDate(new \DateTimeZone("America/Mexico_City"))->format('d/m/Y');
-$calendarLink = sprintf('http://www.google.com/calendar/event?'.
+/* @var $startdate DateTime */
+$timezoneMX = new \DateTimeZone("America/Mexico_City");
+$utc = new \DateTimeZone("UTC");
+
+$startdate = $auction->getPreSaleDate($timezoneMX);
+$startdate->setTime(0, 0, 0);
+$startdate->setTimezone($utc);
+$startdate = $startdate->format('Ymd\THis\Z');
+
+$enddate= $auction->getPreSaleDate($timezoneMX);
+$enddate->setTime(23, 59, 59);
+$enddate->setTimezone($utc);
+$enddate = $enddate->format('Ymd\THis\Z');
+
+$preSaleDate = $auction->getPreSaleDate($timezoneMX);
+$preSaleDate = $preSaleDate->format('d/m/Y');
+
+$calendarLink = sprintf('http://www.google.com/calendar/render?'.
         'action=TEMPLATE&'.
         'text=%s&'.
         'dates=%s/%s&'.
@@ -26,6 +40,10 @@ $calendarLink = sprintf('http://www.google.com/calendar/event?'.
         $location
 );
 
+
+//https://www.google.com/calendar/render?action=TEMPLATE&text=TextoEjemplo&dates=20140127T224000Z/20140320T221500Z&details=For+details,+link+here:+http://www.example.com&location=Waldorf+Astoria,+301+Park+Ave+,+New+York,+NY+10022&sf=true&output=xml
+//
+//https://www.google.com/calendar/render?action=TEMPLATE&text=TextoEjemplo&dates=20160907T000000Z/20160907T230000Z&details=Subasta+en+sitio+GlimGlam&location=http://192.168.1.111/DW.glimglam/public/subastas/juego/SUB002
 ?>
 <div class="fancy-close">
     <script>
