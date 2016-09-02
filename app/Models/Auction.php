@@ -22,6 +22,21 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
     protected $hidden = ['created_at', 'updated_at'];
     
+    // <editor-fold defaultstate="collapsed" desc="isStarted">
+    public function isStarted(){
+        return  $this->status == self::STATUS_STARTED;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="isFinished">
+    public function isFinished() {
+        return $this->status == self::STATUS_FINISHED;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="isStandBy">
+    public function isStandBy() {
+        return $this->status == self::STATUS_STAND_BY;
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="isBuyable">
     public function isBuyable() {
         $utcMx = new \DateTimeZone("America/Mexico_City");
@@ -149,7 +164,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return new \DateTime($thuBefore, $timeZone);
     }
     // </editor-fold>
-
     // <editor-fold defaultstate="collapsed" desc="getOriginalCover">
     public function getOriginalCover(){
         return $this->attributes['cover'];

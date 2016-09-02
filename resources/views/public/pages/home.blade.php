@@ -67,13 +67,28 @@
                         <div class="producto-nombre" >
                             @{{lastStarted.title}}
                         </div>
-                        <div class="leyenda-subasta" ng-show="lastStarted.last_offer">
-                            <div>Ultima Oferta:</div>
-                            <div class="rango-ofertas">$@{{lastStarted.last_offer}}</div>
+                        <div class="leyenda-subasta" >
+                            <div>Puedes ofertar desde:</div>
+                            <div class="rango-ofertas">@{{lastStarted.min_offer | currency}} - @{{lastStarted.max_offer | currency}}</div>
                         </div>
                         <div class="tiempo-producto">
-                            <span class="tiempo-subasta-producto countdown" start_date="@{{lastStarted.start_date}}"></span>
-                            <span>Para subastar</span>
+                            <timer interval="1000" language="es" class="subasta-tiempo-perfil" 
+                                ng-show="lastStarted.isStandBy()"
+                                end-time="lastStarted.start_date">
+                                Inicia en<br>
+                                <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
+                                <span ng-show="hours > 0">@{{hours}} hr,</span>
+                                <span ng-show="minutes > 0">@{{minutes}} min,</span>
+                                @{{seconds}} seg
+                            </timer>
+                            <timer interval="1000" language="es" class="subasta-tiempo-perfil" 
+                                ng-show="lastStarted.isStarted()"
+                                end-time="lastStarted.end_date">
+                                    Finaliza en<br>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
+                            </timer>
+                            <div class="subasta-tiempo-perfil" ng-show="lastStarted.isFinished()">
+                                La subasta ha terminado
+                            </div>
                         </div>
                         <div class="producto-hover transition-0-3">
                             <div class="producto-titulo">@{{lastStarted.title}}</div>
@@ -83,7 +98,7 @@
                                 <div class="producto-hammer" id_producto="@{{lastStarted.code}}"></div>
                             </div>
                             <div class="producto-cover">
-                                @{{lastStarted.cover}}
+                                $@{{lastStarted.cover}}
                             </div>
                             <div class="leyenda-cover">
                                 Tu asiento

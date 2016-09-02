@@ -812,7 +812,7 @@ header.main-header{
 	width: 50%;
 }
 .producto.big-producto .tiempo-producto span{
-	display: block;
+    
 }
 .producto.big-producto .tiempo-producto .tiempo-subasta-producto{
 	font-size: 22px;
