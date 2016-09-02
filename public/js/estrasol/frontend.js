@@ -188,7 +188,9 @@ $(document).ready(function () {
     setInterval(function () {
         $('.countdown').each(function () {
             var start_date = $(this).attr('start_date');
+//            console.log(start_date);
             var rest = timer(start_date);
+//            console.log("timer=>",rest);
             htmlTime = '';
             if (rest.tipo) {
                 if (rest.dd > 1) {
@@ -218,7 +220,7 @@ $(document).ready(function () {
 
     function timer(exp) {//La fecha de termino tiene que estar asi 2011-04-11T11:51:00
         exp = new Date(exp);
-        var diff = exp - new Date(get_date_time());
+        var diff = exp - new Date();
         if (diff > 0) {
             diff = (Math.round(diff / 1000));
 
@@ -227,6 +229,7 @@ $(document).ready(function () {
             var minutes = Math.floor(diff / 60);
             var hours = Math.floor(minutes / 60);
             var days = Math.floor(hours / 24);
+            console.log(days);
             minutes %= 60;
             hours %= 24;
 

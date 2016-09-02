@@ -15,8 +15,9 @@
                         product-name="{{$auction->title}}" 
                         rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
                         rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
-                        start_date="{{$auction->start_date}}">
+                        start_date="{{(new \DateTime($auction->start_date))->setTimezone(new \DateTimeZone("America/Mexico_City"))->format("Y-m-d H:i:s")}}">
                         <img ng-src="{{@$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}"  width="504" height="372">
+                      
                         <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="500" data-start="100">
                             <i class="fa fa-clock-o animated infinite pulse verde r-banner" aria-hidden="true"></i>
                         </div>

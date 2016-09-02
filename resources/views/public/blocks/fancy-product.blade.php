@@ -41,6 +41,7 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
 );
 
 
+
 //https://www.google.com/calendar/render?action=TEMPLATE&text=TextoEjemplo&dates=20140127T224000Z/20140320T221500Z&details=For+details,+link+here:+http://www.example.com&location=Waldorf+Astoria,+301+Park+Ave+,+New+York,+NY+10022&sf=true&output=xml
 //
 //https://www.google.com/calendar/render?action=TEMPLATE&text=TextoEjemplo&dates=20160907T000000Z/20160907T230000Z&details=Subasta+en+sitio+GlimGlam&location=http://192.168.1.111/DW.glimglam/public/subastas/juego/SUB002
@@ -68,7 +69,7 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                     Llévatelo por menos de <b>{{Currency::format(ceil($auction->max_price), config('app.currency'))}}</b>
                     en lugar de <b>{{Currency::format(ceil($auction->real_price), config('app.currency'))}}</b> (precio real)
                 </div>
-                <div style="padding: 10px">Inicia el <b>{{$fechaInicio->format('d/m/Y')}}</b> a las <b>{{$fechaInicio->format('H:i')}}</b></div>
+                <div style="padding: 10px">Inicia el <b>{{$fechaInicio->setTimezone($timezoneMX)->format('d/m/Y')}}</b> a las <b>{{$fechaInicio->format('H:i')}}</b></div>
                 @if($auction->isBuyable())
                 <div class="producto-boton-entrar">
                     <a class="link-subasta transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->code])}}">

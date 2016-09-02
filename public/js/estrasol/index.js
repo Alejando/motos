@@ -133,7 +133,7 @@ $(document).ready(function () {
         var exp = $itemLi.attr('start_date');
         var max = $itemLi.attr('rangomax');
         var min = $itemLi.attr('rangomin');
-        var name = slugify($itemLi.attr('product-name'));
+        var name = $itemLi.attr('product-name');
         var id = $itemLi.attr('id-producto');
         if (ant_exp != exp||true) {
             $bannerContainer.find('.subasta-tiempo').attr('start_date', exp);
