@@ -21,7 +21,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     
     protected $hidden = ['created_at', 'updated_at'];
-    // <editor-fold defaultstate="collapsed" desc="get">
+    
+    //<editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
     public function getMaxPriceAttribute(){
         $round = 500;
         $maxPrice = $this->attributes['max_price'];
@@ -30,6 +31,21 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             $intdiv++;
         }
         return $intdiv*$round;
+    }
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="isStarted">
+    public function isStarted(){
+        return  $this->status == self::STATUS_STARTED;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="isFinished">
+    public function isFinished() {
+        return $this->status == self::STATUS_FINISHED;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="isStandBy">
+    public function isStandBy() {
+        return $this->status == self::STATUS_STAND_BY;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="isBuyable">
@@ -98,7 +114,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getStarted">
     public static function getStarted( ) {
-        $now = new \DateTime();
         return self::where('ready',"=",1)
             ->where('status','=', self::STATUS_STARTED);
     }
@@ -159,7 +174,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return new \DateTime($thuBefore, $timeZone);
     }
     // </editor-fold>
-
     // <editor-fold defaultstate="collapsed" desc="getOriginalCover">
     public function getOriginalCover(){
         return $this->attributes['cover'];
