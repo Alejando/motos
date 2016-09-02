@@ -12,9 +12,11 @@
                         <p>GLIM GLAM &copy; DERECHOS RESERVADOS 2016</p>
                 </div>
                 <div class="text-center col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        {{--
                         <p class="desarrollo-label">
                                 <a class="color-desarrollo-web transition-0-3" href="http://www.estrasol.mx/desarrollo-web" target="_blank">Desarrollo Web</a> <a class="color-estrasol transition-0-3" href="http://www.estrasol.com.mx" target="_blank">Estrasol</a>
                         </p>
+                        --}}
                 </div>
         </section>
 </footer>
