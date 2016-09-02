@@ -1,15 +1,34 @@
 glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $http) {
-   $scope.billInfo = {
-        rfc: '1',
-        business_name: '2',
-        address: '3',
-        neighborhood: '4',
-        postal_code: '5',
-        city: '6',
-        state: '7',
-        user_id: '1'
+    var url = laroute.route('user.bills-info');
+    $scope.billInfo = {
+        rfc: '',
+        business_name: '',
+        address: '',
+        neighborhood: '',
+        postal_code: '',
+        city: '',
+        state: '',
+        user_id: ''
     };
+    $http({
+        'url' : url,
+        'meethod' : 'GET'
+    }).then(function(r){
+        if(!r.data.error) {
+            $scope.billInfo.rfc = r.data.rfc;
+            $scope.billInfo.business_name = r.data.business_name;
+            $scope.billInfo.address = r.data.address;
+            $scope.billInfo.neighborhood = r.data.neighborhood;
+            $scope.billInfo.postal_code = r.data.postal_code;
+            $scope.billInfo.city = r.data.city;
+            $scope.billInfo.state = r.data.state;
+            $scope.billInfo.user_id = r.data.user_id;
+        }
+    });
+    
     $(".form-factura").hide();
+    
+    
     var $subTotal = $('#enroll-sub-total');
     var $iva = $('#enroll-iva');
     var $total = $('#enroll-total');    
@@ -18,8 +37,7 @@ glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $htt
         e.preventDefault();
         var self = this;
         var code = self.dataset.code;
-        if($(".facturar").is(':checked')) {
-            var url = laroute.route('user.bills-info');
+        if($(".facturar").is(':checked')) {            
             $scope.$apply(function(){
                 $http({
                     'method' : 'POST',

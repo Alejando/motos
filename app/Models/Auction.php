@@ -23,11 +23,20 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     protected $hidden = ['created_at', 'updated_at'];
     
     // <editor-fold defaultstate="collapsed" desc="isBuyable">
-    public function isBuyable(){
-        $now = new \DateTime;
+    public function isBuyable() {
+        $utcMx = new \DateTimeZone("America/Mexico_City");
+        $now = new \DateTime(null, $utcMx);
         $start_date = new \DateTime($this->start_date);
-        
-        return true;
+        $start_date->setTimezone($utcMx);
+        $now->setTimezone($utcMx);
+        $thuBefore = date("Y-m-d 00:00", strtotime("last ".Config('app.presaleday'), $start_date->getTimestamp()));
+        $lastThursday = new \DateTime($thuBefore, $utcMx);
+        $afterPreSale = $lastThursday <= $now;
+        $dieHr = clone $start_date;
+        $dieHr->sub(new \DateInterval('PT1H'));
+        $inTime  = $now<=$dieHr;
+        $cupo = $this->total_enrollments<$this->users_limit;
+        return $inTime && $afterPreSale && $cupo;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="isEnrolled">
@@ -123,7 +132,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="isPreventDay">
     public function isPreventDay(){
-        return true;
+        return !true;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getOriginalCover">

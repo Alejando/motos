@@ -13,7 +13,7 @@ class BillsInfoCtrl extends BaseController {
         if($info){
             return $info;
         }
-        return ['success' => true];
+        return ['error' => true];
     }
     public function setInfo(){
         $user = \Auth::user();
