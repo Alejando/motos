@@ -89,10 +89,7 @@ class AuthController extends Controller {
                     'gender' => $data['gender']==="1",
                     'password' => bcrypt($data['password']),
         ]);
-        \GlimGlam\Libs\Helpers\Mail::welcome([
-            'user' => $user,
-            'to' => $user->email
-        ]);
+        $user->sendMailWelcome($data['password']);
         return $user;
     }
 

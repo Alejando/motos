@@ -1,6 +1,10 @@
 /* FUENTES */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 /* GENERICOS */
+.error-message{
+    color:red;
+}
+
 html, body{
 	font-family: 'Open Sans';
 }

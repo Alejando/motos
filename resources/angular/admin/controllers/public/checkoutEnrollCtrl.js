@@ -32,25 +32,41 @@ glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $htt
     var $subTotal = $('#enroll-sub-total');
     var $iva = $('#enroll-iva');
     var $total = $('#enroll-total');    
-    
+    $scope.errors = {};
     $('.subasta-boton-pago').click(function(e){
         e.preventDefault();
         var self = this;
         var code = self.dataset.code;
         if($(".facturar").is(':checked')) {            
+            $scope.valido = true;
             $scope.$apply(function(){
-                $http({
-                    'method' : 'POST',
-                    'url' : url,
-                    'data' : $scope.billInfo
-                }).then(function(){
-                    var href = laroute.route('auction.checkout',{
-                        'code' : code,
-                        'bill' : true
-                    });
-                    $scope.send(href);
+                $scope.errors.rfc = false;
+                if(!/^([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/.test($scope.billInfo.rfc)){
+                    $scope.errors.rfc = "* El RFC ingresado no cumple con el formato requerido";
+                    $scope.valido = false;
+                } 
+                angular.forEach($scope.billInfo, function(e, i) {
+                    if(!$scope.billInfo[e]){
+                        $scope.errors[i]="* Campo obligatorio.";
+                        $scope.valido = false;
+                    }
                 });
             });
+            if($scope.valido){
+                $scope.$apply(function(){
+                    $http({
+                        'method' : 'POST',
+                        'url' : url,
+                        'data' : $scope.billInfo
+                    }).then(function(){
+                        var href = laroute.route('auction.checkout',{
+                            'code' : code,
+                            'bill' : true
+                        });
+                        $scope.send(href);
+                    });
+                });
+            }
         } else {
             $scope.$apply(function(){
                 var href = laroute.route('auction.checkout',{

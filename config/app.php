@@ -1,12 +1,12 @@
 <?php
 
 return [
-    'presaleday' => 'wednesday',
+    'presaleday' => 'friday',
     'social'=>[
         'fb'=>'https://www.facebook.com/GlimGlam.mx/',
         'ig'=>'https://www.instagram.com/glimglammx/',
         'tw'=>'https://twitter.com/GlimGlamMx',
-        'yt'=>'https://www.youtube.com/',
+        'yt'=>'https://www.youtube.com/channel/UCfYKCSrjk0c2kZXYpvBAG_A',
     ],
     'diaPreventa'=>2,
     'iva'=>1.16,

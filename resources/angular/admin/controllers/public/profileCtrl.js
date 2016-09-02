@@ -9,6 +9,7 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
     };
     //<editor-fold defaultstate="collapsed" desc="getAuthUser">
     User.getAuthUser().then(function (user) {
+        $('.div-profile').slideDown('slow');
         $scope.user = user;
         $scope.user.backup();
         setBrithday();
@@ -110,6 +111,20 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
     
     //<editor-fold defaultstate="collapsed" desc="updateProfile">
     $scope.updateProfile = function () {
+        console.log($scope.brithday.day, $scope.brithday.month, $scope.brithday.year);
+        if(
+            $scope.brithday.day==0 ||
+            $scope.brithday.month==0 ||
+            $scope.brithday.year==0
+                
+        ) {
+            bootbox.alert("Por favor ingresa tu fecha de nacimiento");
+            return;
+        }
+        if(!$scope.user.password){
+            bootbox.alert("Ingresa tu contraseña actual para autorizar los cambios");
+            return ;
+        }
         if ($scope.newPassword) {
             if ($scope.confirmPassword !== $scope.newPassword) {
                 $scope.errors.confirmPassword = "Tu confirmación no coicide";
@@ -119,6 +134,9 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
             }
             $scope.user.newPassword = $scope.newPassword;
         }
+        if($scope.user.birthday === null) {
+            $scope.user.birthday = new Date();
+        }
         var birthday = $scope.user.birthday;
         birthday.setDate($scope.brithday.day);
         birthday.setMonth($scope.brithday.month - 1);
@@ -126,6 +144,11 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
         $scope.user.save().then(function (res) {
             if (res.error) {
                 $scope.errors.password = res.msj;
+                if($scope.errors.password){
+                    bootbox.alert(res.msj);
+                    return;
+                }
+                $scope.errors.confirmPassword = "";
                 return;
             }
             $scope.errors.password = false;

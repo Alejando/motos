@@ -20,11 +20,16 @@ class SocialAccountService {
             ]);
             $user = User::whereEmail($providerUser->getEmail())->first();
             if (!$user) {
-                $user = User::create([
+                $pass = str_random(8);
+                $user = new User();
+                $user->fill([
                         'email' => $providerUser->getEmail(),
                         'name' => $providerUser->getName(),
-                        'gender' => $providerUser->user['gender']==='male'
+                        'gender' => $providerUser->user['gender']==='male',
+                        'password' => \Hash::make($pass)
                 ]);
+                   $user->save();
+                $user->sendMailWelcome($pass);
             }
             $account->user()->associate($user);
             $account->save();

@@ -25,7 +25,10 @@
         <div style="width:49%;text-align: left;display: inline-block;vertical-align: top;">
                 <h3 style="text-align: center;">Tus datos</h3>
                 <p style="text-align: center;">{{$user->name}}</p>
-                <p style="text-align: center;">{{$user->email}}</p>
+                <p style="text-align: center;">Usuario: {{$user->email}}</p>
+                @if($rawPassword)
+                    <p style="text-align: center;">Contraseña: {{$rawPassword}}</p>
+                @endif
                 <p style="display: none; text-align: center;">Intereses:</p>
                 <table style="display: none; text-align: center; font-size: 12px;" width="100%"> 
                     <tr>
