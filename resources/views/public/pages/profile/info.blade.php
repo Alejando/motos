@@ -123,7 +123,7 @@
             <fieldset class="password-fieldset">
                 <legend>Confirma todos tus cambios con tu contraseña actual</legend>
                 <div class="col-sm-6 col-sm-offset-3">
-                    <input ng-model="user.password" type="password" name="password" class="pass form-control2" placeholder="Contrasñea actual">
+                    <input ng-model="user.password" type="password" name="password" class="pass form-control2" placeholder="Contraseña actual">
                 </div>
                 <div  ng-show="errors.password" class=col-sm-12 error-message">* @{{errors.password}}</div>
             </fieldset>

@@ -36,6 +36,20 @@ $(document).ready(function () {
         });
     }
     
+    var openFancyByHash = function(hash){
+        switch(hash){
+            case '#!video':
+                setTimeout(function(){
+                    $('html, body').animate({
+                        scrollTop: $('.video').offset().top-20
+                    }, 1500);
+                },'top');
+            break;
+            default:
+                var h = hash.replace("#!","").split("/")[0];
+                open_fancy_product(h);
+        }
+    };
     var cLocation = history.location || document.location;
      if(cLocation.hash){
         openFancyByHash(cLocation.hash);
