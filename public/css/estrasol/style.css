@@ -312,11 +312,10 @@ header.main-header{
 .descripcion-fancy {
     width: 90%;
     border-radius: 1%;
-    /*min-height: 525px;*/ 
     padding: 10px 10px 20px;
     background-color: #fff;
     text-align: center;
-    margin: 11% auto;
+    margin: 6% auto;
 }
 .producto-fancy .recorte-superior {
     position: relative;

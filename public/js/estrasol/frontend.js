@@ -20,9 +20,15 @@ $(document).ready(function () {
         if ($control.hasClass('control-right') && numGal < numItems) {
             $container.scrollLeft(position + 104);
             numGal += 1;
+        } else if ($control.hasClass('control-right') && numGal == numItems){
+            $container.scrollLeft(0);
+            numGal = 0;
         } else if ($control.hasClass('control-left') && numGal > 0) {
             $container.scrollLeft(position - 104);
             numGal -= 1;
+        } else if($control.hasClass('control-left') && numGal == 0){
+            $container.scrollLeft((numItems-1)*104);
+            numGal = numItems;
         }
         console.log(numGal);
         $('.frame-gallery.gal-' + numGal).addClass('active');
