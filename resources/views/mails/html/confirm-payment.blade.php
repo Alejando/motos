@@ -7,7 +7,7 @@
                         <img src="{{asset('img/ticket.png')}}" style="width: 100%;">
                 </div>
                 <p style="color: #fff; margin: 20px 0;text-transform: uppercase;">
-                    No. Folio: <span> 7648{{--$payment->folio--}}</span>
+                    No. Folio: <span> {{$payment->folio}}</span>
                 </p>
             </div>
             <div class="cinta-felicidades" style="background-color: #284f53; color: #fff;padding: 10px 0;">
@@ -63,24 +63,21 @@
                         Subtotal:
                     </div>
                     <div style="display: inline-block;text-align: right;color: #003937;">
-                        $99.00
-                        {{--Currency::format($payment->subtotal, config('app.currency'))--}}
+                        {{Currency::format($payment->subtotal, config('app.currency'))}}
                     </div>
                     <br>
                     <div style="display: inline-block;text-align: left;width: 40%;">
                         IVA:
                     </div>
                     <div style="display: inline-block;text-align: right;color: #003937;">
-                        $99.00
-                        {{--Currency::format($payment->iva, config('app.currency'))--}}
+                        {{Currency::format($payment->iva, config('app.currency'))}}
                     </div>
                     <br>
                     <div style="display: inline-block;text-align: left;width: 40%;">
                         Total:
                     </div>
                     <div style="display: inline-block;text-align: right;color: #003937;">
-                        $198.00
-                        {{--Currency::format($payment->total, config('app.currency'))--}}
+                        {{Currency::format($payment->total, config('app.currency'))}}
                     </div>
                 </div>
             </div>

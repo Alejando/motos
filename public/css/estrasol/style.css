@@ -543,6 +543,7 @@ header.main-header{
     font-size: 35px;
 }
 .link-subasta,
+.link-subasta-disabled,
 .google-calendar{
     display: inline-block;
     color: #00bcb6;
@@ -564,8 +565,19 @@ header.main-header{
 .no-border{
     border:0;
 }
-.link-subasta:hover{
+.link-subasta:hover,
+.link-subasta-disabled:hover,
+.google-calendar:hover{
     cursor: pointer;
+}
+.link-subasta-disabled{
+    pointer-events: none;
+    background-color: #f3f3f3;
+}
+.leyenda-no-disponible{
+    display: block;
+    padding: 10px;
+    margin: 5px;
 }
 .link-hammer,
 .link-subasta-text{
@@ -589,7 +601,7 @@ header.main-header{
 	font-size: 18px;
 	line-height: 40px;
 }
-.link-subasta:hover:not(.producto-hover,.producto, .caja-detalle){
+.link-subasta:hover:not(.producto-hover,.producto,.caja-detalle){
 	background-color: #08aea8;
 	color: #fff;
 	border-color: #fff;
