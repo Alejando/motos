@@ -82,6 +82,12 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                     target="_blank">
                     Agregar preventa a Google Calendar<br>
                 </a>
+                <span class="leyenda-no-disponible">La preventa todavía no inicia</span>
+                <div class="producto-boton-entrar">
+                    <a class="link-subasta-disabled transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->code])}}">
+                        <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
+                    </a>
+                </div>
                 @endif
                 <div class="share-fancy-container">
                     <a id="share-room" class="share-room share-fb" target="popup" href="{{URL::to('/#!'.$auction->code.'/'.str_slug($auction->title))}}"></a>
