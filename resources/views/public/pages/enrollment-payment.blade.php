@@ -12,8 +12,8 @@
             <div class="col-sm-8">
                 <p style="margin: 0;">Acceso a:</p>
                 <p class="subasta-nombre">{{$auction->title}}</p>
-                <p style="margin: 0;">Fecha de inicio:</p>
-                <p><span class="subasta-tiempo2 countdown" start_date="{{$auction->start_date}}"></span></p>
+                <p style="margin: 0;">Fecha de inicio: <b>{{ (new DateTime($auction->start_date))->setTimezone(new DateTimeZone("America/Mexico_City"))->format("Y/m/d H:i") }}</b></p>
+                <p>Inicia en <span class="subasta-tiempo2 countdown" start_date="{{$auction->start_date}}"></span></p>
             </div>
             {{--
             <div class="col-xs-6" style="display: none;">
