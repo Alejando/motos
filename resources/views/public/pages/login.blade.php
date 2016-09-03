@@ -59,4 +59,7 @@
         </form>
     </div>
 </section>
+<?php
+Session::forget('errors');
+?>
 @stop()

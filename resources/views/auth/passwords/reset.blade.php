@@ -54,6 +54,9 @@
         </form>
     </div>
 </section>
+<?php
+Session::forget('errors');
+?>
 <?php/*
 <div class="container">
     <div class="row">

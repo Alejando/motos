@@ -13,8 +13,7 @@ class Payment extends \GlimGlam\Libs\CoreUtils\ModelBase {
         $totalIva = 1+$iva;
         $ivaDesgloce = $amount-($amount/$totalIva);
         $amountWhitoutIva = $amount-$ivaDesgloce;
-        echo $total = $amountWhitoutIva + $ivaDesgloce;
-        echo "<br>";
+        //$total = $amountWhitoutIva + $ivaDesgloce;
         $this->subtotal = $amountWhitoutIva;
         $this->iva = $ivaDesgloce;
         $this->amount= $ivaDesgloce + $amountWhitoutIva;

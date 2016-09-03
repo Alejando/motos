@@ -179,6 +179,7 @@ class PaypalController extends BaseController {
                 die("Error al comunicarse con PayPal");
             }
         }
+       
         $approvalLink = $payment->getApprovalLink();
         \Session::put('paypal_payment_id', $payment->getId());
         \Session::put('payment_auction_code', $code);
@@ -194,21 +195,21 @@ class PaypalController extends BaseController {
             'provider' => \GlimGlam\Models\Payment::PROVIDER_PAYPAL
         ]);
         $ggPayment->setAmountTotal($auction->cover);
+        
         $ggPayment->save();
         \Session::put('payment_temp',$ggPayment->id);
-        
         if(isset($redirect_url)) {
-            return \Redirect::away($approvalLink);
+            
+            return \Redirect($approvalLink);
         }
         return "Paso algo al intentar conectar con paypayl";
     }
     
-    public function enrrolmentPaymentStatus() {
-        $user = \Auth::User();        
-        $args['user'] = $user;
-        $args['to'] = $user->email;
+    public function enrolmentPaymentStatus() {
         $code = \Session::get('payment_auction_code');                     
-        \GlimGlam\Libs\Helpers\Mail::payment($args);
+        $auction = \GlimGlam\Models\Auction::getByCode($code);
+        $user = \Auth::User();
+        $auction->sendEmailEnrolment($user);
         $payment_id = \Session::get('paypal_payment_id');
         \Session::forget('paypal_payment_id');
 //        \Session::forget('payment_auction_code');   

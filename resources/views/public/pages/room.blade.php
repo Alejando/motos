@@ -170,7 +170,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 video-producto">
-                    <iframe width="420" height="315" src="http://www.youtube.com/embed/QH2-TGUlwu4?vq=hd1080&controls=0&iv_load_policy=3&rel=0&showinfo=0&color=white&disablekb=1" frameborder="0"></iframe>
+                    <iframe class="video" src="https://www.youtube.com/embed/JTmp1y1i-l0?rel=0" frameborder="0"></iframe>
                 </div>
             </div>
         </div>

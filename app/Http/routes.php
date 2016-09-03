@@ -233,7 +233,7 @@ Route::get('subastas/finish/{code}', [
 //Callback de pago de lugar en subasata con paypal
 Route::get('subastas/lugares/estatus-pago', [
     'as' => 'enrollment.payment',
-    'uses' => 'PaypalController@enrrolmentPaymentStatus'
+    'uses' => 'PaypalController@enrolmentPaymentStatus'
 ]);
 
 Route::get('subastas/lugar/error-pago',[ //Pagina de error si paypal no aprueva el pago del lugar

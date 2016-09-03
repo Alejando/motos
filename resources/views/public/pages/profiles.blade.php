@@ -1,4 +1,17 @@
 @extends('public.base')
+@section('styles')
+<style>
+    select.form-control2{
+        padding:1em 1ex;;
+    }
+    @media (min-width: 768px) {
+        select.form-control2.month {
+            width: 121px;
+            margin-left: -11px;
+        }
+    }
+</style>
+@stop()
 @section('body')
 <section ng-controller="public.profileCtrl" style="display: none"  class="div-profile">
     <section class="container">

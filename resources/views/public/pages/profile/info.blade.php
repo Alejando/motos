@@ -25,7 +25,7 @@
                                 <span class="leyenda-fecha-nac">Fecha de nacimiento</span>
                             </div>
                             <div class="col-xs-12 col-sm-2 nac">
-                                <select name="dia" ng-model="brithday.day" class="form-control2" placeholder="Día">
+                                <select name="dia" ng-model="brithday.day" class="dat form-control2" placeholder="Día">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -60,7 +60,7 @@
                                 </select>
                             </div>
                             <div class="col-xs-12 col-sm-3 nac margen-nac">
-                                <select name="mes" ng-model="brithday.month" class="form-control2" placeholder="Mes">
+                                <select name="mes"  ng-model="brithday.month" class="month form-control2" placeholder="Mes">
                                     <option value="1">Enero</option>
                                     <option value="2">Febrero</option>
                                     <option value="3">Marzo</option>
