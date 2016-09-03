@@ -73,7 +73,7 @@ class Mail{
     // <editor-fold defaultstate="collapsed" desc="payment">
     public static function payment($args = [], $test = false, $send = true, $format = 'html') {
         $args['subject'] = "Confirmación de pago";
-        $args['auction'] = \GlimGlam\Models\Auction::getRandom();
+        $args['auction'] = isset($args['auction']) ? $args['auction'] : \GlimGlam\Models\Auction::getRandom();
         return self::sendMail('confirm-payment', $args, $test, $send, $format);
     }
     

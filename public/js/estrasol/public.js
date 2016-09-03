@@ -824,16 +824,18 @@ glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $htt
         if($(".facturar").is(':checked')) {            
             $scope.valido = true;
             $scope.$apply(function(){
+                $scope.errors={};
                 $scope.errors.rfc = false;
                 if(!/^([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/.test($scope.billInfo.rfc)){
                     $scope.errors.rfc = "* El RFC ingresado no cumple con el formato requerido";
-                    $scope.valido = false;
+                    $scope.valido = false; 
+                    return;
                 } 
-                angular.forEach($scope.billInfo, function(e, i) {
-                    if(!$scope.billInfo[e]){
-                        $scope.errors[i]="* Campo obligatorio.";
-                        $scope.valido = false;
-                    }
+                var fnbreak=angular.forEach($scope.billInfo, function(e, i)  {
+                        if(!e && i != 'user_id') {
+                                $scope.errors[i] = "* Campo obligatorio.";
+                                $scope.valido = false;
+                        }
                 });
             });
             if($scope.valido){

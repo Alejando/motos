@@ -63,4 +63,7 @@
         </div>
     </div>
 </div>
+<?php
+Session::forget('errors');
+?>
 @endsection

@@ -21,7 +21,16 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     
     protected $hidden = ['created_at', 'updated_at'];
-    
+    // <editor-fold defaultstate="collapsed" desc="sendEmailEnrolment">
+// </editor-fold>
+
+    public function sendEmailEnrolment($user) {
+        $args['user'] = $user;
+        $args['to'] = $user->email;
+        $args['auction'] = $this;
+        \GlimGlam\Libs\Helpers\Mail::payment($args);
+        return $this;
+    }
     // <editor-fold defaultstate="collapsed" desc="isStarted">
     public function isStarted(){
         return  $this->status == self::STATUS_STARTED;
