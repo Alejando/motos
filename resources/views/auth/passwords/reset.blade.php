@@ -9,6 +9,7 @@
         </div>
         <form class="login-form" method="POST" action="{{ url('/password/reset') }}">
              {{ csrf_field() }}
+              <input type="hidden" name="token" value="{{ $token }}">
             <div class="form-group row">
                 <div class="col-sm-12">
                     <input type="text" name="email" value="{{$email or  old('email') }}" class="form-control2 correo" placeholder="Correo electrónico">                                
@@ -19,7 +20,6 @@
                     </span>
                 @endif
             </div>
-             
              
              <div class="form-group row {{$errors->has('password') ? 'has-error' : ''}}">
                 <div class="col-sm-12">
@@ -43,7 +43,12 @@
                     </span>
                 @endif
             </div>
-             
+              {{ session('status') }}
+             @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
                     <button type="submit" class="btn-login btn-primary">  <i class="fa fa-btn fa-refresh"></i> Restablecer Contraseña</button>
