@@ -43,41 +43,43 @@
                        <img src="{{$auction->getUrlCover($auction::COVER_HORIZONTAL)}}" style="width: 100%;">
                     </a>
                 </div>
-                <div style="width: 25%; display: inline-block; font-size: 20px;font-size: 12px; text-align: left;margin-left: 10px;vertical-align: middle;">
-                    <div style="color: #d5a00f;">
-                        Hora de inicio 
-                    </div>
-                    <div style="color: #003937;">
+                <div style="display: inline-block; width: 70%; vertical-align: middle;">
+                    <div style="width: 100%; display: inline-block; font-size: 20px;font-size: 12px; text-align: left;margin-left: 10px;vertical-align: middle; margin-bottom:20px;">
+                        <div style="color: #d5a00f;">
+                            Hora de inicio 
+                        </div>
+                        <div style="color: #003937;">
 
-                        {{Carbon\Carbon::parse($auction->start_date)->format('d/m/Y h:i:s A')}}
+                            {{Carbon\Carbon::parse($auction->start_date)->format('d/m/Y h:i:s A')}}
+                        </div>
+                        <div style="margin-top: 10px;">
+                            Hora de fin 
+                        </div>
+                        <div style="color: #003937;">
+                            {{Carbon\Carbon::parse($auction->end_date)->format('d/m/Y h:i:s A')}}
+                        </div>
                     </div>
-                    <div style="margin-top: 10px;">
-                        Hora de fin 
-                    </div>
-                    <div style="color: #003937;">
-                        {{Carbon\Carbon::parse($auction->end_date)->format('d/m/Y h:i:s A')}}
-                    </div>
-                </div>
-                <div style="width: 34%; display: inline-block; font-size: 15px;vertical-align: middle;text-align: left;">
-                    <div style="display: inline-block;text-align: left;width: 40%;">
-                        Subtotal:
-                    </div>
-                    <div style="display: inline-block;text-align: right;color: #003937;">
-                        {{Currency::format($payment->subtotal, config('app.currency'))}}
-                    </div>
-                    <br>
-                    <div style="display: inline-block;text-align: left;width: 40%;">
-                        IVA:
-                    </div>
-                    <div style="display: inline-block;text-align: right;color: #003937;">
-                        {{Currency::format($payment->iva, config('app.currency'))}}
-                    </div>
-                    <br>
-                    <div style="display: inline-block;text-align: left;width: 40%;">
-                        Total:
-                    </div>
-                    <div style="display: inline-block;text-align: right;color: #003937;">
-                        {{Currency::format($payment->total, config('app.currency'))}}
+                    <div style="width: 100%; display: inline-block; font-size: 15px; vertical-align: middle; text-align: left;">
+                        <div style="display: inline-block;text-align: left;width: 40%;">
+                            Subtotal:
+                        </div>
+                        <div style="display: inline-block;text-align: right;color: #003937;">
+                            {{Currency::format($payment->subtotal, config('app.currency'))}}
+                        </div>
+                        <br>
+                        <div style="display: inline-block;text-align: left;width: 40%;">
+                            IVA:
+                        </div>
+                        <div style="display: inline-block;text-align: right;color: #003937;">
+                            {{Currency::format($payment->iva, config('app.currency'))}}
+                        </div>
+                        <br>
+                        <div style="display: inline-block;text-align: left;width: 40%;">
+                            Total:
+                        </div>
+                        <div style="display: inline-block;text-align: right;color: #003937;">
+                            {{Currency::format($payment->total, config('app.currency'))}}
+                        </div>
                     </div>
                 </div>
             </div>
