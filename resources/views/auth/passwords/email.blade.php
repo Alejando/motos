@@ -16,15 +16,15 @@
         @endif
         <form class="login-form {{ $errors->has('email') ? ' has-error' : '' }}" method="POST" action="{{ url('/password/email') }}">
             {{ csrf_field() }}
-            <div class="form-group row">
+            <div class="form-group row has-error">
                 <div class="col-sm-12">
                     <input type="email" name="email"  value="{{old('email') }}" class="form-control2 correo" placeholder="Correo electrónico">
-                </div>
-                @if ($errors->has('email'))
+                    @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                 @endif
+                </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-12 text-center">
@@ -36,6 +36,7 @@
 </section>
 <?php
 Session::forget('errors');
+Session::forget('status');
 ?>
 @stop
 <?php 

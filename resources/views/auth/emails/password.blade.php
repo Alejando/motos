@@ -6,7 +6,7 @@
     <div class="mensaje" style="color: #003937; padding: 0 10%;">
         <p style="margin: 16px auto;">Has realizado una solicitúd para la recuperación de tu contrasñea, para recuperarla da click en el siguiente enlace.</p>
         <hr>
-        <a href="{{ $link = url('password/reset', $token).'?email='.urlencode($user->getEmailForPasswordReset()) }}"> {{ $link }} </a>
+        <a style="margin:auto; border:1px solid #3c9ba2; padding:10px; width:100px; background-color:#00bcb6; display:inline-block;" href="{{ $link = url('password/reset', $token).'?email='.urlencode($user->getEmailForPasswordReset()) }}">Recuperar password</a>
         <hr>
         <p style="margin: 16px auto;">Si no realizado esta petición por favor ignora este mensaje.</p>
     </div>
