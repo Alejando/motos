@@ -1,6 +1,9 @@
 @extends('public.base')
 @section('body')
 <section ng-controller="public.profileCtrl" style="display: none"  class="div-profile">
+    <section class="fancy-producto">
+      
+    </section>
     <section class="container">
         <div class="banner-perfil ">
             <div class="datos-perfil">

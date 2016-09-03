@@ -589,7 +589,7 @@ header.main-header{
 	font-size: 18px;
 	line-height: 40px;
 }
-.link-subasta:hover:not(.producto-hover){
+.link-subasta:hover:not(.producto-hover,.producto, .caja-detalle){
 	background-color: #08aea8;
 	color: #fff;
 	border-color: #fff;
@@ -1598,7 +1598,7 @@ box-shadow: inset -6px -3px 106px -3px rgba(196,196,196,0.85);
     line-height: 18px;
 }
 .caja-detalle:hover{
-    background-color: #F4FEFF;
+    background-color: #f6f6f6;
     cursor: pointer;
 }
 .remove-fav{
