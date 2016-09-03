@@ -20,9 +20,15 @@ $(document).ready(function () {
         if ($control.hasClass('control-right') && numGal < numItems) {
             $container.scrollLeft(position + 104);
             numGal += 1;
+        } else if ($control.hasClass('control-right') && numGal == numItems){
+            $container.scrollLeft(0);
+            numGal = 0;
         } else if ($control.hasClass('control-left') && numGal > 0) {
             $container.scrollLeft(position - 104);
             numGal -= 1;
+        } else if($control.hasClass('control-left') && numGal == 0){
+            $container.scrollLeft((numItems-1)*104);
+            numGal = numItems;
         }
         console.log(numGal);
         $('.frame-gallery.gal-' + numGal).addClass('active');
@@ -67,6 +73,7 @@ $(document).ready(function () {
 
     //Fancybox producto
     window.open_fancy_product = function (code) {
+        console.log("open_fancy_product");
         var url_ajax = laroute.route('enrollment.userIsEnrollment', {'auctionCode': code});
         $.get(url_ajax, {}, function (data) {
             if (data.enrollment) {
@@ -94,21 +101,25 @@ $(document).ready(function () {
         });
     };
     window.openFancyByHash = function(hash){
+        console.log("openFancyByHash");
         var h = hash.replace("#!","").split("/")[0];
         open_fancy_product(h);
     };
     $('.producto-fancy').on('click', function (e) {
         e.stopPropagation();
     });
-    var $products = $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row, .banner-description, .banner-list');
+    var $products = $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row, .banner-description, .banner-list, #cont-inputs');
     $products.on('click', '.producto-hammer, .link-subasta', function (e) {
+        console.log('click ejecutado');
         e.preventDefault();
         var $this =$(this);
-        var code = $this.attr('id_producto');
-        var slug = $this.closest('.product-container, .banner-description, .element-banner-list').data('slug');
-        var title = this.dataset.slug;
-        history.pushState( null, null, "#!" + code + '/' + slug );
-        openFancyByHash(code);
+        if(!$(e.target).is('.fa.fa-times')){
+            var code = $this.attr('id_producto');
+            var slug = $this.closest('.product-container, .banner-description, .element-banner-list, .fav-container').data('slug');
+            var title = this.dataset.slug;
+            history.pushState( null, null, "#!" + code + '/' + slug );
+            openFancyByHash(code);
+        }
     });
 
     $products.on('click', '.producto-heart', function (e) {
