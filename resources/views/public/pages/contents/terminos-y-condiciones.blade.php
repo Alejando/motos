@@ -1,7 +1,7 @@
 @extends('public.pages.base-contents')
 
 @section('content-title')
-    Terminos y condiciones de uso
+    Términos y condiciones de uso
 @stop
 
 @section('content-body')

@@ -1,5 +1,5 @@
 <p>
-    UTLIMA ACTUALIZACION: Agosto, 2016.
+    ÚLTIMA ACTUALIZACIÓN: Agosto, 2016.
 </p>
 <p>
     En GlimGlam® estamos comprometidos con la protección y el uso de datos personales por lo que Nuestra Empresa, GlimGlam®, quien es el responsable del uso y protección de los datos personales que le sean proporcionados por las personas físicas o morales a quien correspondan dichos datos y al respecto le informa lo siguiente:
@@ -13,7 +13,7 @@
         <li>Identificación</li>
         <li>Ubicación</li>
         <li>Comunicación y contacto</li>
-        <li>Otorgar un servicio de facturación electrónica de acuerdo a los sistemas de planeación de recrsos con la información proporcionada por el cliente, con autorización del mismo y al servicio del cliente.</li>
+        <li>Otorgar un servicio de facturación electrónica de acuerdo a los sistemas de planeación de recUrsos con la información proporcionada por el cliente, con autorización del mismo y al servicio del cliente.</li>
     </ol>
 </p>
 <p>

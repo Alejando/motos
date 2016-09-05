@@ -1,7 +1,7 @@
 <p>
-    ULTIMA MODIFICACION: Agosto, 2016
+    ÚLTIMA MODIFICACIÓN: Agosto, 2016
 </p>
-<h3>ACEPTACION DE TERMINOS Y CONDICIONES</h3>
+<h3>ACEPTACIÓN DE TÉRMINOS Y CONDICIONES</h3>
 <p>
     Al acceder y utilizar este servicio, usted acepta y accede a estar obligado por los términos y disposiciones de este acuerdo. Asimismo, al utilizar estos servicios particulares, usted estará sujeto a toda regla o guía de uso correspondiente que se haya publicado para dichos servicios. Toda participación en este servicio constituirá la aceptación de este acuerdo. Si no acepta cumplir con lo anterior, por favor, no lo utilice.
 </p>
@@ -45,13 +45,13 @@
 <p>
     GlimGlam® no se responsabiliza por cualquier daño, perjuicio o pérdida al Usuario causados por fallas en el sistema, en los servidores o en Internet. GlimGlam® tampoco será responsable por cualquier virus que pudiera infectar el equipo del Usuario como consecuencia del acceso, uso o examen de su sitio web o a raíz de cualquier transferencia de datos, archivos, imágenes, textos, o audio contenidos en el mismo. Los Usuarios NO podrán imputarle responsabilidad alguna ni exigir pago por lucro cesante, en virtud de perjuicios resultantes de dificultades técnicas o fallas en los sistemas o en Internet. GlimGlam® no garantiza el acceso y uso continuado o ininterrumpido de su sitio. El sistema puede eventualmente no estar disponible debido a dificultades técnicas o fallas de Internet, o por cualquier otra circunstancia ajena a GlimGlam®; en tales casos se procurará restablecerlo con la mayor celeridad posible sin que por ello pueda imputársele algún tipo de responsabilidad. GlimGlam® no será responsable por ningún error u omisión contenidos en su sitio web.
 </p>
-<h3>DECLARACION DE PRIVACIDAD</h3>
+<h3>DECLARACIÓN DE PRIVACIDAD</h3>
 <p>
     Para conocer nuestro Aviso de Privacidad, visite el siguiente <a href="{{asset('aviso-de-privacidad')}}">enlace</a>.
 </p>
-<h3>SOBRE LA EXACTITUD DE LA INFORMACION</h3>
+<h3>SOBRE LA EXACTITUD DE LA INFORMACIÓN</h3>
 <p>
-    En esta página, las descripciones de los artículos que se ofrecen y las publicaciones en su blog, se ofrecen únicamente con fines informativos. Las descripciones de los productos se traducen según la información proporcionada por los fabricantes; Los contenidos en el Blog de GlimGlam® son responsabilidad de quien los emite. Esta página no se hace responsable de la exactitud, utilidad o disponibilidad de cualquier información que se transmita o ponga a disposición a través de la misma; no será responsable por cualquier error u omisión en dicha información. 
+    En esta página, las descripciones de los artículos que se ofrecen y las publicaciones en su blog, se ofrecen únicamente con fines informativos. Las descripciones de los productos se traducen según la información proporcionada por los fabricantes; Los contenidos en el Blog de GlimGlam® son responsabilidad de quien los emite. Esta página no se hace responsable de la exactitud, utilidad o disponibilidad de cualquier información que se transmita o ponga a disposición a través de la misma; no será responsable por cualquier error u omisión en dicha información.
 </p>
 <h3>DERECHOS DE PROPIEDAD INTELECTUAL</h3>
 <p>
@@ -61,12 +61,12 @@
 <p>
     GlimGlam® está comprometido a comercializar artículos 100% genuinos, provenientes de marcas y casas de diseñadores exclusivos mundialmente conocidas. 
 </p>
-<h3>MECANICA DE PARTICIPACION EN LAS SUBASTAS</h3>
+<h3>MECÁNICA DE PARTICIPACIÓN EN LAS SUBASTAS</h3>
 <p>
     <b>Derecho de Asiento dentro de una Subasta.</b>
 </p>
 <p>
-    El Usuario, previamente registrado y autenticado dentro de nuestro sistema con su nombre de usuario y contraseña, deberá pagar una cuota, llamada “Asiento”, para tener derecho a ingresar a una sala virtual donde se llevará a cabo la subasta. Dicho pago podrá hacerse desde el momento de la publicación de la subasta hasta 60 minutos antes de iniciada.
+    El Usuario, previamente registrado y autenticado dentro de nuestro sistema con su nombre de usuario y contraseña, deberá pagar una cuota, llamada Asiento, para tener derecho a ingresar a una sala virtual donde se llevará a cabo la subasta. Dicho pago podrá hacerse desde el momento de la publicación de la subasta hasta 60 minutos antes de iniciada.
 </p>
 <p>
     El precio del Asiento se definirá en la publicación de cada artículo.
@@ -121,7 +121,7 @@
     <b>PayPal</b>
 </p>
 <p>
-    Al elegir esta opción, el cliente será re direccionado a una página segura de la entidad PayPal donde se llevará a cabo toda la transacción y por ultimo será enviado de regreso a nuestra página, una vez que el pago haya sido aprobado le será enviada una confirmación a su correo electrónico, no es necesario que el cliente reporte su pago posteriormente.
+    Al elegir esta opción, el cliente será redireccionado a una página segura de la entidad PayPal donde se llevará a cabo toda la transacción y por ultimo será enviado de regreso a nuestra página, una vez que el pago haya sido aprobado le será enviada una confirmación a su correo electrónico, no es necesario que el cliente reporte su pago posteriormente.
 </p>
 <p>
     <b>Depósito bancario/Transferencia en línea</b>
@@ -152,20 +152,20 @@
     El tiempo de entrega de los artículos será de 2 a 3 semanas, en la dirección estipulada en el perfil del Usuario. GlimGlam® no se hace responsable por entregas en direcciones erróneas, incompletas, inexistentes o incorrectamente ingresadas en el sistema.
 </p>
 <p>
-    El pago del servicio de envío de los productos correrá a cargo de GlimGlam®. Este servicio no incluye ningún tipo de seguro o protección del articulo durante el trayecto a su destino.
+    El pago del servicio de envío de los productos correrá a cargo de GlimGlam®. Este servicio no incluye ningún tipo de seguro o protección del artículo durante el trayecto a su destino.
 </p>
-<h3>POLITICA DE GARANTIAS</h3>
+<h3>POLÍTICA DE GARANTÍAS</h3>
 <p>
     La garantía de los productos será brindada directamente por los fabricantes o distribuidores de los mismos, la duración de dichas garantías será definida, emitida y validada por el fabricante o distribuidor de cada producto, por lo que GlimGLam® no asume responsabilidad alguna en torno a dichas garantías y el Usuario se obliga a contactar directamente al proveedor o fabricante del Producto de que se trate para hacer efectiva dicha garantía.
 </p>
 <p>
     GlimGlam® no será responsable por las garantías otorgadas por los fabricantes o distribuidores de los productos, pero realizará todas las acciones tendientes a proporcionar a los Usuarios que así lo soliciten los datos de contacto de dicho servicio.
 </p>
-<h3>CLAUSULA DE RECISION</h3>
+<h3>CLAUSULA DE RESCISION</h3>
 <p>
-    GlimGlam® y su administración se reserva el derecho de cancelar su acceso a la página, sin causa o aviso, lo cual podrá resultar en la incautación y destrucción de toda la información que esté asociada con su cuenta. 
+    GlimGlam® y su administración se reserva el derecho de cancelar su acceso a la página, sin causa o aviso, lo cual podrá resultar en la incautación y destrucción de toda la información que esté asociada con su cuenta.
 </p>
-<h3>DISPOSICION DE LA NOTIFICACION</h3>
+<h3>DISPOSICIÓN DE LA NOTIFICACIÓN</h3>
 <p>
     GlimGlam® se reserva el derecho de modificar estas condiciones de vez en cuando según lo considere oportuno; asimismo, el uso permanente de la página significará su aceptación de cualquier ajuste a tales términos. Si hay algún cambio en nuestra política de privacidad, anunciaremos en nuestra página principal y en otras páginas importantes de nuestro sitio que se han hecho tales cambios. Si hay algún cambio en nuestra página respecto a la manera en que usamos la información de identificación personal de nuestros clientes, enviaremos una notificación por correo electrónico a aquellos que sean afectados por el cambio. Todo cambio en nuestra política de privacidad se publicará en nuestra página 30 días antes de que tales cambios ocurran. Por lo tanto, se le recomienda volver a leer esta declaración de manera regular.
 </p>
