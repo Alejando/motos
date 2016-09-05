@@ -98,6 +98,9 @@ class User extends Authenticatable {
         return $info;
     }
     public function getBirthdayAttribute(){
+        if(is_object($this->attributes['birthday'])) {
+            return $this->attributes['birthday']->format('Y-m-d\TH:i:s');
+        }
         return (new \DateTime($this->attributes['birthday']))->format('Y-m-d\TH:i:s');
     }
     

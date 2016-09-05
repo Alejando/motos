@@ -156,9 +156,15 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
-    public function getCoverAttribute() {
+    public function getCoverAttribute($witRound = true) {
         if( $this->isPreSaleDay()){
+            if($witRound){
+                return ceil($this->attributes['preorder_cover']);
+            }
             return $this->attributes['preorder_cover'];
+        }
+        if($witRound){
+            return ceil($this->attributes['cover']);
         }
         return $this->attributes['cover'];
     }
@@ -183,7 +189,10 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getOriginalCover">
-    public function getOriginalCover(){
+    public function getOriginalCover($withRound = true) {
+        if($withRound){
+            return ceil($this->attributes['cover']);
+        }
         return $this->attributes['cover'];
     }
     // </editor-fold>

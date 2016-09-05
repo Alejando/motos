@@ -45,7 +45,7 @@ class UserController extends \GlimGlam\Libs\CoreUtils\ApiRestController {
         $user->fill($inputs);
         $user->save();
         $res = ['succes' => true, 'model' => $user];
-        $res['model']['birthday'] = $res['model']['birthday']->format(DATE_ISO8601);
+        $res['model']['birthday'] = (new \DateTime($res['model']['birthday']))->format(DATE_ISO8601);
         return $res;
     }
 

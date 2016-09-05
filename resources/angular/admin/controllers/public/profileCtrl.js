@@ -1,4 +1,7 @@
 glimglam.controller('public.profileCtrl', function ($scope, User) {
+    $scope.section = 'profile';
+    
+    
     var setBrithday = function () {
         var birth = $scope.user.birthday;
         if(birth){
@@ -9,6 +12,11 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
     };
     //<editor-fold defaultstate="collapsed" desc="getAuthUser">
     User.getAuthUser().then(function (user) {
+         
+        
+        
+        
+        
         $('.div-profile').slideDown('slow');
         $scope.user = user;
         $scope.user.backup();
@@ -24,9 +32,19 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
         $scope.myTotalWins = info.totalWins;
             //console.log(info);
         });
+        
+        var cLocation = history.location || document.location;
+        if(cLocation.hash){
+            if(cLocation.hash.indexOf('#!favoritos/') !== 1) {
+                $scope.setSection ('favs');
+                openFancyByHash(cLocation.hash,'favoritos/');
+            }
+        }
+        
+        
     });
     //</editor-fold>
-    $scope.section = 'profile';
+    
     //<editor-fold defaultstate="collapsed" desc="setSection">
     $scope.setSection = function (section) {
         
@@ -172,5 +190,6 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
         }
     };
     //</editor-fold>
-
+    
+   
 });
