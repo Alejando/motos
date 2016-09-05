@@ -817,11 +817,14 @@ header.main-header{
 	height: auto;
 }
 .producto.big-producto .producto-nombre{
-	font-size: 22px;
-	color: #adadad;
-	margin-bottom: 10px;
-	text-transform: uppercase;
-	font-weight: 300;
+    font-size: 22px;
+    color: #adadad;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
 }
 .producto.big-producto .leyenda-subasta,
 .producto.big-producto .tiempo-producto{

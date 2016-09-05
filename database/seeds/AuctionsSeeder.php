@@ -50,8 +50,8 @@ class AuctionsSeeder extends Seeder
 Medida: 145x6.5 cm.
 Tirantes elásticos negros de 3.80 cm de ancho y cierre de clip. Ajustables.
 Hecho en Reino Unido',
-                'start_date'=>'2016-09-03 13:00:00',
-                'end_date'=>'2016-09-03 13:30:00',
+                'start_date'=>'2016-09-10 13:00:00',
+                'end_date'=>'2016-09-10 13:30:00',
                 'ready'=>1,
                 'status'=>GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//2
@@ -76,8 +76,8 @@ Hecho en Reino Unido',
                 'max_user_quiet'=>2,
                 'death_time'=>0,
                 'description'=>'Lentes de sol en azul oscuro con montura integral redondeada y patillas de madera. Cristales de tono marrón.',
-                'start_date'=>'2016-09-03 13:00:00',
-                'end_date'=>'2016-09-03 13:30:00',
+                'start_date'=>'2016-09-10 13:00:00',
+                'end_date'=>'2016-09-10 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//3
@@ -107,8 +107,8 @@ Color: Negro/Latón antiguo
 Forro: Cuero
 Medidas: 22.86x14x5.70 cm.
 Correa : 56 cm.',
-                'start_date'=>'2016-09-03 13:00:00',
-                'end_date'=>'2016-09-03 13:30:00',
+                'start_date'=>'2016-09-10 13:00:00',
+                'end_date'=>'2016-09-10 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//4
@@ -134,8 +134,8 @@ Correa : 56 cm.',
                 'death_time'=>0,
                 'description'=>'Lentes ojo de gato, montura de acetato negro y puntas de color verde claro.
 Hecho en Italia',
-                'start_date'=>'2016-09-03 13:00:00',
-                'end_date'=>'2016-09-03 13:30:00',
+                'start_date'=>'2016-09-10 13:00:00',
+                'end_date'=>'2016-09-10 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//5
@@ -162,8 +162,8 @@ Hecho en Italia',
                 'description'=>'Cinturón en piel de becerro con grano, reversible, con una hebilla de doble Gancini en gris plomo. 
 Es un cinturón ajustable y se puede cortar a medida para un ajuste personalizado.
 Hecho en Italia',
-                'start_date'=>'2016-09-10 13:00:00',
-                'end_date'=>'2016-09-10 13:30:00',
+                'start_date'=>'2016-09-17 13:00:00',
+                'end_date'=>'2016-09-17 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//6
@@ -190,8 +190,8 @@ Hecho en Italia',
                 'description'=>'Billetera de piel con etiqueta Gucci en relieve y detalle de tribanda verde/rojo/verde. De piel de becerro estampada, de apariencia texturada.
 Medidas: 11x9 cm
 Hecho en Italia',
-                'start_date'=>'2016-09-10 13:00:00',
-                'end_date'=>'2016-09-10 13:30:00',
+                'start_date'=>'2016-09-17 13:00:00',
+                'end_date'=>'2016-09-17 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//7
@@ -219,8 +219,8 @@ Hecho en Italia',
 Cierre con botón imantado.
 Asa de cadena bandolera.
 Medidas: 17x23x7.5cm.',
-                'start_date'=>'2016-09-10 13:00:00',
-                'end_date'=>'2016-09-10 13:30:00',
+                'start_date'=>'2016-09-17 13:00:00',
+                'end_date'=>'2016-09-17 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//8
@@ -245,8 +245,8 @@ Medidas: 17x23x7.5cm.',
                 'max_user_quiet'=>2,
                 'death_time'=>0,
                 'description'=>'Juego de Aretes y pulsera CH de latón bañado en oro,  color dorado.',
-                'start_date'=>'2016-09-10 13:00:00',
-                'end_date'=>'2016-09-10 13:30:00',
+                'start_date'=>'2016-09-17 13:00:00',
+                'end_date'=>'2016-09-17 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//9
@@ -272,8 +272,8 @@ Medidas: 17x23x7.5cm.',
                 'death_time'=>0,
                 'description'=>'"Aretes de Gancino en Latón y Pulsera reversible con Gancino en color Negro/Camel.
 Hecho en Italia',
-                'start_date'=>'2016-09-17 13:00:00',
-                'end_date'=>'2016-09-17 13:30:00',
+                'start_date'=>'2016-09-24 13:00:00',
+                'end_date'=>'2016-09-24 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//10
@@ -298,8 +298,8 @@ Hecho en Italia',
                 'max_user_quiet'=>2,
                 'death_time'=>0,
                 'description'=>'Tarjetero metálico con forro sintético y cobertura en piel negra',
-                'start_date'=>'2016-09-17 13:00:00',
-                'end_date'=>'2016-09-17 13:30:00',
+                'start_date'=>'2016-09-24 13:00:00',
+                'end_date'=>'2016-09-24 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//11
@@ -325,8 +325,8 @@ Hecho en Italia',
                 'death_time'=>0,
                 'description'=>'Cartera en piel granulada (House check), diseño clásico. 100 % algodón con piel de becerro y forro interior 100 % poliamida. Cierre de boton de presión.
 Medidas: 19x4x10cm',
-                'start_date'=>'2016-10-17 13:00:00',
-                'end_date'=>'2016-10-17 13:30:00',
+                'start_date'=>'2016-10-24 13:00:00',
+                'end_date'=>'2016-10-24 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ],[//12
@@ -353,8 +353,8 @@ Medidas: 19x4x10cm',
                 'description'=>'Corbata de cachemir en tonos azules brillantes, con 7.5 cm de ancho.
 Pañuelo cuadrado 33x33 cm estampado en seda.
 Gemelos de latón color plata con apliques color azul oscuros.',
-                'start_date'=>'2016-11-17 13:00:00',
-                'end_date'=>'2016-11-17 13:30:00',
+                'start_date'=>'2016-11-24 13:00:00',
+                'end_date'=>'2016-11-24 13:30:00',
                 'ready'=>1,
                 'status'=>  GlimGlam\Models\Auction::STATUS_STAND_BY
             ]
