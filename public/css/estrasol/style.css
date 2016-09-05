@@ -606,10 +606,12 @@ header.main-header{
 	color: #fff;
 	border-color: #fff;
 }
-.link-subasta:hover .link-hammer{
-	border-color: #fff;
+.link-subasta:hover a span.link-hammer{
+    border-color: #00bcb6 !important;
 }
-
+.link-subasta:hover a span.link-subasta-text{
+    color: #b3870d !important;
+}
 .link-subasta:hover .link-hammer .icon-hammer {
     -webkit-animation-name: rotate; 
     -webkit-animation-duration: 0.3s; 
@@ -1158,7 +1160,7 @@ a.like-subasta {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-.link-subasta-cont:hover {
+.link-subasta-cont:hover:not(.no-btn) {
     background-color: #08aea8;
     color: #fff;
     border-color: #fff;

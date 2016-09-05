@@ -51,9 +51,9 @@
                                     {{$auction->title}}
                                 </div>
                             </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
-                                <a class="link-subasta-cont" href="#fancy-subasta">
+                                <div class="link-subasta-cont no-btn">
                                     <span class="btn-contador"><span id="subasta-count">@{{objAuction.num_bids}}</span> Ofertas</span>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
