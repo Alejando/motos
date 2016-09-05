@@ -110,7 +110,7 @@ $(document).ready(function () {
     });
     var $products = $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row, .banner-description, .banner-list, #cont-inputs');
     $products.on('click', '.producto-hammer, .link-subasta', function (e) {
-        console.log('click ejecutado');
+        //console.log('click ejecutado');
         e.preventDefault();
         var $this =$(this);
         if(!$(e.target).is('.fa.fa-times')){
