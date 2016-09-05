@@ -1197,7 +1197,7 @@ glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $htt
     var $iva = $('#enroll-iva');
     var $total = $('#enroll-total');    
     $scope.errors = {};
-    $('.subasta-boton-pago').click(function(e){
+    $('.btn-subasta-boton-pago').click(function(e){
         e.preventDefault();
         var self = this;
         var code = self.dataset.code;
@@ -1300,6 +1300,7 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
                 $scope.lastStarted.selfUpdate(1500000, $scope); 
             });
         }
+        $('.afterload').show();
     });
 });
 glimglam.controller('public.profileCtrl', function ($scope, User) {

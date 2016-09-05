@@ -97,6 +97,9 @@ class User extends Authenticatable {
         ];
         return $info;
     }
+    public function getBirthdayAttribute(){
+        return (new \DateTime($this->attributes['birthday']))->format('Y-m-d\TH:i:s');
+    }
     
     public function getMyEnrolmentsAuctions($returnQuery = false ) {
         $enrolments = self::getMyEnrolments(true)->select('auction')->get();

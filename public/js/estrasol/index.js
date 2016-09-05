@@ -16,7 +16,7 @@ $(document).ready(function () {
         }
         //Llamada de listado de productos
         var url = laroute.route('auction.list-upcoming');
-        $.get(url, {
+        var $jqXHR = $.get(url, {
             page : page
         }, function (data, status) {
             html = data;
@@ -26,14 +26,13 @@ $(document).ready(function () {
             }
             //Data será un JSON con los datos de los productos destacados
             if (status == "success") {
-//                html += $('#listado-home .container-fluid .row').html();
                 $('#listado-home .container-fluid .row').append(html);
-                //$('#destacados').html('<p>No se encontraron proudctos destacados</p>');
             } else {
                 $('#listado-home .container-fluid .row').append('<p>Hubo un error en la obtención de datos</p>');
             }
             page++;
         });
+        return $jqXHR;
     }
     
     var openFancyByHash = function(hash){

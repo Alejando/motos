@@ -4,7 +4,7 @@
         <img ng-src="@{{fav.getUrlCover('horizontal')}}" class="img-responsive">
         <div id="titulo-en-detalle" class="titulo-en-detalle">
             @{{fav.title}}
-        </div> @{{fav.getStartDate()}}
+        </div>
         <div id="fecha-subasta" class="fecha-subasta subasta-verde">
             <timer interval="1000" language="es" class="subasta-tiempo-perfil" 
                 ng-show="fav.isStandBy()"

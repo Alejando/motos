@@ -1,13 +1,12 @@
 @extends('mails.frames.common')
 
 @section('message')
-
             <div class="banner" style="background-image: url('{{asset('img/mail/bg-banner-mail.jpg')}}');padding: 18px 0;">
                 <div style="width: 80px; height: 80px;margin: auto;">
-                        <img src="{{asset('img/ticket.png')}}" style="width: 100%;">
+                       {{-- <img src="{{asset('img/ticket.png')}}" style="width: 100%;"> --}}
                 </div>
                 <p style="color: #fff; margin: 20px 0;text-transform: uppercase;">
-                    No. Folio: <span> {{--$payment->folio--}}</span>
+                    No. Folio: <span> {{$payment->folio}}</span>
                 </p>
             </div>
             <div class="cinta-felicidades" style="background-color: #284f53; color: #fff;padding: 10px 0;">
@@ -23,7 +22,7 @@
                     {{$auction->title}}
                 </p>
                 <p style="margin: 16px auto;">
-                    A partir de este momento puedes acceder a la sala de subasta y comenzar a ofertar:
+                    A partir de este momento puedes acceder a la sala de subasta, recuerda agendar la fecha y ser puntual.
                 </p>
                 <a href="{{route('auction.room', [
                     'code'=>$auction->code
@@ -63,21 +62,21 @@
                         Subtotal:
                     </div>
                     <div style="display: inline-block;text-align: right;color: #003937;">
-                        {{--Currency::format($payment->subtotal, config('app.currency'))--}}
+                        {{Currency::format($payment->subtotal, config('app.currency'))}}
                     </div>
                     <br>
                     <div style="display: inline-block;text-align: left;width: 40%;">
                         IVA:
                     </div>
                     <div style="display: inline-block;text-align: right;color: #003937;">
-                        {{--Currency::format($payment->iva, config('app.currency'))--}}
+                        {{Currency::format($payment->iva, config('app.currency'))}}
                     </div>
                     <br>
                     <div style="display: inline-block;text-align: left;width: 40%;">
                         Total:
                     </div>
                     <div style="display: inline-block;text-align: right;color: #003937;">
-                        {{--Currency::format($payment->total, config('app.currency'))--}}
+                        {{Currency::format($payment->amount, config('app.currency'))}}
                     </div>
                 </div>
             </div>

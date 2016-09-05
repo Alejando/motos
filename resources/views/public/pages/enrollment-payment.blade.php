@@ -30,7 +30,7 @@
             </div>
             --}}
             <div class="col-sm-12">
-                <a class="btn btn-block btn-primary subasta-boton-pago" onclick="window.history.back();">Regresar</a>
+                <a class="btn btn-block btn-primary subasta-boton-pago" href="{{$urlBack}}">Regresar</a>
             </div>
             <div style="clear:both;"></div>
         </div>
@@ -120,7 +120,7 @@
                 <div class="paypal-cont">
                     <img src="{{asset('img/logo-paypal.png')}}" class="img-responsive">
                     <p>Serás redireccionado a Paypal para efectuar tu pago.</p>
-                    <a  data-code="{{$auction->code}}" class="btn btn-block btn-primary subasta-boton-pago" href="#" >Pagar</a>
+                    <a  data-code="{{$auction->code}}" class="btn btn-block btn-primary subasta-boton-pago btn-subasta-boton-pago" href="#" >Pagar</a>
                 </div>
                 {{--
                 <div class="tdec-cont">

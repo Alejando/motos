@@ -21,12 +21,12 @@
         <div class="banner-perfil ">
             <div class="datos-perfil">
                 <div>
-                    <div class="foto-perfil" ng-click="changeImg();">
+                    <div class="foto-perfil" ng-click="changeImg();" style="display: none">
                         <img src="img/edit-perfil-gg.png" class="img-responsive editar-img">
                        <a href="javascript:void(0);"><img id="foto-perfil" src="{{route('user.img-avatar',['userId'=>$user->id])}}" class="img-responsive img-profile"></a>
                     </div>
                      <input type="file" name="img-profile" id="img-profile" style="display: none">
-                    <div class="nombre-usr-perfil">
+                     <div class="nombre-usr-perfil" style="position: relative; top: 10px">
                         <span>¡Hola!</span>
                         @{{user.name}} 
                     </div>
