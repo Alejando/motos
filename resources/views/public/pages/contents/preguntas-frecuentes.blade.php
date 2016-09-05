@@ -208,7 +208,7 @@
                 </a>
                 <div id="cont_12a" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <p>Hazte acreedor a un cupón de descuento llevando a cabo los siguientes pasos al cabo de ganar tu primer subasta:   CREO QUE “PRIMER” ESTA DE MAS, LOS VIDEOS SON PARA CADA QUE GANA UNA SUBASTA NO?</p>
+                        <p>Hazte acreedor a un cupón de descuento llevando a cabo los siguientes pasos al cabo de ganar tu primer subasta:</p>
                         <p>Grabando tu experiencia al desempacar tu producto!.<br>
                             Te invitamos a compartirnos tu video en nuestra fanpage Facebook<br>
                             <span href="https://www.facebook.com/glimglam" target="_blank">https://www.facebook.com/glimglam</span></p>
