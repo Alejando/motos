@@ -67,7 +67,7 @@ class AuthController extends Controller {
            'gender.required' => 'Indica tu sexo',
            'name.required' => 'Escribe tu nombre',
            'email.required' => 'Escribe tu correo',
-           'password.required' => 'Escribe tu contraseñalarave',
+           'password.required' => 'Escribe tu contraseña',
            'password.min' => "Tu contraseña debe de tener al menos :min caracteres",
            'password.confirmed' => "Confirma tu contraseña",
            'terminos.required'=>'Debes aceptar los términos y condiciones',
