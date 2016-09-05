@@ -141,7 +141,7 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
           display: 'popup',
           picture: {!!json_encode($auction->getUrlCover($auction::COVER_HORIZONTAL))!!},
           description: {!!json_encode($auction->description)!!},
-          title: "asdfasdfa ANASD",
+          title: {!!json_encode($auction->title)!!},
           caption: 'GlimGlam subastas online',
           href: this.href,
         }, function(response){});

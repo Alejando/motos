@@ -36,5 +36,6 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
                 $scope.lastStarted.selfUpdate(1500000, $scope); 
             });
         }
+        $('.afterload').show();
     });
 });

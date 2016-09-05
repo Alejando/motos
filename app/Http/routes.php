@@ -38,6 +38,12 @@ Route::get('/home', 'HomeController@index');
 Route::get('/login', function () {
     return view('public.pages.login');
 });
+// </editor-fold
+Route::get('mi-perfil/', [
+    'as' => 'my-profile',
+    'uses' => 'UserController@profile',
+    'middleware' => ['auth']
+]);
 Route::get('/tests/cron', 'TestsController@crons');
 Route::post('/ofertar', [
     'as'=>'auction.place-bid',
@@ -206,12 +212,7 @@ Route::group(['prefix' => 'api'], function () use (&$route){
     ]);
     
 });
-// </editor-fold
-Route::get('mi-perfil/', [
-    'as' => 'my-profile',
-    'uses' => 'UserController@profile',
-    'middleware' => 'auth'
-]);
+
 
 //Formulario de checkout de lugar  en la subasta
 Route::get('subastas/asiento-checkout/{code}', [ 

@@ -31,7 +31,7 @@
                 </ul>
             </div>
         </div>
-        <section class="banner-description container" data-slug="">
+        <section class="banner-description container afterload" style="display: none" data-slug="">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center banner-name transition-0-3">
                     <span></span>
@@ -55,7 +55,7 @@
         </section>
     </section>
     <!-- Pruebas con bootstrap -->
-    <section id="destacados" class="products-container">
+    <section id="destacados" class="products-container afterload" style="display: none">
         <section class="container">
             <div class="row">
                 <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12" data-slug="@{{lastStarted.title | slugify}}">
@@ -63,7 +63,7 @@
                         <div ng-show="{{$auction->isPreSaleDay()}}" class="label-preventa"></div>
                         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
                         <div class="img-subasta">
-                            <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="Producto 4" title="Producto 4">
+                            <img ng-src="@{{lastStarted.getUrlCover('now')}}" alt="" title="">
                         </div>
                         <div class="producto-nombre" >
                             @{{lastStarted.title}}
@@ -75,7 +75,7 @@
                         <div class="tiempo-producto">
                             <timer interval="1000" language="es" class="subasta-tiempo-perfil" 
                                 ng-show="lastStarted.isStandBy()"
-                                end-time="lastStarted.start_date">
+                                end-time="lastStarted.start_date"> 
                                 Inicia en<br>
                                 <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
                                 <span ng-show="hours > 0">@{{hours}} hr,</span>
@@ -164,7 +164,7 @@
             </div>
         </section>
     </section>
-    <section id="listado-home" class="products-container">
+    <section id="listado-home" class="products-container afterload" style="display: none">
         <section class="container-fluid">
             <div class="row">
                 

@@ -27,6 +27,7 @@ use ResetsPasswords;
     public function __construct() {
         $this->middleware('guest');
     }
+    public $redirectTo = "/mi-perfil";
     protected $subject = "Recuperación de contraseña";
     protected function resetEmailBuilder() {
         return function (\Illuminate\Mail\Message $message) {

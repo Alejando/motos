@@ -817,7 +817,7 @@ glimglam.controller('public.checkoutEnrollCtrl', function ($scope, Auction, $htt
     var $iva = $('#enroll-iva');
     var $total = $('#enroll-total');    
     $scope.errors = {};
-    $('.subasta-boton-pago').click(function(e){
+    $('.btn-subasta-boton-pago').click(function(e){
         e.preventDefault();
         var self = this;
         var code = self.dataset.code;
@@ -920,6 +920,7 @@ glimglam.controller('public.IndexCtrl', function ($scope, Auction) {
                 $scope.lastStarted.selfUpdate(1500000, $scope); 
             });
         }
+        $('.afterload').show();
     });
 });
 glimglam.controller('public.profileCtrl', function ($scope, User) {
@@ -940,13 +941,13 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
         $scope.getWins();
         $scope.getEnrolled();
         $scope.user.getCurrentAuctions().then(function(actual){
-            console.log(actual);
+            //console.log(actual);
             $scope.actual = actual;
         });
         $scope.user.getAuctionsInfo().then(function(info){
         $scope.myTotalEnrollments = info.totalEnrollments;
         $scope.myTotalWins = info.totalWins;
-            console.log(info);
+            //console.log(info);
         });
     });
     //</editor-fold>
@@ -968,7 +969,7 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
     $('#img-profile').change(function () {
         var file = this.files[0];
         if (file) {
-            console.log(file.type);
+            //console.log(file.type);
             if (file.type !== 'image/jpeg' && file.type !== 'image/jpg') {
                 alert("Solo se admiten imagenes JPG");
                 return;
@@ -990,7 +991,7 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
                         var urlImg = laroute.route('user.img-avatar', {
                             'userId': $scope.user.id
                         }) + '?' + (new Date).getTime();
-                        console.log(urlImg);
+                        //console.log(urlImg);
                         $('#foto-perfil').attr('src', urlImg);
                     }
                 });
@@ -1035,7 +1036,7 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
     
     //<editor-fold defaultstate="collapsed" desc="updateProfile">
     $scope.updateProfile = function () {
-        console.log($scope.brithday.day, $scope.brithday.month, $scope.brithday.year);
+        //console.log($scope.brithday.day, $scope.brithday.month, $scope.brithday.year);
         if(
             $scope.brithday.day==0 ||
             $scope.brithday.month==0 ||

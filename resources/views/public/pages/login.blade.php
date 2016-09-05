@@ -13,17 +13,17 @@
         <div class="sep-login"></div>
         <form class="login-form" method="POST" action="{{ url('/login') }}">
             {{ csrf_field() }}
-            <div class="form-group row">
+            <div class="form-group row has-error" >
                 <div class="col-sm-12">
                     <input type="text" name="email" value="{{ old('email') }}" class="form-control2 correo" placeholder="Correo electrónico">
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
                 </div>
-                @if ($errors->has('email'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                @endif
             </div>
-            <div class="form-group row">
+            <div class="form-group row has-error">
                 <div class="col-sm-12">
                     <input type="password" name="password" class="form-control2" placeholder="Contraseña">
                     @if ($errors->has('password'))
