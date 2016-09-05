@@ -11,7 +11,7 @@
                     <ul class="banner-list">
                         <?php $urlCovers = $auction->getUrlImg([$auction::COVER_SLIDER_UPCOMING])[$auction::COVER_SLIDER_UPCOMING]?>
                         @foreach($urlCovers as $url)
-                        <li class="link-subasta no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
+                        <li class="no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
                             data-slotamount="8" 
                             id-producto="{{$auction->code}}" 
                             product-name="{{$auction->title}}" 
