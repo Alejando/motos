@@ -73,7 +73,6 @@ $(document).ready(function () {
 
     //Fancybox producto
     window.open_fancy_product = function (code) {
-        console.log("open_fancy_product");
         var url_ajax = laroute.route('enrollment.userIsEnrollment', {'auctionCode': code});
         $.get(url_ajax, {}, function (data) {
             if (data.enrollment) {
@@ -86,7 +85,7 @@ $(document).ready(function () {
                     var $zoom = $html.find(".zoom_mw").elevateZoom(zoomConfig);
                     $('.fancy-producto').empty().append($html).fadeIn(500);
                     var $link = $('.fancy-producto').empty().append($html).find('.link-subasta, .google-calendar, .share-room');
-                    $link.click(function(){
+                    $link.click(function(e){
                         if($(this).is('.google-calendar')){
                             window.open(this.href,'_blank');
                         }else if($(this).is('.share-room.share-tw')){
@@ -100,9 +99,13 @@ $(document).ready(function () {
 
         });
     };
-    window.openFancyByHash = function(hash){
-        console.log("openFancyByHash");
-        var h = hash.replace("#!","").split("/")[0];
+    window.openFancyByHash = function(hash,path){
+        
+        if(path) {
+            var h = hash.replace("#!"+path, "").split("/")[0];
+        } else {
+            var h = hash.replace("#!","").split("/")[0];
+        }
         open_fancy_product(h);
     };
     $('.producto-fancy').on('click', function (e) {
@@ -110,15 +113,18 @@ $(document).ready(function () {
     });
     var $products = $('.products-container .container .row, .products-container .container-fluid .row, .relacionados .container .row, .banner-description, .banner-list, #cont-inputs');
     $products.on('click', '.producto-hammer, .link-subasta', function (e) {
-        console.log('click ejecutado');
         e.preventDefault();
-        var $this =$(this);
-        if(!$(e.target).is('.fa.fa-times')){
+        var $this = $(this);
+        var path = "";
+        if($this.closest(".fav").size()){// En favoritos
+            path = 'favoritos/';
+        }
+        if(!$(e.target).is('.fa.fa-times')) {
             var code = $this.attr('id_producto');
             var slug = $this.closest('.product-container, .banner-description, .element-banner-list, .fav-container').data('slug');
-            var title = this.dataset.slug;
-            history.pushState( null, null, "#!" + code + '/' + slug );
-            openFancyByHash(code);
+//            var title = this.dataset.slug;
+            history.pushState( null, null, "#!" + path + code + '/' + slug );
+            openFancyByHash(code, path);
         }
     });
 
