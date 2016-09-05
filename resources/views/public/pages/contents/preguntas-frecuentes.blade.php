@@ -72,7 +72,7 @@
                 </a>
                 <div id="cont_4" class="panel-collapse collapse">
                     <div class="panel-body">
-                        El registro no es obligatorio para navegar y consultar nuestra página pero si es indispensable para poder participar en cada una se nuestras salas, el registro te apoyara en la consulta de subastas en las que participaste, las subastas que lograste llevarte así como un conteo de descuentos y cupones  promocionales que puedes tener disponibles para ti.
+                        El registro no es obligatorio para navegar y consultar nuestra página pero si es indispensable para poder participar en cada una de nuestras salas, el registro te apoyara en la consulta de subastas en las que participaste, las subastas que lograste llevarte así como un conteo de descuentos y cupones  promocionales que puedes tener disponibles para ti.
                     </div>
                 </div>
             </div>
@@ -209,13 +209,13 @@
                 <div id="cont_12a" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p>Hazte acreedor a un cupón de descuento llevando a cabo los siguientes pasos al cabo de ganar tu primer subasta:   CREO QUE “PRIMER” ESTA DE MAS, LOS VIDEOS SON PARA CADA QUE GANA UNA SUBASTA NO?</p>
-                        <p>Graba tu experiencia al desempacar tu producto!.<br>
+                        <p>Grabando tu experiencia al desempacar tu producto!.<br>
                             Te invitamos a compartirnos tu video en nuestra fanpage Facebook<br>
                             <span href="https://www.facebook.com/glimglam" target="_blank">https://www.facebook.com/glimglam</span></p>
 
-                        <p>Dale me gusta!<br>
-                        Comparte el video con el hastag #momentoglimglam<br>
-                        Recibe tu cupón de descuento para pagar tu próxima subasta</p>
+                        <p>Paso 1: Dale me gusta!<br>
+                        Paso 2: Comparte el video con el hastag #momentoglimglam<br>
+                        Paso 3: Recibe tu cupón de descuento para pagar tu próxima subasta</p>
                     </div>
                 </div>
             </div>
@@ -232,7 +232,7 @@
                 </a>
                 <div id="cont_17a" class="panel-collapse collapse">
                     <div class="panel-body">
-                        No existen devolicion de mercancia para esos casos.
+                        No existen devolución de mercancia para esos casos.
                     </div>
                 </div>
             </div>
@@ -357,7 +357,7 @@
                 </a>
                 <div id="cont_13a" class="panel-collapse collapse">
                     <div class="panel-body">
-                        Los cupones son de uso único y no son acumulables con otras promociones, es importante que consultes po cada cupón recibido su vigencia asignada.<br>Todos tus cupones de descuento puedes aplicarlo juntos o separados al momento de pago de una subasta.
+                        Los cupones son de uso único y no son acumulables con otras promociones, es importante que consultes por cada cupón recibido su vigencia asignada.<br>Todos tus cupones de descuento puedes aplicarlo juntos o separados al momento de pago de una subasta.
                     </div>
                 </div>
             </div>
@@ -390,7 +390,8 @@
                 </a>
                 <div id="cont_15a" class="panel-collapse collapse">
                     <div class="panel-body">
-                        Cada marca y/o producto cuenta con diferentes políticas de garantía.<br>Si deseas hacer válida una garantía de un producto adquirido, porque presenta alguna falla o defecto de fábrica, te invitamos a contactarnos al vía correo electrónico a contacto@glimglam.mx y un asesor estará en contacto para brindarte el seguimiento correspondiente.
+                        Cada marca y/o producto cuenta con diferentes políticas de garantía.<br>
+                        Si deseas hacer válida una garantía de un producto adquirido, porque presenta alguna falla o defecto de fábrica, te invitamos a contactarnos vía correo electrónico a contacto@glimglam.mx y un asesor estará en contacto para brindarte el seguimiento correspondiente.
                     </div>
                 </div>
             </div>
