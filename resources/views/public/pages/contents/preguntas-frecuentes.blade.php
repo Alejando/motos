@@ -191,7 +191,7 @@
                 </a>
                 <div id="cont_11a" class="panel-collapse collapse">
                     <div class="panel-body">
-                        Son documentos códigos que podrás ingresar al procesar tus transacciones de pago de subastas ganadas con la finalidad de obtener un descuento adicional otorgados por GlimGlam®
+                        Son códigos que podrás ingresar al procesar tus transacciones de pago de subastas ganadas con la finalidad de obtener un descuento adicional otorgados por GlimGlam®
                     </div>
                 </div>
             </div>
@@ -214,7 +214,7 @@
                             <span href="https://www.facebook.com/glimglam" target="_blank">https://www.facebook.com/glimglam</span></p>
 
                         <p>Paso 1: Dale me gusta!<br>
-                        Paso 2: Comparte el video con el hastag #momentoglimglam<br>
+                        Paso 2: Comparte el video con el hashtag #MiGlimGlam #Unboxing<br>
                         Paso 3: Recibe tu cupón de descuento para pagar tu próxima subasta</p>
                     </div>
                 </div>
