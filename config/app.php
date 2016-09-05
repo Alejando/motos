@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'presaleday' => 'monday', 
+    'presaleday' => 'tuesday', 
     'fb_IdApp' => '1577066222589528',
     'social'=>[
         'fb'=>'https://www.facebook.com/GlimGlam.mx/',
