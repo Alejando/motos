@@ -223,6 +223,12 @@
             strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,            
             objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
     }
+    @if(isset($insertLeadFB) && $insertLeadFB == true)
+    // Lead
+    // Track when a user expresses interest in your offering (ex. form submission, sign up for trial, landing on pricing page)
+    fbq('track', 'Lead');
+    console.log('Se incluyo lead');
+    @endif
 </script>
 <script type="text/javascript" src="{{asset('js/estrasol/room.js')}}"></script>
 @stop
