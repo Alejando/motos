@@ -254,11 +254,11 @@ class PaypalController extends BaseController {
                     'invoiced' => false
                 ];
                 \GlimGlam\Models\RequestBill::create($requestBillData);
-                
                 Session::forget('bill');
             }
             $auction->sendEmailEnrolment($user, $ggPayment);
             Session::forget('payment_temp');
+            Session::put('insertLeadFB', true);
             return \redirect(route('auction.payment.approvated'));
         }
         return \redirect(route('auction.payment.failed'));
