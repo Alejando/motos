@@ -34,8 +34,9 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // <editor-fold defaultstate="collapsed" desc="sendEmailEnrolment">
 // </editor-fold>
 
-    public function sendEmailEnrolment($user) {
+    public function sendEmailEnrolment($user, $payment) {
         $args['user'] = $user;
+        $args['payment'] = $payment;
         $args['to'] = $user->email;
         $args['auction'] = $this;
         \GlimGlam\Libs\Helpers\Mail::payment($args);
