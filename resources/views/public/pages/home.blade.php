@@ -39,7 +39,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="row banner-data transition-0-3">
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info">
-                            <span class="banner-leyenda">Puedes subastar desde:</span>
+                            <span class="banner-leyenda">Puedes ofertar desde:</span>
                             <span class="banner-range"><span class="rango-min"></span> - <span class="rango-max"></span></span>
                         </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info subasta-verde">
                             <span class="subasta-tiempo countdown" start_date=""></span>

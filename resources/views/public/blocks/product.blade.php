@@ -6,7 +6,7 @@
             <img src="{{$auction->getUrlCover($auction::COVER_VERTICAL)}}" alt="{{$auction->title}}" title="{{$auction->title}}">
         </div>
         <div class="leyenda-subasta">
-            <div>Puedes subastar desde:</div>
+            <div>Puedes ofertar desde:</div>
             <div class="rango-ofertas">{{currency($auction->min_offer, config('app.currency'))}} - {{Currency::format($auction->max_offer, config('app.currency'))}}</div>
         </div>
         <div id_producto="{{$auction->code}}" class="producto-hover transition-0-3 link-subasta no-border">
