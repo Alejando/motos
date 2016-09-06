@@ -51,8 +51,8 @@ class AuctionController extends BaseController {
     public function room($code) {
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         $related = \GlimGlam\Models\Auction::getRelated($code);
-        $insertleadFB = Session::get('insertLeadFB');
-        Session::forget('insertLeadFB');
+        $insertleadFB = \Session::get('insertLeadFB');
+        \Session::forget('insertLeadFB');
         return view ('public.pages.room', [
             'auction'=> $auction,
             'related'=> $related,
