@@ -209,7 +209,6 @@ class PaypalController extends BaseController {
         $code = \Session::get('payment_auction_code');                     
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         $user = \Auth::User();
-        $auction->sendEmailEnrolment($user);
         $payment_id = \Session::get('paypal_payment_id');
         \Session::forget('paypal_payment_id');
 //        \Session::forget('payment_auction_code');   
@@ -258,6 +257,7 @@ class PaypalController extends BaseController {
                 
                 Session::forget('bill');
             }
+            $auction->sendEmailEnrolment($user, $ggPayment);
             Session::forget('payment_temp');
             return \redirect(route('auction.payment.approvated'));
         }
