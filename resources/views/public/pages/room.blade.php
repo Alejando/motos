@@ -3,8 +3,6 @@
 <div ng-controller="public.roomCtrl" class="section-room" style="display: none">
     <section class="fancy-producto">
     </section>
-            
-    
         <section class="slideshow container-fluid patrongg">
             <div class="banner-container">
                 <div class="banner" >
@@ -41,7 +39,7 @@
                                 <timer interval="1000" language="es" class="subasta-tiempo" 
                                     ng-show="objAuction.isStarted()"
                                     end-time="objAuction.end_date">
-                                        <small>Finaliza en</small><br>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
+                                    <small>Finaliza en</small><br><span ng-show="days>0">@{{days}} días, </span>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
                                 </timer>
                                 <div class="subasta-tiempo" ng-show="objAuction.isFinished()">
                                     La subasta ha terminado
@@ -78,7 +76,7 @@
                 <div class="col-md-6 col-sm-6 total-subastado">
                     <div id="subasta-actual" class="precio-subasta" ng-class="{
                             'subasta-verde': objAuction.winner == id_user
-                        }">@{{objAuction.last_offer | currency : '$'}}</div>
+                        }">@{{objAuction.last_offer | currency : '$'}} MXN</div>
                     <p>Ultima oferta</p>
                 </div>
             </div>
@@ -90,7 +88,7 @@
                 <div class="col-md-6 panel-oferta">
                     <section ng-show="objAuction.isStarted()">
                         <p>Aumenta la oferta</p>
-                        <div style="font-size:55px">@{{rangeOferta.max  | currency : '$' }}</div>
+                        <div style="font-size:55px">@{{rangeOferta.max  | currency : '$' }} MXN</div>
                         <div class="align-oferta">
                             <div  style="width: 350px;" range-slider step="0.00" decimal-places="2"  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
                         </div>
