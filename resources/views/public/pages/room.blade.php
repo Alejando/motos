@@ -228,6 +228,8 @@
     // Track when a user expresses interest in your offering (ex. form submission, sign up for trial, landing on pricing page)
     fbq('track', 'Lead');
     console.log('Se incluyo lead');
+    @else
+        console.log('No hay lead');
     @endif
 </script>
 <script type="text/javascript" src="{{asset('js/estrasol/room.js')}}"></script>
