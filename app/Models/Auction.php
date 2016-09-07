@@ -520,5 +520,12 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return Enrollment::getEnrollments($user_id, $auction)->get(0);
     }
     // </editor-fold>
-
+    
+    /**
+     * 
+     * @return \DateTime
+     */
+    public function getStartDateDateTime() {
+        return new \DateTime($this->start_date);
+    }
 }

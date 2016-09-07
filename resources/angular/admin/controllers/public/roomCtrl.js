@@ -8,7 +8,6 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
         $scope.now = new Date();
     }, 100);
     $interval(function() {
-        $socpe.checkFaults();
         $scope.getInfo();
     }, 10000);
     $scope.rangeOferta = {

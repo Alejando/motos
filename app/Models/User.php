@@ -14,6 +14,21 @@ class User extends Authenticatable {
     const PROFILE_ADMIN = 2;
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
+    public function checkinRoom($auction){
+        $now = new \DateTime;
+        /* @var $startDate \DateTime */
+        $startDate = $auction->getStartDateDateTime();
+        $startDate->sub(new \DateInterval("PT10S"));
+        if($now >$startDate) {
+            $enrollments = Enrollment::getEnrollments($this->id, $auction->id);
+            if(count($enrollments) && ($enrollment = $enrollments[0]) && $enrollment->checkin_room ==="0000-00-00 00:00:00") { //si compre entrada
+                $enrollment->checkin_room = $now;
+                $enrollment->last_fault_date_aux =$now;
+                $enrollment->save();
+            }
+        }
+        return $this;
+    }
     public function sendMailWelcome($rawPassword = false){
         \GlimGlam\Libs\Helpers\Mail::welcome([
             'user' => $this,

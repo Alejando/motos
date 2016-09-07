@@ -5,7 +5,14 @@ namespace GlimGlam\Http\Controllers\Api;
 class AuctionController extends \GlimGlam\Libs\CoreUtils\ApiRestController {
 
     protected static $model = \GlimGlam\Models\Auction::class;
-
+    // <editor-fold defaultstate="collapsed" desc="getById">
+    public function show($id) {
+        $user = \Auth::user();
+        $auction = parent::show($id);
+        $user->checkinRoom($auction);
+        return $auction;
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="addPhoto">
     public function addPhoto($id) {
         $path = public_path() . "/upload/auctions/$id/photos/";
