@@ -1,0 +1,35 @@
+AddDeleteCascadeForeign: alter table `bids` drop foreign key `bids_auction_foreign`
+AddDeleteCascadeForeign: alter table `bids` drop foreign key `bids_enrollment_foreign`
+AddDeleteCascadeForeign: alter table `bids` drop foreign key `bids_user_foreign`
+AddDeleteCascadeForeign: alter table `bids` add constraint `bids_auction_foreign` foreign key (`auction`) references `auctions` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `bids` add constraint `bids_enrollment_foreign` foreign key (`enrollment`) references `enrollments` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `bids` add constraint `bids_user_foreign` foreign key (`user`) references `users` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `addresses` drop foreign key `addresses_user_foreign`
+AddDeleteCascadeForeign: alter table `addresses` add constraint `addresses_user_foreign` foreign key (`user`) references `users` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `auctions_fav` drop foreign key `auctions_fav_auction_id_foreign`
+AddDeleteCascadeForeign: alter table `auctions_fav` drop foreign key `auctions_fav_user_id_foreign`
+AddDeleteCascadeForeign: alter table `auctions_fav` add constraint `auctions_fav_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `auctions_fav` add constraint `auctions_fav_auction_id_foreign` foreign key (`auction_id`) references `auctions` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `bills_infos` drop foreign key `bills_infos_user_id_foreign`
+AddDeleteCascadeForeign: alter table `bills_infos` add constraint `bills_infos_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `categories` drop foreign key `categories_parentcategory_foreign`
+AddDeleteCascadeForeign: alter table `categories` add constraint `categories_parentcategory_foreign` foreign key (`parentCategory`) references `categories` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `enrollments` drop foreign key `enrollments_auction_foreign`
+AddDeleteCascadeForeign: alter table `enrollments` drop foreign key `enrollments_user_foreign`
+AddDeleteCascadeForeign: alter table `enrollments` add constraint `enrollments_auction_foreign` foreign key (`auction`) references `auctions` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `enrollments` add constraint `enrollments_user_foreign` foreign key (`user`) references `users` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `payments` drop foreign key `payments_auction_foreign`
+AddDeleteCascadeForeign: alter table `payments` drop foreign key `payments_user_foreign`
+AddDeleteCascadeForeign: alter table `payments` add constraint `payments_auction_foreign` foreign key (`auction`) references `auctions` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `payments` add constraint `payments_user_foreign` foreign key (`user`) references `users` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `preference_user` drop foreign key `preference_user_preference_id_foreign`
+AddDeleteCascadeForeign: alter table `preference_user` drop foreign key `preference_user_user_id_foreign`
+AddDeleteCascadeForeign: alter table `preference_user` add constraint `preference_user_preference_id_foreign` foreign key (`preference_id`) references `preferences` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `preference_user` add constraint `preference_user_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `request_bills` drop foreign key `request_bills_auction_id_foreign`
+AddDeleteCascadeForeign: alter table `request_bills` drop foreign key `request_bills_enrollment_id_foreign`
+AddDeleteCascadeForeign: alter table `request_bills` drop foreign key `request_bills_user_id_foreign`
+AddDeleteCascadeForeign: alter table `request_bills` add constraint `request_bills_auction_id_foreign` foreign key (`auction_id`) references `preferences` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `request_bills` add constraint `request_bills_enrollment_id_foreign` foreign key (`enrollment_id`) references `enrollments` (`id`) on delete cascade
+AddDeleteCascadeForeign: alter table `request_bills` add constraint `request_bills_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade
+AddLastFaultDateAuxToEnrollments: alter table `enrollments` add `chekin_room` datetime not null, add `last_fault_date_aux` datetime not null
