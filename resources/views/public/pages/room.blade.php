@@ -97,12 +97,13 @@
                                     <small>Puedes ofertar en</small><br><span ng-show="minutes > 0">@{{minutes}} min,</span> @{{seconds}} seg
                                 </timer>
                         </div>
-                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now && !unqualified">Ofertar</div>
+                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid <= now && !unqualified && totalBids+totalFaults < objAuction.bids">Ofertar</div>
+                        <div ng-show="totalBids+totalFaults >= objAuction.bids">Has agotado tus ofertas disponibles</div>
                         <div class="col-sm-6 col-sm-offset-3 ofertas-restantes" ng-show="unqualified">
                             Has sido descalificado <br>
                             debido a que no completas <br>
                             la cantidad de ofertas necesarias
-                            <a class="btn btn-block btn-primary subasta-boton-pago" href="{{asset('')}}">Entrar a otra sala</a>
+                            <a class="btn btn-block btn-primary subasta-boton-pago entrar-otra-sala" href="{{asset('')}}">Entrar a otra sala</a>
                         </div>
                     </section>
                     <section ng-show="objAuction.isFinished()">
@@ -132,8 +133,14 @@
                         <div class="ofertas-restantes">
                             Te quedan @{{objAuction.bids - totalBids - totalFaults}} ofertas disponibles<br>
                             Has ofertado @{{totalBids}} veces y has perdido @{{totalFaults}} oportunidades<br>
-                            <span ng-show="objAuction.min_bids - totalBids > 0">Necesitas realizar minimo @{{objAuction.min_bids}} ofertas para poder ser ganador
-                            Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas</span>
+                            <span ng-show="objAuction.bids - totalBids - totalFaults > 0 && totalBids < objAuction.min_bids">
+                                Necesitas realizar minimo @{{objAuction.min_bids}} ofertas para poder ser ganador<br>
+                                Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas para poder ganar
+                            </span>
+                            <span ng-show="totalBids >= objAuction.min_bids">
+                                Has cumplido con las ofertas necesarias para poder ganar
+                            </span>
+                            <span ng-show="unqualified">No has ofertado las veces necesarias para poder ser el ganador</span>
                         </div>
                     </section>
                     <section ng-show="objAuction.isFinished()">

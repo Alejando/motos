@@ -770,6 +770,9 @@ header.main-header{
 /*.producto.oferta-rojo .timer-subasta{
 	background-color: #fb5f60;
 }*/
+.entrar-otra-sala{
+    margin-top: 25px;
+}
 .producto .timer-subasta {
     position: absolute;
     top: 20px;

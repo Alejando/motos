@@ -50,7 +50,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
             'update_at',
             'winnername',
             'num_bids',
-            'mid_bids'
+            'min_bids'
         ],
         relations : [],
         getFavByUser : function (user) {

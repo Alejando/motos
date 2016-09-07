@@ -26,6 +26,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
                 $scope.help.nextBid = $scope.nextBid.getTime();
                 $scope.totalBids = info.totalbids;
                 $scope.totalFaults = info.faults;
+                $scope.min_bids = info.min_bids;
                 $scope.unqualified = info.unqualified;
                 $element.find('.delay-bid').empty().append('<timer interval="1000" language="es"  class="subasta-tiempo" '+
                                   '  end-time="nextBid">' +

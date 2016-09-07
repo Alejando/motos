@@ -471,6 +471,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'enrollment'=>$enrollment->id,
             'bid_at' => $now
         ]);
+        $enrollment->bids++;
+        $enrollment->totalbids++;
         $enrollment->last_bid_date = $now;
         $enrollment->last_fault_date_aux = $now;
         $enrollment->save();
@@ -495,11 +497,12 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $res = $c->get();
         $total  = count($res);
         $bid = $res->get(0);
+        
+        $enrollment = Enrollment::getById($bid->enrollment);
         if($total) {
             $nextbid = $bid->bid_at;
             $nextbid = new \DateTime($nextbid);
             $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
-            $enrollment = Enrollment::getById($bid->enrollment);
             return [
                 'unqualified'=> $enrollment->unqualified,
                 'faults' => $enrollment->faults,
@@ -508,8 +511,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             ];
         }
         return [
-            'unqualified'=> $enrollment->unqualified,
-            'faults' => $enrollment->faults,
+            'unqualified'=> 0,
+            'faults' => 0,
             'nextbid' => (new \DateTime())->format(DATE_ISO8601),
             'totalbids' => 0
         ];

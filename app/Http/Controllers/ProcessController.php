@@ -27,7 +27,9 @@ class ProcessController extends BaseController {
             $enrollments = \GlimGlam\Models\Enrollment::getEnrollments(false, $auction->id, true);
             $enrollments = $enrollments->where('unqualified','!=',true)->get();
             foreach($enrollments as $enrollment){
-                if(!$enrollment->unqualidied){
+                echo "Validación";
+                var_dump($enrollment->totalbids < $auction->bids);
+                if(!$enrollment->unqualified && ($enrollment->totalbids < $auction->bids)){
                     $hasOffers = false;
                     if($enrollment->last_fault_date_aux != "0000-00-00 00:00:00"){
                         $last_bid = new \DateTime($enrollment->last_fault_date_aux);
@@ -56,6 +58,7 @@ class ProcessController extends BaseController {
                         $enrollment->last_fault_date_aux = $actualDate;
                         //Se aumenta las faltas que lleve el usuario
                         $enrollment->faults = $enrollment->faults + $faults;
+                        $enrollment->totalbids++;
                     }else if($faults > 0){
                         $enrollment->faults = $faults;
                     }

@@ -91,7 +91,7 @@ class User extends Authenticatable {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getPublicName">
     public function getPublicName(){
-        $name = explode('@',$this->email);
+        $name = explode('@',$this->name);
         return '@'.$name[0];
     }
     // </editor-fold>
