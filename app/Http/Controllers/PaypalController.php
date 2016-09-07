@@ -211,25 +211,28 @@ class PaypalController extends BaseController {
         $user = \Auth::User();
         $payment_id = \Session::get('paypal_payment_id');
         \Session::forget('paypal_payment_id');
-//        \Session::forget('payment_auction_code');   
         $bill = \Session::get('bill');   
         $payerId =  Input::get('PayerID');
         $token = Input::get('token');
+        $idPayment = \Session::get('payment_temp');
+        $ggPayment = \GlimGlam\Models\Payment::getById($idPayment);
         if(empty($payerId) || empty($token)){
-            return "Algo paso al intentar conectar con PayPal";
+            \Session::forget('payment_auction_code');
+            $ggPayment->approved = false;
+            $ggPayment->save();
+            return redirect(
+                route('auction.enrollment-form',[
+                'code' => $code
+            ]));
         }
         $payment = Payment::get($payment_id, $this->_api_context);
         $execution = new PaymentExecution();
         $execution->setPayerId($payerId);
         $result = $payment->execute($execution, $this->_api_context);
-        if($result->getState() == 'approved') {
-            
-            $idPayment = \Session::get('payment_temp');
-            $ggPayment = \GlimGlam\Models\Payment::getById($idPayment);
+        if($result->getState() == 'approved') { 
             $ggPayment->approved = true;
             $ggPayment->api_info = $api_info = $result->toJSON();
             $ggPayment->save();
-            $auction = \GlimGlam\Models\Auction::getByCode($code);
             $enrollment = new \GlimGlam\Models\Enrollment([
                 'user' => $user->id,
                 'auction' => \GlimGlam\Models\Auction::getByCode($code)->id,
@@ -261,6 +264,7 @@ class PaypalController extends BaseController {
             Session::put('insertLeadFB', true);
             return \redirect(route('auction.payment.approvated'));
         }
+        
         return \redirect(route('auction.payment.failed'));
     }
 

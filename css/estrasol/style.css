@@ -1904,7 +1904,7 @@ section.fancy-producto {
     }
     .item-header{
         float: left;
-        width: 33.3333333%;
+        width: 50%;
     }
     .logo-container{
         text-align: center;
@@ -1912,7 +1912,9 @@ section.fancy-producto {
     .bienvenido{
         display: block;
         width: 100%;
-        text-align: center;
+        text-align: left;
+        padding-left: 1em;
+        max-width:80%;
     }
     .bienvenido br{
         display: none;

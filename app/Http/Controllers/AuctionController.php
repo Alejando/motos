@@ -1,7 +1,7 @@
 <?php
 
 namespace GlimGlam\Http\Controllers;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -28,16 +28,10 @@ class AuctionController extends BaseController {
     // <editor-fold defaultstate="collapsed" desc="paymentApprovated">
     public function paymentApprovated() {        
         $code = \Session::get('payment_auction_code');
-        \Session::forget('payment_auction_code');
+        Session::forget('payment_auction_code');
         return redirect(route('auction.room',[
             'code' => $code
         ]));
-        $auction = \GlimGlam\Models\Auction::getByCode($code);
-//        $auction = \GlimGlam\Models\Auction::getRandom();
-        return view ('public.pages.auction-approvated', [
-            'auction' => $auction,
-            'user' => Auth::User()
-        ]);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="paymentFailed">
@@ -51,12 +45,12 @@ class AuctionController extends BaseController {
     public function room($code) {
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         $related = \GlimGlam\Models\Auction::getRelated($code);
-        $insertleadFB = \Session::get('insertLeadFB');
+        $insertLeadFB = \Session::get('insertLeadFB');
         \Session::forget('insertLeadFB');
         return view ('public.pages.room', [
             'auction'=> $auction,
             'related'=> $related,
-            'insertleadFB' => $insertleadFB
+            'insertLeadFB' => $insertLeadFB
         ]);
     }
     // </editor-fold>
