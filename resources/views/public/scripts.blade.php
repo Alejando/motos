@@ -9,6 +9,15 @@
           js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.7&appId={{ config('app.fb_IdApp' )}}";
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
+        //Lucky orange
+        <script type='text/javascript'>
+        window.__lo_site_id = 63979;
+        (function() {
+                var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+                wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+         })();
+        </script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{asset('js/thirdparty/zoom/jquery.elevatezoom.js')}}"></script>

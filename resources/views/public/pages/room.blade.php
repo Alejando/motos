@@ -93,9 +93,8 @@
                             <div  style="width: 350px;" range-slider step="0.00" decimal-places="2"  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
                         </div>
                         <div class="delay-bid"  ng-show="nextBid>now">
-                                <timer interval="1000" language="es"  class="subasta-tiempo" 
-                                    end-time="nextBid">
-                                        <small>Puedes ofertar en</small><br>@{{minutes}} min, @{{seconds}} seg
+                                <timer interval="1000" language="es"  class="subasta-tiempo"  end-time="nextBid">
+                                    <small>Puedes ofertar en</small><br><span ng-show="minutes > 0">@{{minutes}} min,</span> @{{seconds}} seg
                                 </timer>
                         </div>
                         <div class="btn-w" ng-click="placeBid()" ng-show="nextBid<=now && !unqualified">Ofertar</div>

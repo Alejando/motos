@@ -470,8 +470,9 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'auction'=>$auction->id,
             'enrollment'=>$enrollment->id,
             'bid_at' => $now
-        ]);   
+        ]);
         $enrollment->last_bid_date = $now;
+        $enrollment->last_fault_date_aux = $now;
         $enrollment->save();
         $auction->save();
         if($close) {
@@ -494,7 +495,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $res = $c->get();
         $total  = count($res);
         $bid = $res->get(0);
-        dd($total);
         if($total) {
             $nextbid = $bid->bid_at;
             $nextbid = new \DateTime($nextbid);
