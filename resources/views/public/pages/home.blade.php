@@ -126,7 +126,6 @@
                         <div class="producto producto-mensaje placeholder naranja">
                             <iframe class="video"
                                 src="http://www.youtube.com/embed/JTmp1y1i-l0?rel=0"
-                                frameborder="0" 
                                 frameborder="0" allowfullscreen>
                             ></iframe>
                         </div>
