@@ -24,4 +24,8 @@ class Enrollment extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $query->get();
     }
+    
+    public function getNextPenaltyDateTime(){
+        return new \DateTime($this->attributes['next_penalty']);
+    }
 }

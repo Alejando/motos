@@ -27,8 +27,6 @@ class ProcessController extends BaseController {
             $enrollments = \GlimGlam\Models\Enrollment::getEnrollments(false, $auction->id, true);
             $enrollments = $enrollments->where('unqualified','!=',true)->get();
             foreach($enrollments as $enrollment){
-                echo "Validación";
-                var_dump($enrollment->totalbids < $auction->bids);
                 if(!$enrollment->unqualified && ($enrollment->totalbids < $auction->bids)){
                     $hasOffers = false;
                     if($enrollment->last_fault_date_aux != "0000-00-00 00:00:00"){
@@ -38,7 +36,7 @@ class ProcessController extends BaseController {
                         $last_bid = new \DateTime($auction->start_date);
                     }
                     $actualDate = new \DateTime();
-
+                    
                     $diff = date_diff($actualDate, $last_bid);
                     $hours = $diff->format('%h');
                     $minutes = $diff->format('%i');
@@ -51,42 +49,27 @@ class ProcessController extends BaseController {
                         //Se resta 1 por cada minuto que ha pasado
                         $faults = floor($diffMin);
                     }
-                    
-                    //Si las faltas son mayor a 0
+                    //Si ya tiene ofertas
+                    if($hasOffers){
+                        if($actualDate > new \DateTime($enrollment->next_penalty)){
+                            $next_penalty = clone $actualDate;
+                            $next_penalty->add(new \DateInterval('PT'.$auction->max_user_quiet.'M'));
+                            $enrollment->next_penalty = $next_penalty;
+                        }
+                    }
+                    //Si las faltas son mayor a 0 y ha realizado ofertas
                     if($faults > 0 && $hasOffers){
                         //Se asigna como fecha de oferta para calculo futuro
                         $enrollment->last_fault_date_aux = $actualDate;
                         //Se aumenta las faltas que lleve el usuario
                         $enrollment->faults = $enrollment->faults + $faults;
                         $enrollment->totalbids++;
-                    }else if($faults > 0){
+                    }else if($faults > 0){//Si no ha realizado ofertas y las faltas son mas de 0
                         $enrollment->faults = $faults;
                     }
-                    var_dump($enrollment->faults);
-                    var_dump($faults);
                     if( !($enrollment->faults <= ($auction->bids - $auction->min_bids) ) ){
                         $enrollment->unqualified = true;
                     }
-                    //*/
-                    /*
-                    //Si las faltas son menores o igual al numero de ofertas de la subasta - el minimo de ofertas necesarias
-                    
-                    if($faults <= ($auction->bids - $auction->min_bids) ){
-                        //Si ha hecho ofertas
-                        if($hasOffers){
-                            //Se restan las faltas que ya tiene con las nuevas y el excedente se incrementa a las faltas actuales
-                            if($faults > $enrollment->faults){
-                                $enrollment->faults = $enrollment->faults + ($faults - $enrollment->faults);
-                            }
-                        }else{
-                            //Se asignan las faltas acumuladas
-                            
-                        }
-                    }else{
-                        $enrollment->faults = $faults;
-                        $enrollment->unqualified = true;
-                    }
-                     */
                     $enrollment->save();
                 }else{
                     //echo json_encode(['result'=>'unqualified']);

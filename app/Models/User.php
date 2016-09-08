@@ -17,7 +17,7 @@ class User extends Authenticatable {
     public function checkinRoom($auction){
         $now = new \DateTime;
         /* @var $startDate \DateTime */
-        $startDate = $auction->getStartDateDateTime();
+        $startDate = $auction->getStartDateDateTime(); 
         $startDate->sub(new \DateInterval("PT10S"));
         if($now >$startDate) {
             $enrollments = Enrollment::getEnrollments($this->id, $auction->id);
