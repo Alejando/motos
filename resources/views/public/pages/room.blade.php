@@ -137,6 +137,14 @@
                                 Necesitas realizar minimo @{{objAuction.min_bids}} ofertas para poder ser ganador<br>
                                 Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas para poder ganar
                             </span>
+                            <div>
+                            @{{info}}
+                            </div>
+                            <div class="penalty"  ng-show="1">
+                                <timer interval="1000" language="es"  class="subasta-tiempo"  end-time="nextPenalty">
+                                    <small>Próxima penalización</small><br><span ng-show="minutes > 0">@{{minutes}} min,</span> @{{seconds}} seg
+                                </timer>
+                            </div>
                             <span ng-show="totalBids >= objAuction.min_bids">
                                 Has cumplido con las ofertas necesarias para poder ganar
                             </span>

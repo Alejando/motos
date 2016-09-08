@@ -9,7 +9,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     }, 100);
     $interval(function() {
         $scope.getInfo();
-    }, 10000);
+    }, 1000);
     $scope.rangeOferta = {
          min: 0,
          max: $scope.objAuction.min_offer,
@@ -21,17 +21,24 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     };
     $scope.getInfo = function (){
         $scope.objAuction.getInfoBid().then(function(info){
-                console.log(info);
+                $scope.info = info;
+                $scope.nextPenalty = new Date(info.nextPenalty);
+                $scope.help.nextPenalty = $scope.nextPenalty.getTime();
                 $scope.nextBid = new Date(info.nextbid);
                 $scope.help.nextBid = $scope.nextBid.getTime();
                 $scope.totalBids = info.totalbids;
                 $scope.totalFaults = info.faults;
                 $scope.min_bids = info.min_bids;
                 $scope.unqualified = info.unqualified;
+                $element.find('.penalty').empty().append('<timer interval="1000" language="es"  class="subasta-tiempo" '+
+                                  '  end-time="nextPenalty">' +
+                                      '  <small>Próxima penalización: </small><span ng-show="minutes">{{minutes}} min, </span>{{seconds}} seg '+
+                                "</timer>");
                 $element.find('.delay-bid').empty().append('<timer interval="1000" language="es"  class="subasta-tiempo" '+
                                   '  end-time="nextBid">' +
                                       '  <small>Puedes ofertar en</small><br><span ng-show="minutes">{{minutes}} min, </span>{{seconds}} seg '+
                                 "</timer>");
+                $compile($element.find('.penalty'))($scope);
                 $compile($element.find('.delay-bid'))($scope);
             });
     };

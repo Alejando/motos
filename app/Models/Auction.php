@@ -451,7 +451,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $enrollment = $auction->getEnrollment($user_id,$auction->id);
         //dd($enrollment);
         if(!$enrollment){
-            throw new Exception("No se enctro el enrrollment");
+            throw new Exception("No se encontro el enrrollment");
         }
         $close = false;
         $auction->last_offer += $bid;
@@ -464,6 +464,12 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
            $close = true;
         }
         $now = new \DateTime();
+        $next_penalty = false;
+        if($enrollment->next_penalty == "0000-00-00 00:00:00" || $now <= $enrollment->getNextPenaltyDateTime()){
+            $next_penalty = clone $now;
+            $next_penalty->add(new \DateInterval('PT'.$auction->max_user_quiet.'M'));
+        }
+        
         \GlimGlam\Models\Bid::create([ 
             'offer' => $auction->last_offer, 
             'user' => $user_id,
@@ -475,6 +481,9 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $enrollment->totalbids++;
         $enrollment->last_bid_date = $now;
         $enrollment->last_fault_date_aux = $now;
+        if($next_penalty){
+            $enrollment->next_penalty = $next_penalty;
+        }
         $enrollment->save();
         $auction->save();
         if($close) {
@@ -497,13 +506,18 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $res = $c->get();
         $total  = count($res);
         $bid = $res->get(0);
+        $now=(new \DateTime());
+        $nextPenalty = clone $now;
+        $nextPenalty->add(new \DateInterval('PT'.$this->max_user_quiet.'M'));
         
-        $enrollment = Enrollment::getById($bid->enrollment);
         if($total) {
+            $enrollment = Enrollment::getById($bid->enrollment);
             $nextbid = $bid->bid_at;
             $nextbid = new \DateTime($nextbid);
             $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
+            $nextPenalty = $enrollment->getNextPenaltyDateTime();
             return [
+                'nextPenalty' => $nextPenalty->format(DATE_ISO8601),
                 'unqualified'=> $enrollment->unqualified,
                 'faults' => $enrollment->faults,
                 'totalbids' => $total,
@@ -511,9 +525,10 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             ];
         }
         return [
+            'nextPenalty' => $nextPenalty->format(DATE_ISO8601),
             'unqualified'=> 0,
             'faults' => 0,
-            'nextbid' => (new \DateTime())->format(DATE_ISO8601),
+            'nextbid' => $now->format(DATE_ISO8601),
             'totalbids' => 0
         ];
     }
