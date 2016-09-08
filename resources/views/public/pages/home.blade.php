@@ -15,7 +15,7 @@
                         product-name="{{$auction->title}}" 
                         rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
                         rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
-                        start_date="{{(new \DateTime($auction->start_date))->setTimezone(new \DateTimeZone("America/Mexico_City"))->format("Y-m-d H:i:s")}}">
+                        start_date="{{(new \DateTime($auction->start_date))->format("Y-m-d\TH:i:s")}}">
                         <img ng-src="{{@$auction->getUrlCover($auction::COVER_SLIDER_UPCOMING)}}"  width="504" height="372">
                       
                         <div class="timer-subasta caption randomrotate" data-x="right" data-y="top" data-hoffset="-20" data-voffset="20" data-speed="500" data-start="100">
@@ -124,7 +124,11 @@
                     @else
                         @if(true)
                         <div class="producto producto-mensaje placeholder naranja">
-                            <iframe class="video" src="https://www.youtube.com/embed/JTmp1y1i-l0?rel=0" frameborder="0"></iframe>
+                            <iframe class="video"
+                                src="http://www.youtube.com/embed/JTmp1y1i-l0?rel=0"
+                                frameborder="0" 
+                                frameborder="0" allowfullscreen>
+                            ></iframe>
                         </div>
                         @else
                         <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
