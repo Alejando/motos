@@ -501,6 +501,9 @@ header.main-header{
     margin: auto;
     margin-bottom: 20px;
 }
+.banner-container-room{
+    max-width: 500px;  
+} 
 .banner{
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
@@ -1339,7 +1342,8 @@ input.currency {
     margin: 10px auto;
 }
 .usr-postor {
-    font-size: 30px;
+    font-size: 24px;
+    line-height: 42px;
     color: #009c97;
 }
 .rebase-izq {
