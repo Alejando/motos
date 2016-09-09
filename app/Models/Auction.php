@@ -518,15 +518,24 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getInfoBid">
     public function getInfoBid($id_user){
+        $enrollments = Enrollment::getEnrollments($id_user, $this->id);
+        if($enrollments->count()){
+            $enrollment = $enrollments->get(0);
+        }
+        
         $c = Bid::where('user','=', $id_user)
              ->where('auction','=', $this->id)
             ->orderBy('bid_at','desc');
         $res = $c->get();
-        $total  = count($res);
+        $total  = $enrollment->totalbids;
         $bid = $res->get(0);
         $now=(new \DateTime());
-        $nextPenalty = clone $now;
-        $nextPenalty->add(new \DateInterval('PT'.$this->max_user_quiet.'M'));
+        if( ($nextPenalty = $enrollment->getNextPenaltyDateTime() ) == null ){
+            $nextPenalty = clone $now;
+            $nextPenalty->add(new \DateInterval('PT'.$this->max_user_quiet.'M'));
+            $enrollment->next_penalty = $nextPenalty;
+            $enrollment->save();
+        }
         
         if($total) {
             $enrollment = Enrollment::getById($bid->enrollment);
@@ -535,19 +544,20 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
             $nextPenalty = $enrollment->getNextPenaltyDateTime();
             return [
-                'nextPenalty' => $nextPenalty->format('Y-m-d\Th:i:s'),
+                'nextPenalty' => $nextPenalty->format(DATE_ISO8601),
                 'unqualified'=> $enrollment->unqualified,
                 'faults' => $enrollment->faults,
                 'totalbids' => $total,
-                'nextbid' => $nextbid->format('Y-m-d\Th:i:s')
+                'nextbid' => $nextbid->format(DATE_ISO8601)
             ];
         }
+        
         return [
-            'nextPenalty' => $nextPenalty->format('Y-m-d\Th:i:s'),
-            'unqualified'=> 0,
-            'faults' => 0,
-            'nextbid' => $now->format('Y-m-d\Th:i:s'),
-            'totalbids' => 0
+            'nextPenalty' => $nextPenalty->format(DATE_ISO8601),
+            'unqualified'=> $enrollment->unqualified,
+            'faults' => $enrollment->faults,
+            'nextbid' => $now->format(DATE_ISO8601),
+            'totalbids' => $enrollment->totalbids
         ];
     }
     // </editor-fold>

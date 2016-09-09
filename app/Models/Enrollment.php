@@ -26,6 +26,9 @@ class Enrollment extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
     
     public function getNextPenaltyDateTime(){
-        return new \DateTime($this->attributes['next_penalty']);
+        if($this->attributes['next_penalty'] != "0000-00-00 00:00:00"){
+            return new \DateTime($this->attributes['next_penalty']);
+        }
+        return null;
     }
 }
