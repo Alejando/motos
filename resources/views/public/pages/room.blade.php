@@ -67,7 +67,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6 rango-subasta">
-                    <p>Puedes ofertar desde:</p>
+                    <p>Rango de oferta desde:</p>
                     <div>
                         <div id="rango-smin" class="precio-rango">{{currency($auction->min_offer, config('app.currency'))}}</div>
                         <div id="rango-smax" class="precio-rango">{{currency($auction->max_offer, config('app.currency'))}}</div>

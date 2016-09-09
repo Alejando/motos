@@ -58,7 +58,7 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                 </div>
                 <div class="fancy-titulo">{{$auction->title}}</div>
                 <div class="leyenda-subasta">
-                    <div>Puedes ofertar desde:</div>
+                    <div>Rango de oferta desde:</div>
                     <div class="rango-ofertas">{{currency($auction->min_offer, config('app.currency'))}} - {{Currency::format($auction->max_offer, config('app.currency'))}}</div>
                 </div>
                 <div class="btns-descripcion"></div>
