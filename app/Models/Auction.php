@@ -1,7 +1,7 @@
 <?php
 
 namespace GlimGlam\Models;
-
+use \Carbon\Carbon;
 class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     
     public $timestamps = true;
@@ -416,7 +416,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
     // </editor-fold>
     public function getWin() {
-        
+        $winner  = $this->winner;
+        return User::getById($winner);
     }
     public function sendEmailWinner($user) {
         $args = [
@@ -509,7 +510,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // <editor-fold defaultstate="collapsed" desc="close">
     public function close() {
         $this->status = self::STATUS_FINISHED;
-        if( 0 && ( $user = $this->getWin() ) ) {
+        if( $user = $this->getWin() ) {
             $this->sendEmailWinner($user);
         }
         $this->save();
@@ -544,20 +545,22 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
             $nextPenalty = $enrollment->getNextPenaltyDateTime();
             return [
-                'nextPenalty' => $nextPenalty->format(DATE_ISO8601),
+                'nextPenalty' => Carbon::instance($nextPenalty)->toW3cString(),
                 'unqualified'=> $enrollment->unqualified,
                 'faults' => $enrollment->faults,
                 'totalbids' => $total,
-                'nextbid' => $nextbid->format(DATE_ISO8601)
+                'nextbid' => Carbon::instance($nextbid)->toW3cString(),
+                'now' => Carbon::now()->toW3cString()
             ];
         }
         
         return [
-            'nextPenalty' => $nextPenalty->format(DATE_ISO8601),
+            'nextPenalty' => Carbon::instance($nextPenalty)->toW3cString(),
             'unqualified'=> $enrollment->unqualified,
             'faults' => $enrollment->faults,
-            'nextbid' => $now->format(DATE_ISO8601),
-            'totalbids' => $enrollment->totalbids
+            'nextbid' => Carbon::instance($now)->toW3cString(),
+            'totalbids' => $enrollment->totalbids, 
+            'now' => Carbon::now()->toW3cString()
         ];
     }
     // </editor-fold>

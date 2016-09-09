@@ -98,11 +98,11 @@
                                 <span class="producto-separador"></span>
                                 <div class="producto-hammer" id_producto="@{{lastStarted.code}}"></div>
                             </div>
-                            <div class="producto-cover">
-                                $@{{lastStarted.cover}}
-                            </div>
                             <div class="leyenda-cover">
                                 Tu asiento
+                            </div>
+                            <div class="producto-cover">
+                                $@{{lastStarted.cover}}
                             </div>
                         </div>
                     </a>

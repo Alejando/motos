@@ -4,11 +4,9 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     $scope.totalBids = 0;
     $scope.nextBid = new Date();
     $('.section-room').fadeIn('slow');      
+   
     $interval(function() {
-        $scope.now = new Date();
-    }, 100);
-    $interval(function() {
-        $scope.getInfo();
+        $scope.getInfo(); 
     }, 1000);
     $scope.rangeOferta = {
          min: 0,
@@ -21,7 +19,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     };
     $scope.getInfo = function (){
         $scope.objAuction.getInfoBid().then(function(info){
-                $scope.info = info;
+                $scope.now = new Date(info.now);
                 $scope.nextPenalty = new Date(info.nextPenalty);
                 $scope.help.nextPenalty = $scope.nextPenalty.getTime();
                 $scope.nextBid = new Date(info.nextbid);

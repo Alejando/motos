@@ -3,7 +3,7 @@
         <img ng-src="@{{auction.getUrlCover('horizontal')}}" class="img-responsive">
         <div id="titulo-en-detalle" class="titulo-en-detalle">@{{auction.title}}</div>
         <div id="precio-rangos" class="price-range">
-            Oferta<br>desde @{{auction.min_offer|currency:"$"}} hasta @{{auction.max_offer|currency:"$"}}
+            Rango de oferta<br>desde @{{auction.min_offer|currency:"$"}} hasta @{{auction.max_offer|currency:"$"}}
         </div>
         <div id="fecha-subasta" class="fecha-subasta subasta-verde">
             <timer interval="1000" language="es" class="subasta-tiempo-perfil" 

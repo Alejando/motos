@@ -17,6 +17,7 @@
                 <div class="producto-hammer" id_producto="{{$auction->code}}"></div>
             </div>
             <div class="producto-cover">
+                <div>Tu asiento:</div>
                 @if($auction->isPreSaleDay())<span>{{Currency::format($auction->getOriginalCover() ,config('app.currency'))}}</span> @endif{{Currency::format($auction->getCoverAttribute(), config('app.currency'))}}
             </div>
             <div class="leyenda-cover">
