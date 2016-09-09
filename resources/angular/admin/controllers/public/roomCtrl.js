@@ -21,7 +21,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     };
     $scope.getInfo = function (){
         $scope.objAuction.getInfoBid().then(function(info){
-                $scope.info = info;
+                //$scope.info = info;
                 $scope.nextPenalty = new Date(info.nextPenalty);
                 $scope.help.nextPenalty = $scope.nextPenalty.getTime();
                 $scope.nextBid = new Date(info.nextbid);
