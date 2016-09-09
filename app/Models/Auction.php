@@ -33,7 +33,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     protected $hidden = ['created_at', 'updated_at'];
     // <editor-fold defaultstate="collapsed" desc="sendEmailEnrolment">
 // </editor-fold>
-
     public function sendEmailEnrolment($user, $payment) {
         $args['user'] = $user;
         $args['payment'] = $payment;
@@ -416,8 +415,21 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return $rImgs;
     }
     // </editor-fold>
+    public function getWin() {
+        
+    }
+    public function sendEmailWinner($user) {
+        $args = [
+            'user' => $user,
+            'auction' => $this
+        ];
+        \GlimGlam\Libs\Helpers\Mail::ConfirmYouWin($args);
+        return $this;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="startAuctions">
-    public static function startAuctions(){
+    public static function startAuctions(){ 
+        
         $auctions = self::where('status','=',self::STATUS_STAND_BY)
                 ->where('ready','=',self::READY)
                 ->where('start_date','<', new \DateTime)
@@ -428,8 +440,10 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // <editor-fold defaultstate="collapsed" desc="closeAuctions">
     public static function closeAuctions(){
         $auctions = self::where('status','=',self::STATUS_STARTED)
-                ->where('end_date','<', new \DateTime)
-                ->update(['status'=>self::STATUS_FINISHED]);
+                ->where('end_date','<', new \DateTime)->get();
+       foreach($auctions as $auction) {
+           $auction->close();
+       }
         return $auctions;
     }
     // </editor-fold>
@@ -494,8 +508,12 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="close">
     public function close() {
-        $this->status=self::STATUS_FINISHED;
+        $this->status = self::STATUS_FINISHED;
+        if( 0 && ( $user = $this->getWin() ) ) {
+            $this->sendEmailWinner($user);
+        }
         $this->save();
+        return $this;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getInfoBid">
@@ -517,18 +535,18 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
             $nextPenalty = $enrollment->getNextPenaltyDateTime();
             return [
-                'nextPenalty' => $nextPenalty->format(DATE_ISO8601),
+                'nextPenalty' => $nextPenalty->format('Y-m-d\Th:i:s'),
                 'unqualified'=> $enrollment->unqualified,
                 'faults' => $enrollment->faults,
                 'totalbids' => $total,
-                'nextbid' => $nextbid->format(DATE_ISO8601)
+                'nextbid' => $nextbid->format('Y-m-d\Th:i:s')
             ];
         }
         return [
-            'nextPenalty' => $nextPenalty->format(DATE_ISO8601),
+            'nextPenalty' => $nextPenalty->format('Y-m-d\Th:i:s'),
             'unqualified'=> 0,
             'faults' => 0,
-            'nextbid' => $now->format(DATE_ISO8601),
+            'nextbid' => $now->format('Y-m-d\Th:i:s'),
             'totalbids' => 0
         ];
     }
