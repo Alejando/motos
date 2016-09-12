@@ -1,5 +1,6 @@
 <div class="col-md-3 inputs-mgn fav-container" data-slug="@{{fav.title | slugify}}" ng-repeat="fav in favs">
     <div id_producto="@{{fav.code}}" class="caja-detalle link-subasta fav">
+        @if($auction->isPreSaleDay())<div class="label-preventa"></div>@endif
         <div class="remove-fav" ng-click="removeFav(fav, $event);"><i class="fa fa-times" aria-hidden="true" code="@{{fav.code}}"></i></div>
         <img ng-src="@{{fav.getUrlCover('horizontal')}}" class="img-responsive">
         <div id="titulo-en-detalle" class="titulo-en-detalle">

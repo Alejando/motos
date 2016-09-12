@@ -133,6 +133,10 @@ and open the template in the editor.
   .detalle-pago-subasta .subasta-boton-pago {
     width: 70%;
     margin: 0 auto; }
+  .detalle-pago-subasta .leyenda-spam {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px; }
   .detalle-pago-subasta .caja-contador {
     width: 100%;
     margin: auto; }

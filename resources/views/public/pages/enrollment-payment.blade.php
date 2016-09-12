@@ -32,6 +32,9 @@
             <div class="col-sm-12">
                 <a class="btn btn-block btn-primary subasta-boton-pago" href="{{$urlBack}}">Regresar</a>
             </div>
+            <div class="col-sm-12 leyenda-spam">
+                Al realizar el pago, se enviará una notificación vía e-mail,si no la recibes en bandeja de entrada es recomendable verificar en tu correo spam.
+            </div>
             <div style="clear:both;"></div>
         </div>
         <div class="col-sm-6">
