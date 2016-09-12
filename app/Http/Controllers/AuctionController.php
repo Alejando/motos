@@ -64,8 +64,9 @@ class AuctionController extends BaseController {
         return ['success' => $success];
     }
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="checkout">
+    // <editor-fold defaultstate="collapsed" desc="paymentWin">
     public function paymentWin($code) {
+//        die(".---");
         if(!Auth::check()){
             abort(404);
         }

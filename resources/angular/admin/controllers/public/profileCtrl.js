@@ -35,7 +35,7 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
         
         var cLocation = history.location || document.location;
         if(cLocation.hash){
-            if(cLocation.hash.indexOf('#!favoritos/') !== 1) {
+            if(cLocation.hash.indexOf('#!favoritos/') !== -1) {
                 $scope.setSection ('favs');
                 openFancyByHash(cLocation.hash,'favoritos/');
             }

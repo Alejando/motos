@@ -213,19 +213,25 @@ Route::group(['prefix' => 'api'], function () use (&$route){
     
 });
 
+// <editor-fold defaultstate="collapsed" desc="Pagos">
+    // <editor-fold defaultstate="collapsed" desc="Enrollments">
+    //Formulario de checkout de lugar  en la subasta
+    Route::get('subastas/asiento-checkout/{code}', [ 
+        'as' => 'auction.enrollment-form',
+        'uses' =>  'AuctionController@enrollmentPayment',
+        'middleware' => 'auth'
+    ]);
+    //Proceso de redireccion a PayPal para la compra de los lugares en la subasta
+    Route::get('subastas/asientos-solicitud-pay-pal/{code}/{bill}', [
+        'as' => 'auction.checkout',
+        'uses' => 'PaypalController@checkoutEnrollment',
+        'middleware' => 'auth'
+    ]);
+    // </editor-fold>
+// </editor-fold>
 
-//Formulario de checkout de lugar  en la subasta
-Route::get('subastas/asiento-checkout/{code}', [ 
-    'as' => 'auction.enrollment-form',
-    'uses' =>  'AuctionController@enrollmentPayment',
-    'middleware' => 'auth'
-]);
-//Proceso de redireccion a PayPal para la compra de los lugares en la subasta
-Route::get('subastas/asientos-solicitud-pay-pal/{code}/{bill}', [
-    'as' => 'auction.checkout',
-    'uses' => 'PaypalController@checkoutEnrollment',
-    'middleware' => 'auth'
-]);   
+
+   
 Route::get('subastas/finish/{code}', [
     'as' => 'auction.finish-payment',
     'uses' => 'AuctionController@confirmPayment',

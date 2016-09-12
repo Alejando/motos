@@ -24,14 +24,17 @@
         </div>
         <div style="width: 53%; display: inline-block; font-size: 20px;">
             <div style="width: 49%; display: inline-block;text-align: center;">Oferta final: </div>
-            <div style="width: 49%; display: inline-block; text-align: center;color: #003937;"> {{Currency::format($auction->last_offer, config('app.currency'))}} MXN</div>
+            <div style="width: 49%; display: inline-block; text-align: center;color: #003937;"> {{Currency::format($auction->last_offer, config('app.currency'))}}</div>
         </div>
     </div>
     <div class="mensaje" style="color: #003937; padding: 10px 5%;">
-        <p style="margin: 5px">Te informamos que tu oferta fue la más alta para:</p>
-        <p style="margin: 5px auto;color: #d5a00f;">{{$auction->title}}</p>
-        <p style="margin: 5px auto;">Agradecemos tu participación en la subasta.</p>
-        <p style="margin: 16px auto;">Para concluir el proceso, es necesario realizar el pago de tu oferta en el siguiente enlace:</p>
+        <p style="margin: 5px">
+            Glim glam agradece tu participación en la subasta de <span style="color: #d5a00f;">{{$auction->title}}</span>, te informamos que tu última oferta fué la mas alta recibida por lo que eres acreedor a éste producto.
+        </p>
+        <p style="margin: 5px auto;">
+            Para concluir el proceso es necesario realizar el pago de tu oferta:
+        </p>
+        
         <a href="{{route('payment.win', [
             'code'=>$auction->code
         ])}}" style="color: #fff; text-decoration: none;">

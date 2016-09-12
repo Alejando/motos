@@ -64,9 +64,10 @@ class Mail{
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="ConfirmYouWin">
     public static function ConfirmYouWin($args = [], $test = false, $send = true, $format = 'html') {
-        $args['user'] = \GlimGlam\Models\User::getRandom();
-        $args['auction'] = \GlimGlam\Models\Auction::getRandom();
-        $args['subject'] = "Ganaste una subasta!";
+        $args['user'] = isset($args['user']) ? $args['user'] : \GlimGlam\Models\User::getRandom();
+        $args['auction'] = isset($args['auction']) ? $args['auction'] : \GlimGlam\Models\Auction::getRandom();
+        $args['subject'] = "¡Ganaste la subasta de \"" . $args['auction']->title . "\"!";
+        $args['to'] = isset($args['to']) ? $args['to'] : $args['user']->email;
         return self::sendMail('confirm-you-win', $args, $test, $send, $format);
     }
     // </editor-fold>
