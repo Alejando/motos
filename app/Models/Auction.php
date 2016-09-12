@@ -19,7 +19,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_VERTICAL = "vertical";
     const COVER_SLIDER_UPCOMING = "slider-upcoming"; 
     const COVER_NOW = "now";
-    
+    protected $hidden = ['created_at', 'updated_at'];
+    // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
     public function getMaxPriceAttribute(){
         $round = 500;
         $maxPrice = $this->attributes['max_price'];
@@ -29,10 +30,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $intdiv*$round;
     }
-    
-    protected $hidden = ['created_at', 'updated_at'];
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="sendEmailEnrolment">
-// </editor-fold>
     public function sendEmailEnrolment($user, $payment) {
         $args['user'] = $user;
         $args['payment'] = $payment;
@@ -41,6 +40,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         \GlimGlam\Libs\Helpers\Mail::payment($args);
         return $this;
     }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="isStarted">
     public function isStarted(){
         return  $this->status == self::STATUS_STARTED;
@@ -415,10 +415,13 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return $rImgs;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getWin">
     public function getWin() {
         $winner  = $this->winner;
         return User::getById($winner);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="sendEmailWinner">
     public function sendEmailWinner($user) {
         $args = [
             'user' => $user,
@@ -427,7 +430,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         \GlimGlam\Libs\Helpers\Mail::ConfirmYouWin($args);
         return $this;
     }
-    
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="startAuctions">
     public static function startAuctions(){ 
         
@@ -442,9 +445,12 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     public static function closeAuctions(){
         $auctions = self::where('status','=',self::STATUS_STARTED)
                 ->where('end_date','<', new \DateTime)->get();
+        $auctionsToCheck = [];
        foreach($auctions as $auction) {
+           $auctionsToCheck[] = $auction;
            $auction->close();
        }
+       auctionsMailWinner($auctionsToCheck);
         return $auctions;
     }
     // </editor-fold>
@@ -507,12 +513,18 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return true;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="sendMailWinner">
+    public function auctionsMailWinner($auctions){
+        foreach($auctions as $auction) {
+           if( $user = $auction->getWin() ) {
+                $auction->sendEmailWinner($user);
+            }
+       }
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="close">
     public function close() {
         $this->status = self::STATUS_FINISHED;
-        if( $user = $this->getWin() ) {
-            $this->sendEmailWinner($user);
-        }
         $this->save();
         return $this;
     }
@@ -574,7 +586,9 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
      * 
      * @return \DateTime
      */
+    // <editor-fold defaultstate="collapsed" desc="getStartDateDateTime">
     public function getStartDateDateTime() {
         return new \DateTime($this->start_date);
     }
+    // </editor-fold>
 }

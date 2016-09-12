@@ -237,7 +237,20 @@
                 </div>
             </div>
             <!-- /panel -->
-            
+            <div class="panel panel-default">
+                <a class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#cont_20">
+                    <h4 class="panel-title">
+                     <span class="accordion-toggle">
+                        ¿Qué es el rango de oferta?
+                     </span>
+                    </h4>
+                </a>
+                <div id="cont_20" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Es la cantidad que tu puedes ofertar en cada uno de tus turnos y que ira acumulandose junto con las ofertas de los demás participantes.
+                    </div>
+                </div>
+            </div>
 
         </div> 
         <!-- fin paneles izquierdos -->
@@ -430,6 +443,20 @@
                 </div>
             </div>
             <!-- /panel -->
+            <div class="panel panel-default">
+                <a class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#cont_19">
+                    <h4 class="panel-title">
+                     <span class="accordion-toggle">
+                        ¿A dónde se envían las notificaciones de registro y pago?
+                     </span>
+                    </h4>
+                </a>
+                <div id="cont_19" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Todas las notificaciones, tanto de bienvenida al juego como de resumen de pago se envían al correo electrónico registrado. De no tenerlo en bandeja de entrada, se recomienda consultar en correo no deseado (spam).
+                    </div>
+                </div>
+            </div>
         </div> 
         <!-- fin paneles derechos -->
     </div>

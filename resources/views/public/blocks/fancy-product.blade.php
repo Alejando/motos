@@ -76,6 +76,8 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                         <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
                     </a>
                 </div>
+                @elseif( $auction->isStarted() || $auction->isFinished() )
+                <span class="leyenda-no-disponible">Esta preventa ya no esta disponible</span>
                 @else
                 <span>Fecha de preventa: <b>{{$preSaleDate}}</b></span><br>
                 <a class="google-calendar" href="{{$calendarLink}}"
