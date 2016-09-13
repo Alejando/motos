@@ -94,7 +94,7 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
             </div>
         </div>
         @if(isset($imgs['fancy-box-thumbailn'][0]))
-        <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7 text-center close-fancy">
+        <div class="col-sm-6 col-sm-pull-6 col-md-5 col-md-pull-7 text-center close-fancy @if($auction->isPreSaleDay()) presale @endif">
             <div class="producto-fancy ">
                 <div class="recorte-superior"></div>
                 @if($auction->isPreSaleDay())<div class="label-preventa"></div>@endif
