@@ -6,6 +6,7 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         FINISHED : 2,
         STARTED : 1,
         STAND_BY : 0,
+        PreSaleDay: 2,
         //Tipos de portadas
         COVER_HORIZOTAL : 'horizontal',
         COVER_VERTICAL : 'vertical',
@@ -179,6 +180,17 @@ glimglam.factory('Auction', function (ModelBase,$q,$http) {
         },
         isStandBy : function () {
             return this.status == Auction.STAND_BY;
+        },
+        isPreSaleDay : function(){
+            var now = new Date();
+            var diffDays = this.start_date.getDate() - now.getDate();
+            if(diffDays <= 6 && diffDays > 0){
+                if(now.getDay() == Auction.PreSaleDay){
+                    return true;
+                }
+            }
+            return false;
+
         },
         getInfoBid : function(){
             var $defer = $q.defer();

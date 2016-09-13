@@ -349,7 +349,8 @@ header.main-header{
     background: url(../../img/oferta.png) no-repeat left top transparent;
     background-size: 100px;
 }
-.producto .label-preventa{
+.producto .label-preventa,
+.fav-container .label-preventa{
     top:-12px;
 }
 .producto-fancy .label-preventa{

@@ -1,7 +1,5 @@
 glimglam.controller('public.profileCtrl', function ($scope, User) {
     $scope.section = 'profile';
-    
-    
     var setBrithday = function () {
         var birth = $scope.user.birthday;
         if(birth){
@@ -44,7 +42,6 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
         
     });
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="setSection">
     $scope.setSection = function (section) {
         
@@ -126,7 +123,6 @@ glimglam.controller('public.profileCtrl', function ($scope, User) {
             });
         });
     };
-    
     //<editor-fold defaultstate="collapsed" desc="updateProfile">
     $scope.updateProfile = function () {
         //console.log($scope.brithday.day, $scope.brithday.month, $scope.brithday.year);
