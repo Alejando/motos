@@ -90,6 +90,7 @@ class AuthController extends Controller {
                     'password' => bcrypt($data['password']),
         ]);
         $user->sendMailWelcome($data['password']);
+        Session::put('conversion', true);
         return $user;
     }
 
