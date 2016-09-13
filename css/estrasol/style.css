@@ -1815,11 +1815,12 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
     max-width: 560px;
     margin: 0 auto;
+    height: 250px;
 }
 .fancy-titulo {
     font-size: 25px;
     color: #0b676a;
-    padding: 25px 0 20px;
+    padding: 0 0 20px;
     text-transform: uppercase;
 }
 .fancy-gallery{
@@ -2036,6 +2037,9 @@ section.fancy-producto {
     .descripcion-fancy{
         width: 100%;
         margin: auto;
+    }
+    .fancy-txt{
+        height: auto;
     }
     .producto-fancy-cover > span > span{
         font-size: 18px;

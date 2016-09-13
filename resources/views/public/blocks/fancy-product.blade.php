@@ -79,7 +79,7 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                 @elseif( $auction->isStarted() || $auction->isFinished() )
                 <span class="leyenda-no-disponible">Esta preventa ya no esta disponible</span>
                 @else
-                <span>Fecha de preventa: <b>{{$preSaleDate}}</b></span><br>
+                <span>Fecha de preventa: <b>{{$preSaleDate}}</b></span>
                 <a class="google-calendar" href="{{$calendarLink}}"
                     target="_blank">
                     Agregar preventa a Google Calendar<br>
@@ -91,10 +91,6 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                     </a>
                 </div>
                 @endif
-                <div class="share-fancy-container">
-                    <a id="share-room" class="share-room share-fb" target="popup" href="{{URL::to('/#!'.$auction->code.'/'.str_slug($auction->title))}}"></a>
-                    <a class="share-room share-tw" href="http://twitter.com/share?url={{URL::to('/sub/'.$auction->code)}}&text=¡{{$auction->title}} está siendo subastado!&hashtags=glimglam,subastaonline" title="GlimGlam subastas online" target="popup"></a>
-                </div>
             </div>
         </div>
         @if(isset($imgs['fancy-box-thumbailn'][0]))
@@ -125,6 +121,10 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                         @endforeach
                     </div>
                 </section>
+                <div class="share-fancy-container">
+                    <a id="share-room" class="share-room share-fb" target="popup" href="{{URL::to('/#!'.$auction->code.'/'.str_slug($auction->title))}}"></a>
+                    <a class="share-room share-tw" href="http://twitter.com/share?url={{URL::to('/sub/'.$auction->code)}}&text=¡{{$auction->title}} está siendo subastado!&hashtags=glimglam,subastaonline" title="GlimGlam subastas online" target="popup"></a>
+                </div>
                 <div class="recorte-inferior"></div>
             </div>
         </div>
