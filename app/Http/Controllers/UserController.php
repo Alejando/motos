@@ -9,8 +9,16 @@ class UserController extends BaseController {
 //        return view("public.pages.profile", ['aunctions' => $aucntions]);
     }
     public function profile(){
-        return view('public.pages.profiles', [
-            'user'=> \Auth::user()
-        ]);
+        $conversion = \Session::get('googCon');
+        //echo "Se obtuvo conversion <br>";
+        \Session::forget('googCon');
+        //dd(\Session::get('conversion'));
+        //echo "Se olvido conversion <br>";
+        $params = [
+            'user'=> \Auth::user(),
+            'conversion'=>$conversion
+        ];
+        unset($conversion);
+        return view('public.pages.profiles', $params);
     }
 }

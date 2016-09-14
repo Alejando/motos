@@ -5,6 +5,7 @@
         @include('public.meta-tags')
         @include('public.stylesheets')
         @yield('head')
+        <!-- Facebook pixel code -->
         <script>
             !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -14,6 +15,25 @@
             fbq('init', '488925211317397');
             fbq('track', "PageView");
         </script>
+        <!-- Facebook pop up -->
+        <script>
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId      : '331988823806157',
+                xfbml      : true,
+                version    : 'v2.1'
+              });
+            };
+
+            (function(d, s, id){
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) {return;}
+               js = d.createElement(s); js.id = id;
+               js.src = "//connect.facebook.net/en_US/sdk.js";
+               fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <!-- Google Analytics code -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

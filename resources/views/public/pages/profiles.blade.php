@@ -12,7 +12,36 @@
     }
 </style>
 @stop()
+@section('js-scripts')
+@if(isset($conversion) && $conversion == true)
+    <!-- Google Code for Conversion Page -->
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 873741411;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "sX38CPyhlWoQ4_jQoAM";
+    var google_remarketing_only = false;
+    /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+    <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/873741411/?label=sX38CPyhlWoQ4_jQoAM&amp;guid=ON&amp;script=0"/>
+    </div>
+    </noscript>
+@else
+    <script type="text/javascript">
+        $(document).ready(function(){
+           console.log('No hay conversion'); 
+        });
+    </script>
+@endif
+@stop
 @section('body')
+
 <section ng-controller="public.profileCtrl" style="display: none"  class="div-profile">
     <section class="fancy-producto">
       
@@ -87,32 +116,5 @@
             </div>
     </section>
 </section>
-    
-@stop
 
-@section('scripts')
-@if(isset($conversion) && $conversion == true)
-    <!-- Google Code for Registro User Nuevo Conversion Page -->
-    <script type="text/javascript">
-    /* <![CDATA[ */
-    var google_conversion_id = 873741411;
-    var google_conversion_language = "en";
-    var google_conversion_format = "3";
-    var google_conversion_color = "ffffff";
-    var google_conversion_label = "sX38CPyhlWoQ4_jQoAM";
-    var google_remarketing_only = false;
-    /* ]]> */
-    </script>
-    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-    </script>
-    <noscript>
-    <div style="display:inline;">
-    <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/873741411/?label=sX38CPyhlWoQ4_jQoAM&amp;guid=ON&amp;script=0"/>
-    </div>
-    </noscript>
-@else
-    <script>
-        console.log('No hay conversion');
-    </script>
-@endif
 @stop

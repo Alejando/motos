@@ -5,6 +5,7 @@ namespace GlimGlam\Http\Controllers\Auth;
 use GlimGlam\Models\User;
 use Validator;
 use GlimGlam\Http\Controllers\Controller;
+use GlimGlam\Http\Controllers\Session;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -90,7 +91,7 @@ class AuthController extends Controller {
                     'password' => bcrypt($data['password']),
         ]);
         $user->sendMailWelcome($data['password']);
-        Session::put('conversion', true);
+        \Session::put('googCon', true);
         return $user;
     }
 
