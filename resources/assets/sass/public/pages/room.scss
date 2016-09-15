@@ -8,7 +8,7 @@
 }
 .section-room{
     .subasta-tiempo{
-        font-size:22px;
+        font-size:18px;
     }
     .banner-info:first-child, .banner-info:last-child{
         height: auto;
@@ -18,5 +18,86 @@
         margin-top: 10px;
         font-size : 20px;
         text-transform: none;
+    }
+    .contenedor-indicadores{
+        background-color: $bg-verde-claro;
+        color: #fff;
+        padding-bottom: 30px;
+    }
+    .contenedor-indicadores h3{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .indicador-contenedor{
+        text-align: center;
+    }
+    .indicador-subasta-externo{
+        margin: 0 auto;
+        width: 80px;
+        height: 80px; 
+        border: solid 5px;
+        padding: 5px;
+        margin-bottom: 5px;
+        
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+    }
+    .indicador-subasta{
+        color: $color-textos;
+        display: block;
+        width: 60px;
+        height: 60px;
+        background-color: #fff;
+        margin: 0 auto 10px;
+        
+        font-size: 20px;
+        line-height: 60px;
+        
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+    .indicador-timer-externo{
+        border: solid 3px #fff;
+        padding: 5px;
+        
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+    }
+    .indicador-timer{
+        font-size: 20px;
+        text-align: center;
+        background-color: #fff;
+        color: #d5a00f;
+        padding: 2px;
+        
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+    .texto-gris{
+        color: $color-textos;
+    }
+    .total-subastado p{
+        font-size: 25px; 
+        margin:0;
+    }
+    .ngrs-range-slider .ngrs-handle{
+        top: -15px;
+        height:50px;
+    }
+    .ngrs-range-slider .ngrs-join{
+        background-image: none !important;
+        background-color: #00bcb6 !important;
+    }
+    .ngrs-range-slider .ngrs-handle-max i{
+        background-image: none;
     }
 }

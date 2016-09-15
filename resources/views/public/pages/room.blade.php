@@ -26,25 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="row banner-data transition-0-3">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info subasta-verde">
-                                <timer interval="1000" language="es" class="subasta-tiempo" 
-                                    ng-show="objAuction.isStandBy()"
-                                    end-time="objAuction.start_date">
-                                    <small>Inicia en</small><br>
-                                    <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
-                                    <span ng-show="hours > 0">@{{hours}} hr,</span>
-                                    <span ng-show="minutes > 0">@{{minutes}} min,</span>
-                                    @{{seconds}} seg
-                                </timer>
-                                <timer interval="1000" language="es" class="subasta-tiempo" 
-                                    ng-show="objAuction.isStarted()"
-                                    end-time="objAuction.end_date">
-                                    <small>Finaliza en</small><br><span ng-show="days>0">@{{days}} días, </span>@{{hours}} hr, @{{minutes}} min, @{{seconds}} seg
-                                </timer>
-                                <div class="subasta-tiempo" ng-show="objAuction.isFinished()">
-                                    La subasta ha terminado
-                                </div>
-                            </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
+                            <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-sm-12 col-xs-12 text-center vcenter">
                                 <div id="titulo-detalle" class="t-detalle">
                                     {{$auction->title}}
                                 </div>
@@ -67,17 +49,93 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6 rango-subasta">
-                    <p>Rango de oferta desde:</p>
+                    <p>Rango de oferta:</p>
                     <div>
                         <div id="rango-smin" class="precio-rango">{{currency($auction->min_offer, config('app.currency'))}}</div>
+                        a
                         <div id="rango-smax" class="precio-rango">{{currency($auction->max_offer, config('app.currency'))}}</div>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 total-subastado">
+                    <p>Última oferta</p>
                     <div id="subasta-actual" class="precio-subasta" ng-class="{
                             'subasta-verde': objAuction.winner == id_user
                         }">@{{objAuction.last_offer | currency : '$'}} MXN</div>
-                    <p>Ultima oferta</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fluid-container bg-gris contenedor-indicadores">
+        <div class="container">
+            <div class="row">
+                <h3 class="col-md-8">Oportunidades</h3>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="indicador-contenedor">
+                        <div class="indicador-subasta-externo">
+                            <div class="indicador-subasta">
+                                @{{objAuction.bids - totalBids - totalFaults}}
+                            </div>
+                        </div>
+                        <span>Disponibles</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="indicador-contenedor">
+                        <div class="indicador-subasta-externo">
+                            <div class="indicador-subasta">
+                                @{{totalBids}}
+                            </div>
+                        </div>
+                        <span>Realizadas</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="indicador-contenedor">
+                        <div class="indicador-subasta-externo">
+                            <div class="indicador-subasta">
+                                @{{totalFaults}}
+                            </div>
+                        </div>
+                        <span>Perdidas</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-2">
+                    <div class="indicador-contenedor">
+                        <div class="indicador-subasta-externo">
+                            <div class="indicador-subasta">
+                                @{{objAuction.min_bids}}
+                            </div>
+                        </div>
+                        <span>Para ganar</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="indicador-timer-externo">
+                        <div class="indicador-timer">
+                            <timer interval="1000" language="es" class="subasta-tiempo" 
+                                ng-show="objAuction.isStandBy()"
+                                end-time="objAuction.start_date">
+                                <small class="texto-gris">Inicia en</small>
+                                <div class="boleto-divider"></div>
+                                <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
+                                <span ng-show="hours > 0">@{{hours}} hr,</span>
+                                <span ng-show="minutes > 0">@{{minutes}} min,</span>
+                                @{{seconds}} seg
+                            </timer>
+                            <timer interval="1000" language="es" class="subasta-tiempo" 
+                                ng-show="objAuction.isStarted()"
+                                end-time="objAuction.end_date">
+                                <small class="texto-gris">Finaliza en</small>
+                                <div class="boleto-divider"></div>
+                                <span ng-show="days>0">@{{days}} días, </span><span ng-show="hours>0">@{{hours}} hr, </span><span ng-show="minutes>0">@{{minutes}} min, </span>@{{seconds}} seg
+                            </timer>
+                            <div class="subasta-tiempo texto-gris" ng-show="objAuction.isFinished()">
+                                La subasta ha terminado
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,17 +192,10 @@
                         </div>
                         <div class="rebase-der"></div>
                         <div class="ofertas-restantes">
-                            Te quedan @{{objAuction.bids - totalBids - totalFaults}} ofertas disponibles<br>
-                            Has ofertado @{{totalBids}} veces y has perdido @{{totalFaults}} oportunidades<br>
-                            <span ng-show="objAuction.bids - totalBids - totalFaults > 0 && totalBids < objAuction.min_bids">
-                                Necesitas realizar minimo @{{objAuction.min_bids}} ofertas para poder ser ganador<br>
+                            {{--<span ng-show="objAuction.bids - totalBids - totalFaults > 0 && totalBids < objAuction.min_bids">
+                                Necesitas realizar minimo  ofertas para poder ser ganador<br>
                                 Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas para poder ganar
-                            </span>
-                            
-                            <div>
-                            
-                            </div>
-                            
+                            </span>--}}
                             <div class="penalty"  ng-show="1">
                                 <timer interval="1000" language="es"  class="subasta-tiempo"  end-time="nextPenalty">
                                     <small>Próxima penalización</small><br><span ng-show="minutes > 0">@{{minutes}} min,</span> @{{seconds}} seg

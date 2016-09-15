@@ -5,28 +5,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 27/07/2016, 01:33:16 PM
-    Author     : jdiaz
-*/
-form.subastas-form {
-  width: 99%; }
-  form.subastas-form .input-group.timepicker input {
-    height: 34px; }
-  form.subastas-form .input-datetimes {
-    padding: 0; }
-  form.subastas-form .input-datetimes input.timepicker {
-    width: 35%;
-    float: right; }
-  form.subastas-form .input-datetimes div.datepicker {
-    width: 60%;
-    float: left; }
-
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
     Created on : 25/07/2016, 04:50:49 PM
     Author     : jdiaz
 */
@@ -48,6 +26,7 @@ and open the template in the editor.
 /* Doradito */
 /* Gris generico */
 /* Blanco */
+/* Fondo verde claro */
 
 /* 
     Created on : 19-ago-2016, 10:07:55
@@ -66,6 +45,7 @@ and open the template in the editor.
 /* Doradito */
 /* Gris generico */
 /* Blanco */
+/* Fondo verde claro */
 .generic-content {
   color: #000;
   background-color: #fff;
@@ -104,6 +84,7 @@ and open the template in the editor.
 /* Doradito */
 /* Gris generico */
 /* Blanco */
+/* Fondo verde claro */
 .detalle-pago-subasta {
   color: #747474;
   background-color: #fff;
@@ -254,11 +235,12 @@ and open the template in the editor.
 /* Doradito */
 /* Gris generico */
 /* Blanco */
+/* Fondo verde claro */
 .galeria-detalle {
   max-height: none; }
 
 .section-room .subasta-tiempo {
-  font-size: 22px; }
+  font-size: 18px; }
 
 .section-room .banner-info:first-child, .section-room .banner-info:last-child {
   height: auto; }
@@ -268,5 +250,94 @@ and open the template in the editor.
   margin-top: 10px;
   font-size: 20px;
   text-transform: none; }
+
+.section-room .contenedor-indicadores {
+  background-color: #00bcb6;
+  color: #fff;
+  padding-bottom: 30px; }
+
+.section-room .contenedor-indicadores h3 {
+  text-align: center;
+  margin-bottom: 20px; }
+
+.section-room .indicador-contenedor {
+  text-align: center; }
+
+.section-room .indicador-subasta-externo {
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  border: solid 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 50%;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease; }
+
+.section-room .indicador-subasta {
+  color: #747474;
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  margin: 0 auto 10px;
+  font-size: 20px;
+  line-height: 60px;
+  border-radius: 50%; }
+
+.section-room .indicador-timer-externo {
+  border: solid 3px #fff;
+  padding: 5px;
+  border-radius: 10px; }
+
+.section-room .indicador-timer {
+  font-size: 20px;
+  text-align: center;
+  background-color: #fff;
+  color: #d5a00f;
+  padding: 2px;
+  border-radius: 5px; }
+
+.section-room .texto-gris {
+  color: #747474; }
+
+.section-room .total-subastado p {
+  font-size: 25px;
+  margin: 0; }
+
+.section-room .ngrs-range-slider .ngrs-handle {
+  top: -15px;
+  height: 50px; }
+
+.section-room .ngrs-range-slider .ngrs-join {
+  background-image: none !important;
+  background-color: #00bcb6 !important; }
+
+.section-room .ngrs-range-slider .ngrs-handle-max i {
+  background-image: none; }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27/07/2016, 01:33:16 PM
+    Author     : jdiaz
+*/
+form.subastas-form {
+  width: 99%; }
+  form.subastas-form .input-group.timepicker input {
+    height: 34px; }
+  form.subastas-form .input-datetimes {
+    padding: 0; }
+  form.subastas-form .input-datetimes input.timepicker {
+    width: 35%;
+    float: right; }
+  form.subastas-form .input-datetimes div.datepicker {
+    width: 60%;
+    float: left; }
 
 /*# sourceMappingURL=app.css.map */
