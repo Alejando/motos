@@ -1,0 +1,4 @@
+/.env
+/public/js/bower_components/
+/public/css/web.css
+/public/js/laroute.js

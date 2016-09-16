@@ -1,0 +1,302 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 31/07/2016, 08:03:14 PM
+    Author     : JFcoDíaz <jfcodiaz at gmail.com>
+*/
+@import "../sprites.scss";
+
+$max-width: "only screen and (min-width : 1000px)";
+@media #{$max-width}{
+    .main-conteiner {
+        width: 1000px;
+        margin: 0 auto;
+       
+    }
+    body {
+         background-color: #ececec !important;
+    }
+}
+
+
+body{
+    background-color: white;
+}
+
+.input-border {
+    font-family: 'Open Sans Condensed' !important;
+        outline: none;
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #f4f4f4;
+     /*padding: 0px;*/
+        -webkit-box-shadow: inset 1px 2px 15px -5px rgba(0,0,0,0.56);
+        -moz-box-shadow: inset 1px 2px 15px -5px rgba(0,0,0,0.56);
+        box-shadow: inset 1px 2px 15px -5px rgba(0,0,0,0.56);
+        min-height: 43px;
+        min-width: 297px;
+        padding: 0px 7px;
+        font-size: 18px;
+        
+}
+
+$colorMenuCategorias: #002b53;
+.menu.categorias{
+    a{
+        text-decoration: none;
+        font-size: 20px;
+        font-family: 'Open Sans Condensed' !important;
+        color: $colorMenuCategorias;
+    }
+}
+
+ul.menu{
+    list-style: none;                
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+    li{
+        padding-top: 0px;
+        padding-right: 10px;
+        display: inline-block;
+    }
+}
+.menu.categorias{
+    margin-top: 15px;
+    margin-left: 16px;
+}
+.search-form-2{
+    display: inline-block;
+    float: right;
+    position: relative;
+    top:-12px;
+    button{
+        margin-top: 10px;
+        display: inline-block;
+        position: relative;
+        top: 10px;
+
+    }
+    input {
+        
+        font-size: 20px;
+        height: 42px;
+        width: 195px;
+       
+    }
+}
+.setpoint-public{
+    .div-main-content {
+        background-image: url(../img/bgbody.jpg);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        .sub-menu-productos{
+            text-decoration: none;
+            font-size: 28px;
+            font-family: 'Open Sans Condensed' !important;
+            color: #2e4d6a;
+            padding: 15px;
+        }
+        .productos{
+            text-align: center;
+            
+            position: relative;
+            
+            .producto{
+                position: relative;
+                display: inline-block;
+                width: 20%;
+                height: 322px;
+                border: 1px solid #eff5fa;
+                background-color: white;
+                
+                margin: 20px;
+                border-radius:10px;
+                
+                
+                img {}
+                .name{
+                     font-family: 'Open Sans Condensed' !important;
+                     font-size: 22px;
+                }
+                .prices{
+                     font-family: 'Open Sans Condensed' !important;
+                     font-size: 28px;
+                }
+            }
+        }
+    }
+    footer{
+        .banner {
+            background: url(../img/bg-footer.jpg);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            text-align: center;
+            /*background: red;*/
+            img {
+                width: 25%;
+                margin: 10px;
+            }
+            div {
+                font-family: 'Open Sans Condensed' !important;
+                font-size: 38px;
+                padding: 3ex;
+                color: white;
+            }
+            min-height: 375px;
+        }
+        .marcas {
+            ul{
+                padding-bottom: 10px;
+                width: 100%;
+                text-align: center;
+                background-color: white;
+                li {
+                    /*background-color: red;*/
+                    width: 15%;
+                }
+            }
+            
+        }
+        .social {
+            background-color: #002b53;
+            color: white;
+            font-family: 'Open Sans' !important;
+            font-size: 23px;
+            font-weight: 500px;
+        }
+        .info {
+            a {
+                
+                font-size:20px;
+                color:white;
+                font-family: 'Open Sans Condensed' !important;
+                top: 10px;
+                position: relative;
+            }
+            span.sprite{
+                position: relative;
+                top:10px;
+            }
+            
+            a.sprite{
+                color:rgba(0,0,0,0);
+                position: relative;
+                /*top: 10px;*/
+            }
+            ul{
+                text-align: center;
+                width: 100%;
+            }
+            a.aviso {
+                top: 20px;
+            }
+            li{
+                height: 90px;
+            }
+            
+        }
+        .metodos-pago{
+            text-align: center;
+            background-color: white;
+            
+            ul{
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                
+                li {
+                    text-align: center;
+                    width: 12%;
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+        }
+        .copyrigth{
+            background-color: white;
+            text-align: center;
+            color:black;
+            font-size: 12px;
+            padding: 20px;
+        }
+    }
+    header.fontal{
+        background:url(../img/bg-top-1.jpg);
+        background-size: 100% auto;
+         border-bottom: #e1eaa3 2px solid;
+    }
+    header{
+        .menu-top{
+            /*height: 90px;*/
+            border-bottom: #e1eaa3 1px solid;
+        }
+        nav.menu-right{
+            float: right;           
+        }
+    }
+    a.home-logo{
+        margin: 16px;
+    }
+    section.offerts {
+        text-align: center;
+        margin: 0 20px 15px 20px;
+        .promo{
+            margin-left: 70px;
+            display: inline-block;
+            background-color: white;
+            border-radius: 5px;
+            height: 240px;
+            width: 240px;
+            overflow: hidden;
+            display: inline-block;
+            text-align: center;
+            margin: 25px;
+            margin-bottom: 0px;
+            position:relative;
+            img {
+                margin-top: 10px;
+                width: 150px;
+            }
+            div.prices {
+                color: #4b4e51;
+                font-size: 38px;
+                font-family: 'Open Sans Condensed' !important;
+                
+            }
+            .offert{
+                position: absolute;
+                top: -3px;
+                left: 150%;
+                margin-left: -186px;
+                color:white;
+                font-family: 'Open Sans' !important;
+                font-size: 21px;
+                padding-top: 10px;
+            }    
+        }
+    }
+    .subtitle{
+        font-family: 'Open Sans' !important;
+        font-size: 34px;
+        color: #2e4d6a;
+        font-weight: 600;
+        text-align: center;
+        margin: 10px;
+    }
+}
+a.sprite, li.sprite, button.sprite {
+    font-size: 0px;
+    color:rgba(0,0,0,0);
+}
+button.sprite{
+    border: 0;
+    cursor: pointer;
+}
+.sprite {
+    display: inline-block;  
+}
