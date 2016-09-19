@@ -45,7 +45,7 @@ class User extends Authenticatable {
     }
     
     public function getAvatar() {               
-        return \GlimGlam\Libs\Helpers\Img::resizeImg($this->avatarFile(), 190, 190, false , true);
+        return \GlimGlam\Libs\Helpers\Img::resizeImgOutbound($this->avatarFile(), 190, 190, false , true);
     }
     
     public function isMale(){
