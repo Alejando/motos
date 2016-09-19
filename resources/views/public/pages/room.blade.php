@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-    <div class="fluid-container bg-gris contenedor-indicadores">
+    <div class="fluid-container bg-gris contenedor-indicadores" >
         <div class="container">
             <div class="row">
                 <h3 class="col-md-8">Oportunidades</h3>

@@ -124,11 +124,17 @@
                     @else
                         @if(true)
                         <div class="producto producto-mensaje placeholder naranja">
-                            <iframe class="video"
+                            <a class="banner-gg-video">
+                                <div class="play-gg-video transition-0-3"></div>
+                                <span>Conoce la nueva<br>forma de comprar</span>
+                            </a>
+                        </div>
+                        {{--
+                        <iframe class="video"
                                 src="http://www.youtube.com/embed/JTmp1y1i-l0?rel=0"
                                 frameborder="0" allowfullscreen>
                             ></iframe>
-                        </div>
+                        --}}
                         @else
                         <a id_producto="@{{lastStarted.code}}" class="producto big-producto oferta-verde link-subasta no-border">
                             <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
