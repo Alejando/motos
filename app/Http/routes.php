@@ -61,24 +61,20 @@ Route::group(['prefix' => 'api'], function () {
 //                echo $name.'/all-for-datatables';
                 
     };
-    Route::get('auction/code/{code}',[
-        'as' => 'auction.getByCode',
-        'uses' => 'Api\\AuctionController@getByCode'
-    ]);
+    
     Route::get('content/slug/{slug}', [
         'as' => 'Content.slug',
         'uses' => 'Api\\ContentController@slug'
     ]);
     $addAPI('brand','Brand');
     $addAPI('color','Color');
-    $addAPI('address','Address');
+//    $addAPI('address','Address');
     $addAPI('size','Size');
     $addAPI('category','Category');
     
     $addAPI('content','Content');
     $addAPI('user','User');
 //    Route::resource('api/user', 'Api\\User');
-//    Route::resource('auction', 'Api\\AuctionController', $getNames('auction'));
 });
 Route::get('/home', 'HomeController@index');
 Route::get('/admin',  'AdminCtrl@index'); 

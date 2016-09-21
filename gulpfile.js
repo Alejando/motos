@@ -12,11 +12,14 @@ require('laravel-elixir-livereload');
  */
 
 elixir(function(mix) {
-//    mix.sass(['*.scss'],'public/css/app.css');
+    mix.sass([
+        'admin/*.scss',
+        'admin/**/*.scss'
+    ],'public/css/app.css');
     mix.sass([
         'web/*.scss',
         'web/**/*.scss'
-    ], 'public/css/web.css');
+    ], 'public/css/web2.css');
 //    mix.copy('resources/assets/sass/sprites.png', 'public/css/sprites.png');
 //    mix.less('ubold-template/components.less','public/assets/css/components.css');
 //    mix.less('ubold-template/core.less','public/assets/css/core.css');
