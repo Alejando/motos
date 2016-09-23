@@ -101,4 +101,8 @@
     .ngrs-range-slider .ngrs-handle-max i{
         background-image: none;
     }
+    .tp-rightarrow.default,
+    .tp-leftarrow.default{
+        display: none;
+    }
 }

@@ -341,4 +341,8 @@ and open the template in the editor.
 .section-room .ngrs-range-slider .ngrs-handle-max i {
   background-image: none; }
 
+.section-room .tp-rightarrow.default,
+.section-room .tp-leftarrow.default {
+  display: none; }
+
 /*# sourceMappingURL=app.css.map */
