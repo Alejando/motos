@@ -3,7 +3,7 @@
 <div ng-controller="public.roomCtrl" class="section-room" style="display: none">
     <section class="fancy-producto">
     </section>
-    <section class="slideshow container-fluid patrongg">
+    <section class="slideshow container-fluid patrongg" ng-show="!objAuction.isStarted()">
         <div class="banner-container">
             <div class="banner" >
                 <ul class="banner-list">
@@ -67,7 +67,7 @@
                 <h3 class="col-xs-12 col-md-offset-6 col-md-6">Oportunidades</h3>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6 hidden-xs">
                     <div class="banner-container">
                         <div class="banner" >
                             <ul class="banner-list">

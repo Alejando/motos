@@ -345,4 +345,8 @@ and open the template in the editor.
 .section-room .tp-leftarrow.default {
   display: none; }
 
+@media (max-width: 768px) {
+  .section-room .ngrs-range-slider {
+    width: 250px !important; } }
+
 /*# sourceMappingURL=app.css.map */

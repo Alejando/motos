@@ -105,4 +105,9 @@
     .tp-leftarrow.default{
         display: none;
     }
+    @media(max-width: 768px){
+        .ngrs-range-slider{
+            width: 250px !important;
+        }
+    }
 }
