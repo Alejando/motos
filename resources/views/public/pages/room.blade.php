@@ -3,45 +3,41 @@
 <div ng-controller="public.roomCtrl" class="section-room" style="display: none">
     <section class="fancy-producto">
     </section>
-        <section class="slideshow container-fluid patrongg">
-            <div class="banner-container">
-                <div class="banner" >
-                    <ul class="banner-list">
-                        <?php $urlCovers = $auction->getUrlImg([$auction::COVER_SLIDER_UPCOMING])[$auction::COVER_SLIDER_UPCOMING]?>
-                        @foreach($urlCovers as $url)
-                        <li class="no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
-                            data-slotamount="8" 
-                            id-producto="{{$auction->code}}" 
-                            product-name="{{$auction->title}}" 
-                            rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
-                            rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
-                            start_date="{{$auction->start_date}}">
-                            <img src="{{$url}}"/>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
+    <section class="slideshow container-fluid patrongg">
+        <div class="banner-container">
+            <div class="banner" >
+                <ul class="banner-list">
+                    <?php $urlCovers = $auction->getUrlImg([$auction::COVER_SLIDER_UPCOMING])[$auction::COVER_SLIDER_UPCOMING]?>
+                    @foreach($urlCovers as $url)
+                    <li class="no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
+                        data-slotamount="8" 
+                        id-producto="{{$auction->code}}" 
+                        product-name="{{$auction->title}}" 
+                        rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
+                        rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
+                        start_date="{{$auction->start_date}}">
+                        <img src="{{$url}}"/>
+                    </li>
+                    @endforeach
+                </ul>
             </div>
-            <section class="banner-description container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="row banner-data transition-0-3">
-                            <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-sm-12 col-xs-12 text-center vcenter">
-                                <div id="titulo-detalle" class="t-detalle">
-                                    {{$auction->title}}
-                                </div>
-                            </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter">
-                                <div class="link-subasta-cont no-btn">
-                                    <span class="btn-contador"><span id="subasta-count">@{{objAuction.num_bids}}</span> Ofertas</span>
-                                </div>
+        </div>
+        <section class="banner-description container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row banner-data transition-0-3">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center vcenter">
+                            <div id="titulo-detalle" class="t-detalle">
+                                {{$auction->title}}
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
     </section>
     <!-- Contenido General -->
-	
+
     <div class="fluid-container nopadding">
         <div class="detalle-divider"></div>
     </div>
@@ -68,71 +64,92 @@
     <div class="fluid-container bg-gris contenedor-indicadores" >
         <div class="container">
             <div class="row">
-                <h3 class="col-md-8">Oportunidades</h3>
+                <h3 class="col-xs-12 col-md-offset-6 col-md-6">Oportunidades</h3>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-2">
-                    <div class="indicador-contenedor">
-                        <div class="indicador-subasta-externo">
-                            <div class="indicador-subasta">
-                                @{{objAuction.bids - totalBids - totalFaults}}
-                            </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="banner-container">
+                        <div class="banner" >
+                            <ul class="banner-list">
+                                <?php $urlCovers = $auction->getUrlImg([$auction::COVER_SLIDER_UPCOMING])[$auction::COVER_SLIDER_UPCOMING]?>
+                                @foreach($urlCovers as $url)
+                                <li class="no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
+                                    data-slotamount="8" 
+                                    id-producto="{{$auction->code}}" 
+                                    product-name="{{$auction->title}}" 
+                                    rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
+                                    rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
+                                    start_date="{{$auction->start_date}}">
+                                    <img src="{{$url}}"/>
+                                </li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <span>Disponibles</span>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-2">
-                    <div class="indicador-contenedor">
-                        <div class="indicador-subasta-externo">
-                            <div class="indicador-subasta">
-                                @{{totalBids}}
+                </div><div class="col-xs-12 col-sm-6">
+                    <div class="col-xs-6 col-sm-3 col-md-3">
+                        <div class="indicador-contenedor">
+                            <div class="indicador-subasta-externo">
+                                <div class="indicador-subasta">
+                                    @{{objAuction.bids - totalBids - totalFaults}}
+                                </div>
                             </div>
+                            <span>Disponibles</span>
                         </div>
-                        <span>Realizadas</span>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-2">
-                    <div class="indicador-contenedor">
-                        <div class="indicador-subasta-externo">
-                            <div class="indicador-subasta">
-                                @{{totalFaults}}
+                    <div class="col-xs-6 col-sm-3 col-md-3">
+                        <div class="indicador-contenedor">
+                            <div class="indicador-subasta-externo">
+                                <div class="indicador-subasta">
+                                    @{{totalBids}}
+                                </div>
                             </div>
+                            <span>Realizadas</span>
                         </div>
-                        <span>Perdidas</span>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-2">
-                    <div class="indicador-contenedor">
-                        <div class="indicador-subasta-externo">
-                            <div class="indicador-subasta">
-                                @{{objAuction.min_bids}}
+                    <div class="col-xs-6 col-sm-3 col-md-3">
+                        <div class="indicador-contenedor">
+                            <div class="indicador-subasta-externo">
+                                <div class="indicador-subasta">
+                                    @{{totalFaults}}
+                                </div>
                             </div>
+                            <span>Perdidas</span>
                         </div>
-                        <span>Para ganar</span>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4">
-                    <div class="indicador-timer-externo">
-                        <div class="indicador-timer">
-                            <timer interval="1000" language="es" class="subasta-tiempo" 
-                                ng-show="objAuction.isStandBy()"
-                                end-time="objAuction.start_date">
-                                <small class="texto-gris">Inicia en</small>
-                                <div class="boleto-divider"></div>
-                                <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
-                                <span ng-show="hours > 0">@{{hours}} hr,</span>
-                                <span ng-show="minutes > 0">@{{minutes}} min,</span>
-                                @{{seconds}} seg
-                            </timer>
-                            <timer interval="1000" language="es" class="subasta-tiempo" 
-                                ng-show="objAuction.isStarted()"
-                                end-time="objAuction.end_date">
-                                <small class="texto-gris">Finaliza en</small>
-                                <div class="boleto-divider"></div>
-                                <span ng-show="days>0">@{{days}} días, </span><span ng-show="hours>0">@{{hours}} hr, </span><span ng-show="minutes>0">@{{minutes}} min, </span>@{{seconds}} seg
-                            </timer>
-                            <div class="subasta-tiempo texto-gris" ng-show="objAuction.isFinished()">
-                                La subasta ha terminado
+                    <div class="col-xs-6 col-sm-3 col-md-3">
+                        <div class="indicador-contenedor">
+                            <div class="indicador-subasta-externo">
+                                <div class="indicador-subasta">
+                                    @{{objAuction.min_bids}}
+                                </div>
+                            </div>
+                            <span>Para ganar</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-offset-1 col-sm-10">
+                        <div class="indicador-timer-externo">
+                            <div class="indicador-timer">
+                                <timer interval="1000" language="es" class="subasta-tiempo" 
+                                    ng-show="objAuction.isStandBy()"
+                                    end-time="objAuction.start_date">
+                                    <small class="texto-gris">Inicia en</small>
+                                    <div class="boleto-divider"></div>
+                                    <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
+                                    <span ng-show="hours > 0">@{{hours}} hr,</span>
+                                    <span ng-show="minutes > 0">@{{minutes}} min,</span>
+                                    @{{seconds}} seg
+                                </timer>
+                                <timer interval="1000" language="es" class="subasta-tiempo" 
+                                    ng-show="objAuction.isStarted()"
+                                    end-time="objAuction.end_date">
+                                    <small class="texto-gris">Finaliza en</small>
+                                    <div class="boleto-divider"></div>
+                                    <span ng-show="days>0">@{{days}} días, </span><span ng-show="hours>0">@{{hours}} hr, </span><span ng-show="minutes>0">@{{minutes}} min, </span>@{{seconds}} seg
+                                </timer>
+                                <div class="subasta-tiempo texto-gris" ng-show="objAuction.isFinished()">
+                                    La subasta ha terminado
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -151,7 +168,7 @@
                             <div  style="width: 350px;" range-slider step="0.00" decimal-places="2"  min="rangeOferta.limitMin" pin-handle="min"  max="rangeOferta.limitMax" model-min="rangeOferta.min" model-max="rangeOferta.max"></div>
                         </div>
                         <div>
-                        
+
                         </div>
                         <div class="delay-bid"  ng-show="nextBid>now">
                                 <timer interval="1000" language="es"  class="subasta-tiempo"  end-time="nextBid">
@@ -245,18 +262,16 @@
         </div>
     </div>
     <div class="fluid-container relacionados">
-            <div class="container">
-                    <div class="row">
-                        @foreach ($related as $rel)
-                            @include('public.blocks.product', ['auction'=> $rel,'room'=>true])
-                        @endforeach
-                    </div>
+        <div class="container">
+            <div class="row">
+                @foreach ($related as $rel)
+                    @include('public.blocks.product', ['auction'=> $rel,'room'=>true])
+                @endforeach
             </div>
+        </div>
     </div>
 </div>
-
-
-    <!-- /Contenido General -->
+<!-- /Contenido General -->
 @stop
 
 @section('js-scripts')
