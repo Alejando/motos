@@ -195,5 +195,13 @@
 @stop
 @section('js-scripts')
 <script type="text/javascript" src="{{asset('js/estrasol/index.js')}}"></script>
+    @if($bFirstTime)
+        <script>
+//            $(document).ready(function(){
+               
+                videoGlim();
+//            });
+        </script>
+    @endif
 @stop
 

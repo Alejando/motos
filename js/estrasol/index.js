@@ -1,15 +1,19 @@
 
 function videoGlim() {
     var $modal = $('#videoModal').modal("show").css('z-index','2002');
-    var $frame = $modal.find('iframe').attr('src', 'http://www.youtube.com/embed/loFtozxZG0s?autoplay=1');
-    $modal.find('button.close').click(function () {
-            $frame.attr('src', "");
+    var $frame = $modal.find('iframe').attr('src', "https://www.youtube.com/embed/ECqDJJVGWN4?rel=0&amp;controls=0&amp;showinfo=0&autoplay=1");
+    $modal.on('hidden.bs.modal', function () {
+        $frame.attr('src', "");
     });
 };
 
 
 
 $(document).ready(function () {
+    $('.banner-gg-video').click(function() {
+        videoGlim();
+    });
+    
     function get_products(pag) {
         if(stopGetProducts){
             return;
@@ -70,20 +74,7 @@ $(document).ready(function () {
         
         $('.fancy-login').fadeOut(500);
     });
-    //return;
-    //Llamada de productos destacados
-    /*
-    $.get("ajax_call/ws_destacados.php", function (data, status) {
-        html = data;
-        //Data será un JSON con los datos de los productos destacados
-        if (status == "success") {
-            $('#destacados .container .row').html(html);
-            //$('#destacados').html('<p>No se encontraron proudctos destacados</p>');
-        } else {
-            $('#destacados .container .row').html('<p>Hubo un error en la obtención de datos</p>');
-        }
-    });
-*/
+
     var page = 1;
     var stopGetProducts = false;
     

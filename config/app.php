@@ -10,7 +10,7 @@ return [
         'yt'=>'https://www.youtube.com/channel/UCfYKCSrjk0c2kZXYpvBAG_A',
     ],
     'diaPreventa'=>2,
-    'iva'=>1.16,
+    'iva' =>1.16,
     'img-sizes' => [
         'fancy-box-thumbailn' => [
             'width' => 224,
@@ -23,6 +23,10 @@ return [
         'fancy-box-zoom' => [
             'width' => 224*4.5,
             'height'=> 250*4.5
+        ],
+        'zoom' => [
+            'width' => 2500,
+            'height' => false
         ],
        'slider-upcoming' => [
            'width' => 980,

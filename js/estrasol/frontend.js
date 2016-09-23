@@ -30,7 +30,6 @@ $(document).ready(function () {
             $container.scrollLeft((numItems-1)*104);
             numGal = numItems;
         }
-        console.log(numGal);
         $('.frame-gallery.gal-' + numGal).addClass('active');
         changeGalImg($('.frame-gallery.active'));
     });
@@ -41,8 +40,19 @@ $(document).ready(function () {
 
         $('.frame-gallery.active').removeClass('active');
         $element.addClass('active');
-
-        changeGalImg($element);
+        
+        var img = $element.data('zoom-image').split("/");
+        img = img[img.length-1];
+        if(estrasol.utils.isMobile()){            
+            var url = laroute.route('zoom-mobile',{
+                'code': $element.closest('.product').data('code'),
+                'img' : img
+            });
+            window.open(url, '_blank');
+        } else {
+            changeGalImg($element);
+        }
+        
     });
     var zoomConfig = {
         responsive: true,
@@ -58,6 +68,7 @@ $(document).ready(function () {
         easing: true,
         zIndex: 20005
     };
+//    alert(estrasol.utils.isMobile);
     function changeGalImg($element) {
         var zoomImage = $('#fancy-zoom');
 
@@ -94,6 +105,11 @@ $(document).ready(function () {
                             window.open(this.href,'_self');
                         }
                     });
+                    if(estrasol.utils.isMobile()){
+                        $html.find('.fancy-fallery-container').css("width",'auto');
+                    } else {
+                        $html.find('#img-principal').show();
+                    }
                 });
             }
 
@@ -246,7 +262,7 @@ $(document).ready(function () {
             var minutes = Math.floor(diff / 60);
             var hours = Math.floor(minutes / 60);
             var days = Math.floor(hours / 24);
-            console.log(days);
+//            console.log(days);
             minutes %= 60;
             hours %= 24;
 

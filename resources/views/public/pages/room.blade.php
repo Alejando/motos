@@ -158,7 +158,8 @@
                                     <small>Puedes ofertar en</small><br><span ng-show="minutes > 0">@{{minutes}} min,</span> @{{seconds}} seg
                                 </timer>
                         </div>
-                        <div class="btn-w" ng-click="placeBid()" ng-show="nextBid <= now && !unqualified && totalBids+totalFaults < objAuction.bids">Ofertar</div>
+                        <div class="btn-w" ng-click="placeBid()" ng-show="(!placingBid) && nextBid <= now && !unqualified && totalBids+totalFaults < objAuction.bids">Ofertar</div>
+                        <div class="btn-w" ng-show="placingBid">Ofertando</div>
                         <div ng-show="totalBids+totalFaults >= objAuction.bids">Has agotado tus ofertas disponibles</div>
                         <div class="col-sm-6 col-sm-offset-3 ofertas-restantes" ng-show="unqualified">
                             Has sido descalificado <br>
@@ -296,8 +297,9 @@
     @if(isset($insertLeadFB) && $insertLeadFB == true)
     // Lead
     // Track when a user expresses interest in your offering (ex. form submission, sign up for trial, landing on pricing page)
-    fbq('track', 'Lead');
-    console.log('Se incluyo lead');
+        fbq('track', 'Lead');
+        console.log("fbq");
+        console.log('Se incluyo lead');
     @else
         console.log('No hay lead');
     @endif

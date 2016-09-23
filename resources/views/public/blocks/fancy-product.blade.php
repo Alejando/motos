@@ -50,7 +50,7 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
     <script>
         var numItems = {{$numItems}} - 1;
     </script>
-    <div class="">
+    <div class="product" data-code="{{$auction->code}}">
         <div class="col-sm-6 col-sm-push-6 col-md-7 col-md-push-5 text-center close-fancy">
             <div class="descripcion-fancy">
                 <div class="fancybox-close text-right">
@@ -71,11 +71,17 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                 </div>
                 <div style="padding: 10px">Inicia el <b>{{$fechaInicio->setTimezone($timezoneMX)->format('d/m/Y')}}</b> a las <b>{{$fechaInicio->format('H:i')}}</b></div>
                 @if($auction->isBuyable())
-                <div class="producto-boton-entrar">
-                    <a class="link-subasta transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->code])}}">
-                        <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
-                    </a>
-                </div>
+                    @if($auction->code=='SUB010')
+                        <div>
+                            <img src='{{asset("img/sala_llena.png")}}'>
+                        </div>
+                    @else
+                        <div class="producto-boton-entrar">
+                            <a class="link-subasta transition-0-3" href="{{route('auction.enrollment-form', ['auction' => $auction->code])}}">
+                                <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Entrar</span>
+                            </a>
+                        </div>
+                    @endif
                 @elseif( $auction->isStarted() || $auction->isFinished() )
                 <span class="leyenda-no-disponible">Esta preventa ya no esta disponible</span>
                 @else
@@ -107,7 +113,7 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                         <span class="{{$auction->isPreSaleDay() ? 'oferta':''}}">{{Currency::format($auction->cover, config('app.currency'))}}</span>
                     </span>
                 </div>
-                <div id="img-principal" class="producto-fancy-img">
+                <div id="img-principal" class="producto-fancy-img" style="display: none">
                     <div class="fancy-gallery-control control-left"><i class="fa fa-angle-left fa-3x" aria-hidden="true"></i></div>
                     <div class="fancy-gallery-control control-right"><i class="fa fa-angle-right fa-3x" aria-hidden="true"></i></div>
                     <img id="fancy-zoom" class="zoom_mw" src="{{$imgs['fancy-box-thumbailn'][0]}}" data-zoom-image="{{$imgs['fancy-box-zoom'][0]}}" alt="{{$auction->title}}" title="{{$auction->title}}">
@@ -165,5 +171,5 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
         var strTitle = ((typeof this.attr('title') !== 'undefined') ? this.attr('title') : 'GlimGlam subastas online'),
             strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,            
             objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
-    }
+    }    
 </script>

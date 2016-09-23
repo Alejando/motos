@@ -36,12 +36,16 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                 self[attr] = data[attr];
             });
         },
-        selfUpdate : function (milisecons, $scope) {
+        selfUpdate : function (milisecons, $scope, callback) {
             
             var self = this;
             $interval(function() {
                 console.log("Inicia --- re", milisecons);
-                self.refresh();
+                self.refresh().then(function(){
+                    if(callback){
+                        callback.apply(self);
+                    }
+                });
             },milisecons);            
         },
         refresh : function () {
@@ -56,10 +60,11 @@ glimglam.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                 'url' : url
             }).then(function(result) {
                 self.setProperties(result.data);
+                $defer.resolve(result.data);
             }, function(r) {                
                 $defer.reject(r);
             });
-            return $defer;
+            return $defer.promise;
         },
         getProperties : function () {
             var self = this;

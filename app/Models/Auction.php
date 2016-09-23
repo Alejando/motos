@@ -20,7 +20,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_SLIDER_UPCOMING = "slider-upcoming"; 
     const COVER_NOW = "now";
     protected $hidden = ['created_at', 'updated_at'];
-    // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
+    // <editor-fold defaultstate="collapsed" desc="methods">
+        // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
     public function getMaxPriceAttribute(){
         $round = 500;
         $maxPrice = $this->attributes['max_price'];
@@ -30,8 +31,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $intdiv*$round;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="sendEmailEnrolment">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="sendEmailEnrolment">
     public function sendEmailEnrolment($user, $payment) {
         $args['user'] = $user;
         $args['payment'] = $payment;
@@ -40,23 +41,23 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         \GlimGlam\Libs\Helpers\Mail::payment($args);
         return $this;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="isStarted">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="isStarted">
     public function isStarted(){
         return  $this->status == self::STATUS_STARTED;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="isFinished">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="isFinished">
     public function isFinished() {
         return $this->status == self::STATUS_FINISHED;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="isStandBy">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="isStandBy">
     public function isStandBy() {
         return $this->status == self::STATUS_STAND_BY;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="isBuyable">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="isBuyable">
     public function isBuyable() {
         $utcMx = new \DateTimeZone("America/Mexico_City");
         $now = new \DateTime(null, $utcMx);
@@ -72,90 +73,41 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $cupo = $this->total_enrollments<$this->users_limit;
         return $inTime && $afterPreSale && $cupo;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="isEnrolled">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="isEnrolled">
     public function isEnrolled ($user){
         $enrol = Enrollment::where('user', '=', $user->id)
                 ->where('auction', '=', $this->id)
                 ->get()->count();
         return $enrol > 0;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getBuyables">
-    public static function getBuyables($user, $returnQuery = false){
-        $timeLimit = new \DateTime;
-        $timeLimit->add(new \DateInterval('PT1H'));
-        $idAcutionsErrolmented = $user->enrolmensAuntionsIds();
-        $auctions = self::whereNotIn('id', $idAcutionsErrolmented)
-                ->where('ready','=', self::READY)
-                ->where('status','=', self::STATUS_STAND_BY)
-                ->where('start_date', '>', $timeLimit)
-                ->orderBy('start_date', 'asc');
-        return $returnQuery ? $auctions : $auctions->get();
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getTotalEnrollments">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getTotalEnrollments">
     public function getTotalEnrolments(){
         return Enrollment::where('auction','=', $this->id)->get()->count();
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getTotalBids">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getTotalBids">
     public function getTotalBids() {
         return rand(20, 50);
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getOfferType">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getOfferType">
     public function getOfferType() {
         return 'oferta-verde';
-//        return ['oferta-verde','oferta-naranja','oferta-rojo'][rand(0, 2)];
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getStartDateAttribute">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getStartDateAttribute">
     public function getStartDateAttribute() {
         return $this->datetimeFormat('start_date');
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getEndDateAttribute">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getEndDateAttribute">
     public function getEndDateAttribute(){
         return $this->datetimeFormat('end_date');
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getStarted">
-    public static function getStarted( ) {
-        return self::where('ready',"=",1)
-            ->where('status','=', self::STATUS_STARTED);
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getFinished">
-    public static function getFinished() {
-        return self::where('status', '=', self::STATUS_FINISHED)
-            ->where('ready','=', self::READY)
-            ->orderBy('start_date','desc');
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getUpcoming">
-    public static function getUpcoming() {
-        $now = new \DateTime(); 
-        /* @var $query \Illuminate\Database\Eloquent\Builder */
-        $query = Auction::where('start_date', '>', $now)
-            ->where('status', '=', self::STATUS_STAND_BY)
-            ->where('ready', '=', self::READY)
-            ->orderBy('start_date','asc');
-        return $query;
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="generateThumbnail">
-    public static function generateThumbnail($code,$version) {
-        return self::getThumbnailByCode($code, $version, false);
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getAuctionFilesPath">
-    private static function getAuctionFilesPath ($code) {
-        $path = public_path()."/upload/auctions/$code/";
-        return $path;
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
     public function getCoverAttribute($witRound = true) {
         if( $this->isPreSaleDay()){
             if($witRound){
@@ -168,8 +120,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $this->attributes['cover'];
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="isPreventDay">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="isPreventDay">
     public function isPreSaleDay(){
         $utcMx = new \DateTimeZone("America/Mexico_City");
         $now = new \DateTime(null, $utcMx);
@@ -179,24 +131,24 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $endPresaleDay->setTime(23, 59, 59);
         return ($now<$endPresaleDay) && ($now>$presaleDay);
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getPreSaleDate">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getPreSaleDate">
     public function getPreSaleDate($timeZone){
         $start_date = new \DateTime($this->start_date);
         $start_date->setTimezone($timeZone);
         $thuBefore = date("Y-m-d 00:00", strtotime("last ".Config('app.presaleday'), $start_date->getTimestamp()));
         return new \DateTime($thuBefore, $timeZone);
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getOriginalCover">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getOriginalCover">
     public function getOriginalCover($withRound = true) {
         if($withRound){
             return ceil($this->attributes['cover']);
         }
         return $this->attributes['cover'];
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getCovers">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getCovers">
     public function getCovers(){
         return [
             'horizotal' => $this->getUrlCover(self::COVER_HORIZONTAL),
@@ -204,13 +156,178 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'slider-upcoming' => $this->getUrlCover(self::COVER_SLIDER_UPCOMING)
         ];
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getUrlCover">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getUrlCover">
     public function getUrlCover($version){
         return route('auction.getCover',['code'=>$this->code,'version'=>$version]);
     }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getUrlImg">
+    public function getUrlImg($versions = ["fancy-box-small","fancy-box-thumbailn","fancy-box-zoom"]) {
+        $imgs = $this->getPhotos($this->code);
+        $rImgs = [];
+        foreach($versions as $version){
+            $rImgs[$version] = [];
+            foreach($imgs as $img){
+                $rImgs[$version][] = route('auction.getImg',[
+                    'version' => $version,
+                    'code' => $this->code,
+                    'photos' => $img
+                ]);
+            }
+        }
+        return $rImgs;
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getWin">
+    public function getWin() {
+        $winner  = $this->winner;
+        return User::getById($winner);
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="sendEmailWinner">
+    public function sendEmailWinner($user) {
+        $args = [
+            'user' => $user,
+            'auction' => $this
+        ];
+        \GlimGlam\Libs\Helpers\Mail::ConfirmYouWin($args);
+        return $this;
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="close">
+    public function close($check = false) {
+        $close = true;
+        if($check) {
+            $now = new \DateTime();
+            $end_date = $this->getEndDateDateTime();
+            $close = $now >= $end_date;
+        }
+        if($close) {
+            $this->status = self::STATUS_FINISHED;
+            $this->save();   
+            $this->auctionsMailWinner();
+        }
+        return $this;
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getInfoBid">
+    public function getInfoBid($id_user){
+        $enrollments = Enrollment::getEnrollments($id_user, $this->id);
+        if($enrollments->count()){
+            $enrollment = $enrollments->get(0);
+        }
+        
+        $c = Bid::where('user','=', $id_user)
+             ->where('auction','=', $this->id)
+            ->orderBy('bid_at','desc');
+        $res = $c->get();
+        $total  = $enrollment->totalbids;
+        $bid = $res->get(0);
+        $now=(new \DateTime());
+        if( ($nextPenalty = $enrollment->getNextPenaltyDateTime() ) == null ){
+            $nextPenalty = clone $now;
+            $nextPenalty->add(new \DateInterval('PT'.$this->max_user_quiet.'M'));
+            $enrollment->next_penalty = $nextPenalty;
+            $enrollment->save();
+        }
+        
+        if($total) {
+            $enrollment = Enrollment::getById($bid->enrollment);
+            $nextbid = $bid->bid_at;
+            $nextbid = new \DateTime($nextbid);
+            $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
+            $nextPenalty = $enrollment->getNextPenaltyDateTime();
+            return [
+                'nextPenalty' => Carbon::instance($nextPenalty)->toW3cString(),
+                'unqualified'=> $enrollment->unqualified,
+                'faults' => $enrollment->faults,
+                'totalbids' => $total,
+                'nextbid' => Carbon::instance($nextbid)->toW3cString(),
+                'now' => Carbon::now()->toW3cString()
+            ];
+        }
+        
+        return [
+            'nextPenalty' => Carbon::instance($nextPenalty)->toW3cString(),
+            'unqualified'=> $enrollment->unqualified,
+            'faults' => $enrollment->faults,
+            'nextbid' => Carbon::instance($now)->toW3cString(),
+            'totalbids' => $enrollment->totalbids, 
+            'now' => Carbon::now()->toW3cString()
+        ];
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getEnrollment">
+    public function getEnrollment($user_id, $auction){
+        return Enrollment::getEnrollments($user_id, $auction)->get(0);
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getStartDateDateTime">
+    /**
+        * 
+        * @return \DateTime
+        */
+    public function getStartDateDateTime() {
+        return new \DateTime($this->start_date);
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getEndDateDateTime">
+    public function getEndDateDateTime() {
+        return new \DateTime($this->attributes['end_date']);
+    }
+        // </editor-fold>
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getThumbnailByCode">
+    // <editor-fold defaultstate="collapsed" desc="statics methhods">
+        // <editor-fold defaultstate="collapsed" desc="getBuyables">
+    public static function getBuyables($user, $returnQuery = false){
+        $timeLimit = new \DateTime;
+        $timeLimit->add(new \DateInterval('PT1H'));
+        $idAcutionsErrolmented = $user->enrolmensAuntionsIds();
+        $auctions = self::whereNotIn('id', $idAcutionsErrolmented)
+                ->where('ready','=', self::READY)
+                ->where('status','=', self::STATUS_STAND_BY)
+                ->where('start_date', '>', $timeLimit)
+                ->orderBy('start_date', 'asc');
+        return $returnQuery ? $auctions : $auctions->get();
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getStarted">
+    public static function getStarted( ) {
+        return self::where('ready',"=",1)
+            ->where('status','=', self::STATUS_STARTED);
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getFinished">
+    public static function getFinished() {
+        return self::where('status', '=', self::STATUS_FINISHED)
+            ->where('ready','=', self::READY)
+            ->orderBy('start_date','desc');
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getUpcoming">
+    public static function getUpcoming() {
+        $now = new \DateTime(); 
+        /* @var $query \Illuminate\Database\Eloquent\Builder */
+        $query = Auction::where('start_date', '>', $now)
+            ->where('status', '=', self::STATUS_STAND_BY)
+            ->where('ready', '=', self::READY)
+            ->orderBy('start_date','asc');
+        return $query;
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="generateThumbnail">
+    public static function generateThumbnail($code,$version) {
+        return self::getThumbnailByCode($code, $version, false);
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getAuctionFilesPath">
+    private static function getAuctionFilesPath ($code) {
+        $path = public_path()."/upload/auctions/$code/";
+        return $path;
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getThumbnailByCode">
     public static function getThumbnailByCode($code, $version, $returnData = true) {
         $data = false;
         $type = "png";
@@ -307,8 +424,13 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $result;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getByCode">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getByCode">
+    /**
+        * 
+        * @param type $code
+        * @return \GlimGlam\Models\Auction
+        */
     public static function getByCode($code) {
         $auctions = self::where('code',$code)->get();
         if(count($auctions)) {
@@ -316,8 +438,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return null;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getPhotos">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getPhotos">
     public static function getPhotos($code) {
         $path = public_path()."/upload/auctions/$code/";
         if(!file_exists($path)){
@@ -334,36 +456,48 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $photos;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="resizeImg">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="resizeImg">
     private static function resizeImg($source, $width, $height, $pathCache, $returnData) {
         $img = new \Imagine\Gd\Imagine();
-        $size = new \Imagine\Image\Box($width, $height);
-        $mode = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
-        $reziceImg = $img->open($source)->thumbnail($size, $mode);
-        $sizeR = $reziceImg->getSize();
-        $widthR = $sizeR->getWidth();
-        $heightR = $sizeR->getHeight();
-        $type =  pathinfo($source)['extension'];
-        if($type==='png'){
-            $palete = new \Imagine\Image\Palette\RGB();
-            $color = $palete->color('#000',0);
-            $out = $img->create($size, $color);
-        } else {
-            $out = $img->create($size);
+        if($width && $height){
+            $size = new \Imagine\Image\Box($width, $height);
+            $mode = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
+            $reziceImg = $img->open($source)->thumbnail($size, $mode);
+            $sizeR = $reziceImg->getSize();
+            $widthR = $sizeR->getWidth();
+            $heightR = $sizeR->getHeight();
+            $type =  pathinfo($source)['extension'];
+            if($type==='png'){
+                $palete = new \Imagine\Image\Palette\RGB();
+                $color = $palete->color('#000',0);
+                $out = $img->create($size, $color);
+            } else {
+                $out = $img->create($size);
+            }
+            $startX = $startY = 0;
+            if($widthR<$width){
+                $startX = ($width - $widthR)/2;
+            }
+            if($heightR <$height ){
+                $startY = ($height - $heightR) / 2;
+            }
+            $out->paste($reziceImg, new \Imagine\Image\Point($startX, $startY));
+            return $out->get($type);
+        } else if($width){
+           
+            $i = $img->open($source);
+            $size = $i->getSize();
+            $height = $size->getHeight() / $size->getWidth() * $width;
+            $box = new \Imagine\Image\Box($width,$height);
+            $i->resize($box)->show('jpg');
+        } else if($height){
+            die("heigth");
         }
-        $startX = $startY = 0;
-        if($widthR<$width){
-            $startX = ($width - $widthR)/2;
-        }
-        if($heightR <$height ){
-            $startY = ($height - $heightR) / 2;
-        }
-        $out->paste($reziceImg, new \Imagine\Image\Point($startX, $startY));
-        return $out->get($type);
+        
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getMime">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getMime">
     private static function getMime ($source) {
         $type = pathinfo($source)['extension'];
         switch($type) {
@@ -372,8 +506,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         } 
         return false;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getSizeByVersion">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getSizeByVersion">
     private static function getSizeByVersion($version) {
         $sizes = config('app.img-sizes.'.$version);
         if(!$sizes) {
@@ -384,8 +518,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'height' => $sizes['height']
         ];
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getImg">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getImg">
     public static function getImg($code, $version, $photo){
         //@Todo falta el manejo de cache
         $pathBase = self::getAuctionFilesPath($code);
@@ -397,41 +531,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $data = self::resizeImg($source, $v['width'], $v['height'], $version, false, true);
         return (new \Illuminate\Http\Response($data))->header('Content-type', self::getMime($source));
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getUrlImg">
-    public function getUrlImg($versions = ["fancy-box-small","fancy-box-thumbailn","fancy-box-zoom"]) {
-        $imgs = $this->getPhotos($this->code);
-        $rImgs = [];
-        foreach($versions as $version){
-            $rImgs[$version] = [];
-            foreach($imgs as $img){
-                $rImgs[$version][] = route('auction.getImg',[
-                    'version' => $version,
-                    'code' => $this->code,
-                    'photos' => $img
-                ]);
-            }
-        }
-        return $rImgs;
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getWin">
-    public function getWin() {
-        $winner  = $this->winner;
-        return User::getById($winner);
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="sendEmailWinner">
-    public function sendEmailWinner($user) {
-        $args = [
-            'user' => $user,
-            'auction' => $this
-        ];
-        \GlimGlam\Libs\Helpers\Mail::ConfirmYouWin($args);
-        return $this;
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="startAuctions">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="startAuctions">
     public static function startAuctions(){ 
         
         $auctions = self::where('status','=',self::STATUS_STAND_BY)
@@ -440,21 +541,20 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 ->update(['status'=>self::STATUS_STARTED]);
         return $auctions;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="closeAuctions">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="closeAuctions">
     public static function closeAuctions(){
         $auctions = self::where('status','=',self::STATUS_STARTED)
                 ->where('end_date','<', new \DateTime)->get();
         $auctionsToCheck = [];
-       foreach($auctions as $auction) {
-           $auctionsToCheck[] = $auction;
-           $auction->close();
-       }
-       auctionsMailWinner($auctionsToCheck);
+        foreach($auctions as $auction) {
+            $auctionsToCheck[] = $auction;
+            $auction->close();
+        }
         return $auctions;
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getRelated">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getRelated">
     public static function getRelated($code, $returnQuery = false){
         //Se obtendran 4 productos relacionados a partir del codigo de producto
         $query = \GlimGlam\Models\Auction::getRandom(4, true);
@@ -464,131 +564,64 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         }
         return $query->get();
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="placeBid">
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="placeBid">
     public static function placeBid($user_id, $code, $bid) {
         $user = User::getById($user_id);
         $auction = self::getByCode($code);
         $enrollment = $auction->getEnrollment($user_id,$auction->id);
-        //dd($enrollment);
         if(!$enrollment){
             throw new Exception("No se encontro el enrrollment");
         }
-        $close = false;
-        $auction->last_offer += $bid;
-        $auction->num_bids++;
-        $auction->sold_for = $auction->last_offer;
-        $auction->winner = $user_id;
-        $auction->winnername = $user->getPublicName();
-        if($auction->last_offer > $auction->max_price){
-           $auction->last_offer = $auction->max_price; 
-           $close = true;
-        }
-        $now = new \DateTime();
-        $next_penalty = false;
-        if($enrollment->next_penalty == "0000-00-00 00:00:00" || $now <= $enrollment->getNextPenaltyDateTime()){
-            $next_penalty = clone $now;
-            $next_penalty->add(new \DateInterval('PT'.$auction->max_user_quiet.'M'));
-        }
-        
-        \GlimGlam\Models\Bid::create([ 
-            'offer' => $auction->last_offer, 
-            'user' => $user_id,
-            'auction'=>$auction->id,
-            'enrollment'=>$enrollment->id,
-            'bid_at' => $now
-        ]);
-        $enrollment->bids++;
-        $enrollment->totalbids++;
-        $enrollment->last_bid_date = $now;
-        $enrollment->last_fault_date_aux = $now;
-        if($next_penalty){
-            $enrollment->next_penalty = $next_penalty;
-        }
-        $enrollment->save();
-        $auction->save();
-        if($close) {
-            $auction->close();
-        }
-        return true;
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="sendMailWinner">
-    public function auctionsMailWinner($auctions){
-        foreach($auctions as $auction) {
-           if( $user = $auction->getWin() ) {
-                $auction->sendEmailWinner($user);
+        $auction->close(true);//intentar cerrar
+        if($auction->isStarted()) {
+            $close = false;
+            $auction->last_offer += $bid;
+            $auction->num_bids++;
+            $auction->sold_for = $auction->last_offer;
+            $auction->winner = $user_id;
+            $auction->winnername = $user->getPublicName();
+            if($auction->last_offer > $auction->max_price){
+               $auction->last_offer = $auction->max_price; 
+               $close = true;
             }
-       }
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="close">
-    public function close() {
-        $this->status = self::STATUS_FINISHED;
-        $this->save();
-        return $this;
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getInfoBid">
-    public function getInfoBid($id_user){
-        $enrollments = Enrollment::getEnrollments($id_user, $this->id);
-        if($enrollments->count()){
-            $enrollment = $enrollments->get(0);
-        }
-        
-        $c = Bid::where('user','=', $id_user)
-             ->where('auction','=', $this->id)
-            ->orderBy('bid_at','desc');
-        $res = $c->get();
-        $total  = $enrollment->totalbids;
-        $bid = $res->get(0);
-        $now=(new \DateTime());
-        if( ($nextPenalty = $enrollment->getNextPenaltyDateTime() ) == null ){
-            $nextPenalty = clone $now;
-            $nextPenalty->add(new \DateInterval('PT'.$this->max_user_quiet.'M'));
-            $enrollment->next_penalty = $nextPenalty;
+            $now = new \DateTime();
+            $next_penalty = false;
+            if($enrollment->next_penalty == "0000-00-00 00:00:00" || $now <= $enrollment->getNextPenaltyDateTime()){
+                $next_penalty = clone $now;
+                $next_penalty->add(new \DateInterval('PT'.$auction->max_user_quiet.'M'));
+            }
+            \GlimGlam\Models\Bid::create([ 
+                'offer' => $auction->last_offer, 
+                'user' => $user_id,
+                'auction'=>$auction->id,
+                'enrollment'=>$enrollment->id,
+                'bid_at' => $now
+            ]);
+            $enrollment->bids++;
+            $enrollment->totalbids++;
+            $enrollment->last_bid_date = $now;
+            $enrollment->last_fault_date_aux = $now;
+            if($next_penalty){
+                $enrollment->next_penalty = $next_penalty;
+            }
             $enrollment->save();
+            $auction->save();
+            if($close) {
+                $auction->close();
+            }
+            return true;
+        } else if($auction->isFinished()) {
+            throw new Exception("Lo sentimos la subasta ha terminado y tu ultima oferta no se pudo realizar.");
         }
-        
-        if($total) {
-            $enrollment = Enrollment::getById($bid->enrollment);
-            $nextbid = $bid->bid_at;
-            $nextbid = new \DateTime($nextbid);
-            $nextbid->add(new \DateInterval('PT'.$this->delay.'S'));
-            $nextPenalty = $enrollment->getNextPenaltyDateTime();
-            return [
-                'nextPenalty' => Carbon::instance($nextPenalty)->toW3cString(),
-                'unqualified'=> $enrollment->unqualified,
-                'faults' => $enrollment->faults,
-                'totalbids' => $total,
-                'nextbid' => Carbon::instance($nextbid)->toW3cString(),
-                'now' => Carbon::now()->toW3cString()
-            ];
+    }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="sendMailWinner">
+    public function auctionsMailWinner() {
+        if( ($user = $this->getWin()) ) {
+            $this->sendEmailWinner($user);
         }
-        
-        return [
-            'nextPenalty' => Carbon::instance($nextPenalty)->toW3cString(),
-            'unqualified'=> $enrollment->unqualified,
-            'faults' => $enrollment->faults,
-            'nextbid' => Carbon::instance($now)->toW3cString(),
-            'totalbids' => $enrollment->totalbids, 
-            'now' => Carbon::now()->toW3cString()
-        ];
     }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="getEnrollment">
-    public function getEnrollment($user_id, $auction){
-        return Enrollment::getEnrollments($user_id, $auction)->get(0);
-    }
-    // </editor-fold>
-    
-    /**
-     * 
-     * @return \DateTime
-     */
-    // <editor-fold defaultstate="collapsed" desc="getStartDateDateTime">
-    public function getStartDateDateTime() {
-        return new \DateTime($this->start_date);
-    }
+        // </editor-fold>
     // </editor-fold>
 }

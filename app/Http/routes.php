@@ -15,7 +15,12 @@ Route::auth();
 Route::get('/holamundo',function(){
     return view("holamundo");
 });
-
+Route::get('/zoom-mobile/{code}/{img}', [
+    'as' => 'zoom-mobile',
+    'uses' => function($code,$img) {
+        return view("public.zoom-mobile",['code'=>$code, 'img' => $img]);
+    }
+]);
 
 Route::get('/',"Home@index");
 Route::get('/admin',"AdminController@index");
@@ -208,7 +213,7 @@ Route::group(['prefix' => 'api'], function () use (&$route){
         'uses' => 'Api\\AuctionController@getImg',
         'as' => 'auction.getImg'
     ])->where([
-        'version' => "(?:fancy-box-small|fancy-box-zoom|fancy-box-thumbailn|slider-upcoming)"
+        'version' => "(?:fancy-box-small|fancy-box-zoom|fancy-box-thumbailn|slider-upcoming|zoom)"
     ]);
     
 });
