@@ -20,6 +20,3 @@
         <![endif]-->
 
         <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
-        <link href="{{asset('js/bower_components/angular-datatables/dist/css/angular-datatables.min.css')}}" rel="stylesheet" type="text/css"/>
-        <link href="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
-        

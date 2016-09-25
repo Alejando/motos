@@ -19,7 +19,7 @@
             </div>
 
             <div class="row margentop20">
-                <div class="col-md-4">
+                <div class="col-sm-4">
                     <h3 class="subtitulo">Elige tu método de pago:</h3>
                     <div class="panel-group margentop20 widthlimit" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
@@ -65,72 +65,72 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-5">
                     <h3 class="subtitulo2">Resúmen de Compra</h3>
                     <div class="cajaresumen margentop20">
                         <div class="contenidoresumen">
                             <div class="row nproducto">
-                                <div class="col-md-8">
+                                <div class="col-xs-8">
                                     <h4 class="nproductoh4">
                                         Zapatos Verdes Bonitos
                                         <span>x 4</span>
                                     </h4>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-xs-4">
                                     <h5 class="nproductoh5">$000.00</h5>    
                                 </div>
                             </div>
                             <div class="row nproducto">
-                                <div class="col-md-8">
+                                <div class="col-xs-8">
                                     <h4 class="nproductoh4">
                                         Zapatos Verdes Bonitos
                                         <span>x 4</span>
                                     </h4>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-xs-4">
                                     <h5 class="nproductoh5">$000.00</h5>    
                                 </div>
                             </div>
                             <div class="row nproducto">
-                                <div class="col-md-8">
+                                <div class="col-xs-8">
                                     <h4 class="nproductoh4">
                                         Zapatos Verdes Bonitos
                                         <span>x 4</span>
                                     </h4>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-xs-4">
                                     <h5 class="nproductoh5">$000.00</h5>    
                                 </div>
                             </div>
 
                             <div class="row cajon">
-                                <div class="col-md-6">
+                                <div class="col-xs-6">
                                     Descuento cupón:
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-xs-6">
                                     $45.32 MXP
                                 </div>
                             </div>
                             <div class="row cajon">
-                                <div class="col-md-6">
+                                <div class="col-xs-6">
                                     Subtotal:
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-xs-6">
                                     $57.00 MXP
                                 </div>
                             </div>
                             <div class="row cajon">
-                                <div class="col-md-6">
+                                <div class="col-xs-6">
                                     Paquetería:
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-xs-6">
                                     $99.00 MXP
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-3">
                     <h2 class="checktotal margentop50">
                         <span>Total:</span> <span>$456.45</span>
                     </h2>

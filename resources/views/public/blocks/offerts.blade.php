@@ -1,6 +1,7 @@
 <section class="offerts">
+    <div id="owl-offerts" class="owl-carousel owl-theme">
     @for($i=0;$i<3;$i++)
-        <div class="col-md-4">
+        <div class="item">
             <div class="producto">
                 <div class="productohover">
                     <div class="productotable">
@@ -18,6 +19,7 @@
             </div>
         </div>
     @endfor
+    </div>
     <div style="clear: both"></div>
     <div class="subtitle">
         LIFESTYLE

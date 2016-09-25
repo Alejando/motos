@@ -1,22 +1,22 @@
-@charset "UTF-8";
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 31/07/2016, 08:03:14 PM
-    Author     : JFcoDíaz <jfcodiaz at gmail.com>
-*/
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 31/07/2016, 08:03:14 PM
-    Author     : JFcoDíaz <jfcodiaz at gmail.com>
-*/
+.sprite {
+  display: inline-block; }
+
+.enlarged .icon-c-logo:before {
+  content: "" !important;
+  background: url("sprites.png");
+  display: inline-block;
+  width: 44px;
+  height: 58px;
+  background-position: -10px -581px;
+  zoom: 0.5;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0; }
+
+.logo .sprite.logo-bounce-2 {
+  zoom: 0.5;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0; }
+
 .sprite {
   background: url("sprites.png") top left no-repeat; }
 
@@ -169,238 +169,5 @@ and open the template in the editor.
   width: 37px;
   height: 36px;
   background-position: -172px -838px; }
-
-@media only screen and (min-width: 1000px) {
-  .main-conteiner {
-    width: 1000px;
-    margin: 0 auto; }
-  body {
-    background-color: #ececec !important; } }
-
-body {
-  background-color: white; }
-
-.input-border {
-  font-family: 'Open Sans Condensed' !important;
-  outline: none;
-  border-radius: 5px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #f4f4f4;
-  /*padding: 0px;*/
-  box-shadow: inset 1px 2px 15px -5px rgba(0, 0, 0, 0.56);
-  min-height: 43px;
-  min-width: 297px;
-  padding: 0px 7px;
-  font-size: 18px; }
-
-.menu.categorias a {
-  text-decoration: none;
-  font-size: 20px;
-  font-family: 'Open Sans Condensed' !important;
-  color: #002b53; }
-
-ul.menu {
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-  display: inline-block; }
-  ul.menu li {
-    padding-top: 0px;
-    padding-right: 10px;
-    display: inline-block; }
-
-.menu.categorias {
-  margin-top: 15px;
-  margin-left: 16px; }
-
-.search-form-2 {
-  display: inline-block;
-  float: right;
-  position: relative;
-  top: -12px; }
-  .search-form-2 button {
-    margin-top: 10px;
-    display: inline-block;
-    position: relative;
-    top: 10px; }
-  .search-form-2 input {
-    font-size: 20px;
-    height: 42px;
-    width: 195px; }
-
-.setpoint-public .div-main-content {
-  background-image: url(../img/bgbody.jpg);
-  background-size: 100% auto;
-  background-repeat: no-repeat; }
-  .setpoint-public .div-main-content .sub-menu-productos {
-    text-decoration: none;
-    font-size: 28px;
-    font-family: 'Open Sans Condensed' !important;
-    color: #2e4d6a;
-    padding: 15px; }
-  .setpoint-public .div-main-content .productos {
-    text-align: center;
-    position: relative; }
-    .setpoint-public .div-main-content .productos .producto {
-      position: relative;
-      display: inline-block;
-      width: 20%;
-      height: 322px;
-      border: 1px solid #eff5fa;
-      background-color: white;
-      margin: 20px;
-      border-radius: 10px; }
-      .setpoint-public .div-main-content .productos .producto .name {
-        font-family: 'Open Sans Condensed' !important;
-        font-size: 22px; }
-      .setpoint-public .div-main-content .productos .producto .prices {
-        font-family: 'Open Sans Condensed' !important;
-        font-size: 28px; }
-
-.setpoint-public footer .banner {
-  background: url(../img/bg-footer.jpg);
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  text-align: center;
-  /*background: red;*/
-  min-height: 375px; }
-  .setpoint-public footer .banner img {
-    width: 25%;
-    margin: 10px; }
-  .setpoint-public footer .banner div {
-    font-family: 'Open Sans Condensed' !important;
-    font-size: 38px;
-    padding: 3ex;
-    color: white; }
-
-.setpoint-public footer .marcas ul {
-  padding-bottom: 10px;
-  width: 100%;
-  text-align: center;
-  background-color: white; }
-  .setpoint-public footer .marcas ul li {
-    /*background-color: red;*/
-    width: 15%; }
-
-.setpoint-public footer .social {
-  background-color: #002b53;
-  color: white;
-  font-family: 'Open Sans' !important;
-  font-size: 23px;
-  font-weight: 500px; }
-
-.setpoint-public footer .info a {
-  font-size: 20px;
-  color: white;
-  font-family: 'Open Sans Condensed' !important;
-  top: 10px;
-  position: relative; }
-
-.setpoint-public footer .info span.sprite {
-  position: relative;
-  top: 10px; }
-
-.setpoint-public footer .info a.sprite {
-  color: transparent;
-  position: relative;
-  /*top: 10px;*/ }
-
-.setpoint-public footer .info ul {
-  text-align: center;
-  width: 100%; }
-
-.setpoint-public footer .info a.aviso {
-  top: 20px; }
-
-.setpoint-public footer .info li {
-  height: 90px; }
-
-.setpoint-public footer .metodos-pago {
-  text-align: center;
-  background-color: white; }
-  .setpoint-public footer .metodos-pago ul {
-    width: 100%;
-    padding: 0;
-    margin: 0; }
-    .setpoint-public footer .metodos-pago ul li {
-      text-align: center;
-      width: 12%;
-      padding: 0;
-      margin: 0; }
-
-.setpoint-public footer .copyrigth {
-  background-color: white;
-  text-align: center;
-  color: black;
-  font-size: 12px;
-  padding: 20px; }
-
-.setpoint-public header.fontal {
-  background: url(../img/bg-top-1.jpg);
-  background-size: 100% auto;
-  border-bottom: #e1eaa3 2px solid; }
-
-.setpoint-public header .menu-top {
-  /*height: 90px;*/
-  border-bottom: #e1eaa3 1px solid; }
-
-.setpoint-public header nav.menu-right {
-  float: right; }
-
-.setpoint-public a.home-logo {
-  margin: 16px; }
-
-.setpoint-public section.offerts {
-  text-align: center;
-  margin: 0 20px 15px 20px; }
-  .setpoint-public section.offerts .promo {
-    margin-left: 70px;
-    display: inline-block;
-    background-color: white;
-    border-radius: 5px;
-    height: 240px;
-    width: 240px;
-    overflow: hidden;
-    display: inline-block;
-    text-align: center;
-    margin: 25px;
-    margin-bottom: 0px;
-    position: relative; }
-    .setpoint-public section.offerts .promo img {
-      margin-top: 10px;
-      width: 150px; }
-    .setpoint-public section.offerts .promo div.prices {
-      color: #4b4e51;
-      font-size: 38px;
-      font-family: 'Open Sans Condensed' !important; }
-    .setpoint-public section.offerts .promo .offert {
-      position: absolute;
-      top: -3px;
-      left: 150%;
-      margin-left: -186px;
-      color: white;
-      font-family: 'Open Sans' !important;
-      font-size: 21px;
-      padding-top: 10px; }
-
-.setpoint-public .subtitle {
-  font-family: 'Open Sans' !important;
-  font-size: 34px;
-  color: #2e4d6a;
-  font-weight: 600;
-  text-align: center;
-  margin: 10px; }
-
-a.sprite, li.sprite, button.sprite {
-  font-size: 0px;
-  color: transparent; }
-
-button.sprite {
-  border: 0;
-  cursor: pointer; }
-
-.sprite {
-  display: inline-block; }
 
 /*# sourceMappingURL=app.css.map */

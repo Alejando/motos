@@ -8,61 +8,67 @@
         <h2 class="subtitulo">Forma de Contacto</h2>
         <form id="formcontacto" class="margentop40">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-sm-5">
                             <label for="nombre">NOMBRE Y APELLIDO</label>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-sm-7">
                             <input type="text" name="nombre" id="nombre" data-required="1" data-tipo="txt" class="form-control" />
                         </div>
                     </div>
 
                     <div class="row margentop20">
-                        <div class="col-md-5">
+                        <div class="col-sm-5">
                             <label for="nombre">MOVIL</label>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-sm-7">
                             <input type="text" name="movil" id="movil" data-required="1" data-tipo="txt" class="form-control" />
                         </div>
                     </div>
 
                     <div class="row margentop20">
-                        <div class="col-md-5">
+                        <div class="col-sm-5">
                             <label for="nombre">CORREO ELECTRÓNICO</label>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-sm-7">
                             <input type="text" name="correo" id="correo" data-required="1" data-tipo="mail" class="form-control" />
                         </div>
                     </div>
 
                     <div class="row margentop20">
-                        <div class="col-md-5">
+                        <div class="col-sm-5">
                             <label for="nombre">MENSAJE</label>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-sm-7">
                             <textarea name="mensaje" id="mensaje" data-required="1" data-tipo="txt" class="form-control" cols="10" rows="6" /></textarea>
                         </div>
                     </div>
 
-                    <div class="row margentop20">
-                        <div class="col-md-7 col-md-offset-5">
+                    <div class="row margentop20 hidden-xs">
+                        <div class="col-sm-7 col-sm-offset-5">
                             <a href="" id="btnenviar" class="enviar">ENVIAR</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <label>¿CÓMO TE GUSTARÍA RECIBIR NUESTRA RESPUESTA?</label>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                             <div class="pull-right formaopc">
-                                <input type="radio" name="forma" checked="checked" /> <span>MOVIL</span>
+                                <label for="fmovil"><input type="radio" name="forma" id="fmovil" checked="checked" /> <span>MOVIL</span></label>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-xs-6">
                             <div class="pull-right formaopc">
-                                <input type="radio" name="forma" /> <span>CORREO ELECTRÓNICO</span>
+                                <label for="fcorreo"><input type="radio" name="forma" id="fcorreo" /> <span>CORREO <br class="visible-xs" />ELECTRÓNICO</span></label>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row margentop20 hidden-lg hidden-md hidden-sm">
+                        <div class="col-sm-7 col-sm-offset-5">
+                            <a href="" id="btnenviar" class="enviar">ENVIAR</a>
                         </div>
                     </div>
                 </div>

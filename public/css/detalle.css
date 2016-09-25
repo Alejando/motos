@@ -23,6 +23,7 @@
 .breadcrumbcustom span.separador {
 	display: inline-block;
 	padding: 0 2px 0 2px;
+	border: none;
 }
 
 .breadcrumbcustom span.current {
@@ -136,7 +137,9 @@
 
 .stalla {
 	display: inline-block;
-	width: 50%;
+	width: 50px;
+	padding: 6px 4px;
+	outline: none;
 }
 
 .botones {
@@ -197,6 +200,10 @@
 
 .colores>span:first-child {
 	margin: 0 0 0 0;
+}
+
+.colores span {
+	text-align: left !important;
 }
 
 .colores span span {
@@ -298,15 +305,21 @@ a.in {
 	text-decoration: none;
 }
 
+#owl-detalle .owl-controls {
+	bottom: -30px;
+}
+
 .btnvista {
-	display: inline-block;
+	display: block;
 	width: 91px;
 	height: 89px;
+	left: 0;
+	right: 0;
 	-webkit-border-radius: 8px 8px 8px 8px;
 	border-radius: 8px 8px 8px 8px;
 	overflow: hidden;
 	background-size: 134px 124px, cover;
-	margin: 0 0 0 15px;
+	margin: 0 auto 0 auto;
 }
 
 .cajatextura {
@@ -584,6 +597,7 @@ a.in {
 	margin: 0 15px 0 0;
 	padding: 10px;
 }
+
 .cuenta div.row {
 	margin: 0 0 4px 0;
 	padding: 4px;
@@ -843,6 +857,10 @@ form input {
 	color: #8DC63F;
 }
 
+#formcontacto {
+	padding: 0 0 30px 0;
+}
+
 #formcontacto label {
 	font-size: 14px;
 	font-weight: bold;
@@ -873,10 +891,15 @@ form input {
 	height: 200px;
 }
 
+.formaopc {
+	display: inline-block;
+}
+
 .formaopc input {
 	float: left;
 }
 
 .formaopc span {
 	float: left;
+	padding: 8px 0 0 10px;
 }

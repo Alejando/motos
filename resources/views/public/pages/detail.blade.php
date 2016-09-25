@@ -5,28 +5,30 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="cajaimagen">
                 <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
                 <span class="zoom"></span>
             </div>
             <div class="margentop30">
-                <a class="btnvista" style="background: url('{{ asset('img/template/productoejemplo.jpg') }}') center center;"></a>
-                <a class="btnvista" style="background: url('{{ asset('img/template/productoejemplo.jpg') }}') center center;"></a>
-                <a class="btnvista" style="background: url('{{ asset('img/template/productoejemplo.jpg') }}') center center;"></a>
-                <a class="btnvista" style="background: url('{{ asset('img/template/productoejemplo.jpg') }}') center center;"></a>
+                <div id="owl-detalle" class="owl-carousel owl-theme">
+                    <div class="item"><a class="btnvista" style="background: url('{{ asset('img/template/productoejemplo.jpg') }}') center center;"></a></div>
+                    <div class="item"><a class="btnvista" style="background: url('{{ asset('img/template/productoejemplo.jpg') }}') center center;"></a></div>
+                    <div class="item"><a class="btnvista" style="background: url('{{ asset('img/template/productoejemplo.jpg') }}') center center;"></a></div>
+                    <div class="item"><a class="btnvista" style="background: url('{{ asset('img/template/productoejemplo.jpg') }}') center center;"></a></div>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="cajadetalle">
                 <img src="{{ asset('img/template/wilson.png') }}" class="pull-right" />
                 <h2 class="titulo">ZAPATOS VERDES BONITOS</h2>
                 <div class="serie">Num. Serie 0215225</div>
                 <div class="row margentop50">
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <h3 class="precioazul">$000.00</h3>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-6">
                         <h3 class="precioamarillo">
                             $000.00
                             <div class="globo pabsoluto"><span>30%</span></div>
@@ -34,7 +36,7 @@
                     </div>
                 </div>
                 <div class="row margentop30">
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         <div class="cajacantidad">
                             <input type="text" name="cantidad" id="cantidad" value="1" />
                             <div class="botones">
@@ -46,7 +48,7 @@
                             <div><span>Cantidad</span></div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         <div class="etiqueta">
                             <div>
                                 <span>
@@ -74,14 +76,14 @@
                     <span class="naranja"><span></span></span>
                 </div>
                 <div class="row margentop30">
-                    <div class="col-md-4">
+                    <div class="col-sm-4">
                         <a href="./carrito" class="btncarrito">
                             <div>
                                 <span>Agregar</span>
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-sm-8">
                         <div class="btnredes">
                             <a href="" class="tw"></a>
                             <a href="" class="fb"></a>
@@ -99,69 +101,71 @@
 
     <div class="margentop30 cajatextura">
         <a class="btnlike"></a>
-        <div class="row margentop30">
-            <div class="col-md-3">
-                <div class="producto">
-                    <div class="productohover">
-                        <div class="productotable">
-                            <div>
-                                <a href="" class="btnk"></a>
-                                <h3>$000.00</h3>
-                                <a href="" class="btnc"></a>
+        <div class="margentop30">
+            <div id="owl-otros" class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="producto">
+                        <div class="productohover">
+                            <div class="productotable">
+                                <div>
+                                    <a href="" class="btnk"></a>
+                                    <h3>$000.00</h3>
+                                    <a href="" class="btnc"></a>
+                                </div>
                             </div>
                         </div>
+                        <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
+                        <h3>Zapatos Verdes Bonitos</h3>
+                        <h2>$000.00</h2>
                     </div>
-                    <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
-                    <h3>Zapatos Verdes Bonitos</h3>
-                    <h2>$000.00</h2>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="producto">
-                    <div class="productohover">
-                        <div class="productotable">
-                            <div>
-                                <a href="" class="btnk"></a>
-                                <h3>$000.00</h3>
-                                <a href="" class="btnc"></a>
+                <div class="item">
+                    <div class="producto">
+                        <div class="productohover">
+                            <div class="productotable">
+                                <div>
+                                    <a href="" class="btnk"></a>
+                                    <h3>$000.00</h3>
+                                    <a href="" class="btnc"></a>
+                                </div>
                             </div>
                         </div>
+                        <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
+                        <h3>Zapatos Verdes Bonitos</h3>
+                        <h2>$000.00</h2>
                     </div>
-                    <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
-                    <h3>Zapatos Verdes Bonitos</h3>
-                    <h2>$000.00</h2>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="producto">
-                    <div class="productohover">
-                        <div class="productotable">
-                            <div>
-                                <a href="" class="btnk"></a>
-                                <h3>$000.00</h3>
-                                <a href="" class="btnc"></a>
+                <div class="item">
+                    <div class="producto">
+                        <div class="productohover">
+                            <div class="productotable">
+                                <div>
+                                    <a href="" class="btnk"></a>
+                                    <h3>$000.00</h3>
+                                    <a href="" class="btnc"></a>
+                                </div>
                             </div>
                         </div>
+                        <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
+                        <h3>Zapatos Verdes Bonitos</h3>
+                        <h2>$000.00</h2>
                     </div>
-                    <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
-                    <h3>Zapatos Verdes Bonitos</h3>
-                    <h2>$000.00</h2>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="producto">
-                    <div class="productohover">
-                        <div class="productotable">
-                            <div>
-                                <a href="" class="btnk"></a>
-                                <h3>$000.00</h3>
-                                <a href="" class="btnc"></a>
+                <div class="item">
+                    <div class="producto">
+                        <div class="productohover">
+                            <div class="productotable">
+                                <div>
+                                    <a href="" class="btnk"></a>
+                                    <h3>$000.00</h3>
+                                    <a href="" class="btnc"></a>
+                                </div>
                             </div>
                         </div>
+                        <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
+                        <h3>Zapatos Verdes Bonitos</h3>
+                        <h2>$000.00</h2>
                     </div>
-                    <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
-                    <h3>Zapatos Verdes Bonitos</h3>
-                    <h2>$000.00</h2>
                 </div>
             </div>
         </div>

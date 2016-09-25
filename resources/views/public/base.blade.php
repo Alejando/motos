@@ -2,12 +2,14 @@
 <html>
     <head>
         <title>Bounce :: Tennis Lifestyle</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         @include('public.style-sheets')
     </head>
     
     <body class="setpoint-public">
         <div class="main-conteiner">
-            <header class="fontal" style="display: none_ ">
+            <header class="fontal">
                 <div class="menu-top">
                     <a href="#" class="sprite logo-bounce home-logo" title="Bounce Tenis Lifestyle">Home</a>
                     <nav class="menu-right">
@@ -41,7 +43,7 @@
                     <div style="clear: both"></div>
                 </div>
                 <nav>
-                    <ul class="menumain">
+                    <ul class="menumain hidden-sm hidden-xs">
                         <li>
                             <a href="" class="transicion">DAMA</a>
                             <div class="cajasubmenu">
@@ -84,6 +86,37 @@
                         <li><a href="" class="transicion">OTROS</a></li>
                         <li><a href="" class="transicion">DESCUENTOS</a></li>
                     </ul>
+
+                    <div class="cajamenumovil hidden-md hidden-lg">
+                        <a class="btncatalogo transicion"><i class="fa fa-bars"></i> <span>CATEGORÍAS</span></a>
+                        <div class="menumainmovil">
+                            <div class="cajacerrar"><a class="btncerrar transicion"><i class="fa fa-close"></i></a></div>
+                            <a href="" data-btnsub="dama" class="transicion">DAMA <i class="fa fa-angle-right pull-right"></i></a>
+                            <div data-mnusub="dama" class="submenumovil">
+                                <div class="cajacerrar transicion"><a class="btncerrar"><i class="fa fa-close"></i></a></div>
+                                <h3><span>Marcas</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
+                                <a href="" class="transicion">Nike</a>
+                                <a href="" class="transicion">Adidas</a>
+                                <a href="" class="transicion">Wilson</a>
+                                <h3><span>Ropa</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
+                                <a href="" class="transicion">Blusas</a>
+                                <a href="" class="transicion">Chamarras</a>
+                                <a href="" class="transicion">Faldas</a>
+                                <a href="" class="transicion">Gorras</a>
+                                <a href="" class="transicion">Ropa interior</a>
+                                <a href="" class="transicion">Shorts</a>
+                                <a href="" class="transicion">Vestidos</a>
+                            </div>
+                            <a href="" data-btnsub="" class="transicion">CABALLERO</a>
+                            <a href="" data-btnsub="" class="transicion">ZAPATOS</a>
+                            <a href="" data-btnsub="" class="transicion">RAQUETAS</a>
+                            <a href="" data-btnsub="" class="transicion">BOLSAS</a>
+                            <a href="" data-btnsub="" class="transicion">PELOTAS</a>
+                            <a href="" data-btnsub="" class="transicion">OTROS</a>
+                            <a href="" data-btnsub="" class="transicion">DESCUENTOS</a>
+                        </div>
+                    </div>
+
                     <div class="search-form-2">
                         <input type="text" class="input-border" ><button class="sprite search-2"></button>
                     </div>
@@ -97,55 +130,67 @@
             <div class="div-main-content"> 
                 @yield('body')
                 <div style="clear: both"></div>
+                @if($showBannerBottom)
+                    @include('public.blocks.bannerBottom')
+                @endif
             </div>
-            <footer> 
-            @if($showBannerBottom)
-                @include('public.blocks.bannerBottom')
-            @endif
+        <footer>
             <div class="marcas">
-                <ul class="menu">
-                    <li><a class="sprite logo-king-of-tennis">King of tenis</a></li>
-                    <li><a  class="sprite logo-adidas">Adidas</a></li>
-                    <li><a  class="sprite logo-wilson">Wilson</a></li>
-                    <li><a  class="sprite logo-tennis-advisor">TennisAdvisor</a></li>
-                    <li><a  class="sprite logo-nike">Nike</a></li>
-                </ul>
+                <div id="owl-marcas" class="owl-carousel owl-theme">
+                    <div class="item"><a class="sprite logo-king-of-tennis">King of tenis</a></div>
+                    <div class="item"><a class="sprite logo-adidas">Adidas</a></div>
+                    <div class="item"><a class="sprite logo-wilson">Wilson</a></div>
+                    <div class="item"><a class="sprite logo-tennis-advisor">TennisAdvisor</a></div>
+                    <div class="item"><a class="sprite logo-nike">Nike</a></div>
+                </div>
             </div>
             <div class="social">
-                <section class="redes row" style=" margin: 0; padding: 0 ">
-                    <div  class="row" style="border-bottom: #e1eaa3 2px solid; margin: 0; padding: 0 ">
-                        <div class="col-sm-6" style="padding-bottom:10px; padding-right: 0px; padding-left: 0px;">
-                            <div class="col-sm-4 text-right" style="padding: 15px 2px 10px 2px"><i><b>Nuestras</b> <br>Redes Sociales</i></div>
-                            <div class="col-sm-8">
-                                <ul class="menu">
-                                <li><a href="" class="sprite logo-twitter" title="Twitter">Twitter</a></li>
-                                <li><a href="" class="sprite logo-fb" title="Facebook">Facebook</a></li>
-                                <li><a href="" class="sprite logo-youtube" title="youtube">Youtube</a></li>
-                                <li><a href="" class="sprite logo-instragram" title="Instragram">Instragram</a></li>
-                                </ul>
+                <section class="redes row">
+                    <div  class="row cajaredes">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="cajacentermiddle">
+                                        <div class="celdacentermiddle">
+                                            <i class="txtright"><b>Nuestras</b><br>Redes Sociales</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="cajacentermiddle">
+                                        <div class="celdacentermiddle">
+                                            <div class="txtcenter">
+                                                <a href="" class="sprite logo-twitter" title="Twitter">Twitter</a>
+                                                <a href="" class="sprite logo-fb" title="Facebook">Facebook</a>
+                                                <a href="" class="sprite logo-youtube" title="youtube">Youtube</a>
+                                                <a href="" class="sprite logo-instragram" title="Instragram">Instragram</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div  class="col-sm-6" style="
-                              background-color: #c1d72e; 
-                              position: relative;  
-                              top: 0;
-                              font-size: 18px;
-                              font-family: 'Open Sans' !important;
-                              padding: 25px 0 25px 0;
-                              ">
-                                <div class="col-sm-5">
-                                    <i><b>Suscribete para recibir</b><br/>
-                                        nuestras promociones</i>
+                        <div  class="col-sm-6">
+                            <div class="row cajanewsletter">
+                                <div class="col-md-5">
+                                    <div class="cajacentermiddle">
+                                        <div class="celdacentermiddle">
+                                            <i class="txtright"><b>Suscribete para recibir</b><br/>nuestras promociones</i>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-7">
-                                    <input type="text" style="
-                                           font-size: 15px;
-                                           height: 34px;
-                                           padding: 5px;
-                                           position: relative; top: 10px; border-radius: 5px; border-style: none; color:black" />
-                                    <button class="sprite icon-correo">Coreo</button>
+                                <div class="col-md-7">
+                                    <div class="cajacentermiddle">
+                                        <div class="celdacentermiddle">
+                                            <div class="contenedorfield">
+                                                <input type="text" class="fieldnewsletter" />
+                                                <button class="sprite icon-correo">Coreo</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </div>  
+                        </div>
                     </div>
                 </section>
                 <section class="info">
@@ -159,23 +204,22 @@
                     </nav>
                 </section>
                 <section class="metodos-pago">
-                    <nav>
-                        <ul class="menu">
-                            <li><a href="" class="sprite logo-visa">Visa</a></li>
-                            <li><a href="" class="sprite logo-master-card">Master Card</a></li>
-                            <li><a href="" class="sprite logo-paypal">PayPal</a></li>
-                            <li><a href="" class="sprite logo-oxxo">Oxxo</a></li>
-                            <li><a href="" class="sprite logo-seven">Seven</a></li>
-                            <li><a href="" class="sprite logo-bbva">Bbva</a></li>
-                            <li><a href="" class="sprite logo-scotiabank">Scotiabank</a></li>
-                            <li><a href="" class="sprite logo-santander">Santander</a></li>
-                        </ul>
-                    </nav>
+                    <div class="marcas">
+                        <div id="owl-metodos" class="owl-carousel owl-theme">
+                            <div class="item"><a href="" class="sprite logo-visa">Visa</a></div>
+                            <div class="item"><a href="" class="sprite logo-master-card">Master Card</a></div>
+                            <div class="item"><a href="" class="sprite logo-paypal">PayPal</a></div>
+                            <div class="item"><a href="" class="sprite logo-oxxo">Oxxo</a></div>
+                            <div class="item"><a href="" class="sprite logo-seven">Seven</a></div>
+                            <div class="item"><a href="" class="sprite logo-bbva">Bbva</a></div>
+                            <div class="item"><a href="" class="sprite logo-scotiabank">Scotiabank</a></div>
+                            <div class="item"><a href="" class="sprite logo-santander">Santander</a></div>
+                        </div>
+                    </div>
                 </section>
                 <section class="copyrigth">
                     <div>Copyright © BOUNCE, SA de CV. TODOS LOS DERECHOS RESERVADOS</div>
                     <div><b>©  D. R. 2016</b></div>
-                    
                 </section>
             </div>
         </footer>
