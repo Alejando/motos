@@ -1,4 +1,5 @@
 /.env
 /public/js/bower_components/
-/public/css/web.css
+/public/css/web2.css
 /public/js/laroute.js
+/nbproject/private/
