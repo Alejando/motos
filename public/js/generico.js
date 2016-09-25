@@ -23,28 +23,28 @@ var main = function () {
             $('.menuemergente').slideUp('fast');
         });
 
-        /*$('.btnMovil').on('click', function(e) {
+        $('.btncatalogo').on('click', function(e) {
             e.preventDefault();
-            $('.submenu').slideToggle('fast');
+            $('.menumainmovil').toggle('slide', 'fast');
         });
 
-        $('.submenu').mouseleave(function() {
-            $('.submenu').slideToggle('fast');
+        $('.menumainmovil [data-btnsub]').each(function() {
+            $(this).on('click', function(e) {
+                e.preventDefault();
+                var elemento = $(this).data('btnsub');
+                if(elemento !== '') {
+                    $('[data-mnusub="'+elemento+'"]').toggle('slide', 'fast');
+                }
+            });
         });
 
-        $('#btnmovil').on('click', function(e) {
-            e.preventDefault();
-            if($('.menumovil').css('display') == 'none') {
-                $('.menumovil').slideDown('fast');
-            } else {
-                $('.menumovil').slideUp('fast');
-            }
+        $('.menumainmovil .btncerrar').each(function() {
+            $(this).on('click', function(e) {
+                e.preventDefault();
+                $(this).parent().parent().toggle('slide', 'fast');
+            });
         });
-
-        $('.menumovil').mouseleave(function() {
-            $('.menumovil').slideUp('fast');
-        });*/
-    }
+    };
 
     var botones = function() {
         $('.cajacantidad a.btnmenos').on('click', function(e) {
@@ -83,12 +83,77 @@ var main = function () {
                 });
             } 
         });
-    }
+    };
+
+    var ofertas = function() {
+        $('#owl-offerts').owlCarousel({
+            autoPlay: 5000,
+            pagination: true,
+            items: 3,
+            itemsDesktop: [1024, 3],
+            itemsDesktopSmall: [960, 3],
+            itemsTablet: [768, 2],
+            itemsMobile: [480, 1] 
+        });
+    };
+
+    var marcas = function() {
+        $('#owl-marcas').owlCarousel({
+            autoPlay: 5000,
+            pagination: false,
+            items: 5,
+            itemsDesktop: [1024, 5],
+            itemsDesktopSmall: [960, 4],
+            itemsTablet: [768, 2],
+            itemsMobile: [480, 1] 
+        });
+    };
+
+    var metodos = function() {
+        $('#owl-metodos').owlCarousel({
+            autoPlay: 5000,
+            pagination: false,
+            items: 5,
+            itemsDesktop: [1024, 5],
+            itemsDesktopSmall: [960, 4],
+            itemsTablet: [768, 2],
+            itemsMobile: [480, 1] 
+        });
+    };
+
+    var detalle = function() {
+        $('#owl-detalle').owlCarousel({
+            autoPlay: 5000,
+            pagination: true,
+            items: 4,
+            itemsDesktop: [1024, 4],
+            itemsDesktopSmall: [960, 3],
+            itemsTablet: [768, 2],
+            itemsMobile: [480, 1] 
+        });
+    };
+
+    var otrosproductos = function() {
+        $('#owl-otros').owlCarousel({
+            autoPlay: 5000,
+            pagination: true,
+            items: 4,
+            itemsDesktop: [1024, 4],
+            itemsDesktopSmall: [960, 3],
+            itemsTablet: [768, 2],
+            itemsMobile: [480, 1] 
+        });
+    };
 
     return {
         init: function () {
             menuMovil();
             botones();
+            ofertas();
+            marcas();
+            metodos();
+            detalle();
+            otrosproductos();
         }
     };
 }();
