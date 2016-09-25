@@ -9,11 +9,26 @@
             DTOptionsBuilder,
             DTColumnBuilder) {
         //<editor-fold defaultstate="collapsed" desc="catalogo de productos">
-
-        //</editor-fold>
         this.productos = function () {
-            $scope.catalog = "lalala";
+            $scope.catalog = "Productos";
         };
+        //</editor-fold>
+        //<editor-fold defaultstate="collapsed" desc="calogo de colores">
+        this.colores = function () {
+            $scope.catalog = "Colores";
+        };
+        //</editor-fold>
+
+        //<editor-fold defaultstate="collapsed" desc="catalogo de categorias">
+        this.categorias = function () {
+            $scope.catalog = "Categorias";
+        };
+        //</editor-fold>
+        //<editor-fold defaultstate="collapsed" desc="catalogo de marcas">
+        this.marcas = function () {
+            $scope.catalog = "Marcas";
+        };
+        //</editor-fold>        
         //<editor-fold defaultstate="collapsed" desc="catalogo de tallas">
         this.tallas = function () {
             $scope.selectedItem = new Size({});
