@@ -105,6 +105,12 @@
     .tp-leftarrow.default{
         display: none;
     }
+    .rebase-izq,
+    .rebase-der{
+        height: 148px;
+        bottom: -22px;
+        background-position: center -5px;
+    }
     @media(max-width: 992px){
         .precio-rango{
             font-size: 24px;
@@ -121,6 +127,9 @@
             height: 139px;
             bottom:-23px;
             background-position: center -10px;
+        }
+        .banner{
+            height: 200px !important;
         }
     }
     @media(max-width: 768px){
@@ -142,12 +151,15 @@
         .msje-postor{
             font-size: 16px;
         }
-        @media(max-width: 405px){
-            .rebase-izq,
-            .rebase-der{
-                height: 180px;
-                bottom:-23px;
-            }
+        .banner-hidden{
+            display: block !important;
+        }
+    }
+    @media(max-width: 405px){
+        .rebase-izq,
+        .rebase-der{
+            height: 180px;
+            bottom:-23px;
         }
     }
 }
