@@ -1957,9 +1957,9 @@ section.fancy-producto {
     .bienvenido{
         display: block;
         width: 100%;
-        text-align: left;
+        text-align: center;
         padding-left: 1em;
-        max-width:80%;
+        max-width:none;
     }
     .bienvenido br{
         display: none;
