@@ -13,17 +13,20 @@ $(document).ready(function () {
     $('.banner-gg-video').click(function() {
         videoGlim();
     });
-    
+    var $jqXHR = false;
     function get_products(pag) {
         if(stopGetProducts){
             return;
         }
+        if($jqXHR !== false){
+            return ;
+        }
         //Llamada de listado de productos
         var url = laroute.route('auction.list-upcoming');
-        var $jqXHR = $.get(url, {
+        $jqXHR = $.get(url, {
             page : page
         }, function (data, status) {
-            html = data;
+            var html = data;
             if(html=="false"){
                 stopGetProducts = true;
                 return;
@@ -35,6 +38,7 @@ $(document).ready(function () {
                 $('#listado-home .container-fluid .row').append('<p>Hubo un error en la obtención de datos</p>');
             }
             page++;
+            $jqXHR = false;
         });
         return $jqXHR;
     }
