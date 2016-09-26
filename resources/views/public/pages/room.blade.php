@@ -3,7 +3,7 @@
 <div ng-controller="public.roomCtrl" class="section-room" style="display: none">
     <section class="fancy-producto">
     </section>
-    <section class="slideshow container-fluid patrongg" ng-show="!objAuction.isStarted()">
+    <section class="slideshow container-fluid patrongg" ng-show="!objAuction.isStarted()" ng-class="{'banner-hidden' : objAuction.isStarted()}">
         <div class="banner-container">
             <div class="banner" >
                 <ul class="banner-list">

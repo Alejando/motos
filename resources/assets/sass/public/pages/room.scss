@@ -105,9 +105,61 @@
     .tp-leftarrow.default{
         display: none;
     }
+    .rebase-izq,
+    .rebase-der{
+        height: 148px;
+        bottom: -22px;
+        background-position: center -5px;
+    }
+    @media(max-width: 992px){
+        .precio-rango{
+            font-size: 24px;
+            margin: 0 5px;
+        }
+        .usr-postor{
+            font-size: 24px;
+        }
+        .precio-subasta{
+            font-size: 24px;
+        }
+        .rebase-izq,
+        .rebase-der{
+            height: 139px;
+            bottom:-23px;
+            background-position: center -10px;
+        }
+        .banner{
+            height: 200px !important;
+        }
+    }
     @media(max-width: 768px){
         .ngrs-range-slider{
             width: 250px !important;
+        }
+        .subasta-tiempo{
+            font-size:16px;
+        }
+        .indicador-contenedor{
+            margin-top: 15px;
+        }
+        .panel-oferta{
+            padding: 15px 0;
+        }
+        .hey{
+            font-size: 38px;
+        }
+        .msje-postor{
+            font-size: 16px;
+        }
+        .banner-hidden{
+            display: block !important;
+        }
+    }
+    @media(max-width: 405px){
+        .rebase-izq,
+        .rebase-der{
+            height: 180px;
+            bottom:-23px;
         }
     }
 }
