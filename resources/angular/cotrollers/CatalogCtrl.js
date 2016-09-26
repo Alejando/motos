@@ -33,6 +33,7 @@
         this.tallas = function () {
             $scope.selectedItem = new Size({});
             $scope.selectedItem.name = "XL";
+            $scope.model = Size;
 //            $scope.selectedItem.id=false;
 //            $scope.selectedItem.save();     
             console.log(Size);
@@ -40,6 +41,7 @@
         };
         //</editor-fold>
         $scope.saveItem = function ($event) {
+            console.log($scope.selectedItem);
             $scope.selectedItem.save().then(function () {
                 var $dialog=$($event.target).closest('.modal');
                 $dialog.modal('hide');
@@ -75,17 +77,18 @@
             $scope.selectedItem = newObj();
         };
         
-        $scope.editItem = function (id) {
-            alert(id);
-            $scope.selectedItem = newObj();
-            $scope.showFormDialog();
+        $scope.editItem = function (id,e) {
+            $scope.model.getById(id).then(function(size){
+                 $scope.selectedItem = size;
+                 $scope.showFormDialog();
+            });
+            e.preventDefault();
         };
         
         var newObj = function () {
             var prototipes = {
                 'tallas': Size
-            };   
-             
+            };
             return new prototipes[$scope.catalog]({});
         };
         
@@ -121,7 +124,7 @@
                 }]
             });
             $event.preventDefault();
-        }
+        };
         $scope.toggleOne = function (selectedItems) {
             console.log($scope.items);
             for (var id in selectedItems) {
@@ -132,7 +135,6 @@
                     }
                 }
             }
-
             $scope.selectAll = true;
         };
 
@@ -169,7 +171,7 @@
             DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                 return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
                     '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
-                    '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+')"><i class="fa fa-pencil"></i></a>'+
+                    '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
                     '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
             })
         ];

@@ -94,13 +94,18 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             var data = {};
             var atributes = self.model().attributes; 
             var preparers = self.model().preparers;
+            console.log("atributes", atributes,this);
             angular.forEach(atributes, function (attr) {
-                if(preparers[attr]){
+                console.log("->", preparers );
+                if(preparers && preparers[attr]){
+                    console.log(attr);
                     data[attr] = preparers[attr].apply(self,[self[attr]]);
                     return;
                 }
+                console.log(attr);
                 data[attr] = self[attr];
             });
+            console.log("asdfasd");
             var alias= this.model().alias;
             var datalaroute = {};
             datalaroute[alias] = this.id;
