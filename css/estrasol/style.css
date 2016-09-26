@@ -348,6 +348,29 @@ header.main-header{
 	bottom:-12px;
 	background: url(../../img/recorte-inferior.png) repeat-x left bottom transparent;
 }
+
+.label-offer{
+    position: absolute;
+    z-index: 2;
+    left:-11px;
+    width:100px;
+    height:100px;
+    /*transform: rotateZ(-90deg);*/
+    background: url(../../img/oferta_gg.png) no-repeat left top transparent;
+    background-size: 100px;
+}
+
+.producto .label-offer,
+.fav-container .label-offer{
+    top:-12px;
+    left: -15px;
+}
+
+.producto-fancy .label-offer{
+    top:-23px;
+}
+
+
 .label-preventa{
     position: absolute;
     z-index: 2;

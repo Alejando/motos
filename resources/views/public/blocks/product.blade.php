@@ -1,6 +1,10 @@
 <div class="product-container {{ isset($room) && $room ?  'col-lg-3' : 'col-lg-2'}} col-md-3 col-sm-6 col-xs-12" data-slug="{{str_slug($auction->title,'-')}}">
     <div class="producto  {{$auction->getOfferType()}}">
-        @if($auction->isPreSaleDay())<div class="label-preventa"></div>@endif
+        @if($auction->inOffer())
+            <div class="label-offer"></div>
+        @elseif($auction->isPreSaleDay())
+            <div class="label-preventa"></div>
+        @endif
         <div class="timer-subasta"><i class="fa fa-clock-o animated infinite pulse" aria-hidden="true"></i></div>
         <div class="img-subasta">
             <img src="{{$auction->getUrlCover($auction::COVER_VERTICAL)}}" alt="{{$auction->title}}" title="{{$auction->title}}">

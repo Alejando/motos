@@ -21,6 +21,9 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     protected $hidden = ['created_at', 'updated_at'];
     // <editor-fold defaultstate="collapsed" desc="methods">
+        public function inOffer(){
+            return $this->offer_on == true;
+        }
         // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
     public function getMaxPriceAttribute(){
         $round = 500;
@@ -109,6 +112,10 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="getCoverAttribute">
     public function getCoverAttribute($witRound = true) {
+        
+        if($this->inOffer()){
+            return ceil($this->attributes['offer_price']);
+        }
         if( $this->isPreSaleDay()){
             if($witRound){
                 return ceil($this->attributes['preorder_cover']);
