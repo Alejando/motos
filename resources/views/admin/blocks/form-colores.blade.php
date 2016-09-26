@@ -4,7 +4,7 @@
     <h4 class="m-t-0 header-title"><b>Colores:</b></h4>
     <form class="form-horizontal" role="form">
         <div class="form-group">
-            <label class="col-md-1 control-label">Nombre</label>
+            <label class="col-md-4 control-label">Nombre</label>
             <div class="col-md-8">
                 <input type="text" ng-model="objSize.name" class="form-control" placeholder="Nueva Color">
             </div>

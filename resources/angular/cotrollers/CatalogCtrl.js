@@ -39,37 +39,55 @@
 
         };
         //</editor-fold>
-        $scope.saveItem = function () {
+        $scope.saveItem = function ($event) {
             $scope.selectedItem.save().then(function () {
-                console.log("se guardo");
-                $scope.showForm = false;
+                var $dialog=$($event.target).closest('.modal');
+                $dialog.modal('hide');
                 $scope.selectedItem = newObj();
             });
         };
-
+        $scope.showFormDialog = function(){
+            var $message = $('<div>Cargando...</div>');
+            var defer = $q.defer();
+            var title = $scope.selectedItem.id?'Edicion de Talla' : 'Talla Nueva';
+            BootstrapDialog.show({
+                title: title,
+                message: $message
+            });
+            $.get($scope.form,{},'html').done(function(txt){
+                $message.fadeOut('fast', function(){ 
+                    $(this).html(txt).slideDown('slow');
+                    $compile(angular.element($message).contents())($scope);
+                    defer.resolve();
+                });
+            });
+            return defer.promise;
+        }
+        
         $scope.newItem = function () {
-            $scope.showForm = true;
             $scope.selectedItem = newObj();
+            $scope.showFormDialog().then(function(){});    
         };
 
-        $scope.cancel = function () {
-            $scope.showForm = false;
+        $scope.cancel = function ($event) {
+            var $dialog=$($event.target).closest('.modal');
+            $dialog.modal('hide');
             $scope.selectedItem = newObj();
         };
 
         var newObj = function () {
             var prototipes = {
                 'tallas': Size
-            };
+            };   
+             
             return new prototipes[$scope.catalog]({});
         };
         $scope.catalog = $routeParams.catalog;
         $scope.showForm = true;
         $scope.form = laroute.route('page', {view: 'form-' + $scope.catalog});
-
+        
         $scope.selected = {};
         $scope.selectAll = false;
-
         $scope.toggleAll = function (selectAll, selectedItems) {
             for (var id in selectedItems) {
                 if (selectedItems.hasOwnProperty(id)) {
@@ -77,8 +95,28 @@
                 }
             }
         };
+        $scope.removeItem = function (id,$event) {
+             BootstrapDialog.show({
+                message: 'Deseas eliminar el color',
+                buttons: [{
+                    label: 'SI',
+                    cssClass: 'btn btn-primary waves-effect waves-light',
+                    action: function(dialogRef) {
+                        alert("Eliminar");
+                        dialogRef.setClosable(true);
+                    }
+                }, {
+                    label: 'NO',
+                    cssClass: 'btn btn-danger waves-effect waves-light',
+                    action: function(dialogRef){
+                        dialogRef.close();
+                    }
+                }]
+            });
+            $event.preventDefault();
+        }
         $scope.toggleOne = function (selectedItems) {
-            console.log($scope.items=[]);
+            console.log($scope.items);
             for (var id in selectedItems) {
                 if (selectedItems.hasOwnProperty(id)) {
                     if (!selectedItems[id]) {
@@ -109,18 +147,24 @@
                 $scope.headerCompiled = true;
                 $compile(angular.element(header).contents())($scope);
             }
-        })
-                .withPaginationType('full_numbers');
+        }).withPaginationType('full_numbers');
 
         var titleHtml = '<input type="checkbox" ng-model="selectAll" ng-click="toggleAll(selectAll, selected)">';
         $scope.dtColumns = [
             DTColumnBuilder.newColumn(null).withTitle(titleHtml).notSortable()
                     .renderWith(function (data, type, full, meta) {
                         $scope.selected[full.id] = false;
-                        return '<input type="checkbox" ng-model="selected[' + data.id + ']" ng-click="toggleOne(selected)">';
-                    }),
+                        var options = '<input type="checkbox" ng-model="selected[' + data.id + ']" ng-click="toggleOne(selected)">';                               
+                        return options;
+                    }), 
             DTColumnBuilder.newColumn('id').withTitle('ID'),
-            DTColumnBuilder.newColumn('name').withTitle('Name')
+            DTColumnBuilder.newColumn('name').withTitle('Name'),
+            DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
+                    '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
+                    '<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>'+
+                    '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+            })
         ];
         this[$scope.catalog]();
     });

@@ -290,13 +290,46 @@ ul.menu{
     }
 }
 a.sprite, li.sprite, button.sprite {
-    font-size: 0px;
+    font-size: 0px; 
     color:rgba(0,0,0,0);
 }
 button.sprite{
-    border: 0;
+    border: 0;  
     cursor: pointer;
 }
 .sprite {
     display: inline-block;  
+}
+
+.modal .modal-dialog .modal-content{ 
+    padding: 0 !important;   
+    border-color: transparent!important;   
+    border-radius: 6px!important;   
+    /*overflow: hidden;*/
+    -webkit-box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important; 
+    -moz-box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important; 
+    box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important; 
+
+} 
+.modal .modal-dialog .modal-content .modal-body{
+    padding: 10px !important;      
+}
+
+.modal .modal-dialog .modal-content .modal-header{
+    padding: 10px !important;        
+}
+
+.bootstrap-dialog.type-primary .modal-header {
+    background-color: #283B5B!important;        
+}
+.bootstrap-dialog .bootstrap-dialog-close-button{
+        opacity: 1;  
+}
+
+.bootstrap-dialog .bootstrap-dialog-close-button button{
+    color: #ffffff;
+    opacity: 1;
+}
+.modal .modal-dialog .modal-content .modal-footer{
+    padding: 10px !important;      
 }
