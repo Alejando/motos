@@ -62,7 +62,7 @@
                 });
             });
             return defer.promise;
-        }
+        };
         
         $scope.newItem = function () {
             $scope.selectedItem = newObj();
@@ -74,7 +74,13 @@
             $dialog.modal('hide');
             $scope.selectedItem = newObj();
         };
-
+        
+        $scope.editItem = function (id) {
+            alert(id);
+            $scope.selectedItem = newObj();
+            $scope.showFormDialog();
+        };
+        
         var newObj = function () {
             var prototipes = {
                 'tallas': Size
@@ -82,6 +88,7 @@
              
             return new prototipes[$scope.catalog]({});
         };
+        
         $scope.catalog = $routeParams.catalog;
         $scope.showForm = true;
         $scope.form = laroute.route('page', {view: 'form-' + $scope.catalog});
@@ -162,7 +169,7 @@
             DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                 return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
                     '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
-                    '<a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>'+
+                    '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+')"><i class="fa fa-pencil"></i></a>'+
                     '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
             })
         ];
