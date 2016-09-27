@@ -21,19 +21,10 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     protected $hidden = ['created_at', 'updated_at'];
     // <editor-fold defaultstate="collapsed" desc="methods">
+        // <editor-fold defaultstate="collapsed" desc="inOffer">
         public function inOffer(){
             return $this->offer_on == true;
         }
-        // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
-    public function getMaxPriceAttribute(){
-        $round = 500;
-        $maxPrice = $this->attributes['max_price'];
-        $intdiv = \floor($maxPrice/500);
-        if($maxPrice %$round){
-            $intdiv++;
-        }
-        return $intdiv*$round;
-    }
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="sendEmailEnrolment">
         public function sendEmailEnrolment($user, $payment) {
@@ -212,17 +203,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return User::getById($winner);
     }
         // </editor-fold>
-        // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
-        public function getMaxPriceAttribute(){
-            $round = 500;
-            $maxPrice = $this->attributes['max_price'];
-            $intdiv = \floor($maxPrice/500);
-            if($maxPrice %$round){
-                $intdiv++;
-            }
-            return $intdiv*$round;
-        }
-        // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="getInfoBid">
     public function getInfoBid($id_user){
         $enrollments = Enrollment::getEnrollments($id_user, $this->id);
@@ -288,6 +268,17 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     public function getEndDateDateTime() {
         return new \DateTime($this->attributes['end_date']);
     }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
+        public function getMaxPriceAttribute(){
+            $round = 500;
+            $maxPrice = $this->attributes['max_price'];
+            $intdiv = \floor($maxPrice/500);
+            if($maxPrice %$round){
+                $intdiv++;
+            }
+            return $intdiv*$round;
+        }
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="close">
         public function close($check = false) {
