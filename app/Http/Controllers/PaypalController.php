@@ -127,7 +127,7 @@ class PaypalController extends BaseController {
         if(isset($redirect_url)) {
             return \Redirect::away($approvalLink);
         }
-        return "Paso algo al intentar conectar con paypayl";
+        return "Paso algo al intentar conectar con paypal";
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="checkoutEnrollment">

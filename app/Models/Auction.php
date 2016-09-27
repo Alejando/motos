@@ -615,7 +615,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 'user' => $user_id,
                 'auction'=>$auction->id,
                 'enrollment'=>$enrollment->id,
-                'bid_at' => $now
+                'bid_at' => $now,
+                'amount'=> $auction->last_offer
             ]);
             $enrollment->bids++;
             $enrollment->totalbids++;
