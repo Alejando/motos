@@ -46,6 +46,7 @@
                 var $dialog=$($event.target).closest('.modal');
                 $dialog.modal('hide');
                 $scope.selectedItem = newObj();
+                $scope.dtInstance.reloadData(function(){console.log("reload");}, !true);
             });
         };
         $scope.showFormDialog = function(){
@@ -106,24 +107,31 @@
             }
         };
         $scope.removeItem = function (id,$event) {
-             BootstrapDialog.show({
-                message: 'Deseas eliminar el color',
-                buttons: [{
-                    label: 'SI',
-                    cssClass: 'btn btn-primary waves-effect waves-light',
-                    action: function(dialogRef) {
-                        alert("Eliminar");
-                        dialogRef.setClosable(true);
-                    }
-                }, {
-                    label: 'NO',
-                    cssClass: 'btn btn-danger waves-effect waves-light',
-                    action: function(dialogRef){
-                        dialogRef.close();
-                    }
-                }]
-            });
             $event.preventDefault();
+            $scope.model.getById(id).then(function(item){
+                $scope.selectedItem = item;
+                BootstrapDialog.show({
+                    message: 'Deseas eliminar el color',
+                    buttons: [{
+                        label: 'SI',
+                        cssClass: 'btn btn-primary waves-effect waves-light',
+                        action: function(dialogRef) {
+                            $scope.selectedItem.remove().then(function(){
+                                    console.log("RIP");
+                            });
+                                console.log($scope.selectedItem);
+                            
+                            dialogRef.setClosable(true);
+                        }
+                    }, {
+                        label: 'NO',
+                        cssClass: 'btn btn-danger waves-effect waves-light',
+                        action: function(dialogRef){
+                            dialogRef.close();
+                        }
+                    }]
+                });
+            });
         };
         $scope.toggleOne = function (selectedItems) {
             console.log($scope.items);
@@ -157,7 +165,7 @@
                 $compile(angular.element(header).contents())($scope);
             }
         }).withPaginationType('full_numbers');
-
+        $scope.dtInstance = {};
         var titleHtml = '<input type="checkbox" ng-model="selectAll" ng-click="toggleAll(selectAll, selected)">';
         $scope.dtColumns = [
             DTColumnBuilder.newColumn(null).withTitle(titleHtml).notSortable()

@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -26,5 +26,10 @@ class HomeController extends Controller
     {
 //        die("asdfasd");
         return view('home');
+    }
+    public function holamundo($mjs){
+       return $size = \DwSetpoint\Models\Size::getAll();
+       
+        
     }
 }

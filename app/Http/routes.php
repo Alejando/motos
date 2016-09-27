@@ -18,6 +18,7 @@
 //    return view('public.base');
 //    return view('welcome');
 //});
+Route::get("{msj}/holamundo/", "HomeController@holamundo");
 
 Route::get('/detalle', function() { return view('public.pages.detail', array('showOffert'=>false, 'showBannerBottom'=>false)); });
 Route::get('/carrito', function() { return view('public.pages.shoppingcart', array('showOffert'=>false, 'showBannerBottom'=>false)); });

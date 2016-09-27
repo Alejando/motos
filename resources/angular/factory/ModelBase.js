@@ -36,8 +36,7 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                 self[attr] = data[attr];
             });
         },
-        selfUpdate : function (milisecons, $scope) {
-            
+        selfUpdate : function (milisecons, $scope) {  
             var self = this;
             $interval(function() {
                 console.log("Inicia --- re", milisecons);
@@ -94,18 +93,14 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             var data = {};
             var atributes = self.model().attributes; 
             var preparers = self.model().preparers;
-            console.log("atributes", atributes,this);
             angular.forEach(atributes, function (attr) {
-                console.log("->", preparers );
                 if(preparers && preparers[attr]){
                     console.log(attr);
                     data[attr] = preparers[attr].apply(self,[self[attr]]);
                     return;
                 }
-                console.log(attr);
                 data[attr] = self[attr];
             });
-            console.log("asdfasd");
             var alias= this.model().alias;
             var datalaroute = {};
             datalaroute[alias] = this.id;
@@ -126,6 +121,21 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             }
             return this.create();
         
+        },
+        remove : function() {
+            var model = this.model();
+            var url = laroute.route(model.aliasUrl())+"/"+this.id;        
+            var $defer = $q.defer();
+            $http({
+                'method' : 'DELETE',
+                'url' : url
+            }).then(function(result) {
+                //Todo implemenetar elminar de cache
+                $defer.resolve();
+            },function(r){
+                $defer.reject(r);
+            });
+            return $defer.promise;
         },
         getter : function (key){
             return this["_obj_" + key];
@@ -336,12 +346,6 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         return $defer.promise;
     };
     //</editor-fold>
-    ModelBase.remove = function () {
-        console.log("pediente crear metodo de eliminacion");
-    };
-    ModelBase.save  = function () {
-        console.log("pendiente crear método de creacion/actualizacion");
-    };
     //<editor-fold defaultstate="collapsed" desc="getURLForAllDataTables">
     ModelBase.getURLForAllDataTables = function () {
         var self = this;

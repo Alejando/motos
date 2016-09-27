@@ -13,6 +13,6 @@
     </div>
     <div class="card-box table-responsive">
         <h4 class="m-t-0 header-title"><b>@{{catalog}}</b></h4>
-         <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered"></table>
+         <table datatable="" dt-options="dtOptions"  dt-instance="dtInstance" dt-columns="dtColumns" class="table table-striped table-bordered"></table>
     </div>
 </div>
