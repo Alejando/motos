@@ -8,3 +8,5 @@
 /public/css/app.css.map
 /public/js/estrasol/app.js
 /public/js/estrasol/app.js.map
+node_modules
+vendor
