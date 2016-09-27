@@ -23,7 +23,7 @@ use PayPal\Api\Transaction;
 class PaypalController extends BaseController {
 
     private $_api_context;
-
+    // <editor-fold defaultstate="collapsed" desc="__construct">
     public function __construct() {
         // setup PayPal api context
         $paypal_conf = \Config::get('paypal');             
@@ -35,6 +35,8 @@ class PaypalController extends BaseController {
         );
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="checkout">
     public function checkout($code) {
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         $user = \Auth::user();
@@ -47,7 +49,7 @@ class PaypalController extends BaseController {
             ->get()->get(0);
         $amount = (float)$bid->amount;
 
-//        $amount = 1000;
+        //$amount = 1000;
         $iva = ($amount -($amount /1.16));
         $subTotal = $amount - $iva;
         $shiping = 100;
@@ -127,6 +129,8 @@ class PaypalController extends BaseController {
         }
         return "Paso algo al intentar conectar con paypayl";
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="checkoutEnrollment">
     public function checkoutEnrollment($code, $bill) {
         $auction = \GlimGlam\Models\Auction::getByCode($code);
         $payer = new Payer();
@@ -197,6 +201,7 @@ class PaypalController extends BaseController {
         $ggPayment->setAmountTotal($auction->cover);
         
         $ggPayment->save();
+        $auction->sendPaymentWinner($ggPayment);
         \Session::put('payment_temp',$ggPayment->id);
         if(isset($redirect_url)) {
             
@@ -204,7 +209,8 @@ class PaypalController extends BaseController {
         }
         return "Paso algo al intentar conectar con paypayl";
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="enrolmentPaymentStatus">
     public function enrolmentPaymentStatus() {
         $code = \Session::get('payment_auction_code');                     
         $auction = \GlimGlam\Models\Auction::getByCode($code);
@@ -267,5 +273,5 @@ class PaypalController extends BaseController {
         
         return \redirect(route('auction.payment.failed'));
     }
-
+    // </editor-fold>
 }
