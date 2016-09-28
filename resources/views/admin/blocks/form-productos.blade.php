@@ -1,7 +1,5 @@
-
-
 <div  class="cols-md-12 card-box ">
-    <h4 class="m-t-0 header-title"><b>Producto:</b></h4>
+    <h4 class="m-t-0 header-title"><b>Productasdfao:</b></h4>
     <form class="form-horizontal" role="form">
         <div class="form-group">
             <label class="col-md-1 control-label">Nombre</label>
