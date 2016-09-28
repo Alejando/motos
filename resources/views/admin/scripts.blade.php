@@ -35,7 +35,8 @@
         <script src="{{asset('js/bower_components/angular-route/angular-route.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/bower_components/angular-datatables/dist/angular-datatables.min.js')}}"></script>
 
-        
+        <script src="{{asset('/js/bower_components/tinymce/tinymce.js')}}" type="text/javascript"></script>
+        <script src="{{asset('/js/bower_components/angular-ui-tinymce/src/tinymce.js')}}" type="text/javascript"></script>
         
         <script src="{{asset('js/laroute.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js')}}" type="text/javascript"></script>

@@ -191,5 +191,7 @@
             })
         ];
         this[$scope.catalog]();
+
+
     });
 }();

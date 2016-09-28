@@ -1,6 +1,7 @@
 var setpoint = angular.module('setpoint', [
     'ngRoute',
-    'datatables'
+    'datatables',
+    'ui.tinymce'
 ]);
 //setpoint.constat('Config', {
 //    DATE_FORMAT : 'dd/MMMM/yyyy', //https://docs.angularjs.org/api/ng/filter/date
