@@ -14,90 +14,63 @@ class SizesSeeder extends Seeder {
         //factory(DwSetpoint\Models\Size::class,10)->create();
         $items = [
             [//1
-                'name'=>'Extra chica',
-                'code'=>'EXCH'
+                'name'=>'Extra chica'
             ],[//2
-                'name'=>'Chica',
-                'code'=>'CH'
+                'name'=>'Chica'
             ],[//3
-                'name'=>'Mediana',
-                'code'=>'M'
+                'name'=>'Mediana'
             ],[//4
-                'name'=>'Grande',
-                'code'=>'G'
+                'name'=>'Grande'
             ],[//5
-                'name'=>'Extra grande',
-                'code'=>'EXG'
+                'name'=>'Extra grande'
             ],[//6
-                'name'=>'20',
-                'code'=>'C200'
+                'name'=>'20'
             ],[//7
-                'name'=>'20.5',
-                'code'=>'C205'
+                'name'=>'20 1/2'
             ],[//8
-                'name'=>'21',
-                'code'=>'C210'
+                'name'=>'21'
             ],[//9
-                'name'=>'21 1/2',
-                'code'=>'C215'
+                'name'=>'21 1/2'
             ],[//10
-                'name'=>'22',
-                'code'=>'C220'
+                'name'=>'22'
             ],[//11
-                'name'=>'22 1/2',
-                'code'=>'C225'
+                'name'=>'22 1/2'
             ],[//12
-                'name'=>'23',
-                'code'=>'C230'
+                'name'=>'23'
             ],[//13
-                'name'=>'23 1/2',
-                'code'=>'C235'
+                'name'=>'23 1/2'
             ],[//14
-                'name'=>'24',
-                'code'=>'C240'
+                'name'=>'24'
             ],[//15
-                'name'=>'24 1/2',
-                'code'=>'C245'
+                'name'=>'24 1/2'
             ],[//16
-                'name'=>'25',
-                'code'=>'C250'
+                'name'=>'25'
             ],[//17
-                'name'=>'25 1/2',
-                'code'=>'C255'
+                'name'=>'25 1/2'
             ],[//18
                 'name'=>'26',
-                'code'=>'C260'
             ],[//19
-                'name'=>'26 1/2',
-                'code'=>'C265'
+                'name'=>'26 1/2'
             ],[//20
-                'name'=>'27',
-                'code'=>'C270'
+                'name'=>'27'
             ],[//21
-                'name'=>'27 1/2',
-                'code'=>'C275'
+                'name'=>'27 1/2'
             ],[//22
-                'name'=>'28',
-                'code'=>'C280'
+                'name'=>'28'
             ],[//23
-                'name'=>'28 1/2',
-                'code'=>'C285'
+                'name'=>'28 1/2'
             ],[//24
-                'name'=>'29',
-                'code'=>'C290'
+                'name'=>'29'
             ],[//25
-                'name'=>'29 1/2',
-                'code'=>'C295'
+                'name'=>'29 1/2'
             ],[//26
-                'name'=>'30',
-                'code'=>'C300'
+                'name'=>'30'
             ],[//27
-                'name'=>'30 1/2',
-                'code'=>'C305'
+                'name'=>'30 1/2'
             ]
         ];
         foreach($items as $item){
-            DwSetpoint\Models\Color::create($item);
+            DwSetpoint\Models\Size::create($item);
         }
     }
 
