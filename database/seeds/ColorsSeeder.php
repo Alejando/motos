@@ -13,11 +13,7 @@ class ColorsSeeder extends Seeder
     {
         //factory(DwSetpoint\Models\Color::class,10)->create();
         $items = [
-            [//0
-                'name'=>'Sin color',
-                'hex'=>'',
-                'prefix'=>'sin'
-            ],[//1
+            [//1
                 'name'=>'Azul',
                 'hex'=>'#CCCCFF',
                 'prefix'=>'azu'
