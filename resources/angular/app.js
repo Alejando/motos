@@ -1,7 +1,8 @@
 var setpoint = angular.module('setpoint', [
     'ngRoute',
     'datatables',
-    'ui.tinymce'
+    'ui.tinymce',
+    'color.picker'
 ]);
 //setpoint.constat('Config', {
 //    DATE_FORMAT : 'dd/MMMM/yyyy', //https://docs.angularjs.org/api/ng/filter/date
