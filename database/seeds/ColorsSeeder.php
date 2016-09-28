@@ -15,48 +15,48 @@ class ColorsSeeder extends Seeder
         $items = [
             [//1
                 'name'=>'Azul',
-                'hex'=>'#CCCCFF',
-                'prefix'=>'azu'
+                'rgb'=>'#CCCCFF',
+                'pref'=>'azu'
             ],[//2
                 'name'=>'Amarillo',
-                'hex'=>'#FFFF66',
-                'prefix'=>'ama'
+                'rgb'=>'#FFFF66',
+                'pref'=>'ama'
             ],[//3
                 'name'=>'Rojo',
-                'hex'=>'#FF0000',
-                'prefix'=>'roj'
+                'rgb'=>'#FF0000',
+                'pref'=>'roj'
             ],[//4
                 'name'=>'Verde',
-                'hex'=>'#00CC00',
-                'prefix'=>'ver'
+                'rgb'=>'#00CC00',
+                'pref'=>'ver'
             ],[//5
                 'name'=>'Azul Marino',
-                'hex'=>'#0000FF',
-                'prefix'=>'azm'
+                'rgb'=>'#0000FF',
+                'pref'=>'azm'
             ],[//6
                 'name'=>'Rosa',
-                'hex'=>'#FF33FF',
-                'prefix'=>'ros'
+                'rgb'=>'#FF33FF',
+                'pref'=>'ros'
             ],[//7
                 'name'=>'Gris',
-                'hex'=>'#A0A0A0',
-                'prefix'=>'gri'
+                'rgb'=>'#A0A0A0',
+                'pref'=>'gri'
             ],[//8
                 'name'=>'Negro',
-                'hex'=>'#000000',
-                'prefix'=>'neg'
+                'rgb'=>'#000000',
+                'pref'=>'neg'
             ],[//9
                 'name'=>'Blanco',
-                'hex'=>'#ffffff',
-                'prefix'=>'bla'
+                'rgb'=>'#ffffff',
+                'pref'=>'bla'
             ],[//7
                 'name'=>'Naranja',
-                'hex'=>'#FF8000',
-                'prefix'=>'nar'
+                'rgb'=>'#FF8000',
+                'pref'=>'nar'
             ],[//7
                 'name'=>'Morado',
-                'hex'=>'#6600CC',
-                'prefix'=>'mor'
+                'rgb'=>'#6600CC',
+                'pref'=>'mor'
             ]
         ];
         foreach($items as $item){
