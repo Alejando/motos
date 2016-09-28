@@ -1,12 +1,6 @@
 <?php
 namespace DwSetpoint\Models;
-class Stock extends \DevTics\LaravelHelpers\Model\ModelBase {    
-/**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'stock';
+class Stock extends \DevTics\LaravelHelpers\Model\ModelBase {
 
     public function product() {
         return $this->belongsTo(\DwSetpoint\Models\Product::class, 'product_id');
