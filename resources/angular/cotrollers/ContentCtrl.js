@@ -22,6 +22,22 @@ setpoint.controller('ContentCtrl', function ($scope,$routeParams) {
             $scope.content = 'Proctección de datos';
             break;
         default:  $scope.content =  'Contenido';
-    } 
+    }
+
+    //////////// TinyMCE Test
+    //$scope.tinymceModel = 'Initial content';
+
+    /*$scope.getContent = function() {
+        console.log('Editor content:', $scope.tinymceModel);
+    };*/
+
+    /*$scope.setContent = function() {
+        $scope.tinymceModel = 'Time: ' + (new Date());
+    };*/
+
+    $scope.tinymceOptions = {
+        plugins: 'link image code',
+        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+    };
 //    console.log("mainController");    
 });

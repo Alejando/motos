@@ -184,5 +184,7 @@
             })
         ];
         this[$scope.catalog]();
+
+
     });
 }();
