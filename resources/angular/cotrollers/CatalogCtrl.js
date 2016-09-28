@@ -6,16 +6,23 @@
             $routeParams,
             $q, $http,
             Size,
+            Color,
+            Product,
             DTOptionsBuilder,
             DTColumnBuilder) {
+        var getTitle = function () {
+            return "Titulo Por defecto";
+        };
         //<editor-fold defaultstate="collapsed" desc="catalogo de productos">
         this.productos = function () {
             $scope.catalog = "Productos";
+            $scope.model = Product;
         };
         //</editor-fold>
-        //<editor-fold defaultstate="collapsed" desc="calogo de colores">
+        //<editor-fold defaultstate="collapsed" desc="catalogo de colores">
         this.colores = function () {
             $scope.catalog = "Colores";
+            $scope.model = Color;
         };
         //</editor-fold>
 
@@ -34,25 +41,21 @@
             $scope.selectedItem = new Size({});
             $scope.selectedItem.name = "XL";
             $scope.model = Size;
-//            $scope.selectedItem.id=false;
-//            $scope.selectedItem.save();     
-            console.log(Size);
-
         };
         //</editor-fold>
         $scope.saveItem = function ($event) {
-            console.log($scope.selectedItem);
             $scope.selectedItem.save().then(function () {
-                var $dialog=$($event.target).closest('.modal');
+                var $dialog = $($event.target).closest('.modal');
                 $dialog.modal('hide');
                 $scope.selectedItem = newObj();
-                $scope.dtInstance.reloadData(function(){console.log("reload");}, !true);
+                $scope.dtInstance.reloadData(function(){
+                }, !true);
             });
         };
         $scope.showFormDialog = function(){
             var $message = $('<div>Cargando...</div>');
             var defer = $q.defer();
-            var title = $scope.selectedItem.id?'Edicion de Talla' : 'Talla Nueva';
+            var title = $scope.selectedItem.id ? 'Edicion de Talla' : 'Talla Nueva';
             BootstrapDialog.show({
                 title: title,
                 message: $message
@@ -76,6 +79,9 @@
             var $dialog=$($event.target).closest('.modal');
             $dialog.modal('hide');
             $scope.selectedItem = newObj();
+            getTitle = function () {
+                
+            };
         };
         
         $scope.editItem = function (id,e) {
@@ -87,10 +93,8 @@
         };
         
         var newObj = function () {
-            var prototipes = {
-                'tallas': Size
-            };
-            return new prototipes[$scope.catalog]({});
+            
+            return new $scope.model({});
         };
         
         $scope.catalog = $routeParams.catalog;
@@ -117,11 +121,12 @@
                         cssClass: 'btn btn-primary waves-effect waves-light',
                         action: function(dialogRef) {
                             $scope.selectedItem.remove().then(function(){
-                                    console.log("RIP");
+                                $scope.dtInstance.reloadData(function(){
+                                    $.noop();
+                                }, !true);
+                                dialogRef.close();
                             });
-                                console.log($scope.selectedItem);
-                            
-                            dialogRef.setClosable(true);
+                            dialogRef.setClosable(false);
                         }
                     }, {
                         label: 'NO',
@@ -166,14 +171,16 @@
             }
         }).withPaginationType('full_numbers');
         $scope.dtInstance = {};
-        var titleHtml = '<input type="checkbox" ng-model="selectAll" ng-click="toggleAll(selectAll, selected)">';
+//        var titleHtml = '<input type="checkbox" ng-model="selectAll" ng-click="toggleAll(selectAll, selected)">';
         $scope.dtColumns = [
-            DTColumnBuilder.newColumn(null).withTitle(titleHtml).notSortable()
-                    .renderWith(function (data, type, full, meta) {
-                        $scope.selected[full.id] = false;
-                        var options = '<input type="checkbox" ng-model="selected[' + data.id + ']" ng-click="toggleOne(selected)">';                               
-                        return options;
-                    }), 
+//            DTColumnBuilder
+//                    .newColumn(null)
+//                    .withTitle(titleHtml).notSortable()
+//                    .renderWith(function (data, type, full, meta) {
+//                        $scope.selected[full.id] = false;
+//                        var options = '<input type="checkbox" ng-model="selected[' + data.id + ']" ng-click="toggleOne(selected)">';                               
+//                        return options;
+//                    }), 
             DTColumnBuilder.newColumn('id').withTitle('ID'),
             DTColumnBuilder.newColumn('name').withTitle('Name'),
             DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
