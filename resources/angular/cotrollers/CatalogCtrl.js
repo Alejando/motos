@@ -1,4 +1,4 @@
-!function () {
+!function () { 
 
     setpoint.controller('CatalogCtrl', function (
             $scope,
@@ -7,12 +7,15 @@
             $q, $http,
             Size,
             Color,
+            Brand,
             Product,
+            Category,
             DTOptionsBuilder,
             DTColumnBuilder) {
         var getTitle = function () {
             return "Titulo Por defecto";
         };
+        var getColumnBuilder = [];
         //<editor-fold defaultstate="collapsed" desc="catalogo de productos">
         this.productos = function () {
             $scope.catalog = "Productos";
@@ -23,17 +26,80 @@
         this.colores = function () {
             $scope.catalog = "Colores";
             $scope.model = Color;
+            $scope.colorPickerOptions = {
+                'format' : 'hex',
+                'alpha' : false,
+                'swatchBootstrap' : false
+            };
+            getTitle = function(){
+                return $scope.selectedItem.id ? 'Edicion del color ' + $scope.selectedItem.name : 'Color Nuevo';
+            };
+            getColumnBuilder = function () {
+                return [
+                        DTColumnBuilder.newColumn('id').withTitle('ID'),
+                        DTColumnBuilder
+                                .newColumn(null)
+                                .withTitle("Color")
+                                .withOption('width', '10px')
+                                .notSortable()
+                                .renderWith(function(data,type,full, meta){
+                                   return '<div style="width: 20px;height: 20px;display: block;background-color:' + full.rgb + ';margin: 0 auto;"> </div>'; 
+                                }),
+                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn('pref').withTitle('Prefijo'),
+                        DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                            return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
+                                '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
+                                '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                        })
+                    ];
+            };
         };
         //</editor-fold>
 
         //<editor-fold defaultstate="collapsed" desc="catalogo de categorias">
         this.categorias = function () {
             $scope.catalog = "Categorias";
+            $scope.model = Category;
+            getTitle = function() {
+                return $scope.selectedItem.id ? 'Edición de la "' + $scope.selectedItem.name + '"' : 'Talla Marca';
+            };
+            getColumnBuilder = function () {
+                return [
+                        DTColumnBuilder.newColumn('id').withTitle('ID'),
+                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                            return '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                        })
+                    ];
+            };
         };
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="catalogo de marcas">
         this.marcas = function () {
             $scope.catalog = "Marcas";
+            $scope.model = Brand;
+            $scope.colorPickerOptions = {
+                'format' : 'hex',
+                'alpha' : false,
+                'swatchBootstrap' : false
+            };
+            getTitle = function() {
+                return $scope.selectedItem.id ? 'Edición de la "' + $scope.selectedItem.name + '"' : 'Talla Marca';
+            };
+            getColumnBuilder = function () {
+                return [
+                        DTColumnBuilder.newColumn('id').withTitle('ID'),
+                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                            return '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                        })
+                    ];
+            };
+            
         };
         //</editor-fold>        
         //<editor-fold defaultstate="collapsed" desc="catalogo de tallas">
@@ -41,6 +107,21 @@
             $scope.selectedItem = new Size({});
             $scope.selectedItem.name = "XL";
             $scope.model = Size;
+            getTitle = function(){
+                return $scope.selectedItem.id ? 'Edición de Talla "' + $scope.selectedItem.name + '"' : 'Talla Nueva';
+            };
+            getColumnBuilder = function () {
+                return [
+                        DTColumnBuilder.newColumn('id').withTitle('ID'),
+                        DTColumnBuilder.newColumn('name').withTitle('Name'),
+                        DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                            return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
+                                '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
+                                '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                        })
+                    ];
+            };
         };
         //</editor-fold>
         $scope.saveItem = function ($event) {
@@ -55,11 +136,11 @@
         $scope.showFormDialog = function(){
             var $message = $('<div>Cargando...</div>');
             var defer = $q.defer();
-            var title = $scope.selectedItem.id ? 'Edicion de Talla' : 'Talla Nueva';
             BootstrapDialog.show({
-                title: title,
+                title: getTitle(),
                 message: $message
             });
+            console.log(getTitle());
             $.get($scope.form,{},'html').done(function(txt){
                 $message.fadeOut('fast', function(){ 
                     $(this).html(txt).slideDown('slow');
@@ -79,9 +160,6 @@
             var $dialog=$($event.target).closest('.modal');
             $dialog.modal('hide');
             $scope.selectedItem = newObj();
-            getTitle = function () {
-                
-            };
         };
         
         $scope.editItem = function (id,e) {
@@ -152,7 +230,8 @@
         };
 
         $scope.items;
-        var url = laroute.route('size.all-for-datatables');
+        this[$scope.catalog]();
+        var url = laroute.route($scope.model.alias+'.all-for-datatables');
         $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function () {
             var defer = $q.defer();
             $http.get(url).then(function (result) {
@@ -170,26 +249,7 @@
                 $compile(angular.element(header).contents())($scope);
             }
         }).withPaginationType('full_numbers');
-        $scope.dtInstance = {};
-//        var titleHtml = '<input type="checkbox" ng-model="selectAll" ng-click="toggleAll(selectAll, selected)">';
-        $scope.dtColumns = [
-//            DTColumnBuilder
-//                    .newColumn(null)
-//                    .withTitle(titleHtml).notSortable()
-//                    .renderWith(function (data, type, full, meta) {
-//                        $scope.selected[full.id] = false;
-//                        var options = '<input type="checkbox" ng-model="selected[' + data.id + ']" ng-click="toggleOne(selected)">';                               
-//                        return options;
-//                    }), 
-            DTColumnBuilder.newColumn('id').withTitle('ID'),
-            DTColumnBuilder.newColumn('name').withTitle('Name'),
-            DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
-                return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
-                    '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
-                    '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                    '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
-            })
-        ];
-        this[$scope.catalog]();
+        $scope.dtInstance = {};                
+        $scope.dtColumns = getColumnBuilder();
     });
 }();

@@ -41,7 +41,8 @@
         <script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/bower_components/bootstrap3-dialog/src/js/bootstrap-dialog.js')}}" type="text/javascript"></script>
-        
+        <script src="{{asset('js/bower_components/tinycolor/dist/tinycolor-min')}}.js" type="text/javascript"></script>
+        <script src="{{asset('js/bower_components/angular-color-picker/dist/angularjs-color-picker.min.js')}}" type="text/javascript"></script>
         
         @yield('scripts')
         
