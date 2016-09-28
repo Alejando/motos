@@ -7,11 +7,13 @@
                         <ul>
                             
                             <li class="text-muted menu-title">Navigation</li>
-                            
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect waves-light"><i class="md md-store"></i>  <span> Stock </span></a>
+                            </li>
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect waves-light"><i class="md md-view-list"></i> <span> Catalogos </span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#/catalogos/productos"><i class="fa fa-database"></i>Productos</a></li>
+                                    <li><a href="#/catalogos/productos"><i class="fa fa-shopping-cart"></i>Productos</a></li>
                                     <li><a href="#/catalogos/categorias"><i class="fa fa-database"></i>Categorias</a></li>
                                     <li><a href="#/catalogos/marcas"><i class="fa fa-database"></i>Marcas</a></li>
                                     <li><a href="#/catalogos/colores"><i class="fa fa-database"></i>Colores</a></li>

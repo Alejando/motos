@@ -3,12 +3,14 @@ setpoint.factory('Color', function (ModelBase,$q,$http) {
         ModelBase.apply(this, arguments);
     };
     ModelBase.createModel(Color , {   
-        alias: 'size',
+        alias: 'color',
         setters : {
         },
         attributes: [
             'id',
-            'name'
+            'name',
+            'pref',
+            'rgb'
         ],
         relations : []
     }, {
