@@ -52,7 +52,7 @@ class PaypalController extends BaseController {
         //$amount = 1000;
         $iva = ($amount -($amount /1.16));
         $subTotal = $amount - $iva;
-        $shiping = 100;
+        $shiping = config('app.shipping');//$shiping = 100;
         $total = $subTotal + $iva;
         $item = new Item();
         $item->setName($auction->title);

@@ -69,11 +69,15 @@
             <div class="col-sm-8">
                 <div class="chk-total">
                     <span>SUBASTA:</span>
-                    <span id="enroll-sub-total" cant="{{$auction->last_offer}}">{{currency($auction->last_offer, config('app.currency') )}}</span>
+                    <span id="enroll-sub-total" cant="{{$auction->last_offer}}">{{currency( $auction->last_offer, config('app.currency') )}}</span>
                 </div>
                 <div class="chk-total">
                     <span>IVA:</span>
                     <span id="enroll-iva" cant="0.00">$0.00</span>
+                </div>
+                <div class="chk-total">
+                    <span>ENVIO:</span>
+                    <span id="enroll-envio" cant="{{config('app.shipping')}}">{{currency( config('app.shipping'), config('app.currency') )}}</span>
                 </div>
                 <div class="chk-total">
                     <span><strong>TOTAL:</strong></span>
