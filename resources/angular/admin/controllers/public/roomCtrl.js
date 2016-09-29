@@ -49,6 +49,24 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
     $scope.getInfo = function (){
         var $d = $q.defer();
         $scope.objAuction.getInfoBid().then(function(info){
+                console.log(info.endAt.s);
+                if(info.startAt){
+                    $scope.startDays = info.startAt.d;
+                    $scope.startHours = info.startAt.h;
+                    $scope.startMinutes = info.startAt.i;
+                    $scope.startSeconds = info.startAt.s;
+                    $scope.startYears = info.startAt.y;
+                    $scope.startMonths = info.startAt.m;
+                }
+                if(info.endAt){
+                    $scope.endSeconds = info.endAt.s;
+                    $scope.endDays = info.endAt.d;
+                    $scope.endHours = info.endAt.h;
+                    $scope.endMinutes = info.endAt.i;
+                    $scope.endYears = info.endAt.y;
+                    $scope.endMonths = info.endAt.m;
+                }
+                
                 $scope.now = new Date(info.now);
                 $scope.nextPenalty = new Date(info.nextPenalty);
                 $scope.help.nextPenalty = $scope.nextPenalty.getTime();

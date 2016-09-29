@@ -135,23 +135,22 @@
                     <div class="col-xs-12 col-sm-offset-1 col-sm-10">
                         <div class="indicador-timer-externo">
                             <div class="indicador-timer">
-                                <timer interval="1000" language="es" class="subasta-tiempo" 
-                                    ng-show="objAuction.isStandBy()"
-                                    end-time="objAuction.start_date">
+                                <div class="subasta-tiempo" ng-show="objAuction.isStandBy()">
                                     <small class="texto-gris">Inicia en</small>
                                     <div class="boleto-divider"></div>
-                                    <span ng-show="days > 0">@{{days}} día<span ng-show="days > 1">s</span>,</span>
-                                    <span ng-show="hours > 0">@{{hours}} hr,</span>
-                                    <span ng-show="minutes > 0">@{{minutes}} min,</span>
-                                    @{{seconds}} seg
-                                </timer>
-                                <timer interval="1000" language="es" class="subasta-tiempo" 
-                                    ng-show="objAuction.isStarted()"
-                                    end-time="objAuction.end_date">
+                                    <span ng-show="startDays > 0">@{{startDays}} día<span ng-show="startDays > 1">s</span>,</span>
+                                    <span ng-show="startHours > 0">@{{startHours}} hr,</span>
+                                    <span ng-show="startMinutes > 0">@{{startMinutes}} min,</span>
+                                    @{{startSeconds}} seg
+                                </div>
+                                <div class="subasta-tiempo" ng-show="objAuction.isStarted()">
                                     <small class="texto-gris">Finaliza en</small>
                                     <div class="boleto-divider"></div>
-                                    <span ng-show="days>0">@{{days}} días, </span><span ng-show="hours>0">@{{hours}} hr, </span><span ng-show="minutes>0">@{{minutes}} min, </span>@{{seconds}} seg
-                                </timer>
+                                    <span ng-show="endDays>0">@{{endDays}} días, </span>
+                                    <span ng-show="endHours>0">@{{endHours}} hr, </span>
+                                    <span ng-show="endMinutes>0">@{{endMinutes}} min, </span>
+                                    @{{endSeconds}} seg
+                                </div>
                                 <div class="subasta-tiempo texto-gris" ng-show="objAuction.isFinished()">
                                     La subasta ha terminado
                                 </div>
