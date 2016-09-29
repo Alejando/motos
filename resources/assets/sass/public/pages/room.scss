@@ -48,6 +48,22 @@
         -o-transition: all 0.3s ease;
         -ms-transition: all 0.3s ease;
     }
+    /*
+    {
+        border-color: #ea9f2e;
+    }
+    */
+    #total-bids.active,
+    #lasting-bids.active{
+        background-color: #ea9f2e;
+    }
+    #fault-bids.active{
+        background-color: #fb5f60;
+    }
+    #towin-bids.active{
+        background-color: #95c630;
+    }
+    
     .indicador-subasta{
         color: $color-textos;
         display: block;
@@ -62,6 +78,11 @@
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
         border-radius: 50%;
+        
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
     }
     .indicador-timer-externo{
         border: solid 3px #fff;

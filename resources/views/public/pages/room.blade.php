@@ -89,7 +89,7 @@
                 </div><div class="col-xs-12 col-sm-6">
                     <div class="col-xs-6 col-sm-3 col-md-3">
                         <div class="indicador-contenedor">
-                            <div class="indicador-subasta-externo">
+                            <div class="indicador-subasta-externo" id="lasting-bids" ng-class="{'active':placingBidAnimate}">
                                 <div class="indicador-subasta">
                                     @{{objAuction.bids - totalBids - totalFaults}}
                                 </div>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-xs-6 col-sm-3 col-md-3">
                         <div class="indicador-contenedor">
-                            <div class="indicador-subasta-externo">
+                            <div class="indicador-subasta-externo" id="total-bids" ng-class="{'active':placingBidAnimate}">
                                 <div class="indicador-subasta">
                                     @{{totalBids}}
                                 </div>
@@ -109,17 +109,22 @@
                     </div>
                     <div class="col-xs-6 col-sm-3 col-md-3">
                         <div class="indicador-contenedor">
-                            <div class="indicador-subasta-externo">
+                            <div class="indicador-subasta-externo" id="fault-bids" ng-class="{'active':losingBidAnimate}">
                                 <div class="indicador-subasta">
                                     @{{totalFaults}}
                                 </div>
                             </div>
                             <span>Perdidas</span>
+                            <div class="penalty"  ng-show="1">
+                                <timer interval="1000" language="es"  class="subasta-tiempo"  end-time="nextPenalty">
+                                    @{{minutes}}:@{{seconds}}
+                                </timer>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-3 col-md-3">
                         <div class="indicador-contenedor">
-                            <div class="indicador-subasta-externo">
+                            <div class="indicador-subasta-externo" id="towin-bids" ng-class="{'active':requiredBidAnimate}">
                                 <div class="indicador-subasta">
                                     @{{objAuction.min_bids}}
                                 </div>
@@ -214,11 +219,6 @@
                                 Necesitas realizar minimo  ofertas para poder ser ganador<br>
                                 Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas para poder ganar
                             </span>--}}
-                            <div class="penalty"  ng-show="1">
-                                <timer interval="1000" language="es"  class="subasta-tiempo"  end-time="nextPenalty">
-                                    <small>Próxima penalización</small><br><span ng-show="minutes > 0">@{{minutes}} min,</span> @{{seconds}} seg
-                                </timer>
-                            </div>
                             <span ng-show="totalBids >= objAuction.min_bids">
                                 Has cumplido con las ofertas necesarias para poder ganar
                             </span>
