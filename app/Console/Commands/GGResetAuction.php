@@ -4,14 +4,14 @@ namespace GlimGlam\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class sendWinMail extends Command
+class GGResetAuction extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'gg:sendMail {code} {start} {duration}';
+    protected $signature = 'gg:reset {code} {start} {duration}';
 
     /**
      * The console command description.

@@ -9,6 +9,7 @@ return [
         'tw'=>'https://twitter.com/GlimGlamMx',
         'yt'=>'https://www.youtube.com/channel/UCfYKCSrjk0c2kZXYpvBAG_A',
     ],
+    'shipping'=>0.00,
     'diaPreventa'=>2,
     'iva' =>1.16,
     'img-sizes' => [

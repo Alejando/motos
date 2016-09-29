@@ -14,9 +14,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \GlimGlam\Console\Commands\sendWinMail::class,
-        \GlimGlam\Console\Commands\GGFinishedAuction::class
-           
+        \GlimGlam\Console\Commands\GGFinishedAuction::class,
+        \GlimGlam\Console\Commands\GGResetAuction::class
         // Commands\Inspire::class,
     ];
 

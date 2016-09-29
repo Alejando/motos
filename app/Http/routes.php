@@ -232,6 +232,12 @@ Route::group(['prefix' => 'api'], function () use (&$route){
         'uses' => 'PaypalController@checkoutEnrollment',
         'middleware' => 'auth'
     ]);
+    //Pago de subasta ganada
+    Route::get('subastas/pagar-subasta/{code}/{bill}', [
+        'as' => 'auction.pay',
+        'uses' => 'PaypalController@checkout',
+        'middleware' => 'auth'
+    ]);
     // </editor-fold>
 // </editor-fold>
 

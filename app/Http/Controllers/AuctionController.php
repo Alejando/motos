@@ -75,10 +75,10 @@ class AuctionController extends BaseController {
         if($auction->winner!=$me->id){
             abort(404);
         }
-    return view('public.pages.auction-checkout',[
-        'auction' => $auction,
-        'user' => Auth::user()
-    ]);
+        return view('public.pages.auction-checkout',[
+            'auction' => $auction,
+            'user' => Auth::user()
+        ]);
         
     }
     // </editor-fold>

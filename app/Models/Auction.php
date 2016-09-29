@@ -21,29 +21,40 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     const COVER_NOW = "now";
     protected $hidden = ['created_at', 'updated_at'];
     // <editor-fold defaultstate="collapsed" desc="methods">
+        // <editor-fold defaultstate="collapsed" desc="inOffer">
         public function inOffer(){
             return $this->offer_on == true;
         }
-        // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
-    public function getMaxPriceAttribute(){
-        $round = 500;
-        $maxPrice = $this->attributes['max_price'];
-        $intdiv = \floor($maxPrice/500);
-        if($maxPrice %$round){
-            $intdiv++;
-        }
-        return $intdiv*$round;
-    }
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="sendEmailEnrolment">
-    public function sendEmailEnrolment($user, $payment) {
-        $args['user'] = $user;
-        $args['payment'] = $payment;
-        $args['to'] = $user->email;
-        $args['auction'] = $this;
-        \GlimGlam\Libs\Helpers\Mail::payment($args);
-        return $this;
-    }
+        public function sendEmailEnrolment($user, $payment) {
+            $args['user'] = $user;
+            $args['payment'] = $payment;
+            $args['to'] = $user->email;
+            $args['auction'] = $this;
+            \GlimGlam\Libs\Helpers\Mail::payment($args);
+            return $this;
+        }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="sendEmailWinner">
+        public function sendEmailWinner($user) {
+            $args = [
+                'user' => $user,
+                'auction' => $this
+            ];
+            \GlimGlam\Libs\Helpers\Mail::ConfirmYouWin($args);
+            return $this;
+        }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="sendPaymentWinner">
+        public function sendPaymentWinner($payment) {
+            $args = [
+                'payment' => $payment,
+                'auction' => $this
+            ];
+            \GlimGlam\Libs\Helpers\Mail::auctionPayment($args);
+            return $this;
+        }
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="isStarted">
     public function isStarted(){
@@ -78,11 +89,22 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     }
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="isEnrolled">
-    public function isEnrolled ($user){
-        $enrol = Enrollment::where('user', '=', $user->id)
-                ->where('auction', '=', $this->id)
-                ->get()->count();
-        return $enrol > 0;
+        public function isEnrolled ($user){
+            $enrol = Enrollment::where('user', '=', $user->id)
+                    ->where('auction', '=', $this->id)
+                    ->get()->count();
+            return $enrol > 0;
+        }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="isPreventDay">
+    public function isPreSaleDay(){
+        $utcMx = new \DateTimeZone("America/Mexico_City");
+        $now = new \DateTime(null, $utcMx);
+        $now->setTimezone($utcMx);
+        $presaleDay = $this->getPreSaleDate($utcMx);
+        $endPresaleDay = clone $presaleDay;
+        $endPresaleDay->setTime(23, 59, 59);
+        return ($now<$endPresaleDay) && ($now>$presaleDay);
     }
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="getTotalEnrollments">
@@ -126,17 +148,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             return ceil($this->attributes['cover']);
         }
         return $this->attributes['cover'];
-    }
-        // </editor-fold>
-        // <editor-fold defaultstate="collapsed" desc="isPreventDay">
-    public function isPreSaleDay(){
-        $utcMx = new \DateTimeZone("America/Mexico_City");
-        $now = new \DateTime(null, $utcMx);
-        $now->setTimezone($utcMx);
-        $presaleDay = $this->getPreSaleDate($utcMx);
-        $endPresaleDay = clone $presaleDay;
-        $endPresaleDay->setTime(23, 59, 59);
-        return ($now<$endPresaleDay) && ($now>$presaleDay);
     }
         // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="getPreSaleDate">
@@ -192,32 +203,6 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         return User::getById($winner);
     }
         // </editor-fold>
-        // <editor-fold defaultstate="collapsed" desc="sendEmailWinner">
-    public function sendEmailWinner($user) {
-        $args = [
-            'user' => $user,
-            'auction' => $this
-        ];
-        \GlimGlam\Libs\Helpers\Mail::ConfirmYouWin($args);
-        return $this;
-    }
-        // </editor-fold>
-        // <editor-fold defaultstate="collapsed" desc="close">
-    public function close($check = false) {
-        $close = true;
-        if($check) {
-            $now = new \DateTime();
-            $end_date = $this->getEndDateDateTime();
-            $close = $now >= $end_date;
-        }
-        if($close) {
-            $this->status = self::STATUS_FINISHED;
-            $this->save();   
-            $this->auctionsMailWinner();
-        }
-        return $this;
-    }
-        // </editor-fold>
         // <editor-fold defaultstate="collapsed" desc="getInfoBid">
     public function getInfoBid($id_user){
         $enrollments = Enrollment::getEnrollments($id_user, $this->id);
@@ -231,7 +216,7 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
         $res = $c->get();
         $total  = $enrollment->totalbids;
         $bid = $res->get(0);
-        $now=(new \DateTime());
+        $now = (new \DateTime());
         if( ($nextPenalty = $enrollment->getNextPenaltyDateTime() ) == null ){
             $nextPenalty = clone $now;
             $nextPenalty->add(new \DateInterval('PT'.$this->max_user_quiet.'M'));
@@ -248,6 +233,17 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 'i' => $difStart->i,
                 's' => $difStart->s,
             ] : false;
+        $end = $this->getEndDateDateTime();
+        $difEnd = $end->diff($now);
+        $endAt = $now >= $start ? [
+                'y' => $difEnd->y,
+                'm' => $difEnd->m,
+                'd' => $difEnd->d,
+                'h' => $difEnd->h,
+                'i' => $difEnd->i,
+                's' => $difEnd->s,
+            ] : false;
+        
         if($total) {
             $enrollment = Enrollment::getById($bid->enrollment);
             $nextbid = $bid->bid_at;
@@ -261,7 +257,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 'totalbids' => $total,
                 'nextbid' => Carbon::instance($nextbid)->toW3cString(),
                 'now' => Carbon::now()->toW3cString(),
-                'startAt' => $startAt
+                'startAt' => $startAt,
+                'endAt' => $endAt
             ];
         }
         
@@ -272,7 +269,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'nextbid' => Carbon::instance($now)->toW3cString(),
             'totalbids' => $enrollment->totalbids, 
             'now' => Carbon::now()->toW3cString(),
-            'startAt' => $startAt
+            'startAt' => $startAt,
+            'endAt' => $endAt
         ];
     }
         // </editor-fold>
@@ -294,6 +292,33 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
     public function getEndDateDateTime() {
         return new \DateTime($this->attributes['end_date']);
     }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="getMaxPriceAttribute">
+        public function getMaxPriceAttribute(){
+            $round = 500;
+            $maxPrice = $this->attributes['max_price'];
+            $intdiv = \floor($maxPrice/500);
+            if($maxPrice %$round){
+                $intdiv++;
+            }
+            return $intdiv*$round;
+        }
+        // </editor-fold>
+        // <editor-fold defaultstate="collapsed" desc="close">
+        public function close($check = false) {
+            $close = true;
+            if($check) {
+                $now = new \DateTime();
+                $end_date = $this->getEndDateDateTime();
+                $close = $now >= $end_date;
+            }
+            if($close) {
+                $this->status = self::STATUS_FINISHED;
+                $this->save();   
+                $this->auctionsMailWinner();
+            }
+            return $this;
+        }
         // </editor-fold>
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="statics methhods">
@@ -614,7 +639,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 'user' => $user_id,
                 'auction'=>$auction->id,
                 'enrollment'=>$enrollment->id,
-                'bid_at' => $now
+                'bid_at' => $now,
+                'amount'=> $auction->last_offer
             ]);
             $enrollment->bids++;
             $enrollment->totalbids++;
