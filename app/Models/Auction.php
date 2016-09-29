@@ -238,7 +238,16 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             $enrollment->next_penalty = $nextPenalty;
             $enrollment->save();
         }
-        
+        $start = $this->getStartDateDateTime();
+        $difStart = $start->diff($now);
+        $startAt = $now<$start ? [
+                'y' => $difStart->y,
+                'm' => $difStart->m,
+                'd' => $difStart->d,
+                'h' => $difStart->h,
+                'i' => $difStart->i,
+                's' => $difStart->s,
+            ] : false;
         if($total) {
             $enrollment = Enrollment::getById($bid->enrollment);
             $nextbid = $bid->bid_at;
@@ -251,7 +260,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
                 'faults' => $enrollment->faults,
                 'totalbids' => $total,
                 'nextbid' => Carbon::instance($nextbid)->toW3cString(),
-                'now' => Carbon::now()->toW3cString()
+                'now' => Carbon::now()->toW3cString(),
+                'startAt' => $startAt
             ];
         }
         
@@ -261,7 +271,8 @@ class Auction extends \GlimGlam\Libs\CoreUtils\ModelBase{
             'faults' => $enrollment->faults,
             'nextbid' => Carbon::instance($now)->toW3cString(),
             'totalbids' => $enrollment->totalbids, 
-            'now' => Carbon::now()->toW3cString()
+            'now' => Carbon::now()->toW3cString(),
+            'startAt' => $startAt
         ];
     }
         // </editor-fold>
