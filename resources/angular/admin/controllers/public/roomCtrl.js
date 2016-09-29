@@ -13,12 +13,17 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
         if(faults !== info.faults) {
             sounds.lostbyquiet.play();
             faults = info.faults;
+            $scope.losingBidAnimate = true;
+            setTimeout(function(){
+                $scope.losingBidAnimate = false;
+            }, 2000);
         }
         if(!bind12) {
             if(firstTotalBids < 12 && info.totalbids >= 12) {
                 bind12 = true;
                 console.log("mas doce");
                 sounds.bid12.play();
+                $scope.requiredBidAnimate = true;
             }
         }
    
@@ -55,7 +60,7 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
                 $scope.unqualified = info.unqualified;
                 $element.find('.penalty').empty().append('<timer interval="1000" language="es"  class="subasta-tiempo" '+
                                   '  end-time="nextPenalty">' +
-                                      '  <small>Próxima penalización: </small><span ng-show="minutes">{{minutes}} min, </span>{{seconds}} seg '+
+                                      '{{minutes}}:{{seconds}}'+
                                 "</timer>");
                 $element.find('.delay-bid').empty().append('<timer interval="1000" language="es"  class="subasta-tiempo" '+
                                   '  end-time="nextBid">' +
@@ -72,6 +77,9 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
         firstTotalBids = info.totalbids;
     });
     $scope.placingBid = false;
+    $scope.placingBidAnimate = false;
+    $scope.losingBidAnimate = false;
+    $scope.requiredBidAnimate = false;
     $scope.placeBid = function(){
         $scope.placingBid = true;
         $scope.objAuction.placeBid($scope.rangeOferta.max).then(function(data) {
@@ -81,6 +89,10 @@ glimglam.controller('public.roomCtrl', function ($scope, Auction, $interval, $el
             $q.all([ref, getInf]).then(function() {
                 $scope.placingBid = false;
                 sounds.bid.play();
+                $scope.placingBidAnimate = true;
+                setTimeout(function(){
+                    $scope.placingBidAnimate = false;
+                }, 2000);
             });
         });
     };
