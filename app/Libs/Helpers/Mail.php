@@ -78,7 +78,14 @@ class Mail{
         $args['subject'] = "Confirmación de pago, {$args['auction']->title} [FOLIO: {$args['payment']->folio}]";
         return self::sendMail('confirm-payment', $args, $test, $send, $format);
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="auctionPayment">
+    public static function auctionPayment($args = [], $test = false, $send = true, $format = 'html') {
+        $args['auction'] = isset($args['auction']) ? $args['auction'] : \GlimGlam\Models\Auction::getRandom();
+        $args['payment'] = isset($args['payment']) ? $args['payment']: \GlimGlam\Models\Payment::getRandom();
+        $args['subject'] = "Confirmación de pago, {$args['auction']->title} [FOLIO: {$args['payment']->folio}]";
+        return self::sendMail('auction-payment', $args, $test, $send, $format);
+    }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="resetPassword">
     public static function resetPassword($args = [], $test = false, $send = true, $format = 'html') {
