@@ -80,12 +80,17 @@
         //<editor-fold defaultstate="collapsed" desc="catalogo de marcas">
         this.marcas = function () {
             $scope.catalog = "Marcas";
+            $scope.prepareItem = function(){
+                $scope.selectedItem.addFile('icon', $scope.icon);
+                console.log($scope.selectedItem);
+            }
             $scope.model = Brand;
             $scope.colorPickerOptions = {
                 'format' : 'hex',
                 'alpha' : false,
                 'swatchBootstrap' : false
             };
+            $scope.icon = null;
             getTitle = function() {
                 return $scope.selectedItem.id ? 'Edición de la "' + $scope.selectedItem.name + '"' : 'Talla Marca';
             };
@@ -125,6 +130,9 @@
         };
         //</editor-fold>
         $scope.saveItem = function ($event) {
+            if($scope.prepareItem){
+                $scope.prepareItem();
+            }
             $scope.selectedItem.save().then(function () {
                 var $dialog = $($event.target).closest('.modal');
                 $dialog.modal('hide');

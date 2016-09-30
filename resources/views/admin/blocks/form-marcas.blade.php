@@ -9,7 +9,8 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Imagen</label>
             <div class="col-md-8">
-                <input type="file" ng-model="" placeholder="Nueva Marca">
+                <input type="file" placeholder="Nueva Marca" fileread="icon">
+                <img src="@{{uploadme}}">
             </div>
         </div>
         <button class="btn btn-primary waves-effect waves-light">Guardar</button>

@@ -4,10 +4,14 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         this.setProperties(args);
         this.relations = {};
         this._bk_attrs = {};
+        this._FILES = {};
     };
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Metodos de Instancia (prototype)">
     ModelBase.prototype = {
+        addFile : function (name, data) {
+            this._FILES[name] = data;
+        },
         backup : function() {
             var self = this;
             var attributes = self.model().attributes; 
