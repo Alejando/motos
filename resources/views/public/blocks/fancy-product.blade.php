@@ -69,8 +69,8 @@ $calendarLink = sprintf('http://www.google.com/calendar/render?'.
                     Llévatelo por menos de <b>{{Currency::format(ceil($auction->max_price), config('app.currency'))}}</b>
                     en lugar de <b>{{Currency::format(ceil($auction->real_price), config('app.currency'))}}</b> (precio real)
                 </div>
-                <div style="padding: 10px">Inicia el <b>{{$fechaInicio->setTimezone($timezoneMX)->format('d/m/Y')}}</b> a las <b>{{$fechaInicio->format('H:i')}}</b></div>
-                @if($auction->isBuyable())
+                {{--<div style="padding: 10px">Inicia el <b>{{$fechaInicio->setTimezone($timezoneMX)->format('d/m/Y')}}</b> a las <b>{{$fechaInicio->format('H:i')}}</b></div>--}}
+                @if($auction->isBuyable() || true)
                     @if($auction->code=='SUB010')
                         <div>
                             <img src='{{asset("img/sala_llena.png")}}'>
