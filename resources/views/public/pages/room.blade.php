@@ -3,8 +3,8 @@
 <div ng-controller="public.roomCtrl" class="section-room" style="display: none">
     <section class="fancy-producto">
     </section>
-    <section class="slideshow container-fluid patrongg" ng-show="!objAuction.isStarted()" ng-class="{'banner-hidden' : objAuction.isStarted()}">
-        <div class="banner-container">
+    <section class="slideshow container-fluid patrongg" ng-class="{'banner-hidden' : objAuction.isStarted()}">
+        <div class="banner-container mini-gallery">
             <div class="banner" >
                 <ul class="banner-list">
                     <?php $urlCovers = $auction->getUrlImg([$auction::COVER_SLIDER_UPCOMING])[$auction::COVER_SLIDER_UPCOMING]?>
@@ -37,7 +37,65 @@
         </section>
     </section>
     <!-- Contenido General -->
-
+    <div class="fluid-container bg-gris contenedor-indicadores" ng-show="!objAuction.isStarted()">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center">
+                    <div class="indicador-timer-externo" ng-show="objAuction.isStandBy()">
+                            <div class="indicador-timer">
+                                <div class="subasta-tiempo">
+                                    <small class="texto-gris">Inicia en</small>
+                                    <div class="boleto-divider"></div>
+                                    <span ng-show="startDays > 0">@{{startDays}} día<span ng-show="startDays > 1">s</span>,</span>
+                                    <span ng-show="startHours > 0">@{{startHours}} hr,</span>
+                                    <span ng-show="startMinutes > 0">@{{startMinutes}} min,</span>
+                                    @{{startSeconds}} seg
+                                </div>
+                            </div>
+                    </div>
+                    <section ng-show="objAuction.isStarted()">
+                        {{--
+                        <div class="rebase-izq"></div>
+                        <div class="boleto-postor">
+                            <div class="msje-postor">
+                                <span class="hey">HEY!</span>
+                                <span class="hey-msje">Mira quién<br>lleva la delantera</span>
+                            </div>
+                            <div class="boleto-divider"></div>
+                            <div class="usr-postor">
+                                @{{objAuction.winnername || '¡Se el primero!'}}
+                            </div>
+                        </div>
+                        <div class="rebase-der"></div>
+                        --}}
+                        <div class="ofertas-restantes">
+                            {{--<span ng-show="objAuction.bids - totalBids - totalFaults > 0 && totalBids < objAuction.min_bids">
+                                Necesitas realizar minimo  ofertas para poder ser ganador<br>
+                                Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas para poder ganar
+                            </span>--}}
+                            <span ng-show="totalBids >= objAuction.min_bids">
+                                Has cumplido con las ofertas necesarias para poder ganar
+                            </span>
+                            <span ng-show="unqualified">No has ofertado las veces necesarias para poder ser el ganador</span>
+                        </div>
+                    </section>
+                    <section ng-show="objAuction.isFinished()">
+                        <div class="rebase-izq"></div>
+                        <div class="boleto-postor">
+                            <div class="msje-postor">
+                                <span class="hey hey-ganado">@{{objAuction.winner == id_user ? '¡Has ganado!' : '¡El ganador!'}}</span>
+                            </div>
+                            <div class="boleto-divider"></div>
+                            <div class="usr-postor">
+                                @{{objAuction.winnername || '¡No hay ganador!'}}
+                            </div>
+                        </div>
+                        <div class="rebase-der"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="fluid-container nopadding">
         <div class="detalle-divider"></div>
     </div>
@@ -53,7 +111,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 total-subastado">
-                    <p>Última oferta</p>
+                    <p>Última oferta por: <span class="usr-postor">@{{objAuction.winnername || '¡Se el primero!'}}</span></p>
                     <div id="subasta-actual" class="precio-subasta" ng-class="{
                             'subasta-verde': objAuction.winner == id_user
                         }">@{{objAuction.last_offer | currency : '$'}} MXN</div>
@@ -61,32 +119,13 @@
             </div>
         </div>
     </div>
-    <div class="fluid-container bg-gris contenedor-indicadores" >
+    <div class="container-fluid nopadding bg-naranja text-white" ng-show="objAuction.isStarted() || objAuction.isFinished()">
         <div class="container">
             <div class="row">
-                <h3 class="col-xs-12 col-md-offset-6 col-md-6">Oportunidades</h3>
+                <h3 class="col-xs-12 col-md-6 text-center">Oportunidades</h3>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-sm-6 hidden-xs">
-                    <div class="banner-container">
-                        <div class="banner" >
-                            <ul class="banner-list">
-                                <?php $urlCovers = $auction->getUrlImg([$auction::COVER_SLIDER_UPCOMING])[$auction::COVER_SLIDER_UPCOMING]?>
-                                @foreach($urlCovers as $url)
-                                <li class="no-border" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="700" 
-                                    data-slotamount="8" 
-                                    id-producto="{{$auction->code}}" 
-                                    product-name="{{$auction->title}}" 
-                                    rangomin="{{currency($auction->min_offer, config('app.currency'))}}" 
-                                    rangomax="{{Currency::format($auction->max_offer, config('app.currency'))}}" 
-                                    start_date="{{$auction->start_date}}">
-                                    <img src="{{$url}}"/>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div><div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6 indicadores-oportunidades">
                     <div class="col-xs-6 col-sm-3 col-md-3">
                         <div class="indicador-contenedor">
                             <div class="indicador-subasta-externo" id="lasting-bids" ng-class="{'active':placingBidAnimate}">
@@ -158,13 +197,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid nopadding bg-naranja" ng-show="objAuction.isStarted() || objAuction.isFinished()">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 panel-oferta">
+                <div class="col-xs-12 col-sm-6 panel-oferta">
                     <section ng-show="objAuction.isStarted()">
                         <p>Aumenta la oferta</p>
                         <div style="font-size:55px">@{{rangeOferta.max  | currency : '$' }} MXN</div>
@@ -197,45 +230,6 @@
                         <div class="col-sm-4 col-sm-offset-4" ng-show="objAuction.winner == id_user">
                             <a class="btn btn-block btn-primary subasta-boton-pago" href="{{route('payment.win', ['code'=>$auction->code])}}">Pagar subasta</a>
                         </div>
-                    </section>
-                </div>
-                <div class="col-md-6 mejor-postor">
-                    <section ng-show="objAuction.isStarted()">
-                        <div class="rebase-izq"></div>
-                        <div class="boleto-postor">
-                            <div class="msje-postor">
-                                <span class="hey">HEY!</span>
-                                <span class="hey-msje">Mira quién<br>lleva la delantera</span>
-                            </div>
-                            <div class="boleto-divider"></div>
-                            <div class="usr-postor">
-                                @{{objAuction.winnername || '¡Se el primero!'}}
-                            </div>
-                        </div>
-                        <div class="rebase-der"></div>
-                        <div class="ofertas-restantes">
-                            {{--<span ng-show="objAuction.bids - totalBids - totalFaults > 0 && totalBids < objAuction.min_bids">
-                                Necesitas realizar minimo  ofertas para poder ser ganador<br>
-                                Te hacen falta @{{objAuction.min_bids - totalBids}} ofertas para poder ganar
-                            </span>--}}
-                            <span ng-show="totalBids >= objAuction.min_bids">
-                                Has cumplido con las ofertas necesarias para poder ganar
-                            </span>
-                            <span ng-show="unqualified">No has ofertado las veces necesarias para poder ser el ganador</span>
-                        </div>
-                    </section>
-                    <section ng-show="objAuction.isFinished()">
-                        <div class="rebase-izq"></div>
-                        <div class="boleto-postor">
-                            <div class="msje-postor">
-                                <span class="hey hey-ganado">@{{objAuction.winner == id_user ? '¡Has ganado!' : '¡El ganador!'}}</span>
-                            </div>
-                            <div class="boleto-divider"></div>
-                            <div class="usr-postor">
-                                @{{objAuction.winnername || '¡No hay ganador!'}}
-                            </div>
-                        </div>
-                        <div class="rebase-der"></div>
                     </section>
                 </div>
             </div>

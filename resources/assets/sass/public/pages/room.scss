@@ -7,6 +7,19 @@
     max-height: none;
 }
 .section-room{
+    .banner-container.mini-gallery{
+        width: 100%;
+        max-width: 500px;
+    }
+    .banner-container.mini-gallery .banner{
+        height: 170px !important;
+    }
+    .text-white{
+        color: #fff;
+    }
+    .mejor-postor, .mini-gallery{
+        padding: 30px 0px 50px;
+    }
     .subasta-tiempo{
         font-size:18px;
     }
@@ -22,7 +35,8 @@
     .contenedor-indicadores{
         background-color: $bg-verde-claro;
         color: #fff;
-        padding-bottom: 30px;
+        padding: 0;
+        padding-bottom: 10px;
     }
     .contenedor-indicadores h3{
         text-align: center;
@@ -53,9 +67,12 @@
         border-color: #ea9f2e;
     }
     */
+    .indicadores-oportunidades{
+        padding-top: 50px;
+    }
     #total-bids.active,
     #lasting-bids.active{
-        background-color: #ea9f2e;
+        background-color: #00bcb6;
     }
     #fault-bids.active{
         background-color: #fb5f60;
@@ -145,8 +162,8 @@
         }
         .rebase-izq,
         .rebase-der{
-            height: 139px;
-            bottom:-23px;
+            height: 189px;
+            bottom:-19px;
             background-position: center -10px;
         }
         .banner{
@@ -174,6 +191,12 @@
         }
         .banner-hidden{
             display: block !important;
+        }
+        .rebase-izq,
+        .rebase-der{
+            height: 138px;
+            bottom:-22px;
+            background-position: center -10px;
         }
     }
     @media(max-width: 405px){
