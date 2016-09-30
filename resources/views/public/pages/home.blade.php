@@ -6,7 +6,7 @@
     </section>
     <section class="slideshow container" style="display: none">
         <div class="banner-container">
-            <div class="banner" >
+            <div class="banner">
                 <ul class="banner-list">
                     @foreach($sliderAuctions as $auction)
                     <li data-slug="{{str_slug($auction->title)}}" class="link-subasta no-border element-banner-list" id_producto="{{$auction->code}}" data-transition="fade" data-masterspeed="100" 
@@ -42,8 +42,10 @@
                             <span class="banner-leyenda">Rango de oferta desde::</span>
                             <span class="banner-range"><span class="rango-min"></span> - <span class="rango-max"></span></span>
                         </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info subasta-verde">
+                            {{--
                             <span class="subasta-tiempo countdown" start_date=""></span>
                             <span class="subasta-leyenda">Para subastar</span>
+                            --}}
                         </div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center vcenter banner-info">
                             <a class="link-subasta transition-0-3" id_producto="" href="">
                                 <span class="link-hammer transition-0-3"><span class="icon-hammer"></span></span><span class="link-subasta-text">Detalles</span>
@@ -73,6 +75,7 @@
                             <div class="rango-ofertas">@{{lastStarted.min_offer | currency}} - @{{lastStarted.max_offer | currency}}</div>
                         </div>
                         <div class="tiempo-producto">
+                            {{--
                             <timer interval="1000" language="es" class="subasta-tiempo-perfil" 
                                 ng-show="lastStarted.isStandBy()"
                                 end-time="lastStarted.start_date"> 
@@ -90,6 +93,7 @@
                             <div class="subasta-tiempo-perfil" ng-show="lastStarted.isFinished()">
                                 La subasta ha terminado
                             </div>
+                            --}}
                         </div>
                         <div class="producto-hover transition-0-3">
                             <div class="producto-titulo">@{{lastStarted.title}}</div>

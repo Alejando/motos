@@ -6,6 +6,7 @@
             Rango de oferta<br>desde @{{auction.min_offer|currency:"$"}} hasta @{{auction.max_offer|currency:"$"}}
         </div>
         <div id="fecha-subasta" class="fecha-subasta subasta-verde">
+            {{--
             <timer interval="1000" language="es" class="subasta-tiempo-perfil" 
                 ng-show="auction.isStandBy()"
                 end-time="auction.start_date">
@@ -23,6 +24,7 @@
             <div class="subasta-tiempo-perfil" ng-show="auction.isFinished()">
                 La subasta ha terminado
             </div>
+            --}}
         </div>
         <div id="precio-inicial" class="precio-inicial">Tu asiento<span style="text-align: right;float: right;font-weight: bold;">@{{auction.cover|currency:"$"}}</span></div>
         <div id="precio-final" class="precio-final" ng-show="auction.isStarted()">Ultima oferta<span style="text-align: right;float: right;font-weight: bold;">@{{auction.last_offer|currency:"$"}}</span></div>
