@@ -67,12 +67,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jfcodiaz/laravel-helpers.git",
-                "reference": "a10f18207b3d21c9f7897fe35b2c565e66d84175"
+                "reference": "27fd894aa5beb084e44b666383db1549bfc6f0d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jfcodiaz/laravel-helpers/zipball/a10f18207b3d21c9f7897fe35b2c565e66d84175",
-                "reference": "a10f18207b3d21c9f7897fe35b2c565e66d84175",
+                "url": "https://api.github.com/repos/jfcodiaz/laravel-helpers/zipball/27fd894aa5beb084e44b666383db1549bfc6f0d0",
+                "reference": "27fd894aa5beb084e44b666383db1549bfc6f0d0",
                 "shasum": ""
             },
             "type": "libary",
@@ -94,7 +94,7 @@
                 }
             ],
             "description": "Clases con funcionalidad para facilitar las operaciones básicas de CRUD, Servicios Rest etc",
-            "time": "2016-09-27 17:58:57"
+            "time": "2016-10-02 20:54:42"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

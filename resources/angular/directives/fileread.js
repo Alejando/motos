@@ -1,17 +1,25 @@
 setpoint.directive("fileread", [function () {
     return {
         scope: {
-            fileread: "="
+            fileread: "=",
+            onselectfile: "="
         },
         link: function (scope, element, attributes) {
             element.bind("change", function (changeEvent) {
-                var reader = new FileReader();
-                reader.onload = function (loadEvent) {
-                    scope.$apply(function () {
-                        scope.fileread = loadEvent.target.result;
-                    });
+                
+                if(scope.onselectfile){
+                    scope.onselectfile(changeEvent,event.target.files);
                 }
-                reader.readAsDataURL(changeEvent.target.files[0]);
+                if(event.target.files[0]){
+                    scope.fileread = event.target.files[0];
+                }
+//                var reader = new FileReader();
+//                reader.onload = function (loadEvent) {
+//                    scope.$apply(function () {
+//                        scope.fileread = loadEvent.target.result;
+//                    });
+//                }
+//                reader.readAsDataURL(changeEvent.target.files[0]);
             });
         }
     }

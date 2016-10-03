@@ -4,12 +4,15 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         this.setProperties(args);
         this.relations = {};
         this._bk_attrs = {};
-        this._FILES = {};
+        this._FILES = false;
     };
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Metodos de Instancia (prototype)">
     ModelBase.prototype = {
         addFile : function (name, data) {
+            if(!this._FILES){
+                this._FILES = {};
+            }
             this._FILES[name] = data;
         },
         backup : function() {
@@ -119,7 +122,34 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             });
             return $def.promise;
         },
+        saveWithFiles : function () {
+            var $def = $q.defer();
+            var fd = new FormData();
+            var model = this.model();
+            var data = this.getProperties();
+            var url = laroute.route(model.aliasUrl()); 
+            angular.forEach(this._FILES,function(file, name) { 
+                fd.append(name, file);
+            });
+            angular.forEach(data, function (value, field) {
+                if(value!==undefined) {
+                    fd.append(field, value);
+                }
+            }); 
+            $http.post(url,fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            }).success(function(){
+                $def.resolve();
+            }).error(function(){
+                $def.reject() 
+           });
+            return $def.promise;
+        },
         save : function () {
+            if(this._FILES) {
+                return this.saveWithFiles();
+            }
             if(this.id){
                 return this.update();
             }

@@ -91,6 +91,17 @@
                 'swatchBootstrap' : false
             };
             $scope.icon = null;
+            $scope.imgICon = null;
+            $scope.iconSrc =  ''
+            $scope.onselectIcon = function(changeEvent, files){
+                var reader = new FileReader();
+                reader.onload = function (loadEvent) {
+                    $scope.$apply(function () {
+                        $scope.iconSrc = loadEvent.target.result;
+                    });
+                } 
+                reader.readAsDataURL(changeEvent.target.files[0]);
+            }   
             getTitle = function() {
                 return $scope.selectedItem.id ? 'Edición de la "' + $scope.selectedItem.name + '"' : 'Talla Marca';
             };
@@ -134,6 +145,7 @@
                 $scope.prepareItem();
             }
             $scope.selectedItem.save().then(function () {
+                console.log("salvado");
                 var $dialog = $($event.target).closest('.modal');
                 $dialog.modal('hide');
                 $scope.selectedItem = newObj();
@@ -148,7 +160,6 @@
                 title: getTitle(),
                 message: $message
             });
-            console.log(getTitle());
             $.get($scope.form,{},'html').done(function(txt){
                 $message.fadeOut('fast', function(){ 
                     $(this).html(txt).slideDown('slow');
@@ -165,6 +176,7 @@
         };
 
         $scope.cancel = function ($event) {
+            $event.preventDefault();
             var $dialog=$($event.target).closest('.modal');
             $dialog.modal('hide');
             $scope.selectedItem = newObj();

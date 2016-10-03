@@ -1,7 +1,9 @@
 <?php
 
 return [
-
+    'paths' => [
+        'brads' => __DIR__.'/../upload/brands/'
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment
