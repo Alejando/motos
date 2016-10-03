@@ -11,7 +11,9 @@ class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
                 'parent' => "#",
                 'text' => 'Categorias',
                 'type' => 'root',
+                'selected'=>true,
                 'state' => [
+                    'selected' => false,
                     'opened' => true
                 ]
             ]
@@ -21,7 +23,11 @@ class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
             $res[] = [
                 'id' => $category->id,
                 'text'=> $category->name,
-                'parent' => $paret ? $paret : 'root' 
+                'parent' => $paret ? $paret : 'root' ,
+                'state' => [
+                    'selected' => false,
+                    'opened' => true
+                ]
             ];
         }
         return $res;

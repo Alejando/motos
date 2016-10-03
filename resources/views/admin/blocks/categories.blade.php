@@ -15,7 +15,7 @@
     <div class="card-box table-responsive">
         <div class="div-js-tree">
             <js-tree 
-                tree-plugins="types,crrm" 
+                tree-plugins="types" 
                 tree-data="json" 
                 tree-src="{{route('categories.tree')}}"></js-tree>
         </div>

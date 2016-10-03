@@ -14,6 +14,17 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-md-3 control-label">Categorias</label>
+            <div class="col-md-8">
+                <div class="div-js-tree">
+                    <js-tree 
+                        tree-plugins="checkbox,dnd" 
+                        tree-data="json" 
+                        tree-src="{{route('categories.tree')}}"></js-tree>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-md-2 control-label">¿Diversos colores?</label><span class="col-md-1"><input type="checkbox" ng-model="check" checked></span>
             <div id="gallery-colors" class="col-md-8" ng-show="check">
                 <div class="col-md-6">
