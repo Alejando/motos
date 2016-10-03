@@ -24,6 +24,8 @@
     "jquery-ui": "^1.12.1",
     "angular-datatables": "^0.5.5",
     "angular-ui-tinymce": "^0.0.17",
-    "angular-color-picker": "angularjs-color-picker#^2.5.0"
+    "angular-color-picker": "angularjs-color-picker#^2.5.0",
+    "jsTree-directive": "jstree-directive#^0.1.5",
+    "jstree": "^3.3.2"
   }
 }

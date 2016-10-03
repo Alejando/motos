@@ -8,7 +8,8 @@ setpoint.factory('Category', function (ModelBase,$q,$http) {
         },
         attributes: [
             'id',
-            'name'
+            'name',
+            'parent_category_id'
         ],
         relations : []
     }, {

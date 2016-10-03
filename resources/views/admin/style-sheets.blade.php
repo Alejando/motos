@@ -17,6 +17,8 @@
         <link href="{{asset('js/bower_components/bootstrap3-dialog/src/css/bootstrap-dialog.css')}}" rel="stylesheet" type="text/css"/>
         <link href="{{asset('js/bower_components/angular-color-picker/dist/themes/angularjs-color-picker-bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
         <link href="{{asset('js/bower_components/angular-color-picker/dist/angularjs-color-picker.min.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{asset('js/bower_components/jstree/dist/themes/default/style.css')}}" rel="stylesheet" type="text/css"/>
+        
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

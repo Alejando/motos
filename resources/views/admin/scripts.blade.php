@@ -45,6 +45,9 @@
         <script src="{{asset('js/bower_components/tinycolor/dist/tinycolor-min')}}.js" type="text/javascript"></script>
         <script src="{{asset('js/bower_components/angular-color-picker/dist/angularjs-color-picker.min.js')}}" type="text/javascript"></script>
         
+        <script src="{{asset('js/bower_components/jstree/dist/jstree.min.js')}}"  type="text/javascript"></script>
+        <script src="{{asset('js/bower_components/jsTree-directive/jsTree.directive.js')}}"  type="text/javascript"></script>
+        
         @yield('scripts')
         
         <script type="text/javascript">

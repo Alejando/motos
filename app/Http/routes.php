@@ -25,6 +25,10 @@ Route::get('/carrito', function() { return view('public.pages.shoppingcart', arr
 Route::get('/envio', function() { return view('public.pages.shipping', array('showOffert'=>false, 'showBannerBottom'=>false)); });
 Route::get('/pago', function() { return view('public.pages.checkout', array('showOffert'=>false, 'showBannerBottom'=>false)); });
 Route::get('/marcas/{id}/logo', 'Api\\BrandController@getImg');
+Route::get('/categorias/tree',[ 
+    'as' => 'categories.tree',
+    'uses' => 'Api\\CategoryController@tree'
+]);
 Route::group(['prefix' => 'api'], function () {
     $getNames = function ($name) {
         return [ 'names' => [

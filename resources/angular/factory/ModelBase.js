@@ -36,7 +36,7 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             var atributes = self.model().attributes; 
             var setters = self.model().setters;
             angular.forEach(atributes, function (attr) {
-                if(setters[attr]){
+                if(setters && setters[attr]){
                     self[attr] = setters[attr].apply(self,[data[attr]]);
                     return;
                 }
@@ -165,7 +165,7 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                 'url' : url
             }).then(function(result) {
                 //Todo implemenetar elminar de cache
-                $defer.resolve();
+                $defer.resolve(result);
             },function(r){
                 $defer.reject(r);
             });
