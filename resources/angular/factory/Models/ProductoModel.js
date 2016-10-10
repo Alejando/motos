@@ -3,7 +3,7 @@ setpoint.factory('Product', function (ModelBase,$q,$http) {
         ModelBase.apply(this, arguments);
     };
     ModelBase.createModel(Product , {   
-        alias: 'size',
+        alias: 'product',
         setters : {
         },
         attributes: [

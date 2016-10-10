@@ -24,3 +24,43 @@ setpoint.directive("fileread", [function () {
         }
     }
 }]);
+
+setpoint.directive('filesDagAndDrop',[
+    function (){
+        return {
+            scope : {
+                fileread: "=",
+                onselectfile: "="
+            },
+            link : function(scope, element, attributes){
+                var inputFile = angular.element(
+                        '<input type="file" multiple accept=".jpg,.png" style="display:none">'
+                    );
+                element.append(inputFile);
+                
+                inputFile.bind('click', function(e) {
+                     e.stopPropagation();
+                });
+                
+                inputFile.bind('change', function(e) {
+                    scope.onselectfile(this.files);
+                    e.stopPropagation();
+                });
+                
+                element.bind('click', function ($event) {
+                    $(inputFile).click();
+                    $event.preventDefault();
+                });
+                
+                element.bind('drop',function($event) {                 
+                    scope.onselectfile($event.originalEvent.dataTransfer.files);
+                    $event.preventDefault();
+                });
+                
+                element.bind('dragover', function ($event) {
+                    $event.preventDefault();
+                });
+            }
+        }
+    }
+]);

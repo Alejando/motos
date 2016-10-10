@@ -76,7 +76,7 @@ Route::group(['prefix' => 'api'], function () {
 //    $addAPI('address','Address');
     $addAPI('size','Size');
     $addAPI('category','Category');
-    
+    $addAPI('product','Product');
     $addAPI('content','Content');
     $addAPI('user','User');
 //    Route::resource('api/user', 'Api\\User');

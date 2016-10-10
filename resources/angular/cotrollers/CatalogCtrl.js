@@ -33,6 +33,38 @@
                         })
                     ];
             };
+            
+            $scope.colors = [];
+            $scope.prepareItem = function () {
+                angular.forEach($scope.files,function(file,i){
+                    $scope.selectedItem.addFile('img[' + i + ']', file);
+                });
+            }
+            $scope.preprareForm = function () {
+                $scope.files = [];
+                $def = $q.defer();
+                Color.getAll().then(function(colores){
+                    $scope.colors = colores;
+                    $def.resolve();
+                });
+                return $def.promise;
+            }
+            
+            $scope.files = [];
+            $scope.removeSelectedFile = function (file) { 
+                var index = $scope.files.indexOf(file);
+                $scope.files.splice(index,1);
+            }
+            $scope.onselectfile = function(files) {      
+                angular.forEach(files,function(file) {
+                   if(file.type === "image/png" || file.type === "image/jpeg") {
+                       $scope.$apply(function(){
+                           $scope.files.push(file);
+                       });
+                   }
+                });
+            }
+            
         };
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="catalogo de colores">
@@ -175,9 +207,18 @@
             });
             $.get($scope.form,{},'html').done(function(txt){
                 $message.fadeOut('fast', function(){ 
-                    $(this).html(txt).slideDown('slow');
-                    $compile(angular.element($message).contents())($scope);
-                    defer.resolve();
+                    if($scope.preprareForm) {
+                        var self = this;
+                        $scope.preprareForm().then(function(){
+                            $(self).html(txt).slideDown('slow');
+                            $compile(angular.element($message).contents())($scope);
+                            defer.resolve();
+                        });
+                    } else {
+                        $(this).html(txt).slideDown('slow');
+                        $compile(angular.element($message).contents())($scope);
+                        defer.resolve();
+                    }
                 });
             });
             return defer.promise;
