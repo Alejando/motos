@@ -10,7 +10,12 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="categories">
     public function categories() {
-        return $this->belongsToMany(\DwSetpoint\Models\Category::class, 'category_id');
+        return $this->belongsToMany(\DwSetpoint\Models\Category::class);
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="colors">
+    public function colors() {
+        return $this->belongsToMany(Color::class);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="stocks">
@@ -18,10 +23,12 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->hasMany(\DwSetpoint\Models\Stock::class, 'stock_id');
     }
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="saveUploadImg">
+    // <editor-fold defaultstate="collapsed" desc="saveUploadImgs">
     public function saveUploadImgs($imgs) {
-        foreach($imgs as $img){
-            $this->saveUploadImg($img);
+        if(is_array($imgs) || ($imgs instanceof Traversable)) {
+            foreach($imgs as $img){
+                $this->saveUploadImg($img);
+            }
         }
         return $this;
     }
@@ -38,10 +45,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
                 $img->move($this->getImgPath(),  $name);
                 
             }else{
-                $name = $this->getImgPath().$img->getClientOriginalName();
-                $img->move($this->getImgPath(),$img->getClientOriginalName());
+                $name = $img->getClientOriginalName();
+                $img->move($this->getImgPath(),$name);
             }
-            chmod($name, config('app.permissionFiles'));
+//            dd($name);
+            chmod($this->getImgPath().$name, config('app.permissionFiles'));
         }
         return $this;
     }
@@ -61,4 +69,16 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="setColorsById">
+    public function setColorsByIds($ids) {
+        $this->colors()->sync($ids);
+        return $this;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="setCategoriesById">
+    public function setCategoriesByIds($ids) {
+        $this->categories()->sync($ids);
+    }
+    // </editor-fold>
+
 }

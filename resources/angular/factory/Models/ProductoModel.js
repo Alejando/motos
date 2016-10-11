@@ -11,9 +11,12 @@ setpoint.factory('Product', function (ModelBase,$q,$http) {
             'name',
             'code',
             'sizes',
-            'colors'
+            'colors',
+            'categories'
         ],
-        relations : []
+        relations : [
+            //['colors', Color, 'hasMany']
+        ]
     }, {
     });
     return Product;

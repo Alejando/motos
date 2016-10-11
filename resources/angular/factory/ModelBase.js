@@ -133,7 +133,13 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             });
             angular.forEach(data, function (value, field) {
                 if(value!==undefined) {
-                    fd.append(field, value);
+                    if(angular.isArray(value)){
+                        angular.forEach(value,function(item) {
+                            fd.append(field+"[]", item);
+                        });
+                    } else {
+                        fd.append(field, value);  
+                    }
                 }
             }); 
             $http.post(url,fd, {

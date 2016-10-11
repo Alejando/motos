@@ -27,16 +27,38 @@
                 return [
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
-                        DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                        DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type, full, meta){
                             return '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
                                 '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
             
-            $scope.colors = [];
+            $scope.addColor = function ($event, color) {
+                $event.target.checked;
+                if($scope.selectedItem) {
+                    if(!$scope.selectedItem.colors) {
+                        $scope.selectedItem.colors = [];
+                    }
+                    if($event.target.checked) {
+                        $scope.selectedItem.colors.push(color.id);
+                    } else {
+                        var index = $scope.selectedItem.colors.indexOf(color.id);
+                        $scope.selectedItem.colors.splice(index,1);
+                    }
+                }
+            }
+            
+            $scope.inColors = function(color) {
+                if($scope.selectedItem && $scope.selectedItem.colors){
+                    return $scope.selectedItem.colors.indexOf(color.id) !== -1;
+                }
+            }
             $scope.prepareItem = function () {
-                angular.forEach($scope.files,function(file,i){
+                var checkeds = $('.div-js-tree js-tree').jstree("get_checked",null,true);
+                $scope.selectedItem.categories = checkeds;
+                
+                angular.forEach($scope.files,function(file, i){
                     $scope.selectedItem.addFile('img[' + i + ']', file);
                 });
             }

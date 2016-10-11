@@ -40,7 +40,7 @@
                 <div class="col-md-6" ng-repeat="color in colors" ng-show="check">
                     <div class="col-md-12 text-left"> 
                         <label>
-                            <input type="checkbox" name="" checked>
+                            <input type="checkbox" name="" ng-checked="inColors(color)" ng-click="addColor($event, color)">
                             <div style="width: 10px;height: 10px;display:inline-block;background-color:@{{color.rgb}};margin: 0 auto;"> </div>
                             <span>@{{color.name}} (@{{color.pref}})</span>
                         </label>
