@@ -2,6 +2,12 @@
     <h4 class="m-t-0 header-title"><b>Productos:</b></h4>
     <form class="form-horizontal" role="form" ng-submit="saveItem($event)">
         <div class="form-group">
+            <label class="col-md-3 control-label">Código</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="selectedItem.code" class="form-control" placeholder="Código">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-md-3 control-label">Nombre</label>
             <div class="col-md-8">
                 <input type="text" ng-model="selectedItem.name" class="form-control" placeholder="Nuevo Producto">

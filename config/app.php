@@ -1,7 +1,9 @@
 <?php
 
 return [
+    'permissionFiles' => 0777,
     'paths' => [
+        'products' => __DIR__.'/../upload/products/',
         'brads' => __DIR__.'/../upload/brands/'
     ],
     /*

@@ -9,6 +9,7 @@ setpoint.factory('Product', function (ModelBase,$q,$http) {
         attributes: [
             'id',
             'name',
+            'code',
             'sizes',
             'colors'
         ],
