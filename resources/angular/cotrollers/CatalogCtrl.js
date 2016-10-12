@@ -1,3 +1,5 @@
+/* global BootstrapDialog, setpoint */
+
 !function () { 
 
     setpoint.controller('CatalogCtrl', function (
@@ -11,7 +13,8 @@
             Product,
             Category,
             DTOptionsBuilder,
-            DTColumnBuilder) {
+            DTColumnBuilder 
+            ) {
         var getTitle = function () {
             return "Titulo Por defecto";
         };
@@ -33,7 +36,11 @@
                         })
                     ];
             };
-            
+            $scope.brands = [];
+            $scope.selectedBrand = null;
+            Brand.getAll().then(function(brands) {
+                $scope.brands = brands;
+            });
             $scope.addColor = function ($event, color) {
                 $event.target.checked;
                 if($scope.selectedItem) {
@@ -47,21 +54,23 @@
                         $scope.selectedItem.colors.splice(index,1);
                     }
                 }
-            }
-            
+            };
             $scope.inColors = function(color) {
                 if($scope.selectedItem && $scope.selectedItem.colors){
                     return $scope.selectedItem.colors.indexOf(color.id) !== -1;
                 }
-            }
+            };
             $scope.prepareItem = function () {
                 var checkeds = $('.div-js-tree js-tree').jstree("get_checked",null,true);
                 $scope.selectedItem.categories = checkeds;
                 
+                console.log($scope.selectedBrand);
+                $scope.selectedItem.brand_id = $scope.selectedBrand.id;
+                $scope.selectedItem.multi_galeries = $scope.selectedItem.multi_galeries === true ? 1 : 0;
                 angular.forEach($scope.files,function(file, i){
                     $scope.selectedItem.addFile('img[' + i + ']', file);
                 });
-            }
+            };
             $scope.preprareForm = function () {
                 $scope.files = [];
                 $def = $q.defer();
@@ -70,13 +79,13 @@
                     $def.resolve();
                 });
                 return $def.promise;
-            }
+            };
             
             $scope.files = [];
             $scope.removeSelectedFile = function (file) { 
                 var index = $scope.files.indexOf(file);
                 $scope.files.splice(index,1);
-            }
+            };
             $scope.onselectfile = function(files) {      
                 angular.forEach(files,function(file) {
                    if(file.type === "image/png" || file.type === "image/jpeg") {
@@ -85,7 +94,7 @@
                        });
                    }
                 });
-            }
+            };
             
         };
         //</editor-fold>
@@ -150,7 +159,7 @@
             $scope.prepareItem = function(){
                 $scope.selectedItem.addFile('icon', $scope.icon);
                 console.log($scope.selectedItem);
-            }
+            };
             $scope.model = Brand;
             $scope.colorPickerOptions = {
                 'format' : 'hex',
@@ -159,16 +168,16 @@
             };
             $scope.icon = null;
             $scope.imgICon = null;
-            $scope.iconSrc =  ''
+            $scope.iconSrc =  '';
             $scope.onselectIcon = function(changeEvent, files){
                 var reader = new FileReader();
                 reader.onload = function (loadEvent) {
                     $scope.$apply(function () {
                         $scope.iconSrc = loadEvent.target.result;
                     });
-                } 
+                };
                 reader.readAsDataURL(changeEvent.target.files[0]);
-            }   
+            };
             getTitle = function() {
                 return $scope.selectedItem.id ? 'Edición de la "' + $scope.selectedItem.name + '"' : 'Talla Marca';
             };

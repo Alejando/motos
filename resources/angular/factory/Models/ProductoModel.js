@@ -11,8 +11,11 @@ setpoint.factory('Product', function (ModelBase,$q,$http) {
             'name',
             'code',
             'sizes',
+            'description',
+            'multi_galeries',
             'colors',
-            'categories'
+            'categories',
+            'brand_id'
         ],
         relations : [
             //['colors', Color, 'hasMany']

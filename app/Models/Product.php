@@ -2,7 +2,13 @@
 
 namespace DwSetpoint\Models;
 class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
-    protected $fillable = ['name', 'description', 'code'];
+    protected $fillable = [
+        'name', 
+        'description', 
+        'code',
+        'brand_id',
+        'multi_galeries'
+    ];
     // <editor-fold defaultstate="collapsed" desc="brand">
     public function brand() {
         return $this->belongsTo(\DwSetpoint\Models\Brand::class, 'brand_id');
@@ -71,7 +77,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="setColorsById">
     public function setColorsByIds($ids) {
-        $this->colors()->sync($ids);
+        $this->colors()->sync((array)$ids);
         return $this;
     }
     // </editor-fold>

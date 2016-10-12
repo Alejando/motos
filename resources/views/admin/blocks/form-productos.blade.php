@@ -14,6 +14,40 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-md-3 control-label">Marca</label>
+            <div class="col-md-8">
+                <ui-select ng-model="$parent.selectedBrand"> 
+                    <ui-select-match>
+                        <span style="
+                              background-image: url(@{{$select.selected.getLogo(20,20)}}); 
+                                  display: block;
+                                    margin: 0px;
+                                    padding: 0px;
+                                    background-repeat: no-repeat;
+                                    width: 20px;
+                                    height: 20px;
+                                    float: left;
+                                    margin-right: 10px;"
+                        ></span>
+                        <span>@{{$select.selected.name}} </span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="brand in brands track by brand.name">
+                        <span style="
+                              background-image: url(@{{brand.getLogo(20,20)}}); 
+                                  display: block;
+                                    margin: 0px;
+                                    padding: 0px;
+                                    background-repeat: no-repeat;
+                                    width: 20px;
+                                    height: 20px;
+                                    float: left;
+                                    margin-right: 10px;"
+                        ></span><span> @{{brand.name}} </span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-md-3 control-label">Descripcion</label>
             <div class="col-md-8">
                 <textarea ng-model="selectedItem.description" class="form-control textarea-control" placeholder="Descripción"></textarea>
@@ -32,12 +66,12 @@
         </div>
         <div class="form-group">
             <label class="col-md-12 control-label text-left" style="text-align: left;">
-                <input type="checkbox" ng-model="check" checked> Manejar catalogo por color
+                <input type="checkbox" ng-model="selectedItem.multi_galeries" checked> Manejar catalogo por color
             </label>
         </div>
         <div class="form-group">
             <div id="gallery-colors" class="col-md-12">
-                <div class="col-md-6" ng-repeat="color in colors" ng-show="check">
+                <div class="col-md-6" ng-repeat="color in colors" ng-show="selectedItem.multi_galeries">
                     <div class="col-md-12 text-left"> 
                         <label>
                             <input type="checkbox" name="" ng-checked="inColors(color)" ng-click="addColor($event, color)">

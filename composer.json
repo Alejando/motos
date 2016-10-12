@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "lord/laroute" : "2.*",
-        "devtics/laravel-helpers": "dev-master"
+        "devtics/laravel-helpers": "dev-master",
+        "imagine/imagine": "^0.6.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

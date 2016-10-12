@@ -3,7 +3,11 @@ var setpoint = angular.module('setpoint', [
     'datatables',
     'ui.tinymce',
     'color.picker',
-    'jsTree.directive'
+    'jsTree.directive',
+    'ngSanitize',
+    'ui.select',
+    'slugifier'
+    
 ]);
 //setpoint.constat('Config', {
 //    DATE_FORMAT : 'dd/MMMM/yyyy', //https://docs.angularjs.org/api/ng/filter/date

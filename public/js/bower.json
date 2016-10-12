@@ -26,6 +26,9 @@
     "angular-ui-tinymce": "^0.0.17",
     "angular-color-picker": "angularjs-color-picker#^2.5.0",
     "jsTree-directive": "jstree-directive#^0.1.5",
-    "jstree": "^3.3.2"
+    "jstree": "^3.3.2",
+    "angular-ui-select": "^0.19.4",
+    "angular-sanitize": "^1.5.8",
+    "angular-slugify": "^1.0.1"
   }
 }

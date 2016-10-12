@@ -6,6 +6,34 @@ use Illuminate\Support\Facades\Input;
 
 class BrandController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Brand::class;
+    
+    public function fitToSize($id, $slugSEO, $width, $height) {
+        $png = $source = Config('app.paths.brads').$id.".png";
+        $jpg = $source = Config('app.paths.brads').$id.".jpg";
+        $source = file_exists($png) ? $png : $jpg;
+        
+        $imagine = new \Imagine\Gd\Imagine();
+        $size = new \Imagine\Image\Box($width, $height);
+        $mode = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
+        $resizeImg = $imagine->open($source)->thumbnail($size,$mode);
+        $sizeR  = $resizeImg->getSize();
+        $widthR = $sizeR->getWidth();
+        $heightR = $sizeR->getHeight();
+        $palette = new \Imagine\Image\Palette\RGB();
+        $color = $palette->color('#000', 0);
+        $preverse = $imagine->create($size, $color);
+        $startX = $startY = 0;
+        if($widthR < $width) {
+            $startX = ($width - $widthR) / 2;
+        }
+        if($heightR < $height) {
+            $startY = ($height - $heightR)/2;
+        }
+        $preverse->paste($resizeImg, new \Imagine\Image\Point($startX, $startY));
+        $data = $preverse->get('png');  
+        return \Illuminate\Support\Facades\Response::make($data, 200, ['Content-Type'=>'image/png']);
+    }
+    
     public function getImg($id) {
         $path = Config('app.paths.brads').$id;
         $jpg = $path.'.jpg';
