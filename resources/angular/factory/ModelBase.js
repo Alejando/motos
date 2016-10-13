@@ -162,6 +162,32 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             return this.create();
         
         },
+        detach : function (strRelation, entity) {
+            var fn = this.model().conf_relations[strRelation][ModelBase.RELATIONS.FUNCTION];
+            if(fn === "hasMany"){
+                var index = this.relations[strRelation].indexOf(entity);
+                if(index != -1) {
+                    this.relations[strRelation].splice(index,1);
+                }
+                index = this[strRelation + "_ids"].indexOf(entity.id);
+                if(index !=-1) {
+                    this[strRelation + "_ids"].splice(index,1);
+                }
+            }else {
+                throw Error(strRelation + " Fn no implementada");
+            }
+            return this;
+        },
+        relate : function (strRelation, entity) {
+            var fn = this.model().conf_relations[strRelation][ModelBase.RELATIONS.FUNCTION];
+            if(fn === "hasMany"){
+                this.relations[strRelation].push(entity);
+                this[strRelation + "_ids"].push(entity.id);
+            }else {
+                throw Error(strRelation + " Fn no implementada");
+            }
+            return this;
+        },
         remove : function() {
             var model = this.model();
             var url = laroute.route(model.aliasUrl())+"/"+this.id;        
@@ -183,20 +209,30 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         hasMany : function (Model, key) {
             var self = this;
             var defer = $q.defer();
-            var url = laroute.route(self.model().aliasUrl()  + '.relation',{
-                'id' : self.id,
-                'relation' :  key
-            });
-            $http({
-                'method' : 'GET',
-                'url' : url
-            }).then(function(result){                
-                var instancias = Model.build(result.data);
-                self.relations[key] = instancias;
-                defer .resolve(instancias);                                
-            },function(r) {                
-                defer .reject(r);
-            });
+            if(self.id){
+                var url = laroute.route(self.model().aliasUrl()  + '.relation',{
+                    'id' : self.id,
+                    'relation' :  key
+                });
+                $http({
+                    'method' : 'GET',
+                    'url' : url
+                }).then(function(result){                
+                    var arrIds = [];
+                    var instancias = Model.build(result.data, function(obj){
+                        arrIds.push(obj.id);
+                    });
+                    self.relations[key] = instancias;
+                    self[key+"_ids"] = arrIds;
+                    defer .resolve(instancias);                                
+                },function(r) {                
+                    defer .reject(r);
+                });
+            } else {
+                $timeout(function(){
+                    defer .resolve([]);
+                });
+            }
             return defer.promise;
         },
         belongsTo : function (Model, key) {            
@@ -297,11 +333,13 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             return model;
         };
         model.cache = [];
+        model.conf_relations = {};
         angular.forEach(model.relations, function(v){            
             var key = v[ModelBase.RELATIONS.KEY];            
             var fn = v[ModelBase.RELATIONS.FUNCTION];
             var fnModel = v[ModelBase.RELATIONS.MODEL];
             model.addRelation(key,fnModel,fn);
+            model.conf_relations[key] = v;
         });
 //        console.log("models->"+model.attributes);
         return model;
@@ -316,7 +354,10 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         return obj;
     };
     //<editor-fold defaultstate="collapsed" desc="build">
-    ModelBase.build = function (data) {        
+    ModelBase.build = function (data, fnSteep) {        
+        if(fnSteep === undefined) {
+            fnSteep = $.noop;
+        }
         var Model = this.model(), obj;
         if (angular.isArray(data)) {            
             var arrInst = [];
@@ -331,15 +372,15 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                     obj = Model.addCache(new Model(d));  
                     arrInst.push(obj);
                 }
+                fnSteep(obj);
             });
             return arrInst;
         }
         obj = Model.findCache(data);
-        if(obj) {              
-            return obj;
-        } else {                        
+        if(!obj) {                   
             obj = Model.addCache(new Model(data));
         }
+        fnSteep(obj);
         return obj;
     };
     //</editor-fold>

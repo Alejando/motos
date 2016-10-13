@@ -86,5 +86,16 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         $this->categories()->sync($ids);
     }
     // </editor-fold>
-
+    public function getImgsAttribute() {
+        $path = $this->getImgPath();
+        if(file_exists($path)){
+            chdir($path);
+            return glob("*{png,jpg}", GLOB_BRACE);
+        }
+        return [];
+    }
+    public function image() {
+        echo $path = $this->getImgPath();
+        return "ok";
+    }
 }

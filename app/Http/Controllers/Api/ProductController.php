@@ -5,7 +5,20 @@ use \Illuminate\Support\Facades\Input;
 
 class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Product::class;
-    
+    public function getImgs($id) {
+        $product = \DwSetpoint\Models\Product::getById($id);
+        if($product) {
+           return $product->imgs;
+        }
+        abort(404);
+    }
+    public function img($id,$width,$height,$img) {
+        $product = \DwSetpoint\Models\Product::getById($id);
+        if($product) {
+           return $product->image($img,$width,$height);
+        }
+        abort(404);
+    }
     public function store(\Illuminate\Http\Request $request) {
         $res = parent::store($request);
         /* @var $product \DwSetpoint\Models\Product */

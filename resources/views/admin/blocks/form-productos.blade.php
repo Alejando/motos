@@ -66,7 +66,7 @@
         </div>
         <div class="form-group">
             <label class="col-md-12 control-label text-left" style="text-align: left;">
-                <input type="checkbox" ng-model="selectedItem.multi_galeries" checked> Manejar catalogo por color
+                <input type="checkbox" ng-model="selectedItem.multi_galeries" ng-checked="selectedItem.multi_galeries==1"> Manejar catalogo por color
             </label>
         </div>
         <div class="form-group">
@@ -101,7 +101,13 @@
                 </ul>
             </div>
         </div>
-            <button class="btn btn-primary waves-effect waves-light">Guardar</button>
+        <div class="form-group">
+            <ul>
+                <li ng-repeat="img in selectedItem.imgs">@{{selectedItem.getImg(img, 50, 50)}}</li>
+            </ul>
+        </div>
+        
+        <button class="btn btn-primary waves-effect waves-light">Guardar</button>
         <button class="btn btn-danger waves-effect waves-light"  ng-click="cancel($event)">Cancelar</button>
     </form>
 </div>

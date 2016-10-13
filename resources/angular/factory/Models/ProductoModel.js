@@ -1,4 +1,4 @@
-setpoint.factory('Product', function (ModelBase,$q,$http) {    
+setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color) {    
     var Product = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -13,14 +13,60 @@ setpoint.factory('Product', function (ModelBase,$q,$http) {
             'sizes',
             'description',
             'multi_galeries',
-            'colors',
-            'categories',
+//            'colors',
+//            'categoriesC',
             'brand_id'
         ],
         relations : [
-            //['colors', Color, 'hasMany']
-        ]
+            ['categories', Category, 'hasMany'],
+            ['colors', Color, 'hasMany']
+        ],
+        
     }, {
+        renameImg : function () {
+            var $defer = $q.defer();
+            var url = laroute.route('product.renameImg', {
+                'id' : this.id
+            });
+            $http.put(url,{
+                img : img,
+                name : name
+            }).then(function (request){
+                console.log(request);
+            });
+            $defer.promise;
+        },
+        removeImg : function (img) {
+            var $defer = $q.defer();
+            var url = laroute.route('product.getImgs', {
+                'id' : this.id
+            });
+            $http.delete(url,{
+                img : img
+            }).then(function (request){
+                console.log(request);
+            });
+            $defer.promise;
+        },
+        getImg : function (img,width,height){
+            
+            return laroute.route('product.img', {
+                id : this.id,
+                width : width,
+                height: height
+            });
+        },
+        getImgs : function () {
+            var $defer = $q.defer();
+            var url = laroute.route('product.getImgs', {
+                'id' : this.id
+            });
+            var self = this;
+            $http.get(url).then(function (request){
+                self.imgs = request.data;
+            });
+            $defer.promise;
+        }
     });
     return Product;
 });

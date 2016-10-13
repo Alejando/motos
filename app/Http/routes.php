@@ -86,9 +86,18 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('size','Size');
     $addAPI('category','Category');
     $addAPI('product','Product');
+    Route::get('product/{id}/images', [
+        'as' => 'product.getImgs',
+        'uses' => 'Api\\ProductController@getImgs'
+    ]);
+    Route::get('product/{id}/images/{width}x{heigth}/{img}',[
+        'as' => 'product.img',
+        'uses' => 'Api\\ProductController@img'
+    ]);
     $addAPI('content','Content');
     $addAPI('user','User');
 });
+
 Route::get('/home', 'HomeController@index');
 Route::get('/admin',  'AdminCtrl@index'); 
 Route::get('/pages/admin/{view}.html', [

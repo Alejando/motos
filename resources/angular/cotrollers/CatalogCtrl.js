@@ -13,7 +13,8 @@
             Product,
             Category,
             DTOptionsBuilder,
-            DTColumnBuilder 
+            DTColumnBuilder,
+            $interval
             ) {
         var getTitle = function () {
             return "Titulo Por defecto";
@@ -44,26 +45,22 @@
             $scope.addColor = function ($event, color) {
                 $event.target.checked;
                 if($scope.selectedItem) {
-                    if(!$scope.selectedItem.colors) {
-                        $scope.selectedItem.colors = [];
-                    }
                     if($event.target.checked) {
-                        $scope.selectedItem.colors.push(color.id);
+                        $scope.selectedItem.relate('colors', color);
                     } else {
-                        var index = $scope.selectedItem.colors.indexOf(color.id);
-                        $scope.selectedItem.colors.splice(index,1);
+                        $scope.selectedItem.detach('colors', color);
                     }
                 }
             };
             $scope.inColors = function(color) {
-                if($scope.selectedItem && $scope.selectedItem.colors){
-                    return $scope.selectedItem.colors.indexOf(color.id) !== -1;
+                if($scope.selectedItem && $scope.selectedItem.colors_ids) {                   
+                    return $scope.selectedItem.colors_ids.indexOf(color.id) !== -1;
                 }
             };
             $scope.prepareItem = function () {
-                var checkeds = $('.div-js-tree js-tree').jstree("get_checked",null,true);
+                var $jstree = $('.div-js-tree js-tree');
+                var checkeds = $jstree.jstree("get_checked",null,true);                
                 $scope.selectedItem.categories = checkeds;
-                
                 console.log($scope.selectedBrand);
                 $scope.selectedItem.brand_id = $scope.selectedBrand.id;
                 $scope.selectedItem.multi_galeries = $scope.selectedItem.multi_galeries === true ? 1 : 0;
@@ -74,8 +71,26 @@
             $scope.preprareForm = function () {
                 $scope.files = [];
                 $def = $q.defer();
-                Color.getAll().then(function(colores){
+                $scope.selectedItem.backup();
+                var defCategories = $scope.selectedItem.categories().then(function(categories) {
+                    if(categories.length) {
+                       var whaitJsTree = $interval(function(){
+                           var $jstree = $('.div-js-tree js-tree');
+                           if($jstree.find("#" + categories[0].id).size()) {
+                                $interval.cancel(whaitJsTree);
+                                angular.forEach(categories, function(category) {
+                                    $jstree.jstree('check_node', "#" + category.id);
+                                });
+                            }
+                        }, 100);
+                    }
+                });
+                var defLoadImg = $scope.selectedItem.getImgs();
+                var defLoadProductsColors = $scope.selectedItem.colors();
+                var defColors = Color.getAll().then(function(colores){
                     $scope.colors = colores;
+                });
+                $q.all([defCategories, defColors, defLoadProductsColors, defLoadImg]).then(function(){
                     $def.resolve();
                 });
                 return $def.promise;
@@ -221,7 +236,7 @@
                 $scope.prepareItem();
             }
             $scope.selectedItem.save().then(function () {
-                console.log("salvado");
+                 $scope.selectedItem.backup();
                 var $dialog = $($event.target).closest('.modal');
                 $dialog.modal('hide');
                 $scope.selectedItem = newObj();
@@ -234,7 +249,11 @@
             var defer = $q.defer();
             BootstrapDialog.show({
                 title: getTitle(),
-                message: $message
+                message: $message,
+                onhide: function(dialog){
+                    $scope.selectedItem.rollback();
+                    $scope.selectedItem = newObj();
+                }
             });
             $.get($scope.form,{},'html').done(function(txt){
                 $message.fadeOut('fast', function(){ 
@@ -264,7 +283,6 @@
             $event.preventDefault();
             var $dialog=$($event.target).closest('.modal');
             $dialog.modal('hide');
-            $scope.selectedItem = newObj();
         };
         
         $scope.editItem = function (id,e) {
