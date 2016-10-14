@@ -48,13 +48,16 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color) {
             });
             $defer.promise;
         },
-        getImg : function (img,width,height){
+        getImg : function (img, width, height) {
             
-            return laroute.route('product.img', {
+            var url = laroute.route('product.img', {
                 id : this.id,
                 width : width,
-                height: height
+                height: height,
+                img : img
             });
+            console.log(url);
+            return url;
         },
         getImgs : function () {
             var $defer = $q.defer();

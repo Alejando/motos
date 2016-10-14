@@ -15,7 +15,13 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     public function img($id,$width,$height,$img) {
         $product = \DwSetpoint\Models\Product::getById($id);
         if($product) {
-           return $product->image($img,$width,$height);
+            $source = $product->image($img,$width,$height);
+            $path = $product->getImgPath().$img;
+            if($path){
+                $ext = pathinfo($path, PATHINFO_EXTENSION);
+                $source->show($ext);
+                die();
+            }
         }
         abort(404);
     }

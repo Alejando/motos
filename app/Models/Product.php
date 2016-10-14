@@ -94,8 +94,19 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return [];
     }
-    public function image() {
-        echo $path = $this->getImgPath();
-        return "ok";
+    public function image($image, $width, $height) {
+        $path = $this->getImgPath().$image;
+        if(file_exists($path)){
+            return \DwSetpoint\Libs\Helpers\Image::toFit($path, 
+                $width, 
+                $height, 
+                'png', 
+                config('app.config-images.fillcolor'),
+                config('app.config-images.fillopacity'), 
+                true
+            );
+           
+        }
+        return false;
     }
 }

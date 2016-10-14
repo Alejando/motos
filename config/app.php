@@ -2,6 +2,10 @@
 
 return [
     'permissionFiles' => 0777,
+    'config-images' => [
+        'fillcolor' => "#FFF",
+        'fillopacity' => 0
+    ],
     'paths' => [
         'products' => __DIR__.'/../upload/products/',
         'brads' => __DIR__.'/../upload/brands/'
