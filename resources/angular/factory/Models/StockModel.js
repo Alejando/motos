@@ -12,12 +12,13 @@ setpoint.factory('Stock', function (ModelBase, $q, $http,
         attributes: [
             'id',
             'quantity',
-            'prices'
+            'price',
+            'code'
         ],
         relations : [
-            ['product', Product,''],
-            ['color', Color, ''],
-            ['size', Size, '']
+            ['product', Product, 'belongsTo'],
+            ['color', Color, 'belongsTo'],
+            ['size', Size, 'belongsTo']
         ]
     }, {
     });

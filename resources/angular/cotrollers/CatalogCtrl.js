@@ -16,7 +16,8 @@
             Category,
             DTOptionsBuilder,
             DTColumnBuilder,
-            $interval
+            $interval,
+            $timeout
             ) {
         var getTitle = function () {
             return "Titulo Por defecto";
@@ -164,7 +165,7 @@
                                 .withOption('width', '10px')
                                 .notSortable()
                                 .renderWith(function(data,type,full, meta){
-                                   return '<div style="width: 20px;height: 20px;display: block;background-color:' + full.rgb + ';margin: 0 auto;"> </div>'; 
+                                   return '<div class="box-color" style="background-color:' + full.rgb + ';"> </div>'; 
                                 }),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
                         DTColumnBuilder.newColumn('pref').withTitle('Prefijo'),
@@ -203,7 +204,11 @@
             $scope.catalog = "Stock";
             $scope.hideExcelExport = true;
             $scope.hideExcelImport = true;
-            $scope.prepareItem = function () {};
+            $scope.prepareItem = function () {
+                $scope.selectedItem.relate('product', $scope.selectedProduct);
+                $scope.selectedItem.relate('color', $scope.selectedColor);
+                $scope.selectedItem.relate('size', $scope.selectedSize);
+            };
             $scope.model = Stock;
             $scope.products = [];
             Product.getAll().then(function(products) {
@@ -216,21 +221,58 @@
             $scope.selectedColor = null;
             $scope.selectedSize = null;
             $scope.onSelectProduct = function() {
-                $scope.selectedProduct.colors().then(function(colors){
+                var def = $q.defer();
+                var loadColors = $scope.selectedProduct.colors().then(function(colors) {
                     $scope.colors = colors;
                 });
-                $scope.selectedProduct.sizes().then(function(sizes){
+                var loadProduct = $scope.selectedProduct.sizes().then(function(sizes) {
                     $scope.sizes = sizes;
                 });
+                $q.all([loadColors, loadProduct]).then(function() {
+                    def.resolve();
+                });
+                return def.promise;
             };
+            $scope.preprareForm = function() {
+                var def = $q.defer();
+                if($scope.selectedItem.id) {
+                    $scope.selectedItem.backup();
+                    var loadProduct = $scope.selectedItem.product();
+                    var loadColor = $scope.selectedItem.color();
+                    var loadSize = $scope.selectedItem.size();
+                    $q.all([loadProduct,loadColor,loadSize]).then(function(d) {
+                        $scope.selectedProduct = d[0];
+                        $scope.selectedColor = d[1];
+                        $scope.selectedSize = d[2];
+                        $scope.onSelectProduct().then(function() {
+                            def.resolve();
+                        });
+                    });
+                } else {
+                    $timeout(function() {
+                        $scope.selectedProduct = null;
+                        $scope.selectedColor = null;
+                        $scope.selectedSize = null;
+                        def.resolve();
+                    },10);
+                }
+                return def.promise;
+            }
             $scope.size = [];
             getTitle = function () {
-                return $scope.selectedItem.id ? 'Edición del stock"' + $scope.selectedItem.name + '"' : 'Nuevo Stock';
+                return $scope.selectedItem.id ? 'Edición del stock"' + $scope.selectedItem.code + '"' : 'Nuevo Stock';
             };
             getColumnBuilder = function () {
                 return [
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
-//                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn('code').withTitle('Código'),
+                        DTColumnBuilder.newColumn('product.name').withTitle('Producto'),
+                        DTColumnBuilder.newColumn('quantity').withTitle('Existencias'), 
+                        DTColumnBuilder.newColumn('size.name').withTitle('Tamaño/Talla'),
+                        DTColumnBuilder.newColumn('color.name').withTitle('Color').renderWith(function(data, type, full, meta){
+                            return  '<div class="box-color" style="background-color:' + full.color.rgb + ';"></div>' +
+                                    '<div style="text-align:center">' + full.color.name + '</div>';
+                        }),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
                                 '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';

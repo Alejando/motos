@@ -191,6 +191,7 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         },
         relate : function (strRelation, entity) {
             var fn = this.model().conf_relations[strRelation][ModelBase.RELATIONS.FUNCTION];
+            console.log(fn);
             if(fn === "hasMany"){
                 if(this.relations[strRelation]==undefined) {
                     this.relations[strRelation] = [];
@@ -198,7 +199,10 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                 }
                 this.relations[strRelation].push(entity);
                 this[strRelation + "_ids"].push(entity.id);
-            }else {
+            } if(fn === "belongsTo") {
+                this.relations[strRelation] = entity;
+                this[strRelation +"_id"] = entity.id;
+            } else {
                 throw Error(strRelation + " Fn no implementada");
             }
             return this;
