@@ -25,8 +25,30 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         abort(404);
     }
+    public function destroy($id) {
+        $product = \DwSetpoint\Models\Product::getById($id);
+        $product->removePath();
+        return parent::destroy($id);
+    }
+    public function update(\Illuminate\Http\Request $request, $id) {
+        $oldCode = \DwSetpoint\Models\Product::getById($id)->code;
+        $res = parent::update($request, $id);
+        if($oldCode != Input::get('code')){
+            $res['model']->updatePathUpload($oldCode);   
+        }
+        return $res;
+    }
+    
     public function store(\Illuminate\Http\Request $request) {
-        $res = parent::store($request);
+        $id = Input::get("id");
+        if($id) {
+            $oldCode = \DwSetpoint\Models\Product::getById($id)->code;
+            $res = parent::update($request, $id);
+            $res['model']->updatePathUpload($oldCode);
+            
+        } else {
+            $res = parent::store($request);
+        }
         /* @var $product \DwSetpoint\Models\Product */
         $product = $res['model'];
         $product->saveUploadImgs(Input::file('img'))
@@ -34,15 +56,5 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
             ->setCategoriesByIds(Input::get('categories'))
         ;
         return $res;
-//        try{
-//            $files = ;
-//            foreach($files as $file) {
-//                https://packagist.org/packages/devtics/laravel-helpers
-//            }
-//        }catch(\Exception $ex){
-//            echo $ex->getMessage();
-//        }dd($file);
-        die("--");
-        //parent::store($request);
     }
 }

@@ -1,4 +1,4 @@
-setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color) {    
+setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand) {    
     var Product = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -19,7 +19,8 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color) {
         ],
         relations : [
             ['categories', Category, 'hasMany'],
-            ['colors', Color, 'hasMany']
+            ['colors', Color, 'hasMany'],
+            ['brand', Brand, 'belongsTo']
         ],
         
     }, {
@@ -32,7 +33,7 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color) {
                 img : img,
                 name : name
             }).then(function (request){
-                console.log(request);
+//                console.log(request);
             });
             $defer.promise;
         },
@@ -44,7 +45,7 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color) {
             $http.delete(url,{
                 img : img
             }).then(function (request){
-                console.log(request);
+//                console.log(request);
             });
             $defer.promise;
         },
@@ -56,7 +57,7 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color) {
                 height: height,
                 img : img
             });
-            console.log(url);
+//            console.log(url);
             return url;
         },
         getImgs : function () {

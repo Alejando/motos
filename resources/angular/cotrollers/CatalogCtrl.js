@@ -59,9 +59,13 @@
             };
             $scope.prepareItem = function () {
                 var $jstree = $('.div-js-tree js-tree');
-                var checkeds = $jstree.jstree("get_checked",null,true);                
-                $scope.selectedItem.categories = checkeds;
-                console.log($scope.selectedBrand);
+                var checkeds = $jstree.jstree("get_checked",null,true);     
+                angular.forEach(checkeds, function(category){
+                    $scope.selectedItem.relate("categories", {
+                        id : category
+                    });
+                });  
+//                console.log($scope.selectedBrand);
                 $scope.selectedItem.brand_id = $scope.selectedBrand.id;
                 $scope.selectedItem.multi_galeries = $scope.selectedItem.multi_galeries === true ? 1 : 0;
                 angular.forEach($scope.files,function(file, i){
@@ -82,11 +86,17 @@
                                     $jstree.jstree('check_node', "#" + category.id);
                                 });
                             }
-                        }, 100);
+                        }, 10);
                     }
                 });
-                var defLoadImg = $scope.selectedItem.getImgs();
+                if($scope.selectedItem.id) {
+                    var defLoadImg = $scope.selectedItem.getImgs();
+                }
                 var defLoadProductsColors = $scope.selectedItem.colors();
+                var defLoadBrand = $scope.selectedItem.brand().then(function(brand){
+                    $scope.selectedBrand = brand;
+                    console.log(brand);
+                });
                 var defColors = Color.getAll().then(function(colores){
                     $scope.colors = colores;
                 });
@@ -173,7 +183,7 @@
             $scope.catalog = "Marcas";
             $scope.prepareItem = function(){
                 $scope.selectedItem.addFile('icon', $scope.icon);
-                console.log($scope.selectedItem);
+//                console.log($scope.selectedItem);
             };
             $scope.model = Brand;
             $scope.colorPickerOptions = {
@@ -340,7 +350,7 @@
             });
         };
         $scope.toggleOne = function (selectedItems) {
-            console.log($scope.items);
+//            console.log($scope.items);
             for (var id in selectedItems) {
                 if (selectedItems.hasOwnProperty(id)) {
                     if (!selectedItems[id]) {

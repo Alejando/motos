@@ -90,9 +90,24 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         $path = $this->getImgPath();
         if(file_exists($path)){
             chdir($path);
-            return glob("*{png,jpg}", GLOB_BRACE);
+            return glob("*{png,jpg,jpeg}", GLOB_BRACE);
         }
         return [];
+    }
+    public function updatePathUpload($oldCode) {
+        $newPath = $this->getImgPath();
+        $filename = config("app.paths.products") . $oldCode;
+        rename($filename, $newPath);
+        chmod($newPath, config('app.permissionFiles'));
+        return $this; 
+    }
+    public function removePath(){
+        $dirname = $this->getImgPath();
+        if(file_exists($dirname)){
+            array_map('unlink', glob("$dirname/*.*"));
+            rmdir($dirname);
+        }
+        return $this;
     }
     public function image($image, $width, $height) {
         $path = $this->getImgPath().$image;

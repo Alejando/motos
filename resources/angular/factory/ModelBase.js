@@ -124,12 +124,23 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         },
         saveWithFiles : function () {
             var $def = $q.defer();
+            var self = this;
             var fd = new FormData();
             var model = this.model();
             var data = this.getProperties();
             var url = laroute.route(model.aliasUrl()); 
             angular.forEach(this._FILES,function(file, name) { 
                 fd.append(name, file);
+            });
+            var relations = this.model().conf_relations;
+            angular.forEach(relations, function (conf, relation) {
+                if(conf[ModelBase.RELATIONS.FUNCTION] === "hasMany") {
+                    angular.forEach(self[relation+"_ids"], function(item){
+                        fd.append(relation + "[]", item);
+                    });
+                } else if(conf[ModelBase.RELATIONS.FUNCTION] ==='x') {
+                    
+                }
             });
             angular.forEach(data, function (value, field) {
                 if(value!==undefined) {
@@ -181,6 +192,10 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         relate : function (strRelation, entity) {
             var fn = this.model().conf_relations[strRelation][ModelBase.RELATIONS.FUNCTION];
             if(fn === "hasMany"){
+                if(this.relations[strRelation]==undefined) {
+                    this.relations[strRelation] = [];
+                    this[strRelation + "_ids"] = [];
+                }
                 this.relations[strRelation].push(entity);
                 this[strRelation + "_ids"].push(entity.id);
             }else {
@@ -235,7 +250,8 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             }
             return defer.promise;
         },
-        belongsTo : function (Model, key) {            
+        belongsTo : function (Model, key) {
+            console.log("ok");
             var self = this;
             var defer = $q.defer();
             var id = this[key + "_id"];
@@ -312,12 +328,14 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         var model = this.model();        
         if(angular.isString(fn)){//funciones de relaciones por defecto                
             switch(fn){
-                case 'belongsTo' : fn = function () {                           
+                case 'belongsTo' :
+                    fn = function () {                           
                         return this.belongsTo(fnModel, key);
                     };
                     model.attributes.push(key + "_id");
                     break;
-                case 'hasMany' : fn = function () {                              
+                case 'hasMany' : 
+                    fn = function () {                              
                         return this.hasMany(fnModel, key);
                     };
                 break;
