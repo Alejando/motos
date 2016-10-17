@@ -4,9 +4,10 @@ namespace DwSetpoint\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
-     use \DevTics\LaravelHelpers\Model\traits\MethodsModelBase;
+class User extends Authenticatable {
+
+    use \DevTics\LaravelHelpers\Model\traits\MethodsModelBase;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,4 +25,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function profile(){
+        return $this->belongsTo(\DwSetpoint\Models\Profile::class);
+    }
+
 }

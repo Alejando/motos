@@ -190,7 +190,8 @@
             getColumnBuilder = function () {
                 return [
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
-//                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn('email').withTitle('Email'),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
                                 '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
