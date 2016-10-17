@@ -1,4 +1,4 @@
-setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand) {    
+setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand, Size) {    
     var Product = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -10,7 +10,6 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand
             'id',
             'name',
             'code',
-            'sizes',
             'description',
             'multi_galeries',
 //            'colors',
@@ -19,6 +18,7 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand
         ],
         relations : [
             ['categories', Category, 'hasMany'],
+            ['sizes', Size, 'hasMany'],
             ['colors', Color, 'hasMany'],
             ['brand', Brand, 'belongsTo']
         ],

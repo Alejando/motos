@@ -1,17 +1,25 @@
-setpoint.factory('Stock', function (ModelBase, $q, $http) {    
-    var Product = function (args) {
+setpoint.factory('Stock', function (ModelBase, $q, $http,
+    Product,
+    Color, 
+    Size) {    
+    var Stock = function (args) {
         ModelBase.apply(this, arguments);
     };
-    ModelBase.createModel(Product , {   
+    ModelBase.createModel(Stock , {   
         alias: 'stock',
         setters : {
         },
         attributes: [
             'id',
-            'quantity'
+            'quantity',
+            'prices'
         ],
-        relations : []
+        relations : [
+            ['product', Product,''],
+            ['color', Color, ''],
+            ['size', Size, '']
+        ]
     }, {
     });
-    return Product;
+    return Stock;
 });

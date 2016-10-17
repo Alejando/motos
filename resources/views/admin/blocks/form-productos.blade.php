@@ -66,6 +66,24 @@
         </div>
         <div class="form-group">
             <label class="col-md-12 control-label text-left" style="text-align: left;">
+                Tamaños/Tallas
+            </label>
+        </div>
+        <div class="form-group">
+            <div id="" class="col-md-12">
+                <div class="col-md-6" ng-repeat="size in sizes | orderBy:['name','id']">
+                    <div class="col-md-12 text-left"> 
+                        <label>
+                            <input type="checkbox" name="" ng-checked="inSizes(size)" ng-click="addSize($event, size)">
+                            <div style="width: 10px;height: 10px;display:inline-block;background-color:@{{size.rgb}};margin: 0 auto;"> </div>
+                            <span>@{{size.name}}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12 control-label text-left" style="text-align: left;">
                 <input type="checkbox" ng-model="selectedItem.multi_galeries" ng-checked="selectedItem.multi_galeries==1"> Manejar catalogo por color
             </label>
         </div>
@@ -102,14 +120,11 @@
             </div>
         </div>
         <div class="form-group">
-            
             <div ng-repeat="img in selectedItem.imgs">
                 <img ng-src="@{{selectedItem.getImg(img, 50, 50)}}">
                 <span>@{{img}}</span>
             </div>
-            
         </div>
-        
         <button class="btn btn-primary waves-effect waves-light">Guardar</button>
         <button class="btn btn-danger waves-effect waves-light"  ng-click="cancel($event)">Cancelar</button>
     </form>

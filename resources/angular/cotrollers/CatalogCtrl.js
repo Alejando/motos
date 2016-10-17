@@ -10,6 +10,8 @@
             Size,
             Color,
             Brand,
+            User,
+            Stock,
             Product,
             Category,
             DTOptionsBuilder,
@@ -57,6 +59,21 @@
                     return $scope.selectedItem.colors_ids.indexOf(color.id) !== -1;
                 }
             };
+            $scope.addSize = function ($event, size) {
+                $event.target.checked;
+                if($scope.selectedItem) {
+                    if($event.target.checked) {
+                        $scope.selectedItem.relate('sizes', size);
+                    } else {
+                        $scope.selectedItem.detach('sizes', size);
+                    }
+                }
+            };
+            $scope.inSize = function(size) {
+                if($scope.selectedItem && $scope.selectedItem.sizes_ids) {                   
+                    return $scope.selectedItem.sizes_ids.indexOf(size.id) !== -1;
+                }
+            };
             $scope.prepareItem = function () {
                 var $jstree = $('.div-js-tree js-tree');
                 var checkeds = $jstree.jstree("get_checked",null,true);     
@@ -100,7 +117,10 @@
                 var defColors = Color.getAll().then(function(colores){
                     $scope.colors = colores;
                 });
-                $q.all([defCategories, defColors, defLoadProductsColors, defLoadImg]).then(function(){
+                var defSizes = Size.getAll().then(function(sizes){
+                    $scope.sizes = sizes;
+                });
+                $q.all([defCategories, defColors, defLoadProductsColors, defLoadImg, defSizes]).then(function(){
                     $def.resolve();
                 });
                 return $def.promise;
@@ -157,6 +177,67 @@
                     ];
             };
         };
+        //</editor-fold>
+        //<editor-fold defaultstate="collapsed" desc="catalogo de usuarios">
+        this.usuarios = function () {
+            $scope.catalog = "usuarios";
+            $scope.prepareItem = function () {}
+            $scope.model = User;
+            getTitle = function (){
+                return $scope.selectedItem.id ? 'Edición del usuario "' + $scope.selectedItem.name + '"' : 'Nuevo Usuario';
+            };
+            getColumnBuilder = function () {
+                return [
+                        DTColumnBuilder.newColumn('id').withTitle('ID'),
+//                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                            return '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                        })
+                    ];
+            };
+        }
+        //</editor-fold>
+        //<editor-fold defaultstate="collapsed" desc="catalogo de stock">
+        this.stock = function () {
+            $scope.catalog = "Stock";
+            $scope.hideExcelExport = true;
+            $scope.hideExcelImport = true;
+            $scope.prepareItem = function () {};
+            $scope.model = Stock;
+            $scope.products = [];
+            Product.getAll().then(function(products) {
+                console.log(products);
+                $scope.products = products;
+            });
+            $scope.colors = [];
+            
+            $scope.selectedProduct = null;
+            $scope.selectedColor = null;
+            $scope.selectedSize = null;
+            $scope.onSelectProduct = function() {
+                $scope.selectedProduct.colors().then(function(colors){
+                    $scope.colors = colors;
+                });
+                $scope.selectedProduct.sizes().then(function(sizes){
+                    $scope.sizes = sizes;
+                });
+            };
+            $scope.size = [];
+            getTitle = function () {
+                return $scope.selectedItem.id ? 'Edición del stock"' + $scope.selectedItem.name + '"' : 'Nuevo Stock';
+            };
+            getColumnBuilder = function () {
+                return [
+                        DTColumnBuilder.newColumn('id').withTitle('ID'),
+//                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                            return '<a href="#" class="on-default edit-row" ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                        })
+                    ];
+            };
+        }
         //</editor-fold>
 
         //<editor-fold defaultstate="collapsed" desc="catalogo de categorias">
@@ -350,7 +431,6 @@
             });
         };
         $scope.toggleOne = function (selectedItems) {
-//            console.log($scope.items);
             for (var id in selectedItems) {
                 if (selectedItems.hasOwnProperty(id)) {
                     if (!selectedItems[id]) {

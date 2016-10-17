@@ -19,6 +19,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->belongsToMany(\DwSetpoint\Models\Category::class);
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="sizes">
+    public function sizes() {
+        return $this->belongsToMany(Size::class);
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="colors">
     public function colors() {
         return $this->belongsToMany(Color::class);
@@ -76,6 +81,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="setColorsById">
+    public function setSizesByIds($ids) {
+        $this->sizes()->sync((array)$ids);
+        return $this;
+    }
+    // <editor-fold defaultstate="collapsed" desc="setColorsById">
     public function setColorsByIds($ids) {
         $this->colors()->sync((array)$ids);
         return $this;
@@ -84,6 +94,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     // <editor-fold defaultstate="collapsed" desc="setCategoriesById">
     public function setCategoriesByIds($ids) {
         $this->categories()->sync($ids);
+        return $this;
     }
     // </editor-fold>
     public function getImgsAttribute() {

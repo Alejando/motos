@@ -4,47 +4,50 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Producto</label>
             <div class="col-md-8">
-                <input type="text" ng-model="objSize.name" class="form-control" placeholder="">
+                <ui-select ng-model="$parent.selectedProduct" on-select="onSelectProduct()"> 
+                    <ui-select-match>                       
+                        <span>@{{$select.selected.name}} </span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="product in products | orderBy:['name','id']">
+                        <span> @{{product.name}} </span>
+                    </ui-select-choices>
+                </ui-select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Color</label>
-            <div id="gallery-colors" class="col-md-8">
-                <div class="col-md-6">
-                    <div class="col-md-3 text-center"><input type="checkbox" name="" checked></div><div class="col-md-9 text-left">Sin color (sin)</div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-3 text-center"><input type="checkbox" name=""></div><div class="col-md-9 text-left">Azul (azu)</div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-3 text-center"><input type="checkbox" name=""></div><div class="col-md-9 text-left">Sin color (sin)</div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-3 text-center"><input type="checkbox" name=""></div><div class="col-md-9 text-left">Azul (azu)</div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-3 text-center"><input type="checkbox" name=""></div><div class="col-md-9 text-left">Sin color (sin)</div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-3 text-center"><input type="checkbox" name=""></div><div class="col-md-9 text-left">Azul (azu)</div>
-                </div>
-                <div class="col-md-12 drag-drop"><span>Arrastre sus imagenes aquí</span></div>
+            <div class="col-md-8">
+                <ui-select ng-model="$parent.selectedColor"> 
+                    <ui-select-match>                       
+                        <span>@{{$select.selected.name}} </span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="color in colors | orderBy:['name','id']">
+                        <span> @{{color.name}} </span>
+                    </ui-select-choices>
+                </ui-select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Talla</label>
             <div class="col-md-8">
-                <input type="text" ng-model="objSize.name" class="form-control" placeholder="">
+                <ui-select ng-model="$parent.selectedSize"> 
+                    <ui-select-match>                       
+                        <span>@{{$select.selected.name}} </span>
+                    </ui-select-match>
+                    <ui-select-choices repeat="size in sizes | orderBy:['name','id']">
+                        <span> @{{size.name}} </span>
+                    </ui-select-choices>
+                </ui-select>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">Precio</label>
+            <label class="col-md-3 control-label">Precio unitario</label>
             <div class="col-md-8">
                 <input type="text" ng-model="objSize.name" class="form-control" placeholder="">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-3 control-label">Cantidad</label>
+            <label class="col-md-3 control-label">Existencias:</label>
             <div class="col-md-8">
                 <input type="text" ng-model="objSize.name" class="form-control" placeholder="">
             </div>

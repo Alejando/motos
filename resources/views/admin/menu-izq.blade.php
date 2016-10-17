@@ -8,7 +8,7 @@
                             
                             <li class="text-muted menu-title">Navigation</li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect waves-light"><i class="md md-store"></i>  <span> Stock </span></a>
+                                <a href="#/catalogos/stock" class="waves-effect waves-light"><i class="md md-store"></i>  <span> Stock </span></a>
                             </li>
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect waves-light"><i class="md md-view-list"></i> <span> Catalogos </span></a>
@@ -39,7 +39,10 @@
                                 <ul class="list-unstyled">
                                     <li><a href="#/configuracion/contacto"><i class="md  md-email"></i>Contacto</a></li>
                                 </ul>
-                            </li>   
+                            </li>
+                            <li class="has_sub">
+                                <a href="#/catalogos/usuarios" class="waves-effect waves-light"><i class="icon-people m-r-5"></i> <span> User </span></a>
+                            </li>
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect waves-light"><i class="ti-power-off m-r-5"></i> <span> Salir </span></a>
                             </li>

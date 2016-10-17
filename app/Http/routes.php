@@ -82,6 +82,7 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'Api\\ContentController@slug'
     ]);
     $addAPI('brand','Brand');
+    $addAPI('stock','Stock');
     $addAPI('color','Color');
     $addAPI('size','Size');
     $addAPI('category','Category');

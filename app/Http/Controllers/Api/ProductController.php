@@ -54,6 +54,7 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         $product->saveUploadImgs(Input::file('img'))
             ->setColorsByIds(Input::get('colors'))
             ->setCategoriesByIds(Input::get('categories'))
+            ->setSizesByIds(Input::get('sizes'));
         ;
         return $res;
     }
