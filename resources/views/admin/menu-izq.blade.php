@@ -41,10 +41,13 @@
                                 </ul>
                             </li>
                             <li class="has_sub">
-                                <a href="#/catalogos/usuarios" class="waves-effect waves-light"><i class="icon-people m-r-5"></i> <span> User </span></a>
+                                <a href="#/catalogos/usuarios" class="waves-effect waves-light"><i class="icon-people m-r-5"></i> <span> Usuarios </span></a>
                             </li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect waves-light"><i class="ti-power-off m-r-5"></i> <span> Salir </span></a>
+                                <a href="{{url("/")}}" class="waves-effect waves-light"><i class="icon-people m-r-5"></i> <span> Tienda </span></a>
+                            </li>
+                            <li class="has_sub">
+                                <a href="{{url('logout')}}" class="waves-effect waves-light"><i class="ti-power-off m-r-5"></i> <span> Salir </span></a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>

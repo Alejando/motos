@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => DwSetpoint\ModelsUser::class,
+            'model' => DwSetpoint\Models\User::class,
         ],
 
         // 'users' => [

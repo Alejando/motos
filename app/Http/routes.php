@@ -100,7 +100,10 @@ Route::group(['prefix' => 'api'], function () {
 });
 
 Route::get('/home', 'HomeController@index');
-Route::get('/admin',  'AdminCtrl@index'); 
+Route::get('/admin',  [
+    'as' => 'admin.index',
+    'uses' => 'AdminCtrl@index'
+])->middleware('auth');; 
 Route::get('/pages/admin/{view}.html', [
     'as' => 'page',
     'uses' => 'PagesCtrl@admin'

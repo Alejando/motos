@@ -21,6 +21,17 @@
                         <ul class="menuemergente">
                             <li class="cajonicono">
                                 <a class="iconocierre"></a>
+                            </li>
+                            @if(Auth::check())
+                                <li>
+                                    <a href="{{route('admin.index')}}" class="transicion">Administración</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{url('login')}}" class="transicion">Ingresar</a>
+                                </li>
+                            @endif
+                            <li>
                                 <a href="" class="transicion">Contacto</a>
                             </li>
                             <li><a href="" class="transicion">Perfil</a></li>

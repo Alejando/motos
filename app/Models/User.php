@@ -26,8 +26,12 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
     
-    public function profile(){
+    public function profile() {
         return $this->belongsTo(\DwSetpoint\Models\Profile::class);
+    }
+    
+    public function setPasswordAttribute($password) {
+        $this->attributes['password'] = \Hash::make($password);
     }
 
 }
