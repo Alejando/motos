@@ -60,7 +60,7 @@
                 </div>
             </div>
             <button class="btn btn-primary waves-effect waves-light" ng-click="save">Guardar</button>
-            <button class="btn btn-danger waves-effect waves-light"  ng-click="cancel($event)"">Cancelar</button>
+            <button class="btn btn-danger waves-effect waves-light"  ng-click="cancel($event)">Cancelar</button>
         </div>
     </form>
 </div>

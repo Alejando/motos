@@ -13,6 +13,7 @@ class CreaProfileTbl extends Migration {
     public function up() {
         Schema::create('profiles',function(Blueprint $table) {
             $table->increments('id');
+            $table->string('code');
             $table->string('profile',40);
         });
         Schema::table('users', function(Blueprint $table) {
