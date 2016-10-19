@@ -10,16 +10,45 @@ class CategoriesSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        $defualtCategory = [
-            ['name'=> 'Damas'],
+        $defualtCategories = [
+            ['name'=> 'Damas', 'subs'=> [
+                    ['name' => 'Marcas', 'subs' => [
+                        ['name' => 'Nike'],
+                        ['name' => 'Adidas'],
+                        ['name' => 'Wilson']
+                    ]],
+                    ['name' => 'Ropa', 'subs' => [
+                            ['name' => 'Blusas'],
+                            ['name' => 'Chamarras'],
+                            ['name' => 'Faldas'],
+                            ['name' => 'Gorras'],
+                            ['name' => 'Ropa interior'],
+                            ['name' => 'Short'],
+                            ['name' => 'Vestidos']
+                        ]
+                    ]
+                ]
+            ],
             ['name'=> 'Caballeros'],
             ['name'=> 'Zapatos'],
             ['name'=> 'Raquetas'],
             ['name'=> 'Bolsas'],
-            ['name'=> 'Pelotas'],
+            ['name'=> 'Pelotas']
         ];
-        foreach($defualtCategory as $item){
-            DwSetpoint\Models\Category::create($item);
+        $this->createCategories($defualtCategories);
+    }
+    public function createCategories($categories, $parent = false) {
+        foreach($categories as $i => $item) {
+            $data = [
+                'name' => $item['name']
+            ];
+            if($parent) {
+                $data['parent_category_id'] = $parent->id;
+            }
+            $category = DwSetpoint\Models\Category::create($data);
+            if(isset($item['subs'])) {
+                $this->createCategories($item['subs'],  $category);
+            }
         }
     }
 

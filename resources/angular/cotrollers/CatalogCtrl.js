@@ -83,7 +83,6 @@
                         id : category
                     });
                 });  
-//                console.log($scope.selectedBrand);
                 $scope.selectedItem.brand_id = $scope.selectedBrand.id;
                 $scope.selectedItem.multi_galeries = $scope.selectedItem.multi_galeries === true ? 1 : 0;
                 angular.forEach($scope.files,function(file, i){

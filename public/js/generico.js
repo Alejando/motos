@@ -1,10 +1,14 @@
 var main = function () {
     var menuMovil = function() {
+        var $lastSub;
         $('.menumain li').each(function() {
             $(this).find('a').on('click', function(e) {
+                if($lastSub){
+                    $lastSub.hide();
+                }
                 if($(this).next().hasClass('cajasubmenu')) {
                     e.preventDefault();
-                    $('.cajasubmenu').slideToggle('fast');
+                    $lastSub = $(this).siblings('.cajasubmenu').slideToggle('fast');
                 }
             });
         });

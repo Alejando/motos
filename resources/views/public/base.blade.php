@@ -89,11 +89,88 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="" class="transicion">CABALLERO</a></li>
+                        <li>
+                            <a href="" class="transicion">CABALLERO</a>
+                            <div class="cajasubmenu">
+                                <div class="row lineaencabezado">
+                                    <div class="col-md-6">
+                                        <h3><span>Marcas</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h3><span>Ropa</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li><a href="">Nike</a></li>
+                                            <li><a href="">Adidas</a></li>
+                                            <li><a href="">Wilson</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li><a href="">Blusas</a></li>
+                                            <li><a href="">Chamarras</a></li>
+                                            <li><a href="">Faldas</a></li>
+                                            <li><a href="">Gorras</a></li>
+                                            <li><a href="">Ropa interior</a></li>
+                                            <li><a href="">Shorts</a></li>
+                                            <li><a href="">Vestidos</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </li>
                         <li><a href="" class="transicion">ZAPATOS</a></li>
                         <li><a href="" class="transicion">RAQUETAS</a></li>
                         <li><a href="" class="transicion">BOLSAS</a></li>
-                        <li><a href="" class="transicion">PELOTAS</a></li>
+                        <li>
+                            <a href="" class="transicion">PELOTAS</a>
+                            <div class="cajasubmenu" style="width: 50em; background-color: red"> 
+                                <div class="row lineaencabezado" >
+                                    <div style="width:15em; display: inline-block">
+                                        <h3><span>Marcas</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
+                                    </div>
+                                    <div style="width:15em;display: inline-block">
+                                        <h3><span>Marcas</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
+                                    </div>
+                                    <div style="width:15em;display: inline-block">
+                                        <h3><span>Ropa</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li><a href="">Nike</a></li>
+                                            <li><a href="">Adidas</a></li>
+                                            <li><a href="">Wilson</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li><a href="">Nike</a></li>
+                                            <li><a href="">Adidas</a></li>
+                                            <li><a href="">Wilson</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li><a href="">Blusas</a></li>
+                                            <li><a href="">Chamarras</a></li>
+                                            <li><a href="">Faldas</a></li>
+                                            <li><a href="">Gorras</a></li>
+                                            <li><a href="">Ropa interior</a></li>
+                                            <li><a href="">Shorts</a></li>
+                                            <li><a href="">Vestidos</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         <li><a href="" class="transicion">OTROS</a></li>
                         <li><a href="" class="transicion">DESCUENTOS</a></li>
                     </ul>
