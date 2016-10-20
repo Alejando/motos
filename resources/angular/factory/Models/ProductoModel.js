@@ -1,8 +1,8 @@
-setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand, Size) {    
+setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand, Size) {
     var Product = function (args) {
         ModelBase.apply(this, arguments);
     };
-    ModelBase.createModel(Product , {   
+    ModelBase.createModel(Product , {
         alias: 'product',
         setters : {
         },
@@ -10,6 +10,7 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand
             'id',
             'name',
             'code',
+            'codebar',
             'description',
             'multi_galeries',
 //            'colors',
@@ -22,7 +23,6 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand
             ['colors', Color, 'hasMany'],
             ['brand', Brand, 'belongsTo']
         ],
-        
     }, {
         renameImg : function () {
             var $defer = $q.defer();
@@ -50,7 +50,6 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand
             $defer.promise;
         },
         getImg : function (img, width, height) {
-            
             var url = laroute.route('product.img', {
                 id : this.id,
                 width : width,

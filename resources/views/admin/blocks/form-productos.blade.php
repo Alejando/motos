@@ -7,6 +7,12 @@
                 <input type="text" ng-model="selectedItem.code" class="form-control" placeholder="Código">
             </div>
         </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Código de barras</label>
+                <div class="col-md-8">
+                    <input type="text" ng-model="selectedItem.codebar" class="form-control" placeholder="Código de barras">
+                </div>
+            </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Nombre</label>
             <div class="col-md-8">
@@ -16,10 +22,10 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Marca</label>
             <div class="col-md-8">
-                <ui-select ng-model="$parent.selectedBrand"> 
+                <ui-select ng-model="$parent.selectedBrand">
                     <ui-select-match>
                         <span style="
-                              background-image: url(@{{$select.selected.getLogo(20,20)}}); 
+                              background-image: url(@{{$select.selected.getLogo(20,20)}});
                                   display: block;
                                     margin: 0px;
                                     padding: 0px;
@@ -33,7 +39,7 @@
                     </ui-select-match>
                     <ui-select-choices repeat="brand in brands track by brand.name">
                         <span style="
-                              background-image: url(@{{brand.getLogo(20,20)}}); 
+                              background-image: url(@{{brand.getLogo(20,20)}});
                                   display: block;
                                     margin: 0px;
                                     padding: 0px;
@@ -57,9 +63,9 @@
             <label class="col-md-3 control-label">Categorias</label>
             <div class="col-md-8">
                 <div class="div-js-tree">
-                    <js-tree 
-                        tree-plugins="checkbox,dnd" 
-                        tree-data="json" 
+                    <js-tree
+                        tree-plugins="checkbox,dnd"
+                        tree-data="json"
                         tree-src="{{route('categories.tree')}}"></js-tree>
                 </div>
             </div>
@@ -72,7 +78,7 @@
         <div class="form-group">
             <div id="" class="col-md-12">
                 <div class="col-md-6" ng-repeat="size in sizes | orderBy:['name','id']">
-                    <div class="col-md-12 text-left"> 
+                    <div class="col-md-12 text-left">
                         <label>
                             <input type="checkbox" name="" ng-checked="inSizes(size)" ng-click="addSize($event, size)">
                             <div style="width: 10px;height: 10px;display:inline-block;background-color:@{{size.rgb}};margin: 0 auto;"> </div>
@@ -90,7 +96,7 @@
         <div class="form-group">
             <div id="gallery-colors" class="col-md-12">
                 <div class="col-md-6" ng-repeat="color in colors" ng-show="selectedItem.multi_galeries">
-                    <div class="col-md-12 text-left"> 
+                    <div class="col-md-12 text-left">
                         <label>
                             <input type="checkbox" name="" ng-checked="inColors(color)" ng-click="addColor($event, color)">
                             <div style="width: 10px;height: 10px;display:inline-block;background-color:@{{color.rgb}};margin: 0 auto;"> </div>
@@ -111,7 +117,7 @@
             </div>
             <div class="col-md-12">
                 <ul>
-                    <li ng-repeat="file in files"> 
+                    <li ng-repeat="file in files">
                         <span class="fa fa-file-image-o"></span>
                         <span>@{{file.name}}</span>
                         <span><a href="" ng-click="removeSelectedFile(file)" class="fa fa-times"></a></span>

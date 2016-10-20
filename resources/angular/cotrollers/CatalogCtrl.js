@@ -1,6 +1,6 @@
 /* global BootstrapDialog, setpoint */
 
-!function () { 
+!function () {
 
     setpoint.controller('CatalogCtrl', function (
             $scope,
@@ -23,6 +23,11 @@
             return "Titulo Por defecto";
         };
         var getColumnBuilder = [];
+
+        // hide export/import buttons by default
+        $scope.hideExcelExport = true;
+        $scope.hideExcelImport = true;
+
         //<editor-fold defaultstate="collapsed" desc="catalogo de productos">
         this.productos = function () {
             $scope.catalog = "Productos";
@@ -56,7 +61,7 @@
                 }
             };
             $scope.inColors = function(color) {
-                if($scope.selectedItem && $scope.selectedItem.colors_ids) {                   
+                if($scope.selectedItem && $scope.selectedItem.colors_ids) {
                     return $scope.selectedItem.colors_ids.indexOf(color.id) !== -1;
                 }
             };
@@ -71,18 +76,18 @@
                 }
             };
             $scope.inSize = function(size) {
-                if($scope.selectedItem && $scope.selectedItem.sizes_ids) {                   
+                if($scope.selectedItem && $scope.selectedItem.sizes_ids) {
                     return $scope.selectedItem.sizes_ids.indexOf(size.id) !== -1;
                 }
             };
             $scope.prepareItem = function () {
                 var $jstree = $('.div-js-tree js-tree');
-                var checkeds = $jstree.jstree("get_checked",null,true);     
+                var checkeds = $jstree.jstree("get_checked",null,true);
                 angular.forEach(checkeds, function(category){
                     $scope.selectedItem.relate("categories", {
                         id : category
                     });
-                });  
+                });
                 $scope.selectedItem.brand_id = $scope.selectedBrand.id;
                 $scope.selectedItem.multi_galeries = $scope.selectedItem.multi_galeries === true ? 1 : 0;
                 angular.forEach($scope.files,function(file, i){
@@ -125,13 +130,13 @@
                 });
                 return $def.promise;
             };
-            
+
             $scope.files = [];
-            $scope.removeSelectedFile = function (file) { 
+            $scope.removeSelectedFile = function (file) {
                 var index = $scope.files.indexOf(file);
                 $scope.files.splice(index,1);
             };
-            $scope.onselectfile = function(files) {      
+            $scope.onselectfile = function(files) {
                 angular.forEach(files,function(file) {
                    if(file.type === "image/png" || file.type === "image/jpeg") {
                        $scope.$apply(function(){
@@ -140,7 +145,7 @@
                    }
                 });
             };
-            
+
         };
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="catalogo de colores">
@@ -164,7 +169,7 @@
                                 .withOption('width', '10px')
                                 .notSortable()
                                 .renderWith(function(data,type,full, meta){
-                                   return '<div class="box-color" style="background-color:' + full.rgb + ';"> </div>'; 
+                                   return '<div class="box-color" style="background-color:' + full.rgb + ';"> </div>';
                                 }),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
                         DTColumnBuilder.newColumn('pref').withTitle('Prefijo'),
@@ -216,7 +221,7 @@
                 $scope.products = products;
             });
             $scope.colors = [];
-            
+
             $scope.selectedProduct = null;
             $scope.selectedColor = null;
             $scope.selectedSize = null;
@@ -267,7 +272,7 @@
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
                         DTColumnBuilder.newColumn('code').withTitle('Código'),
                         DTColumnBuilder.newColumn('product.name').withTitle('Producto'),
-                        DTColumnBuilder.newColumn('quantity').withTitle('Existencias'), 
+                        DTColumnBuilder.newColumn('quantity').withTitle('Existencias'),
                         DTColumnBuilder.newColumn('size.name').withTitle('Tamaño/Talla'),
                         DTColumnBuilder.newColumn('color.name').withTitle('Color').renderWith(function(data, type, full, meta){
                             return  '<div class="box-color" style="background-color:' + full.color.rgb + ';"></div>' +
@@ -339,9 +344,9 @@
                         })
                     ];
             };
-            
+
         };
-        //</editor-fold>        
+        //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="catalogo de tallas">
         this.tallas = function () {
             $scope.selectedItem = new Size({});
@@ -389,7 +394,7 @@
                 }
             });
             $.get($scope.form,{},'html').done(function(txt){
-                $message.fadeOut('fast', function(){ 
+                $message.fadeOut('fast', function(){
                     if($scope.preprareForm) {
                         var self = this;
                         $scope.preprareForm().then(function(){
@@ -406,10 +411,10 @@
             });
             return defer.promise;
         };
-        
+
         $scope.newItem = function () {
             $scope.selectedItem = newObj();
-            $scope.showFormDialog().then(function(){});    
+            $scope.showFormDialog().then(function(){});
         };
 
         $scope.cancel = function ($event) {
@@ -417,7 +422,7 @@
             var $dialog=$($event.target).closest('.modal');
             $dialog.modal('hide');
         };
-        
+
         $scope.editItem = function (id,e) {
             $scope.model.getById(id).then(function(size){
                  $scope.selectedItem = size;
@@ -425,16 +430,16 @@
             });
             e.preventDefault();
         };
-        
+
         var newObj = function () {
-            
+
             return new $scope.model({});
         };
-        
+
         $scope.catalog = $routeParams.catalog;
         $scope.showForm = true;
         $scope.form = laroute.route('page', {view: 'form-' + $scope.catalog});
-        
+
         $scope.selected = {};
         $scope.selectAll = false;
         $scope.toggleAll = function (selectAll, selectedItems) {
@@ -504,7 +509,7 @@
                 $compile(angular.element(header).contents())($scope);
             }
         }).withPaginationType('full_numbers');
-        $scope.dtInstance = {};                
+        $scope.dtInstance = {};
         $scope.dtColumns = getColumnBuilder();
     });
 }();

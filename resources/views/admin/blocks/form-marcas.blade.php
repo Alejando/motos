@@ -10,7 +10,7 @@
             <label class="col-md-2 control-label">Imagen</label>
             <div class="col-md-8">
                 <input type="file" placeholder="Nueva Marca" fileread="icon" onselectfile="onselectIcon">
-                <img ng-src="@{{iconSrc}}">
+                <img class="brand-icon" ng-src="@{{iconSrc}}">
             </div>
         </div>
         <button class="btn btn-primary waves-effect waves-light">Guardar</button>
