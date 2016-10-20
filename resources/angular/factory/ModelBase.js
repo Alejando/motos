@@ -109,6 +109,18 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                 data[attr] = self[attr];
             });
             var alias= this.model().alias;
+            var relations = this.model().conf_relations;
+            angular.forEach(relations, function (conf, relation) {
+                if(conf[ModelBase.RELATIONS.FUNCTION] === "hasMany") {
+                    data[relation] = [];
+                    angular.forEach(self[relation + "_ids"], function(item){
+                        data[relation].push(item);
+                    });
+                } else if(conf[ModelBase.RELATIONS.FUNCTION] ==='x') {
+                    
+                }
+            });
+            
             var datalaroute = {};
             datalaroute[alias] = this.id;
             var url = laroute.route(alias+'.update', datalaroute);

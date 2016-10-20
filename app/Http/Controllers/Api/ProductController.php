@@ -36,6 +36,9 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         if($oldCode != Input::get('code')){
             $res['model']->updatePathUpload($oldCode);   
         }
+        $res['model']->setColorsByIds(Input::get('colors'))
+            ->setCategoriesByIds(Input::get('categories'))
+            ->setSizesByIds(Input::get('sizes'));
         return $res;
     }
     

@@ -40,6 +40,7 @@ Route::get('/marcas/{id}/{slugSEO}logo-{width}x{heigth}.png', [
         'uses' => 'Api\\BrandController@fitToSize'
     ]
 );
+
 Route::get('/categorias/tree',[  
     'as' => 'categories.tree',
     'uses' => 'Api\\CategoryController@tree'
@@ -111,4 +112,12 @@ Route::get('/pages/admin/{view}.html', [
 Route::get('/contacto', 'ContactCtrl@index');
 Route::get('/home', 'HomeCtrl@index');
 Route::get('/', 'HomeCtrl@index');
+Route::get('/categorias/{slugs?}', [ //Muestra las categorias y el detalle del producto
+    'as' => 'product.getInfo',
+    'uses' => 'ProductCtrl@showProduct'
+])->where('slugs', '(.*)');
+Route::get('/productos/{slugs?}', [ //Muestra las categorias y el detalle del producto
+    'as' => 'product.getInfo',
+    'uses' => 'ProductCtrl@showProduct'
+])->where('slugs', '(.*)');
 Route::auth();
