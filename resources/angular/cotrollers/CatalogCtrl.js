@@ -65,6 +65,11 @@
                     return $scope.selectedItem.colors_ids.indexOf(color.id) !== -1;
                 }
             };
+            $scope.inSizes = function(size) {
+                if($scope.selectedItem && $scope.selectedItem.sizes_ids) {
+                    return $scope.selectedItem.sizes_ids.indexOf(size.id) !== -1;
+                }
+            };
             $scope.addSize = function ($event, size) {
                 $event.target.checked;
                 if($scope.selectedItem) {
@@ -119,6 +124,7 @@
                     $scope.selectedBrand = brand;
                     console.log(brand);
                 });
+                $scope.selectedItem.sizes();
                 var defColors = Color.getAll().then(function(colores){
                     $scope.colors = colores;
                 });
