@@ -3,9 +3,10 @@
 namespace DwSetpoint\Models;
 class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $fillable = [
-        'name', 
-        'description', 
+        'name',
+        'description',
         'code',
+        'codebar',
         'brand_id',
         'multi_galeries'
     ];
@@ -54,7 +55,6 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
             if(file_exists($file)){
                 $name = str_replace(".$orgExt", "_".time().'.'.$orgExt, $img->getClientOriginalName());
                 $img->move($this->getImgPath(),  $name);
-                
             }else{
                 $name = $img->getClientOriginalName();
                 $img->move($this->getImgPath(),$name);
@@ -110,7 +110,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         $filename = config("app.paths.products") . $oldCode;
         rename($filename, $newPath);
         chmod($newPath, config('app.permissionFiles'));
-        return $this; 
+        return $this;
     }
     public function removePath(){
         $dirname = $this->getImgPath();
@@ -123,15 +123,14 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function image($image, $width, $height) {
         $path = $this->getImgPath().$image;
         if(file_exists($path)){
-            return \DwSetpoint\Libs\Helpers\Image::toFit($path, 
-                $width, 
-                $height, 
-                'png', 
+            return \DwSetpoint\Libs\Helpers\Image::toFit($path,
+                $width,
+                $height,
+                'png',
                 config('app.config-images.fillcolor'),
-                config('app.config-images.fillopacity'), 
+                config('app.config-images.fillopacity'),
                 true
             );
-           
         }
         return false;
     }
