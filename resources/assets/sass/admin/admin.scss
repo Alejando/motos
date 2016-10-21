@@ -3,7 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : 31/07/2016, 08:03:14 PM
     Author     : JFcoDíaz <jfcodiaz at gmail.com>
 */
@@ -14,7 +14,7 @@ $max-width: "only screen and (min-width : 1000px)";
     .main-conteiner {
         width: 1000px;
         margin: 0 auto;
-       
+
     }
     body {
          background-color: #ececec !important;
@@ -41,7 +41,7 @@ body{
         min-width: 297px;
         padding: 0px 7px;
         font-size: 18px;
-        
+
 }
 
 $colorMenuCategorias: #002b53;
@@ -55,7 +55,7 @@ $colorMenuCategorias: #002b53;
 }
 
 ul.menu{
-    list-style: none;                
+    list-style: none;
     margin: 0px;
     padding: 0px;
     display: inline-block;
@@ -82,11 +82,11 @@ ul.menu{
 
     }
     input {
-        
+
         font-size: 20px;
         height: 42px;
         width: 195px;
-       
+
     }
 }
 .setpoint-public{
@@ -103,9 +103,9 @@ ul.menu{
         }
         .productos{
             text-align: center;
-            
+
             position: relative;
-            
+
             .producto{
                 position: relative;
                 display: inline-block;
@@ -113,11 +113,11 @@ ul.menu{
                 height: 322px;
                 border: 1px solid #eff5fa;
                 background-color: white;
-                
+
                 margin: 20px;
                 border-radius:10px;
-                
-                
+
+
                 img {}
                 .name{
                      font-family: 'Open Sans Condensed' !important;
@@ -160,7 +160,7 @@ ul.menu{
                     width: 15%;
                 }
             }
-            
+
         }
         .social {
             background-color: #002b53;
@@ -171,7 +171,7 @@ ul.menu{
         }
         .info {
             a {
-                
+
                 font-size:20px;
                 color:white;
                 font-family: 'Open Sans Condensed' !important;
@@ -182,7 +182,7 @@ ul.menu{
                 position: relative;
                 top:10px;
             }
-            
+
             a.sprite{
                 color:rgba(0,0,0,0);
                 position: relative;
@@ -198,17 +198,17 @@ ul.menu{
             li{
                 height: 90px;
             }
-            
+
         }
         .metodos-pago{
             text-align: center;
             background-color: white;
-            
+
             ul{
                 width: 100%;
                 padding: 0;
                 margin: 0;
-                
+
                 li {
                     text-align: center;
                     width: 12%;
@@ -236,7 +236,7 @@ ul.menu{
             border-bottom: #e1eaa3 1px solid;
         }
         nav.menu-right{
-            float: right;           
+            float: right;
         }
     }
     a.home-logo{
@@ -266,7 +266,7 @@ ul.menu{
                 color: #4b4e51;
                 font-size: 38px;
                 font-family: 'Open Sans Condensed' !important;
-                
+
             }
             .offert{
                 position: absolute;
@@ -277,7 +277,7 @@ ul.menu{
                 font-family: 'Open Sans' !important;
                 font-size: 21px;
                 padding-top: 10px;
-            }    
+            }
         }
     }
     .subtitle{
@@ -290,40 +290,40 @@ ul.menu{
     }
 }
 a.sprite, li.sprite, button.sprite {
-    font-size: 0px; 
+    font-size: 0px;
     color:rgba(0,0,0,0);
 }
 button.sprite{
-    border: 0;  
+    border: 0;
     cursor: pointer;
 }
 .sprite {
-    display: inline-block;  
+    display: inline-block;
 }
 
-.modal .modal-dialog .modal-content{ 
-    padding: 0 !important;   
-    border-color: transparent!important;   
-    border-radius: 6px!important;   
+.modal .modal-dialog .modal-content{
+    padding: 0 !important;
+    border-color: transparent!important;
+    border-radius: 6px!important;
     /*overflow: hidden;*/
-    -webkit-box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important; 
-    -moz-box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important; 
-    box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important; 
+    -webkit-box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important;
+    -moz-box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important;
+    box-shadow: 6px 4px 115px 5px rgba(0,0,0,0.75)!important;
 
-} 
+}
 .modal .modal-dialog .modal-content .modal-body{
-    padding: 10px !important;      
+    padding: 10px !important;
 }
 
 .modal .modal-dialog .modal-content .modal-header{
-    padding: 10px !important;        
+    padding: 10px !important;
 }
 
 .bootstrap-dialog.type-primary .modal-header {
-    background-color: #283B5B!important;        
+    background-color: #283B5B!important;
 }
 .bootstrap-dialog .bootstrap-dialog-close-button{
-        opacity: 1;  
+        opacity: 1;
 }
 
 .bootstrap-dialog .bootstrap-dialog-close-button button{
@@ -331,7 +331,7 @@ button.sprite{
     opacity: 1;
 }
 .modal .modal-dialog .modal-content .modal-footer{
-    padding: 10px !important;      
+    padding: 10px !important;
 }
 .textarea-control{
     resize: none;
@@ -364,4 +364,8 @@ button.sprite{
     height: 20px;
     display: block;
     margin: 0 auto;
+}
+
+.brand-icon {
+    max-width: 350px;
 }

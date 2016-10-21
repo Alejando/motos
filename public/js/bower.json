@@ -29,6 +29,7 @@
     "jstree": "^3.3.2",
     "angular-ui-select": "^0.19.4",
     "angular-sanitize": "^1.5.8",
-    "angular-slugify": "^1.0.1"
+    "angular-slugify": "^1.0.1",
+    "angular-bootstrap": "^2.2.0"
   }
 }
