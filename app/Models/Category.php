@@ -4,7 +4,7 @@ namespace DwSetpoint\Models;
 class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $fillable = ['name','parent_category_id'];
     public function products() {
-        return $this->hasMany(\DwSetpoint\Models\Product::class, 'product_id');
+        return $this->belongsToMany(\DwSetpoint\Models\Product::class);
     }
     
     public function parent(){
@@ -15,8 +15,22 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->hasMany(Category::class,'parent_category_id');
     }
     
-    public function getPath() {
-        return "ok/ok/ok";
+    private static function getParents($category, &$parents) {        
+        $parent = $category->parent;
+        if($parent){
+            $parents[]=  str_slug($parent->name);
+            self::getParents($parent, $parents);
+        }
+    }
+    
+    public function getPath() {        
+        self::getParents($this, $parents);
+        if(is_array($parents)){
+            $parents = array_reverse($parents);
+        }
+        $parents[]=  str_slug($this->name);
+        $url = implode("/", $parents);
+        echo $url;
     }
 
     public static function getRoots($returnQuery = false) {

@@ -112,11 +112,20 @@ Route::get('/pages/admin/{view}.html', [
 Route::get('/contacto', 'ContactCtrl@index');
 Route::get('/home', 'HomeCtrl@index');
 Route::get('/', 'HomeCtrl@index');
-Route::get('/categorias/{slugs?}', [ //Muestra las categorias y el detalle del producto
+
+
+
+Route::get('/categorias/{slugs?}/paginas/{page}', [ //Muestra las categorias
     'as' => 'product.getInfo',
-    'uses' => 'ProductCtrl@showProduct'
+    'uses' => 'ProductCtrl@showCategory'
 ])->where('slugs', '(.*)');
-Route::get('/productos/{slugs?}', [ //Muestra las categorias y el detalle del producto
+
+Route::get('/categorias/{slugs?}', [ //Muestra las categorias
+    'as' => 'product.getInfo',
+    'uses' => 'ProductCtrl@showCategory'
+])->where('slugs', '(.*)');
+
+Route::get('/producto/{producto}/categoria/{slugs?}', [ //Muestra las categorias y el detalle del producto
     'as' => 'product.getInfo',
     'uses' => 'ProductCtrl@showProduct'
 ])->where('slugs', '(.*)');

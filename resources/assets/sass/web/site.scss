@@ -21,6 +21,15 @@ $max-width: "only screen and (min-width : 1000px)";
     }
 }
 
+.producto{
+    height: 360px !important;
+    overflow:hidden;
+}
+.producto > img.img-responsive {
+    margin:0 auto !important;
+}
+
+
 
 body{
     background-color: white;
@@ -107,6 +116,7 @@ ul.menu{
             position: relative;
             
             .producto{
+                background-color : red !important;
                 position: relative;
                 display: inline-block;
                 width: 20%;

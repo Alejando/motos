@@ -8,6 +8,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         'code',
         'codebar',
         'brand_id',
+        
         'multi_galeries'
     ];
     // <editor-fold defaultstate="collapsed" desc="brand">
