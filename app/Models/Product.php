@@ -106,6 +106,14 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return [];
     }
+    public function getCover(){
+        
+    }
+    public function getURLCover() {
+        return route('product.getCover',[
+            'id'=>$this->id
+        ]);
+    }
     public function updatePathUpload($oldCode) {
         $newPath = $this->getImgPath();
         $filename = config("app.paths.products") . $oldCode;

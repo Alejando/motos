@@ -27,7 +27,7 @@ $getWidthSubs = function ($subs) {
                                 </div>
                             @else
                                 <div style="width:{{$width}}em; float:left;">
-                                    <h3><a href="">{{$sub->name}}</a></h3>
+                                    <h3><a href="{{$sub->getURL()}}">{{$sub->name}}</a></h3>
                                 </div>
                             @endif                        
                         @endforeach
@@ -39,18 +39,17 @@ $getWidthSubs = function ($subs) {
                                 <div style="width:{{$width}}em; float:left;">
                                     <ul>
                                         @foreach($sub->subcategories as $subc)
-                                            <li><a href="">{{$subc->name}}</a></li> 
+                                            <li><a href="{{$subc->getURL()}}">{{$subc->name}}</a></li> 
                                         @endforeach                                        
                                     </ul>
-                                </div>                        
-                                
+                                </div>
                             @endif                            
                         @endforeach                        
                     </div>
                 </div>
             </li>
         @else
-            <li><a href="" class="transicion">{{strtoupper($category->name)}}</a></li>
+            <li><a href="{{$category->getURL()}}" class="transicion">{{strtoupper($category->name)}}</a></li>
         @endif
     @endforeach
     <li><a href="" class="transicion">DESCUENTOS</a></li>

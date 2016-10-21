@@ -116,14 +116,19 @@ Route::get('/', 'HomeCtrl@index');
 
 
 Route::get('/categorias/{slugs?}/paginas/{page}', [ //Muestra las categorias
-    'as' => 'product.getInfo',
+    'as' => 'product.getCategoryPage',
     'uses' => 'ProductCtrl@showCategory'
 ])->where('slugs', '(.*)');
 
 Route::get('/categorias/{slugs?}', [ //Muestra las categorias
-    'as' => 'product.getInfo',
+    'as' => 'product.getCategory',
     'uses' => 'ProductCtrl@showCategory'
 ])->where('slugs', '(.*)');
+
+Route::get('/productos/{id}/cover',[
+    'as' => 'product.getCover',
+    'uses' => 'Api\\ProductController@getCover'
+]);
 
 Route::get('/producto/{producto}/categoria/{slugs?}', [ //Muestra las categorias y el detalle del producto
     'as' => 'product.getInfo',

@@ -23,14 +23,17 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
     }
     
-    public function getPath() {        
+    public function getURL() {        
         self::getParents($this, $parents);
-        if(is_array($parents)){
+        if(is_array($parents)) {
             $parents = array_reverse($parents);
         }
-        $parents[]=  str_slug($this->name);
+        $parents[] =  str_slug($this->name);
         $url = implode("/", $parents);
-        echo $url;
+        return route('product.getCategoryPage', [
+            'slug' => $url,
+            'pages'=>1
+        ]);
     }
 
     public static function getRoots($returnQuery = false) {

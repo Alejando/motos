@@ -45,8 +45,10 @@ class ProductCtrl extends Controller{
             $category = $r;
         }
         if($category) {
-//            return $category->getPath();
-            return $category->products()->paginate();
+//            $x = $category->products()->paginate();
+            return view('public.pages.products-page',[
+                'products' => $category->products()->paginate()
+            ]);
         }
         abort(404);
     }

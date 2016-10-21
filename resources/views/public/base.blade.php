@@ -11,7 +11,7 @@
         <div class="main-conteiner">
             <header class="fontal">
                 <div class="menu-top">
-                    <a href="#" class="sprite logo-bounce home-logo" title="Bounce Tenis Lifestyle">Home</a>
+                    <a href="{{url("/")}}" class="sprite logo-bounce home-logo" title="Bounce Tenis Lifestyle">Home</a>
                     <nav class="menu-right">
                         <ul class="menu">
                             <li><a href="./carrito" class="sprite icon-car-2" title="Mi Carrito">Mi Carrito</a></li>
