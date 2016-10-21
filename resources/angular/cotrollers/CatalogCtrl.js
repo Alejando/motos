@@ -22,6 +22,9 @@
         var getTitle = function () {
             return "Titulo Por defecto";
         };
+        var getRemoveTitle = function() {
+            return "Título por defecto";
+        };
         var getColumnBuilder = [];
 
         // hide export/import buttons by default
@@ -34,6 +37,9 @@
             $scope.model = Product;
             getTitle = function(){
                 return $scope.selectedItem.id ? 'Edición del producto ' + $scope.selectedItem.name : 'Nuevo producto';
+            };
+            getRemoveTitle = function() {
+                return "¿Seguro que desea eliminar el producto '" + $scope.selectedItem.name + "' ?";
             };
             getColumnBuilder = function () {
                 return [
@@ -104,6 +110,7 @@
                 $scope.files = [];
                 $def = $q.defer();
                 $scope.selectedItem.backup();
+                $scope.selectedBrand = null;
                 var defCategories = $scope.selectedItem.categories().then(function(categories) {
                     if(categories.length) {
                        var whaitJsTree = $interval(function(){
@@ -165,7 +172,10 @@
                 'swatchBootstrap' : false
             };
             getTitle = function(){
-                return $scope.selectedItem.id ? 'Edicion del color ' + $scope.selectedItem.name : 'Color Nuevo';
+                return $scope.selectedItem.id ? 'Edición del color ' + $scope.selectedItem.name : 'Color Nuevo';
+            };
+            getRemoveTitle = function() {
+                return "¿Seguro que desea eliminar el color '" + $scope.selectedItem.name + "' ?";
             };
             getColumnBuilder = function () {
                 return [
@@ -197,6 +207,9 @@
             $scope.model = User;
             getTitle = function (){
                 return $scope.selectedItem.id ? 'Edición del usuario "' + $scope.selectedItem.name + '"' : 'Nuevo Usuario';
+            };
+            getRemoveTitle = function() {
+                return "¿Seguro que desea eliminar el usuario '" + $scope.selectedItem.name + "' ?";
             };
             getColumnBuilder = function () {
                 return [
@@ -272,7 +285,10 @@
             }
             $scope.size = [];
             getTitle = function () {
-                return $scope.selectedItem.id ? 'Edición del stock"' + $scope.selectedItem.code + '"' : 'Nuevo Stock';
+                return $scope.selectedItem.id ? 'Edición del stock "' + $scope.selectedItem.code + '"' : 'Nuevo Stock';
+            };
+            getRemoveTitle = function() {
+                return "¿Seguro que desea eliminar el stock '" + $scope.selectedItem.code + "' ?";
             };
             getColumnBuilder = function () {
                 return [
@@ -299,7 +315,10 @@
             $scope.catalog = "Categorias";
             $scope.model = Category;
             getTitle = function() {
-                return $scope.selectedItem.id ? 'Edición de la "' + $scope.selectedItem.name + '"' : 'Talla Marca';
+                return $scope.selectedItem.id ? 'Edición de la categoría "' + $scope.selectedItem.name + '"' : 'Talla Marca';
+            };
+            getRemoveTitle = function() {
+                return "¿Seguro que desea eliminar la categoría '" + $scope.selectedItem.name + "' ?";
             };
             getColumnBuilder = function () {
                 return [
@@ -339,7 +358,10 @@
                 reader.readAsDataURL(changeEvent.target.files[0]);
             };
             getTitle = function() {
-                return $scope.selectedItem.id ? 'Edición de la "' + $scope.selectedItem.name + '"' : 'Talla Marca';
+                return $scope.selectedItem.id ? 'Edición de la marca "' + $scope.selectedItem.name + '"' : 'Talla Marca';
+            };
+            getRemoveTitle = function() {
+                return "¿Seguro que desea eliminar la marca '" + $scope.selectedItem.name + "' ?";
             };
             getColumnBuilder = function () {
                 return [
@@ -360,7 +382,10 @@
             $scope.selectedItem.name = "XL";
             $scope.model = Size;
             getTitle = function(){
-                return $scope.selectedItem.id ? 'Edición de Talla "' + $scope.selectedItem.name + '"' : 'Talla Nueva';
+                return $scope.selectedItem.id ? 'Edición de talla "' + $scope.selectedItem.name + '"' : 'Talla Nueva';
+            };
+            getRemoveTitle = function() {
+                return "¿Seguro que desea eliminar la talla '" + $scope.selectedItem.name + "' ?";
             };
             getColumnBuilder = function () {
                 return [
@@ -461,7 +486,8 @@
             $scope.model.getById(id).then(function(item){
                 $scope.selectedItem = item;
                 BootstrapDialog.show({
-                    message: 'Deseas eliminar el color',
+                    message: getRemoveTitle(),
+                    title: 'Eliminar',
                     buttons: [{
                         label: 'SI',
                         cssClass: 'btn btn-primary waves-effect waves-light',

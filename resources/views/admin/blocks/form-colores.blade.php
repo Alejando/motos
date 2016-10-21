@@ -6,13 +6,13 @@
         <div class="form-group">
             <label class="col-md-4 control-label">Nombre</label>
             <div class="col-md-8">
-                <input type="text" ng-model="selectedItem.name" class="form-control" placeholder="Nueva Color">
+                <input type="text" ng-model="selectedItem.name" class="form-control" placeholder="ej. Ultra Verde">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label">Prefijo</label>
             <div class="col-md-8">
-                <input type="text" ng-model="selectedItem.pref" class="form-control" placeholder="prefijo">
+                <input type="text" ng-model="selectedItem.pref" class="form-control" placeholder="ej. uverd">
             </div>
         </div>
         <div class="form-group">
