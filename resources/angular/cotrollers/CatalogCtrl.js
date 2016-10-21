@@ -40,8 +40,8 @@
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type, full, meta){
-                            return '<a href="#" class="on-default edit-row" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                            return '<a href="#" class="on-default edit-row icon icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row icon icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
@@ -183,8 +183,8 @@
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
                                 '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
-                                '<a href="#" class="on-default edit-row" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                                '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
@@ -204,8 +204,8 @@
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
                         DTColumnBuilder.newColumn('email').withTitle('Email'),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
-                            return '<a href="#" class="on-default edit-row" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                            return '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
@@ -286,8 +286,8 @@
                                     '<div style="text-align:center">' + full.color.name + '</div>';
                         }),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
-                            return '<a href="#" class="on-default edit-row" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                            return '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
@@ -306,8 +306,8 @@
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
-                            return '<a href="#" class="on-default edit-row" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                            return '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
@@ -346,8 +346,8 @@
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
-                            return '<a href="#" class="on-default edit-row" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                            return '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
@@ -369,8 +369,8 @@
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
                                 '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
-                                '<a href="#" class="on-default edit-row" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                                '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
