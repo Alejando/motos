@@ -134,4 +134,8 @@ Route::get('/producto/{producto}/categoria/{slugs?}', [ //Muestra las categorias
     'as' => 'product.getInfo',
     'uses' => 'ProductCtrl@showProduct'
 ])->where('slugs', '(.*)');
+
+Route::get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
+    'format' => "(?:txt|html)"
+]);
 Route::auth();
