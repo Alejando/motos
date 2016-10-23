@@ -55,37 +55,7 @@
                 </div>
                 <nav>
                     @include('public.blocks.menu-lg')
-
-                    <div class="cajamenumovil hidden-md hidden-lg">
-                        <a class="btncatalogo transicion"><i class="fa fa-bars"></i> <span>CATEGORÍAS</span></a>
-                        <div class="menumainmovil">
-                            <div class="cajacerrar"><a class="btncerrar transicion"><i class="fa fa-close"></i></a></div>
-                            <a href="" data-btnsub="dama" class="transicion">DAMA <i class="fa fa-angle-right pull-right"></i></a>
-                            <div data-mnusub="dama" class="submenumovil">
-                                <div class="cajacerrar transicion"><a class="btncerrar"><i class="fa fa-close"></i></a></div>
-                                <h3><span>Marcas</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
-                                <a href="" class="transicion">Nike</a>
-                                <a href="" class="transicion">Adidas</a>
-                                <a href="" class="transicion">Wilson</a>
-                                <h3><span>Ropa</span> <i class="fa fa-angle-down" aria-hidden="true"></i></h3>
-                                <a href="" class="transicion">Blusas</a>
-                                <a href="" class="transicion">Chamarras</a>
-                                <a href="" class="transicion">Faldas</a>
-                                <a href="" class="transicion">Gorras</a>
-                                <a href="" class="transicion">Ropa interior</a>
-                                <a href="" class="transicion">Shorts</a>
-                                <a href="" class="transicion">Vestidos</a>
-                            </div>
-                            <a href="" data-btnsub="" class="transicion">CABALLERO</a>
-                            <a href="" data-btnsub="" class="transicion">ZAPATOS</a>
-                            <a href="" data-btnsub="" class="transicion">RAQUETAS</a>
-                            <a href="" data-btnsub="" class="transicion">BOLSAS</a>
-                            <a href="" data-btnsub="" class="transicion">PELOTAS</a>
-                            <a href="" data-btnsub="" class="transicion">OTROS</a>
-                            <a href="" data-btnsub="" class="transicion">DESCUENTOS</a>
-                        </div>
-                    </div>
-
+                    @include('public.blocks.menu-sm')
                     <div class="search-form-2">
                         <input type="text" class="input-border" ><button class="sprite search-2"></button>
                     </div>
