@@ -415,7 +415,7 @@ a.in {
 	vertical-align: middle;
 }
 
-.productohover a {
+.productohover a, .productohover span {
 	display: block;
 	width: 63px;
 	height: 63px;
