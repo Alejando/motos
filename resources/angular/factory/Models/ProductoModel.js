@@ -10,6 +10,7 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand
             'id',
             'name',
             'code',
+            'slug',
             'codebar',
             'description',
             'multi_galeries',
