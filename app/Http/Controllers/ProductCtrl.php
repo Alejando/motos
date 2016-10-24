@@ -44,15 +44,20 @@ class ProductCtrl extends Controller{
             }
             $category = $r;
         }
-        if($category) {
+        if($category) {            
 //            $x = $category->products()->paginate();
             return view('public.pages.products-page',[
-                'products' => $category->products()->paginate()
+                'products' => $category->products()->paginate(),
+                'categorySlug' => $slug
             ]);
         }
         abort(404);
     }
-    public function showProduct($slugs){
-        dd($slugs);
+    public function showDetails($categorySlug, $productSlug){
+//        dd([$categorySlug, $productSlug]);
+        return view('public.pages.detail',[
+            'showOffert'=> false,
+            'showBannerBottom' => false
+        ]);
     }
 }

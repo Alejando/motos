@@ -109,6 +109,12 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function getCover(){
         
     }
+    public function getURL($category = false) {        
+        return route('product.showDetails', [
+            'categorySlug' => $category,
+            'productSlug' => str_slug($this->name)
+        ]);
+    }
     public function getURLCover() {
         return route('product.getCover',[
             'id'=>$this->id

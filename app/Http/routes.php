@@ -119,7 +119,10 @@ Route::get('/categorias/{slugs?}/paginas/{page}', [ //Muestra las categorias
     'as' => 'product.getCategoryPage',
     'uses' => 'ProductCtrl@showCategory'
 ])->where('slugs', '(.*)');
-
+Route::get('categorias/{categorySlug?}/productos/{productSlug}',[
+    'as' => 'product.showDetails',
+    'uses' => 'ProductCtrl@showDetails'
+])->where('categorySlug', '(.*)');
 Route::get('/categorias/{slugs?}', [ //Muestra las categorias
     'as' => 'product.getCategory',
     'uses' => 'ProductCtrl@showCategory'
@@ -130,10 +133,10 @@ Route::get('/productos/{id}/cover',[
     'uses' => 'Api\\ProductController@getCover'
 ]);
 
-Route::get('/producto/{producto}/categoria/{slugs?}', [ //Muestra las categorias y el detalle del producto
-    'as' => 'product.getInfo',
-    'uses' => 'ProductCtrl@showProduct'
-])->where('slugs', '(.*)');
+//Route::get('/producto/{producto}/categoria/{slugs?}', [ //Muestra las categorias y el detalle del producto
+//    'as' => 'product.getInfo',
+//    'uses' => 'ProductCtrl@showProduct'
+//])->where('slugs', '(.*)');
 
 Route::get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
     'format' => "(?:txt|html)"
