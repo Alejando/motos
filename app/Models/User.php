@@ -29,7 +29,9 @@ class User extends Authenticatable {
     public function profile() {
         return $this->belongsTo(\DwSetpoint\Models\Profile::class);
     }
-    
+    public function bookmarks() {
+        return $this->hasMany(Product::class);
+    }
     public function setPasswordAttribute($password) {
         $this->attributes['password'] = \Hash::make($password);
     }

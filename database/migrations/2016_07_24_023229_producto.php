@@ -44,6 +44,7 @@ class Producto extends Migration
      * @return void
      */
     public function down() {
+
         Schema::table('products', function(Blueprint $table){
             $table->dropForeign('products_brand_id_foreign');
         });
@@ -52,8 +53,8 @@ class Producto extends Migration
             $table->dropForeign('products_colors_color_id_foreign');
         });
         Schema::table('products_categories', function(Blueprint $table){
-            $table->dropForeign('products_categories_products_id_foreign');
-            $table->dropForeign('products_categories_categories_id_foreign');
+            $table->dropForeign('category_product_categories_id_foreign');
+            $table->dropForeign('category_product_products_id_foreign');
         });
         Schema::table('products_sizes', function(Blueprint $table){
             $table->dropForeign('products_sizes_products_id_foreign');
