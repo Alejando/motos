@@ -10,6 +10,6 @@
 /public/js/estrasol/app.js.map
 node_modules
 vendor
-/storage/logs/laravel.log
+storage/logs/laravel.log
 upload/*
 !upload/.gitkeep

@@ -5,10 +5,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $fillable = [
         'name',
         'description',
-        'code',
-        'codebar',
         'brand_id',
-        
         'multi_galeries'
     ];
     // <editor-fold defaultstate="collapsed" desc="brand">
@@ -107,9 +104,9 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return [];
     }
     public function getCover(){
-        
+
     }
-    public function getURL($category = false) {        
+    public function getURL($category = false) {
         return route('product.showDetails', [
             'categorySlug' => $category,
             'productSlug' => str_slug($this->name)
@@ -153,7 +150,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function getSerialNumberAttribute(){
         return $this->attributes['serial_number'];
     }
-    // </editor-fold>    
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getBySlug">
     public static function getBySlug($slug, $returQuery = false) {
         $query = self::where('slug', '=', $slug);
