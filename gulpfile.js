@@ -29,8 +29,16 @@ elixir(function(mix) {
 //    mix.less('ubold-template/responsive.less','public/assets/css/responsive.css');
 //    mix.less('ubold-template/variables.less', 'public/assets/cssvariables.css');
     mix.scripts([
-        '../../angular/*.js',
-        '../../angular/**/*.js'
-    ],'public/js/estrasol/app.js');
+        '../.../angular/contexts/admin/*.js',
+        '../../angular/contexts/admin/controllers/*.js',
+        '../../angular/common/*.js',
+        '../../angular/common/**/*.js',
+    ], 'public/js/estrasol/app.js');
+    mix.scripts([
+        '../.../angular/contexts/web/*.js',
+        '../../angular/contexts/web/controllers/*.js',
+        '../../angular/common/*.js',
+        '../../angular/common/**/*.js',
+    ], 'public/js/estrasol/web-angular.js');
     mix.livereload();
 });
