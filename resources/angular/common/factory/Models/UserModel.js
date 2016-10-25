@@ -15,6 +15,22 @@ setpoint.factory('User', function (ModelBase, $q, $http) {
         ],
         relations : []
     }, {
+        addBookmark: function(id_product){
+            var def = $q.defer();
+            var url = laroute.route('user.addBookmark', {'id_product':id_product});
+            $http.post(url).then(function(){
+                def.resolve();
+            });
+            return def.promise;
+        },
+        deleteBookmark: function(id_product){
+            var def = $q.defer();
+            var url = laroute.route('user.deleteBookmark', {'id_product':id_product});
+            $http.delete(url).then(function(){
+                def.resolve();
+            });
+            return def.promise;
+        }
     });
     return User;
 });
