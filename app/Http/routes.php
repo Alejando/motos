@@ -97,6 +97,14 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'Api\\ProductController@img'
     ]);
     $addAPI('content','Content');
+    Route::post('user/bookmark/',[
+        'as'=>'user.addBookmark',
+        'uses'=>'Api\\UserController@addBookmark'
+    ]);
+    Route::delete('user/bookmark',[
+        'as'=>'user.deleteBookmark',
+        'uses'=>'Api\\UserController@deleteBookmark'
+    ]);
     $addAPI('user','User');
 });
 
