@@ -15,49 +15,41 @@ use Illuminate\Pagination\Paginator;
  *
  * @author jdiaz
  */
-class ProductCtrl extends Controller{
-    
-   
-    
-    public function findChildrenBySlug($parent, $categorySlug) {
-        $query = \DwSetpoint\Models\Category::where('name', 'like',  ucwords(str_replace('-', " ", $categorySlug)));
-        if($parent!==null){
-            $query->where('parent_category_id','=', $parent->id);
-        }
-        $category = $query->get();
-        if($category->count()) {
-            return $category->get(0);
-        } 
-        return null;
-    }
-    public function showCategory($slug, $page = 1) {        
-        $expoSlug = explode("/", $slug);
-        $category = null;
+class ProductCtrl extends Controller{    
+    // <editor-fold defaultstate="collapsed" desc="showCategory">
+    public function showCategory($slug, $page = 1) {
         $currentPage = $page;
         Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
-        foreach($expoSlug as $categoryslug) {
-            $r = $this->findChildrenBySlug($category,$categoryslug);
-            if($r === null) {
-                abort(404);
-            }
-            $category = $r;
-        }
-        if($category) {            
-//            $x = $category->products()->paginate();
-            return view('public.pages.products-page',[
+        
+        $category = \DwSetpoint\Models\Category::getBySlug($slug);
+        if($category) {
+            return view('public.pages.products-page', [
                 'products' => $category->products()->paginate(),
-                'categorySlug' => $slug
+                'categorySlug' => $slug,
+                'caregory' => $category
             ]);
         }
         abort(404);
     }
-    public function showDetails($categorySlug, $productSlug){
-//        dd([$categorySlug, $productSlug]);
-        return view('public.pages.detail',[
-            'showOffert'=> false,
-            'showBannerBottom' => false
-        ]);
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="showDetails">
+    public function showDetails($categorySlug, $productSlug) {
+        $category = \DwSetpoint\Models\Category::getBySlug($categorySlug);
+        $product = \DwSetpoint\Models\Product::getBySlug($productSlug);
+        $parents = [];
+        \DwSetpoint\Models\Category::getParents($category, $parents);
+        if($product) {
+            return view('public.pages.detail', [
+                'showOffert'=> false,
+                'showBannerBottom' => false,
+                'product' => $product,
+                'category' => $category,
+                'parents' => $parents
+            ]);
+        }
+        abort(404);
     }
+    // </editor-fold>
 }

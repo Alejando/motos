@@ -1,7 +1,12 @@
 @extends('public.base')
 @section('body')
     <div class="breadcrumbcustom">
-        Zapatos <span class="separador">-</span> Marca <span class="separador">-</span> <span class="current">Modelo</span>
+        @if($category)
+            @foreach($parents as $parent)
+                {{$parent->name}} <span class="separador">-</span>
+            @endforeach
+            <span class="current">$category->name</span>
+        @endif
     </div>
 
     <div class="row">
@@ -22,8 +27,8 @@
         <div class="col-sm-6">
             <div class="cajadetalle">
                 <img src="{{ asset('img/template/wilson.png') }}" class="pull-right" />
-                <h2 class="titulo">ZAPATOS VERDES BONITOS</h2>
-                <div class="serie">Num. Serie 0215225</div>
+                <h2 class="titulo">{{$product->name}}</h2>
+                <div class="serie">Num. Serie {{$product->serialNumber}}</div>
                 <div class="row margentop50">
                     <div class="col-sm-6">
                         <h3 class="precioazul">$000.00</h3>
@@ -53,15 +58,9 @@
                             <div>
                                 <span>
                                     <select name="talla" id="talla" class="form-control stalla">
-                                        <option value="">6</option>
-                                        <option value="">6.5</option>
-                                        <option value="">7</option>
-                                        <option value="">7.5</option>
-                                        <option value="">8</option>
-                                        <option value="">8.5</option>
-                                        <option value="">9</option>
-                                        <option value="">9.5</option>
-                                        <option value="">10</option>
+                                        @foreach($product->sizes as $size)
+                                            <option value="{{$size->id}}">{{$size->name}}</option>
+                                        @endforeach                                        
                                     </select>
                                     Talla
                                 </span>
@@ -95,6 +94,7 @@
                 <div class="barraverde margentop30">
                     <a class="btndescripcion">Descripción</a>
                 </div>
+                <div>{{$product->description}}</div>
             </div>
         </div>
     </div>

@@ -149,4 +149,19 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return false;
     }
+    // <editor-fold defaultstate="collapsed" desc="getSerialNumberAttribute">
+    public function getSerialNumberAttribute(){
+        return $this->attributes['serial_number'];
+    }
+    // </editor-fold>    
+    // <editor-fold defaultstate="collapsed" desc="getBySlug">
+    public static function getBySlug($slug, $returQuery = false) {
+        $query = self::where('slug', '=', $slug);
+        if($returQuery){
+            return $query;
+        }
+        return $query->get()->get(0);
+    }
+    // </editor-fold>
+
 }

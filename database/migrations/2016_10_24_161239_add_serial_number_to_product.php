@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CodebarProduct extends Migration {
+class AddSerialNumberToProduct extends Migration {
 
     /**
      * Run the migrations.
@@ -12,14 +12,11 @@ class CodebarProduct extends Migration {
      */
     public function up() {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('codebar', 15);
+            $table->string('serial_number');
         });
         DwSetpoint\Models\Product::get()->each(function($product){
-            $product->codebar=  uniqid();
+            $product->serial_number =  rand(100000, 20000);
             $product->save();
-        });
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('codebar', 15)->unique()->change();
         });
     }
 
@@ -30,9 +27,8 @@ class CodebarProduct extends Migration {
      */
     public function down() {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('codebar');
+            $table->dropColumn('serial_number');
         });
-
     }
 
 }
