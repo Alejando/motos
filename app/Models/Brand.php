@@ -6,6 +6,14 @@ class Brand  extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function products() {
         return $this->hasMany(\DwSetpoint\Models\Product::class, 'product_id');
     }
+    public function getImgURL($width, $height) {
+        return route('brand.getLogo',[
+            'id'=> $this->id,
+            'slugSEO'=> str_slug($this->name).'_',
+            'width' => $width,
+            'height' => $height
+        ]);
+    }
     public function saveImg($icon) {
         $extension = $icon->extension();
         if($icon && ($extension ==='png' || $extension ==='jpeg')) {

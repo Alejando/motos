@@ -68,8 +68,9 @@ setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand
             var self = this;
             $http.get(url).then(function (request){
                 self.imgs = request.data;
+                $defer.resolve(request.data);
             });
-            $defer.promise;
+            return $defer.promise;
         }
     });
     return Product;

@@ -30,6 +30,7 @@
     "angular-ui-select": "^0.19.4",
     "angular-sanitize": "^1.5.8",
     "angular-slugify": "^1.0.1",
-    "angular-bootstrap": "^2.2.0"
+    "angular-bootstrap": "^2.2.0",
+    "angular-owl-carousel": "^0.2.3"
   }
 }
