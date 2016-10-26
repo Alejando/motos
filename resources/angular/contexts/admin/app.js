@@ -8,7 +8,6 @@ var setpoint = angular.module('setpoint', [
     'ui.select',
     'slugifier',
     'ui.bootstrap'
-
 ]);
 //setpoint.constat('Config', {
 //    DATE_FORMAT : 'dd/MMMM/yyyy', //https://docs.angularjs.org/api/ng/filter/date

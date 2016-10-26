@@ -8,10 +8,16 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-md-3 control-label">Código de barras:</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="selectedItem.codebar" class="form-control" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-md-3 control-label">Producto</label>
             <div class="col-md-8">
-                <ui-select ng-model="$parent.selectedProduct" on-select="onSelectProduct()"> 
-                    <ui-select-match>                       
+                <ui-select ng-model="$parent.selectedProduct" on-select="onSelectProduct()">
+                    <ui-select-match>
                         <span>@{{$select.selected.name}} </span>
                     </ui-select-match>
                     <ui-select-choices repeat="product in products | orderBy:['name','id']">
@@ -24,8 +30,8 @@
             <div class="form-group">
                 <label class="col-md-3 control-label">Color</label>
                 <div class="col-md-8">
-                    <ui-select ng-model="$parent.selectedColor"> 
-                        <ui-select-match>                       
+                    <ui-select ng-model="$parent.selectedColor">
+                        <ui-select-match>
                             <span>@{{$select.selected.name}} </span>
                         </ui-select-match>
                         <ui-select-choices repeat="color in colors | orderBy:['name','id']">
@@ -37,8 +43,8 @@
             <div class="form-group">
                 <label class="col-md-3 control-label">Talla</label>
                 <div class="col-md-8">
-                    <ui-select ng-model="$parent.selectedSize"> 
-                        <ui-select-match>                       
+                    <ui-select ng-model="$parent.selectedSize">
+                        <ui-select-match>
                             <span>@{{$select.selected.name}} </span>
                         </ui-select-match>
                         <ui-select-choices repeat="size in sizes | orderBy:['name','id']">

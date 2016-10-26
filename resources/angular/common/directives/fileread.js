@@ -6,7 +6,7 @@ setpoint.directive("fileread", [function () {
         },
         link: function (scope, element, attributes) {
             element.bind("change", function (changeEvent) {
-                
+
                 if(scope.onselectfile){
                     scope.onselectfile(changeEvent,event.target.files);
                 }
@@ -34,29 +34,31 @@ setpoint.directive('filesDagAndDrop',[
             },
             link : function(scope, element, attributes){
                 var inputFile = angular.element(
-                        '<input type="file" multiple accept=".jpg,.png" style="display:none">'
-                    );
+                    '<input type="file" multiple accept=".jpg,.png" style="display:none">'
+                );
+
                 element.append(inputFile);
-                
+
                 inputFile.bind('click', function(e) {
                      e.stopPropagation();
                 });
-                
+
                 inputFile.bind('change', function(e) {
                     scope.onselectfile(this.files);
                     e.stopPropagation();
                 });
-                
+
                 element.bind('click', function ($event) {
                     $(inputFile).click();
                     $event.preventDefault();
                 });
-                
-                element.bind('drop',function($event) {                 
+
+                element.bind('drop',function($event) {
                     scope.onselectfile($event.originalEvent.dataTransfer.files);
+                    //element.find('input').val('');
                     $event.preventDefault();
                 });
-                
+
                 element.bind('dragover', function ($event) {
                     $event.preventDefault();
                 });

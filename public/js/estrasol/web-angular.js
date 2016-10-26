@@ -56,7 +56,7 @@ setpoint.directive("fileread", [function () {
         },
         link: function (scope, element, attributes) {
             element.bind("change", function (changeEvent) {
-                
+
                 if(scope.onselectfile){
                     scope.onselectfile(changeEvent,event.target.files);
                 }
@@ -84,29 +84,31 @@ setpoint.directive('filesDagAndDrop',[
             },
             link : function(scope, element, attributes){
                 var inputFile = angular.element(
-                        '<input type="file" multiple accept=".jpg,.png" style="display:none">'
-                    );
+                    '<input type="file" multiple accept=".jpg,.png" style="display:none">'
+                );
+
                 element.append(inputFile);
-                
+
                 inputFile.bind('click', function(e) {
                      e.stopPropagation();
                 });
-                
+
                 inputFile.bind('change', function(e) {
                     scope.onselectfile(this.files);
                     e.stopPropagation();
                 });
-                
+
                 element.bind('click', function ($event) {
                     $(inputFile).click();
                     $event.preventDefault();
                 });
-                
-                element.bind('drop',function($event) {                 
+
+                element.bind('drop',function($event) {
                     scope.onselectfile($event.originalEvent.dataTransfer.files);
+                    //element.find('input').val('');
                     $event.preventDefault();
                 });
-                
+
                 element.bind('dragover', function ($event) {
                     $event.preventDefault();
                 });
@@ -114,6 +116,7 @@ setpoint.directive('filesDagAndDrop',[
         }
     }
 ]);
+
 //fork: http://codepen.io/apuchkov/pen/ILjFr
 setpoint.directive('numbersOnly', function () {
     return {
@@ -894,12 +897,12 @@ setpoint.factory('Size', function (ModelBase,$q,$http) {
 });
 setpoint.factory('Stock', function (ModelBase, $q, $http,
     Product,
-    Color, 
-    Size) {    
+    Color,
+    Size) {
     var Stock = function (args) {
         ModelBase.apply(this, arguments);
     };
-    ModelBase.createModel(Stock , {   
+    ModelBase.createModel(Stock , {
         alias: 'stock',
         setters : {
         },
@@ -907,7 +910,8 @@ setpoint.factory('Stock', function (ModelBase, $q, $http,
             'id',
             'quantity',
             'price',
-            'code'
+            'code',
+            'codebar'
         ],
         relations : [
             ['product', Product, 'belongsTo'],
@@ -918,6 +922,7 @@ setpoint.factory('Stock', function (ModelBase, $q, $http,
     });
     return Stock;
 });
+
 setpoint.factory('User', function (ModelBase, $q, $http) {    
     var User = function (args) {
         ModelBase.apply(this, arguments);

@@ -29,18 +29,17 @@ elixir(function(mix) {
 //    mix.less('ubold-template/responsive.less','public/assets/css/responsive.css');
 //    mix.less('ubold-template/variables.less', 'public/assets/cssvariables.css');
     mix.scripts([
+        '../../angular/contexts/admin/app.js',
+        '../../angular/contexts/admin/app-config.js',
         '../../angular/common/*.js',
-        '../../angular/common/**/*.js',        
-        '../../angular/contexts/admin/controllers/*.js',
-        '../.../angular/contexts/admin/*.js'
+        '../../angular/common/**/*.js',
+        '../../angular/contexts/admin/controllers/*.js'
     ], 'public/js/estrasol/app.js');
     mix.scripts([
          '../../angular/contexts/web/app.js',
         '../../angular/common/*.js',
         '../../angular/common/**/*.js',
-        '../../angular/contexts/web/controllers/*.js',
-       
-        
+        '../../angular/contexts/web/controllers/*.js'
     ], 'public/js/estrasol/web-angular.js');
     mix.livereload();
 });
