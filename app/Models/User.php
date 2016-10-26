@@ -7,7 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable {
 
     use \DevTics\LaravelHelpers\Model\traits\MethodsModelBase;
-
+    
+    const PROFILE_CLIENT = 1;
+    const PROFILE_ADMIN = 2;
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 0;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -55,5 +60,7 @@ class User extends Authenticatable {
         $this->bookmarks()->detach($id_product);
     }
     // </editor-fold>
-
+    public function isMale(){
+        return $this->gender == self::GENDER_MALE;
+    }
 }

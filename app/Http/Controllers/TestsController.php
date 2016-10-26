@@ -24,4 +24,16 @@ class TestsController extends BaseController {
         }
         return "No existe el tipo de correo";
     }
+    public function listmails() {
+        $refClass = new \ReflectionClass(\DwSetpoint\Libs\Helpers\Mail::class);
+        $methods = [];
+        foreach($refClass->getMethods() as $method){
+            if($method->getDeclaringClass()->name == \DwSetpoint\Libs\Helpers\Mail::class) {
+                $methods[] = $method;
+            }
+        }
+        return view("developers.tests.mailist", [
+            'methods' => $methods
+        ]);
+    }
 }

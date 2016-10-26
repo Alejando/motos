@@ -146,7 +146,14 @@ Route::get('/productos/{id}/cover',[
 //    'uses' => 'ProductCtrl@showProduct'
 //])->where('slugs', '(.*)');
 
-Route::get('tests/mail/{format}/{type}', 'TestsController@mail')->where([
+Route::get('tests/mail/{format}/{type}', [
+        'uses' => 'TestsController@mail',
+        'as' => 'test.mails'
+    ])->where([
+    'format' => "(?:txt|html)"
+]);
+
+Route::get('tests/mails',  'TestsController@listmails')->where([
     'format' => "(?:txt|html)"
 ]);
 Route::auth();
