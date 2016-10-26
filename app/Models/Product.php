@@ -4,9 +4,13 @@ namespace DwSetpoint\Models;
 class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $fillable = [
         'name',
-        'description',
+        'code',
+        'slug',
         'brand_id',
-        'multi_galeries'
+        'price_from',
+        'description',
+        'multi_galeries',
+        'discount_percentage'
     ];
     // <editor-fold defaultstate="collapsed" desc="brand">
     public function brand() {
