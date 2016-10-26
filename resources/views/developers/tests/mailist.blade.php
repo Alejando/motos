@@ -12,7 +12,7 @@
                         'type'=> $method->name
                     ]);
                     $textUrl = route('test.mails', [
-                        'format' => 'text',
+                        'format' => 'txt',
                         'type' => $method->name
                     ]);
                 ?>
@@ -22,5 +22,13 @@
                 </li>
             @endforeach
         </ul>
+        <div style="background-color:#F0F0F0; padding: 20px">
+            <p>
+                "send=1" envía al correo configurado en el archivo .dev EMAIL_TEST_DEVELOPER.
+            </p>
+            <p>
+                "to=direcciondestino" cambia el correo de prueba. 
+            </p>
+        </div>
     </body>
 </html>

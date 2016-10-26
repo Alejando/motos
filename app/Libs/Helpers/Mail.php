@@ -35,4 +35,7 @@ class Mail extends MailBase {
         return self::sendMail('confirm-enrollment', $args, $test, $send, $format);
     }
     // </editor-fold>
+    public static function otroCorreo($args, $test = false,$send = true, $format = 'html') {
+        return self::sendMail('otro-correo', $args, $test, $send, $format);
+    }
 }
