@@ -42,11 +42,13 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getParents}">
     public static function getParents($category, &$parents) {        
-        $parent = $category->parent;
-        if($parent){
-            $parents[]=  str_slug($parent->name);
-            self::getParents($parent, $parents);
-        }
+        if($category){
+            $parent = $category->parent;
+            if($parent){
+                $parents[]=  str_slug($parent->name);
+                self::getParents($parent, $parents);
+            }
+        }        
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getURL">
