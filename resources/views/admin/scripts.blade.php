@@ -31,7 +31,7 @@
         <script src="{{asset('assets/js/jquery.app.js')}}"></script>
 
         <script src="{{asset('js/bower_components/datatables.net/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
-        <script src="{{asset('js/bower_components/angular/angular.min.js')}}" type="text/javascript"></script>
+        <script src="{{asset('js/bower_components/angular/angular.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/bower_components/angular-route/angular-route.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/bower_components/angular-datatables/dist/angular-datatables.min.js')}}"></script>
 
