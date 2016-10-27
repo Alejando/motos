@@ -9,7 +9,9 @@
         "laravel/framework": "5.2.*",
         "lord/laroute" : "2.*",
         "devtics/laravel-helpers": "dev-master",
-        "imagine/imagine": "^0.6.3"
+        "imagine/imagine": "^0.6.3",
+        "pelago/emogrifier": "^1.0",
+        "torann/currency": "^0.3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -246,7 +246,12 @@ ul.menu li {
     border-radius: 4px 4px 4px 4px;
     display: none;
 }
-
+.cajasubmenu .row {
+     margin:0px
+}
+.div-main-content{
+    padding:10px;
+}
 .lineaencabezado {
   border-bottom: dotted 1px #999799;
 }
@@ -389,6 +394,8 @@ footer {
   top: 0;
   font-size: 18px;
   font-family: 'Open Sans' !important;
+  margin-left: -10px; 
+  margin-right: 15px;
 }
 
 .contenedorfield {

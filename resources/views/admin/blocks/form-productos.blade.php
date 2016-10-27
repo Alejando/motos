@@ -8,6 +8,12 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-md-3 control-label">Código:</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="selectedItem.code" class="form-control" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-md-3 control-label">Marca</label>
             <div class="col-md-8">
                 <ui-select ng-model="$parent.selectedBrand">
@@ -45,6 +51,12 @@
             <label class="col-md-3 control-label">Precio desde:</label>
             <div class="col-md-8">
                 <input type="text" ng-model="selectedItem.price_from" class="form-control" placeholder="Precio desde">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">% de descuento:</label>
+            <div class="col-md-8">
+                <input type="text" ng-model="selectedItem.discount_percentage" class="form-control" placeholder="Porcentaje de descuento">
             </div>
         </div>
         <div class="form-group">

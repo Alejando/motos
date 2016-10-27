@@ -9,6 +9,9 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Metodos de Instancia (prototype)">
     ModelBase.prototype = {
+        clearFiles: function() {
+            delete this._FILES;
+        },
         addFile : function (name, data) {
             if(!this._FILES){
                 this._FILES = {};
@@ -51,6 +54,7 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             },milisecons);
         },
         refresh : function () {
+            
             var data = {};
             var self = this;
             var $defer =  $q.defer();

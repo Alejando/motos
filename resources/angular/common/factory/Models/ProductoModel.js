@@ -1,71 +1,70 @@
-setpoint.factory('Product', function (ModelBase,$q,$http, Category, Color, Brand, Size) {
-    var Product = function (args) {
+setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Brand, Size) {
+    var Product = function(args) {
         ModelBase.apply(this, arguments);
     };
-    ModelBase.createModel(Product , {
+    ModelBase.createModel(Product, {
         alias: 'product',
-        setters : {
-        },
+        setters: {},
         attributes: [
             'id',
             'name',
+            'code',
             'slug',
+            'brand_id',
             'price_from',
             'description',
             'multi_galeries',
-//            'colors',
-//            'categoriesC',
-            'brand_id'
+            'discount_percentage'
         ],
-        relations : [
+        relations: [
             ['categories', Category, 'hasMany'],
             ['sizes', Size, 'hasMany'],
             ['colors', Color, 'hasMany'],
             ['brand', Brand, 'belongsTo']
         ],
     }, {
-        renameImg : function () {
+        renameImg: function() {
             var $defer = $q.defer();
             var url = laroute.route('product.renameImg', {
-                'id' : this.id
+                'id': this.id
             });
-            $http.put(url,{
-                img : img,
-                name : name
-            }).then(function (request){
-//                console.log(request);
+            $http.put(url, {
+                img: img,
+                name: name
+            }).then(function(request) {
+                //                console.log(request);
             });
             $defer.promise;
         },
-        removeImg : function (img) {
+        removeImg: function(img) {
             var $defer = $q.defer();
             var url = laroute.route('product.getImgs', {
-                'id' : this.id
+                'id': this.id
             });
-            $http.delete(url,{
-                img : img
-            }).then(function (request){
-//                console.log(request);
+            $http.delete(url, {
+                img: img
+            }).then(function(request) {
+                //                console.log(request);
             });
             $defer.promise;
         },
-        getImg : function (img, width, height) {
+        getImg: function(img, width, height) {
             var url = laroute.route('product.img', {
-                id : this.id,
-                width : width,
+                id: this.id,
+                width: width,
                 height: height,
-                img : img
+                img: img
             });
-//            console.log(url);
+            //            console.log(url);
             return url;
         },
-        getImgs : function () {
+        getImgs: function() {
             var $defer = $q.defer();
             var url = laroute.route('product.getImgs', {
-                'id' : this.id
+                'id': this.id
             });
             var self = this;
-            $http.get(url).then(function (request){
+            $http.get(url).then(function(request) {
                 self.imgs = request.data;
                 $defer.resolve(request.data);
             });

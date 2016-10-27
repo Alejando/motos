@@ -3,9 +3,9 @@
     <div class="breadcrumbcustom">
         @if($category)
             @foreach($parents as $parent)
-                {{$parent->name}} <span class="separador">-</span>
+                {{ucwords($parent)}} <span class="separador">-</span>
             @endforeach
-            <span class="current">$category->name</span>
+            <span class="current">$category</span>
         @endif
     </div>
 
