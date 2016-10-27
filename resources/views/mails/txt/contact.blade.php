@@ -1,4 +1,4 @@
 @extends('mails.frames.common')
 @section('message')
-    Confirmación Ganaste!
+    Contacto Bounce!
 @stop
