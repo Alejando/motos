@@ -237,8 +237,9 @@ ul.menu{
     }
     header.fontal{
         background:url(../img/bg-top-1.jpg);
-        background-size: 100% auto;
-         border-bottom: #e1eaa3 2px solid;
+        background-size: 100%;
+        border-bottom: #e1eaa3 2px solid;
+        background-repeat: no-repeat;
     }
     header{
         .menu-top{
@@ -309,4 +310,8 @@ button.sprite{
 }
 .sprite {
     display: inline-block;  
+}
+
+.products{
+    padding: 10px;
 }

@@ -3,7 +3,7 @@
     'showBannerBottom' => false
 ])
 @section('body')
-    <div class="row">        
+    <div class="row products">        
         @forelse($products->items() as $product)
             @include('public.blocks.product', [ 
                 'product' => $product,

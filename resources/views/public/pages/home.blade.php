@@ -1,4 +1,4 @@
-@extends('public.base')
+<!--@extends('public.base')-->
 @section('body')
     <nav>
         <ul class="menu sub-menu-productos">
@@ -8,7 +8,7 @@
         </ul>
     </nav>
 
-    <div class="row">
+    <div class="row products">
         @foreach($products as $product)
             @include('public.blocks.product',[
                 'product' => $product

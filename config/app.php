@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'currency' => 'MXN',
     'permissionFiles' => 0777,
     'config-images' => [
         'fillcolor' => "#FFF",
@@ -157,6 +158,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
         \Torann\Currency\CurrencyServiceProvider::class,
+        DwSetpoint\Providers\Helpers::class,
         /*
          * Application Service Providers...
          */
@@ -212,6 +214,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Currency' => \Torann\Currency\Facades\Currency::class,
+        'Helpers' => DwSetpoint\Libs\Facades\Helpers::class
 
 
     ],
