@@ -13,17 +13,23 @@ class BrandsSeeder extends Seeder {
         //factory(DwSetpoint\Models\Brand::class,10)->create();
         $items = [
             [//1
-                'name'=>'Nike'
+                'name'=>'Nike',
+                'brand_code'=>'NNN04416OS'
             ],[//2
-                'name'=>'Adidas'
+                'name'=>'Nike',
+                'brand_code'=>'613967-010'
             ],[//3
-                'name'=>'Wilson'
+                'name'=>'Nike',
+                'brand_code'=>'613967-824'
             ],[//4
-                'name'=>'Babolat'
+                'name'=>'Nike',
+                'brand_code'=>'488144-105'
             ],[//5
-                'name'=>'Prince'
+                'name'=>'Addidas',
+                'brand_code'=>'B40694'
             ],[//6
-                'name'=>'Yonex'
+                'name'=>'Addidas',
+                'brand_code'=>'S27226'
             ]
         ];
         foreach($items as $item){

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use DwSetpoint\Models\User;
 
 class UsersSeeder extends Seeder {
 
