@@ -14,58 +14,60 @@ class SizesSeeder extends Seeder {
         //factory(DwSetpoint\Models\Size::class,10)->create();
         $items = [
             [//1
-                'name'=>'Extra chica'
+                'name'=>'UNI'
             ],[//2
-                'name'=>'Chica'
+                'name'=>'Extra chica'
             ],[//3
-                'name'=>'Mediana'
+                'name'=>'Chica'
             ],[//4
-                'name'=>'Grande'
+                'name'=>'Mediana'
             ],[//5
-                'name'=>'Extra grande'
+                'name'=>'Grande'
             ],[//6
-                'name'=>'20'
+                'name'=>'Extra grande'
             ],[//7
-                'name'=>'20 1/2'
+                'name'=>'20'
             ],[//8
-                'name'=>'21'
+                'name'=>'20 1/2'
             ],[//9
-                'name'=>'21 1/2'
+                'name'=>'21'
             ],[//10
-                'name'=>'22'
+                'name'=>'21 1/2'
             ],[//11
-                'name'=>'22 1/2'
+                'name'=>'22'
             ],[//12
-                'name'=>'23'
+                'name'=>'22 1/2'
             ],[//13
-                'name'=>'23 1/2'
+                'name'=>'23'
             ],[//14
-                'name'=>'24'
+                'name'=>'23 1/2'
             ],[//15
-                'name'=>'24 1/2'
+                'name'=>'24'
             ],[//16
-                'name'=>'25'
+                'name'=>'24 1/2'
             ],[//17
-                'name'=>'25 1/2'
+                'name'=>'25'
             ],[//18
-                'name'=>'26',
+                'name'=>'25 1/2'
             ],[//19
-                'name'=>'26 1/2'
+                'name'=>'26',
             ],[//20
-                'name'=>'27'
+                'name'=>'26 1/2'
             ],[//21
-                'name'=>'27 1/2'
+                'name'=>'27'
             ],[//22
-                'name'=>'28'
+                'name'=>'27 1/2'
             ],[//23
-                'name'=>'28 1/2'
+                'name'=>'28'
             ],[//24
-                'name'=>'29'
+                'name'=>'28 1/2'
             ],[//25
-                'name'=>'29 1/2'
+                'name'=>'29'
             ],[//26
-                'name'=>'30'
+                'name'=>'29 1/2'
             ],[//27
+                'name'=>'30'
+            ],[//28
                 'name'=>'30 1/2'
             ]
         ];
