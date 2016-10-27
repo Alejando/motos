@@ -1,4 +1,4 @@
 @extends('mails.frames.common')
 @section('message')
-    Bienvenido a la subasta !
+<h1>HTML trace payment</h1>
 @stop

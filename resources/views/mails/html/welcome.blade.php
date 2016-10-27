@@ -9,13 +9,13 @@
 @stop
 
 @section('message')
-<div class="banner" style="background-image: url('{{asset('img/mail/bg-banner-mail.jpg')}}');padding: 18px 0;color: #fff;">
+<div class="banner" style="padding: 18px 0;color: #fefefe;">
         <h2 style="text-transform: uppercase;margin: 40px auto;font-weight: 100;font-size: 40px;">
             {{ $user->isMale() ? '¡BIENVENIDO':'¡BIENVENIDA'}} <span style="">{{$user->name}}!</span></h2>
 </div>
 <div class="mensaje" style="color: #003937; padding: 0 10%;">
-        <p style="margin: 16px auto;font-size: 20px;margin-top: 30px;">Gracias por registrarte en <a href="http://glimglam.mx" style="color: #003937;">glimglam.mx</a></p>
-        <p style="margin: 16px auto;">A partir de este momento podrás acceder a las subastas de nuestros productos y aprovechar la amplia oferta que tenemos para ti.</p>
+        <p style="margin: 16px auto;font-size: 20px;margin-top: 30px;">Gracias por registrarte en <a href="http://bounce.mx" style="color: #003937;">Bounce</a></p>
+        <p style="margin: 16px auto;">A partir de este momento podrás acceder nuestros productos y aprovechar la amplia oferta que tenemos para ti.</p>
         <hr>
         <a href="http://glimglam.mx/login" style="color: #fff; text-decoration: none;">
             <div style="margin: 10px auto 30px auto;border: 1px solid #3c9ba2;padding: 10px; width: 100px;background-color: #00bcb6;display: inline-block;">Iniciar Sesión</div>

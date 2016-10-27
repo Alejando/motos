@@ -25,17 +25,62 @@ class Mail extends MailBase {
     // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="resetPassword">
     public static function resetPassword($args = [], $test = false, $send = true, $format = 'html') {
+        if(!isset($args['user'])) {
+            $user = \DwSetpoint\Models\User::getRandom(); 
+            $args['user'] = $user;
+            $args['to'] = [];
+            $args['rawPassword'] = str_random(8); 
+        }
         $args['subject'] = "Recupearación de Password";
         return self::sendMail('reset-password', $args, $test, $send, $format);
     }
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="enrollment">
-    public static function enrollment($args = [], $test = false, $send = true, $format = 'html') {
-        $args['user'] = \DwSetpoint\Models\User::getRandom();
-        return self::sendMail('confirm-enrollment', $args, $test, $send, $format);
+    // <editor-fold defaultstate="collapsed" desc="confirmPayment">
+    public static function confirmPayment($args = [], $test = false, $send = true, $format = 'html'){
+        if(!isset($args['user'])) {
+            $user = \DwSetpoint\Models\User::getRandom(); 
+            $args['user'] = $user;
+            $args['to'] = [];
+            $args['rawPassword'] = str_random(8); 
+        }
+        /*
+        if(!isset($args['payment'])) {
+            $payment = \DwSetpoint\Models\Payment::getRandom(); 
+            $args['payment'] = $payment;
+        }
+         */
+        $args['subject'] = "Confirmación de pago";
+        return self::sendMail('confirm-payment', $args, $test, $send, $format);
     }
     // </editor-fold>
-    public static function otroCorreo($args, $test = false,$send = true, $format = 'html') {
-        return self::sendMail('otro-correo', $args, $test, $send, $format);
+    // <editor-fold defaultstate="collapsed" desc="tracePayment">
+    public static function tracePayment($args = [], $test = false, $send = true, $format = 'html'){
+        if(!isset($args['user'])) {
+            $user = \DwSetpoint\Models\User::getRandom(); 
+            $args['user'] = $user;
+            $args['to'] = [];
+        }
+        /*
+        if(!isset($args['payment'])) {
+            $payment = \DwSetpoint\Models\Payment::getRandom(); 
+            $args['payment'] = $payment;
+        }
+         */
+        $args['subject'] = "Seguimiento de pedido";
+        return self::sendMail('trace-payment', $args, $test, $send, $format);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="contact">
+    public static function contact($args = [], $test = false, $send = true, $format = 'html'){
+        if(!isset($args['user'])) {
+            $user = \DwSetpoint\Models\User::getRandom(); 
+            $args['user'] = $user;
+            $args['to'] = [];
+        }
+        $args['subject'] = "Contacto Bounce";
+        return self::sendMail('contact', $args, $test, $send, $format);
+    }
+    // </editor-fold>
+
+
 }

@@ -111,6 +111,7 @@
                 $def = $q.defer();
                 $scope.selectedItem.backup();
                 $scope.selectedBrand = null;
+                $scope.selectedItem.clearFiles();
                 var defCategories = $scope.selectedItem.categories().then(function(categories) {
                     if(categories.length) {
                        var whaitJsTree = $interval(function(){

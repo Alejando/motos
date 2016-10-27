@@ -1,4 +1,4 @@
 @extends('mails.frames.common')
 @section('message')
-    Recordatorio de subasta
+<h1>Contacto Bounce</h1>
 @stop
