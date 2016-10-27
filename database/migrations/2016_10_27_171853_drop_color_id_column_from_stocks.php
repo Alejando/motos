@@ -26,8 +26,8 @@ class DropColorIdColumnFromStocks extends Migration
     public function down()
     {
         Schema::table('stocks', function(Blueprint $table){
-            $table->integer('color_id')->unsigned();
-            $table->foreign('color_id')->nullable()->references('id')->on('colors')->onDelete('cascade');
+            $table->integer('color_id')->unsigned()->nullable();
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
         });
     }
 }

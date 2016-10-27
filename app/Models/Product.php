@@ -17,6 +17,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->belongsTo(\DwSetpoint\Models\Brand::class, 'brand_id');
     }
     // </editor-fold>
+    // // <editor-fold defaultstate="collapsed" desc="defaultColor">
+    public function defaultColor() {
+        return $this->belongsTo(\DwSetpoint\Models\Colors::class, 'default_color_id');
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="categories">
     public function categories() {
         return $this->belongsToMany(\DwSetpoint\Models\Category::class);

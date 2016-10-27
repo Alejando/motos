@@ -25,7 +25,8 @@ La muñequeras Swoosh Wristbands (en pack de dos)de Nike están disponibles en v
                 'slug'=>'nike-banda-para-muñeca',
                 'code'=>'010302090001',
                 'serial_number'=>'0',
-                'price_from'=>'169.00'
+                'price_from'=>'169.00',
+                'default_color_id'=>'8'
             ],[//2
                 'name'=>'Nike - Featherlight 2.0 Visor',
                 'brand_id'=>'2',
@@ -39,7 +40,8 @@ Ribete elástico que ofrece un ajuste cómodo"',
                 'slug'=>'nike-featherlight-visor',
                 'code'=>'010102050001',
                 'serial_number'=>'0',
-                'price_from'=>'299.00'
+                'price_from'=>'299.00',
+                'default_color_id'=>'8'
             ],[//3
                 'name'=>'Nike - Featherlight 2.0 Visor',
                 'brand_id'=>'3',
@@ -53,7 +55,8 @@ Ribete elástico que ofrece un ajuste cómodo',
                 'slug'=>'nike-featherlight-visor-2-0',
                 'code'=>'010102050002',
                 'serial_number'=>'0',
-                'price_from'=>'299.00'
+                'price_from'=>'299.00',
+                'default_color_id'=>'10'
             ],[//4
                 'name'=>'Adidas - Response Aspire STR W',
                 'brand_id'=>'5',
@@ -68,7 +71,8 @@ La suela con tecnología ADIWEAR™ ofrece la máxima resistencia en las zonas d
                 'slug'=>'adidas-response-aspire-str-w',
                 'code'=>'010101100001',
                 'serial_number'=>'0',
-                'price_from'=>'1099.00'
+                'price_from'=>'1099.00',
+                'default_color_id'=>'9'
             ],[//5
                 'name'=>'Nike - Air Courtballistec 4.1',
                 'brand_id'=>'4',
@@ -89,7 +93,8 @@ Amortiguación de máximo impacto. La brutal y repetitiva fuerza descendente que
                 'slug'=>'nike-air-courtballistec-4-1',
                 'code'=>'010202100001',
                 'serial_number'=>'0',
-                'price_from'=>'1699.00'
+                'price_from'=>'1699.00',
+                'default_color_id'=>'9'
             ],[//6
                 'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
                 'brand_id'=>'6',
@@ -104,7 +109,8 @@ Corte holgado"',
                 'slug'=>'adidas-uncontrol-climachill-polo-shirt',
                 'code'=>'010201040001',
                 'serial_number'=>'0',
-                'price_from'=>'799.00'
+                'price_from'=>'799.00',
+                'default_color_id'=>'7'
             ]
         ];
         foreach($items as $item){
