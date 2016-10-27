@@ -151,10 +151,24 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return false;
     }
     // <editor-fold defaultstate="collapsed" desc="getSerialNumberAttribute">
-    public function getSerialNumberAttribute(){
+    public function getSerialNumberAttribute() {
         return $this->attributes['serial_number'];
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getPriceFromAttribute">
+    public function getPriceFromAttribute() {
+        return $this->attributes['price_from'];
+    }
+    // </editor-fold>
+    public function getDiscountPercentageAttribute() {
+        return $this->attributes['discount_percentage'];
+    }
+    public function getClculateDiscount() {
+       return $this->priceFrom * ($this->discountPercentage/100); 
+    }
+    public function hasDiscount() {
+        return (float) $this->discountPercentage > 0;
+    }
     // <editor-fold defaultstate="collapsed" desc="getBySlug">
     public static function getBySlug($slug, $returQuery = false) {
         $query = self::where('slug', '=', $slug);
