@@ -5,7 +5,7 @@
     </script>
 @stop
 @section('body')
-<div ng-app="setpoint" ng-controller="ProdcutDetailsCtrl">
+<div ng-app="setpoint" ng-controller="ProductDetailsCtrl">
         <div class="breadcrumbcustom">
             @if($category)
                 @foreach($parents as $parent)
