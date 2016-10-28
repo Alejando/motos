@@ -1,4 +1,4 @@
-/.env
+.env
 /public/js/bower_components/
 /public/css/web2.css
 /public/js/laroute.js
@@ -15,3 +15,4 @@ upload/*
 !upload/.gitkeep
 public/js/estrasol/web-angular.js
 public/js/estrasol/web-angular.js.map
+composer.lock
