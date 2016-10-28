@@ -71,6 +71,25 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
                 $defer.resolve(request.data);
             });
             return $defer.promise;
+        },
+        checkStock : function (quantity, size, color) {
+            var $defer = $q.defer();
+            var url = laroute.route('product.checkstock', {
+                'id' : this.id
+            });
+            $http.post(url, {
+                'quantity' : quantity,
+                'size' : size, 
+                'color' : color
+            }).then(function(request) {
+                console.log(request.data);
+                if(request.data.success) {
+                    $defer.resolve(request.data);
+                }
+                console.log("...");
+                $defer.reject(request.data.message);
+            });
+            return $defer.promise;
         }
     });
     return Product;

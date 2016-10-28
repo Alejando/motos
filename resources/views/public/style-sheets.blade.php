@@ -12,3 +12,4 @@
 <link href="{{asset('css/detalle.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('css/detalle-movil.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>
+<link href="{{asset('js/bower_components/bootstrap3-dialog/dist/css/bootstrap-dialog.min.css')}}" rel="stylesheet" type="text/css"/>

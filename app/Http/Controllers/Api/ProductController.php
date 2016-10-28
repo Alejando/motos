@@ -5,6 +5,7 @@ use \Illuminate\Support\Facades\Input;
 
 class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Product::class;
+    
     public function getImgs($id) {
         $product = \DwSetpoint\Models\Product::getById($id);
         if($product) {
@@ -12,10 +13,32 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         abort(404);
     }
+    
+    public function checkStock($id) {
+        $size = Input::get('size');
+        $color = Input::get('color');
+        $quantity = Input::geT('quantity');
+        $product = \DwSetpoint\Models\Product::getById($id);
+        try{
+            $stock = $product->checkStock($quantity, $size, $color);
+            return [
+                'success' => true, 
+                'stock' => $stock->id
+            ];
+        }catch(\Exception $ex){
+            return [
+                'error'=>true, 
+                'success'=>false,
+                'message' => $ex->getMessage()
+            ];
+        }
+    }
+    
     public function getCover($id){
         $img = $this->getImgs($id)[0];
         $this->img($id, 235, 210, $img);
     }
+    
     public function img($id,$width,$height,$img) {
         $product = \DwSetpoint\Models\Product::getById($id);
         if($product) {
@@ -29,11 +52,13 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         abort(404);
     }
+    
     public function destroy($id) {
         $product = \DwSetpoint\Models\Product::getById($id);
         $product->removePath();
         return parent::destroy($id);
     }
+    
     public function update(\Illuminate\Http\Request $request, $id) {
         $oldCode = \DwSetpoint\Models\Product::getById($id)->code;
         $res = parent::update($request, $id);
@@ -52,7 +77,6 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
             $oldCode = \DwSetpoint\Models\Product::getById($id)->code;
             $res = parent::update($request, $id);
             $res['model']->updatePathUpload($oldCode);
-            
         } else {
             $res = parent::store($request);
         }

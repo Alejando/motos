@@ -96,6 +96,10 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'product.img',
         'uses' => 'Api\\ProductController@img'
     ]);
+    Route::post('product/{id}/checkstock', [
+        'as' => 'product.checkstock',
+        'uses' => 'Api\\ProductController@checkStock'
+    ]);
     $addAPI('content','Content');
     Route::post('user/bookmark/',[
         'as'=>'user.addBookmark',

@@ -1,11 +1,23 @@
 !function() {
-    setpoint.controller("ProdcutDetailsCtrl", function($scope, Product, Color, $q) {
+    setpoint.controller("ProductDetailsCtrl", function($scope, Product, Color, $q, Cart) {
+        $scope.cart = Cart;
         console.log('window.product', window.product);
         var loadProduct = Product.getById(window.product);
         $scope.selectImg = function(img) {
             $scope.selectedImg = img;
         }
         $scope.selectedColor = false;
+        $scope.selectedSize = "";
+        
+        $scope.addProduct = function () {
+            Cart.addProduct(
+                $scope.product,
+                $('#cantidad').val(),
+                $scope.selectedSize,
+                $scope.selectedColor
+            );
+        };
+        
         $scope.selectColor = function (id_color,stopRecursive) {
             if(stopRecursive === undefined){
                 $scope.selectedColor = id_color;

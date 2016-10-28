@@ -169,8 +169,28 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->attributes['discount_percentage'];
     }
     public function getClculateDiscount() {
-       return $this->priceFrom * ($this->discountPercentage/100); 
+       return $this->priceFrom * ($this->discountPercentage / 100); 
     }
+    
+    public function checkStock($quantity, $size, $color) {
+        $query = Stock::where('product_id', '=' , $this->id);
+        if($size!=0) {
+            $query->where('size_id', '=', $size);
+        }
+        if($color!=0) {
+            $query->where('color_id', '=', $color);
+        }
+        $stocks = $query->get();
+        if($stocks->count()) {
+            $stock = $stocks->get(0);
+            if($quantity<=$stock->quantity){
+                return $stock;
+            }
+            throw new \Exception("No hay producto suficientes para tu pedido");
+        }
+        throw new \Exception("No se encontro producto con esta configuración en existencia");
+    }
+    
     public function hasDiscount() {
         return (float) $this->discountPercentage > 0;
     }

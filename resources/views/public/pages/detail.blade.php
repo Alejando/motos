@@ -5,7 +5,7 @@
     </script>
 @stop
 @section('body')
-<div ng-app="setpoint" ng-controller="ProdcutDetailsCtrl">
+<div ng-app="setpoint" ng-controller="ProductDetailsCtrl">
         <div class="breadcrumbcustom">
             @if($category)
                 @foreach($parents as $parent)
@@ -57,7 +57,7 @@
                     <div class="row margentop30">
                         <div class="col-xs-6">
                             <div class="cajacantidad">
-                                <input type="text" name="cantidad" id="cantidad" value="1" />
+                                <input type="text" name="cantidad" id="cantidad" value="1"/>
                                 <div class="botones">
                                     <a class="btnmenos">-</a>
                                     <a class="btnmas">+</a>
@@ -72,8 +72,8 @@
                                 <div class="etiqueta">
                                     <div>
                                         <span>
-                                            <select name="talla" id="talla" class="form-control stalla">
-                                                <option></option>
+                                            <select name="talla" ng-model="selectedSize" id="talla" class="form-control stalla">
+                                                <option value=""></option>
                                                 @foreach($product->sizes as $size)
                                                     <option value="{{$size->id}}">{{$size->name}}</option>
                                                 @endforeach                                        
@@ -98,7 +98,7 @@
                     @endif
                     <div class="row margentop30">
                         <div class="col-sm-4">
-                            <a href="./carrito" class="btncarrito">
+                            <a ng-click="addProduct()" class="btncarrito">
                                 <div>
                                     <span>Agregar</span>
                                 </div>
