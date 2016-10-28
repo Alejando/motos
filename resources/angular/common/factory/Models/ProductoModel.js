@@ -14,12 +14,14 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
             'price_from',
             'description',
             'multi_galeries',
+            'default_color_id',
             'discount_percentage'
         ],
         relations: [
             ['categories', Category, 'hasMany'],
             ['sizes', Size, 'hasMany'],
             ['colors', Color, 'hasMany'],
+            ['defaultColor', Color, 'belongsTo', 'default_color_id'], 
             ['brand', Brand, 'belongsTo']
         ],
     }, {

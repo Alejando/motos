@@ -24,6 +24,10 @@ class Helper {
     public function getCurrency() {
         return $this->currency ? $this->currency : Config('app.currency');
     }
+    
+    public function formatCurrency($cuantity) {
+        return currency($cuantity, self::getCurrency());
+    }
 
     public function get($data = []) {
         echo "food";

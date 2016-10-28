@@ -300,18 +300,28 @@ ul.menu{
         margin: 10px;
     }
 }
+
 a.sprite, li.sprite, button.sprite {
     font-size: 0px;
     color:rgba(0,0,0,0);
 }
+
 button.sprite{
     border: 0;
     cursor: pointer;
 }
+
 .sprite {
     display: inline-block;  
 }
 
 .products{
     padding: 10px;
+}
+
+.color-selected {
+    background: url('../img/template/bgcolores-selected.png') no-repeat !important;
+}
+.colores span{
+    cursor:pointer;
 }
