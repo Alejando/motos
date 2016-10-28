@@ -269,24 +269,22 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             }
             return defer.promise;
         },
-        belongsTo : function (Model, key) {
-            console.log("ok");
+        belongsTo : function (Model, key, field) {
             var self = this;
             var defer = $q.defer();
-            var id = this[key + "_id"];
+            var id = this[field ? field : key + "_id"];
             if(id) {
                 Model.getById(id).then(function(entidad) {
                     self.relations[key] = entidad;
                     defer.resolve(entidad);
                 }, function(r){
                     defer.reject(r);
-                });
+                }); 
             } else {
                 $timeout(function() {
                     defer.reject();
                 }, 10);
             }
-
             return defer.promise;
         }
         //</editor-fold>
@@ -340,18 +338,19 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
     ModelBase.RELATIONS = {
         KEY : 0,
         MODEL : 1,
-        FUNCTION : 2
+        FUNCTION : 2,
+        FIELD: 3
     };
 
-    ModelBase.addRelation = function (key, fnModel, fn) {
+    ModelBase.addRelation = function (key, fnModel, fn, field) {
         var model = this.model();
         if(angular.isString(fn)){//funciones de relaciones por defecto
             switch(fn){
                 case 'belongsTo' :
                     fn = function () {
-                        return this.belongsTo(fnModel, key);
+                        return this.belongsTo(fnModel, key, field);
                     };
-                    model.attributes.push(key + "_id");
+                    model.attributes.push(field ? field : key + "_id");
                     break;
                 case 'hasMany' :
                     fn = function () {
@@ -375,7 +374,8 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
             var key = v[ModelBase.RELATIONS.KEY];
             var fn = v[ModelBase.RELATIONS.FUNCTION];
             var fnModel = v[ModelBase.RELATIONS.MODEL];
-            model.addRelation(key,fnModel,fn);
+            var field = v[ModelBase.RELATIONS.FIELD];
+            model.addRelation(key, fnModel, fn, field);
             model.conf_relations[key] = v;
         });
 //        console.log("models->"+model.attributes);

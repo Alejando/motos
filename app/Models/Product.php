@@ -17,6 +17,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->belongsTo(\DwSetpoint\Models\Brand::class, 'brand_id');
     }
     // </editor-fold>
+    // // <editor-fold defaultstate="collapsed" desc="defaultColor">
+    public function defaultColor() {
+        return $this->belongsTo(\DwSetpoint\Models\Colors::class, 'default_color_id');
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="categories">
     public function categories() {
         return $this->belongsToMany(\DwSetpoint\Models\Category::class);
@@ -151,10 +156,24 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return false;
     }
     // <editor-fold defaultstate="collapsed" desc="getSerialNumberAttribute">
-    public function getSerialNumberAttribute(){
+    public function getSerialNumberAttribute() {
         return $this->attributes['serial_number'];
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getPriceFromAttribute">
+    public function getPriceFromAttribute() {
+        return $this->attributes['price_from'];
+    }
+    // </editor-fold>
+    public function getDiscountPercentageAttribute() {
+        return $this->attributes['discount_percentage'];
+    }
+    public function getClculateDiscount() {
+       return $this->priceFrom * ($this->discountPercentage/100); 
+    }
+    public function hasDiscount() {
+        return (float) $this->discountPercentage > 0;
+    }
     // <editor-fold defaultstate="collapsed" desc="getBySlug">
     public static function getBySlug($slug, $returQuery = false) {
         $query = self::where('slug', '=', $slug);

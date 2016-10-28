@@ -49,11 +49,11 @@ class ColorsSeeder extends Seeder
                 'name'=>'Blanco',
                 'rgb'=>'#ffffff',
                 'pref'=>'bla'
-            ],[//7
+            ],[//10
                 'name'=>'Naranja',
                 'rgb'=>'#FF8000',
                 'pref'=>'nar'
-            ],[//7
+            ],[//11
                 'name'=>'Morado',
                 'rgb'=>'#6600CC',
                 'pref'=>'mor'
