@@ -136,7 +136,7 @@
                 <section class="info">
                     <nav>
                         <ul class="menu row">
-                            <li class="col-sm-3"><a href=""><span class="sprite icon-ubicacion"></span>Dirección</a></li>
+                            <li class="col-sm-3"><a href="{{url('/direccion')}}"><span class="sprite icon-ubicacion"></span>Dirección</a></li>
                             <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención 00:00 a 00:00</a></li>
                             <li class="col-sm-2"><a href="" class="aviso">Aviso Legal</a></li>
                             <li class="col-sm-4"><a class="sprite logo-bounce-2">Bounce Tennis Lifestyle</a></li>

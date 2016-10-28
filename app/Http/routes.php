@@ -23,6 +23,12 @@ Route::get('/carrito', function() {
         'showBannerBottom' => false
     ]);
 });
+Route::get('/direccion', function() { 
+    return view('public.pages.location', [
+        'showOffert' => false, 
+        'showBannerBottom' => false
+    ]);
+});
 Route::get('/envio', function() { 
     return view('public.pages.shipping', [
         'showOffert' => false, 
