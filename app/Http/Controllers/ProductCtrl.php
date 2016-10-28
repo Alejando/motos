@@ -15,14 +15,14 @@ use Illuminate\Pagination\Paginator;
  *
  * @author jdiaz
  */
-class ProductCtrl extends Controller{    
+class ProductCtrl extends Controller{
     // <editor-fold defaultstate="collapsed" desc="showCategory">
     public function showCategory($slug, $page = 1) {
         $currentPage = $page;
         Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
-        
+
         $category = \DwSetpoint\Models\Category::getBySlug($slug);
         if($category) {
             return view('public.pages.products-page', [
@@ -52,4 +52,13 @@ class ProductCtrl extends Controller{
         abort(404);
     }
     // </editor-fold>
+
+    public function renameImg($path, $previousName, $newName) {
+
+    }
+
+    public function removeImg($path) {
+
+    }
+
 }

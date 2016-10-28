@@ -11,6 +11,9 @@ return [
         'products' => __DIR__.'/../upload/products/',
         'brads' => __DIR__.'/../upload/brands/'
     ],
+    'social' => [
+        'instagram-url' => ''
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Environment
