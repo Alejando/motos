@@ -1,5 +1,5 @@
-setpoint.controller('ContentCtrl', function ($scope,$routeParams) {
-    switch($routeParams.content){
+setpoint.controller('ContentCtrl', function($scope, $routeParams) {
+    switch ($routeParams.content) {
         case 'nosotros':
             $scope.content = 'Nosotros';
             break;
@@ -15,13 +15,14 @@ setpoint.controller('ContentCtrl', function ($scope,$routeParams) {
         case 'condiciones-de-envio':
             $scope.content = 'Condiciones de envío';
             break;
-        case 'ccondiciones-de-retorno':
+        case 'condiciones-de-retorno':
             $scope.content = 'Condiciones de retorno';
             break;
         case 'protecion-de-datos':
             $scope.content = 'Proctección de datos';
             break;
-        default:  $scope.content =  'Contenido';
+        default:
+            $scope.content = 'Contenido';
     }
 
     //////////// TinyMCE Test
@@ -35,9 +36,13 @@ setpoint.controller('ContentCtrl', function ($scope,$routeParams) {
         $scope.tinymceModel = 'Time: ' + (new Date());
     };*/
 
+    $scope.saveContent = function() {
+        console.log($scope.tinymceModel);
+    };
+
     $scope.tinymceOptions = {
         plugins: 'link image code',
         toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
     };
-//    console.log("mainController");    
+    //    console.log("mainController");
 });

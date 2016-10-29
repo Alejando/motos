@@ -5,7 +5,7 @@ namespace DwSetpoint\Http\Controllers;
 use DwSetpoint\Http\Requests;
 use Illuminate\Http\Request;
 
-class Content extends Controller {
+class ContentCtrl extends Controller {
 
     /**
      * Show the application dashboard.
