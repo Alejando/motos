@@ -16,47 +16,47 @@ class ColorsSeeder extends Seeder
             [//1
                 'name'=>'Azul',
                 'rgb'=>'#CCCCFF',
-                'pref'=>'azu'
+                'pref'=>'az'
             ],[//2
                 'name'=>'Amarillo',
                 'rgb'=>'#FFFF66',
-                'pref'=>'ama'
+                'pref'=>'am'
             ],[//3
                 'name'=>'Rojo',
                 'rgb'=>'#FF0000',
-                'pref'=>'roj'
+                'pref'=>'ro'
             ],[//4
                 'name'=>'Verde',
                 'rgb'=>'#00CC00',
-                'pref'=>'ver'
+                'pref'=>'ve'
             ],[//5
                 'name'=>'Azul Marino',
                 'rgb'=>'#0000FF',
-                'pref'=>'azm'
+                'pref'=>'az'
             ],[//6
                 'name'=>'Rosa',
                 'rgb'=>'#FF33FF',
-                'pref'=>'ros'
+                'pref'=>'ro'
             ],[//7
                 'name'=>'Gris',
                 'rgb'=>'#A0A0A0',
-                'pref'=>'gri'
+                'pref'=>'gr'
             ],[//8
                 'name'=>'Negro',
                 'rgb'=>'#000000',
-                'pref'=>'neg'
+                'pref'=>'ne'
             ],[//9
                 'name'=>'Blanco',
                 'rgb'=>'#ffffff',
-                'pref'=>'bla'
+                'pref'=>'bl'
             ],[//10
                 'name'=>'Naranja',
                 'rgb'=>'#FF8000',
-                'pref'=>'nar'
+                'pref'=>'na'
             ],[//11
                 'name'=>'Morado',
                 'rgb'=>'#6600CC',
-                'pref'=>'mor'
+                'pref'=>'mo'
             ]
         ];
         foreach($items as $item){

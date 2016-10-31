@@ -22,13 +22,13 @@ Deportivas y coloridas
 La muñequeras Swoosh Wristbands (en pack de dos)de Nike están disponibles en verde y lima y llevan el famoso logotipo de Nike, el Swoosh, bordado en un llamativo color en contraste. Son perfectas tanto para jugar con libertad, como para lucir a la última en la cancha, con un aspecto totalmente deportivo. 
 ',
                 'multi_galeries'=>'0',
-                'slug'=>'nike-banda-para-muñeca',
+                'slug'=>  str_slug('Nike - Banda para muñeca'),
                 'code'=>'010302090001',
                 'serial_number'=>'0',
                 'price_from'=>'169.00',
                 'default_color_id'=>'8'
             ],[//2
-                'name'=>'Nike - Featherlight 2.0 Visor',
+                'name'=>'Nike - Featherlight 2.0 Visor para mujer',
                 'brand_id'=>'2',
                 'description'=>'"Comodidad, elasticidad y ligereza
 La visera de tenis Nike Featherlight para mujer es ligera y elástica para ofrecer una comodidad total en las gradas, en la pista o en cualquier lugar bajo el sol.
@@ -37,7 +37,7 @@ Tecnología Dri-FIT que ayuda a mantenerte seco y cómodo
 Diseño cómodo que ofrece una cobertura holgada
 Ribete elástico que ofrece un ajuste cómodo"',
                 'multi_galeries'=>'0',
-                'slug'=>'nike-featherlight-visor',
+                'slug'=> str_slug('Nike - Featherlight 2.0 Visor para mujer'),
                 'code'=>'010102050001',
                 'serial_number'=>'0',
                 'price_from'=>'299.00',
@@ -52,7 +52,7 @@ Tecnología Dri-FIT que ayuda a mantenerte seco y cómodo
 Diseño cómodo que ofrece una cobertura holgada
 Ribete elástico que ofrece un ajuste cómodo',
                 'multi_galeries'=>'0',
-                'slug'=>'nike-featherlight-visor-2-0',
+                'slug'=>str_slug('Nike - Featherlight 2.0 Visor'),
                 'code'=>'010102050002',
                 'serial_number'=>'0',
                 'price_from'=>'299.00',
@@ -90,7 +90,7 @@ Diseño que ofrece tracción sobre múltiples superficies para aportar versatili
 Incorpora tecnología Max Air
 Amortiguación de máximo impacto. La brutal y repetitiva fuerza descendente que se ejerce al realizar deporte puede causar estragos en el cuerpo, y en el rendimiento. El sistema de amortiguación Max Air está especialmente diseñado para soportar estos impactos y proporcionar protección. Max Air es aire a lo grande, preparado para soportar cualquier paliza."',
                 'multi_galeries'=>'0',
-                'slug'=>'nike-air-courtballistec-4-1',
+                'slug'=>  str_slug('Nike - Air Courtballistec 4.1'),
                 'code'=>'010202100001',
                 'serial_number'=>'0',
                 'price_from'=>'1699.00',
@@ -106,15 +106,22 @@ Cuello de polo con cuatro botones
 Mangas con ribete
 Corte holgado"',
                 'multi_galeries'=>'0',
-                'slug'=>'adidas-uncontrol-climachill-polo-shirt',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
                 'code'=>'010201040001',
                 'serial_number'=>'0',
                 'price_from'=>'799.00',
                 'default_color_id'=>'7'
             ]
         ];
-        foreach($items as $item){
-            DwSetpoint\Models\Product::create($item);
+        
+        foreach($items as $item) {
+            $product = DwSetpoint\Models\Product::create($item);
+            $product->makeImgPath();
+            $path = $product->getImgPath();
+            for($i=0;$i<3;$i++) {
+                $img = file_get_contents('http://lorempixel.com/500/500/sports/');
+                file_put_contents($path."rj - 0$i - ".$product->slug.".jpg", $img);
+            }
         }
     }
 
