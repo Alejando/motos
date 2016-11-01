@@ -24,7 +24,7 @@ class AddColorIdToStock extends Migration {
      */
     public function down() {
         Schema::table('stocks', function(Blueprint $table) {
-            $table->dropForeign('products_color_id_foreign');
+            $table->dropForeign('stocks_color_id_foreign');
             $table->dropColumn('color_id');
         });
     }

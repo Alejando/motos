@@ -113,14 +113,27 @@ Corte holgado"',
                 'default_color_id'=>'7'
             ]
         ];
-        
+        $colors = DwSetpoint\Models\Color::getAll();
         foreach($items as $item) {
+            $item['slug'] = uniqid();
+            $item['code'] = uniqid();
             $product = DwSetpoint\Models\Product::create($item);
+            DwSetpoint\Models\Color::getRandom();
             $product->makeImgPath();
             $path = $product->getImgPath();
-            for($i=0;$i<3;$i++) {
-                $img = file_get_contents('http://lorempixel.com/500/500/sports/');
-                file_put_contents($path."rj - 0$i - ".$product->slug.".jpg", $img);
+            
+            $nColors = rand(0, $colors->count()-1);
+            $productsColor = DwSetpoint\Models\Color::getRandom($nColors);
+            foreach($productsColor as $c){
+//                if(!$product->colors->has($c->id)) {
+                    $product->colors()->attach($c);
+                    $nImgs = rand(0, 9);
+                    for($i=0; $i < $nImgs; $i++) {
+                        $img = file_get_contents('https://dummyimage.com/1024x1024/'
+                               .(str_replace('#', "", $c->rgb)).'/002B53,jpg?text=' . "0$i - . {$c->name}");
+                        file_put_contents($path. "{$c->pref} - 0$i - {$product->slug}.jpg", $img);
+                    }
+//                }
             }
         }
     }

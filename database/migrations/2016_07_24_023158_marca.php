@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\File;
 
 class Marca extends Migration
 {
@@ -23,6 +24,9 @@ class Marca extends Migration
      * @return void
      */
     public function down() {
-        Schema::drop('brands');
+        Schema::drop('brands'); 
+        $path = Config('app.paths.brads');
+        File::cleanDirectory($path);
+        touch($path."/.gitkeep");
     }
 }

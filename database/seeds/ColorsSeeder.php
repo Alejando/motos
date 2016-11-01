@@ -24,7 +24,7 @@ class ColorsSeeder extends Seeder
             ],[//3
                 'name'=>'Rojo',
                 'rgb'=>'#FF0000',
-                'pref'=>'ro'
+                'pref'=>'rj'
             ],[//4
                 'name'=>'Verde',
                 'rgb'=>'#00CC00',

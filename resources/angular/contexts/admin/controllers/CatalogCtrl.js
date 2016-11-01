@@ -299,8 +299,13 @@
                         DTColumnBuilder.newColumn('quantity').withTitle('Existencias'),
                         DTColumnBuilder.newColumn('size.name').withTitle('Tamaño/Talla'),
                         DTColumnBuilder.newColumn('color.name').withTitle('Color').renderWith(function(data, type, full, meta){
-                            return  '<div class="box-color" style="background-color:' + full.color.rgb + ';"></div>' +
-                                    '<div style="text-align:center">' + full.color.name + '</div>';
+                            if(full.color && full.color.rgb) {
+                                return  '<div class="box-color" style="background-color:' + full.color.rgb + ';"></div>' +
+                                        '<div style="text-align:center">' + full.color.name + '</div>';
+                            } else {
+                                return "N/A";
+                            }
+
                         }),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
@@ -368,6 +373,10 @@
                 return [
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn(null).withTitle("Logo").notSortable().renderWith(function(data, type, full, meta){
+                            var img = Brand.prototype.getLogo.apply(full,['100', '20']);
+                            return '<img src="'+img+'">'
+                        }),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
                                 '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';

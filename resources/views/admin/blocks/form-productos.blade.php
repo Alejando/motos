@@ -31,7 +31,7 @@
                         ></span>
                         <span>@{{$select.selected.name}} </span>
                     </ui-select-match>
-                    <ui-select-choices repeat="brand in brands track by brand.name">
+                    <ui-select-choices repeat="brand in brands track by (brand.name + brand.id)">
                         <span style="
                               background-image: url(@{{brand.getLogo(20,20)}});
                                   display: block;

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\File;
 
 class Producto extends Migration
 {
@@ -64,5 +65,8 @@ class Producto extends Migration
         Schema::drop('products_categories');
         Schema::drop('products_colors');        
         Schema::drop('products');
+        $path = Config('app.paths.products');
+        File::cleanDirectory($path);
+        touch($path . "/.gitkeep");
     }
 }

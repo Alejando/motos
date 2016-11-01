@@ -14,8 +14,13 @@ class UsersSeeder extends Seeder {
 //        $this->call(DwSetpoint\Models\Brand::class);
         User::create([
             'name' => 'Admin',
-            'email'      => 'ohernandez@estrasol.com.mx',
-            'password'   =>  Hash::make('secret')
+            'email'      => 'admin@setpoint.com.mx',
+            'password'   =>  'secret'
+        ]);
+        User::create([
+            'name' => 'Admin 2',
+            'email'      => 'admin2@setpoint.com.mx',
+            'password'   => 'secret'
         ]);
         factory(DwSetpoint\Models\User::class,10)->create();
     }

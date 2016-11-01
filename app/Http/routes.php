@@ -51,6 +51,17 @@ Route::get('/categorias/tree',[
     'as' => 'categories.tree',
     'uses' => 'Api\\CategoryController@tree'
 ]);
+Route::group(['prefix'=>'dev'], function () {
+    Route::get('cmd', function() {
+        header("Content-type:text/plain");
+        $r = \Artisan::call('migrate:refresh');
+        echo Artisan::output();
+        if($r==0){
+            $r = \Artisan::call('db:seed');
+        }
+        echo Artisan::output();
+    });
+});
 Route::group(['prefix' => 'api'], function () {
     $getNames = function ($name) {
         return [ 'names' => [
