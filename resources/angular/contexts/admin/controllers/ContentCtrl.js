@@ -1,4 +1,4 @@
-setpoint.controller('ContentCtrl', function($scope, $routeParams) {
+setpoint.controller('ContentCtrl', function($scope, $q, $http, $routeParams) {
     switch ($routeParams.content) {
         case 'nosotros':
             $scope.content = 'Nosotros';
@@ -38,6 +38,12 @@ setpoint.controller('ContentCtrl', function($scope, $routeParams) {
 
     $scope.saveContent = function() {
         console.log($scope.tinymceModel);
+        /*var url = laroute.route('Content.updateContent');
+        $http.put(url, { slug: $routeParams.content, newContent: $scope.tinymceModel })
+            .then(function(result) {
+                $scope.items = result.data;
+                console.log(result);
+            });*/
     };
 
     $scope.tinymceOptions = {
