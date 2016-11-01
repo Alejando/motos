@@ -11,7 +11,7 @@ class CreateTableProducts extends Migration {
      */
     public function up() {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('description');
+            $table->longText('description');
             $table->boolean('multi_galeries');
             $table->timestamps();
         });
