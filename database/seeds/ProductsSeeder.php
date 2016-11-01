@@ -121,19 +121,30 @@ Corte holgado"',
             DwSetpoint\Models\Color::getRandom();
             $product->makeImgPath();
             $path = $product->getImgPath();
-            
-            $nColors = rand(0, $colors->count()-1);
-            $productsColor = DwSetpoint\Models\Color::getRandom($nColors);
-            foreach($productsColor as $c){
-//                if(!$product->colors->has($c->id)) {
-                    $product->colors()->attach($c);
-                    $nImgs = rand(0, 9);
-                    for($i=0; $i < $nImgs; $i++) {
-                        $img = file_get_contents('https://dummyimage.com/1024x1024/'
-                               .(str_replace('#', "", $c->rgb)).'/002B53,jpg?text=' . "0$i - . {$c->name}");
-                        file_put_contents($path. "{$c->pref} - 0$i - {$product->slug}.jpg", $img);
-                    }
-//                }
+            if(rand(0,2000) > 1000) {
+                $nColors = rand(0, $colors->count()-1);
+                $productsColor = DwSetpoint\Models\Color::getRandom($nColors);            
+                foreach($productsColor as $c){
+                        $product->colors()->attach($c);
+                        $nImgs = rand(0, 9);
+                        for($i=0; $i < $nImgs; $i++) {
+                            $img = file_get_contents('https://dummyimage.com/1024x1024/'
+                                   .(str_replace('#', "", $c->rgb)).'/002B53,jpg?text=' . "0$i - . {$c->name}");
+                            file_put_contents($path. "{$c->pref} - 0$i - {$product->slug}.jpg", $img);
+                        }
+                }
+                $product->multi_galeries = $product->colors()->count() > 0;
+            } else {
+                $img = file_get_contents('https://dummyimage.com/1024x1024/ECECEC/002B53,jpg?text=' . "0$i");
+                            file_put_contents($path. "{$c->pref} - 0$i - {$product->slug}.jpg", $img);
+            }
+            $sizes = DwSetpoint\Models\Size::getAll();
+            if(rand(0, 2000) > 1000) {//Agregar tallas
+                $nSizes = rand(0, $sizes->count()-1);
+                $sizes = DwSetpoint\Models\Size::getRandom($nSizes);
+                foreach ($sizes as  $size) {
+                    $product->sizes()->attach($size);
+                }
             }
         }
     }
