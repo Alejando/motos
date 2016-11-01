@@ -17,7 +17,7 @@ class FixProductSizeTbl extends Migration
             $table->renameColumn('products_id', 'product_id');
             $table->foreign('product_id')
                 ->references('id')
-                ->on('categories');
+                ->on('products');
         });
     }
 
