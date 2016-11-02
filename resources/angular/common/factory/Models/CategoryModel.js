@@ -14,5 +14,5 @@ setpoint.factory('Category', function (ModelBase,$q,$http) {
         relations : []
     }, {
     });
-    return Category;
+    return Category;ou
 });

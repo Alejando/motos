@@ -2,9 +2,11 @@
 @section('headers')
     <script>
         var product = {{$product->id}};
+        {!!$categoryURL ? 'var CATEGORYS_URL='.json_encode($categoryURL).';' : ''!!}
     </script>
 @stop
 @section('body')
+
 <div ng-app="setpoint" ng-controller="ProductDetailsCtrl">
         <div class="breadcrumbcustom">
             @if($category)

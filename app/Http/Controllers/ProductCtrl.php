@@ -46,7 +46,11 @@ class ProductCtrl extends Controller{
                 'showBannerBottom' => false,
                 'product' => $product,
                 'category' => $category,
-                'parents' => $parents
+                'parents' => $parents,
+                'categoryURL' => route('product.getCategoryPage',[
+                    'slugs' => $categorySlug,
+                    'page' => 1
+                ])
             ]);
         }
         abort(404);

@@ -25,22 +25,33 @@
             ).then(function() {
                 BootstrapDialog.show({
                     'message' : 'Tu producto se ha agregado al carrito, ir a carrito, continuar aquí, ir a la categoria',
-                    'title' : 'Confirmación',
+                    'title' : 'Confirmación',                     
                     'buttons': [
                         {
                             label: 'Ir a carrito',
-                            action : function () {
-                                alert("Al Carrito");
+                            cssClass: 'btn-primary',
+                            icon: 'fa fa-shopping-cart',
+                            action: function (dialog) {
+                               var url = laroute.route('carrito.list');
+                               window.open(url, '_self');
                             }
                         },{
                             label: 'Continuar Aquí',
-                            action: function() {
-                                alert("Continuar Aquí");
+                            cssClass: 'btn-primary',
+                            icon: 'fa fa-arrow-down',
+                            action: function(dialog) {
+                                $scope.$apply(function(){
+                                    dialog.close();
+                                    $('#cantidad').val(1);
+                                    $scope.selectedSize=null;
+                                });
                             }
                         }, {
                             label: 'Ver mas productos',
-                            action: function (){
-                                alert("Ir a la cateria");
+                            icon: 'fa fa-th',
+                            cssClass : 'btn-primary',
+                            'action': function (){
+                                window.open(CATEGORYS_URL,'_self');
                             }
                         }
                     ]

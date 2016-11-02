@@ -17,12 +17,16 @@ Route::get('/detalle', function() {
         'showBannerBottom' => false
     ]);
 });
-Route::get('/carrito', function() {
+Route::get('/carrito', [
+    'as' => 'carrito.list',
+    'uses' => function() {
     return view('public.pages.shoppingcart', [
-        'showOffert' => false,
-        'showBannerBottom' => false
-    ]);
-});
+            'showOffert' => false,
+            'showBannerBottom' => false
+        ]);
+    }
+]);
+
 Route::get('/direccion', function() {
     return view('public.pages.location', [
         'showOffert' => false,
