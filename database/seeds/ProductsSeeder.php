@@ -26,7 +26,7 @@ La muñequeras Swoosh Wristbands (en pack de dos)de Nike están disponibles en v
                 'code'=>'010302090001',
                 'serial_number'=>'0',
                 'price_from'=>'169.00',
-                'default_color_id'=>'8'
+                'default_color_id'=>null
             ],[//2
                 'name'=>'Nike - Featherlight 2.0 Visor para mujer',
                 'brand_id'=>'2',
@@ -41,7 +41,7 @@ Ribete elástico que ofrece un ajuste cómodo"',
                 'code'=>'010102050001',
                 'serial_number'=>'0',
                 'price_from'=>'299.00',
-                'default_color_id'=>'8'
+                'default_color_id'=> null
             ],[//3
                 'name'=>'Nike - Featherlight 2.0 Visor',
                 'brand_id'=>'3',
@@ -56,7 +56,7 @@ Ribete elástico que ofrece un ajuste cómodo',
                 'code'=>'010102050002',
                 'serial_number'=>'0',
                 'price_from'=>'299.00',
-                'default_color_id'=>'10'
+                'default_color_id' => null
             ],[//4
                 'name'=>'Adidas - Response Aspire STR W',
                 'brand_id'=>'5',
@@ -72,7 +72,7 @@ La suela con tecnología ADIWEAR™ ofrece la máxima resistencia en las zonas d
                 'code'=>'010101100001',
                 'serial_number'=>'0',
                 'price_from'=>'1099.00',
-                'default_color_id'=>'9'
+                'default_color_id'=> null
             ],[//5
                 'name'=>'Nike - Air Courtballistec 4.1',
                 'brand_id'=>'4',
@@ -94,7 +94,7 @@ Amortiguación de máximo impacto. La brutal y repetitiva fuerza descendente que
                 'code'=>'010202100001',
                 'serial_number'=>'0',
                 'price_from'=>'1699.00',
-                'default_color_id'=>'9'
+                'default_color_id' => null
             ],[//6
                 'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
                 'brand_id'=>'6',
@@ -110,7 +110,7 @@ Corte holgado"',
                 'code'=>'010201040001',
                 'serial_number'=>'0',
                 'price_from'=>'799.00',
-                'default_color_id'=>'7'
+                'default_color_id'=>null
             ]
         ];
         $colors = DwSetpoint\Models\Color::getAll();
@@ -122,9 +122,11 @@ Corte holgado"',
             $product->makeImgPath();
             $path = $product->getImgPath();
             if(rand(0,2000) > 1000) {
-                $nColors = rand(0, $colors->count()-1);
-                $productsColor = DwSetpoint\Models\Color::getRandom($nColors);            
+                $nColors = rand(1, $colors->count()-1);
+                $productsColor = DwSetpoint\Models\Color::getRandom($nColors);       
+                $lColor = false;
                 foreach($productsColor as $c){
+                        $lColor = $c;
                         $product->colors()->attach($c);
                         $nImgs = rand(0, 9);
                         for($i=0; $i < $nImgs; $i++) {
@@ -133,10 +135,19 @@ Corte holgado"',
                             file_put_contents($path. "{$c->pref} - 0$i - {$product->slug}.jpg", $img);
                         }
                 }
-                $product->multi_galeries = $product->colors()->count() > 0;
+                if( $lColor ) {
+                    $product->default_color_id = $lColor->id; 
+                    $product->multi_galeries = true;
+                }
+                $product->multi_galeries = false;
+                
             } else {
+                $nImgs = rand(0, 9);
+                for($i=0; $i < $nImgs; $i++) {
                 $img = file_get_contents('https://dummyimage.com/1024x1024/ECECEC/002B53,jpg?text=' . "0$i");
-                            file_put_contents($path. "{$c->pref} - 0$i - {$product->slug}.jpg", $img);
+                            file_put_contents($path. "0$i - {$product->slug}.jpg", $img);
+                            
+                }
             }
             $sizes = DwSetpoint\Models\Size::getAll();
             if(rand(0, 2000) > 1000) {//Agregar tallas
@@ -146,6 +157,7 @@ Corte holgado"',
                     $product->sizes()->attach($size);
                 }
             }
+            $product->save();
         }
     }
 

@@ -173,13 +173,20 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
     
     public function checkStock($quantity, $size, $color) {
+        /* @var $query \Illuminate\Database\Query\Builder */
         $query = Stock::where('product_id', '=' , $this->id);
-        if($size!=0) {
+        if($size===null) {
+            $query->whereNull('size_id');
+        } else {
             $query->where('size_id', '=', $size);
         }
-        if($color!=0) {
+        
+        if($color===null) {
+            $query->whereNull('color_id');
+        } else {
             $query->where('color_id', '=', $color);
         }
+        
         $stocks = $query->get();
         if($stocks->count()) {
             $stock = $stocks->get(0);

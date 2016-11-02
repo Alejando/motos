@@ -14,11 +14,11 @@ class CreateStockTable extends Migration {
             $table->increments('id');
             $table->string('quantity');
             $table->integer('product_id')->unsigned();
-            $table->integer('color_id')->unsigned();
-            $table->integer('size_id')->unsigned();
+            $table->integer('color_id')->nullable()->unsigned();
+            $table->integer('size_id')->nullable()->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('color_id')->nullable()->references('id')->on('colors')->onDelete('cascade');
-            $table->foreign('size_id')->nullable()->references('id')->on('sizes')->onDelete('cascade');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
+            $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
             $table->timestamps();
         });
     }

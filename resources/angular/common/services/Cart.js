@@ -14,6 +14,7 @@ setpoint.service('Cart', function($q, $http, localStorageService) {
     };
     this.addProduct = function(product, quantity, size, color) {
         checkIsSupported();
+        var defer = $q.defer();
         product.checkStock(quantity, size, color)
             .then(function(x) {
                 var stock_id = x.stock;
@@ -24,11 +25,13 @@ setpoint.service('Cart', function($q, $http, localStorageService) {
                 }
                 cart[stock_id] = parseInt(quantity, 10);
                 ls.set('items', cart);                
+                defer.resolve(stock_id, quantity);
             }, function(message) {
                 BootstrapDialog.alert({
-                title : 'Error',
-                message: message
+                    title : 'Error',
+                    message: message
+                });
             });
-            });
+        return defer.promise;
     };
 });

@@ -72,7 +72,7 @@
                                 <div class="etiqueta">
                                     <div>
                                         <span>
-                                            <select name="talla" id="talla" class="form-control stalla">
+                                            <select name="talla" id="talla" ng-model="selectedSize" class="form-control stalla">
                                                 <option></option>
                                                 @foreach($product->sizes as $size)
                                                     <option value="{{$size->id}}">{{$size->name}}</option>
@@ -98,7 +98,7 @@
                     @endif
                     <div class="row margentop30">
                         <div class="col-sm-4">
-                            <a href="./carrito" class="btncarrito">
+                            <a href="#" ng-click="addProduct($event)" class="btncarrito">
                                 <div>
                                     <span>Agregar</span>
                                 </div>
