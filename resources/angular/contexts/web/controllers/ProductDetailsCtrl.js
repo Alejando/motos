@@ -3,9 +3,11 @@
         $scope.cart = Cart;
         console.log('window.product', window.product);
         var loadProduct = Product.getById(window.product);
+        
         $scope.selectImg = function(img) {
             $scope.selectedImg = img;
         }
+        
         $scope.selectedColor = null;
         $scope.selectedSize = null;
         
@@ -32,7 +34,7 @@
                             cssClass: 'btn-primary',
                             icon: 'fa fa-shopping-cart',
                             action: function (dialog) {
-                               var url = laroute.route('carrito.list');
+                               var url = laroute.route('cart.list');
                                window.open(url, '_self');
                             }
                         },{

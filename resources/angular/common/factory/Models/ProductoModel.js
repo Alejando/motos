@@ -59,8 +59,11 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
             });
             //            console.log(url);
             return url;
-        },
-        getImgs: function() {
+        }, getURLCover : function () {
+            return laroute.route('product.getCover', {
+                'id' : this.id
+            });
+        }, getImgs: function() {
             var $defer = $q.defer();
             var url = laroute.route('product.getImgs', {
                 'id': this.id

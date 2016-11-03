@@ -18,13 +18,8 @@ Route::get('/detalle', function() {
     ]);
 });
 Route::get('/carrito', [
-    'as' => 'carrito.list',
-    'uses' => function() {
-    return view('public.pages.shoppingcart', [
-            'showOffert' => false,
-            'showBannerBottom' => false
-        ]);
-    }
+    'as' => 'cart.list',
+    'uses' => 'CartController@listItems'
 ]);
 
 Route::get('/direccion', function() {
@@ -111,6 +106,10 @@ Route::group(['prefix' => 'api'], function () {
     ]);
 
     $addAPI('brand','Brand');
+    Route::get('stock/get-stocks',[
+        'as' => 'stock.getStocks',
+        'uses' => 'Api\\StockController@getStocks'
+    ]);
     $addAPI('stock','Stock');
     $addAPI('color','Color');
     $addAPI('size','Size');
@@ -141,7 +140,6 @@ Route::group(['prefix' => 'api'], function () {
         'as'=>'user.deleteBookmark',
         'uses'=>'Api\\UserController@deleteBookmark'
     ]);
-
     $addAPI('user','User');
 
 
