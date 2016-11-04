@@ -14,6 +14,7 @@
             Stock,
             Product,
             Category,
+            Coupon,
             DTOptionsBuilder,
             DTColumnBuilder,
             $interval,
@@ -411,6 +412,71 @@
             };
         };
         //</editor-fold>
+        
+        //<editor-fold defaultstate="collapsed" desc="cupones">
+        this.cupones = function() {
+            $scope.catalog = "Cupones";
+            $scope.model = Coupon;
+            getTitle = function () {
+                return "titulo";
+            };
+            getRemoveTitle = function () {
+                return "seuguro";
+            };
+            getColumnBuilder = function () {
+                return [
+                    DTColumnBuilder.newColumn('id').withTitle("ID"),
+                    DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                            return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
+                            '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
+                            '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                            '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                    })
+                ];
+            };
+            
+            $scope.dataPikers = {
+                'startDate' :  {
+                    open : false,
+                    date: new Date('2015-03-01T00:00:00Z'),
+                    datepickerOptions: {
+                        showWeeks: false,
+                        startingDay: 1
+                    }
+                },
+                'expireDate' :  {
+                    open : false,
+                    date: new Date('2014-03-01T00:00:00Z'),
+                    datepickerOptions: {
+                        showWeeks: true,
+                        startingDay: 1
+                    }
+                }
+            };
+            $scope.preprareForm = function () {
+                var defer = $q.defer();
+                $timeout(function() {
+                    $scope.selectedItem.start_date = new Date();
+                    $scope.selectedItem.expire_date = new Date();
+                    defer.resolve();
+                },10);
+                return defer.promise;
+            };
+            $scope.prepareItem = function () {
+                console.log("prepare", $scope.selectedItem);
+            };
+            $scope.openCalendar = function(e, date) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log($scope.datePikers);
+                angular.forEach($scope.dataPikers, function(item) {
+                   item.open = false; 
+                });
+                $scope.dataPikers[date].open = true;
+            };
+        };
+        //</editor-fold>
+
         $scope.saveItem = function ($event) {
             if($scope.prepareItem){
                 $scope.prepareItem();

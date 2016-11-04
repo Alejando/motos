@@ -7,7 +7,8 @@ var setpoint = angular.module('setpoint', [
     'ngSanitize',
     'ui.select',
     'slugifier',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ui.bootstrap.datetimepicker'
 ]);
 //setpoint.constat('Config', {
 //    DATE_FORMAT : 'dd/MMMM/yyyy', //https://docs.angularjs.org/api/ng/filter/date

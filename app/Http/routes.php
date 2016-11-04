@@ -116,7 +116,8 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('category','Category');
     $addAPI('product','Product');
     $addAPI('content','Content');
-
+    $addAPI('coupon','Coupon');
+    
     Route::get('product/{id}/images', [
         'as' => 'product.getImgs',
         'uses' => 'Api\\ProductController@getImgs'

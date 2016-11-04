@@ -11,6 +11,9 @@
                                 <a href="#/catalogos/stock" class="waves-effect waves-light"><i class="md md-store"></i>  <span> Stock </span></a>
                             </li>
                             <li class="has_sub">
+                                <a href="#/catalogos/cupones" class="waves-effect waves-light"><i class="fa  fa-ticket"></i>  <span> Cupones </span></a>
+                            </li>
+                            <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect waves-light"><i class="md md-view-list"></i> <span> Catalogos </span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="#/catalogos/productos"><i class="fa fa-shopping-cart"></i>Productos</a></li>

@@ -32,6 +32,7 @@
     "angular-slugify": "^1.0.1",
     "angular-bootstrap": "^2.2.0",
     "angular-owl-carousel": "^0.2.3",
-    "angular-local-storage": "^0.5.2"
+    "angular-local-storage": "^0.5.2",
+    "bootstrap-ui-datetime-picker": "^2.4.3"
   }
 }

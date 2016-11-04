@@ -53,6 +53,8 @@
         <script src="{{asset('js/bower_components/angular-ui-select/dist/select.min.js')}}"  type="text/javascript"></script>
         <script src="{{asset('js/bower_components/angular-sanitize/angular-sanitize.js')}}"  type="text/javascript"></script>
         <script src="{{asset('js/bower_components/angular-slugify/angular-slugify.js')}}"  type="text/javascript"></script>
+        <script src="{{asset('js/bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js')}}"  type="text/javascript"></script>    
+        
         @yield('scripts')
 
         <script type="text/javascript">

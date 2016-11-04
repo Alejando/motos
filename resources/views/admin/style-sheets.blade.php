@@ -1,6 +1,5 @@
 <link rel="shortcut icon" href="{{asset('assets/images/favicon_1.ico')}}">
 
-        <title>Ubold - Responsive Admin Dashboard Template</title>
 
         <link rel="stylesheet" href="{{asset('assets/plugins/chartist/dist/chartist.min.css')}}">
 
