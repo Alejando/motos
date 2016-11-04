@@ -1,10 +1,11 @@
 setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interval, $filter) {
     //<editor-fold defaultstate="collapsed" desc="constructor">
     var ModelBase = function (args) {
-        this.setProperties(args);
+        
         this.relations = {};
         this._bk_attrs = {};
         this._FILES = false;
+        this.setProperties(args);
     };
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Metodos de Instancia (prototype)">
@@ -44,6 +45,12 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                     return;
                 }
                 self[attr] = data[attr];
+            });
+            angular.forEach(self.model().relations,function(r){
+                if(data[r[0]]) {
+                    var entity = r[1].build(data[r[0]]);
+                    self.relate(r[0], entity);
+                }
             });
         },
         selfUpdate : function (milisecons, $scope) {  
@@ -244,14 +251,19 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
         getter : function (key){
             return this["_obj_" + key];
         },
-        hasMany : function (Model, key) {
+        hasMany : function (Model, key, args) {
+            console.log(args);
             var self = this;
             var defer = $q.defer();
             if(self.id){
-                var url = laroute.route(self.model().aliasUrl()  + '.relation',{
+                var data = {
                     'id' : self.id,
                     'relation' :  key
-                });
+                };
+                if(args && args.with) {
+                    data.with = args.with
+                }  
+                var url = laroute.route(self.model().aliasUrl()  + '.relation', data);
                 $http({
                     'method' : 'GET',
                     'url' : url
@@ -366,8 +378,8 @@ setpoint.factory('ModelBase', function (Paginacion, $q, $http, $timeout, $interv
                     model.attributes.push(field ? field : key + "_id");
                     break;
                 case 'hasMany' : 
-                    fn = function () {                              
-                        return this.hasMany(fnModel, key);
+                    fn = function (args) {                              
+                        return this.hasMany(fnModel, key, args);
                     };
                 break;
             }                

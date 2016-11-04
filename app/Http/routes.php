@@ -178,7 +178,10 @@ Route::get('/categorias/{slugs?}', [ //Muestra las categorias
     'as' => 'product.getCategory',
     'uses' => 'ProductCtrl@showCategory'
 ])->where('slugs', '(.*)');
-
+Route::get('/productos/{id}/cover-{width}x{height}',[
+    'as' => 'product.getURLCoverSize',
+    'uses' => 'Api\\ProductController@getCoverSize'
+]);
 Route::get('/productos/{id}/cover',[
     'as' => 'product.getCover',
     'uses' => 'Api\\ProductController@getCover'

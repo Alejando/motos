@@ -417,6 +417,35 @@
         this.cupones = function() {
             $scope.catalog = "Cupones";
             $scope.model = Coupon;
+            $scope.products = [];
+            $scope.selectedProduct = null;
+            $scope.stocks = null;
+            Color.getAll().then(function (colors) {
+                $scope.colors = colors;
+            });
+            Size.getAll().then(function(sizes) {
+                $scope.sizes = sizes;
+            });
+            $scope.$root.selectedStock = "qm";
+            $scope.loadStocks = function (product) {
+                $scope.$root.selectedStock = null;
+                $scope.selectedStock = null;
+                if(product) {
+                   product.stocks({
+                       'with':[
+                           'stocks.color',
+                           'stocks.size'
+                       ]
+                   }).then(function(stocks){
+                        $scope.stocks = stocks;
+                   });
+                } else {                    
+                    $scope.stocks = null;
+                }
+            }
+            Product.getAll().then(function(products) {
+                $scope.products = products; 
+            });
             getTitle = function () {
                 return "titulo";
             };

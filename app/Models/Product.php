@@ -39,7 +39,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="stocks">
     public function stocks() {
-        return $this->hasMany(\DwSetpoint\Models\Stock::class, 'stock_id');
+        return $this->hasMany(\DwSetpoint\Models\Stock::class);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="saveUploadImgs">

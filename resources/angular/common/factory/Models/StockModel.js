@@ -23,5 +23,8 @@ setpoint.factory('Stock', function (ModelBase, $q, $http,
         ]
     }, {
     });
+    
+    Product.addRelation('stocks',Stock,'hasMany');
+    
     return Stock;
 });

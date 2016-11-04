@@ -23,6 +23,7 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
             ['colors', Color, 'hasMany'],
             ['defaultColor', Color, 'belongsTo', 'default_color_id'], 
             ['brand', Brand, 'belongsTo']
+//            ['stocks', Stock, 'belongTo'],
         ],
     }, {
         renameImg: function() {
@@ -59,9 +60,17 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
             });
             //            console.log(url);
             return url;
-        }, getURLCover : function () {
+        },
+        getURLCoverSize : function (width, height) {
+            return laroute.route('product.getURLCoverSize', {
+                id : this.id,
+                width : width,
+                height : height
+            });
+        },
+        getURLCover : function () {
             return laroute.route('product.getCover', {
-                'id' : this.id
+                id : this.id
             });
         }, getImgs: function() {
             var $defer = $q.defer();

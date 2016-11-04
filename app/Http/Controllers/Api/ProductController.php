@@ -38,7 +38,10 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         $img = $this->getImgs($id)[0];
         $this->img($id, 235, 210, $img);
     }
-    
+    public function getCoverSize($id, $width, $height) {
+        $img = $this->getImgs($id)[0];
+        return $this->img($id, $width, $height, $img);
+    }
     public function img($id,$width,$height,$img) {
         $product = \DwSetpoint\Models\Product::getById($id);
         if($product) {
