@@ -18,6 +18,7 @@
         <link href="{{asset('js/bower_components/angular-color-picker/dist/angularjs-color-picker.min.css')}}" rel="stylesheet" type="text/css"/>
         <link href="{{asset('js/bower_components/jstree/dist/themes/default/style.css')}}" rel="stylesheet" type="text/css"/>
         <link href="{{asset('js/bower_components/angular-ui-select/dist/select.min.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{asset('js/bower_components/angularjs-slider/dist/rzslider.min.css')}}" rel="stylesheet" type="text/css"/>
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

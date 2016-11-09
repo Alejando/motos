@@ -415,9 +415,12 @@
         
         //<editor-fold defaultstate="collapsed" desc="cupones">
         this.cupones = function() {
+            console.log(Coupon.types);
+            $scope.Coupon = Coupon;
             $scope.catalog = "Cupones";
             $scope.model = Coupon;
             $scope.products = [];
+            $scope.coupontype = Coupon.types.FREE_PRODUCT_BY_AMMOUNT;
             $scope.selectedProduct = null;
             $scope.stocks = null;
             Color.getAll().then(function (colors) {
@@ -426,6 +429,7 @@
             Size.getAll().then(function(sizes) {
                 $scope.sizes = sizes;
             });
+            $scope.d = {};
             $scope.$root.selectedStock = "qm";
             $scope.loadStocks = function (product) {
                 $scope.$root.selectedStock = null;
@@ -437,6 +441,11 @@
                            'stocks.size'
                        ]
                    }).then(function(stocks){
+                        stocks.unshift({
+                                id : null,
+                                code : "Cualquiera con existencia",
+                        });
+                        console.log(stocks);
                         $scope.stocks = stocks;
                    });
                 } else {                    
@@ -447,7 +456,7 @@
                 $scope.products = products; 
             });
             getTitle = function () {
-                return "titulo";
+                return $scope.selectedItem.id?'Edición de cupón':'Nuevo Cupón';
             };
             getRemoveTitle = function () {
                 return "seuguro";
@@ -455,6 +464,7 @@
             getColumnBuilder = function () {
                 return [
                     DTColumnBuilder.newColumn('id').withTitle("ID"),
+                    DTColumnBuilder.newColumn('code').withTitle("Código"),
                     DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
                             '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
@@ -463,50 +473,121 @@
                     })
                 ];
             };
+            $scope.types = [{
+                    type : Coupon.types.PERSENT_BY_AMMOUNT,
+                    text : 'Porcentaje por monto minimo',
+                },{
+                    type : Coupon.types.DISCOUNT_BY_AMMOUNT,
+                    text : 'Monto por monto minimo',
+                },{
+                    type : Coupon.types.FREE_PRODUCT_BY_AMMOUNT,
+                    text : 'Producto gratis por monto minimo',
+                }
+            ]; 
             
-            $scope.dataPikers = {
+            $scope.coupontype = $scope.types[0];
+            $scope.slider ={
+                    options: {
+                        step:1,
+                        floor: 0,
+                        ceil: 100,
+                        translate : function (v) {
+                            return v!=0 ? "-" + v + '%' : v+'%';
+                        }
+                    }
+                
+            };
+            $scope.datapickers = {
                 'startDate' :  {
                     open : false,
-                    date: new Date('2015-03-01T00:00:00Z'),
                     datepickerOptions: {
                         showWeeks: false,
-                        startingDay: 1
+                        startingDay: 1,
+                        minDate : new Date()
                     }
                 },
                 'expireDate' :  {
                     open : false,
-                    date: new Date('2014-03-01T00:00:00Z'),
                     datepickerOptions: {
                         showWeeks: true,
                         startingDay: 1
                     }
                 }
             };
+
+            // destroy watcher
+            $scope.$on('$destroy', function() {
+                unwatchMinMaxValues();
+            });
+            
             $scope.preprareForm = function () {
                 var defer = $q.defer();
+                  // watch min and max dates to calculate difference
+                var unwatchMinMaxValues = $scope.$watch(function() {
+                    return [$scope.selectedItem.start_date, $scope.selectedItem.expire_date];
+                }, function() {
+                    $scope.datapickers.expireDate.datepickerOptions.minDate = $scope.selectedItem.start_date;
+                    $scope.datapickers.startDate.datepickerOptions.maxDate = $scope.selectedItem.expire_date;
+                }, true);
+                
                 $timeout(function() {
                     $scope.selectedItem.start_date = new Date();
                     $scope.selectedItem.expire_date = new Date();
                     defer.resolve();
                 },10);
+                $timeout(function() { //FIX dimensiones pra el slider
+                    if(!$scope.selectedItem.id){
+                        $scope.selectedItem.percent = 10;
+                    }
+                    $scope.$broadcast('reCalcViewDimensions');
+                }, 400);
                 return defer.promise;
             };
             $scope.prepareItem = function () {
+                $scope.selectedItem.type = $scope.coupontype.type;
+                
                 console.log("prepare", $scope.selectedItem);
             };
             $scope.openCalendar = function(e, date) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log($scope.datePikers);
-                angular.forEach($scope.dataPikers, function(item) {
+                console.log($scope.datapickers);
+                angular.forEach($scope.datapickers, function(item) {
                    item.open = false; 
                 });
-                $scope.dataPikers[date].open = true;
+                $scope.datapickers[date].open = true;
             };
+            $scope.validateForm = function() {
+                $scope.regForm.min_amount.$touched =
+                $scope.regForm.code.$touched = true;
+                if($scope.selectedItem.start_date===null){
+                    $scope.regForm.startDate.$invalid = true;
+                }
+                if($scope.selectedItem.expire_date === null){
+                    $scope.regForm.expreDate.$invalid = true;
+                } if($scope.coupontype == $scope.types[0]) {
+                    alert("por monto minimo");
+                } else {
+                    alert("por producto gratis");
+                }
+                
+                if($scope.regForm.code.$invalid || $scope.regForm.min_amount.$invalid){
+                    setTimeout(function() {
+                        $('.form-coupons .error:eq(0)').focus();
+                    },100);
+                    return false;
+                }
+                
+//                return false;
+            }
         };
         //</editor-fold>
-
         $scope.saveItem = function ($event) {
+            if($scope.validateForm){
+                if($scope.validateForm() === false) {
+                    return;
+                }
+            }
             if($scope.prepareItem){
                 $scope.prepareItem();
             }

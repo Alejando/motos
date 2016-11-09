@@ -7,7 +7,9 @@ var setpoint = angular.module('setpoint', [
     'ngSanitize',
     'ui.select',
     'slugifier',
+    'fiestah.money',
     'ui.bootstrap',
+    'rzModule',
     'ui.bootstrap.datetimepicker'
 ]);
 //setpoint.constat('Config', {

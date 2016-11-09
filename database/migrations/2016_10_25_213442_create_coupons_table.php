@@ -19,8 +19,9 @@ class CreateCouponsTable extends Migration
             $table->integer('uses_limit')->nullable();
             $table->string('code')->unique();
             $table->decimal('amount_min')->nullable();
-            $table->decimal('percent')->nullable();
+            $table->integer('percent')->nullable();
             $table->decimal('discount')->nullable();
+            $table->integer('type');
         });
     }
 
