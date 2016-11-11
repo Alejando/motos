@@ -22,6 +22,10 @@ class CreateCouponsTable extends Migration
             $table->integer('percent')->nullable();
             $table->decimal('discount')->nullable();
             $table->integer('type');
+            $table->integer('product_id')->unsigned()->nullable();
+            $table->integer('stock_id')->unsigned()->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
         });
     }
 

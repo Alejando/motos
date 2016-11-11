@@ -35,6 +35,8 @@
     "angular-local-storage": "^0.5.2",
     "bootstrap-ui-datetime-picker": "^2.4.3",
     "angularjs-slider": "^5.8.5",
-    "angular-money-directive": "^1.2.5"
+    "angular-money-directive": "^1.2.5",
+    "ng-remote-validate": "^0.6.1",
+    "devticstools-ng-factory-modelbase-for-laravel": "*"
   }
 }

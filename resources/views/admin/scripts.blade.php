@@ -55,6 +55,9 @@
         <script src="{{asset('js/bower_components/angular-slugify/angular-slugify.js')}}"  type="text/javascript"></script>
         <script src="{{asset('js/bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js')}}"  type="text/javascript"></script>    
         <script src="{{asset('js/bower_components/angularjs-slider/dist/rzslider.min.js')}}"  type="text/javascript"></script>
+        <script src="{{asset('js/bower_components/ng-remote-validate/release/ngRemoteValidate.0.6.1.min.js')}}"  type="text/javascript"></script>
+        <script src="{{asset('js/bower_components/devticstools-ng-factory-modelbase-for-laravel/src/baseModel.js')}}"  type="text/javascript"></script>
+        
         <script src="{{asset('js/bower_components/angular-money-directive/dist/angular-money-directive.min.js')}}"  type="text/javascript"></script>
         @yield('scripts')
 

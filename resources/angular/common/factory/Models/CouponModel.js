@@ -1,4 +1,4 @@
-setpoint.factory('Coupon', ['ModelBase', '$q', '$http', function(ModelBase, $q, $http) {
+setpoint.factory('Coupon', ['ModelBase', '$q', '$http', function(ModelBase, $q, $http, Product, Stock) {
     var Coupon = function () {
         ModelBase.apply(this, arguments);
     };
@@ -28,9 +28,14 @@ setpoint.factory('Coupon', ['ModelBase', '$q', '$http', function(ModelBase, $q, 
             start_date :ModelBase.prepareDateTime,
             expire_date: ModelBase.prepareDateTime
         },
-        relations : []
+        relations : [
+            ['product', Product, 'belongsTo'],
+            ['stock', Stock, 'belongsTo']
+        ]
     }, {
-        
+        getValidateUniqueCodeURL : function () {
+            return "lalala";
+        }
     });
     return Coupon;
 }]);

@@ -118,6 +118,11 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('content','Content');
     $addAPI('coupon','Coupon');
     
+    Route::post('coupon/validate-code', [
+        'as' => 'coupon.validateCode',
+        'uses' => 'Api\\CouponController@validateCode'
+    ]);
+    
     Route::get('product/{id}/images', [
         'as' => 'product.getImgs',
         'uses' => 'Api\\ProductController@getImgs'

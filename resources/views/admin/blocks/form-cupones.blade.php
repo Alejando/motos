@@ -10,13 +10,15 @@
                        pattern="^[#\-a-zA-Z0-9]{1,}$" 
                        required
                        ng-class="{error:regForm.code.$invalid && regForm.code.$touched }"
-                >                
+                       ng-remote-validate="{{\DwSetpoint\Models\Coupon::getValidateUniqueCodeURL()}}"
+                >
             </div>
         </div>
         
         <div class="alert alert-danger" role="alert" ng-show="regForm.code.$touched && regForm.code.$invalid">
             <div ng-show="regForm.code.$error.required">* Campo obligatorio</div>
-            <div ng-show="regForm.code.$error.pattern">- Un código solo puede incluir letras mayusculas, minusculas y numeros, puedes incluir los caracteres # y -</div>
+            <div ng-show="regForm.code.$error.pattern">* Un código solo puede incluir letras mayusculas, minusculas y numeros, puedes incluir los caracteres # y -</div>
+            <div ng-show="regForm.code.$error.ngRemoteValidate">* Ya existe una cupón con el código "@{{selectedItem.code}}" </div>
         </div>
         
         <div class="form-group">
@@ -61,6 +63,9 @@
                     </ui-select>
                 </div>
             </div>
+            <div class="alert alert-danger" role="alert" ng-show="productInvalid">
+                <div>Selecciona un producto</div>                
+            </div>
             <div class="form-group">
                 <label class="col-md-3 control-label">Stock</label> 
                 <div class="col-md-8">
@@ -77,7 +82,7 @@
                                         float: left;
                                         margin-right: 10px;"
                                     ng-show="$select.selected.relations.color"
-                                    ></span><span> <b>@{{$select.selected.code}}</b> [Talla: <b>@{{$select.selected.relations.size.name}}</b>][Existensias: <b>@{{$select.selected.quantity}}</b>] </span>
+                                    ></span><span> <b>@{{$select.selected.code}}</b> [Talla: <b>@{{$select.selected.relations.size.name}}</b>][Existencias: <b>@{{$select.selected.quantity}}</b>] </span>
                             </div>
                             <div ng-show="$select.selected.id===null">@{{$select.selected.code}}</div>
                         </ui-select-match>
@@ -117,15 +122,29 @@
             
         </div> 
         <div ng-show="coupontype.type == Coupon.types.DISCOUNT_BY_AMMOUNT">
-            <div class="form-group">
+            <div class="form-group"  class="form-control"  >
                 <label class="col-md-3 control-label">Descuento $</label>
                 <div class="col-md-8">
-                    <input type="text" ng-model="selectedItem.discount" class="form-control" placeholder="">
+                    <div class="input-group">
+                        <span class="input-group-addon">-$</span>
+                        <input  name="discount" 
+                            money 
+                            ng-model="selectedItem.discount"
+                            required precision="2" 
+                            require
+                            class="form-control ng-pristine ng-untouched ng-valid ng-valid-min"
+                            ng-class="{error : regForm.discount.$invalid && regForm.discount.$touched }"
+                        >
+                    </div>
                 </div>
             </div>
+            <div class="alert alert-danger" role="alert" ng-show="regForm.discount.$invalid && regForm.discount.$touched ">
+                <div>* El campo de descuento es obligatorio</div>
+            </div>
+            
         </div>
         
-        <div class="form-group">@{{selectedItem.amount_min}}
+        <div class="form-group">
             <label class="col-md-3 control-label">Monto Minimo:</label>
             <div class="col-md-8">
                 <div class="input-group">
@@ -155,6 +174,7 @@
                            ng-model="selectedItem.expire_date" 
                            is-open="datapickers.expireDate.open"
                            datepicker-options="datapickers.expireDate.datepickerOptions"
+                           ng-class="{error:regForm.expreDate.$invalid}"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="openCalendar($event, 'expireDate')"><i class="fa fa-calendar"></i></button>
@@ -176,6 +196,7 @@
                            ng-model="selectedItem.start_date" 
                            is-open="datapickers.startDate.open"
                            datepicker-options="datapickers.startDate.datepickerOptions"
+                           ng-class="{error : regForm.startDate.$invalid}"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="openCalendar($event, 'startDate')"><i class="fa fa-calendar"></i></button>

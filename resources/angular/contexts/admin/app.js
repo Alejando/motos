@@ -10,7 +10,9 @@ var setpoint = angular.module('setpoint', [
     'fiestah.money',
     'ui.bootstrap',
     'rzModule',
-    'ui.bootstrap.datetimepicker'
+    'ui.bootstrap.datetimepicker',
+    'remoteValidation',
+    'devtics-angular-modelbase'
 ]);
 //setpoint.constat('Config', {
 //    DATE_FORMAT : 'dd/MMMM/yyyy', //https://docs.angularjs.org/api/ng/filter/date

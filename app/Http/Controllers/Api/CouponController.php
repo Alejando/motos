@@ -8,6 +8,7 @@
 
 namespace DwSetpoint\Http\Controllers\Api;
 use DwSetpoint\Models\Content;
+use Illuminate\Support\Facades\Input;
 /**
  * Description of Coupons
  *
@@ -15,4 +16,12 @@ use DwSetpoint\Models\Content;
  */
 class CouponController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Coupon::class;
+
+    public function validateCode() {//productValid
+        $code = Input::get('value');
+        return [
+            'isValid' => !\DwSetpoint\Models\Coupon::existsCode($code),
+            'value' => $code
+        ];
+    }
 }

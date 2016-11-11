@@ -459,7 +459,7 @@
                 return $scope.selectedItem.id?'Edición de cupón':'Nuevo Cupón';
             };
             getRemoveTitle = function () {
-                return "seuguro";
+                return "¿Desea eliminar el cupon \""+$scope.selectedItem.code+"\"";
             };
             getColumnBuilder = function () {
                 return [
@@ -485,7 +485,7 @@
                 }
             ]; 
             
-            $scope.coupontype = $scope.types[0];
+            $scope.coupontype = $scope.types[1];
             $scope.slider ={
                     options: {
                         step:1,
@@ -516,9 +516,9 @@
             };
 
             // destroy watcher
-            $scope.$on('$destroy', function() {
-                unwatchMinMaxValues();
-            });
+//            $scope.$on('$destroy', function() {
+//                unwatchMinMaxValues();
+//            });
             
             $scope.preprareForm = function () {
                 var defer = $q.defer();
@@ -544,20 +544,21 @@
                 return defer.promise;
             };
             $scope.prepareItem = function () {
-                $scope.selectedItem.type = $scope.coupontype.type;
-                
+                $scope.selectedItem.type = $scope.coupontype.type; 
+                $scope.selectedItem.relate('product', $scope.selectedProduct);
+                $scope.selectedItem.relate('stock', $scope.$root.selectedStock)
                 console.log("prepare", $scope.selectedItem);
             };
             $scope.openCalendar = function(e, date) {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log($scope.datapickers);
                 angular.forEach($scope.datapickers, function(item) {
                    item.open = false; 
                 });
                 $scope.datapickers[date].open = true;
             };
             $scope.validateForm = function() {
+                $scope.regForm.discount.$touched =
                 $scope.regForm.min_amount.$touched =
                 $scope.regForm.code.$touched = true;
                 if($scope.selectedItem.start_date===null){
@@ -565,13 +566,28 @@
                 }
                 if($scope.selectedItem.expire_date === null){
                     $scope.regForm.expreDate.$invalid = true;
-                } if($scope.coupontype == $scope.types[0]) {
-                    alert("por monto minimo");
-                } else {
-                    alert("por producto gratis");
-                }
+                } 
                 
-                if($scope.regForm.code.$invalid || $scope.regForm.min_amount.$invalid){
+                if($scope.coupontype.type == Coupon.types.DISCOUNT_BY_AMMOUNT) {
+                    $scope.productInvalid = false;
+                }
+                if($scope.coupontype.type == Coupon.types.PERSENT_BY_AMMOUNT) {
+                    $scope.regForm.discount.$invalid = false;
+                    $scope.productInvalid = false;
+                     
+                }
+                if($scope.coupontype.type == Coupon.types.FREE_PRODUCT_BY_AMMOUNT){
+                    $scope.regForm.discount.$invalid = false;
+                    $scope.productInvalid = $scope.selectedProduct === null;
+                }
+                if(
+                   $scope.regForm.code.$invalid || 
+                   $scope.regForm.min_amount.$invalid ||
+                   $scope.regForm.startDate.$invalid ||
+                   $scope.regForm.expreDate.$invalid ||
+                   $scope.regForm.discount.$invalid ||
+                   $scope.productInvalid
+                ){
                     setTimeout(function() {
                         $('.form-coupons .error:eq(0)').focus();
                     },100);
@@ -594,8 +610,7 @@
             $scope.selectedItem.save().then(function () {
                  $scope.selectedItem.backup();
                 var $dialog = $($event.target).closest('.modal');
-                $dialog.modal('hide');
-                $scope.selectedItem = newObj();
+                $dialog.modal('hide')
                 $scope.dtInstance.reloadData(function(){
                 }, !true);
             });
@@ -608,7 +623,9 @@
                 message: $message,
                 onhide: function(dialog){
                     $scope.selectedItem.rollback();
-                    $scope.selectedItem = newObj();
+                },
+                onhidden: function(dialog){
+                     $scope.selectedItem = newObj();
                 }
             });
             $.get($scope.form,{},'html').done(function(txt){

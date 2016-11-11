@@ -14,5 +14,21 @@ namespace DwSetpoint\Models;
  * @author jdiaz
  */
 class Coupon  extends \DevTics\LaravelHelpers\Model\ModelBase{
-    //put your code here
+    
+    public function product() {
+        return $this->hasOne(Product);
+    }
+    
+    public function stock() {
+        return $this->hasOne(Stock);
+    }
+    
+    public static function getValidateUniqueCodeURL() {
+        return route('coupon.validateCode');
+    }
+    
+    public static function existsCode($code) {
+        $n = self::where('code','=',$code)->count();
+        return $n>0;
+    }
 }
