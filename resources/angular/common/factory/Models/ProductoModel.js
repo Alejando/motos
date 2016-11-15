@@ -15,6 +15,7 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
             'description',
             'multi_galeries',
             'default_color_id',
+            'serial_number',
             'discount_percentage'
         ],
         relations: [

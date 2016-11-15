@@ -110,6 +110,10 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'stock.getStocks',
         'uses' => 'Api\\StockController@getStocks'
     ]);
+    Route::get('coupon/validate-code/{code}',[
+        'as' => 'coupon.getValdateByCode',
+        'uses' => 'Api\\CouponController@getValdateByCode'
+    ]);
     $addAPI('stock','Stock');
     $addAPI('color','Color');
     $addAPI('size','Size');
@@ -122,6 +126,7 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'coupon.validateCode',
         'uses' => 'Api\\CouponController@validateCode'
     ]);
+    
     
     Route::get('product/{id}/images', [
         'as' => 'product.getImgs',

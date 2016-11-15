@@ -21,7 +21,10 @@ $max-width: "only screen and (min-width : 1000px)";
         background-color: #ececec !important;
     }
 }
-
+.error {
+    border: solid 1px red;
+    outline:none;
+}
 .producto {
     height: 360px !important;
     overflow: hidden;

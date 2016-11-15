@@ -31,7 +31,23 @@ setpoint.factory('Coupon', ['ModelBase', '$q', '$http', function(ModelBase, $q, 
         relations : [
             ['product', Product, 'belongsTo'],
             ['stock', Stock, 'belongsTo']
-        ]
+        ],
+        getByCode : function (code) {
+            var defer = $q.defer();
+            var url = laroute.route('coupon.getValdateByCode', {
+                'code': code
+            });
+            $http.get(url).then(function(r) {
+                if(r.data.error){
+                    defer.reject(r.data);
+                    return;
+                }
+                defer.resolve(Coupon.build(r.data));
+            }, function() {
+                
+            });
+            return defer.promise;
+        }
     }, {
         getValidateUniqueCodeURL : function () {
             return "lalala";

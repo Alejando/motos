@@ -16,7 +16,14 @@ use Illuminate\Support\Facades\Input;
  */
 class CouponController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Coupon::class;
-
+    public function getValdateByCode($code) {        
+        try {
+            $cupon = \DwSetpoint\Models\Coupon::getValdateByCode($code);
+            return $cupon;
+        } catch (\Exception $ex) {
+            return ['error'=>true, 'message' => $ex->getMessage()];
+        }
+    }
     public function validateCode() {//productValid
         $code = Input::get('value');
         return [

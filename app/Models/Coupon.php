@@ -28,7 +28,45 @@ class Coupon  extends \DevTics\LaravelHelpers\Model\ModelBase{
     }
     
     public static function existsCode($code) {
-        $n = self::where('code','=',$code)->count();
+        $n = self::where('code', '=', $code)->count();
         return $n>0;
+    }
+    
+    public function getExpireDateTime(){
+        return new \DateTime($this->attributes['expire_date']);
+    }
+    public function getStartDateTime(){
+        return new \DateTime($this->attributes['start_date']);
+    }
+    
+    public static function getByCode($code, $returnQuery = false) {
+        $query = self::where('code','=',$code);
+        if($returnQuery) {
+            return $query;
+        }
+        $coupons = $query->get();
+        if($coupons->count()) {
+            return $coupons[0];
+        }
+        return null;
+    }
+    
+    public static function getValdateByCode($code){
+        $now = new \DateTime();
+        /* @var $coupon Coupon */
+        $coupon = self::getByCode($code);   
+        if($coupon) {
+            $starDate = $coupon->getStartDateTime();
+            $expireDate = $coupon->getExpireDateTime();
+            if($now >= $starDate && $now <= $expireDate){
+                return $coupon;
+            } else if($now < $starDate) {
+                throw new \Exception("El cupón aun no esta vigente");
+            } else if($now > $expireDate) {
+                throw new \Exception("El cupón ha expirado");
+            }
+        }
+        throw new \Exception("El cupon no existe");
+    
     }
 }
