@@ -121,7 +121,12 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('product','Product');
     $addAPI('content','Content');
     $addAPI('coupon','Coupon');
-    
+
+    //Catalogo de Paises, Estados, Direcciones
+    $addAPI('country','Country');
+    $addAPI('state','State');
+    $addAPI('address','Address');
+        
     Route::post('coupon/validate-code', [
         'as' => 'coupon.validateCode',
         'uses' => 'Api\\CouponController@validateCode'
@@ -213,3 +218,7 @@ Route::get('tests/mails',  'TestsController@listmails')->where([
     'format' => "(?:txt|html)"
 ]);
 Route::auth();
+
+
+
+
