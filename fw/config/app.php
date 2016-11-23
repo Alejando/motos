@@ -8,8 +8,8 @@ return [
         'fillopacity' => 0
     ],
     'paths' => [
-        'products' => __DIR__.'/../upload/products/',
-        'brads' => __DIR__.'/../upload/brands/'
+        'products' => __DIR__.'/../../upload/products/',
+        'brads' => __DIR__.'/../../upload/brands/'
     ],
     'social' => [
         'instagram-url' => ''

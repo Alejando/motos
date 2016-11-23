@@ -5,7 +5,7 @@ return [
     /*
      * The destination path for the javascript file.
      */
-    'path' => 'public/js',
+    'path' => '../js',
 
     /*
      * The destination filename for the javascript file.
@@ -23,7 +23,7 @@ return [
      *
      * Set the Application URL in config/app.php
      */
-    'absolute' => true,
+    'absolute' => false,
 
     /*
      * The Filter Method

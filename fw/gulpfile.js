@@ -10,16 +10,16 @@ require('laravel-elixir-livereload');
  | file for our application, as well as publishing vendor resources.
  |
  */
-
+elixir.config.assetsDir = '../'; //trailing slash required.
 elixir(function(mix) {
     mix.sass([
         'admin/*.scss',
         'admin/**/*.scss'
-    ],'public/css/app.css');
+    ],'../css/app.css');
     mix.sass([
         'web/*.scss',
         'web/**/*.scss'
-    ], 'public/css/web2.css');
+    ], '../css/web2.css');
 //    mix.copy('resources/assets/sass/sprites.png', 'public/css/sprites.png');
 //    mix.less('ubold-template/components.less','public/assets/css/components.css');
 //    mix.less('ubold-template/core.less','public/assets/css/core.css');
@@ -34,12 +34,12 @@ elixir(function(mix) {
         '../../angular/common/*.js',
         '../../angular/common/**/*.js',
         '../../angular/contexts/admin/controllers/*.js'
-    ], 'public/js/estrasol/app.js');
+    ], '../js/estrasol/app.js');
     mix.scripts([
          '../../angular/contexts/web/app.js',
         '../../angular/common/*.js',
         '../../angular/common/**/*.js',
         '../../angular/contexts/web/controllers/*.js'
-    ], 'public/js/estrasol/web-angular.js');
+    ], '../js/estrasol/web-angular.js');
     mix.livereload();
 });
