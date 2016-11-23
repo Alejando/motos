@@ -23,7 +23,7 @@ return [
      *
      * Set the Application URL in config/app.php
      */
-    'absolute' => true,
+    'absolute' => false,
 
     /*
      * The Filter Method
@@ -53,6 +53,6 @@ return [
      * Appends a prefix to URLs. By default the prefix is an empty string.
     *
     */
-    'prefix' => '',
+    'prefix' => '/public',
 
 ];

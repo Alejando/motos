@@ -41,6 +41,7 @@ Route::get('/pago', function() {
     ]);
 });
 Route::get('/marcas/{id}/logo', 'Api\\BrandController@getImg');
+
 Route::get('/marcas/{id}/{slugSEO}logo-{width}x{heigth}.png', [
         'as' => 'brand.getLogo',
         'uses' => 'Api\\BrandController@fitToSize'
@@ -51,6 +52,7 @@ Route::get('/categorias/tree',[
     'as' => 'categories.tree',
     'uses' => 'Api\\CategoryController@tree'
 ]);
+
 Route::group(['prefix'=>'dev'], function () {
     Route::get('cmd', function() {
         header("Content-type:text/plain");
@@ -157,6 +159,10 @@ Route::group(['prefix' => 'api'], function () {
         'as'=>'user.deleteBookmark',
         'uses'=>'Api\\UserController@deleteBookmark'
     ]);
+    Route::get('user/bookmarks',[
+        'as'=>'user.getBookmarks',
+        'uses'=>'Api\\UserController@getBookmarks'
+    ]);
     $addAPI('user','User');
 
 
@@ -178,7 +184,8 @@ Route::get('/pages/admin/{view}.html', [
 Route::get('/contacto', 'ContactCtrl@index');
 Route::get('/home', 'HomeCtrl@index');
 Route::get('/', 'HomeCtrl@index');
-
+Route::get('/nuevos', 'HomeCtrl@newProducts');
+Route::get('/descuentos', 'HomeCtrl@discountedProducts');
 
 
 Route::get('/categorias/{slugs?}/paginas/{page}', [ //Muestra las categorias
@@ -203,6 +210,14 @@ Route::get('/productos/{id}/cover',[
     'as' => 'product.getCover',
     'uses' => 'Api\\ProductController@getCover'
 ]);
+Route::get('/productos/nuevos',[
+        'as' => 'products.getNews',
+        'uses' => 'Api\\ProductController@getNews'
+    ]);
+Route::get('/productos/descuentos',[
+        'as' => 'products.getDiscounts',
+        'uses' => 'Api\\ProductController@getDiscounts'
+    ]);
 
 //Route::get('/producto/{producto}/categoria/{slugs?}', [ //Muestra las categorias y el detalle del producto
 //    'as' => 'product.getInfo',
@@ -220,7 +235,3 @@ Route::get('tests/mails',  'TestsController@listmails')->where([
     'format' => "(?:txt|html)"
 ]);
 Route::auth();
-
-
-
-

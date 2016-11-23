@@ -1,4 +1,4 @@
-setpoint.factory('User', function (ModelBase, $q, $http) {    
+setpoint.factory('User', function (ModelBase, $q, $http, Product) {    
     var User = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -49,6 +49,8 @@ setpoint.factory('User', function (ModelBase, $q, $http) {
             });
             return def.promise;
         }
+    }, {
+        
     });
     return User;
 });

@@ -1,5 +1,9 @@
-Plantilla para correos en texto plano
+"BOUNCE"
+Tennis Lifestyle
+
+¡Gracias por registrarse!
+Nuestros colaboradores estarán pendientes de brindarle una excelente atención.
 
 @yield('message')
 
-Pie del correo
+Horario de atención: 00:00 a 00:00

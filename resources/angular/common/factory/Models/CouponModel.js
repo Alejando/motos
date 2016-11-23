@@ -1,4 +1,4 @@
-setpoint.factory('Coupon', ['ModelBase', '$q', '$http', function(ModelBase, $q, $http, Product, Stock) {
+setpoint.factory('Coupon', ['ModelBase', '$q', '$http', 'Product', 'Stock', function(ModelBase, $q, $http, Product, Stock) {
     var Coupon = function () {
         ModelBase.apply(this, arguments);
     };
@@ -49,6 +49,9 @@ setpoint.factory('Coupon', ['ModelBase', '$q', '$http', function(ModelBase, $q, 
             return defer.promise;
         }
     }, {
+        formAnyStock : function () {
+           return !this.stock_id;
+        },
         getValidateUniqueCodeURL : function () {
             return "lalala";
         }

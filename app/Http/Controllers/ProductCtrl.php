@@ -26,7 +26,7 @@ class ProductCtrl extends Controller{
         $category = \DwSetpoint\Models\Category::getBySlug($slug);
         if($category) {
             return view('public.pages.products-page', [
-                'products' => $category->products()->paginate(),
+                'products' => $category->products()->paginate(4),
                 'categorySlug' => $slug,
                 'caregory' => $category
             ]);

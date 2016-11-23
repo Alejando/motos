@@ -3,6 +3,11 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.appliedCode = false;
     this.discount = false;
     var arrItems = [];
+    var _coupon = null;
+    var couponStock = null;
+    this.onInvalidateCoupon = function (){
+        console.log("Quitar Cupon");
+    };
     //<editor-fold defaultstate="collapsed" desc="this.getIdStock">
     this.getIdStocks = function () {
         var cart = ls.get('items');
@@ -51,7 +56,11 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     //<editor-fold defaultstate="collapsed" desc="this.removeItem">
     this.removeItem = function (item) {
         var index = arrItems.indexOf(item);
-        arrItems.splice(index,1);
+        arrItems.splice(index, 1);
+        this.persistItems();
+        if(couponStock && couponStock.id === item.stock_id) {
+            cleanCoupon();
+        }
         return this;
     }
     //</editor-fold>
@@ -89,16 +98,79 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         return this;
     };
     //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="this.checkCoupon()">
-    this.checkCoupon = function (codeCoupon){
-        
+    var cart = this;
+    var cleanCoupon = function() {
+        cart.discount = 0;
+        cart.percentDiscount = 0;
+        if(_coupon.type == Coupon.types.FREE_PRODUCT_BY_AMMOUNT){
+            var item = cart.getItemByStock(couponStock);
+            var q = item.quantity();
+            if(q>1){
+                item.quantity(q-1);
+            } else {
+               cart.removeItem(item);
+            }
+        }
+         _coupon = null;
+    }
+//<editor-fold defaultstate="collapsed" desc="this.checkCoupon()">
+    this.checkCoupon = function (){
+        if(_coupon){
+            if(_coupon.amount_min) {
+                var priceProduct = 0;
+                if(couponStock){
+                    priceProduct = parseFloat(couponStock.price);
+                }
+//                var min = _coupon.type != Coupon.types.FREE_PRODUCT_BY_AMMOUNT ? _coupon.amount_min : _coupon.amount_min + couponStock.price;
+                console.log(parseFloat(_coupon.amount_min) + parseFloat(priceProduct));
+                if( ( parseFloat(_coupon.amount_min) + parseFloat(priceProduct) ) > this.getSubTotal()){
+                    cleanCoupon();
+                    this.onInvalidateCoupon();
+                }
+            }
+        }
+        return true;
     }
     //</editor-fold>
     this.getDiscount = function () {
+        this.checkCoupon();
+        if(this.percentDiscount) {
+            return this.getSubTotal() * (this.percentDiscount/100) ;
+        }
         return this.discount;
+    };
+    this.setDiscount = function (discount) {
+        this.discount = parseFloat(discount, 10);
+        return this;
     }
     this.setDiscountByMount = function (coupon) {
         this.discount = parseFloat(coupon.discount, 10);
+    }
+    this.percentDiscount = 0;
+    this.setPersentDiscountByMount = function (coupon) {
+        this.percentDiscount = coupon.percent;
+    }
+    this.setProductByAmount = function (coupon) {   
+        var self = this;
+        if(coupon.formAnyStock()) {
+//            coupon.getAnyStock().then(function(stock){//Buscar un stock con existencias
+//                console.log(stock);
+//            });
+        } else {//Un stock definido
+            
+        }
+        coupon.stock({
+            with : 'product'
+        }).then(function(stock){
+            stock.product().then(function(product) {
+                var item = self.getItemByStock(stock);
+                if(!item){
+                    self.addStock(stock,1);
+                }
+                self.setDiscount(stock.price);
+                couponStock = stock;
+            });
+        });
     }
     //<editor-fold defaultstate="collapsed" desc="this.applyCoupon">
     this.applyCoupon = function (couponCode) {
@@ -109,16 +181,22 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             if(parseFloat(coupon.amount_min,10) > self.getSubTotal()) {
                 defer.reject("El Carrito no cuenta con el monto minimo ($ " + coupon.amount_min + ")");
             } else {
-                switch(coupon.type){
-                    case Coupon.types.PERSENT_BY_AMMOUNT: 
-                        console.log("Porcentaje por monto");
-                    break;
-                    case Coupon.types.DISCOUNT_BY_AMMOUNT:
-                        self.setDiscountByMount(coupon);
-                    break;
-                    case Coupon.types.FREE_PRODUCT_BY_AMMOUNT:
-                        console.log("producto gratis");
-                    break;
+                try{
+                    switch(coupon.type){
+                        case Coupon.types.PERSENT_BY_AMMOUNT:
+                            self.setPersentDiscountByMount(coupon);
+                        break;
+                        case Coupon.types.DISCOUNT_BY_AMMOUNT:
+                            self.setDiscountByMount(coupon);
+                        break;
+                        case Coupon.types.FREE_PRODUCT_BY_AMMOUNT:
+                            self.setProductByAmount(coupon);
+                        break;
+                    }
+                    _coupon = coupon
+                    defer.resolve();
+                }catch(e){
+                    defer.reject(e.message);
                 }
             }
         
@@ -155,6 +233,38 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             });
         return defer.promise;
     };
+    this.getItemByStock = function(stock){
+        
+        var item;
+        for(var i = 0; (item = arrItems[i++]);){
+            console.log(stock.id);
+            if(item.stock_id == stock.id){
+                //item.quantity(item.quantity()+1);
+                return item;
+            }
+        }
+    }
     //</editor-fold>
+    this.addStock = function (stock, quantity){
+        var item  = this.getItemByStock(stock);        
+        if(item){
+            console.log("Ya esta en el carrito", item);
+            item.quantity(item.quantity()+1);
+                this.persistItems();
+            return;
+        }
+        console.log("El item aun no esta en el carrito");
+        arrItems.push(new CartItem({
+            id : stock.id,
+            price: stock.price, 
+            color_id: stock.color_id,
+            product : stock.relations.product,
+            size : stock.size_id 
+        },quantity));
+        this.persistItems();
+    }
+    this.removeCoupon = function () {
+        cleanCoupon();
+    }
     
 });
