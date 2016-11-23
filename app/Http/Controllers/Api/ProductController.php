@@ -92,4 +92,16 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         ;
         return $res;
     }
+
+    public function getNews() { 
+        $res = \DwSetpoint\Models\Product::orderBy('id', 'desc')->take(8)->get();
+        return $res;
+    }
+
+    public function getDiscounts() { 
+        $res = \DwSetpoint\Models\Product::where('discount_percentage', '>', 0)->get();
+        return $res;
+    }
+
+    
 }

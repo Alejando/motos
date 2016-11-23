@@ -13,8 +13,8 @@ class CreationProductUserTable extends Migration
     public function up()
     {
         Schema::create('bookmarks', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->unique();
-            $table->integer('product_id')->unsigned()->unique();
+            $table->integer('user_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->unique();
         });

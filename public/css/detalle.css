@@ -436,6 +436,10 @@ a.in {
 	background: url('../img/template/btnlikeblanco.png') no-repeat;
 }
 
+.btnkon {
+	background: url('../img/template/btnlikeblanco_on.png') no-repeat;
+}
+
 .btnc {
 	background: url('../img/template/btncarritoblanco.png') no-repeat;
 }

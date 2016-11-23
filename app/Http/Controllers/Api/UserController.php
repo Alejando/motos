@@ -10,7 +10,6 @@ class UserController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         $id_product = Input::get('id_product');
         /* @var $user User */
         $user = \Auth::user();
-        $user = User::getRandom();
         $ok = $user->addBookmark($id_product);
         return ['success' => $ok];
     }
@@ -19,8 +18,17 @@ class UserController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         $id_product = Input::get('id_product');
         /* @var $user User */
         $user = \Auth::user();
-        $user = User::getRandom();
         $user->deleteBookmark($id_product);
         return ['success' => true];
+    }
+
+    public function getBookmarks() {
+        $products = \Auth::user()->bookmarks;
+        $idsBookmark = [];
+        foreach($products as $product)
+        {
+            $idsBookmark[] = $product->id;
+        }
+        return $idsBookmark;
     }
 }

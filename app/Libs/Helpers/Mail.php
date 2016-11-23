@@ -16,10 +16,10 @@ class Mail extends MailBase {
         if(!isset($args['user'])) {
             $user = \DwSetpoint\Models\User::getRandom(); 
             $args['user'] = $user;
-            $args['to'] = [];
+            //$args['to'] = [];
             $args['rawPassword'] = str_random(8); 
         }
-        $args['subject'] = '¡Bienvenido a GlimGlam!';
+        $args['subject'] = '¡Bienvenido a Bounce - Tennis Lifestyle!';
         return self::sendMail('welcome', $args, $test, $send, $format);
     }
     // </editor-fold>    
@@ -28,7 +28,7 @@ class Mail extends MailBase {
         if(!isset($args['user'])) {
             $user = \DwSetpoint\Models\User::getRandom(); 
             $args['user'] = $user;
-            $args['to'] = [];
+            //$args['to'] = [];
             $args['rawPassword'] = str_random(8); 
         }
         $args['subject'] = "Recupearación de Password";

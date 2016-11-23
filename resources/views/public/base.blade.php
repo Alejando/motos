@@ -7,8 +7,8 @@
         @include('public.style-sheets')
         @yield('headers')
     </head>
-    
-    <body class="setpoint-public">
+
+    <body class="setpoint-public" ng-app="setpoint">
         <div class="main-conteiner">
             <header class="fontal">
                 <div class="menu-top">
@@ -24,13 +24,13 @@
                                 <a class="iconocierre"></a>
                             </li>
                             @if(Auth::check())
-                                <li>
-                                    <a href="{{route('admin.index')}}" class="transicion">Administración</a>
-                                </li>
+                            <li>
+                                <a href="{{route('admin.index')}}" class="transicion">Administración</a>
+                            </li>
                             @else
-                                <li>
-                                    <a href="{{url('login')}}" class="transicion">Ingresar</a>
-                                </li>
+                            <li>
+                                <a href="{{url('login')}}" class="transicion">Ingresar</a>
+                            </li>
                             @endif
                             <li>
                                 <a href="" class="transicion">Contacto</a>
@@ -63,106 +63,106 @@
                     <div style="clear: both"></div>
                 </nav>
                 @if($showOffert)
-                    @include('public.blocks.offerts')
+                @include('public.blocks.offerts')
                 @endif
                 <div style="clear: both"></div>
             </header>
-            <div class="div-main-content"> 
+            <div class="div-main-content">
                 @yield('body')
                 <div style="clear: both"></div>
                 @if($showBannerBottom)
-                    @include('public.blocks.bannerBottom')
+                @include('public.blocks.bannerBottom')
                 @endif
             </div>
-        <footer>
-            <div class="marcas">
-                <div id="owl-marcas" class="owl-carousel owl-theme">
-                    <div class="item"><a class="sprite logo-king-of-tennis">King of tenis</a></div>
-                    <div class="item"><a class="sprite logo-adidas">Adidas</a></div>
-                    <div class="item"><a class="sprite logo-wilson">Wilson</a></div>
-                    <div class="item"><a class="sprite logo-tennis-advisor">TennisAdvisor</a></div>
-                    <div class="item"><a class="sprite logo-nike">Nike</a></div>
+            <footer>
+                <div class="marcas">
+                    <div id="owl-marcas" class="owl-carousel owl-theme">
+                        <div class="item"><a class="sprite logo-king-of-tennis">King of tenis</a></div>
+                        <div class="item"><a class="sprite logo-adidas">Adidas</a></div>
+                        <div class="item"><a class="sprite logo-wilson">Wilson</a></div>
+                        <div class="item"><a class="sprite logo-tennis-advisor">TennisAdvisor</a></div>
+                        <div class="item"><a class="sprite logo-nike">Nike</a></div>
+                    </div>
                 </div>
-            </div>
-            <div class="social">
-                <section class="redes row">
-                    <div  class="row cajaredes">
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="cajacentermiddle">
-                                        <div class="celdacentermiddle">
-                                            <i class="txtright"><b>Nuestras</b><br>Redes Sociales</i>
+                <div class="social">
+                    <section class="redes row">
+                        <div  class="row cajaredes">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="cajacentermiddle">
+                                            <div class="celdacentermiddle">
+                                                <i class="txtright"><b>Nuestras</b><br>Redes Sociales</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="cajacentermiddle">
+                                            <div class="celdacentermiddle">
+                                                <div class="txtcenter">
+                                                    <a href="" class="sprite logo-twitter" title="Twitter">Twitter</a>
+                                                    <a href="" class="sprite logo-fb" title="Facebook">Facebook</a>
+                                                    <a href="" class="sprite logo-youtube" title="youtube">Youtube</a>
+                                                    <a href="" class="sprite logo-instragram" title="Instragram">Instragram</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-7">
-                                    <div class="cajacentermiddle">
-                                        <div class="celdacentermiddle">
-                                            <div class="txtcenter">
-                                                <a href="" class="sprite logo-twitter" title="Twitter">Twitter</a>
-                                                <a href="" class="sprite logo-fb" title="Facebook">Facebook</a>
-                                                <a href="" class="sprite logo-youtube" title="youtube">Youtube</a>
-                                                <a href="" class="sprite logo-instragram" title="Instragram">Instragram</a>
+                            </div>
+                            <div  class="col-sm-6">
+                                <div class="row cajanewsletter">
+                                    <div class="col-md-5">
+                                        <div class="cajacentermiddle">
+                                            <div class="celdacentermiddle">
+                                                <i class="txtright"><b>Suscribete para recibir</b><br/>nuestras promociones</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="cajacentermiddle">
+                                            <div class="celdacentermiddle">
+                                                <div class="contenedorfield">
+                                                    <input type="text" class="fieldnewsletter" />
+                                                    <button class="sprite icon-correo">Coreo</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div  class="col-sm-6">
-                            <div class="row cajanewsletter">
-                                <div class="col-md-5">
-                                    <div class="cajacentermiddle">
-                                        <div class="celdacentermiddle">
-                                            <i class="txtright"><b>Suscribete para recibir</b><br/>nuestras promociones</i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="cajacentermiddle">
-                                        <div class="celdacentermiddle">
-                                            <div class="contenedorfield">
-                                                <input type="text" class="fieldnewsletter" />
-                                                <button class="sprite icon-correo">Coreo</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
+                    </section>
+                    <section class="info">
+                        <nav>
+                            <ul class="menu row">
+                                <li class="col-sm-3"><a href="{{url('/direccion')}}"><span class="sprite icon-ubicacion"></span>Dirección</a></li>
+                                <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención 00:00 a 00:00</a></li>
+                                <li class="col-sm-2"><a href="" class="aviso">Aviso Legal</a></li>
+                                <li class="col-sm-4"><a class="sprite logo-bounce-2">Bounce Tennis Lifestyle</a></li>
+                            </ul>
+                        </nav>
+                    </section>
+                    <section class="metodos-pago">
+                        <div class="marcas">
+                            <div id="owl-metodos" class="owl-carousel owl-theme">
+                                <div class="item"><a href="" class="sprite logo-visa">Visa</a></div>
+                                <div class="item"><a href="" class="sprite logo-master-card">Master Card</a></div>
+                                <div class="item"><a href="" class="sprite logo-paypal">PayPal</a></div>
+                                <div class="item"><a href="" class="sprite logo-oxxo">Oxxo</a></div>
+                                <div class="item"><a href="" class="sprite logo-seven">Seven</a></div>
+                                <div class="item"><a href="" class="sprite logo-bbva">Bbva</a></div>
+                                <div class="item"><a href="" class="sprite logo-scotiabank">Scotiabank</a></div>
+                                <div class="item"><a href="" class="sprite logo-santander">Santander</a></div>
+                            </div>
                         </div>
-                    </div>
-                </section>
-                <section class="info">
-                    <nav>
-                        <ul class="menu row">
-                            <li class="col-sm-3"><a href="{{url('/direccion')}}"><span class="sprite icon-ubicacion"></span>Dirección</a></li>
-                            <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención 00:00 a 00:00</a></li>
-                            <li class="col-sm-2"><a href="" class="aviso">Aviso Legal</a></li>
-                            <li class="col-sm-4"><a class="sprite logo-bounce-2">Bounce Tennis Lifestyle</a></li>
-                        </ul>
-                    </nav>
-                </section>
-                <section class="metodos-pago">
-                    <div class="marcas">
-                        <div id="owl-metodos" class="owl-carousel owl-theme">
-                            <div class="item"><a href="" class="sprite logo-visa">Visa</a></div>
-                            <div class="item"><a href="" class="sprite logo-master-card">Master Card</a></div>
-                            <div class="item"><a href="" class="sprite logo-paypal">PayPal</a></div>
-                            <div class="item"><a href="" class="sprite logo-oxxo">Oxxo</a></div>
-                            <div class="item"><a href="" class="sprite logo-seven">Seven</a></div>
-                            <div class="item"><a href="" class="sprite logo-bbva">Bbva</a></div>
-                            <div class="item"><a href="" class="sprite logo-scotiabank">Scotiabank</a></div>
-                            <div class="item"><a href="" class="sprite logo-santander">Santander</a></div>
-                        </div>
-                    </div>
-                </section>
-                <section class="copyrigth">
-                    <div>Copyright © BOUNCE, SA de CV. TODOS LOS DERECHOS RESERVADOS</div>
-                    <div><b>©  D. R. 2016</b></div>
-                </section>
-            </div>
-        </footer>
+                    </section>
+                    <section class="copyrigth">
+                        <div>Copyright © BOUNCE, SA de CV. TODOS LOS DERECHOS RESERVADOS</div>
+                        <div><b>©  D. R. 2016</b></div>
+                    </section>
+                </div>
+            </footer>
         </div>
         @include('public.scripts')
     </body>

@@ -1,4 +1,4 @@
-setpoint.factory('User', function (ModelBase, $q, $http) {    
+setpoint.factory('User', function (ModelBase, $q, $http, Product) {    
     var User = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -13,8 +13,17 @@ setpoint.factory('User', function (ModelBase, $q, $http) {
             'password',
             'profile'
         ],
-        relations : []
-    }, {
+        relations : [
+            ['bookmarks', Product, 'hasMany']
+        ],
+        getIdProductInBookmarks: function(){
+            var def = $q.defer();
+            var url = laroute.route('user.getBookmarks');
+            $http.get(url).then(function(request) {
+                def.resolve(request.data);
+            });
+            return def.promise;
+        },
         addBookmark: function(id_product){
             var def = $q.defer();
             var url = laroute.route('user.addBookmark', {'id_product':id_product});
@@ -31,6 +40,8 @@ setpoint.factory('User', function (ModelBase, $q, $http) {
             });
             return def.promise;
         }
+    }, {
+        
     });
     return User;
 });

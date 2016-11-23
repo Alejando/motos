@@ -1,62 +1,42 @@
 @extends('mails.frames.common')
 
 @section('style')
-<style>
-    .welcome {
-        color:blue;
-    }
-</style>
+            .message_body{
+                padding: 10px 60px 10px 60px;
+            }
+            .title_message{
+                font-size: 20px; color: #1893D7;
+            }
+            .text_message{
+                font-size: 16px;
+            }
+            .login{
+                background: #1893D7; color: #FFF; 
+                display: inline-block; 
+                padding: 8px 15px 8px 15px; 
+                text-decoration: none; 
+                margin: 20px 0 20px 0;
+            }
+            .user_section{
+                background: #C1D72E;
+            }
+            .user_data{
+                color: #FFF; 
+                padding: 20px 0 0 0;
+            }
 @stop
 
 @section('message')
-<div class="banner" style="padding: 18px 0;color: #fefefe;">
-        <h2 style="text-transform: uppercase;margin: 40px auto;font-weight: 100;font-size: 40px;">
-            {{ $user->isMale() ? '¡BIENVENIDO':'¡BIENVENIDA'}} <span style="">{{$user->name}}!</span></h2>
+<div class="message_body">
+    <p class="title_message">¡Gracias por registrarse!</p>
+    <p class="text_message">Nuestros colaboradores estarán pendientes de brindarle una excelente atención.</p>
+    <a href="#" class="login">Iniciar Sesión</a>
 </div>
-<div class="mensaje" style="color: #003937; padding: 0 10%;">
-        <p style="margin: 16px auto;font-size: 20px;margin-top: 30px;">Gracias por registrarte en <a href="http://bounce.mx" style="color: #003937;">Bounce</a></p>
-        <p style="margin: 16px auto;">A partir de este momento podrás acceder nuestros productos y aprovechar la amplia oferta que tenemos para ti.</p>
-        <hr>
-        <a href="http://glimglam.mx/login" style="color: #fff; text-decoration: none;">
-            <div style="margin: 10px auto 30px auto;border: 1px solid #3c9ba2;padding: 10px; width: 100px;background-color: #00bcb6;display: inline-block;">Iniciar Sesión</div>
-        </a>
-</div>
-<div class="datos" style="background-color: #efefef; color: #003937;padding: 15px 30px;">
-        <div style="width:49%;text-align: left;display: inline-block;vertical-align: top;">
-                <h3 style="text-align: center;">Tus datos</h3>
-                <p style="text-align: center;">{{$user->name}}</p>
-                <p style="text-align: center;">Usuario: {{$user->email}}</p>
-                @if($rawPassword)
-                    <p style="text-align: center;">Contraseña: {{$rawPassword}}</p>
-                @endif
-                <p style="display: none; text-align: center;">Intereses:</p>
-                <table style="display: none; text-align: center; font-size: 12px;" width="100%"> 
-                    <tr>
-                      <td style="padding: 7px 0;">Joyería</td>
-                      <td style="padding: 7px 0;">Moda/Accesorios</td>
-                    </tr>
-                    <tr>
-                      <td style="padding: 7px 0;">Electrónica</td>
-                      <td style="padding: 7px 0;"></td>
-                    </tr>
-                    <tr>
-                      <td style="padding: 7px 0;">Zapatos</td>
-                      <td style="padding: 7px 0;"></td>
-                    </tr>
-                  </table>
-        </div>
-        <div style="width:49%;display: inline-block;vertical-align: top;">
-                <h3 style="text-align: center;">Acerca de GlimGlam</h3>
-                <a href="{{asset("/#!video")}}" target="_blank"><img src="{{asset('img/mail/btn-videoplayoverlay.png')}}" style="width: 90%;" ></a>
-        </div>
-</div>
-<p style="font-size: 14px;"><span style="font-size: 22px; font-weight: bold;">Gracias,</span><br>Equipo GlimGlam</p>
+<div class="user_section">
+    <h2 class="user_data">
+        {{$user->name}}<br />
+        {{$user->email}}
+    </h2>
 @stop
 
 
-@section('oculto')
-Welcome! <span class="welcome">s{{$user->name}}</span>
-    {{$user->email}}
-    {{env('EMAIL_TEST_DEVELOPER')}}
-    <img src="{{$message->embed("img/logo.png")}}">
-@stop

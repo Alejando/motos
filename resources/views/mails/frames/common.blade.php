@@ -1,27 +1,78 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        @yield('style')
+        <style>
+            .header {
+                min-width: 300px; 
+                max-width: 600px; 
+                margin: auto; 
+                text-align: 
+                center;font-family: Tahoma, Geneva, sans-serif; 
+                background: #f9f9f9;
+            }
+            .logo_header{
+                padding: 2%; 
+                text-align: left; 
+                background: #FFF; 
+                box-shadow: 0 1px 3px #ddd;
+            }
+            .footer{
+                background: #002B53; 
+                padding: 10px;
+            }
+            .schedule_footer{
+                width: 49%; text-align: 
+                left; display: inline-block; 
+                vertical-align: top; color: #FFF;
+            }
+            .hours{
+                display: block; 
+                padding: 10px 0 0 0;
+            }
+            .link_notice{
+                font-size: 12px; 
+                color: #FFF; 
+                text-decoration: none;
+            }
+            .social_media{
+                width: 49%; 
+                text-align: right; 
+                display: inline-block; 
+                vertical-align: top;
+            }
+            @yield('style')
+        </style>
     </head>
     <body>
-        <div class="contenedor" style="min-width: 300px; max-width: 600px; border: 1px solid #284f53;margin: auto; text-align: center;font-family: Tahoma, Geneva, sans-serif;">
-            <div class="cabeza" style="background-image: url('{{asset('img/mail/bg-head-mail.jpg')}}');background-repeat: no-repeat;">
-		<img src="{{asset('img/mail/logo-glimglam.png')}}" alt="Logo Glim Glam" style="margin: 17px auto;">
-            </div>
-            
+        <body>
+        <!--HEADER inicio-->
+            <div class="header">
+                <div class="logo_header">
+                    <img src="{{asset('img/mail/logo.png')}}" />
+                </div>
+        <!--HEADER fin-->
+
+        <!--BODY inicio-->
             @yield('message')
-            
-            <div class="pie" style="background-color: #343233;padding: 5px 0;height: 40px;">
-                    <div style="text-align: left;display: inline-block;float: left;margin-left: 10px;margin-top: 3px;">
-                            <a href="{{Config('app.social.fb')}}"><img src="{{asset('img/mail/ico-facebook.png?').time()}}" target="_blank"></a>
-                            <a href="{{Config('app.social.ig')}}"><img src="{{asset('img/mail/ico-instagram.png?'.time())}}" target="_blank"></a>
-                            <a href="{{Config('app.social.yt')}}"><img src="{{asset('img/mail/ico-youtube.png?').time()}}" target="_blank"></a>
-                            <a href="{{Config('app.social.tw')}}"><img src="{{asset('img/mail/ico-twitter.png?').time()}}" target="_blank"></a>
+        <!--BODY fin-->
+
+        <!--FOOTER inicio-->
+                    <div class="footer">
+                        <div class="schedule_footer">
+                            <span class="hours">
+                                Horario de atención: 00:00 a 00:00<br />
+                                <a href="" class="link_notice">Aviso de privacidad</a>
+                            </span>
+                        </div>
+                        <div class="social_media">
+                            <a href=""><img src="{{asset('img/mail/01icono.jpg')}}" /></a>
+                            <a href=""><img src="{{asset('img/mail/02icono.jpg')}}" /></a>
+                            <a href=""><img src="{{asset('img/mail/03icono.jpg')}}" /></a>
+                            <a href=""><img src="{{asset('img/mail/04icono.jpg')}}" /></a>
+                        </div>
                     </div>
-                    <div style="text-align: right;display: inline-block;float: right;margin-right: 10px;">
-                            <img src="{{asset('img/mail/logo-glimglam-footer.png')}}">
-                    </div>
+                </div>
             </div>
-        </div>
+        <!--FOOTER fin-->
     </body>
 </html>   

@@ -111,6 +111,694 @@ Corte holgado"',
                 'serial_number'=>'0',
                 'price_from'=>'799.00',
                 'default_color_id'=>null
+            ],[//7
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'7',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//8
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//9
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//10
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//11
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//12
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//13
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//14
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'1',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//15
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'2',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//16
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'4',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//17
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'5',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//18
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'4',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//19
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//20
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'7',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//21
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'8',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//22
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'9',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//23
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'1',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//24
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'2',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//25
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'3',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//23
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'4',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//27
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'5',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//28
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//29
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'7',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//30
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'8',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//31
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'9',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//32
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'1',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//34
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'2',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//35
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'3',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//36
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'4',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//37
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'5',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//38
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//39
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'7',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//40
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'8',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//41
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'9',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//42
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'1',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//643
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'2',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//44
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'3',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//45
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'4',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//46
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'5',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//47
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'6',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//48
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'7',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//49
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'8',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
+            ],[//50
+                'name'=>'Adidas - Uncontrol Climachill Polo Shirt',
+                'brand_id'=>'9',
+                'description'=>'"Baja la temperatura corporal y eleva tu nivel de rendimiento
+Este polo de tenis para hombre está pensado para los jugadores que rematan cada punto subiendo a la red. Se ha confeccionado en un tejido de malla transpirable que incorpora la tecnología climachill™ con microesferas de aluminio que te ofrecen un increíble efecto frescor durante todo el partido.
+Detalles
+La tecnología climachill™ ayuda a bajar la temperatura corporal para que suba tu nivel de rendimiento gracias a su tejido similar a la malla con microesferas de aluminio que expulsan el calor del cuerpo
+Cuello de polo con cuatro botones
+Mangas con ribete
+Corte holgado"',
+                'multi_galeries'=>'0',
+                'slug'=> str_slug('Adidas - Uncontrol Climachill Polo Shirt'),
+                'code'=>'010201040001',
+                'serial_number'=>'0',
+                'price_from'=>'799.00',
+                'default_color_id'=>null
             ]
         ];
         $colors = DwSetpoint\Models\Color::getAll();
