@@ -233,20 +233,3 @@ Route::get('tests/mails',  'TestsController@listmails')->where([
     'format' => "(?:txt|html)"
 ]);
 Route::auth();
-
-  //>>>>>>>>>>>>>>>>>>>>>>>PRUEBAS DE RELACIONES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
- // Relacion one to many Pais [inicio]
- Route::get('cate/{id}', function ($id) {
-    $result = \DwSetpoint\Models\Category::find($id)->products;
-    return ($result);
- });
-
-
-Route::get('product/{id}', function ($id) {
-    $result = \DwSetpoint\Models\Product::find($id)->categories;
-    return ($result);
- });
-
-
-  //>>>>>>>>>>>>>>>>>>>>>>>PRUEBAS DE RELACIONES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
