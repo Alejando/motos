@@ -17,7 +17,7 @@
             @endif
             <img src="{{$product->getURLCover()}}" class="img-responsive"/>
             <h3>{{$product->name}}</h3>
-            <h2>$0,000.00 {{$product->id}}</h2>
+            <h2>$0,000.00</h2>
         </div>
     </div>
 </div>

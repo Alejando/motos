@@ -128,13 +128,13 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('country','Country');
     $addAPI('state','State');
     $addAPI('address','Address');
-        
+
     Route::post('coupon/validate-code', [
         'as' => 'coupon.validateCode',
         'uses' => 'Api\\CouponController@validateCode'
     ]);
-    
-    
+
+
     Route::get('product/{id}/images', [
         'as' => 'product.getImgs',
         'uses' => 'Api\\ProductController@getImgs'
@@ -186,7 +186,7 @@ Route::get('/nuevos', 'HomeCtrl@newProducts');
 Route::get('/descuentos', 'HomeCtrl@discountedProducts');
 
 
-Route::get('/categorias/{slugs?}/paginas/{page}', [ //Muestra las categorias
+Route::get('/categorias/{slugs?}/paginas/', [ //Muestra las categorias
     'as' => 'product.getCategoryPage',
     'uses' => 'ProductCtrl@showCategory'
 ])->where('slugs', '(.*)');
@@ -233,3 +233,20 @@ Route::get('tests/mails',  'TestsController@listmails')->where([
     'format' => "(?:txt|html)"
 ]);
 Route::auth();
+
+  //>>>>>>>>>>>>>>>>>>>>>>>PRUEBAS DE RELACIONES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+ // Relacion one to many Pais [inicio]
+ Route::get('cate/{id}', function ($id) {
+    $result = \DwSetpoint\Models\Category::find($id)->products;
+    return ($result);
+ });
+
+
+Route::get('product/{id}', function ($id) {
+    $result = \DwSetpoint\Models\Product::find($id)->categories;
+    return ($result);
+ });
+
+
+  //>>>>>>>>>>>>>>>>>>>>>>>PRUEBAS DE RELACIONES<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

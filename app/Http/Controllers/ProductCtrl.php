@@ -8,7 +8,8 @@ namespace DwSetpoint\Http\Controllers;
 use DwSetpoint\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Description of ProductCtrl
@@ -18,15 +19,20 @@ use Illuminate\Pagination\Paginator;
 class ProductCtrl extends Controller{
     // <editor-fold defaultstate="collapsed" desc="showCategory">
     public function showCategory($slug, $page = 1) {
+        $page = Input::get('no'); //Pendiente a revision
         $currentPage = $page;
-        Paginator::currentPageResolver(function () use ($currentPage) {
-            return $currentPage;
+        Paginator::currentPageResolver(function () use ($page) {
+            return $page;
         });
 
         $category = \DwSetpoint\Models\Category::getBySlug($slug);
+        /* @var $paginator \Illuminate\Pagination\LengthAwarePaginator */
+        $paginator = $category->products()->paginate(4);
+        $paginator->setPageName("no");
+
         if($category) {
             return view('public.pages.products-page', [
-                'products' => $category->products()->paginate(4),
+                'products' => $paginator,
                 'categorySlug' => $slug,
                 'caregory' => $category
             ]);

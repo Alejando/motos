@@ -2,7 +2,6 @@
 @section('body')
 <nav>
     <ul class="menu sub-menu-productos">
-        <li><a href="{{url('populares')}}">POPULARES</a></li>
         <li><a href="{{url('descuentos')}}">DESCUENTOS</a></li>
         <li><a href="{{url('nuevos')}}">NUEVOS</a></li>
     </ul>
