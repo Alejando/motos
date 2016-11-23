@@ -8,7 +8,7 @@
         @yield('headers')
     </head>
     
-    <body class="setpoint-public">
+    <body class="setpoint-public"  ng-app="setpoint" >
         <div class="main-conteiner">
             <header class="fontal">
                 <div class="menu-top">
@@ -26,6 +26,9 @@
                             @if(Auth::check())
                                 <li>
                                     <a href="{{route('admin.index')}}" class="transicion">Administración</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('logout')}}" class="transicion">Salir</a>
                                 </li>
                             @else
                                 <li>
