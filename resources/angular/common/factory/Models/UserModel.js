@@ -13,7 +13,25 @@ setpoint.factory('User', function (ModelBase, $q, $http) {
             'password',
             'profile'
         ],
-        relations : []
+        relations : [],
+        login : function (email, password) {            
+            var def = $q.defer();
+            var url = laroute.url('',[])+"login";
+            var data = {
+                'email' : email,
+                'password' : password
+            } 
+            $http.post(url,data).then(function(r){
+                if(!r.data.error){
+                    def.resolve(r.data);
+                }else{
+                    def.reject(r.data);
+                }
+            }, function(e){
+                def.reject(e);
+            });
+            return def.promise;
+        }
     }, {
         addBookmark: function(id_product){
             var def = $q.defer();
