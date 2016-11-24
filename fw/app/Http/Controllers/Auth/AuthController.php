@@ -21,7 +21,10 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers {
+        login as parentLogin;
+    }
+    use ThrottlesLogins;
 
     /**
      * Where to redirect users after login / registration.
@@ -68,5 +71,21 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    public function login(\Illuminate\Http\Request $request) {
+        if ($request->ajax()) {
+            $this->validateLogin($request);
+            $credentials = $this->getCredentials($request);
+             if (\Auth::guard($this->getGuard())->attempt($credentials, $request->has('remember'))) {
+                return [
+                    'success' => true
+                ];
+            }
+            return [
+                'error' => true,
+                'message' => 'Password o usuario incorrectos'
+            ];
+        }
+        return $this->parentLogin($request);
     }
 }

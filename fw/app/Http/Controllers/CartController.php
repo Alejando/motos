@@ -20,4 +20,16 @@ class CartController  extends Controller {
             'showBannerBottom' => false
         ]);
     }
+    public function shippingForm() {
+        return view('public.pages.shipping', [
+            'showOffert' => false,
+            'showBannerBottom' => false
+        ]);     
+    }
+    public function registrationForm () {
+        return view('public.pages.client-registration-form', [
+            'showOffert' => false,
+            'showBannerBottom' => false
+        ]);
+    }
 }

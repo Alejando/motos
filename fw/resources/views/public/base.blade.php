@@ -24,9 +24,12 @@
                                 <a class="iconocierre"></a>
                             </li>
                             @if(Auth::check())
-                            <li>
-                                <a href="{{route('admin.index')}}" class="transicion">Administración</a>
-                            </li>
+                                <li>
+                                    <a href="{{route('admin.index')}}" class="transicion">Administración</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('logout')}}" class="transicion">Salir</a>
+                                </li>
                             @else
                             <li>
                                 <a href="{{url('login')}}" class="transicion">Ingresar</a>

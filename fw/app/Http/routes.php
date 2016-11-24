@@ -28,11 +28,11 @@ Route::get('/direccion', function() {
         'showBannerBottom' => false
     ]);
 });
-Route::get('/envio', function() {
-    return view('public.pages.shipping', [
-        'showOffert' => false,
-        'showBannerBottom' => false
-    ]); });
+Route::get('/envio', [
+    'as'=> 'cart.shiping',
+    'uses' => 'CartController@shippingForm'
+    
+]);
 Route::get('/pago', function() {
     return view('public.pages.checkout', [
         'showOffert' => false,
@@ -168,6 +168,7 @@ Route::group(['prefix' => 'api'], function () {
 });
 
 Route::get('/home', 'HomeController@index');
+Route::get('/regitro', 'CartController@registrationForm');
 
 Route::get('/admin',  [
     'as' => 'admin.index',

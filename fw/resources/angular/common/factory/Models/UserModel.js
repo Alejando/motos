@@ -16,6 +16,24 @@ setpoint.factory('User', function (ModelBase, $q, $http, Product) {
         relations : [
             ['bookmarks', Product, 'hasMany']
         ],
+        login : function (email, password) {            
+            var def = $q.defer();
+            var url = laroute.url('',[])+"login";
+            var data = {
+                'email' : email,
+                'password' : password
+            } 
+            $http.post(url,data).then(function(r){
+                if(!r.data.error){
+                    def.resolve(r.data);
+                }else{
+                    def.reject(r.data);
+                    }
+                }, function(e){
+                    def.reject(e);
+                });
+            return def.promise;            
+        },
         getIdProductInBookmarks: function(){
             var def = $q.defer();
             var url = laroute.route('user.getBookmarks');

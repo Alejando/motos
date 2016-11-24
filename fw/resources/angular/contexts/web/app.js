@@ -5,7 +5,8 @@ var setpoint = angular.module('setpoint', [
     'devtics-angular-modelbase'
 ]);
 
-setpoint.config(function (localStorageServiceProvider) {
+setpoint.config(function (localStorageServiceProvider, $httpProvider) {
+    $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
     localStorageServiceProvider
         .setPrefix('estrasol')
 //        .setStorageType('sessionStorage')

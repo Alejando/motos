@@ -5,13 +5,13 @@
             <div class="breadcrumbcustom">
                 Inicio <span class="separador">-</span> <span class="current">Carrito de compras</span>
             </div>
-
             <div class="pasos">
                 <a href="./carrito" class="transicion activo"><span><b>1</b></span></a>
                 <a href="./envio" class="transicion"><span><b>2</b></span></a>
-                <a href="./pago" class="transicion"><span><b>3</b></span></a>
+                @if(\Auth::user())
+                    <a href="./pago" class="transicion"><span><b>3</b></span></a>
+                @endif
             </div>
-
             <div class="cajacarrito margentop30">
                 <div class="row fila" ng-repeat="item in items">
                     <div class="col-sm-2 hidden-xs">
@@ -87,7 +87,7 @@
                         <div class="alert alert-danger" ng-show="errorCoupon"> 
                             <div ng-show="errorCoupon">* @{{errorCouponMessage}}</div>
                         </div>
-                    </div>
+                </div>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="cuenta">
@@ -96,6 +96,7 @@
                             <div class="col-xs-6"><span class="cgris">@{{cart.getSubTotal()|currency}}</span></div>
                         </div>
                         <div class="row descuento" ng-show="cart.getDiscount()"> 
+                            <div style="float: right"><a href="" ng-click="removeCoupon()" class="danger fa fa-times drager" style="color: red; font-size: 14px; position:relative; top: -6px; left: -2px"></a></div>
                             <div class="col-xs-6"><span>Descuento cupón</span></div>
                             <div class="col-xs-6"><span>- @{{cart.getDiscount()|currency}}</span></div>
                         </div>
