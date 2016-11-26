@@ -1,12 +1,21 @@
 <div  class="cols-md-12 card-box ">
     <h4 class="m-t-0 header-title"><b>Productos:</b></h4>
-    <form class="form-horizontal" role="form" ng-submit="saveItem($event)">
+    <form class="form-horizontal" role="form" ng-submit="saveItem($event)" name="productForm" novalidate>
         <div class="form-group">
             <label class="col-md-3 control-label">Nombre</label>
             <div class="col-md-8">
-                <input type="text" ng-model="selectedItem.name" class="form-control" placeholder="Nuevo Producto">
+                <input  type="text" ng-model="selectedItem.name" 
+                        class="form-control" 
+                        placeholder="Nuevo Producto"
+                        name="name"
+                        required
+                        ng-class="{error:productForm.name.$isvalid && productForm.name.$touched}">
             </div>
         </div>
+        <div class="alert alert-danger" role="alert" ng-show="productForm.name.$touched && productForm.name.$invalid">
+            <div ng-show="productForm.name.$error.required">* Campo obligatorio</div>
+        </div>
+
         <div class="form-group">
             <label class="col-md-3 control-label">Código:</label>
             <div class="col-md-8">

@@ -30,4 +30,13 @@ class HomeCtrl extends Controller {
             'products' => $products
         ]);
     }
+
+    public function aboutUs(){
+        //$contect = \DwSetpoint\Models\Contect::find(1);
+        return view('public.pages.aboutUs',[
+            'showOffert' => false,
+            'showBannerBottom' => false
+            //'contect' => $contect
+        ]);
+    }
 }

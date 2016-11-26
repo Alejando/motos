@@ -1,49 +1,48 @@
-setpoint.controller('ContentCtrl', function($scope, $q, $http, $routeParams) {
+setpoint.controller('ContentCtrl', function($scope, $q, $http, $routeParams, Content) {
     switch ($routeParams.content) {
         case 'nosotros':
             $scope.content = 'Nosotros';
-            break;
-        case 'ventajas':
-            $scope.content = 'Ventajas';
+            $scope.id = 1;
             break;
         case 'formas-de-pago':
             $scope.content = 'Formas de pago';
+            $scope.id = 2;
+            break;
+        case 'ventajas':
+            $scope.content = 'Ventajas';
+            $scope.id = 3;
             break;
         case 'terminos-y-condiciones':
             $scope.content = 'Terminos y condiciones';
+            $scope.id = 4;
             break;
         case 'condiciones-de-envio':
             $scope.content = 'Condiciones de envío';
+            $scope.id = 5;
             break;
         case 'condiciones-de-retorno':
             $scope.content = 'Condiciones de retorno';
+            $scope.id = 6;
             break;
         case 'protecion-de-datos':
             $scope.content = 'Proctección de datos';
+            $scope.id = 7;
             break;
         default:
             $scope.content = 'Contenido';
     }
+    $scope.objContent=null;
+    Content.getById($scope.id).then(function(content){
+        $scope.objContent = content;
+        $scope.objContent.backup();
+    });
 
-    //////////// TinyMCE Test
-    //$scope.tinymceModel = 'Initial content';
-
-    /*$scope.getContent = function() {
-        console.log('Editor content:', $scope.tinymceModel);
-    };*/
-
-    /*$scope.setContent = function() {
-        $scope.tinymceModel = 'Time: ' + (new Date());
-    };*/
-
+    $scope.cancel = function () {
+        $scope.objContent.rollback();
+    }
+    
     $scope.saveContent = function() {
-        console.log($scope.tinymceModel);
-        /*var url = laroute.route('Content.updateContent');
-        $http.put(url, { slug: $routeParams.content, newContent: $scope.tinymceModel })
-            .then(function(result) {
-                $scope.items = result.data;
-                console.log(result);
-            });*/
+         $scope.objContent.save();
     };
 
     $scope.tinymceOptions = {

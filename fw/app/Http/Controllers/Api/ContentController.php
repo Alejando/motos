@@ -6,11 +6,19 @@ class ContentController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Content::class;
 
     public function updateContent() {
-        $slug = Input::get('slug');
-        $newContent = Input::get('newContent');
-        $content = Content::where('slug', $slug)->first()->get();
-        $content->content = $newContent;
-        $content->save();
+        //$slug = Input::get('slug');
+        //$newContent = Input::get('newContent');
+        //$content = Content::where('slug', $slug)->first()->get();
+        //$content->content = $newContent;
+        //$content->save();
+
+        //$slug = 'nosotros';
+        //$newContent = Input::get('newContent');
+        //$content = Content::where('slug', $slug)->first()->get();
+        //$content->content = $newContent;
+        //$content->save();
+        //echo "xxxx";/**/
+        return ("xx");
     }
 
 }

@@ -344,7 +344,6 @@
             $scope.catalog = "Marcas";
             $scope.prepareItem = function(){
                 $scope.selectedItem.addFile('icon', $scope.icon);
-//                console.log($scope.selectedItem);
             };
             $scope.model = Brand;
             $scope.colorPickerOptions = {
@@ -384,7 +383,6 @@
                         })
                     ];
             };
-
         };
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="catalogo de tallas">
@@ -514,11 +512,6 @@
                     }
                 }
             };
-
-            // destroy watcher
-//            $scope.$on('$destroy', function() {
-//                unwatchMinMaxValues();
-//            });
             
             $scope.preprareForm = function () {
                 var defer = $q.defer();
@@ -593,11 +586,11 @@
                     },100);
                     return false;
                 }
-                
-//                return false;
             }
         };
         //</editor-fold>
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
         $scope.saveItem = function ($event) {
             if($scope.validateForm){
                 if($scope.validateForm() === false) {
@@ -667,7 +660,6 @@
         };
 
         var newObj = function () {
-
             return new $scope.model({});
         };
 
