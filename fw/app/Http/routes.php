@@ -234,3 +234,8 @@ Route::get('tests/mails',  'TestsController@listmails')->where([
     'format' => "(?:txt|html)"
 ]);
 Route::auth();
+
+Route::get('content/slug/{slug}', [
+    'as' => 'Content.slug',
+    'uses' => 'ContentCtrl@slug'
+]);

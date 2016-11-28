@@ -40,15 +40,15 @@
                             </li>
                             <li><a href="" class="transicion">Perfil</a></li>
                             <li><span class="separador"></span></li>
-                            <li><a href="" class="transicion">Sobre nosotros</a></li>
-                            <li><a href="" class="transicion">Ventajas</a></li>
+                            <li><a href="{{url('content/slug/nosotros')}}" class="transicion">Sobre nosotros</a></li>
+                            <li><a href="{{url('content/slug/ventajas')}}" class="transicion">Ventajas</a></li>
                             <li><span class="separador"></span></li>
                             <li><a href="" class="transicion">Voucher</a></li>
-                            <li><a href="" class="transicion">Formas de pago</a></li>
-                            <li><a href="" class="transicion">Condiciones de venta</a></li>
-                            <li><a href="" class="transicion">Condiciones de envío</a></li>
-                            <li><a href="" class="transicion">Condiciones de retorno</a></li>
-                            <li><a href="" class="transicion">Protección de datos</a></li>
+                            <li><a href="{{url('content/slug/formas-de-pago')}}" class="transicion">Formas de pago</a></li>
+                            <li><a href="{{url('content/slug/terminos-y-condiciones')}}" class="transicion">Condiciones de venta</a></li>
+                            <li><a href="{{url('content/slug/condiciones-de-envio')}}" class="transicion">Condiciones de envío</a></li>
+                            <li><a href="{{url('content/slug/condiciones-de-retorno')}}" class="transicion">Condiciones de retorno</a></li>
+                            <li><a href="{{url('content/slug/protecion-de-datos')}}" class="transicion">Protección de datos</a></li>
                             <li><span class="separador"></span></li>
                             <li><span class="txt">Número de Contacto<br /><b>01 800 000</b></span></li>
                             <li><span class="separador"></span></li>
@@ -103,10 +103,10 @@
                                         <div class="cajacentermiddle">
                                             <div class="celdacentermiddle">
                                                 <div class="txtcenter">
-                                                    <a href="" class="sprite logo-twitter" title="Twitter">Twitter</a>
-                                                    <a href="" class="sprite logo-fb" title="Facebook">Facebook</a>
-                                                    <a href="" class="sprite logo-youtube" title="youtube">Youtube</a>
-                                                    <a href="" class="sprite logo-instragram" title="Instragram">Instragram</a>
+                                                    <a href="https://twitter.com/bouncetennis/" class="sprite logo-twitter" title="Twitter">Twitter</a>
+                                                    <a href="https://www.facebook.com/bouncetennis/" class="sprite logo-fb" title="Facebook">Facebook</a>
+                                                    <a href="https://www.youtube.com/channel/bouncetennis/" class="sprite logo-youtube" title="youtube">Youtube</a>
+                                                    <a href="https://www.instagram.com/bouncetennis/" class="sprite logo-instragram" title="Instragram">Instragram</a>
                                                 </div>
                                             </div>
                                         </div>
