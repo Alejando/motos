@@ -58,5 +58,6 @@ setpoint.controller('CartListItemCtrl', ['$scope', 'Cart',
             });
         }
         
+        $('.cart').fadeIn("slow");
 }]);
 

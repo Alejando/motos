@@ -1,6 +1,6 @@
 @extends('public.base')
 @section('body')
-    <div  ng-app="setpoint" ng-controller="CartListItemCtrl">
+<div  ng-app="setpoint" ng-controller="CartListItemCtrl" class="cart" style="display:none">
         <form novalidate name="formCart" role="form">        
             <div class="breadcrumbcustom">
                 Inicio <span class="separador">-</span> <span class="current">Carrito de compras</span>
