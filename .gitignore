@@ -16,3 +16,6 @@ upload/*
 /js/estrasol/web-angular.js
 /js/estrasol/web-angular.js.map
 fw/composer.lock
+/resources/
+/app/
+/public/
