@@ -16,11 +16,12 @@
                 <span class="current">{{$category->name}}</span>
             @endif
         </div>
+
         <div class="row">
             <div class="col-sm-6">
                 <div class="cajaimagen">
                     <img ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}" class="img-responsive" />
-                    <span class="zoom"></span>
+                    <!-- <span class="zoom"></span> -->
                 </div>
                 <div class="margentop30">
                     <div>
@@ -45,12 +46,12 @@
                     <div class="serie">Num. Serie {{$product->serialNumber}}</div>
                     <div class="row margentop50">
                         <div class="col-sm-6">
-                            <h3 class="precioazul">{{Helpers::formatCurrency($product->priceFrom)}}</h3>
+                            <h3 class="precioazul">{{Helpers::formatCurrency($product->priceFrom-$product->getClculateDiscount())}}</h3>
                         </div>
                         @if($product->hasDiscount())
                             <div class="col-sm-6">
                                 <h3 class="precioamarillo">
-                                    {{Helpers::formatCurrency($product->getClculateDiscount())}}
+                                    {{Helpers::formatCurrency($product->priceFrom)}}
                                     <div class="globo pabsoluto"><span>{{$product->discountPercentage}}%</span></div>
                                 </h3>
                             </div>
@@ -90,7 +91,7 @@
                     @if($product->colors->count())
                         <div class="colores barraverde margentop30">
                             @foreach($product->colors as $color)
-                            <span class="marino"  
+                            <span class=""  
                                 ng-click="selectColor({{$color->id}})"
                                 ng-class="{'color-selected': selectedColor=={{$color->id}} }">
                                 <span style="background-color: {{$color->rgb}};"></span>                                    
@@ -108,10 +109,10 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="btnredes">
-                                <a href="" class="tw"></a>
-                                <a href="" class="fb"></a>
-                                <a href="" class="yt"></a>
-                                <a href="" class="in"></a>
+                                <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);window.location.href=('http://twitter.com/?status='+tit2+'%20'+dir+'');" class="tw pull-right"></a>
+                                <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);var dir2= encodeURIComponent(dir);window.location.href=('http://www.facebook.com/share.php?u='+dir2+'&amp;t='+tit2+'');" class="fb pull-right"></a>
+                                <!--a href="" class="yt"></a-->
+                                <!--a href="" class="in"></a-->
                             </div>
                         </div>
                     </div>
@@ -128,7 +129,7 @@
     
 
     <div class="margentop30 cajatextura">
-        <a class="btnlike"></a>
+        <!-- <a class="btnlike"></a> -->
         <div class="margentop30">
             <div id="owl-otros" class="owl-carousel owl-theme">
                 <div class="item">

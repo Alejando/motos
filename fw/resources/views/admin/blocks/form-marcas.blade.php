@@ -9,7 +9,7 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Imagen</label>
             <div class="col-md-8">
-                <input type="file" placeholder="Nueva Marca" fileread="icon" onselectfile="onselectIcon">
+                <input type="file" placeholder="Nueva Marca" fileread="icon" onselectfile="onselectIcon" accept="image/*">
                 <img class="brand-icon" ng-src="@{{iconSrc}}">
             </div>
         </div>

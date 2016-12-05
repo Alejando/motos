@@ -4,7 +4,8 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Nombre</label>
             <div class="col-md-8">
-                <input  type="text" ng-model="selectedItem.name" 
+                <input  type="text" 
+                        ng-model="selectedItem.name" 
                         class="form-control" 
                         placeholder="Nuevo Producto"
                         name="name"
@@ -19,13 +20,28 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Código:</label>
             <div class="col-md-8">
-                <input type="text" ng-model="selectedItem.code" class="form-control" placeholder="">
+                <input  type="text" 
+                        ng-model="selectedItem.code" 
+                        class="form-control" 
+                        placeholder=""
+                        name="code"
+                        required
+                        ng-class="{error:productForm.code.$isvalid && productForm.code.$touched}"
+                        ng-remote-validate="{{\DwSetpoint\Models\Product::getValidateUniqueCodeURL()}}">
             </div>
         </div>
+        <div class="alert alert-danger" role="alert" ng-show="productForm.code.$touched && productForm.code.$invalid">
+            <div ng-show="productForm.code.$error.required">* Campo obligatorio</div>
+            <div ng-show="productForm.code.$error.ngRemoteValidate">* Ya existe el código "@{{selectedItem.code}}" </div>
+        </div>
+
         <div class="form-group">
             <label class="col-md-3 control-label">Marca</label>
             <div class="col-md-8">
-                <ui-select ng-model="$parent.selectedBrand">
+                <ui-select  ng-model="$parent.selectedBrand"
+                            name="brand"
+                            required
+                            ng-class="{error:productForm.brand.$isvalid && productForm.brand.$touched}" >
                     <ui-select-match>
                         <span style="
                               background-image: url(@{{$select.selected.getLogo(20,20)}});
@@ -56,11 +72,25 @@
                 </ui-select>
             </div>
         </div>
+        <div class="alert alert-danger" role="alert" ng-show="productForm.brand.$touched && productForm.brand.$invalid">
+            <div ng-show="productForm.brand.$error.required">* Campo obligatorio</div>
+        </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Precio desde:</label>
             <div class="col-md-8">
-                <input type="text" ng-model="selectedItem.price_from" class="form-control" placeholder="Precio desde">
+                <input  type="number" 
+                        ng-model="selectedItem.price_from" 
+                        class="form-control" 
+                        placeholder="Precio desde"
+                        name="price"
+                        min = "0"
+                        required
+                        ng-class="{error:productForm.price.$isvalid && productForm.price.$touched}">
             </div>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="productForm.price.$touched && productForm.price.$invalid">
+            <div ng-show="productForm.price.$error.required">* Campo obligatorio</div>
+            <div ng-show="productForm.price.$error.min">* Solo se aceptan números positivos</div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">% de descuento:</label>

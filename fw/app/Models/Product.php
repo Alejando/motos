@@ -193,9 +193,9 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
             if($quantity<=$stock->quantity){
                 return $stock;
             }
-            throw new \Exception("No hay producto suficientes para tu pedido");
+            throw new \Exception("Lo sentimos actualmente solo contamos con ".$stock->quantity." artículos en existencia");
         }
-        throw new \Exception("No se encontro producto con esta configuración en existencia");
+        throw new \Exception("Lo sentimos actualmente no tenemos esa talla en el color seleccionado");
     }
     
     public function hasDiscount() {
@@ -210,5 +210,14 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $query->get()->get(0);
     }
     // </editor-fold>
+
+    public static function getValidateUniqueCodeURL() {
+        return route('product.validateCode');
+    }
+
+    public static function existsCode($code) {
+        $n = self::where('code', '=', $code)->count();
+        return $n>0;
+    }
 
 }

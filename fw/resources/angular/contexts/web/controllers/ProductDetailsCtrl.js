@@ -26,7 +26,7 @@
                 parseInt($scope.selectedColor, 10)
             ).then(function() {
                 BootstrapDialog.show({
-                    'message' : 'Tu producto se ha agregado al carrito, ir a carrito, continuar aquí, ir a la categoria',
+                    'message' : 'Tu producto se ha agregado al carrito',
                     'title' : 'Confirmación',                     
                     'buttons': [
                         {

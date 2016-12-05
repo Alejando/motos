@@ -103,5 +103,12 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         return $res;
     }
 
+    public function validateCode() {//productValid
+        $code = Input::get('value');
+        return [
+            'isValid' => !\DwSetpoint\Models\Product::existsCode($code),
+            'value' => $code
+        ];
+    }
     
 }

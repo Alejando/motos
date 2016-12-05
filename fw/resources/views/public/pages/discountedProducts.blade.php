@@ -1,9 +1,10 @@
 @extends('public.base')
 @section('body')
-<nav>
+<nav id="mostrar">
     <ul class="menu sub-menu-productos">
-        <li><a href="{{url('descuentos')}}">DESCUENTOS</a></li>
-        <li><a href="{{url('nuevos')}}">NUEVOS</a></li>
+        <li><a href="{{url('/#mostrar')}}">PRODUCTOS</a></li>
+        <li><a class="secction_active" href="{{url('descuentos#mostrar')}}">DESCUENTOS</a></li>
+        <li><a href="{{url('nuevos#mostrar')}}">NUEVOS</a></li>
     </ul>
 </nav>
 

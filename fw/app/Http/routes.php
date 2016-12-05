@@ -28,6 +28,14 @@ Route::get('/direccion', function() {
         'showBannerBottom' => false
     ]);
 });
+
+Route::get('/contacto', function() {
+    return view('public.pages.contact', [
+        'showOffert' => false,
+        'showBannerBottom' => false
+    ]);
+});
+
 Route::get('/envio', [
     'as'=> 'cart.shiping',
     'uses' => 'CartController@shippingForm'
@@ -134,6 +142,15 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'Api\\CouponController@validateCode'
     ]);
 
+    Route::post('category/validate-category', [
+        'as' => 'category.validateCategory',
+        'uses' => 'Api\\CategoryController@validateCategory'
+    ]);
+
+    Route::post('product/validate-code', [
+        'as' => 'product.validateCode',
+        'uses' => 'Api\\ProductController@validateCode'
+    ]);
 
     Route::get('product/{id}/images', [
         'as' => 'product.getImgs',
@@ -166,6 +183,7 @@ Route::group(['prefix' => 'api'], function () {
 
 
 });
+
 
 Route::get('/home', 'HomeController@index');
 Route::get('/regitro', 'CartController@registrationForm');
@@ -218,10 +236,6 @@ Route::get('/productos/descuentos',[
         'uses' => 'Api\\ProductController@getDiscounts'
     ]);
 
-//Route::get('/producto/{producto}/categoria/{slugs?}', [ //Muestra las categorias y el detalle del producto
-//    'as' => 'product.getInfo',
-//    'uses' => 'ProductCtrl@showProduct'
-//])->where('slugs', '(.*)');
 
 Route::get('tests/mail/{format}/{type}', [
         'uses' => 'TestsController@mail',
@@ -239,3 +253,16 @@ Route::get('content/slug/{slug}', [
     'as' => 'Content.slug',
     'uses' => 'ContentCtrl@slug'
 ]);
+
+ Route::get('parent/{id}', function ($id) {
+    $result = \DwSetpoint\Models\Category::find($id)->parent;
+    return ($result);
+ });
+
+
+Route::get('/x', function() {
+    return view('public.pages.detail', [
+        'showOffert' => false,
+        'showBannerBottom' => false
+    ]);
+});
