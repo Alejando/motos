@@ -19,3 +19,5 @@ fw/composer.lock
 /resources/
 /app/
 /public/
+/js/nbproject/private/
+/fw/nbproject/private/

@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="{{asset('assets/images/favicon_1.ico')}}">
 <link href="{{asset('js/bower_components/normalize-css/normalize.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('js/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('js/bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>

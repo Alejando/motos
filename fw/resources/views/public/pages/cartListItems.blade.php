@@ -6,9 +6,9 @@
                 Inicio <span class="separador">-</span> <span class="current">Carrito de compras</span>
             </div>
             <div class="pasos">
-                <a href="./carrito" class="transicion activo"><span><b>1</b></span></a>
-                <a href="./envio" class="transicion"><span><b>2</b></span></a>
-                @if(\Auth::user())
+                <a href="{{route('cart.list')}}" class="transicion activo"><span><b>1</b></span></a>
+                <a href="{{route('cart.shiping')}}" class="transicion"><span><b>2</b></span></a>
+                @if(\Auth::user()) 
                     <a href="./pago" class="transicion"><span><b>3</b></span></a>
                 @endif
             </div>

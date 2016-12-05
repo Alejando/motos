@@ -36,9 +36,14 @@ Route::get('/contacto', function() {
     ]);
 });
 
-Route::get('/envio', [
+Route::get('/carrito/envio', [
     'as'=> 'cart.shiping',
     'uses' => 'CartController@shippingForm'
+    
+]);
+Route::get('/carrito/registro', [
+    'as'=> 'cart.registration-form',
+    'uses' => 'CartController@registrationForm'
     
 ]);
 Route::get('/pago', function() {
