@@ -73,5 +73,15 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return $query;
     }
+
+    public static function getValidateUniqueCategoryURL() {
+        return route('category.validateCategory');
+    }
+
+    public static function existsCategory($category) {
+        $n = self::where('name', '=', $category)->count();
+        return $n>0;
+    }
+
     // </editor-fold>
 }

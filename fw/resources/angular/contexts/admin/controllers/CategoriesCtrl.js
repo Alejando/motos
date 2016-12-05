@@ -74,8 +74,25 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
         $dialog.modal('hide');
         $scope.categoryTemp = new Category();
     }; 
-    
+    $scope.validateForm = function() {
+        $scope.categoryForm.name.$touched = true;
+       
+        if(
+           $scope.categoryForm.name.$invalid 
+        ){
+            setTimeout(function() {
+                $('.form-coupons .error:eq(0)').focus();
+            },100);
+            return false;
+        }
+    };
+
     $scope.saveCategory = function ($event) {
+        if($scope.validateForm){
+            if($scope.validateForm() === false) {
+                return;
+            }
+        }
         if(!$scope.newParent && !$scope.categoryTemp.id) {
             $scope.categoryTemp.parent_category_id = $scope.parentId;
         }
@@ -102,6 +119,7 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
             }
         })
     };
+
     $scope.showCategoryForm = function (){
         var selecteds = ($tree.jstree('get_selected'));
         $scope.newParent = !(selecteds.length && (selecteds[0]!=='root'));

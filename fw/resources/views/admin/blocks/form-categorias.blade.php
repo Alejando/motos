@@ -1,5 +1,5 @@
 <div  class="cols-md-12 card-box ">
-    <form class="form-horizontal" role="form" ng-submit="saveCategory($event)">
+    <form class="form-horizontal" role="form" ng-submit="saveCategory($event)" name="categoryForm" novalidate>
     <div ng-show="newParent">
             
     </div>
@@ -12,8 +12,18 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Nombre</label>
             <div class="col-md-8">
-                <input type="text" ng-model="categoryTemp.name" class="form-control" placeholder="Nueva Categoria/Sub-Categoria">
+                <input  type="text" 
+                        ng-model="categoryTemp.name"    
+                        class="form-control" 
+                        placeholder="Nueva Categoria/Sub-Categoria"
+                        name="name"
+                        required
+                        ng-remote-validate="{{\DwSetpoint\Models\Category::getValidateUniqueCategoryURL()}}">
             </div>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">
+            <div ng-show="categoryForm.name.$error.required">* Campo obligatorio</div>
+            <div ng-show="categoryForm.name.$error.ngRemoteValidate">* Ya existe la categoría" </div>
         </div>
         <button class="btn btn-primary waves-effect waves-light">Guardar</button>
         <button class="btn btn-danger waves-effect waves-light" ng-click="cancel($event)">Cancelar</button>

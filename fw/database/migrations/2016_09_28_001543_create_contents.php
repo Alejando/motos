@@ -16,7 +16,7 @@ class CreateContents extends Migration {
             $table->string('title');
             $table->string('name');
             $table->string('slug');
-            $table->string('content');
+            $table->longText('content');
         });
     }
 

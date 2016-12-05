@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class StocksSeeder extends Seeder {
 
@@ -117,29 +118,24 @@ class StocksSeeder extends Seeder {
                 'price'=>'799.00',
                 'code'=>'010201040001',
                 'codebar'=>'4054714175024',
-            ],/*[//14
-                'quantity'=>'2',
-                'product_id'=>'6',
-                'size_id'=>'4',
-                'price'=>'799.00',
-                'code'=>'010201040001',
-                'codebar'=>'4054714175024',
-            ],[//14
-                'quantity'=>'2',
-                'product_id'=>'6',
-                'size_id'=>'5',
-                'price'=>'799.00',
-                'code'=>'010201040001',
-                'codebar'=>'4054714175024',
-            ],[//13 - End of Uncontrol Climachill Polo Shirt
-                'quantity'=>'2',
-                'product_id'=>'6',
-                'size_id'=>'6',
-                'price'=>'799.00',
-                'code'=>'010201040001',
-                'codebar'=>'4054714175024',
-            ],*/
+            ]
         ];
+
+        $faker = Faker::create();
+        for($i=0; $i<2000; $i++)
+        { 
+            $array_item = [
+                'quantity'=>rand(1,9),
+                'product_id'=>rand(1,56),
+                'size_id'=>rand(1,25),
+                'price'=>rand(100,1000),
+                'code'=>$faker->ean8(),
+                'codebar'=>$faker->ean13(),
+            ];
+            array_push($items, $array_item);
+        }
+
+
         foreach($items as $item){
             DwSetpoint\Models\Stock::create($item);
         }

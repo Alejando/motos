@@ -1,6 +1,6 @@
 @extends('public.base')
 @section('scripts')
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAGruDvAAyw2NV7gW-jjrDf7-kHKoj8BPA&libraries=geometry"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyD-8zVwLcM-VjWlBjudpaUDtOXrUbwPgFA&libraries=geometry"></script>
 <script src="{{asset('/js/contacto.js')}}" type="text/javascript"></script>
 @stop
 @section('body')
@@ -48,6 +48,7 @@
                     <div class="row margentop20 hidden-xs">
                         <div class="col-sm-7 col-sm-offset-5">
                             <a href="" id="btnenviar" class="enviar">ENVIAR</a>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -69,41 +70,35 @@
                     <div class="row margentop20 hidden-lg hidden-md hidden-sm">
                         <div class="col-sm-7 col-sm-offset-5">
                             <a href="" id="btnenviar" class="enviar">ENVIAR</a>
+                            <br>
+                        </div>
+                        <br>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="col-sm-12">
+                        <div class="col-xs-12 col-sm-6">
+                            <strong>Dirección:</strong><br><br>
+                            Prol. Mariano Otero 680<br>
+                            Zapopan, Jalisco<br>
+                            México<br>
+                            C.P. 45067<br><br>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <strong>Teléfono: (33) 3336 7487</strong>
+                            <br><br>
+                            <strong>Horario:</strong> Lunes a Viernes<br>
+                            de 9:00  a 20:00<br>
+                            (horario corrido)
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>
-            </div>
 
             <div id="mapa" class="margentop30"></div>
         </form>
     </div>
 
-
-<!--div class="">
-    <div><span></span> <span>DIRECCIÓN</span></div>
-    <div><span></span><span>HORARIO DE ANTENCIÓN</span></div>
-    <div><span></span><span>Servicio@bounce.com.mx</span></div>
-</div>
-<div>
-    <form>
-        <div class="col-sm-5 col-sm-offset-1">
-            
-            NOMBRE Y APELLIDO <input type="text" class="input-border">
-            NO. CELULAR <input type="text" class="input-border">
-            E-MAIL <input type="text" class="input-border">
-            MENSAJE <textarea class="input-border"></textarea>
-        </div>
-        <div class="col-sm-5">
-        ¿CÓMO TE GUSTARÍA RECIBIR NUESTRA RESPUESTA?
-        
-        NO. CELULAR EMAIL
-        
-        HORARIO 
-        
-        ENVIAR
-        <div> Map
-        </div>
-        </div>
-    </form>
-</div-->
 @stop

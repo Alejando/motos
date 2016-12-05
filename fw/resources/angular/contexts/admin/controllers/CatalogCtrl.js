@@ -162,6 +162,27 @@
                 });
             };
 
+            $scope.validateForm = function() {
+                $scope.productForm.name.$touched =
+                $scope.productForm.code.$touched =
+                $scope.productForm.price.$touched = true;
+                if($scope.selectedBrand===null){
+                    $scope.productForm.brand.$invalid = true;
+                    $scope.productForm.brand.$touched = true;
+                }
+                if(
+                   $scope.productForm.name.$invalid || 
+                   $scope.productForm.code.$invalid ||
+                   $scope.productForm.price.$invalid ||
+                   $scope.productForm.brand.$invalid
+                ){
+                    setTimeout(function() {
+                        $('.form-coupons .error:eq(0)').focus();
+                    },100);
+                    return false;
+                }
+            };
+
         };
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="catalogo de colores">

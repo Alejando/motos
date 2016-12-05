@@ -36,19 +36,19 @@
                             </li>
                             @endif
                             <li>
-                                <a href="" class="transicion">Contacto</a>
+                                <a href="{{url('/contacto')}}"  class="transicion">Contacto</a>
                             </li>
                             <li><a href="" class="transicion">Perfil</a></li>
                             <li><span class="separador"></span></li>
                             <li><a href="{{url('content/slug/nosotros')}}" class="transicion">Sobre nosotros</a></li>
                             <li><a href="{{url('content/slug/ventajas')}}" class="transicion">Ventajas</a></li>
                             <li><span class="separador"></span></li>
-                            <li><a href="" class="transicion">Voucher</a></li>
+                            <!-- <li><a href="" class="transicion">Voucher</a></li> -->
                             <li><a href="{{url('content/slug/formas-de-pago')}}" class="transicion">Formas de pago</a></li>
                             <li><a href="{{url('content/slug/terminos-y-condiciones')}}" class="transicion">Condiciones de venta</a></li>
                             <li><a href="{{url('content/slug/condiciones-de-envio')}}" class="transicion">Condiciones de envío</a></li>
                             <li><a href="{{url('content/slug/condiciones-de-retorno')}}" class="transicion">Condiciones de retorno</a></li>
-                            <li><a href="{{url('content/slug/protecion-de-datos')}}" class="transicion">Protección de datos</a></li>
+                            <li><a href="{{url('content/slug/aviso-de-privacidad')}}" class="transicion">Aviso de privacidad</a></li>
                             <li><span class="separador"></span></li>
                             <li><span class="txt">Número de Contacto<br /><b>01 800 000</b></span></li>
                             <li><span class="separador"></span></li>
@@ -85,6 +85,11 @@
                         <div class="item"><a class="sprite logo-wilson">Wilson</a></div>
                         <div class="item"><a class="sprite logo-tennis-advisor">TennisAdvisor</a></div>
                         <div class="item"><a class="sprite logo-nike">Nike</a></div>
+                        <div class="item"><a class="sprite logo-king-of-tennis">King of tenis</a></div>
+                        <div class="item"><a class="sprite logo-adidas">Adidas</a></div>
+                        <div class="item"><a class="sprite logo-wilson">Wilson</a></div>
+                        <div class="item"><a class="sprite logo-tennis-advisor">TennisAdvisor</a></div>
+                        <div class="item"><a class="sprite logo-nike">Nike</a></div>
                     </div>
                 </div>
                 <div class="social">
@@ -103,10 +108,10 @@
                                         <div class="cajacentermiddle">
                                             <div class="celdacentermiddle">
                                                 <div class="txtcenter">
-                                                    <a href="https://twitter.com/bouncetennis/" class="sprite logo-twitter" title="Twitter">Twitter</a>
-                                                    <a href="https://www.facebook.com/bouncetennis/" class="sprite logo-fb" title="Facebook">Facebook</a>
-                                                    <a href="https://www.youtube.com/channel/bouncetennis/" class="sprite logo-youtube" title="youtube">Youtube</a>
-                                                    <a href="https://www.instagram.com/bouncetennis/" class="sprite logo-instragram" title="Instragram">Instragram</a>
+                                                    <a href="https://twitter.com/bouncetennis/" target="_blank" class="sprite logo-twitter" title="Twitter">Twitter</a>
+                                                    <a href="https://www.facebook.com/bouncetennis/" target="_blank" class="sprite logo-fb" title="Facebook">Facebook</a>
+                                                    <a href="https://www.youtube.com/channel/bouncetennis/" target="_blank" class="sprite logo-youtube" title="youtube">Youtube</a>
+                                                    <a href="https://www.instagram.com/bouncetennis/" target="_blank" class="sprite logo-instragram" title="Instragram">Instragram</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +123,7 @@
                                     <div class="col-md-5">
                                         <div class="cajacentermiddle">
                                             <div class="celdacentermiddle">
-                                                <i class="txtright"><b>Suscribete para recibir</b><br/>nuestras promociones</i>
+                                                <i class="txtright"><b>Suscríbete para recibir</b><br/>nuestras promociones</i>
                                             </div>
                                         </div>
                                     </div>
@@ -126,8 +131,11 @@
                                         <div class="cajacentermiddle">
                                             <div class="celdacentermiddle">
                                                 <div class="contenedorfield">
-                                                    <input type="text" class="fieldnewsletter" />
-                                                    <button class="sprite icon-correo">Coreo</button>
+                                                    <form action="//graphiiics.us14.list-manage.com/subscribe/post?u=7639e02bb8ed3edc301c8d46d&amp;id=80157302c5" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                                        <input type="text" class="fieldnewsletter required email" type="email" value="" name="EMAIL" id="mce-EMAIL"/>
+                                                        <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="sprite icon-correo">Coreo</button>
+                                                    </form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -139,9 +147,9 @@
                     <section class="info">
                         <nav>
                             <ul class="menu row">
-                                <li class="col-sm-3"><a href="{{url('/direccion')}}"><span class="sprite icon-ubicacion"></span>Dirección</a></li>
-                                <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención 00:00 a 00:00</a></li>
-                                <li class="col-sm-2"><a href="" class="aviso">Aviso Legal</a></li>
+                                <li class="col-sm-3"><a href="{{url('/contacto')}}"><span class="sprite icon-ubicacion"></span>Contactanos</a></li>
+                                <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención 9:00 a 20:00</a></li>
+                                <li class="col-sm-2"><a href="{{url('content/slug/aviso-de-privacidad')}}" class="aviso">Aviso de Privacidad</a></li>
                                 <li class="col-sm-4"><a class="sprite logo-bounce-2">Bounce Tennis Lifestyle</a></li>
                             </ul>
                         </nav>
@@ -170,3 +178,5 @@
         @include('public.scripts')
     </body>
 </html>
+
+
