@@ -19,7 +19,7 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div class="cajaimagen">
+                <div class="cajaimagen"> @{{ product.getImg(selectedImg, 468, 438)}} <br> @{{ product.getImg(selectedImg, 468, 438, true)}}
                     <img ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}" class="img-responsive" />
                     <!-- <span class="zoom"></span> -->
                 </div>
@@ -119,7 +119,7 @@
                     <div class="barraverde margentop30">
                         <a class="btndescripcion">Descripción</a>
                     </div>
-                    <div>{{$product->description}}</div>
+                    <div>{{url("")}}<br>{{$product->description}}</div>
                 </div>
             </div>
         </div>

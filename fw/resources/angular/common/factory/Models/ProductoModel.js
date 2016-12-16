@@ -52,14 +52,16 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
             });
             $defer.promise;
         },
-        getImg: function(img, width, height) {
+        getImg: function(img, width, height, absoluteURL) {
             var url = laroute.route('product.img', {
                 id: this.id,
                 width: width,
                 height: height,
                 img: img
             });
-            //            console.log(url);
+            if(absoluteURL){
+                return laroute.url(url,[]);
+            }
             return url;
         },
         getURLCoverSize : function (width, height) {
