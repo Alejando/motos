@@ -5,6 +5,7 @@
         var loadProduct = Product.getById(window.product);
         
         $scope.selectImg = function(img) {
+            
             $scope.selectedImg = img;
         }
         

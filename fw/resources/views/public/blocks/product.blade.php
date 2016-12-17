@@ -5,7 +5,7 @@
                 <div class="productohover">
                     <div class="productotable">
                         <div>
-                            <span  ng-class="{btnkon: checkFav({{$product->id}})}" class="btnk" ng-click="addBookmark($event, {{$product->id}})"></span>
+                            <!-- <span  ng-class="{btnkon: checkFav({{$product->id}})}" class="btnk" ng-click="addBookmark($event, {{$product->id}})"></span> -->
                             <h3>$000.00</h3>
                         <span href="" class="btnc"></span>
                         </div>
