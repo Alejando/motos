@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Log;
 namespace DwSetpoint\Http\Controllers\Api;
+use Illuminate\Support\Facades\Input;
+use Log;
 class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Category::class;
     public function tree () {
@@ -47,7 +49,7 @@ class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
 
     public function validateCategory() {//productValid
         $category = Input::get('value');
-        Log::info('Showing user profile for user: '.$category);
+        // Log::info('Showing user profile for user: '.$category);
         return [
             'isValid' => !\DwSetpoint\Models\Category::existsCategory($category),
             'value' => $category

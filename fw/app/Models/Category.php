@@ -3,6 +3,7 @@
 namespace DwSetpoint\Models;
 class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $fillable = ['name','parent_category_id'];
+
     public static function findChildrenBySlug($parent, $categorySlug) {
         $query = \DwSetpoint\Models\Category::where('name', 'like',  ucwords(str_replace('-', " ", $categorySlug)));
         if($parent!==null){
@@ -79,7 +80,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
 
     public static function existsCategory($category) {
-        $n = self::where('name', '=', $category)->count();
+        $n = self::where('name', '=', $category)->where('parent_category_id', '=', 17)->count();
         return $n>0;
     }
 

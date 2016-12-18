@@ -15,7 +15,6 @@ $getWidthSubs = function ($subs) {
 <div class="cajamenumovil hidden-md hidden-lg">
     <a class="btncatalogo transicion"><i class="fa fa-bars"></i> <span>CATEGORÍAS</span></a>
     <div class="menumainmovil">
-    holi holi holi gosl
         <div class="cajacerrar"><a class="btncerrar transicion"><i class="fa fa-close"></i></a></div>
         
         @foreach($categories as $category)

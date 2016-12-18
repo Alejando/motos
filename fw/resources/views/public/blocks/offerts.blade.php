@@ -6,7 +6,7 @@
                 <div class="productohover">
                     <div class="productotable">
                         <div>
-                            <a href="" ng-class="class" class="btnk" ng-click="addBookmark()"></a>
+                            <!-- <a href="" ng-class="class" class="btnk" ng-click="addBookmark()"></a> -->
                             <h3>$000.00</h3>
                             <a href="" class="btnc"></a>
                         </div>

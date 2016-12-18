@@ -5,6 +5,10 @@
         {!!$categoryURL ? 'var CATEGORYS_URL='.json_encode($categoryURL).';' : ''!!}
     </script>
 @stop
+@section('scripts')
+<script type="text/javascript" src="{{asset('js/thirdparty/zoom/jquery.elevatezoom.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/config_zoom.js')}}"></script>
+@stop
 @section('body')
 
 <div ng-app="setpoint" ng-controller="ProductDetailsCtrl">
@@ -41,7 +45,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="cajadetalle">
-                    <img src="{{ $product->brand->getImgURL(120,66) }}" class="pull-right" />
+                    <img  src="{{ $product->brand->getImgURL(120,66) }}" class="pull-right" />
                     <h2 class="titulo">{{$product->name}}</h2>
                     <div class="serie">Num. Serie {{$product->serialNumber}}</div>
                     <div class="row margentop50">
@@ -137,7 +141,7 @@
                         <div class="productohover">
                             <div class="productotable">
                                 <div>
-                                    <a href="" class="btnk"></a>
+                                    <!-- <a href="" class="btnk"></a> -->
                                     <h3>$000.00</h3>
                                     <a href="" class="btnc"></a>
                                 </div>
@@ -153,7 +157,7 @@
                         <div class="productohover">
                             <div class="productotable">
                                 <div>
-                                    <a href="" class="btnk"></a>
+                                    <!-- <a href="" class="btnk"></a> -->
                                     <h3>$000.00</h3>
                                     <a href="" class="btnc"></a>
                                 </div>
@@ -169,7 +173,7 @@
                         <div class="productohover">
                             <div class="productotable">
                                 <div>
-                                    <a href="" class="btnk"></a>
+                                    <!-- <a href="" class="btnk"></a> -->
                                     <h3>$000.00</h3>
                                     <a href="" class="btnc"></a>
                                 </div>
@@ -185,7 +189,7 @@
                         <div class="productohover">
                             <div class="productotable">
                                 <div>
-                                    <a href="" class="btnk"></a>
+                                    <!-- <a href="" class="btnk"></a> -->
                                     <h3>$000.00</h3>
                                     <a href="" class="btnc"></a>
                                 </div>
@@ -205,3 +209,4 @@
         <h2>Andre Agassi</h2>
     </div>
 @stop
+
