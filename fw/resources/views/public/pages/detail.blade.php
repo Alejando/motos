@@ -23,10 +23,10 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div class="cajaimagen"> @{{ product.getImg(selectedImg, 468, 438)}} <br> @{{ product.getImg(selectedImg, 468, 438, true)}}
+                <div class="cajaimagen">
                     <img ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}" class="img-responsive" />
                     <!-- <span class="zoom"></span> -->
-                </div>
+                </div> 
                 <div class="margentop30">
                     <div>
                         <div class="item"  ng-repeat="item in selectedImgs" class="item" style="float: left;

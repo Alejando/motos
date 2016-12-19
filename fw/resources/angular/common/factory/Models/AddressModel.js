@@ -9,8 +9,8 @@ setpoint.factory('Address', function (ModelBase,$q,$http, State, Country) {
         attributes: [
             'id',
             'street',
-            'streetNumber',
-            'suiteNumber',
+            'street_number',
+            'suite_number',
             'neighborhood',
             'postal_code',
             'city',

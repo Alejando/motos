@@ -12,6 +12,7 @@ class AddFieldsToOrdersTable extends Migration
      */
     public function up()
     {
+//        die("he");
         Schema::table('orders', function (Blueprint $table) {
             $table->integer('status');
             $table->string('tracking_code');

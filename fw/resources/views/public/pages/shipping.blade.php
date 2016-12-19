@@ -97,18 +97,25 @@
                         <label class="pull-right">País</label>
                     </div>
                     <div class="col-sm-4">
-                        <select name="country" id="country" 
-                                ng-model="address.relations.coutry"
+                        <select name="country" 
+                                id="country" 
+                                ng-change="chooseCountry()"
+                                ng-model="selectedCoutry"
                                 ng-options="country.name for country in countries track by coountry.name"
+                                 class="form-control"
                         ></select>
                     </div>
                     <div class="col-sm-2">
                         <label for="estado" class="pull-right">Estado</label>
                     </div>
                     <div class="col-sm-4">
-                        <select name="estado"  id="estado" ng-model="address.relations.state"
+                        <select 
+                            name="estado"  
+                            id="estado" 
+                            ng-model="address.relations.state"
                             ng-options="state.name for state in states track by state.name"
-                            data-fact="festado" class="form-control">
+                            data-fact="festado"
+                            class="form-control">
                             <option value="">Estado/Provincia</option>
                         </select>
                     </div>
