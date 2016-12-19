@@ -1,4 +1,4 @@
-setpoint.factory('User', function (ModelBase, $q, $http, Product) {    
+setpoint.factory('User', function (ModelBase, $q, $http, Product, Address) {    
     var User = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -13,8 +13,9 @@ setpoint.factory('User', function (ModelBase, $q, $http, Product) {
             'password',
             'profile'
         ],
-        relations : [
-            ['bookmarks', Product, 'hasMany']
+        relations : [ 
+            ['bookmarks', Product, 'hasMany'],
+            ['addresses', Address, 'hasMany']
         ],
         login : function (email, password) {            
             var def = $q.defer();

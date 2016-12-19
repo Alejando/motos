@@ -304,13 +304,16 @@
                     var loadProduct = $scope.selectedItem.product();
                     var loadColor = $scope.selectedItem.color();
                     var loadSize = $scope.selectedItem.size();
-                    $q.all([loadProduct,loadColor,loadSize]).then(function(d) {
+                    $q.all([loadProduct, loadColor, loadSize]).then(function(d) {
                         $scope.selectedProduct = d[0];
                         $scope.selectedColor = d[1];
                         $scope.selectedSize = d[2];
                         $scope.onSelectProduct().then(function() {
                             def.resolve();
                         });
+                    }).catch(function(e) {
+                        console.log(e);
+                        console.log("Algo no furula");
                     });
                 } else {
                     $timeout(function() {

@@ -41,7 +41,7 @@
                         <div class="cajatxt">
                             <div>
                                 <h3 class="productonombre">
-                                    Cantidad @{{item.quantity}}
+                                    Cantidad
                                     <input type="number" name="cantidad" ng-model="item.quantity" ng-change="cart.persistItems()" ng-model-options="{ getterSetter: true }" min="1">
                                 </h3>
                             </div>

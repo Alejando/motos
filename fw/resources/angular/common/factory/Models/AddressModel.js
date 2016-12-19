@@ -1,4 +1,4 @@
-setpoint.factory('Address', function (ModelBase,$q,$http) {    
+setpoint.factory('Address', function (ModelBase,$q,$http, State, Country) {    
     var Address = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -17,9 +17,16 @@ setpoint.factory('Address', function (ModelBase,$q,$http) {
             'instructions',
             'user_id',
             'country_id',
-            'state_id'
+            'state_id',
+            'label',
+            'first_name',
+            'last_name',
+            'tel'
         ],
-        relations : []
+        relations : [
+            ['state', State, 'belongsTo'],
+            ['country', Country, 'belongsTo']
+        ]
     }, {
     });
     return Address;
