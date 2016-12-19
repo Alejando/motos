@@ -5,6 +5,11 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         @include('public.style-sheets')
+        <script type="text/javascript">
+            @if(Auth::user())
+                var user = {!!Auth::user()->toJSON()!!}; 
+            @endif
+        </script>
         @yield('headers')
     </head>
 
