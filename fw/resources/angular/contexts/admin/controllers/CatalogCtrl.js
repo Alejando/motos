@@ -221,6 +221,22 @@
                         })
                     ];
             };
+            $scope.validateForm = function() {
+                console.log("validando colores");
+                $scope.colorForm.name.$touched =
+                $scope.colorForm.pref.$touched =
+                $scope.colorForm.rgb.$touched = true;
+                if(
+                   $scope.colorForm.name.$invalid || 
+                   $scope.colorForm.pref.$invalid ||
+                   $scope.colorForm.rgb.$invalid
+                ){
+                    setTimeout(function() {
+                        $('.form-coupons .error:eq(0)').focus();
+                    },100);
+                    return false;
+                }
+            };
         };
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="catalogo de usuarios">
@@ -404,6 +420,17 @@
                         })
                     ];
             };
+            $scope.validateForm = function() {
+                console.log("validando nombre de marca");
+                $scope.brandForm.name.$touched = true;
+
+                if($scope.brandForm.name.$invalid){
+                    setTimeout(function() {
+                        $('.form-coupons .error:eq(0)').focus();
+                    },100);
+                    return false;
+                }
+            };
         };
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="catalogo de tallas">
@@ -428,6 +455,17 @@
                                 '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
+            };
+            $scope.validateForm = function() {
+                console.log("validando la talla");
+                $scope.sizeForm.name.$touched = true;
+
+                if($scope.sizeForm.name.$invalid){
+                    setTimeout(function() {
+                        $('.form-coupons .error:eq(0)').focus();
+                    },100);
+                    return false;
+                }
             };
         };
         //</editor-fold>
@@ -613,7 +651,9 @@
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         $scope.saveItem = function ($event) {
+            console.log("guardado...");
             if($scope.validateForm){
+                console.log("validando...");
                 if($scope.validateForm() === false) {
                     return;
                 }

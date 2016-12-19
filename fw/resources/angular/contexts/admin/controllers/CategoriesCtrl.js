@@ -77,9 +77,7 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
     $scope.validateForm = function() {
         $scope.categoryForm.name.$touched = true;
        
-        if(
-           $scope.categoryForm.name.$invalid 
-        ){
+        if($scope.categoryForm.name.$invalid){
             setTimeout(function() {
                 $('.form-coupons .error:eq(0)').focus();
             },100);

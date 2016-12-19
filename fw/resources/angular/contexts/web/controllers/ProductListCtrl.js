@@ -2,7 +2,7 @@ setpoint.controller('ProductListCtrl', ['$scope', 'User', 'Product',
     function($scope, User, Product){
 
         var favoritos = [];
-        console.log(favoritos);
+        // console.log(favoritos);
         //favoritos = Bookmarks; //Temporal
         //console.log(favoritos);
         //console.log(Bookmarks);
@@ -13,7 +13,7 @@ setpoint.controller('ProductListCtrl', ['$scope', 'User', 'Product',
             
         $scope.checkFav = function(id){
             return favoritos.indexOf(id) > -1;
-            console.log(favoritos);
+            // console.log(favoritos);
             //console.log(Bookmarks);
         }
         

@@ -152,6 +152,31 @@ Route::group(['prefix' => 'api'], function () {
         'uses' => 'Api\\CategoryController@validateCategory'
     ]);
 
+    Route::post('brand/validate-brand', [
+        'as' => 'brand.validateBrand',
+        'uses' => 'Api\\BrandController@validateBrand'
+    ]);
+
+    Route::post('color/validate-color', [
+        'as' => 'color.validateColor',
+        'uses' => 'Api\\ColorController@validateColor'
+    ]);
+
+    Route::post('color/validate-pref', [
+        'as' => 'color.validatePref',
+        'uses' => 'Api\\ColorController@validatePref'
+    ]);
+
+    Route::post('color/validate-rgb', [
+        'as' => 'color.validateRgb',
+        'uses' => 'Api\\ColorController@validateRgb'
+    ]);
+
+    Route::post('size/validate-size', [
+        'as' => 'size.validateSize',
+        'uses' => 'Api\\SizeController@validateSize'
+    ]);
+
     Route::post('product/validate-code', [
         'as' => 'product.validateCode',
         'uses' => 'Api\\ProductController@validateCode'
