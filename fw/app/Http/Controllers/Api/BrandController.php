@@ -88,4 +88,12 @@ class BrandController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
 //        die();
 //        parent::store($request);
     }
+    public function validateBrand() {//productValid
+        $brand = Input::get('value');
+        // Log::info('Showing user profile for user: '.$category);
+        return [
+            'isValid' => !\DwSetpoint\Models\Brand::existsBrand($brand),
+            'value' => $brand
+        ];
+    }
 }

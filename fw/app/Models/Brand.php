@@ -15,11 +15,22 @@ class Brand  extends \DevTics\LaravelHelpers\Model\ModelBase {
         ]);
     }
     public function saveImg($icon) {
-        $extension = $icon->extension();
-        if($icon && ($extension ==='png' || $extension ==='jpeg')) {
-            $path = Config('app.paths.brads');
-            $icon->move($path, $this->id.'.'. ($extension ==='jpeg'?'jpg': $extension));
+        if($icon) {
+          $extension = $icon->extension();
+            if($icon && ($extension ==='png' || $extension ==='jpeg')) {
+                $path = Config('app.paths.brads');
+                $icon->move($path, $this->id.'.'. ($extension ==='jpeg'?'jpg': $extension));
+            }  
         }
+        
+    }
+    public static function getValidateUniqueBrandURL() {
+        return route('brand.validateBrand');
+    }
+
+    public static function existsBrand($brand) {
+        $n = self::where('name', '=', $brand)->count();
+        return $n>0;
     }
     
 }
