@@ -6,7 +6,7 @@
                     <div class="productotable">
                         <div>
                             <!-- <span  ng-class="{btnkon: checkFav({{$product->id}})}" class="btnk" ng-click="addBookmark($event, {{$product->id}})"></span> -->
-                            <h3>$000.00</h3>
+                            <h3>${{$product->price_from}}</h3>
                         <span href="" class="btnc"></span>
                         </div>
                     </div>
@@ -17,7 +17,7 @@
             @endif
             <img src="{{$product->getURLCover()}}" class="img-responsive"/>
             <h3>{{$product->name}}</h3>
-            <h2>$0,000.00</h2>
+            <h2>${{$product->price_from}}</h2>
         </div>
     </div>
 </div>

@@ -52,5 +52,5 @@ $getWidthSubs = function ($subs) {
             <li><a href="{{$category->getURL()}}" class="transicion">{{strtoupper($category->name)}}</a></li>
         @endif
     @endforeach
-    <li><a href="" class="transicion">DESCUENTOS</a></li>
+    <!-- <li><a href="" class="transicion">DESCUENTOS</a></li> -->
 </ul>
