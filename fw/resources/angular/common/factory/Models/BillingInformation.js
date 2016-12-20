@@ -1,9 +1,10 @@
-setpoint.factory('BillingInformation', function (ModelBase,$q,$http, User, Country, STate) {    
+try{
+setpoint.factory('BillingInformation', function (ModelBase, $q, $http, User, Country, State) {    
     var BillingInformation = function (args) {
         ModelBase.apply(this, arguments);
     };
-    ModelBase.createModel(Brand , {   
-        alias: 'billing-information',
+    ModelBase.createModel(BillingInformation , {   
+        alias: 'billingInformation',
         setters : {
         },
         attributes: [
@@ -14,7 +15,8 @@ setpoint.factory('BillingInformation', function (ModelBase,$q,$http, User, Count
             'street_number',
             'suite_number',
             'neighborhood',
-            'postal_code',            
+            'postal_code',    
+            'city'
         ],
         relations : [
             ['country', Country, 'belongsTo' ],
@@ -24,5 +26,9 @@ setpoint.factory('BillingInformation', function (ModelBase,$q,$http, User, Count
     }, {
         
     });
+    User.addRelation('billingInformation', BillingInformation, 'hasMany');
     return BillingInformation;
 });
+}catch(e){
+    alert(e);
+}

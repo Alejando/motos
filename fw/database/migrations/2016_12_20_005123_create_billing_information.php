@@ -20,6 +20,7 @@ class CreateBillingInformation extends Migration {
             $table->string('suite_number');
             $table->string('neighborhood');
             $table->string('postal_code');
+            $table->string('city');
             $table->integer('user_id')->unsigned();
             $table->integer('country_id')->unsigned();
             $table->integer('state_id')->unsigned();

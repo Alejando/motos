@@ -123,7 +123,7 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('brand','Brand');
     Route::get('stock/get-stocks',[
         'as' => 'stock.getStocks',
-        'uses' => 'Api\\StockController@getStocks'
+        'uses' => 'Api\\StockController@getStocks'  
     ]);
     Route::get('coupon/validate-code/{code}',[
         'as' => 'coupon.getValdateByCode',
@@ -136,7 +136,7 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('product','Product');
     $addAPI('content','Content');
     $addAPI('coupon','Coupon');
-    $addAPI('billing-infomation','BillingInformation');
+    $addAPI('billingInformation','BillingInformation');
     //Catalogo de Paises, Estados, Direcciones
     $addAPI('country','Country');
     $addAPI('state','State');

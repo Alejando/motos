@@ -143,7 +143,7 @@
             </div>
 
             <div class="botonera margentop50">
-                <a href="./envio" class="transicion">Continuar</a>
+                <a href="{{route('cart.shiping')}}" class="transicion">Continuar</a>
             </div>  
         </form>
     </div>

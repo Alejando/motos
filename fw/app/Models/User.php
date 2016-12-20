@@ -45,6 +45,11 @@ class User extends Authenticatable {
         return $this->hasMany(Address::class);
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="billingInformation">
+    public function billingInformation() {
+        return $this->hasMany(BillingInformation::class);
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="setPasswordAttribute">
     public function setPasswordAttribute($password) {
         $this->attributes['password'] = \Hash::make($password);

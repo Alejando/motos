@@ -36,7 +36,7 @@ elixir(function(mix) {
         '../../angular/contexts/admin/controllers/*.js'
     ], '../js/estrasol/app.js');
     mix.scripts([
-         '../../angular/contexts/web/app.js',
+        '../../angular/contexts/web/app.js',
         '../../angular/common/*.js',
         '../../angular/common/**/*.js',
         '../../angular/contexts/web/controllers/*.js'

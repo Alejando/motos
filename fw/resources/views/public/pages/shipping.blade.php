@@ -20,7 +20,7 @@
         @else
             <h2 class="subtitulo">Datos de Envío</h2>
             <form id="formenvio" method="post"> 
-                <div class="row  margentop20">
+                <div class="row  margentop20" ng-hide="!address.id">
                     <div class="col-sm-2">
                         <label class="pull-right">
                             Dirrección:
@@ -37,20 +37,7 @@
                         <button 
                             class="btn btn-primary" 
                             ng-click="newAddress()"                             
-                        >Nueva Dirección</button>                        
-                    </div>  
-                    <div  class="col-sm-3">
-                        <button
-                            class="btn btn-primary" 
-                            ng-hide="address.id"
-                            ng-click="saveNewAddress()"
-                        >Guardar</button>
-                        <button
-                            class="btn btn-danger" 
-                            ng-click="cancelNewAddress()"
-                            ng-show="!address.id && addresses.length>1"
-                        >Cancelar @{{addresses.length}}</button>
-                        
+                        >Nueva dirección</button>                        
                     </div>
                 </div>
                 
@@ -59,7 +46,7 @@
                         <label for="" class="pull-right">Etiqueta</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="tel" ng-model="address.label" name="label" id="label" class="form-control"/><br/>
+                        <input type="tel" ng-model="address.label" name="label" id="label" class="form-control" placeholder="Etiqueta"/><br/>
                         <i>*Nombre de la dirección, Ejemplos: Oficina, Casa</i>
                     </div>
                 </div>
@@ -166,6 +153,21 @@
                         <textarea name="instrucciones" id="instrucciones" ng-model="address.instructions" cols="30" rows="4" class="form-control"></textarea>
                     </div>
                 </div>
+                <div class="row margentop20">
+                    <div  class="col-sm-12 text-right">
+                        <button
+                            class="btn btn-primary" 
+                            ng-hide="address.id"
+                            ng-click="saveNewAddress()"
+                        >Guardar dirección</button>
+                        <button
+                            class="btn btn-danger" 
+                            ng-click="cancelNewAddress()"
+                            ng-show="!address.id && addresses.length>1"
+                        >Cancelar</button>
+                        
+                    </div>
+                </div>
 
                 <div class="row margentop20">
                     <div class="col-sm-10 col-sm-offset-2">
@@ -176,107 +178,136 @@
                     </div>
                 </div>
 
-                <div class="cajafactura">
+                <div class="cajafactura-x">                    
                     <div class="row margentop20">
-                        <div class="col-sm-2">
-                            <label for="razon" class="pull-right">Razón Social</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" name="razon" id="razon" class="form-control" />
-                        </div>
                         <div class="col-sm-2">
                             <label for="rfc" class="espacio pull-right">R.F.C.</label>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" name="rfc" id="rfc" class="form-control" />
+                            <select class="form-control" 
+                                ng-model="billInfo"
+                                ng-options="binfo.rfc for binfo in billingInformation track by binfo.rfc"
+                                ng-show="!tempNewBillInfo"
+                            ></select>
+                            <input type="text" 
+                                class="form-control"
+                                ng-model="billInfo.rfc" 
+                                ng-show="tempNewBillInfo"
+                                id="rfc"
+                            />
+                        </div>
+                        <div class="col-sm-2" ng-show="billInfo.id">
+                            <button class="btn btn-primary" ng-click="newBillInfo()"
+                            >Nueva</button>
+                        </div>
+                    </div>
+                    <div class="row margentop20">
+                        <div class="col-sm-2">
+                            <label for="razon" class="pull-right">Razón Social</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" ng-model="billInfo.business_name" name="razon" id="razon" class="form-control" />
                         </div>
                     </div>
 
                     <div class="row margentop20">
-                        <div class="col-sm-10 col-sm-offset-2">
+                        <div class="col-sm-4 col-sm-offset-3">
                             <label class="qfactura">
-                                <input type="checkbox" name="didentica" id="didentica" /> 
-                                <span>Dirección fiscal igual a la de envío</span>
+                                <span> Usar la información de la dirección envío:</span>
                             </label>
                         </div>
-                    </div>
-
-                    <div class="row margentop20">
-                        <div class="col-sm-2">
-                            <label for="fdireccion" class="pull-right">Dirección</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" name="fdireccion" id="fdireccion" class="form-control" />
-                        </div>
-                        <div class="col-sm-2">
-                            <label for="fentrecalles" class="espacio pull-right">Entre Calles</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" name="fentrecalles" id="fentrecalles" class="form-control" />
+                        <div class="col-sm-3">
+                            <select class="form-control" 
+                                    ng-model="ojbCopyAddres"
+                                    ng-change="copyAddress()"
+                                    ng-options="address.label for address in addresses track by address.id">
+                                <option value="">(Ninguna)</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="row margentop20">
+                        <div class="col-sm-2">
+                            <label for="fdireccion" class="pull-right">Calle</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" ng-model="billInfo.street"  name="fdireccion" id="fdireccion" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="fentrecalles" class="espacio pull-right">No.</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" ng-model="billInfo.street_number" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row margentop20">
+                        <div class="col-sm-2">
+                            <label for="fentrecalles" class="espacio pull-right">No. Interior</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" ng-model="billInfo.suite_number" class="form-control" />
+                        </div>
+                        
                         <div class="col-sm-2">
                             <label for="fcolonia" class="pull-right">Colonia</label>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" name="fcolonia" id="fcolonia" class="form-control" />
-                        </div>
-                        <div class="col-sm-2">
-                            <label for="fcp" class="espacio pull-right">Código Postal</label>
-                        </div>
-                        <div class="col-sm-4">
-                            <input type="text" name="fcp" id="fcp" class="form-control" />
+                            <input type="text" ng-model="billInfo.neighborhood" class="form-control" />
                         </div>
                     </div>
 
                     <div class="row margentop20">
+                        
+                        <div class="col-sm-2">
+                            <label class="pull-right">País</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <select name="country" 
+                                    id="country" 
+                                    ng-change="chooseBillInfoCountry()"
+                                    ng-model="selectedBillCoutry"
+                                    ng-options="country.name for country in countries track by coountry.name"
+                                     class="form-control"
+                            ></select>
+                        </div>
                         <div class="col-sm-2">
                             <label for="festado" class="pull-right">Estado</label>
                         </div>
                         <div class="col-sm-4">
-                            <select name="festado" id="festado" class="form-control">
+                            <select 
+                                name="estado2"  
+                                id="estado2" 
+                                ng-model="billInfo.relations.state"
+                                ng-options="state.name for state in states track by state.name"
+                                class="form-control">
                                 <option value="">Estado/Provincia</option>
-                                <option value="203">Aguascalientes</option>
-                                <option value="195">Baja California</option>
-                                <option value="216">Baja California Sur</option>
-                                <option value="622">Campeche</option>
-                                <option value="219">Chiapas</option>
-                                <option value="209">Chihuahua</option>
-                                <option value="198">Coahuila</option>
-                                <option value="215">Colima</option>
-                                <option value="213">Distrito Federal</option>
-                                <option value="199">Durango</option>
-                                <option value="194">Estado de México</option>
-                                <option value="196">Guanajuato</option>
-                                <option value="208">Guerrero</option>
-                                <option value="211">Hidalgo</option>
-                                <option value="190">Jalisco</option>
-                                <option value="210">Michoacan</option>
-                                <option value="207">Morelos</option>
-                                <option value="214">Nayarit</option>
-                                <option value="191">Nuevo León</option>
-                                <option value="218">Oaxaca</option>
-                                <option value="192">Puebla</option>
-                                <option value="201">Queretaro</option>
-                                <option value="220">Quintana roo</option>
-                                <option value="200">San Luis Potosi</option>
-                                <option value="206">Sinaloa</option>
-                                <option value="620">Sonora</option>
-                                <option value="217">Tabasco</option>
-                                <option value="204">Tamaulipas</option>
-                                <option value="193">Tlaxcala</option>
-                                <option value="205">Veracruz</option>
-                                <option value="202">Yucatán</option>
-                                <option value="222">Zacatecas</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="row margentop20">
                         <div class="col-sm-2">
                             <label for="fciudad" class="espacio pull-right">Ciudad</label>
                         </div>
                         <div class="col-sm-4">
-                            <input type="text" name="fciudad" id="fciudad" class="form-control" />
+                            <input type="text" name="fciudad" id="fciudad"  ng-model="billInfo.city"  class="form-control" />
+                        </div>
+                        
+                        
+                        <div class="col-sm-2">
+                            <label for="fcp" class="espacio pull-right">Código Postal</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" ng-model="billInfo.postal_code"  class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row margentop20 text-right" >
+                        <div class="col-sm-12"  ng-hide="billInfo.id">
+                            <button class="btn btn-primary" ng-click="saveNewBillInfo()">Guardar Información de facturación</button>
+                            <button class="btn btn-danger"
+                                ng-click="cancelNewBillInfo()"
+                                ng-show="!billInfo.id && billingInformation.length>1"
+                            >Cancelar</button>
                         </div>
                     </div>
                 </div>
@@ -285,7 +316,7 @@
     </div>
     @if(\Auth::user())
         <div class="botonera margentop50">
-            <a href="#" "./pago" class="transicion" ng-click="nextStep($event)">Continuar</a>
+            <a href="#" class="transicion" ng-click="nextStep($event)">Continuar</a>
         </div>
     @endif
 </div>
