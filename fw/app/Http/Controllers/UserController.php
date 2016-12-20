@@ -18,6 +18,15 @@ class UserController  extends Controller {
         return view('user.pages.profile', [
             'showOffert' => false,
             'showBannerBottom' => false
+            // 'menuUser' => true
+
+        ]);
+    }
+
+    public function getOrders(){
+        return view('user.pages.orders', [
+            'showOffert' => false,
+            'showBannerBottom' => false
         ]);
     }
 
@@ -36,3 +45,10 @@ class UserController  extends Controller {
         ]);
     }
 }
+
+// $products = \DwSetpoint\Models\Product::where('discount_percentage', '>', 0)->paginate(8);
+//         return view('public.pages.discountedProducts',[
+//             'showOffert' => true,
+//             'showBannerBottom' => true,
+//             'products' => $products
+//         ]);

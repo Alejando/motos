@@ -296,3 +296,14 @@ Route::get('/x', function() {
         'showBannerBottom' => false
     ]);
 });
+
+Route::get('user/pedidos',[
+        'as'=>'user.getOrders',
+        'uses'=>'UserController@getOrders'
+    ]);
+
+Route::get('user/perfil',[
+        'as'=>'user.profile',
+        'uses'=>'UserController@profile'
+    ]);
+

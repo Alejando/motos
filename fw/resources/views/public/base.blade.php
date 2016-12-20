@@ -63,8 +63,16 @@
                     <div style="clear: both"></div>
                 </div>
                 <nav>
+                <!--{{-- @if($menuUser)
+                    <ul class="menumain hidden-sm hidden-xs">
+                        <li><a href="" class="transicion">PERFIL</a></li>
+                        <li><a href="" class="transicion">PEDIDOS</a></li>
+                        <li><a href="" class="transicion">DIRECCIONES</a></li>
+                    </ul>
+                @else --}} -->
                     @include('public.blocks.menu-lg')
                     @include('public.blocks.menu-sm')
+                <!--{{-- @endif --}}-->
                     <div class="search-form-2">
                         <input type="text" class="input-border" ><button class="sprite search-2"></button>
                     </div>
