@@ -30,14 +30,29 @@ setpoint.controller('CartClientInfoCtrl', [
             $scope.address.state();
             $scope.address.country();
         }
-        
-        $scope.newAddress = function(){             
-            $scope.address = new Address({
-                label : "Nueva Dirección"
+        $scope.tempNewAddress = null;
+        $scope.saveNewAddress = function () {
+            $scope.tempNewAddress.save().then(function(){
+                $scope.tempNewAddress = null;
             });
-            $scope.chooseCountry();
-            $scope.addresses.push($scope.address);
-            
+        };
+        $scope.cancelNewAddress = function () {
+            var index = $scope.addresses.indexOf($scope.tempNewAddress);
+            $scope.addresses.splice(index,1);            
+            $scope.address = $scope.addresses[$scope.addresses.length-1];            
+             $scope.tempNewAddress = null;
+        };
+        $scope.newAddress = function() {
+            if($scope.tempNewAddress) {
+                $scope.address = $scope.tempNewAddress;
+            } else {
+                $scope.tempNewAddress =
+                $scope.address = new Address({
+                    label : "Nueva Dirección"
+                });
+                $scope.chooseCountry();
+                $scope.addresses.push($scope.address);                
+            }
         }
         $scope.nextStep = function ($event) {
             $event.preventDefault();

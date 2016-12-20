@@ -136,7 +136,7 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('product','Product');
     $addAPI('content','Content');
     $addAPI('coupon','Coupon');
-
+    $addAPI('billing-infomation','BillingInformation');
     //Catalogo de Paises, Estados, Direcciones
     $addAPI('country','Country');
     $addAPI('state','State');

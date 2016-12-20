@@ -1,11 +1,14 @@
 <?php
 
 namespace DwSetpoint\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Address extends \DevTics\LaravelHelpers\Model\ModelBase {
-
+class BillingInformation  extends \DevTics\LaravelHelpers\Model\ModelBase {
+    
+    protected $table = 'billing_information';
+    
+    public function user() {
+        return $this->belongsTo(\DwSetpoint\Models\User::class);
+    }
+    
     public function country() {
         return $this->belongsTo(\DwSetpoint\Models\Country::class, 'country_id');
     }
@@ -13,8 +16,4 @@ class Address extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function state() {
         return $this->belongsTo(\DwSetpoint\Models\State::class, 'state_id');
     }
-    public function user() {
-        return $this->belongsTo(\DwSetpoint\Models\User::class, 'state_id');
-    }
-
 }

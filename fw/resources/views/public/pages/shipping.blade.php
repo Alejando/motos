@@ -33,9 +33,25 @@
                             ng-options="address.label for address in addresses track by address.id">
                         </select>
                     </div>
-                    <div class="col-sm-1">
-                        <button class="btn btn-primary" ng-click="newAddress()">Nueva Dirección</button>
+                    <div class="col-sm-1" ng-show="address.id"> 
+                        <button 
+                            class="btn btn-primary" 
+                            ng-click="newAddress()"                             
+                        >Nueva Dirección</button>                        
                     </div>  
+                    <div  class="col-sm-3">
+                        <button
+                            class="btn btn-primary" 
+                            ng-hide="address.id"
+                            ng-click="saveNewAddress()"
+                        >Guardar</button>
+                        <button
+                            class="btn btn-danger" 
+                            ng-click="cancelNewAddress()"
+                            ng-show="!address.id && addresses.length>1"
+                        >Cancelar @{{addresses.length}}</button>
+                        
+                    </div>
                 </div>
                 
                 <div class="row margentop20">
