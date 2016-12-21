@@ -16,7 +16,9 @@ setpoint.factory('BillingInformation', function (ModelBase, $q, $http, User, Cou
             'suite_number',
             'neighborhood',
             'postal_code',    
-            'city'
+            'city',
+            'country_id',
+            'state_id'
         ],
         relations : [
             ['country', Country, 'belongsTo' ],

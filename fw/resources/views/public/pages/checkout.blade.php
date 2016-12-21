@@ -1,5 +1,6 @@
 @extends('public.base')
 @section('body')
+<div ng-controller="">
     <div class="breadcrumbcustom">
         Inicio <span class="separador">-</span> <span class="current">Método de pago</span>
     </div>
@@ -141,4 +142,5 @@
             </div>
         </form>
     </div>
+</div>
 @stop

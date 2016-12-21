@@ -46,12 +46,10 @@ Route::get('/carrito/registro', [
     'uses' => 'CartController@registrationForm'
     
 ]);
-Route::get('/pago', function() {
-    return view('public.pages.checkout', [
-        'showOffert' => false,
-        'showBannerBottom' => false
-    ]);
-});
+Route::get('/carrito/pago', [
+    'as' => 'cart.checkout',
+    'uses' =>  'CartController@checkout'
+]);
 Route::get('/marcas/{id}/logo', 'Api\\BrandController@getImg');
 
 Route::get('/marcas/{id}/{slugSEO}logo-{width}x{heigth}.png', [

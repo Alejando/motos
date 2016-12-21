@@ -32,4 +32,10 @@ class CartController  extends Controller {
             'showBannerBottom' => false
         ]);
     }
+    public function checkout() {
+        return view('public.pages.checkout', [
+            'showOffert' => false,
+            'showBannerBottom' => false
+        ]);
+    }
 }

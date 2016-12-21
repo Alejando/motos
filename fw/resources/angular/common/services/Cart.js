@@ -268,5 +268,17 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.removeCoupon = function () {
         cleanCoupon();
     }
+    this.setShippingAddress = function (address) {
+        this.shippingAddress = address;        
+    };
+    this.setBillingInformation = function (billingInformation) {
+        this.billingInformation = billingInformation;
+    };
+    this.persitInfo = function () {
+        ls.set('cart.address', this.shippingAddress.id);  
+        if( this.billingInformation){
+            ls.set('cart.billingInformation', this.billingInformation.id);  
+        }
+    }
     
 });

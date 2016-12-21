@@ -1,6 +1,6 @@
 @extends('public.base')
 @section('body')
-<div  ng-controller="CartClientInfoCtrl">
+<div  ng-controller="CartClientInfoCtrl" class="infoShipping" style="display: none">
     <div class="breadcrumbcustom">
         Inicio <span class="separador">-</span> <span class="current">Dirección de envío</span>
     </div>
@@ -172,13 +172,13 @@
                 <div class="row margentop20">
                     <div class="col-sm-10 col-sm-offset-2">
                         <label class="qfactura">
-                            <input type="checkbox" name="factura" id="factura" /> 
+                            <input type="checkbox" name="factura" id="factura" ng-model="requestBill" /> 
                             <span>¿Requieres factura?</span>
                         </label>
                     </div>
                 </div>
 
-                <div class="cajafactura-x">                    
+                <div class="cajafactura">                    
                     <div class="row margentop20">
                         <div class="col-sm-2">
                             <label for="rfc" class="espacio pull-right">R.F.C.</label>
@@ -188,6 +188,7 @@
                                 ng-model="billInfo"
                                 ng-options="binfo.rfc for binfo in billingInformation track by binfo.rfc"
                                 ng-show="!tempNewBillInfo"
+                                ng-change="selectBillInfo()"
                             ></select>
                             <input type="text" 
                                 class="form-control"
@@ -266,7 +267,7 @@
                             <select name="country" 
                                     id="country" 
                                     ng-change="chooseBillInfoCountry()"
-                                    ng-model="selectedBillCoutry"
+                                    ng-model="billInfo.relations.country"
                                     ng-options="country.name for country in countries track by coountry.name"
                                      class="form-control"
                             ></select>

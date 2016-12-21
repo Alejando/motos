@@ -1,30 +1,27 @@
+/* global setpoint */
+
 setpoint.controller('CartClientInfoCtrl', [
-    '$scope', 'AuthSevice', '$q', 'Address', 'State', 'Country', 'BillingInformation',
-    function($scope, AuthSevice, $q, Address, State, Country, BillingInformation) {
-        console.log("BillingInformation=>", BillingInformation);
-        
+    '$scope', 'AuthSevice', '$q', 'Address', 'State', 'Country', 'BillingInformation', '$timeout', 'Cart',
+    function($scope, AuthSevice, $q, Address, State, Country, BillingInformation, $timeout, Cart) {
         var user = AuthSevice.user();
         var loadAddress = user.addresses();
         var loadStates = State.getAll().then(function(states){
             $scope.states = states;
-        });
-        
+        });        
         var loadBillingInformation = user.billingInformation().then(function (billingInformation) {
             $scope.billingInformation = billingInformation;
         }, function (fail) {
             console.log(fail);
-        });
-        
+        });        
         var loadCountry = Country.getAll().then(function(countries){
             $scope.countries = countries,
             $scope.selectedCoutry = countries[0];
-        });
-        
+        });        
         $scope.chooseCountry = function() {
             $scope.address.relations.country = $scope.selectedCoutry;
         };
-        
         $q.all([loadAddress, loadBillingInformation, loadCountry, loadStates]).then(function (addresses) {
+            $('.infoShipping').show("slow");
             $scope.addresses = addresses[0];
             if($scope.addresses.length) {
                 $scope.address = $scope.addresses[0];
@@ -34,17 +31,16 @@ setpoint.controller('CartClientInfoCtrl', [
             }
             
             if($scope.billingInformation.length) {
-                $scope.billInfo = $scope.billingInformation[0];                
+                $scope.billInfo = $scope.billingInformation[0];   
+                $scope.selectBillInfo();
             } else {
                 $scope.newBillInfo();
             }
-        });
-        
+        });        
         $scope.selectAddress = function () {
             $scope.address.state();
             $scope.address.country();
-        }
-        
+        };        
         $scope.tempNewAddress = null;
         $scope.saveNewAddress = function () {
             $scope.tempNewAddress.save().then(function(){
@@ -68,11 +64,11 @@ setpoint.controller('CartClientInfoCtrl', [
                 $scope.chooseCountry();
                 $scope.addresses.push($scope.address);                
             }
-        }
+        };
         $scope.copyAddres = ""; 
         $scope.newBillInfo = function() {
             if($scope.tempNewBillInfo) {
-                $scope.billInfo = $sopce.tempNewBillInfo;
+                $scope.billInfo = $scope.tempNewBillInfo;
                 $scope.chooseBillInfoCountry();
             } else {
                 $scope.tempNewBillInfo = 
@@ -87,9 +83,6 @@ setpoint.controller('CartClientInfoCtrl', [
                 $('#rfc').focus();
             },10);
         };
-        $scope.chooseBillInfoCountry = function(){
-            $scope.billInfo.relations.country = $scope.selectedBillCoutry;
-        };
         $scope.cancelNewBillInfo = function () {
             var index = $scope.billingInformation.indexOf($scope.tempNewBillInfo);
             $scope.billingInformation.splice(index,1);            
@@ -101,13 +94,11 @@ setpoint.controller('CartClientInfoCtrl', [
             $scope.tempNewBillInfo.save().then(function(){
                 $scope.tempNewBillInfo = null;
             });
-        }
+        };
         
         $scope.copyAddress = function () {
             var address = $scope.ojbCopyAddres;
-            console.log(address);
-            if(address != null) {
-                console.log(":...");
+            if(address !== null) {
                 var loadCountry = address.country();
                 var loadState = address.state();
                 $q.all([loadCountry, loadState]).then(function(){
@@ -131,21 +122,34 @@ setpoint.controller('CartClientInfoCtrl', [
                 $scope.billInfo.relations.state = "";
             }
         };
-        
-        
-        
         $scope.selectBillInfo = function() {
-            
+            $scope.billInfo.state();
+            $scope.billInfo.country();
         };
-        
-        
         $scope.nextStep = function ($event) {
             $event.preventDefault();
-            console.log($scope.address);
-            $scope.address.save().then(function(){
-                console.log("Se guardo la direecion");
+            var saveAddress = $scope.address.save();
+            var saveBillInfo;
+            var requestBill = $scope.requestBill;
+            if(requestBill) {
+                saveBillInfo = $scope.billInfo.save();
+            } else {
+                var def = $q.defer();
+                saveBillInfo = def.promise;
+                $timeout(function() {
+                   def.resolve(); 
+                }, 10);
+            }
+            $q.all([saveBillInfo, saveAddress]).then(function(){
+                Cart.setShippingAddress($scope.address);
+                
+                    Cart.setBillingInformation(null);
+                if(requestBill){
+                    Cart.setBillingInformation($scope.billInfo);
+                }
+                Cart.persitInfo();
+                window.open(laroute.route('cart.checkout'),'_self');
             });
-            alert("sieguiente");
         };
     }
 ]);
