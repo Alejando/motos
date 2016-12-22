@@ -14,3 +14,7 @@ var setpoint = angular.module('setpoint', [
     'remoteValidation',
     'devtics-angular-modelbase'
 ]);
+
+setpoint.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);

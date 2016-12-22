@@ -26,14 +26,14 @@
                 <div class="cajaimagen">
                     <img ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}" class="img-responsive" />
                     <!-- <span class="zoom"></span> -->
-                </div> 
+                </div>
                 <div class="margentop30">
                     <div>
                         <div class="item"  ng-repeat="item in selectedImgs" class="item" style="float: left;
                                 width:95px;
-                                height: 95px;"> 
+                                height: 95px;">
                             <a class="btnvista"
-                                ng-click="selectImg(item)" 
+                                ng-click="selectImg(item)"
                                 style="
                                 cursor: pointer;
                                 background: url('@{{product ? product.getImg(item,100,100) : ''}}') center center;
@@ -83,7 +83,7 @@
                                                 <option></option>
                                                 @foreach($product->sizes as $size)
                                                     <option value="{{$size->id}}">{{$size->name}}</option>
-                                                @endforeach                                        
+                                                @endforeach
                                             </select>
                                             Talla
                                         </span>
@@ -95,10 +95,10 @@
                     @if($product->colors->count())
                         <div class="colores barraverde margentop30">
                             @foreach($product->colors as $color)
-                            <span class=""  
+                            <span class=""
                                 ng-click="selectColor({{$color->id}})"
                                 ng-class="{'color-selected': selectedColor=={{$color->id}} }">
-                                <span style="background-color: {{$color->rgb}};"></span>                                    
+                                <span style="background-color: {{$color->rgb}};"></span>
                             </span>
                             @endforeach
                         </div>
@@ -128,9 +128,9 @@
             </div>
         </div>
     </div>
-    
 
-    
+
+
 
     <div class="margentop30 cajatextura">
         <!-- <a class="btnlike"></a> -->

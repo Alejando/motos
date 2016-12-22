@@ -12,3 +12,7 @@ setpoint.config(function (localStorageServiceProvider, $httpProvider) {
 //        .setStorageType('sessionStorage')
     ;
 });
+
+setpoint.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);

@@ -17,7 +17,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->belongsTo(\DwSetpoint\Models\Brand::class, 'brand_id');
     }
     // </editor-fold>
-    // // <editor-fold defaultstate="collapsed" desc="defaultColor">
+    // <editor-fold defaultstate="collapsed" desc="defaultColor">
     public function defaultColor() {
         return $this->belongsTo(\DwSetpoint\Models\Colors::class, 'default_color_id');
     }
@@ -87,6 +87,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this;
     }
     // </editor-fold>
+    //
+    public function setNameAttribute($name){
+        $this->attributes['name'] = $name;
+        $this->slug = str_slug($name);
+    }
     // <editor-fold defaultstate="collapsed" desc="setColorsById">
     public function setSizesByIds($ids) {
         $this->sizes()->sync((array)$ids);
@@ -169,9 +174,9 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->attributes['discount_percentage'];
     }
     public function getClculateDiscount() {
-       return $this->priceFrom * ($this->discountPercentage / 100); 
+       return $this->priceFrom * ($this->discountPercentage / 100);
     }
-    
+
     public function checkStock($quantity, $size, $color) {
         /* @var $query \Illuminate\Database\Query\Builder */
         $query = Stock::where('product_id', '=' , $this->id);
@@ -180,13 +185,13 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         } else {
             $query->where('size_id', '=', $size);
         }
-        
+
         if($color===null) {
             $query->whereNull('color_id');
         } else {
             $query->where('color_id', '=', $color);
         }
-        
+
         $stocks = $query->get();
         if($stocks->count()) {
             $stock = $stocks->get(0);
@@ -197,7 +202,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         throw new \Exception("Lo sentimos actualmente no tenemos esa talla en el color seleccionado");
     }
-    
+
     public function hasDiscount() {
         return (float) $this->discountPercentage > 0;
     }

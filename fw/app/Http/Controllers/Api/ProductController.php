@@ -5,7 +5,7 @@ use \Illuminate\Support\Facades\Input;
 
 class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Product::class;
-    
+
     public function getImgs($id) {
         $product = \DwSetpoint\Models\Product::getById($id);
         if($product) {
@@ -13,7 +13,7 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         abort(404);
     }
-    
+
     public function checkStock($id) {
         $size = Input::get('size');
         $color = Input::get('color');
@@ -22,18 +22,18 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         try{
             $stock = $product->checkStock($quantity, $size, $color);
             return [
-                'success' => true, 
+                'success' => true,
                 'stock' => $stock->id
             ];
         }catch(\Exception $ex){
             return [
-                'error'=>true, 
+                'error'=>true,
                 'success'=>false,
                 'message' => $ex->getMessage()
             ];
         }
     }
-    
+
     public function getCover($id){
         $img = $this->getImgs($id)[0];
         $this->img($id, 235, 210, $img);
@@ -55,26 +55,27 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         abort(404);
     }
-    
+
     public function destroy($id) {
         $product = \DwSetpoint\Models\Product::getById($id);
         $product->removePath();
         return parent::destroy($id);
     }
-    
+
     public function update(\Illuminate\Http\Request $request, $id) {
         $oldCode = \DwSetpoint\Models\Product::getById($id)->code;
         $res = parent::update($request, $id);
         if($oldCode != Input::get('code')){
-            $res['model']->updatePathUpload($oldCode);   
+            $res['model']->updatePathUpload($oldCode);
         }
         $res['model']->setColorsByIds(Input::get('colors'))
             ->setCategoriesByIds(Input::get('categories'))
             ->setSizesByIds(Input::get('sizes'));
         return $res;
     }
-    
+
     public function store(\Illuminate\Http\Request $request) {
+//        dd(Input::all());
         $id = Input::get("id");
         if($id) {
             $oldCode = \DwSetpoint\Models\Product::getById($id)->code;
@@ -93,12 +94,12 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         return $res;
     }
 
-    public function getNews() { 
+    public function getNews() {
         $res = \DwSetpoint\Models\Product::orderBy('id', 'desc')->take(8)->get();
         return $res;
     }
 
-    public function getDiscounts() { 
+    public function getDiscounts() {
         $res = \DwSetpoint\Models\Product::where('discount_percentage', '>', 0)->get();
         return $res;
     }
@@ -110,5 +111,5 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
             'value' => $code
         ];
     }
-    
+
 }

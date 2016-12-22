@@ -20,3 +20,7 @@ setpoint.config(function ($routeProvider) {
         ['/configuracion/:config', 'config', 'Config']
     ]);
 });
+
+setpoint.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
