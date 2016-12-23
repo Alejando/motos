@@ -47,8 +47,12 @@ Route::get('/carrito/registro', [
     
 ]);
 Route::get('/carrito/pago', [
+    'as' => 'cart.confirmCheckout',
+    'uses' =>  'CartController@confirmCheckout'
+]);
+Route::post('carrito/checkout', [
     'as' => 'cart.checkout',
-    'uses' =>  'CartController@checkout'
+    'uses' => 'CartController@checkout'
 ]);
 Route::get('/marcas/{id}/logo', 'Api\\BrandController@getImg');
 

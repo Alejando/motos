@@ -80,7 +80,9 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.getTotal = function () {
         var subtotal = this.getSubTotal();
         var discount = this.getDiscount();
-        return subtotal - discount;
+        var shipping = this.getShippingAmount();
+        var taxes = this.getTax();
+        return (subtotal - discount) + shipping + taxes;
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="this.checkStock">
@@ -90,14 +92,17 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="this.presistItems">
     this.persistItems = function () {
+        ls.set('items', this.getPersistItems());   
+        return this;
+    };
+    //</editor-fold>
+    this.getPersistItems = function () {
         var persitItems = {};
         angular.forEach(arrItems, function(item) {
             persitItems[item.getStockId()] = item.quantity();
         });
-        ls.set('items', persitItems);   
-        return this;
-    };
-    //</editor-fold>
+        return persitItems;
+    }
     var cart = this;
     var cleanCoupon = function() {
         cart.discount = 0;
@@ -240,7 +245,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         var item;
         for(var i = 0; (item = arrItems[i++]);){
             console.log(stock.id);
-            if(item.stock_id == stock.id){
+            if(item.stock_id == stock.id) {
                 //item.quantity(item.quantity()+1);
                 return item;
             }
@@ -280,5 +285,36 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             ls.set('cart.billingInformation', this.billingInformation.id);  
         }
     }
+    
+    this.getShippingAmount = function () {
+        return 10;
+    }
+    
+    this.getTax = function () {
+        return 0;
+    }
+    
+    this.setPaymentServiceProvide = function (pspCodeName) {
+        this.psp = pspCodeName;
+    };
+    this.prepareData = function () {
+        var items = this.getPersistItems();
+        var data = {
+            psp: this.psp,
+            items : items
+        };
+        return data;
+    };
+    this.checkout = function () {
+        var defer = $q.defer();
+        var data = this.prepareData();
+        var url = laroute.route("cart.checkout");
+        $http.post(url, data).then(function (request) {
+            defer.resolve(request.data.redirectUrl, request);
+        }, function (fail) {
+            defer.reject(fail);
+        });;
+        return defer.promise;
+    };
     
 });

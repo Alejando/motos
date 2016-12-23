@@ -1,6 +1,6 @@
 @extends('public.base')
 @section('body')
-<div ng-controller="">
+<div ng-controller="CartCheckoutCtrl">
     <div class="breadcrumbcustom">
         Inicio <span class="separador">-</span> <span class="current">Método de pago</span>
     </div>
@@ -23,8 +23,8 @@
                 <div class="col-sm-4">
                     <h3 class="subtitulo">Elige tu método de pago:</h3>
                     <div class="panel-group margentop20 widthlimit" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
+                        <div class="panel panel-default" style="display: none">
+                            <div class="panel-heading" role="tab" id="headingOne" >
                                 <h4 class="panel-title">
                                     <a class="btnacordeon" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         Pago con tarjeta 
@@ -55,11 +55,25 @@
                             </div>
                         </div>
 
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
+                        <div class="panel panel-default " ng-click="setProvider('paypal')">
+                            <div class="panel-heading" role="tab" id="headingTwo"  ng-class="{
+                                bntProviederChekout: providerSelected == 'paypal'
+                             }"                        
+                            >
                                 <h4 class="panel-title">
                                     <a class="btnpaypal" role="button" href="" aria-expanded="true" aria-controls="collapseTwo">
                                         Pago con PayPal
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="panel panel-default"  ng-click="setProvider('conekta')">
+                            <div class="panel-heading" role="tab" id="headingTwo" ng-class="{
+                                bntProviederChekout: providerSelected == 'conekta'
+                             }">
+                                <h4 class="panel-title">
+                                    <a class="btnconekta" role="button" href="" aria-expanded="true" aria-controls="collapseTwo">
+                                        Pago con Conekta
                                     </a>
                                 </h4>
                             </div>
@@ -70,46 +84,24 @@
                     <h3 class="subtitulo2">Resúmen de Compra</h3>
                     <div class="cajaresumen margentop20">
                         <div class="contenidoresumen">
-                            <div class="row nproducto">
+                            <div class="row nproducto" ng-repeat="item in items">
                                 <div class="col-xs-8">
                                     <h4 class="nproductoh4">
-                                        Zapatos Verdes Bonitos
-                                        <span>x 4</span>
+                                        @{{item.product.name}}
+                                        <span>x @{{item.quantity()}}</span>
                                     </h4>
                                 </div>
                                 <div class="col-xs-4">
-                                    <h5 class="nproductoh5">$000.00</h5>    
+                                    <h5 class="nproductoh5">@{{item.getSubTotal()|currency}}</h5>    
                                 </div>
                             </div>
-                            <div class="row nproducto">
-                                <div class="col-xs-8">
-                                    <h4 class="nproductoh4">
-                                        Zapatos Verdes Bonitos
-                                        <span>x 4</span>
-                                    </h4>
-                                </div>
-                                <div class="col-xs-4">
-                                    <h5 class="nproductoh5">$000.00</h5>    
-                                </div>
-                            </div>
-                            <div class="row nproducto">
-                                <div class="col-xs-8">
-                                    <h4 class="nproductoh4">
-                                        Zapatos Verdes Bonitos
-                                        <span>x 4</span>
-                                    </h4>
-                                </div>
-                                <div class="col-xs-4">
-                                    <h5 class="nproductoh5">$000.00</h5>    
-                                </div>
-                            </div>
-
-                            <div class="row cajon">
+                            
+                            <div class="row cajon" ng-show="item.getDiscount()">
                                 <div class="col-xs-6">
                                     Descuento cupón:
                                 </div>
-                                <div class="col-xs-6">
-                                    $45.32 MXP
+                                <div class="col-xs-6" >
+                                    @{{item.getDiscount()|currency}} MXP
                                 </div>
                             </div>
                             <div class="row cajon">
@@ -117,7 +109,7 @@
                                     Subtotal:
                                 </div>
                                 <div class="col-xs-6">
-                                    $57.00 MXP
+                                    @{{cart.getSubTotal()|currency}}MXP
                                 </div>
                             </div>
                             <div class="row cajon">
@@ -125,7 +117,15 @@
                                     Paquetería:
                                 </div>
                                 <div class="col-xs-6">
-                                    $99.00 MXP
+                                    @{{cart.getShippingAmount()|currency}} MXP
+                                </div>
+                            </div>
+                            <div class="row cajon">
+                                <div class="col-xs-6">
+                                    Iva:
+                                </div>
+                                <div class="col-xs-6">
+                                    @{{cart.getTax()|currency}} MXP
                                 </div>
                             </div>
                         </div>
@@ -133,10 +133,10 @@
                 </div>
                 <div class="col-sm-3">
                     <h2 class="checktotal margentop50">
-                        <span>Total:</span> <span>$456.45</span>
+                        <span>Total:</span> <span>@{{cart.getTotal()|currency}}</span>
                     </h2>
                     <div class="botonera margentop20">
-                        <a href="" class="transicion">Comprar</a>
+                        <a href="" class="transicion" ng-click="checkout($event)">Comprar</a>
                     </div>
                 </div>
             </div>

@@ -785,6 +785,28 @@ form input {
 	text-decoration: none;
 }
 
+.btnconekta {
+	    display: inline-block;
+            width: 100%;
+            background: url(../img/template/conekta.jpg) no-repeat right center;
+            background-size: 31px auto;
+            height: 26px;
+            padding: 6px 0 0 0;
+            text-decoration: none;
+            background-repeat: no-repeat;
+}
+#accordion .panel-heading{
+    cursor: pointer;
+}
+.bntProviederChekout {
+    background-image: -webkit-linear-gradient(top,#e8e8e8 0, #c1d72e 100%) !important;
+    background-image: -o-linear-gradient(top,#e8e8e8 0, #c1d72e 100%) !important;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#e8e8e8),to(#c1d72e)) !important;
+    background-image: linear-gradient(to bottom,#e8e8e8 0, #c1d72e 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe8e8e8', endColorstr='#fff5f5f5', GradientType=0) !important;
+    background-repeat: repeat-x !important;
+
+}
 .btnpaypal:hover, .btnacordeon:visited {
 	text-decoration: none;
 }

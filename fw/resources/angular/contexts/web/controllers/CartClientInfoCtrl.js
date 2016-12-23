@@ -148,7 +148,7 @@ setpoint.controller('CartClientInfoCtrl', [
                     Cart.setBillingInformation($scope.billInfo);
                 }
                 Cart.persitInfo();
-                window.open(laroute.route('cart.checkout'),'_self');
+                window.open(laroute.route('cart.confirmCheckout'),'_self');
             });
         };
     }
