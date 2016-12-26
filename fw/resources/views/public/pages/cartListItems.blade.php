@@ -110,7 +110,7 @@
                         </div>
                     </div>
 
-                    <div class="cuenta margentop20">
+                    <div class="cuenta margentop20" style="display:none">
                         <div class="row">
                             <div class="col-md-12"><span class="cazul">Método de envío</span></div>
                         </div>

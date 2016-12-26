@@ -10,7 +10,12 @@
         <a href="./envio" class="transicion"><span><b>2</b></span></a>
         <a href="./pago" class="transicion activo"><span><b>3</b></span></a>
     </div>
-
+    @if(isset($checkout) && $checkout=='fail')
+    <div class="cajadatos margentop20">
+        <h2 class="title text-center" style="color:red" >Ocurrio un error al intentar procesar tu pago <i class="fa fa-times" aria-hidden="true"></i></h2>
+        <div class="nproductoh4">* Intenta nuevamente con otra forma de pago</div>
+    </div>
+    @endif
     <div class="cajadatos margentop30">
         <h2 class="subtitulo">Forma de Pago</h2>
         <form id="formpago" method="post">
@@ -55,9 +60,9 @@
                             </div>
                         </div>
 
-                        <div class="panel panel-default " ng-click="setProvider('paypal')">
+                        <div class="panel panel-default " ng-click="setProvider(cart.PSP_PAYPAL)">
                             <div class="panel-heading" role="tab" id="headingTwo"  ng-class="{
-                                bntProviederChekout: providerSelected == 'paypal'
+                                bntProviederChekout: providerSelected == cart.PSP_PAYPAL
                              }"                        
                             >
                                 <h4 class="panel-title">
@@ -67,9 +72,9 @@
                                 </h4>
                             </div>
                         </div>
-                        <div class="panel panel-default"  ng-click="setProvider('conekta')">
+                        <div class="panel panel-default"  ng-click="setProvider(cart.PSP_CONEKTA)">
                             <div class="panel-heading" role="tab" id="headingTwo" ng-class="{
-                                bntProviederChekout: providerSelected == 'conekta'
+                                bntProviederChekout: providerSelected == cart.PSP_CONEKTA
                              }">
                                 <h4 class="panel-title">
                                     <a class="btnconekta" role="button" href="" aria-expanded="true" aria-controls="collapseTwo">

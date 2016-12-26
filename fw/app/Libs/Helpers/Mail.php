@@ -81,6 +81,17 @@ class Mail extends MailBase {
         return self::sendMail('contact', $args, $test, $send, $format);
     }
     // </editor-fold>
-
+    // <editor-fold defaultstate="collapsed" desc="contact">
+    public static function order($args = [], $test = false, $send = true, $format = 'html'){
+        if(!isset($args['user'])) {
+            $user = \DwSetpoint\Models\User::getRandom(); 
+            $args['user'] = $user;
+//            $args['to'] = [];
+            $args['order'] = \DwSetpoint\Models\Order::getRandom();
+        }
+        $args['subject'] = "Confirmación de pedido";
+        return self::sendMail('order', $args, $test, $send, $format);
+    }
+    // </editor-fold>
 
 }

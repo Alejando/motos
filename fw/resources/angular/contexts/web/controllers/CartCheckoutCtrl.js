@@ -10,8 +10,8 @@ setpoint.controller('CartCheckoutCtrl', [
         };
         $scope.checkout = function (evt) {
             evt.preventDefault();
-            Cart.checkout().then(function (url) {
-                window.open(url, 'self');
+            Cart.checkout().then(function (data) {
+                window.open(data.url, '_self'); 
             }, function (fail) {
                 console.log(fail);
             });

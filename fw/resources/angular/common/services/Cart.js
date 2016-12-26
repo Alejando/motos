@@ -8,6 +8,10 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.onInvalidateCoupon = function (){
         console.log("Quitar Cupon");
     };
+    this.coupon_id = ls.get('coupon');
+    this.PSP_PAYPAL = 1;
+    this.PSP_CONEKTA = 2;
+    
     //<editor-fold defaultstate="collapsed" desc="this.getIdStock">
     this.getIdStocks = function () {
         var cart = ls.get('items');
@@ -179,6 +183,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             });
         });
     }
+    
     //<editor-fold defaultstate="collapsed" desc="this.applyCoupon">
     this.applyCoupon = function (couponCode) {
         var defer = $q.defer();
@@ -189,7 +194,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
                 defer.reject("El Carrito no cuenta con el monto minimo ($ " + coupon.amount_min + ")");
             } else {
                 try{
-                    switch(coupon.type){
+                    switch(coupon.type){ 
                         case Coupon.types.PERSENT_BY_AMMOUNT:
                             self.setPersentDiscountByMount(coupon);
                         break;
@@ -200,7 +205,9 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
                             self.setProductByAmount(coupon);
                         break;
                     }
-                    _coupon = coupon
+                    _coupon = coupon;
+                    console.log(coupon);
+                    ls.set('coupon', coupon.id);
                     defer.resolve();
                 }catch(e){
                     defer.reject(e.message);
@@ -276,20 +283,28 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.setShippingAddress = function (address) {
         this.shippingAddress = address;        
     };
+    this.getShippingAddress = function () {
+        return this.shippingAddress;
+    };
     this.setBillingInformation = function (billingInformation) {
         this.billingInformation = billingInformation;
     };
+    this.getBillingInformation = function () {
+        return this.billingInformation;
+    }; 
     this.persitInfo = function () {
         ls.set('cart.address', this.shippingAddress.id);  
         if( this.billingInformation){
             ls.set('cart.billingInformation', this.billingInformation.id);  
         }
-    }
-    
+    } 
+     
+    this.setShippingAddress(ls.get('cart.address'));
+    this.setBillingInformation(ls.get('cart.billingInformation'));
     this.getShippingAmount = function () {
         return 10;
     }
-    
+     
     this.getTax = function () {
         return 0;
     }
@@ -297,9 +312,12 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.setPaymentServiceProvide = function (pspCodeName) {
         this.psp = pspCodeName;
     };
+    
     this.prepareData = function () {
         var items = this.getPersistItems();
         var data = {
+            billing_info : this.getBillingInformation(),
+            shipping_address : this.getShippingAddress(),
             psp: this.psp,
             items : items
         };
@@ -310,7 +328,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         var data = this.prepareData();
         var url = laroute.route("cart.checkout");
         $http.post(url, data).then(function (request) {
-            defer.resolve(request.data.redirectUrl, request);
+            defer.resolve(request.data, request);
         }, function (fail) {
             defer.reject(fail);
         });;
