@@ -72,9 +72,10 @@
                 <div style="margin-top:30px; font-size: 13px;">
                     <div style="width: 48%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082;">
                         <span style="color: #1893D7;">Dirección de Envío</span><br />
-                        {{$order->address}}<br />
-                        West End<br />
-                        Londres
+                        {{$order->address->street}} {{$order->address->street_number}} {{$order->address->suite_number}}<br />
+                        {{$order->address->neighborhood}} {{$order->address->city}} <br>
+                        C.P. {{$order->address->postal_code}} <br />
+                        {{$order->address->state->name}}, {{$order->address->country->name}}
                     </div>
                     <div style="width: 48%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082;">
                         {{--
@@ -85,7 +86,7 @@
                     </div>
                 </div>
 
-                <a href="" style="background: #1893D7; color: #FFF; display: inline-block; padding: 8px 15px 8px 15px; text-decoration: none; margin: 20px 0 20px 0;">Consultar Pedido en Línea</a>
+                <a href="{{route('user.getOrder',['order'=>$order->id])}}" style="background: #1893D7; color: #FFF; display: inline-block; padding: 8px 15px 8px 15px; text-decoration: none; margin: 20px 0 20px 0;">Consultar Pedido en Línea</a>
                 </p>
             </div>
             <div style="background: #002B53; padding: 10px;">
@@ -96,10 +97,10 @@
                     </span>
                 </div>
                 <div style="width: 49%; text-align: right; display: inline-block; vertical-align: top;">
-                    <a href=""><img src="{{asset('img/mail/01icono.jpg')}}" /></a>
-                    <a href=""><img src="{{asset('img/mail/02icono.jpg')}}" /></a>
-                    <a href=""><img src="{{asset('img/mail/03icono.jpg')}}" /></a>
-                    <a href=""><img src="{{asset('img/mail/04icono.jpg')}}" /></a>
+                    <a href="{{Config('app.social.twitter')}}" target="_blank"><img src="{{asset('img/mail/01icono.jpg')}}"/></a>
+                    <a href="{{Config('app.social.facebook')}}" target="_blank"><img src="{{asset('img/mail/02icono.jpg')}}"/></a>
+                    <a href="{{Config('app.social.youtube')}}" target="_blank"><img src="{{asset('img/mail/03icono.jpg')}}"/></a>
+                    <a href="{{Config('app.social.instagram')}}" target="_blank"><img src="{{asset('img/mail/04icono.jpg')}}"/></a>
                 </div>
             </div>
         </div>

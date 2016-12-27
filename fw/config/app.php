@@ -12,7 +12,10 @@ return [
         'brads' => __DIR__.'/../../upload/brands/'
     ],
     'social' => [
-        'instagram-url' => ''
+        'instagram' => 'https://www.instagram.com/bouncetennis/',
+        'twitter' => 'https://twitter.com/bouncetennis/',
+        'facebook' => 'https://www.facebook.com/bouncetennis/',
+        'youtube' => 'https://www.youtube.com/channel/bouncetennis/'         
     ],
     /*
     |--------------------------------------------------------------------------

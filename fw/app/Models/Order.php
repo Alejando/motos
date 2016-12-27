@@ -25,6 +25,9 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function coupon() {
         return $this->belongsTo(\DwSetpoint\Models\Coupon::class);
     }
+     public function address() {
+        return $this->belongsTo(\DwSetpoint\Models\Address::class);
+    }
     public function getAmount() {
         return 100;
     }

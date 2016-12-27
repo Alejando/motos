@@ -121,10 +121,10 @@
                                         <div class="cajacentermiddle">
                                             <div class="celdacentermiddle">
                                                 <div class="txtcenter">
-                                                    <a href="https://twitter.com/bouncetennis/" target="_blank" class="sprite logo-twitter" title="Twitter">Twitter</a>
-                                                    <a href="https://www.facebook.com/bouncetennis/" target="_blank" class="sprite logo-fb" title="Facebook">Facebook</a>
-                                                    <a href="https://www.youtube.com/channel/bouncetennis/" target="_blank" class="sprite logo-youtube" title="youtube">Youtube</a>
-                                                    <a href="https://www.instagram.com/bouncetennis/" target="_blank" class="sprite logo-instragram" title="Instragram">Instragram</a>
+                                                    <a href="{{Config('app.social.twitter')}}" target="_blank" class="sprite logo-twitter" title="Twitter">Twitter</a>
+                                                    <a href="{{Config('app.social.facebook')}}" target="_blank" class="sprite logo-fb" title="Facebook">Facebook</a>
+                                                    <a href="{{Config('app.social.youtube')}}" target="_blank" class="sprite logo-youtube" title="youtube">Youtube</a>
+                                                    <a href="{{Config('app.social.instagram')}}" target="_blank" class="sprite logo-instragram" title="Instragram">Instragram</a>
                                                 </div>
                                             </div>
                                         </div>

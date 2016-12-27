@@ -46,19 +46,21 @@ class CartController  extends Controller {
     public function success() {
         try {
             $order = \DwSetpoint\Models\Order::getById(Input::get('order'));
-            
-            return view('public.pages.cart.success');
-            
             $psp = \DwSetpoint\Models\PSP::createByOrder($order);
             $psp->getPSPResult(Input::all());
             $result = $psp->getState();
             if($result) {
-                
+                \DwSetpoint\Libs\Helpers\Mail::order([
+                    'user' => \Auth::user(),
+                    'order' => $order
+                ]);
+                return view('public.pages.cart.success');
             } else {
                 return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
             }
         }catch(\Exception $ex) {
-            return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
+            throw $ex;
+            // return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
         }
     }
     public function checkout() {

@@ -308,6 +308,12 @@ Route::get('user/pedidos',[
         'uses'=>'UserController@getOrders'
     ]);
 
+Route::geT('mi-perfil/compras',[
+    'as' => 'user.getOrder',
+    'uses' => function (){
+        echo "Destalle de la orden";
+    }
+]);
 Route::get('user/perfil',[
         'as'=>'user.profile',
         'uses'=>'UserController@profile'

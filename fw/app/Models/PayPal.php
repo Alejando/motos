@@ -69,7 +69,7 @@ class PayPal {
     public function getCheckoutURL() {
         $order = $this->order;
 //        $amount = $order->getAmount();
-        $coupon = $order->getCoupon();
+        $coupon = $order->coupon;
 //        $subTotal = $order->getSubTotal();
         $paypalItems = [];
         foreach($order->items as  $orderItem){
