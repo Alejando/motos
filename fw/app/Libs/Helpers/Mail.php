@@ -88,7 +88,7 @@ class Mail extends MailBase {
             $args['user'] = $user;
             $args['order'] = \DwSetpoint\Models\Order::getRandom();
         }
-        $args['to'] = 'wariodiaz@gmail.com';
+//        $args['to'] = 'wariodiaz@gmail.com';
         $args['subject'] = "Confirmación de pedido";
         return self::sendMail('order', $args, $test, $send, $format);
     }

@@ -319,3 +319,11 @@ Route::get('user/perfil',[
         'uses'=>'UserController@profile'
     ]);
 
+Route::get('/loginFacebook', [
+    'as'=>'facebook.login',
+    'uses'=>'FacebookController@login'
+]);
+Route::get('facebook-checkin/', [
+    'as'=>'facebook.checkin',
+    'uses'=>'FacebookController@checkin'
+]);

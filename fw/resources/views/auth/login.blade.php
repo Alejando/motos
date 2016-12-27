@@ -6,7 +6,10 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default" style="margin: 100px auto;">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading">Entrar a mi cuenta</div>
+                <div class="text-center" style="margin: 10px">
+                    <a href="{{route('facebook.login')}}"><img src="{{asset('img/facebook-login.png')}}" height="40"></a>
+                </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}

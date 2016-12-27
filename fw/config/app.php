@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'fb_IdApp' => '1577066222589528',
     'currency' => 'MXN',
     'permissionFiles' => 0777,
     'config-images' => [
@@ -172,7 +173,7 @@ return [
         DwSetpoint\Providers\AuthServiceProvider::class,
         DwSetpoint\Providers\EventServiceProvider::class,
         DwSetpoint\Providers\RouteServiceProvider::class,
-        
+        Laravel\Socialite\SocialiteServiceProvider::class,
         
     ],
 
@@ -220,8 +221,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Currency' => \Torann\Currency\Facades\Currency::class,
-        'Helpers' => DwSetpoint\Libs\Facades\Helpers::class
-
+        'Helpers' => DwSetpoint\Libs\Facades\Helpers::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

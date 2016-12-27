@@ -9,7 +9,7 @@
         <h2 class="subtitulo">Ingresar a mi cuenta</h2>
         <div style="clear: both"></div>
         <div class="text-center" style="margin: 10px">
-            <a href=""><img src="{{asset('img/facebook-login.png')}}" height="40"></a>
+            <a href="{{route('facebook.login')}}"><img src="{{asset('img/facebook-login.png')}}" height="40"></a>
         </div>
         <div class="form-group row">
             <label for="nombre" class="col-form-label col-sm-2">Email</label>

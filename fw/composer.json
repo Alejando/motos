@@ -12,7 +12,8 @@
         "imagine/imagine": "^0.6.3",
         "pelago/emogrifier": "^1.0",
         "torann/currency": "^0.3.0",
-         "paypal/rest-api-sdk-php": "^1.7"
+        "paypal/rest-api-sdk-php": "^1.7",
+        "laravel/socialite": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
