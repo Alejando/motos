@@ -147,6 +147,8 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('country','Country');
     $addAPI('state','State');
     $addAPI('address','Address');
+    $addAPI('postalCode','PostalCode');
+    $addAPI('postalCodeGroup','PostalCodeGroup');
 
     Route::post('coupon/validate-code', [
         'as' => 'coupon.validateCode',
@@ -227,7 +229,8 @@ Route::get('/regitro', 'CartController@registrationForm');
 Route::get('/admin',  [
     'as' => 'admin.index',
     'uses' => 'AdminCtrl@index'
-])->middleware('auth');
+])->middleware('auth')
+->middleware('admin');
 
 Route::get('/pages/admin/{view}.html', [
     'as' => 'page',
@@ -285,7 +288,7 @@ Route::get('tests/mails',  'TestsController@listmails')->where([
 ]);
 Route::auth();
 
-Route::get('content/slug/{slug}', [
+Route::get('contenidos/{slug}', [
     'as' => 'Content.slug',
     'uses' => 'ContentCtrl@slug'
 ]);

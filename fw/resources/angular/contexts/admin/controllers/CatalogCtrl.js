@@ -1,7 +1,5 @@
 /* global BootstrapDialog, setpoint */
-
-!function () {
-
+!function () { 
     setpoint.controller('CatalogCtrl', function (
             $scope,
             $compile,
@@ -15,11 +13,14 @@
             Product,
             Category,
             Coupon,
+            PostalCodeGroup,
             DTOptionsBuilder,
             DTColumnBuilder,
             $interval,
-            $timeout
+            $timeout,
+            $filter 
             ) {
+        var currency = $filter('currency');
         var getTitle = function () {
             return "Titulo Por defecto";
         };
@@ -436,6 +437,81 @@
             };
         };
         //</editor-fold>
+        
+        //<editor-fold defaultstate="collapsed" desc="zonas de envio">
+        this.zonas = function () { 
+            $scope.selectedItem = new PostalCodeGroup({});
+            $scope.model = PostalCodeGroup;
+            console.log(PostalCodeGroup);
+            $scope.showCPFrom = function (id) {
+                var $message = $('<div>Cargando...</div>');
+                BootstrapDialog.show({
+                    title: getTitle(),
+                    message: $message,
+                    onhide: function(dialog){
+                        $scope.selectedItem.rollback();
+                    },
+                    onhidden: function(dialog){
+//                         $scope.selectedItem = newObj();
+                    }
+                });
+                
+            $.get($scope.form = laroute.route('page', {view : 'form-postal-codes'}),{
+                
+            },'html').done(function(txt){
+                $message.fadeOut('fast', function(){
+                    if($scope.preprareForm) {
+                        var self = this;
+                        $scope.preprareForm().then(function(){
+                            $(self).html(txt).slideDown('slow');
+                            $compile(angular.element($message).contents())($scope);
+                            defer.resolve();
+                        });
+                    } else {
+                        $(this).html(txt).slideDown('slow');
+                        $compile(angular.element($message).contents())($scope);
+                        defer.resolve();
+                    }
+                });
+            });
+                
+                
+                
+                
+                
+               alert("Un dialogo " + id)
+            };
+            getTitle = function() {   
+                return $scope.selectedItem.id ? 'Edición de la grupo de envío "' + $scope.selectedItem.name + '"' : 'Nueva Zona de envío';
+            }; 
+            getRemoveTitle = function () {
+                return "¿Seguro que desea eliminar la zona \"" + $scope.selectedItem.name + "\"";
+            };
+            getColumnBuilder = function () {
+                return [ 
+                    DTColumnBuilder.newColumn('id').withTitle('ID'),
+                    
+                    DTColumnBuilder.newColumn('name').withTitle('Name').renderWith(function(data, type, full){
+//                        console.log("render => ", full, data);  
+                        return '<a href="" ng-click="showCPFrom('+full.id+')">' + data +'</a>';
+                    }),
+                    DTColumnBuilder.newColumn('price').withTitle('Precio').renderWith(function(data, type, full, meta){
+                         return currency(full.price);   
+                    }), 
+                    DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                        return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
+                            '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
+                            '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                            '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                    })
+                ];
+            };
+            $scope.validateForm = function () {
+                
+            };
+        }
+        //</editor-fold>
+
         //<editor-fold defaultstate="collapsed" desc="catalogo de tallas">
         this.tallas = function () {
             $scope.selectedItem = new Size({});

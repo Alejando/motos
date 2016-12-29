@@ -18,6 +18,8 @@ class Mail extends MailBase {
             $args['user'] = $user;
             //$args['to'] = [];
             $args['rawPassword'] = str_random(8); 
+        }else {
+            $args['to'] = $args['user']->email; 
         }
         $args['subject'] = '¡Bienvenido a Bounce - Tennis Lifestyle!';
         return self::sendMail('welcome', $args, $test, $send, $format);
@@ -88,7 +90,7 @@ class Mail extends MailBase {
             $args['user'] = $user;
             $args['order'] = \DwSetpoint\Models\Order::getRandom();
         }
-//        $args['to'] = 'wariodiaz@gmail.com';
+        $args['to'] = $args['user']->email;
         $args['subject'] = "Confirmación de pedido";
         return self::sendMail('order', $args, $test, $send, $format);
     }

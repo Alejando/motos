@@ -23,15 +23,20 @@
                             <li><a href="{{route('cart.list')}}" class="sprite icon-car-2" title="Mi Carrito">Mi Carrito</a></li>
                             <li><a id="btnmenuemergente" href="" class="sprite icon-menu" title="Menú">Menú</a></li>
                         </ul>
-
+                        
                         <ul class="menuemergente">
                             <li class="cajonicono">
+                                
                                 <a class="iconocierre"></a>
                             </li>
                             @if(Auth::check())
+                                
+                                <li><a href="" class="transicion">Perfil ({{Auth::user()->email}})</a></li>
+                                @if(Auth::user()->isAdmin())
                                 <li>
                                     <a href="{{route('admin.index')}}" class="transicion">Administración</a>
                                 </li>
+                                @endif
                                 <li>
                                     <a href="{{url('logout')}}" class="transicion">Salir</a>
                                 </li>
@@ -43,17 +48,17 @@
                             <li>
                                 <a href="{{url('/contacto')}}"  class="transicion">Contacto</a>
                             </li>
-                            <li><a href="" class="transicion">Perfil</a></li>
+                            
                             <li><span class="separador"></span></li>
-                            <li><a href="{{url('content/slug/nosotros')}}" class="transicion">Sobre nosotros</a></li>
-                            <li><a href="{{url('content/slug/ventajas')}}" class="transicion">Ventajas</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'nosotros'])}}" class="transicion">Sobre nosotros</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'ventajas'])}}" class="transicion">Ventajas</a></li>
                             <li><span class="separador"></span></li>
                             <!-- <li><a href="" class="transicion">Voucher</a></li> -->
-                            <li><a href="{{url('content/slug/formas-de-pago')}}" class="transicion">Formas de pago</a></li>
-                            <li><a href="{{url('content/slug/terminos-y-condiciones')}}" class="transicion">Condiciones de venta</a></li>
-                            <li><a href="{{url('content/slug/condiciones-de-envio')}}" class="transicion">Condiciones de envío</a></li>
-                            <li><a href="{{url('content/slug/condiciones-de-retorno')}}" class="transicion">Condiciones de retorno</a></li>
-                            <li><a href="{{url('content/slug/aviso-de-privacidad')}}" class="transicion">Aviso de privacidad</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'formas-de-pago'])}}" class="transicion">Formas de pago</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'terminos-y-condiciones'])}}" class="transicion">Condiciones de venta</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'condiciones-de-envio'])}}" class="transicion">Condiciones de envío</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'condiciones-de-retorno'])}}" class="transicion">Condiciones de retorno</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'aviso-de-privacidad'])}}" class="transicion">Aviso de privacidad</a></li>
                             <li><span class="separador"></span></li>
                             <li><span class="txt">Número de Contacto<br /><b>01 800 000</b></span></li>
                             <li><span class="separador"></span></li>

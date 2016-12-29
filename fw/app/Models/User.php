@@ -70,7 +70,16 @@ class User extends Authenticatable {
         $this->bookmarks()->detach($id_product);
     }
     // </editor-fold>
+    public function isAdmin () {
+        return $this->profile_id == Profile::ADMIN;
+    }
     public function isMale(){
         return $this->gender == self::GENDER_MALE;
+    }
+    public function sendMailWelcome($rawPassword) {
+        \DwSetpoint\Libs\Helpers\Mail::welcome([
+            'user' => $this,
+            'rawPassword' => $rawPassword
+        ]);
     }
 }

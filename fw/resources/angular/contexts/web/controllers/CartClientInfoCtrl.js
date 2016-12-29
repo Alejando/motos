@@ -19,7 +19,7 @@ setpoint.controller('CartClientInfoCtrl', [
                 $scope.selectedCoutry = countries[0];
             });        
             $scope.chooseCountry = function() {
-                $scope.address.relations.country = $scope.selectedCoutry;
+                $scope.address.relate('country', $scope.selectedCoutry);
             };
             $q.all([loadAddress, loadBillingInformation, loadCountry, loadStates]).then(function (addresses) {
                 $('.infoShipping').show("slow");
@@ -39,7 +39,9 @@ setpoint.controller('CartClientInfoCtrl', [
                 }
             });        
             $scope.selectAddress = function () {
-                $scope.address.state();
+                $scope.address.state().then(function (state) {
+                    $scope.selectedState = state;
+                });
                 $scope.address.country();
             };        
             $scope.tempNewAddress = null;
@@ -47,7 +49,12 @@ setpoint.controller('CartClientInfoCtrl', [
                 $scope.tempNewAddress.save().then(function(){
                     $scope.tempNewAddress = null;
                 });
-            };        
+            };
+            
+            $scope.selectState = function () {
+                $scope.address.relate('state', $scope.selectedState);
+            };
+            
             $scope.cancelNewAddress = function () {
                 var index = $scope.addresses.indexOf($scope.tempNewAddress);
                 $scope.addresses.splice(index,1);            
@@ -78,7 +85,6 @@ setpoint.controller('CartClientInfoCtrl', [
                     });
                     $scope.chooseBillInfoCountry(); 
                     $scope.billingInformation.push($scope.tempNewBillInfo);
-
                 }
                 setTimeout(function(){
                     $('#rfc').focus();
@@ -145,8 +151,7 @@ setpoint.controller('CartClientInfoCtrl', [
                 }
                 $q.all([saveBillInfo, saveAddress]).then(function(){
                     Cart.setShippingAddress($scope.address);
-
-                        Cart.setBillingInformation(null);
+                    Cart.setBillingInformation(null);
                     if(requestBill){
                         Cart.setBillingInformation($scope.billInfo);
                     }

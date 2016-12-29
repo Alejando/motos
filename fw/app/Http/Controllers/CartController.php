@@ -30,6 +30,10 @@ class CartController  extends Controller {
         ]);     
     }
     public function registrationForm () {
+        $user = auth()->user();
+        if($user){
+            return redirect(route('cart.shiping'));
+        }
         return view('public.pages.client-registration-form', [
             'showOffert' => false,
             'showBannerBottom' => false
@@ -44,7 +48,7 @@ class CartController  extends Controller {
         ]);
     }
     public function success() {
-        try {
+        try { 
             $order = \DwSetpoint\Models\Order::getById(Input::get('order'));
             $psp = \DwSetpoint\Models\PSP::createByOrder($order);
             $psp->getPSPResult(Input::all());
@@ -59,8 +63,8 @@ class CartController  extends Controller {
                 return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
             }
         }catch(\Exception $ex) {
-            throw $ex;
-            // return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
+//            throw $ex;
+             return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
         }
     }
     public function checkout() {

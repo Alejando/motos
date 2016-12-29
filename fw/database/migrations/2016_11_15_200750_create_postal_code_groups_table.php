@@ -16,6 +16,7 @@ class CreatePostalCodeGroupsTable extends Migration
         Schema::create('postal_code_groups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->decimal('price');
         });
     }
 

@@ -21,7 +21,7 @@
                 <form ng-submit="submit()" novalidate="" name="registrationForm">
                     <h2 class="subtitulo">Registro</h2>
                     <div style="clear: both"></div>
-                    <div class="text-center"><img src="{{asset('img/facebook-login.png')}}" height="40"></div>
+                    <div class="text-center"><a href="{{route('facebook.login')}}"><img src="{{asset('img/facebook-login.png')}}" height="40"></a></div>
                     <div class="form-group row">
                         <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
                         <div class="col-sm-9">

@@ -115,7 +115,8 @@
                         <select 
                             name="estado"  
                             id="estado" 
-                            ng-model="address.relations.state"
+                            ng-change="selectState()"
+                            ng-model="selectedState"
                             ng-options="state.name for state in states track by state.name"
                             data-fact="festado"
                             class="form-control">

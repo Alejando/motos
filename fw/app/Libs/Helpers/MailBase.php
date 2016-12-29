@@ -21,7 +21,7 @@ class MailBase {
                 ], 
                 function (\Illuminate\Mail\Message $message) use ($args, $htmlView, $test) {
                     $args['message'] = $message;
-                    $body = view($htmlView, $args);
+                    $body = view($htmlView, $args)->render();
                     $message->getSwiftMessage()->setBody((new \Pelago\Emogrifier($body))-> emogrify());
                     $message->from([env('EMAIL_APP') => env('EMAIL_SENDERNAME')]);
                     $to = (array)$args['to'];

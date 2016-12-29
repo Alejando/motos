@@ -20,6 +20,7 @@
                                     <li><a href="#!/catalogos/marcas"><i class="fa fa-flag"></i>Marcas</a></li>
                                     <li><a href="#!/catalogos/colores"><i class="fa fa-paint-brush"></i>Colores</a></li>
                                     <li><a href="#!/catalogos/tallas"><i class="fa fa-sort-amount-asc"></i>Tallas</a></li>
+                                    <li><a href="#!/catalogos/zonas"><i class="fa fa-envelope-o"></i>Zonas de envío</a></li>
                                 </ul>
                             </li>
 

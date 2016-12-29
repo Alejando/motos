@@ -64,13 +64,14 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
-        return User::create([
+    protected function create(array $data) {
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => $data['password'],
         ]);
+        $user->sendMailWelcome($data['password']);
+        return $user;
     }
     public function login(\Illuminate\Http\Request $request) {
         if ($request->ajax()) {
