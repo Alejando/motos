@@ -3,14 +3,30 @@ setpoint.factory('PostalCode', function (ModelBase,$q,$http, Slug) {
         ModelBase.apply(this, arguments);
     };
     ModelBase.createModel(PostalCode, {   
-        alias: 'postalcode',
+        alias: 'postalCode',
         setters : {
         },
         attributes: [
             'id',
             'code'
         ],
-        relations : []
+        relations : [],
+        urlGetAllByGroup : function (id) {
+            return laroute.route('postalCode.by-group', {
+                'id' : id
+            });
+        },
+        saveGroup : function (cps, group) {
+            var def = $q.defer();
+            var url = laroute.route('postalCode.saveGroup');
+            $http.post(url, {
+                'cps' : cps,
+                'group': group
+            }).then(function(){ 
+                def.resolve();
+            });
+            return def.promise;
+        }
     }, {
     });
     return PostalCode;

@@ -154,6 +154,16 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'coupon.validateCode',
         'uses' => 'Api\\CouponController@validateCode'
     ]);
+    
+    Route::get('postalCode/by-group/{id}', [
+        'as' => 'postalCode.by-group',
+        'uses' => 'Api\\PostalCodeController@byCpGroup'
+    ]);
+    
+    Route::post('postalCode/save-group', [
+        'as' => 'postalCode.saveGroup',
+        'uses' => 'Api\\PostalCodeController@saveGroup'
+    ]); 
 
     Route::post('category/validate-category', [
         'as' => 'category.validateCategory',

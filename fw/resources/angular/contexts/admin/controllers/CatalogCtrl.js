@@ -14,6 +14,7 @@
             Category,
             Coupon,
             PostalCodeGroup,
+            PostalCode, 
             DTOptionsBuilder,
             DTColumnBuilder,
             $interval,
@@ -440,10 +441,76 @@
         
         //<editor-fold defaultstate="collapsed" desc="zonas de envio">
         this.zonas = function () { 
+            
             $scope.selectedItem = new PostalCodeGroup({});
             $scope.model = PostalCodeGroup;
             console.log(PostalCodeGroup);
+            
             $scope.showCPFrom = function (id) {
+                var url = PostalCode.urlGetAllByGroup(id);
+                
+                $scope.dtInstanceShippingZones = {};
+                
+                $scope.saveCPs = function () {
+                    PostalCode.saveGroup($scope.codes, id).then(function(){
+                        $scope.codes = "";
+                        $scope.dtInstanceShippingZones.reloadData(function(){}, !true);
+                    });
+                };
+                $scope.removeCP = function (id, $event) {
+                    $event.preventDefault();
+                    PostalCode.getById(id).then(function(cp){
+                        BootstrapDialog.show({
+                            message: "Deseas eliminar el codigo "+cp.code,
+                            title: 'Eliminar',
+                            buttons: [{
+                                label: 'SI',
+                                cssClass: 'btn btn-primary waves-effect waves-light',
+                                action: function(dialogRef) {
+                                    cp.remove().then(function(){
+                                        $scope.dtInstanceShippingZones.reloadData(function(){}, !true);
+                                        dialogRef.close();
+                                    });
+                                    dialogRef.setClosable(false);
+                                }
+                            }, {
+                                label: 'NO',
+                                cssClass: 'btn btn-danger waves-effect waves-light',
+                                action: function(dialogRef){
+                                    dialogRef.close();
+                                }
+                            }]
+                        });
+                    }); 
+                };
+                $scope.dtOptionsShippingZones = DTOptionsBuilder.fromFnPromise(function () {
+                    var defer = $q.defer();
+                    $http.get(url).then(function (result) {
+                        $scope.items = result.data;
+                        defer.resolve(result.data);
+                    });
+                    return defer.promise;
+                    }).withOption('createdRow', function (row, data, dataIndex) {
+                            // Recompiling so we can bind Angular directive to the DT
+                            $compile(angular.element(row).contents())($scope);
+                        }).withOption('headerCallback', function (header) {
+                    if (!$scope.headerCompiled) {
+                        // Use this headerCompiled field to only compile header once
+                        $scope.headerCompiled = true;
+                        $compile(angular.element(header).contents())($scope);
+                    }
+                }).withPaginationType('full_numbers');
+               
+                $scope.dtColumnsShippingZones = [ 
+                    DTColumnBuilder.newColumn('id').withTitle('ID'),
+                    DTColumnBuilder.newColumn('code').withTitle('C.P').renderWith(function(data, type, full){
+                        return '<a href="" ng-click="showCPFrom('+full.id+')">' + data +'</a>';
+                    }),
+                    DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                        return  '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeCP('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                    })
+                ];
+                
                 var $message = $('<div>Cargando...</div>');
                 BootstrapDialog.show({
                     title: getTitle(),
@@ -454,32 +521,25 @@
                     onhidden: function(dialog){
 //                         $scope.selectedItem = newObj();
                     }
-                });
+                });  
                 
-            $.get($scope.form = laroute.route('page', {view : 'form-postal-codes'}),{
-                
-            },'html').done(function(txt){
-                $message.fadeOut('fast', function(){
-                    if($scope.preprareForm) {
-                        var self = this;
-                        $scope.preprareForm().then(function(){
-                            $(self).html(txt).slideDown('slow');
+                $.get($scope.form = laroute.route('page', {view : 'form-postal-codes'}), {}, 'html').done(function(txt) {
+                    $message.fadeOut('fast', function() {
+                        if($scope.preprareForm) {
+                            var self = this;
+                            $scope.preprareForm().then(function(){
+                                $(self).html(txt).slideDown('slow');
+                                $compile(angular.element($message).contents())($scope);
+                               // defer.resolve();
+                            });
+                        } else {
+                            $(this).html(txt).slideDown('slow');
                             $compile(angular.element($message).contents())($scope);
-                            defer.resolve();
-                        });
-                    } else {
-                        $(this).html(txt).slideDown('slow');
-                        $compile(angular.element($message).contents())($scope);
-                        defer.resolve();
-                    }
+                           // defer.resolve();
+                        }
+                    });
                 });
-            });
                 
-                
-                
-                
-                
-               alert("Un dialogo " + id)
             };
             getTitle = function() {   
                 return $scope.selectedItem.id ? 'Edición de la grupo de envío "' + $scope.selectedItem.name + '"' : 'Nueva Zona de envío';
