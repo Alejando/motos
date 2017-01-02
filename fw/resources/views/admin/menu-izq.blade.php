@@ -28,12 +28,14 @@
                                 <a href="javascript:void(0);" class="waves-effect waves-light"><i class="md md-description"></i> <span> Contenidos </span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="#!/contenidos/nosotros"><i class="fa fa-file-code-o"></i>Sobre nosotros</a></li>
-                                    <li><a href="#!/contenidos/ventajas"><i class="fa fa-file-code-o"></i>Ventajas</a></li>
+                                    <li><a href="#!/contenidos/preguntas-frecuentes"><i class="fa fa-file-code-o"></i>Preguntas Frecuentes</a></li>
+                                    <li><a href="#!/contenidos/aviso-de-privacidad"><i class="fa fa-file-code-o"></i>Aviso de privacidad</a></li>
+                                    <!-- <li><a href="#!/contenidos/ventajas"><i class="fa fa-file-code-o"></i>Ventajas</a></li>
                                     <li><a href="#!/contenidos/formas-de-pago"><i class="fa fa-file-code-o"></i>Formas de pago</a></li>
                                     <li><a href="#!/contenidos/terminos-y-condiciones"><i class="fa fa-file-code-o"></i>Condiciones de venta</a></li>
                                     <li><a href="#!/contenidos/condiciones-de-envio"><i class="fa fa-file-code-o"></i>Condiciones de envío</a></li>
                                     <li><a href="#!/contenidos/condiciones-de-retorno"><i class="fa fa-file-code-o"></i>Condiciones de retorno</a></li>
-                                    <li><a href="#!/contenidos/protecion-de-datos"><i class="fa fa-file-code-o"></i>Proteción de datos</a></li>
+                                    <li><a href="#!/contenidos/protecion-de-datos"><i class="fa fa-file-code-o"></i>Proteción de datos</a></li> -->
                                 </ul>
                             </li>
                             <li class="has_sub">

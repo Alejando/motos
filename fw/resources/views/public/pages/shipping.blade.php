@@ -19,7 +19,7 @@
             <div style="clear: both"></div>
         @else
             <h2 class="subtitulo">Datos de Envío</h2>
-            <form id="formenvio" method="post"> 
+            <form id="formenvio" method="post" name="shippingForm" novalidate> 
                 <div class="row  margentop20" ng-hide="!address.id">
                     <div class="col-sm-2">
                         <label class="pull-right">
@@ -46,8 +46,19 @@
                         <label for="" class="pull-right">Etiqueta</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="tel" ng-model="address.label" name="label" id="label" class="form-control" placeholder="Etiqueta"/><br/>
+                        <input  type="tel" 
+                                ng-model="address.label" 
+                                name="label" 
+                                id="label" 
+                                class="form-control" 
+                                placeholder="Etiqueta"
+                                required/>
+                                <br/>
                         <i>*Nombre de la dirección, Ejemplos: Oficina, Casa</i>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.label.$touched && shippingForm.label.$invalid">
+                            <div ng-show="shippingForm.label.$error.required">Campo obligatorio</div>
+                            <!-- <div ng-show="brandForm.name.$error.ngRemoteValidate">* Ya existe la marca" </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="row margentop20">
@@ -55,28 +66,66 @@
                         <label for="nombre" class="pull-right">Nombre</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="nombre" id="nombre"  ng-model="address.first_name" class="form-control" />
+                        <input  type="text" 
+                                name="nombre" 
+                                id="nombre"  
+                                ng-model="address.first_name" 
+                                class="form-control" 
+                                required/>
+                        <br>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.nombre.$touched && shippingForm.nombre.$invalid">
+                            <div ng-show="shippingForm.nombre.$error.required">Campo obligatorio</div>
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         <label for="apellido" class="espacio pull-right">Apellidos</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="apellido" id="apellido" ng-model="address.last_name" class="form-control" />
+                        <input  type="text" 
+                                name="apellido" 
+                                id="apellido" 
+                                ng-model="address.last_name" 
+                                class="form-control" 
+                                required/>
+                        <br>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.apellido.$touched && shippingForm.apellido.$invalid">
+                            <div ng-show="shippingForm.apellido.$error.required">Campo obligatorio</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row margentop20">
                     <div class="col-sm-2">
-                        <label for="direccion" class="pull-right">Calle</label>
+                        <label for="calle" class="pull-right">Calle</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="direccion" id="direccion" ng-model="address.street" data-fact="fdireccion" class="form-control" />
+                        <input  type="text" 
+                                name="calle" 
+                                id="calle" 
+                                ng-model="address.street" 
+                                data-fact="fdireccion" 
+                                class="form-control" 
+                                required/>
+                        <br>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.calle.$touched && shippingForm.calle.$invalid">
+                            <div ng-show="shippingForm.calle.$error.required">Campo obligatorio</div>
+                        </div>
                     </div>
                     <div class="col-sm-2">
-                        <label for="direccion" class="pull-right">No.</label>
+                        <label for="numero" class="pull-right">No.</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="direccion" id="direccion" data-fact="fdireccion" ng-model="address.street_number" class="form-control" />
+                        <input  type="text" 
+                                name="numero" 
+                                id="numero" 
+                                data-fact="fdireccion" 
+                                ng-model="address.street_number" 
+                                class="form-control" 
+                                required/>
+                        <br>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.numero.$touched && shippingForm.numero.$invalid">
+                            <div ng-show="shippingForm.numero.$error.required">Campo obligatorio</div>
+                        </div>
                     </div>
                 </div> 
                  <div class="row margentop20">   
@@ -84,13 +133,23 @@
                         <label for="direccion" class="pull-right">No. Interior</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="direccion" id="direccion" data-fact="fdireccion" class="form-control" ng-model="address.suite_number" />
+                        <input  type="text" name="direccion" id="direccion" data-fact="fdireccion" class="form-control" ng-model="address.suite_number" />
                     </div>
                     <div class="col-sm-2">
                         <label for="colonia" class="pull-right">Colonia</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="colonia" id="colonia" data-fact="fcolonia" class="form-control" ng-model="address.neighborhood" />
+                        <input  type="text" 
+                                name="colonia" 
+                                id="colonia"   
+                                data-fact="fcolonia" 
+                                class="form-control" 
+                                ng-model="address.neighborhood" 
+                                required/>
+                        <br>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.colonia.$touched && shippingForm.colonia.$invalid">
+                            <div ng-show="shippingForm.colonia.$error.required">Campo obligatorio</div>
+                        </div>
                     </div>
                     
                 </div>
@@ -104,7 +163,7 @@
                                 id="country" 
                                 ng-change="chooseCountry()"
                                 ng-model="selectedCoutry"
-                                ng-options="country.name for country in countries track by coountry.name"
+                                ng-options="country.name for country in countries track by country.id"
                                  class="form-control"
                         ></select>
                     </div>
@@ -115,13 +174,17 @@
                         <select 
                             name="estado"  
                             id="estado" 
-                            ng-change="selectState()"
-                            ng-model="selectedState"
-                            ng-options="state.name for state in states track by state.name"
+                            ng-model="address.relations.state"
+                            ng-options="state.name for state in states track by state.id"
                             data-fact="festado"
-                            class="form-control">
+                            class="form-control"
+                            required>
                             <option value="">Estado/Provincia</option>
                         </select>
+                        <br>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.estado.$touched && shippingForm.estado.$invalid">
+                            <div ng-show="shippingForm.estado.$error.required">Campo obligatorio</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row margentop20">
@@ -129,13 +192,33 @@
                         <label for="ciudad" class="espacio pull-right">Ciudad</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="ciudad" id="ciudad" data-fact="fciudad" class="form-control" ng-model="address.city"/>
+                        <input  type="text" 
+                                name="ciudad" 
+                                id="ciudad" 
+                                data-fact="fciudad" 
+                                class="form-control" 
+                                ng-model="address.city"
+                                required/>
+                        <br>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.ciudad.$touched && shippingForm.ciudad.$invalid">
+                            <div ng-show="shippingForm.ciudad.$error.required">Campo obligatorio</div>
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         <label for="cp" class="espacio pull-right">Código Postal</label>
                     </div>
                     <div class="col-sm-4">
-                        <input type="text" name="cp" id="cp" data-fact="fcp" class="form-control" ng-model="address.postal_code" />
+                        <input  type="text" 
+                                name="cp" 
+                                id="cp" 
+                                data-fact="fcp" 
+                                class="form-control" 
+                                ng-model="address.postal_code" 
+                                required/>
+                        <br>
+                        <div class="alert alert-danger" role="alert" ng-show="shippingForm.cp.$touched && shippingForm.cp.$invalid">
+                            <div ng-show="shippingForm.cp.$error.required">Campo obligatorio</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row margentop20">
@@ -169,7 +252,8 @@
                         
                     </div>
                 </div>
-
+            </form>
+            <form id="formenvio2" method="post" name="billInfoForm" novalidate>
                 <div class="row margentop20">
                     <div class="col-sm-10 col-sm-offset-2">
                         <label class="qfactura">

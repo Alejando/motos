@@ -23,9 +23,10 @@
                             <label for="nombre">MOVIL</label>
                         </div>
                         <div class="col-sm-7">
-                            <input type="text" name="movil" id="movil" data-required="1" data-tipo="txt" class="form-control" />
+                            <input type="text" name="movil" ng-model="checked" id="movil" data-required="1" data-tipo="txt" class="form-control" />
                         </div>
                     </div>
+
 
                     <div class="row margentop20">
                         <div class="col-sm-5">
@@ -67,6 +68,73 @@
                         </div>
                     </div>
 
+                    
+                    <div class="row margentop20">
+                    <label>¿DURANTE QUE HORARIO TE GUSTARIA QUE TE LLAMEMOS?</label>
+                        <div class="col-sm-2">
+                            <label class="text-center">DE:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control">
+                              <option value="0">12:00 am</option>
+                              <option value="1">1:00 am</option>
+                              <option value="2">2:00 am</option>
+                              <option value="3">3:00 am</option>
+                              <option value="4">4:00 am</option>
+                              <option value="5">5:00 am</option>
+                              <option value="6">6:00 am</option>
+                              <option value="7">7:00 am</option>
+                              <option value="8">8:00 am</option>
+                              <option value="9">9:00 am</option>
+                              <option value="10">10:00 am</option>
+                              <option value="11">11:00 am</option>
+                              <option value="12">12:00 pm</option>
+                              <option value="13">1:00 pm</option>
+                              <option value="14">2:00 pm</option>
+                              <option value="15">3:00 pm</option>
+                              <option value="16">4:00 pm</option>
+                              <option value="17">5:00 pm</option>
+                              <option value="18">6:00 pm</option>
+                              <option value="19">7:00 pm</option>
+                              <option value="20">8:00 pm</option>
+                              <option value="21">9:00 pm</option>
+                              <option value="22">10:00 pm</option>
+                              <option value="23">11:00 pm</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <label>A:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control">
+                              <option value="0">12:00 am</option>
+                              <option value="1">1:00 am</option>
+                              <option value="2">2:00 am</option>
+                              <option value="3">3:00 am</option>
+                              <option value="4">4:00 am</option>
+                              <option value="5">5:00 am</option>
+                              <option value="6">6:00 am</option>
+                              <option value="7">7:00 am</option>
+                              <option value="8">8:00 am</option>
+                              <option value="9">9:00 am</option>
+                              <option value="10">10:00 am</option>
+                              <option value="11">11:00 am</option>
+                              <option value="12">12:00 pm</option>
+                              <option value="13">1:00 pm</option>
+                              <option value="14">2:00 pm</option>
+                              <option value="15">3:00 pm</option>
+                              <option value="16">4:00 pm</option>
+                              <option value="17">5:00 pm</option>
+                              <option value="18">6:00 pm</option>
+                              <option value="19">7:00 pm</option>
+                              <option value="20">8:00 pm</option>
+                              <option value="21">9:00 pm</option>
+                              <option value="22">10:00 pm</option>
+                              <option value="23">11:00 pm</option>
+                            </select>
+                        </div>
+                    </div>
+                 
                     <div class="row margentop20 hidden-lg hidden-md hidden-sm">
                         <div class="col-sm-7 col-sm-offset-5">
                             <a href="" id="btnenviar" class="enviar">ENVIAR</a>

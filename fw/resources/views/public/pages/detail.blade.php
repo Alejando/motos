@@ -114,7 +114,9 @@
                         <div class="col-sm-8">
                             <div class="btnredes">
                                 <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);window.location.href=('http://twitter.com/?status='+tit2+'%20'+dir+'');" class="tw pull-right"></a>
+                                
                                 <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);var dir2= encodeURIComponent(dir);window.location.href=('http://www.facebook.com/share.php?u='+dir2+'&amp;t='+tit2+'');" class="fb pull-right"></a>
+
                                 <!--a href="" class="yt"></a-->
                                 <!--a href="" class="in"></a-->
                             </div>

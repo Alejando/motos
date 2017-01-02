@@ -4,6 +4,8 @@
 </div-->
 
 <div class="cajaestrella margentop30">
-    <img src="{{ asset('img/agassi.png') }}" />
+    <a href="{{url('categorias/deportistas/andre-agassi')}}">
+    	<img src="{{ asset('img/agassi.png') }}" />
+    </a>
     <h2>Andre Agassi</h2>
 </div>

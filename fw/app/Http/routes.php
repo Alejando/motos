@@ -332,11 +332,14 @@ Route::get('user/perfil',[
         'uses'=>'UserController@profile'
     ]);
 
-Route::get('/loginFacebook', [
-    'as'=>'facebook.login',
-    'uses'=>'FacebookController@login'
-]);
-Route::get('facebook-checkin/', [
-    'as'=>'facebook.checkin',
-    'uses'=>'FacebookController@checkin'
-]);
+Route::post('busqueda/personalizada/',[
+        'as'=>'search.custom',
+        'uses'=>'ProductCtrl@getSearch'
+    ]);
+
+Route::post('busqueda/personalizada2/',[
+        'as'=>'search.custom2',
+        'uses'=>'ProductCtrl@cacharAlgo'
+    ]);
+
+

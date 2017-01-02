@@ -21,6 +21,14 @@
                         <!-- ng-remote-validate="{{\DwSetpoint\Models\Category::getValidateUniqueCategoryURL()}}" -->
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Oculta</label>
+            <div class="col-md-8">
+                <input type="checkbox" ng-model="categoryTemp.type">
+                <!-- <i class="switch fa fa-toggle-on active" ng-show="auction.ready" ng-click="changeType()"></i>
+                <i class="switch fa fa-toggle-on fa-rotate-180 inactive" ng-show="!auction.ready" ng-click="changeType();"></i> -->
+            </div>
+        </div>
         <div class="alert alert-danger" role="alert" ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">
             <div ng-show="categoryForm.name.$error.required">* Campo obligatorio</div>
             <!-- <div ng-show="categoryForm.name.$error.ngRemoteValidate">* Ya existe la categoría" </div> -->

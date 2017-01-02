@@ -4,7 +4,10 @@
         Inicio <span class="separador">-</span> <span class="current">Pedidos</span>
     </div>
 
-    
+	<div>{{\Auth::user()->id}}</div>
+	@foreach (\Auth::user()->addresses as $address)
+    	<p>This is user {{ $address->street }}</p>
+	@endforeach    
 <div class="cajadatos margentop30">
 	<div class="col-md-12">       
 	    <div class="card-box table-responsive">

@@ -2,7 +2,7 @@
 
 namespace DwSetpoint\Models;
 class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
-    protected $fillable = ['name','parent_category_id'];
+    protected $fillable = ['name','parent_category_id', 'type'];
 
     public static function findChildrenBySlug($parent, $categorySlug) {
         $query = \DwSetpoint\Models\Category::where('name', 'like',  ucwords(str_replace('-', " ", $categorySlug)));
@@ -68,7 +68,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getRoots">
     public static function getRoots($returnQuery = false) {
-        $query = self::whereNull('parent_category_id')->get();
+        $query = self::whereNull('parent_category_id')->where('type', 0)->get();
         if($returnQuery){
             return $query;
         }

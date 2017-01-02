@@ -20,39 +20,46 @@ class CreateContentRows extends Migration
         $content->save();
 
         $content = new DwSetpoint\Models\Content;
-        $content->title = 'Formas de pago';
-        $content->name = 'formas-de-pago';
-        $content->slug = 'formas-de-pago';
+        $content->title = 'Preguntas Frecuentes';
+        $content->name = 'preguntas-frecuentes';
+        $content->slug = 'preguntas-frecuentes';
         $content->content ='';
         $content->save();
 
-        $content = new DwSetpoint\Models\Content;
-        $content->title = 'Ventajas';
-        $content->name = 'ventajas';
-        $content->slug = 'ventajas';
-        $content->content ='';
-        $content->save();
+        // $content = new DwSetpoint\Models\Content;
+        // $content->title = 'Formas de pago';
+        // $content->name = 'formas-de-pago';
+        // $content->slug = 'formas-de-pago';
+        // $content->content ='';
+        // $content->save();
 
-        $content = new DwSetpoint\Models\Content;
-        $content->title = 'Terminos y condiciones';
-        $content->name = 'terminos-y-condiciones';
-        $content->slug = 'terminos-y-condiciones';
-        $content->content ='';
-        $content->save();
+        // $content = new DwSetpoint\Models\Content;
+        // $content->title = 'Ventajas';
+        // $content->name = 'ventajas';
+        // $content->slug = 'ventajas';
+        // $content->content ='';
+        // $content->save();
 
-        $content = new DwSetpoint\Models\Content;
-        $content->title = 'Condiciones de envío';
-        $content->name = 'condiciones-de-envio';
-        $content->slug = 'condiciones-de-envio';
-        $content->content ='';
-        $content->save();
+        // $content = new DwSetpoint\Models\Content;
+        // $content->title = 'Terminos y condiciones';
+        // $content->name = 'terminos-y-condiciones';
+        // $content->slug = 'terminos-y-condiciones';
+        // $content->content ='';
+        // $content->save();
 
-        $content = new DwSetpoint\Models\Content;
-        $content->title = 'Condiciones de retorno';
-        $content->name = 'condiciones-de-retorno';
-        $content->slug = 'condiciones-de-retorno';
-        $content->content ='';
-        $content->save();
+        // $content = new DwSetpoint\Models\Content;
+        // $content->title = 'Condiciones de envío';
+        // $content->name = 'condiciones-de-envio';
+        // $content->slug = 'condiciones-de-envio';
+        // $content->content ='';
+        // $content->save();
+
+        // $content = new DwSetpoint\Models\Content;
+        // $content->title = 'Condiciones de retorno';
+        // $content->name = 'condiciones-de-retorno';
+        // $content->slug = 'condiciones-de-retorno';
+        // $content->content ='';
+        // $content->save();
 
         $content = new DwSetpoint\Models\Content;
         $content->title = 'Aviso de privacidad';
