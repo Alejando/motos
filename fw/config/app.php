@@ -5,6 +5,9 @@ return [
     'fb_IdApp' => '1577066222589528',
     'currency' => 'MXN',
     'permissionFiles' => 0777,
+    'conekta' => [
+        'publicKey' => 'key_IiRnn6mDc1xD7u2nYxLqH6A'
+    ],
     'config-images' => [
         'fillcolor' => "#FFF",
         'fillopacity' => 0

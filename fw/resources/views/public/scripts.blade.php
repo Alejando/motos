@@ -10,5 +10,5 @@
 <script src="{{asset('js/laroute.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/generico.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bower_components/angular-local-storage/dist/angular-local-storage.min.js')}}"  type="text/javascript"></script>
-<script src="{{asset('js/estrasol/web-angular.js')}}" type="text/javascript"></script>
 @yield('scripts')
+<script src="{{asset('js/estrasol/web-angular.js')}}" type="text/javascript"></script>

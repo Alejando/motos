@@ -16,5 +16,8 @@ class Address extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function user() {
         return $this->belongsTo(\DwSetpoint\Models\User::class, 'state_id');
     }
-
+    
+    public function getFullName() {
+        return $this->first_name." ".$this->last_name;
+    }
 }

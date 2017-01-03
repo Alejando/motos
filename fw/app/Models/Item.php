@@ -8,6 +8,9 @@ class Item extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function product() {    
         return $this->belongsTo(\DwSetpoint\Models\Product::class);    
     }
+    public function stock() {
+        return $this->belongsTo(\DwSetpoint\Models\Stock::class);    
+    }
     public function getPrice() {
         return 100;
     }

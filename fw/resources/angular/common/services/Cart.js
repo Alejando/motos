@@ -5,6 +5,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     var arrItems = [];
     var _coupon = null;
     var couponStock = null;
+    var cart = this;
     this.onInvalidateCoupon = function (){
         console.log("Quitar Cupon");
     };
@@ -323,15 +324,54 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         };
         return data;
     };
-    this.checkout = function () {
-        var defer = $q.defer();
-        var data = this.prepareData();
+    
+    
+   
+    var conekta = {
+        conektaSuccessResponseHandler: function (def, arguments, context) {
+            var token = arguments[0];
+            var data = cart.prepareData();
+            data['conektaToken'] = token.id;
+            cart.sendCheckout(data, def); 
+        },
+        conektaErrorResponseHandler : function (token) {
+            console.log("token", token);
+        }
+    };
+    
+    this.setConektaCardForm = function (form) { 
+        conekta.form = form;
+    };
+    
+    var createConektaToken = function (defer) { 
+        Conekta.token.create( conekta.form, 
+            function () {
+                conekta.conektaSuccessResponseHandler(defer, arguments, this);
+            }, 
+            function () {
+                conekta.conektaErrorResponseHandler(defer,arguments, this);
+            }
+            
+        );
+    };
+    this.sendCheckout = function (data,defer) {
         var url = laroute.route("cart.checkout");
         $http.post(url, data).then(function (request) {
             defer.resolve(request.data, request);
         }, function (fail) {
             defer.reject(fail);
-        });;
+        });
+    }
+    this.checkout = function () {
+        var defer = $q.defer();
+        if(this.psp === this.PSP_CONEKTA) {
+           createConektaToken(defer);
+        } else { 
+            this.sendCheckout(
+                this.prepareData(),
+                defer
+            );            
+        }
         return defer.promise;
     };
     

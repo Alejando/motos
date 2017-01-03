@@ -11,6 +11,7 @@ namespace DwSetpoint\Http\Controllers;
 use Illuminate\Support\Facades\Input;
 use DwSetpoint\Models\Stock;
 use DwSetpoint\Models\Item;
+use \DwSetpoint\Models\PSP;
 /**
  * Description of CartController
  *
@@ -68,9 +69,10 @@ class CartController  extends Controller {
         }
     }
     public function checkout() {
-        $order = new \DwSetpoint\Models\Order();
+        $user = \Auth::user();
+        $order = new \DwSetpoint\Models\Order();        
         $order->address_id = Input::get('shipping_address');
-        $order->user_id = \Auth::user()->id;
+        $order->user_id = $user->id;
         $order->psp = Input::get('psp');
         $order->billing_information_id = input::get('billing_info');
         $itmes = Input::get('items');
@@ -84,16 +86,20 @@ class CartController  extends Controller {
                 'quantity' => $quanty,
                 'order_id' => $order->id
             ]);
-//            $psp->addItem($objItem);
         }
-        $psp = \DwSetpoint\Models\PSP::createByOrder($order);
-        if($url = $psp->getCheckoutURL()){
-            return ['url' => $url];
+        $psp = PSP::createByOrder($order);
+        switch($order->psp){
+            case PSP::PAYPAL:
+                $url = $psp->getCheckoutURL();
+                return ['url' => $url];
+            case PSP::CONEKTA:
+                $psp->setToken(Input::get('conektaToken'));
+                $psp->setUser($user);
+                $psp->checkout();
+//                echo get_class($psp);
+                break;
         }
+        
         die();
-//        $order->save();
-//        $order->setItems(Input::get('items'));
-//        
-//        $order->save();
     }
 }

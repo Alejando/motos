@@ -8,6 +8,7 @@ setpoint.controller('CartCheckoutCtrl', [
             $scope.providerSelected = provider;
             Cart.setPaymentServiceProvide(provider);
         };
+        Cart.setConektaCardForm($('#formpago')); 
         $scope.checkout = function (evt) {
             evt.preventDefault();
             Cart.checkout().then(function (data) {

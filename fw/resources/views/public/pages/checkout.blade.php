@@ -84,6 +84,7 @@
                             </div>
                         </div>
                     </div>
+                    @include('public.pages.cart.form-conekta')
                 </div>
                 <div class="col-sm-5">
                     <h3 class="subtitulo2">Resúmen de Compra</h3>
@@ -148,4 +149,10 @@
         </form>
     </div>
 </div>
+@stop
+@section('scripts')
+    <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.0/js/conekta.js"></script>
+    <script type="text/javascript">
+        Conekta.setPublishableKey({!!json_encode(Config('app.conekta.publicKey'))!!});
+    </script>
 @stop
