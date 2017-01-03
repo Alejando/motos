@@ -321,7 +321,12 @@ Route::get('user/pedidos',[
         'uses'=>'UserController@getOrders'
     ]);
 
-Route::geT('mi-perfil/compras',[
+Route::get('user/pedidos/{id}',[
+        'as'=>'user.getOrderDetails',
+        'uses'=>'OrderController@getOrderDetails'
+    ]);
+
+Route::get('mi-perfil/compras',[
     'as' => 'user.getOrder',
     'uses' => function (){
         echo "Destalle de la orden";
@@ -332,6 +337,14 @@ Route::get('user/perfil',[
         'uses'=>'UserController@profile'
     ]);
 
+Route::get('/loginFacebook', [
+    'as'=>'facebook.login',
+    'uses'=>'FacebookController@login'
+]);
+Route::get('facebook-checkin/', [
+    'as'=>'facebook.checkin',
+    'uses'=>'FacebookController@checkin'
+]);
 Route::post('busqueda/personalizada/',[
         'as'=>'search.custom',
         'uses'=>'ProductCtrl@getSearch'
