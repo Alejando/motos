@@ -71,4 +71,21 @@ class ProductCtrl extends Controller{
 
     }
 
+    public function getSearch(Request $request, $page = 1) {
+        $search = $request->input('search');
+        $paginator = \DwSetpoint\Models\Product::where('name', 'like', '%'.$search.'%')->paginate(4);
+
+        if($paginator) {
+            return view('public.pages.products-search', [
+                'products' => $paginator
+            ]);
+        }
+        abort(404);
+    }
+
+    public function cacharAlgo(Request $request){
+        // return "tumama";
+        return $request->input('search');
+    }
+
 }

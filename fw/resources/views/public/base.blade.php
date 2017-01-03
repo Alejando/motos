@@ -11,6 +11,15 @@
             @endif
         </script>
         @yield('headers')
+        <!--Start of Zendesk Chat Script-->
+        <!-- <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+        $.src="https://v2.zopim.com/?4AFML9HAB3twafcaCxwoyvHuxlRKb6jX";z.t=+new Date;$.
+        type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+        </script> -->
+        <!--End of Zendesk Chat Script-->
     </head>
 
     <body class="setpoint-public" ng-app="setpoint">
@@ -78,9 +87,13 @@
                     @include('public.blocks.menu-lg')
                     @include('public.blocks.menu-sm')
                 <!--{{-- @endif --}}-->
-                    <div class="search-form-2">
-                        <input type="text" class="input-border" ><button class="sprite search-2"></button>
-                    </div>
+                
+                <div class="search-form-2">
+                    <form action="{{ url('busqueda/personalizada/') }}" method="POST">
+                        <input type="text" class="input-border" name="search"><button class="sprite search-2" type="submit"></button> 
+                    </form>
+                </div>
+               
                     <div style="clear: both"></div>
                 </nav>
                 @if($showOffert)

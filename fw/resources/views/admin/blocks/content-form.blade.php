@@ -6,6 +6,9 @@
 </div>
 <div>
     <div class="card-box">
+        <div class="alert alert-success" ng-show="alerta">
+          ¡Guardado Exitosamente!.
+        </div>
 	    <form method="post" >
 	        <textarea style="width: 100%; height: 300px" class="form-control" ui-tinymce="tinymceOptions" ng-model="objContent.content"></textarea>
 		</form>
