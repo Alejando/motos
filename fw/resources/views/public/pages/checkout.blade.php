@@ -10,6 +10,9 @@
         <a href="./envio" class="transicion"><span><b>2</b></span></a>
         <a href="./pago" class="transicion activo"><span><b>3</b></span></a>
     </div>
+    <div class="cajadatos margentop20 ng-hide" ng-show="pspError"  ng-cloak>
+        <h2 class="title text-center" style="color:red" >@{{pspError}}<i class="fa fa-times" aria-hidden="true"></i></h2>
+    </div>
     @if(isset($checkout) && $checkout=='fail')
     <div class="cajadatos margentop20">
         <h2 class="title text-center" style="color:red" >Ocurrio un error al intentar procesar tu pago <i class="fa fa-times" aria-hidden="true"></i></h2>

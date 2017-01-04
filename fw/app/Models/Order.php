@@ -16,6 +16,13 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function items() {
         return $this->hasMany(\DwSetpoint\Models\Item::class);
     }
+    public function sendMail($user) {
+        \DwSetpoint\Libs\Helpers\Mail::order([
+            'user' => $user,
+            'order' => $this
+        ]);
+        return $this;
+    }
     public function getDateTiemeCreateAt($strTimeZone = 'America/Mexico_City') {
         $timeZone = new \DateTimeZone($strTimeZone);
         $objDate = new \DateTime($this->attributes['created_at']);

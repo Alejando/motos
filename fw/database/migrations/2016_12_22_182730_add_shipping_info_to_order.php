@@ -12,8 +12,10 @@ class AddShippingInfoToOrder extends Migration {
      */
     public function up() {
         Schema::table('orders', function(Blueprint $table) {
-            $table->integer('billing_information_id')->unsigned()->nulleable();
+            $table->integer('billing_information_id')->unsigned()->nullable();
             $table->integer('psp');
+            $table->longText('pspinfo');
+            $table->boolean('paid');
 //            $table->foreign('billing_information_id')->references('id')->on('billing_information')->onDelete('cascade');
         });
         Schema::table('items', function(Blueprint $table) {
@@ -30,6 +32,8 @@ class AddShippingInfoToOrder extends Migration {
         Schema::table('orders', function(Blueprint $table) {
             $table->dropColumn('billing_information_id');
             $table->dropColumn('psp');
+            $table->dropColumn('pspinfo');
+            $table->boolean('paid');
         });
         Schema::table('items', function(Blueprint $table) {
             $table->dropColumn('order_id');

@@ -11,8 +11,8 @@
 |
 */
 Route::get("{msj}/holamundo/", "HomeController@holamundo");
-Route::get('carrito/paypal-success', [
-    'as'=> 'cart.registration-form',
+Route::get('carrito/success', [
+    'as' => 'cart.success',
     'uses' => 'CartController@success'
 ] );
 Route::get('/detalle', function() {
