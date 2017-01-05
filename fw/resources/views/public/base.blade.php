@@ -29,7 +29,32 @@
                     <a href="{{url("/")}}" class="sprite logo-bounce home-logo" title="Bounce Tenis Lifestyle">Home</a>
                     <nav class="menu-right">
                         <ul class="menu">
-                            <li><a href="{{route('cart.list')}}" class="sprite icon-car-2" title="Mi Carrito">Mi Carrito</a></li>
+                            <div class="dropdown-cart" ng-controller="CartListItemCtrl">
+                                <li><a href="{{route('cart.list')}}" class="sprite icon-car-2" title="Mi Carrito">Mi Carrito</a></li>
+                              <div class="dropdown-content-cart">
+                                <ul class="list-cart" ng-repeat="item in items">
+                                  <li>
+                                      <span class="item">
+                                        <span class="item-left">
+                                            <img class="item_img" src="@{{item.product.getURLCover()}}" alt="" />
+                                            <span class="item-info">
+                                                <span><b>@{{item.product.name}}</b></span>
+                                                <span>@{{item.getSubTotal()|currency}}</span>
+                                            </span>
+                                        </span>
+                                        <span class="item-right">
+                                            <button ng-click="removeItem(item)" class="btn_delete pull-right">X</button>
+                                        </span>
+                                    </span>
+                                  </li>
+                                </ul>
+                                <div class="row list_subtotal" ng-show="cart.getSubTotal() > 0">
+                                    <div class="col-sm-6"><b>Subtotal:</b></div>
+                                    <div class="col-sm-6 pull-right">@{{cart.getSubTotal()|currency}}MXP</div> 
+                                </div>
+                                
+                              </div>
+                            </div>
                             <li><a id="btnmenuemergente" href="" class="sprite icon-menu" title="Menú">Menú</a></li>
                         </ul>
                         

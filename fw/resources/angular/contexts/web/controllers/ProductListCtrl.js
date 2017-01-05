@@ -6,10 +6,10 @@ setpoint.controller('ProductListCtrl', ['$scope', 'User', 'Product',
         //favoritos = Bookmarks; //Temporal
         //console.log(favoritos);
         //console.log(Bookmarks);
-        User.getIdProductInBookmarks().then(function(data){
-            console.log(data);
-            favoritos =  data;        
-        });
+        // User.getIdProductInBookmarks().then(function(data){
+        //     console.log(data);
+        //     favoritos =  data;        
+        // });
             
         $scope.checkFav = function(id){
             return favoritos.indexOf(id) > -1;

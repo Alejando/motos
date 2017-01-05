@@ -16,7 +16,7 @@ setpoint.factory('CartItem', ['Color', 'Product', 'Size',
                 this.size_id = info.size_id;
                 this.size = info.size
             }
-            console.log(this);
+            //console.log(this);
         };
         CartItem.prototype = {
             quantity : function (q) {

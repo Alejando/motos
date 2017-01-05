@@ -39,7 +39,29 @@ setpoint.controller('OrderCtrl', function (
                 $scope.headerCompiled = true;
                 $compile(angular.element(header).contents())($scope);
             }
-        }).withPaginationType('full_numbers');
+        }).withPaginationType('full_numbers').withLanguage({
+                    "sEmptyTable":     "No hay datos disponibles en la tabla",
+                    "sInfo":           "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+                    "sInfoEmpty":      "Mostrando 0 a 0 de 0 elementos",
+                    "sInfoFiltered":   "(filtrado de _MAX_ total elementos)",
+                    "sInfoPostFix":    "",
+                    "sInfoThousands":  ",",
+                    "sLengthMenu":     "Ver _MENU_ elementos",
+                    "sLoadingRecords": "Cargando...",
+                    "sProcessing":     "Procesando...",
+                    "sSearch":         "Busqueda:",
+                    "sZeroRecords":    "No se encontraron coincidencias",
+                    "oPaginate": {
+                        "sFirst":    "Primera",
+                        "sLast":     "Ultima",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna descendente"
+                    }
+                });
 
     $scope.dtColumns =   [
                        DTColumnBuilder.newColumn('created_at').withTitle('Fecha'),
@@ -57,7 +79,7 @@ setpoint.controller('OrderCtrl', function (
                         }),
                        DTColumnBuilder.newColumn('tracking_code').withTitle('Codigo de rastreo'),
                        DTColumnBuilder.newColumn('estimated_date').withTitle('Fecha estimada'),
-                       DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type, full, meta){
+                       DTColumnBuilder.newColumn(null).withTitle("Lista Productos").notSortable().renderWith(function(data, type, full, meta){
                            return '<a href="#" class="on-default edit-row icon icon" uib-tooltip="Editar"  ng-click="getDetails('+full.id+')"><i class="fa fa-list"></i></a>';
                        })
                    ];
