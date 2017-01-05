@@ -60,13 +60,13 @@
                             
                             <li><span class="separador"></span></li>
                             <li><a href="{{route('Content.slug',['slug'=>'nosotros'])}}" class="transicion">Sobre nosotros</a></li>
-                            <li><a href="{{route('Content.slug',['slug'=>'ventajas'])}}" class="transicion">Ventajas</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'preguntas-frecuentes'])}}" class="transicion">Preguntas frecuentes</a></li>
                             <li><span class="separador"></span></li>
                             <!-- <li><a href="" class="transicion">Voucher</a></li> -->
-                            <li><a href="{{route('Content.slug',['slug'=>'formas-de-pago'])}}" class="transicion">Formas de pago</a></li>
+                            <!-- <li><a href="{{route('Content.slug',['slug'=>'formas-de-pago'])}}" class="transicion">Formas de pago</a></li>
                             <li><a href="{{route('Content.slug',['slug'=>'terminos-y-condiciones'])}}" class="transicion">Condiciones de venta</a></li>
                             <li><a href="{{route('Content.slug',['slug'=>'condiciones-de-envio'])}}" class="transicion">Condiciones de envío</a></li>
-                            <li><a href="{{route('Content.slug',['slug'=>'condiciones-de-retorno'])}}" class="transicion">Condiciones de retorno</a></li>
+                            <li><a href="{{route('Content.slug',['slug'=>'condiciones-de-retorno'])}}" class="transicion">Condiciones de retorno</a></li> -->
                             <li><a href="{{route('Content.slug',['slug'=>'aviso-de-privacidad'])}}" class="transicion">Aviso de privacidad</a></li>
                             <li><span class="separador"></span></li>
                             <li><span class="txt">Número de Contacto<br /><b>01 800 000</b></span></li>
