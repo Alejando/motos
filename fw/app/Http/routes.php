@@ -148,6 +148,7 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('state','State');
     $addAPI('address','Address');
     $addAPI('postalCode','PostalCode');
+    $addAPI('order','Order');
     $addAPI('postalCodeGroup','PostalCodeGroup');
 
     Route::post('coupon/validate-code', [
