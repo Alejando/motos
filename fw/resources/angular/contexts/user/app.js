@@ -1,4 +1,4 @@
-var setpoint = angular.module('setpoint', [
+var setpoint = angular.module('setpoint_user', [
     'ngRoute',
     'datatables',
     'ui.tinymce',

@@ -10,5 +10,9 @@
 <script src="{{asset('js/laroute.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/generico.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bower_components/angular-local-storage/dist/angular-local-storage.min.js')}}"  type="text/javascript"></script>
+<script src="{{asset('js/bower_components/datatables.net/js/jquery.dataTables.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/bower_components/angular-datatables/dist/angular-datatables.min.js')}}"></script>
+<script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js')}}" type="text/javascript"></script>
 @yield('scripts')
 <script src="{{asset('js/estrasol/web-angular.js')}}" type="text/javascript"></script>

@@ -31,4 +31,9 @@ class UserController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         return $idsBookmark;
     }
+
+    public function getOrdersUser() {
+        $orders = \Auth::user()->orders;
+        return $orders;
+    }
 }

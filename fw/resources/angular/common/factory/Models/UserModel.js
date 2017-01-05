@@ -16,7 +16,8 @@ setpoint.factory('User', function (ModelBase, $q, $http, Product, Address) {
         relations : [ 
             ['bookmarks', Product, 'hasMany'],
             ['addresses', Address, 'hasMany'],
-//            ['billingInformation', BillingInformation, 'hasMany']
+//            ['orders', Order, 'hasMany']
+//          ['billingInformation', BillingInformation, 'hasMany']
         ],
         login : function (email, password) {            
             var def = $q.defer();

@@ -2,7 +2,8 @@ var setpoint = angular.module('setpoint', [
     'slugifier',
     'angular-owl-carousel',
     'LocalStorageModule',
-    'devtics-angular-modelbase'
+    'devtics-angular-modelbase',
+    'datatables'
 ]);
 
 setpoint.config(function (localStorageServiceProvider, $httpProvider) {

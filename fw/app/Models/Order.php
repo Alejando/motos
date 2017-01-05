@@ -28,6 +28,9 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
      public function address() {
         return $this->belongsTo(\DwSetpoint\Models\Address::class);
     }
+    public function user() {
+        return $this->belongsTo(\DwSetpoint\Models\User::class);
+    }
     public function getAmount() {
         return 100;
     }

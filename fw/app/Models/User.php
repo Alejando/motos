@@ -45,6 +45,11 @@ class User extends Authenticatable {
         return $this->hasMany(Address::class);
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="orders">
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="billingInformation">
     public function billingInformation() {
         return $this->hasMany(BillingInformation::class);

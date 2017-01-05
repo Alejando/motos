@@ -246,7 +246,10 @@ Route::get('/pages/admin/{view}.html', [
     'as' => 'page',
     'uses' => 'PagesCtrl@admin'
 ]);
-
+Route::get('/pages/users/{view}.html', [
+    'as' => 'user.pages',
+    'uses' => 'PagesCtrl@user'
+]);
 Route::get('/contacto', 'ContactCtrl@index');
 Route::get('/home', 'HomeCtrl@index');
 Route::get('/', 'HomeCtrl@index');
@@ -321,9 +324,15 @@ Route::get('user/pedidos',[
         'uses'=>'UserController@getOrders'
     ]);
 
-Route::get('user/pedidos/{id}',[
-        'as'=>'user.getOrderDetails',
-        'uses'=>'OrderController@getOrderDetails'
+
+Route::get('user/orders',[
+        'as'=>'user.getOrdersUser',
+        'uses'=>'Api\\UserController@getOrdersUser'
+    ]);
+
+Route::get('order/details',[
+        'as'=>'order.getDetails',
+        'uses'=>'Api\\OrderController@getDetails'
     ]);
 
 Route::get('mi-perfil/compras',[
