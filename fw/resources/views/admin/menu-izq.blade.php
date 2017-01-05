@@ -7,6 +7,9 @@
                         <ul>
                             <li class="text-muted menu-title">Navigation</li>
                             <li class="has_sub">
+                                <a href="#!/catalogos/pedidos" class="waves-effect waves-light"><i class="ion ion-android-arrow-up-right"></i>  <span> Pedido </span></a>
+                            </li>
+                            <li class="has_sub">
                                 <a href="#!/catalogos/stock" class="waves-effect waves-light"><i class="md md-store"></i>  <span> Stock </span></a>
                             </li>
                             <li class="has_sub">

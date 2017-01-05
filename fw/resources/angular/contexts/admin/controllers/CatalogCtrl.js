@@ -13,6 +13,7 @@
             Product,
             Category,
             Coupon,
+            Order,
             PostalCodeGroup,
             PostalCode, 
             DTOptionsBuilder,
@@ -787,6 +788,52 @@
             }
         };
         //</editor-fold>
+        
+        //<editor-fold defaultstate="collapsed" desc="pedidos">
+        this.pedidos = function () {
+            $scope.model = Order;
+            $scope.catalog = "Ordenes";
+            $scope.preprareForm = function () {};
+            $scope.prepareItem = function () {};
+            $scope.validateForm = function () {};           
+            $scope.detalle = function (id) {
+                Order.getById(id).then(function(order){
+                    console.log(order);
+//                    
+                    order.items().then(function(items){
+                        console.log(items);
+                    });
+                    
+//                    Order.getItems(id).then(function (items) {
+//                        console.log(items);
+//                    });
+                });
+                alert(id);
+            }
+            getColumnBuilder = function () {
+                return [
+                    DTColumnBuilder.newColumn('id').withTitle("ID"),
+                    DTColumnBuilder.newColumn('created_at').withTitle("Fecha de orden"), 
+                    DTColumnBuilder.newColumn('total').withTitle("Total"),
+                    DTColumnBuilder.newColumn('user_id').withTitle("Usuario"),
+                    DTColumnBuilder.newColumn('paid').withTitle('Pagada').renderWith(function(data){
+                        return data ? 'Si' : 'No';
+                    }),
+                    DTColumnBuilder.newColumn('psp').withTitle('Forma de pago').renderWith(function(data, type, full) {
+                        return data + '<button ng-click="detalle(' + full.id + ')">Detalle</button>';
+                    }),
+                    DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+                            return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
+                            '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
+                            '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                            '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                    })
+                ];
+            };
+//            console.log(Order.getAll());
+        }
+        //</editor-fold>
+
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         $scope.saveItem = function ($event) {
