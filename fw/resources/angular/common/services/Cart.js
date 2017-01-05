@@ -328,14 +328,16 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     
    
     var conekta = {
-        conektaSuccessResponseHandler: function (def, arguments, context) {
-            var token = arguments[0];
+        conektaSuccessResponseHandler: function (def, token, context) {
             var data = cart.prepareData();
             data['conektaToken'] = token.id;
             cart.sendCheckout(data, def); 
         },
-        conektaErrorResponseHandler : function (token) {
-            console.log("token", token);
+        conektaErrorResponseHandler : function (defer, fail, context) {
+            defer.reject({
+                message : fail.message_to_purchaser,
+                pspInfo : fail
+            });
         }
     };
     
@@ -345,18 +347,21 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     
     var createConektaToken = function (defer) { 
         Conekta.token.create( conekta.form, 
-            function () {
-                conekta.conektaSuccessResponseHandler(defer, arguments, this);
+            function (token) {  
+                conekta.conektaSuccessResponseHandler(defer, token, this);
             }, 
-            function () {
-                conekta.conektaErrorResponseHandler(defer,arguments, this);
+            function (fail) { 
+                conekta.conektaErrorResponseHandler(defer, fail, this);
             }
-            
         );
     };
     this.sendCheckout = function (data,defer) {
         var url = laroute.route("cart.checkout");
         $http.post(url, data).then(function (request) {
+            if(request.data.error){
+                defer.reject(request.data);
+                return;
+            }
             defer.resolve(request.data, request);
         }, function (fail) {
             defer.reject(fail);

@@ -8,13 +8,17 @@ setpoint.controller('CartCheckoutCtrl', [
             $scope.providerSelected = provider;
             Cart.setPaymentServiceProvide(provider);
         };
+        $scope.phpError = false;
         Cart.setConektaCardForm($('#formpago')); 
         $scope.checkout = function (evt) {
+            $scope.pspError = false;
             evt.preventDefault();
             Cart.checkout().then(function (data) {
                 window.open(data.url, '_self'); 
             }, function (fail) {
-                console.log(fail);
+                
+                $scope.pspError = fail.message;
+                console.log($scope.pspError);
             });
         };
     }

@@ -15,17 +15,20 @@ class UsersSeeder extends Seeder {
         User::create([
             'name' => 'Admin',
             'email'      => 'admin@setpoint.com.mx',
-            'password'   =>  'secret'
+            'password'   =>  'secret',
+            'profile_id' => 2
         ]);
         User::create([
             'name' => 'Admin 2',
             'email'      => 'admin2@setpoint.com.mx',
-            'password'   => 'secret'
+            'password'   => 'secret',
+            'profile_id' => 2
         ]);
         User::create([
             'name' => 'Admin Estrasol',
             'email'      => 'dev.administrador@estrasol.com.mx',
-            'password'   => 'secret'
+            'password'   => 'secret',
+            'profile_id' => 2
         ]);
         factory(DwSetpoint\Models\User::class,10)->create();
     }

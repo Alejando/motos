@@ -63,6 +63,8 @@ class PayPal {
             dd($r);
         }
         $this->infoPspResponse = $result->toJSON();
+        $this->order->pspinfo = $this->infoPspResponse;
+        $this->order->save();
         return $this;
     }
     
@@ -112,7 +114,11 @@ class PayPal {
         $redirect_url = new RedirectUrls();
         
         
-        $redirect_url->setReturnUrl('http://demo.estrasol.com.mx/setpoint/carrito/paypal-success?order=' . $order->id . '&success=true')
+        $redirect_url->setReturnUrl(
+            route('cart.success', [ 
+                'order' => $order->id,
+                'success' => true
+            ]))
             ->setCancelUrl('http://demo.estrasol.com.mx/setpoint/carrito/paypal-success?order=' . $order->id . '&success=false');
         $payment = new Payment();
         $payment->setIntent('Sale')

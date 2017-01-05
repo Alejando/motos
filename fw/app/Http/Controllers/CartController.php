@@ -55,16 +55,15 @@ class CartController  extends Controller {
             $psp->getPSPResult(Input::all());
             $result = $psp->getState();
             if($result) {
-                \DwSetpoint\Libs\Helpers\Mail::order([
-                    'user' => \Auth::user(),
-                    'order' => $order
-                ]);
+                $order->sendMail(\Auth::user());                
                 return view('public.pages.cart.success');
             } else {
-                return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
+                return redirect(route('cart.confirmCheckout',[
+                    'checkout' => 'fail'
+                ]));
             }
         }catch(\Exception $ex) {
-//            throw $ex;
+            throw $ex;
              return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
         }
     }
@@ -95,11 +94,11 @@ class CartController  extends Controller {
             case PSP::CONEKTA:
                 $psp->setToken(Input::get('conektaToken'));
                 $psp->setUser($user);
-                $psp->checkout();
-//                echo get_class($psp);
-                break;
+                $result = $psp->checkout();
+                return is_array($result)?
+                        $result : 
+                        ['url' => $psp->getSuccessUrl()];
         }
-        
         die();
     }
 }

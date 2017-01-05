@@ -14,8 +14,8 @@ class AddressesSeeder extends Seeder {
         $items = [
             [//1
                 'street'=>'Justo Sierra',
-                'streetNumber'=>'2579',
-                'suiteNumber'=>'B',
+                'street_number'=>'2579',
+                'suite_number'=>'B',
                 'neighborhood'=>'Ladron de guevara',
                 'postal_code'=>'44600',
                 'city'=>'Guadalajara',
@@ -25,8 +25,8 @@ class AddressesSeeder extends Seeder {
                 'state_id'=>14
             ],[//2
                 'street'=>'Ignacio Vallarta',
-                'streetNumber'=>'3329',
-                'suiteNumber'=>'Z',
+                'street_number'=>'3329',
+                'suite_number'=>'Z',
                 'neighborhood'=>'Arcos',
                 'postal_code'=>'44601',
                 'city'=>'Guadalajara',

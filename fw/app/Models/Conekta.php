@@ -11,6 +11,9 @@ class Conekta {
     public function __construct($order) {
         $this->initContext();
         $this->order = $order;
+        if($order->paid){
+            $this->state = true;
+        }
         $this->currency = 'MXN';
     }
     
@@ -30,7 +33,7 @@ class Conekta {
     }
     
     public function getPSPResult($args) {
-  
+        
     }
     
     public function setToken ($token) {
@@ -89,8 +92,8 @@ class Conekta {
         \Conekta\Conekta::setLocale('es');
         try {
             $data = [
-                'description'=> 'Compra Bounce',
-                'reference_id'=> 'orden-'.$this->order->id,
+                'description' => 'Compra Bounce',
+                'reference_id'=> 'orden-' . $this->order->id,
                 'currency' => $this->currency,
                 'card' => $this->token,
                 'amount' => $this->order->getTotalWhitShpping(),
@@ -104,9 +107,25 @@ class Conekta {
             ];
             $charge = \Conekta\Charge::create($data);
         } catch(\Exception $e) {
-            throw $e;
-            echo $e->message_to_purchaser;
+//            throw $e;
+             return  [
+                'error' => true,
+                'message' => $e->message_to_purchaser
+            ];
         }
-        echo $charge->status;
+        if($charge->status == 'paid') {
+            $this->order->pspinfo = $charge->__toJSON();
+            $this->order->paid = true;
+            $this->order->save();
+        }
+        return $charge->status == 'paid';
+    }
+    public function getSuccessUrl () {
+        return route('cart.success',[
+            'success' => true,
+            'order' => $this->order->id
+        ]);
     }
 }
+
+
