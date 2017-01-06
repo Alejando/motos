@@ -1,5 +1,6 @@
 setpoint.controller('CartListItemCtrl', ['$scope', 'Cart',
     function($scope, Cart){
+        $scope.test = "test cart item";
         $scope.items = Cart.getItems();
         $scope.cart = Cart;
         $scope.couponCode='';

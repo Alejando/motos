@@ -1,0 +1,93 @@
+.dropdown-cart {
+    position: relative;
+    display: inline-block;
+    z-index:15;
+}
+
+.dropdown-content-cart {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    /*min-width: 170px;*/
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index:15;
+    right: -87px;
+}
+
+.dropdown-content-cart a:hover {background-color: #f1f1f1}
+
+.dropdown-cart:hover .dropdown-content-cart {
+    display: block;
+    z-index:15;
+            }
+
+ul.list-cart{
+    min-width:250px;
+    padding-left: 10px;
+}
+ul.list-cart li .item{
+    display:block;
+    padding:3px 10px;
+    margin: 3px 0;
+    min-width: 250px;
+}
+/*ul.list-cart li .item:hover{
+    background-color:#c5f442;
+}*/
+ul.list-cart li .item:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+ul.list-cart li .item-left{
+    float:left;
+}
+ul.list-cart li .item-left img,
+ul.list-cart li .item-left span.item-info{
+    float:left;
+}
+ul.list-cart li .item-left span.item-info{
+    margin-left:10px;   
+}
+ul.list-cart li .item-left span.item-info span{
+    display:block;
+}
+ul.list-cart li .item-right{
+    float:right;
+}
+ul.list-cart li .item-right button{
+    margin-top:14px;
+}
+
+.item_img{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #dbdbdb;
+}
+
+.btn_delete {
+    display: inline-block;
+    border: solid 1px #c0392b;
+    width: 30px;
+    height: 30px;
+    background: none;
+    color: #c0392b;
+    text-decoration: none;
+    margin: 0 0 0 5px;
+    text-decoration: none;
+}
+
+.btn_delete:hover {
+    text-decoration: none;
+    color: #FFF;
+    background: #c0392b;
+}
+
+.list_subtotal{
+    padding: 5px 5px 5px 18px;
+}

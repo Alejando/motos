@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'webtest@estrasol.com.mx', 'name' => 'Set Point'],
 
     /*
     |--------------------------------------------------------------------------
