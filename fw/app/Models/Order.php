@@ -48,6 +48,10 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function user() {
         return $this->belongsTo(\DwSetpoint\Models\User::class);
     }
+    public function billing_information() {
+        return $this->belongsTo(\DwSetpoint\Models\BillingInformation::class);
+    }
+    
     public function getAmount() {
         return 100;
     }

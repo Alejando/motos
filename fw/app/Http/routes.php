@@ -154,6 +154,10 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'order.send',
         'uses' => 'Api\\OrderController@send'
     ]);
+    Route::put('order/{order}/set-bill',[
+        'as' => 'order.set-bill-number',
+        'uses' => 'Api\\OrderController@setBillNumber'
+    ]);
     Route::post('coupon/validate-code', [
         'as' => 'coupon.validateCode',
         'uses' => 'Api\\CouponController@validateCode'

@@ -1,4 +1,4 @@
-setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address, User) {    
+setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address, User, BillingInformation) {    
     var Order = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -20,19 +20,20 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
             'updated_at',
             'status',
             'tracking_code',
-            'estimated_date', 
-            'bills_info_id',
+            'estimated_date',
             'billing_information_id',
             'psp',
             'paid',
             'sent',
             'guia',
-            'urlguia'
+            'urlguia',
+            'bill_number'
         ],
         relations : [
             ['items', Item, 'hasMany'],
             ['coupon', Coupon, 'belongsTo'],
             ['address', Address, 'belongsTo'],
+            ['billing_information', BillingInformation, 'belongsTo'],
             ['user', User, 'belongsTo']
         ],
         getItems: function(order_id){
@@ -44,20 +45,34 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
             return def.promise;
         }
     }, {
+        setBillNumber : function (bill_number) {
+            var self = this;
+            var def = $q.defer();
+            var url = laroute.route('order.set-bill-number', {
+                order : this.id
+            });
+            $http.put(url, {
+                'bill_number' : bill_number
+            }).then(function(result){
+                if(result.data.success) {
+                    self.bill_number = bill_number;
+                };
+                def.resolve(result.data);
+            });
+            return def.promise; 
+        },
         send : function (guia, urlguia) {
-            console.log(urlguia);
-            var  def = $q.defer();
+            var self = this;
+            var def = $q.defer();
             var url = laroute.route('order.send', {
                 order : this.id
             });
-            $http.put(url,{
-                url  : urlguia,
-                guia : guia
-            }).then(function(result){
-                if(result.data.success){
+            $http.put(url, {
+                url  : self.urlguia,
+                guia : self.guia
+            }).then(function(result) {
+                if(result.data.success) {
                     self.sent = true;
-                    self.guia = guia;
-                    self.url = url;
                 }
                 def.resolve(result.data);
             });

@@ -797,10 +797,34 @@
             $scope.preprareForm = function () {};
             $scope.prepareItem = function () {};
             $scope.validateForm = function () {}; 
-
-            $scope.guia = "";
-            $scope.urlguia = "";
+            $scope.setBillNumber = function (order){
+                order.backup();
+                DtDialog.show($scope,
+                laroute.route('page',{'view':'form-set-bill'}),
+                ['Factura...', 'Factura del pedido {{order.id}}'],
+                undefined, [
+                    {
+                        label : 'Guardar',
+                        cssClass: 'btn-primary',
+                        action : function (dialog) {
+                            order.setBillNumber(order.bill_number).then(function() {
+                                order.backup();
+                                dialog.close();
+                            });
+                        }
+                    }, DtDialog.btns.cancel
+                ],{
+                    draggable: true,
+                    onhide : function () {
+                       $timeout(function() {
+                            order.rollback();
+                        }, 1);
+                    }
+                }
+            );                
+            }
             $scope.sendOrder = function(order) {
+                order.backup();
                 DtDialog.show(
                     $scope,
                     laroute.route('page',{'view':'form-send-order'}),
@@ -810,14 +834,20 @@
                             label : 'Envíar',
                             cssClass: 'btn-primary',
                             action : function (dialog) {
-                                console.log(order.send);
-                                order.send($scope.guia, $scope.urlguia);
-                                $scope.guia = '';
-                                $scope.urlguia = '';
-                                dialog.close();
+                                order.send().then(function(){
+                                    order.backup();
+                                    dialog.close();
+                                });
                             }
                         }, DtDialog.btns.cancel
-                    ]
+                    ], {
+                        draggable: true,
+                        onhide : function () {
+                            $timeout(function() {
+                                order.rollback();
+                            }, 1);
+                        }
+                    }
                 );
             };
             $(document).ready(function() {
@@ -985,7 +1015,7 @@
                             dialogRef.close();
                         }
                     }]
-                });
+                }); 
             });
         };
         $scope.toggleOne = function (selectedItems) {

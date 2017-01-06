@@ -19,7 +19,13 @@ class OrderController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     public function update(\Illuminate\Http\Request $request, $id) {
         abort(404);
     }
-    
+    public function setBillNumber($order) {
+        $objOrder = Order::getById($order);        
+        $objOrder->bill_number = Input::get('bill_number');
+        $objOrder->save();
+        return ['success' => true];
+    }
+
     public function send($order) {
         $guia = Input::get('guia');
         $url = Input::get('url');

@@ -1,16 +1,25 @@
 <h2>Pedido @{{order.id}} </h2>
 <div>
-    <b>User:</b> @{{order.relations.user.name}} (@{{order.relations.user.email}})<br>
-    <b>Pagada:</b> @{{order.paid}} @{{order.paid==1 ? 'SI' : 'No'}} <br>
-    <b>Metodo de pago:</b> @{{order.getNamePSP()}}
-</div>
-<div class="form-group">
-    <div class="col-xs-10 col-xs-offset-1" ng-show="order.paid && !order.sent">
-        <button class="btn btn-primary col-xs-12 text-center" ng-click="sendOrder(order)">
-            <span class="fa fa-send-o" ></span> Enviar</button>    
+    <b>Usuario: </b> @{{order.relations.user.name}} (@{{order.relations.user.email}})<br>
+        <span class="label" ng-class="{
+            'label-success' : order.paid==1,
+            'label-danger' : order.paid!=1
+        }">Pagado</span>
+        <a href="" class="label label-danger" ng-show="order.sent!=1 && order.paid" ng-click="sendOrder(order)">
+            <span class="fa fa-send-o" ></span> Enviar</a>
+            <a href="" class="label label-success" ng-show="order.sent==1" ng-click="sendOrder(order)">
+            <span class="fa fa-send-o" ></span> Enviado</a> 
+        <span ngshow="order.billing_information_id">
+            <a href="" class="label label-danger" ng-show="!order.bill_number" ng-click="setBillNumber(order)">
+                <span class="fa fa-file-text" ></span> Facturar</a> 
+            <a href="" class="label label-success" ng-show="order.bill_number" ng-click="setBillNumber(order)">
+                <span class="fa fa-file-text" ></span> Facturada (@{{order.bill_number}})</a>
+        </span>
+    <div style="margin-top: 20px">
+        <span  ng-show="order.psp===1">(TC)<img src="img/template/large-conekta.png" height="20"></span>
+        <img src="img/template/large-paypal.png" height="20" ng-show="order.psp===2">
     </div>
 </div>
-
 <h3>Detalle</h3>
 <div>
     <table class="table table-striped">
@@ -48,7 +57,6 @@
     <div>
         <b>País:</b> @{{order.relations.address.relations.country.name}}
     </div>
-    
 </div>
 <div class="form-group">
     <div class="col-xs-12 text-right">
