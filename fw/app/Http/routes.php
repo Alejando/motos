@@ -150,7 +150,10 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('postalCode','PostalCode');
     $addAPI('order','Order');
     $addAPI('postalCodeGroup','PostalCodeGroup');
-
+    Route::put('order/{order}/send',[
+        'as' => 'order.send',
+        'uses' => 'Api\\OrderController@send'
+    ]);
     Route::post('coupon/validate-code', [
         'as' => 'coupon.validateCode',
         'uses' => 'Api\\CouponController@validateCode'

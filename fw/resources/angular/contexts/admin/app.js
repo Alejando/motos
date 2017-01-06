@@ -12,7 +12,8 @@ var setpoint = angular.module('setpoint', [
     'rzModule',
     'ui.bootstrap.datetimepicker',
     'remoteValidation',
-    'devtics-angular-modelbase'
+    'devtics-angular-modelbase',
+    'LocalStorageModule'
 ]);
 //setpoint.constat('Config', {
 //    DATE_FORMAT : 'dd/MMMM/yyyy', //https://docs.angularjs.org/api/ng/filter/date

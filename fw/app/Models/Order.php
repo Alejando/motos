@@ -9,13 +9,23 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     const STATUS_CANCEL = 3;
     
     const PSP_PAYPAL = 1;
-    const PSP_CONEKTA = 2;
+    const PSP_TC_CONEKTA = 2;
     
     public $timestamps = true;
+    
+    public function send($guia, $url) {
+        $this->urlguia = $url;
+        $this->guia = $guia;
+        $this->sent = true;
+        $this->save();
+        //Enviar Correo
+        return $this;
+    }
     
     public function items() {
         return $this->hasMany(\DwSetpoint\Models\Item::class);
     }
+    
     public function sendMail($user) {
         \DwSetpoint\Libs\Helpers\Mail::order([
             'user' => $user,

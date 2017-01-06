@@ -24,3 +24,11 @@ setpoint.config(function ($routeProvider) {
 setpoint.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }]);
+
+setpoint.config(function (localStorageServiceProvider, $httpProvider) {
+    $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+    localStorageServiceProvider
+        .setPrefix('estrasol')
+//        .setStorageType('sessionStorage')
+    ;
+});

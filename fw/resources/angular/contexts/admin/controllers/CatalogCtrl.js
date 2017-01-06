@@ -20,7 +20,8 @@
             DTColumnBuilder,
             $interval,
             $timeout,
-            $filter 
+            $filter,
+            DtDialog
             ) {
         var currency = $filter('currency');
         var getTitle = function () {
@@ -792,23 +793,58 @@
         //<editor-fold defaultstate="collapsed" desc="pedidos">
         this.pedidos = function () {
             $scope.model = Order;
-            $scope.catalog = "Ordenes";
+            $scope.catalog = "Ordeneseess";
             $scope.preprareForm = function () {};
             $scope.prepareItem = function () {};
-            $scope.validateForm = function () {};           
+            $scope.validateForm = function () {}; 
+
+            $scope.guia = "";
+            $scope.urlguia = "";
+            $scope.sendOrder = function(order) {
+                DtDialog.show(
+                    $scope,
+                    laroute.route('page',{'view':'form-send-order'}),
+                    ['Envió de pedido...', 'Envío del pedido {{order.id}}'],
+                    undefined, [
+                        {
+                            label : 'Envíar',
+                            cssClass: 'btn-primary',
+                            action : function (dialog) {
+                                console.log(order.send);
+                                order.send($scope.guia, $scope.urlguia);
+                                $scope.guia = '';
+                                $scope.urlguia = '';
+                                dialog.close();
+                            }
+                        }, DtDialog.btns.cancel
+                    ]
+                );
+            };
+            $(document).ready(function() {
+                $(".catalogMenu").hide();  
+            });
+            
             $scope.detalle = function (id) {
-                Order.getById(id).then(function(order){
-                    console.log(order);
-//                    
-                    order.items().then(function(items){
-                        console.log(items);
-                    });
-                    
-//                    Order.getItems(id).then(function (items) {
-//                        console.log(items);
-//                    });
-                });
-                alert(id);
+                DtDialog.show(
+                    $scope,  
+                    laroute.route('page',{view : 'form-detail-order'}),                
+                    ['Detalle de pedido...', 'Detalle del pedido {{order.id}}'],
+                    function () {
+                        var $def = $q.defer();
+                        Order.getById(id,{
+                            with: 'user,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country'
+                        }).then(function(order) {
+                            $scope.order = order;
+                            var dOrder = order.items();
+                            var dUser = order.user();  
+                            $q.all([dOrder, dUser]).then(function(res) {
+                                console.log(order);
+                                $def.resolve();
+                            });
+                        });
+                        return $def.promise;
+                    }
+                );
             }
             getColumnBuilder = function () {
                 return [
@@ -859,7 +895,7 @@
             var $message = $('<div>Cargando...</div>');
             var defer = $q.defer();
             BootstrapDialog.show({
-                title: getTitle(),
+                title: getTitle(), 
                 message: $message,
                 onhide: function(dialog){
                     $scope.selectedItem.rollback();
@@ -877,7 +913,7 @@
                             $compile(angular.element($message).contents())($scope);
                             defer.resolve();
                         });
-                    } else {
+                    } else { 
                         $(this).html(txt).slideDown('slow');
                         $compile(angular.element($message).contents())($scope);
                         defer.resolve();

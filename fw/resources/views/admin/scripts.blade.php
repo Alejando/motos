@@ -58,6 +58,8 @@
         <script src="{{asset('js/bower_components/ng-remote-validate/release/ngRemoteValidate.0.6.1.min.js')}}"  type="text/javascript"></script>
         <script src="{{asset('js/bower_components/devticstools-ng-factory-modelbase-for-laravel/src/baseModel.js')}}"  type="text/javascript"></script>
         
+        <script src="{{asset('js/bower_components/angular-local-storage/dist/angular-local-storage.min.js')}}"  type="text/javascript"></script>
+        
         <script src="{{asset('js/bower_components/angular-money-directive/dist/angular-money-directive.min.js')}}"  type="text/javascript"></script>
         @yield('scripts')
 

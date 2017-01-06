@@ -6,12 +6,12 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     var _coupon = null;
     var couponStock = null;
     var cart = this;
-    this.onInvalidateCoupon = function (){
+    this.onInvalidateCoupon = function () {
         console.log("Quitar Cupon");
     };
     this.coupon_id = ls.get('coupon');
     this.PSP_PAYPAL = 1;
-    this.PSP_CONEKTA = 2;
+    this.PSP_TC_CONEKTA = 2;
     
     //<editor-fold defaultstate="collapsed" desc="this.getIdStock">
     this.getIdStocks = function () {
@@ -107,7 +107,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             persitItems[item.getStockId()] = item.quantity();
         });
         return persitItems;
-    }
+    };
     var cart = this;
     var cleanCoupon = function() {
         cart.discount = 0;
@@ -124,7 +124,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             }
         }
          _coupon = null;
-    }
+    };
 //<editor-fold defaultstate="collapsed" desc="this.checkCoupon()">
     this.checkCoupon = function (){
         if(_coupon){
@@ -369,7 +369,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     }
     this.checkout = function () {
         var defer = $q.defer();
-        if(this.psp === this.PSP_CONEKTA) {
+        if(this.psp === this.PSP_TC_CONEKTA) {
            createConektaToken(defer);
         } else { 
             this.sendCheckout(

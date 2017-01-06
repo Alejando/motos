@@ -16,5 +16,15 @@ class OrderController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         return $items;
     }
     
+    public function update(\Illuminate\Http\Request $request, $id) {
+        abort(404);
+    }
     
+    public function send($order) {
+        $guia = Input::get('guia');
+        $url = Input::get('url');
+        $objOrder = Order::getById($order);        
+        $objOrder->send($guia, $url);
+        return ['success' => true];
+    }
 }

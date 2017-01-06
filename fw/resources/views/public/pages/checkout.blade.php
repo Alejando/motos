@@ -75,9 +75,9 @@
                                 </h4>
                             </div>
                         </div>
-                        <div class="panel panel-default"  ng-click="setProvider(cart.PSP_CONEKTA)">
+                        <div class="panel panel-default"  ng-click="setProvider(cart.PSP_TC_CONEKTA)">
                             <div class="panel-heading" role="tab" id="headingTwo" ng-class="{
-                                bntProviederChekout: providerSelected == cart.PSP_CONEKTA
+                                bntProviederChekout: providerSelected == cart.PSP_TC_CONEKTA
                              }">
                                 <h4 class="panel-title">
                                     <a class="btnconekta" role="button" href="" aria-expanded="true" aria-controls="collapseTwo">
