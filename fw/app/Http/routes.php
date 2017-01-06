@@ -42,8 +42,7 @@ Route::get('/contacto', function() {
 
 Route::get('/carrito/envio', [
     'as'=> 'cart.shiping',
-    'uses' => 'CartController@shippingForm'
-    
+    'uses' => 'CartController@shippingForm' 
 ]);
 Route::get('/carrito/registro', [
     'as'=> 'cart.registration-form',
@@ -364,5 +363,15 @@ Route::post('busqueda/personalizada2/',[
         'as'=>'search.custom2',
         'uses'=>'ProductCtrl@cacharAlgo'
     ]);
+
+Route::post('request/contact',[
+    'as' => 'contact.request',
+    'uses' => 'ContactCtrl@sendInfoContact'
+]);
+
+Route::get('vista/info_contacto',[
+    'as' => 'vista.info_contacto',
+    'uses' => 'ContactCtrl@get_info_contacto'
+]);
 
 
