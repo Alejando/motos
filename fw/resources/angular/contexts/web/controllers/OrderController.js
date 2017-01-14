@@ -18,6 +18,8 @@ setpoint.controller('OrderCtrl', function (
     var user = AuthSevice.user();
 
     console.log(user.orders());
+    console.log("direcciones");
+    console.log(user.addresses());
 
     var url = laroute.route('user.getOrdersUser');
     console.log(url);
@@ -99,7 +101,6 @@ setpoint.controller('OrderCtrl', function (
                 
             },
             onhidden: function(dialog){
-//                         $scope.selectedItem = newObj();
             }
         }); 
 

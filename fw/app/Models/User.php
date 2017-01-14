@@ -7,9 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable {
 
     use \DevTics\LaravelHelpers\Model\traits\MethodsModelBase;
-    
-    const PROFILE_CLIENT = 1;
-    const PROFILE_ADMIN = 2;
+
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 0;
     
@@ -19,7 +17,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'cellphone', 'homephone'
     ];
 
     /**
@@ -77,6 +75,9 @@ class User extends Authenticatable {
     // </editor-fold>
     public function isAdmin () {
         return $this->profile_id == Profile::ADMIN;
+    }
+    public function isClient () {
+        return $this->profile_id == Profile::CLIENT;
     }
     public function isMale(){
         return $this->gender == self::GENDER_MALE;

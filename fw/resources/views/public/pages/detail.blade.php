@@ -8,6 +8,66 @@
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/thirdparty/zoom/jquery.elevatezoom.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/config_zoom.js')}}"></script>
+<!-- Facebook pixel code -->
+        <script>
+            !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '488925211317397');
+            fbq('track', "PageView");
+        </script>
+        <!-- Facebook pop up -->
+        <script>
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId      : '1068590149917039',
+                xfbml      : true,
+                version    : 'v2.8'
+              });
+            };
+
+            (function(d, s, id){
+               var js, fjs = d.getElementsByTagName(s)[0];
+               if (d.getElementById(id)) {return;}
+               js = d.createElement(s); js.id = id;
+               js.src = "//connect.facebook.net/en_US/sdk.js";
+               fjs.parentNode.insertBefore(js, fjs);
+             }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+        <script type="text/javascript">
+            $('.share-room.share-fb').on('click', function(e) {
+                e.preventDefault();
+                FB.ui({
+                  method: 'share',
+                  display: 'popup',
+                  picture: '{{asset("productos/".$product->id."/cover")}}',
+                  description: '{!!$product->description!!}',
+                  title: 'Tennis {!!$product->name!!}',
+                  caption: 'Bounce:: Tennis Lifestyle',
+                  href: window.document.URL,
+                }, function(response){});
+            });
+
+        </script>
+        <script>  
+          $('.popupTw').click(function(event) {
+            var width  = 500,
+                height = 400,
+                left   = ($(window).width()  - width)  / 2,
+                top    = ($(window).height() - height) / 2,
+                url    = this.href+'&url='+window.document.URL,
+                opts   = 'status=1' +
+                         ',width='  + width  +
+                         ',height=' + height +  
+                         ',top='    + top    +  
+                         ',left='   + left;
+            window.open(url, 'twitter', opts);
+            return false;
+          }); 
+        </script>
 @stop
 @section('body')
 
@@ -113,9 +173,9 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="btnredes">
-                                <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);window.location.href=('http://twitter.com/?status='+tit2+'%20'+dir+'');" class="tw pull-right"></a>
+                                <a rel="canonical" href="http://twitter.com/share?text=Me%20Encantan%20&hashtags=BOUNCE,TennisLifestyle,Tennis" class="tw pull-right popupTw"></a>
                                 
-                                <a href="javascript:var dir=window.document.URL;var tit=window.document.title;var tit2=encodeURIComponent(tit);var dir2= encodeURIComponent(dir);window.location.href=('http://www.facebook.com/share.php?u='+dir2+'&amp;t='+tit2+'');" class="fb pull-right"></a>
+                                <a href="#"  class="fb pull-right share-room share-fb"   ></a>
 
                                 <!--a href="" class="yt"></a-->
                                 <!--a href="" class="in"></a-->

@@ -89,15 +89,20 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
     };
 
     $scope.saveCategory = function ($event) {
+        console.log("fuction saveCategory");
         if($scope.validateForm){
             if($scope.validateForm() === false) {
                 return;
             }
         }
+        if($scope.prepareItem){
+            $scope.prepareItem();
+        }
         if(!$scope.newParent && !$scope.categoryTemp.id) {
             $scope.categoryTemp.parent_category_id = $scope.parentId;
         }
         var id = $scope.categoryTemp.id;
+
         $scope.categoryTemp.save().then(function(){
             $event.preventDefault();
             var parent  = $scope.categoryTemp.parent_category_id;
@@ -118,7 +123,7 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
                 $tree.jstree('rename_node',node, name);
                 $dialog.modal('hide');
             }
-        })
+        });
     };
 
     $scope.showCategoryForm = function (){
@@ -141,4 +146,27 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
             });
             return defer.promise;
     }
+    $scope.prepareItem = function(){
+        console.log("entro aqui");
+        if($scope.categoryTemp.type){
+            $scope.categoryTemp.addFile('icon', $scope.icon);
+        }
+    };
+    $scope.colorPickerOptions = {
+        'format' : 'hex',
+        'alpha' : false,
+        'swatchBootstrap' : false
+    };
+    $scope.icon = null;
+    $scope.imgICon = null;
+    $scope.iconSrc =  '';
+    $scope.onselectIcon = function(changeEvent, files){
+        var reader = new FileReader();
+        reader.onload = function (loadEvent) {
+            $scope.$apply(function () {
+                $scope.iconSrc = loadEvent.target.result;
+            });
+        };
+        reader.readAsDataURL(changeEvent.target.files[0]);
+    };
 });

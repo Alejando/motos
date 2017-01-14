@@ -149,12 +149,25 @@ var main = function () {
         });
     };
 
+    var estrellas = function() {
+        $('#owl-estrellas').owlCarousel({
+            autoPlay: 5000,
+            pagination: false,
+            items: 1,
+            itemsDesktop: [1024, 5],
+            itemsDesktopSmall: [960, 4],
+            itemsTablet: [768, 2],
+            itemsMobile: [480, 1] 
+        });
+    };
+
     return {
         init: function () {
             menuMovil();
             botones();
             ofertas();
             marcas();
+            estrellas();
             metodos();
             detalle();
             otrosproductos();

@@ -21,8 +21,7 @@ class Brand  extends \DevTics\LaravelHelpers\Model\ModelBase {
                 $path = Config('app.paths.brads');
                 $icon->move($path, $this->id.'.'. ($extension ==='jpeg'?'jpg': $extension));
             }  
-        }
-        
+        }  
     }
     public static function getValidateUniqueBrandURL() {
         return route('brand.validateBrand');

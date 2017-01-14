@@ -364,6 +364,7 @@
         this.categorias = function () {
             $scope.catalog = "Categorias";
             $scope.model = Category;
+
             getTitle = function() {
                 return $scope.selectedItem.id ? 'Edición de la categoría "' + $scope.selectedItem.name + '"' : 'Talla Marca';
             };
@@ -421,8 +422,8 @@
                             return '<img src="'+img+'">'
                         }),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
-                            return '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                            return  '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
+                                    '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                         })
                     ];
             };
@@ -520,7 +521,7 @@
                         $scope.selectedItem.rollback();
                     },
                     onhidden: function(dialog){
-//                         $scope.selectedItem = newObj();
+                         //$scope.selectedItem = newObj();
                     }
                 });  
                 
@@ -553,7 +554,7 @@
                     DTColumnBuilder.newColumn('id').withTitle('ID'),
                     
                     DTColumnBuilder.newColumn('name').withTitle('Name').renderWith(function(data, type, full){
-//                        console.log("render => ", full, data);  
+                        //console.log("render => ", full, data);  
                         return '<a href="" ng-click="showCPFrom('+full.id+')">' + data +'</a>';
                     }),
                     DTColumnBuilder.newColumn('price').withTitle('Precio').renderWith(function(data, type, full, meta){
@@ -799,14 +800,14 @@
             $scope.detalle = function (id) {
                 Order.getById(id).then(function(order){
                     console.log(order);
-//                    
+                   // 
                     order.items().then(function(items){
                         console.log(items);
                     });
                     
-//                    Order.getItems(id).then(function (items) {
-//                        console.log(items);
-//                    });
+                   // Order.getItems(id).then(function (items) {
+                   //     console.log(items);
+                   // });
                 });
                 alert(id);
             }
@@ -830,7 +831,7 @@
                     })
                 ];
             };
-//            console.log(Order.getAll());
+            //console.log(Order.getAll());
         }
         //</editor-fold>
 

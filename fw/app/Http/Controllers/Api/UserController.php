@@ -36,4 +36,13 @@ class UserController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         $orders = \Auth::user()->orders;
         return $orders;
     }
+
+    public function getAddressesUser() {
+        $addresses = \Auth::user()->addresses;
+        foreach ($addresses as $address){ 
+            $address->state;
+            $address->country;
+        }
+        return $addresses;
+    }
 }
