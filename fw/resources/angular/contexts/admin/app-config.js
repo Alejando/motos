@@ -32,3 +32,7 @@ setpoint.config(function (localStorageServiceProvider, $httpProvider) {
 //        .setStorageType('sessionStorage')
     ;
 });
+
+setpoint.constant('DATE_FORMAT', 'dd/MM/yyyy');
+setpoint.constant('TIME_FORMAT', 'HH:mm:ss');
+setpoint.constant('DATETIME_FORMAT', 'dd/MM/yyyy HH:mm:ss');

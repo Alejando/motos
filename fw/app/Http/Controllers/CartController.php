@@ -19,13 +19,13 @@ use \DwSetpoint\Models\PSP;
  */
 class CartController  extends Controller {
     public function listItems(){
-        return view('public.pages.cartListItems', [
+        return view('public.pages.cart.listItems', [
             'showOffert' => false,
             'showBannerBottom' => false
         ]);
     }
     public function shippingForm() {
-        return view('public.pages.shipping', [
+        return view('public.pages.cart.user-info', [
             'showOffert' => false,
             'showBannerBottom' => false
         ]);     

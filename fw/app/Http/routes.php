@@ -145,7 +145,13 @@ Route::group(['prefix' => 'api'], function () {
     //Catalogo de Paises, Estados, Direcciones
     $addAPI('country','Country');
     $addAPI('state','State');
-    $addAPI('address','Address');
+    $addAPI('configuration','Configuration');
+   
+    Route::get('address/{address_id}/shipping-rules', [
+        'as' => 'address.get-shipping-rules',
+        'uses' => 'Api\\AddressController@getShippingRules'
+    ]);
+     $addAPI('address','Address');
     $addAPI('postalCode','PostalCode');
     $addAPI('order','Order');
     $addAPI('postalCodeGroup','PostalCodeGroup');

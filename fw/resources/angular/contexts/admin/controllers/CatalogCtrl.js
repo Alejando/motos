@@ -21,9 +21,12 @@
             $interval,
             $timeout,
             $filter,
-            DtDialog
+            DtDialog,
+            DATETIME_FORMAT
             ) {
+        $scope.DATETIME_FORMAT = DATETIME_FORMAT;
         var currency = $filter('currency');
+        var date = $filter('date');
         var getTitle = function () {
             return "Titulo Por defecto";
         };
@@ -825,6 +828,7 @@
             }
             $scope.sendOrder = function(order) {
                 order.backup();
+                console.log(order);
                 DtDialog.show(
                     $scope,
                     laroute.route('page',{'view':'form-send-order'}),
@@ -862,15 +866,15 @@
                     function () {
                         var $def = $q.defer();
                         Order.getById(id,{
-                            with: 'user,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country'
+                            with: 'user,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country,billing_information,billing_information.state,billing_information.country'
                         }).then(function(order) {
-                            $scope.order = order;
+                            $scope.order = order; 
                             var dOrder = order.items();
                             var dUser = order.user();  
                             $q.all([dOrder, dUser]).then(function(res) {
                                 console.log(order);
                                 $def.resolve();
-                            });
+                            }); 
                         });
                         return $def.promise;
                     }
@@ -879,7 +883,9 @@
             getColumnBuilder = function () {
                 return [
                     DTColumnBuilder.newColumn('id').withTitle("ID"),
-                    DTColumnBuilder.newColumn('created_at').withTitle("Fecha de orden"), 
+                    DTColumnBuilder.newColumn('created_at').withTitle("Fecha de orden").renderWith(function(data){
+                        return date(data, DATETIME_FORMAT);
+                    }), 
                     DTColumnBuilder.newColumn('total').withTitle("Total"),
                     DTColumnBuilder.newColumn('user_id').withTitle("Usuario"),
                     DTColumnBuilder.newColumn('paid').withTitle('Pagada').renderWith(function(data){
@@ -891,7 +897,6 @@
                     DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
                             '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
-                            '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
                             '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                     })
                 ];

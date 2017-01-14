@@ -7,6 +7,7 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
         PSP_PAYPAL : 1,
         PSP_TC_CONEKTA : 2,
         setters : {
+            created_at : ModelBase.setDate,
         },
         attributes: [
             'id',
@@ -27,7 +28,7 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
             'sent',
             'guia',
             'urlguia',
-            'bill_number'
+            'bill_number',
         ],
         relations : [
             ['items', Item, 'hasMany'],

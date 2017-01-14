@@ -160,3 +160,12 @@ and open the template in the editor.
   width: 37px;
   height: 36px;
   background-position: -172px -838px; }
+
+.disabled { 
+    cursor: not-allowed !important;
+    opacity: 0.2 !important;
+}
+.contenidoresumen > .row{
+    margin-right: 0;
+    margin-left: 0;
+}

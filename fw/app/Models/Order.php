@@ -10,9 +10,12 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     
     const PSP_PAYPAL = 1;
     const PSP_TC_CONEKTA = 2;
-    
+    protected $dateFormat = 'Y-m-d H:i:s';
+    public $dates = ['created_at','end_date'];
     public $timestamps = true;
-    
+    public function getCreatedAtAttribute() {
+        return $this->datetimeFormat('created_at');
+    }
     public function send($guia, $url) {
         $this->urlguia = $url;
         $this->guia = $guia;
