@@ -11,7 +11,9 @@ setpoint.factory('User', function (ModelBase, $q, $http, Product, Address) {
             'name',
             'email',
             'password',
-            'profile'
+            'profile',
+            'cellphone',
+            'homephone'
         ],
         relations : [ 
             ['bookmarks', Product, 'hasMany'],

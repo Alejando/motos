@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'webtest@estrasol.com.mx', 'name' => 'Set Point'],
+    'from' => ['address' => 'webtest@estrasol.com.mx', 'name' => 'Bounce ::Tennis Lifestyle::'],
 
     /*
     |--------------------------------------------------------------------------

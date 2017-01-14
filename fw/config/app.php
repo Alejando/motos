@@ -14,13 +14,14 @@ return [
     ],
     'paths' => [
         'products' => __DIR__.'/../../upload/products/',
-        'brads' => __DIR__.'/../../upload/brands/'
+        'brads' => __DIR__.'/../../upload/brands/',
+        'categories' => __DIR__.'/../../upload/categories/'
     ],
     'social' => [
         'instagram' => 'https://www.instagram.com/bouncetennis/',
         'twitter' => 'https://twitter.com/bouncetennis/',
         'facebook' => 'https://www.facebook.com/bouncetennis/',
-        'youtube' => 'https://www.youtube.com/channel/bouncetennis/'         
+        'youtube' => 'https://www.youtube.com/channel/bouncetennis/'
     ],
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +179,7 @@ return [
         DwSetpoint\Providers\EventServiceProvider::class,
         DwSetpoint\Providers\RouteServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        
+
     ],
 
     /*

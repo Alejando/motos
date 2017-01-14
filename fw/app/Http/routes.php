@@ -337,10 +337,19 @@ Route::get('user/pedidos',[
         'uses'=>'UserController@getOrders'
     ]);
 
+Route::get('user/direcciones',[
+        'as'=>'user.getAddresses',
+        'uses'=>'UserController@getAddresses'
+    ]);
 
 Route::get('user/orders',[
         'as'=>'user.getOrdersUser',
         'uses'=>'Api\\UserController@getOrdersUser'
+    ]);
+
+Route::get('user/addresses',[
+        'as'=>'user.getAddressesUser',
+        'uses'=>'Api\\UserController@getAddressesUser'
     ]);
 
 Route::get('order/details',[
@@ -386,5 +395,28 @@ Route::get('vista/info_contacto',[
     'as' => 'vista.info_contacto',
     'uses' => 'ContactCtrl@get_info_contacto'
 ]);
+
+
+Route::post('reset/password',[
+    'as' => 'reset.password',
+     'uses'=>'UserController@resetPassword'
+]);
+
+Route::get('restablecer/password',[
+    'as' => 'restablecer.password',
+    'uses'=>'UserController@getFormReset'
+]);
+
+Route::get('/categoria/{id}/estrella-{width}x{heigth}.png', [
+        'as' => 'estrella.getImage',
+        'uses' => 'Api\\CategoryController@getImage'
+    ]
+);
+
+Route::get('players/tennis', [
+        'as' => 'tennis.players',
+        'uses' => 'Api\\CategoryController@getPlayersTennis'
+    ]
+);
 
 

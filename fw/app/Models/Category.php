@@ -15,6 +15,9 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         } 
         return null;
     }
+    public function setTypeAttribute($type){
+        $this->attributes['type'] = $type !== 'false';
+    }
     // <editor-fold defaultstate="collapsed" desc="getBySlug">
     public static function getBySlug($slug) {
         $expoSlug = explode("/", $slug);
@@ -82,6 +85,26 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     public static function existsCategory($category) {
         $n = self::where('name', '=', $category)->where('parent_category_id', '=', 17)->count();
         return $n>0;
+    }
+
+    public function saveImg($icon) {
+        if($icon) {
+          $extension = $icon->extension();
+            if($icon && ($extension ==='png' || $extension ==='jpeg')) {
+                $path = Config('app.paths.categories');
+                $icon->move($path, $this->id.'.'. ($extension ==='jpeg'?'jpg': $extension));
+            }  
+        }  
+    }
+
+    public static function getPlayersTennis() {
+        $players = self::where('parent_category_id', '!=', NULL)->where('type', 1)->get();
+        return($players);
+    }
+
+    public static function getUrlPlayer(){
+        $slug = 'self::name';
+        return ($slug);
     }
 
     // </editor-fold>

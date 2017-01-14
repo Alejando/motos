@@ -7,6 +7,10 @@
  */
 
 namespace DwSetpoint\Http\Controllers;
+use Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 /**
  * Description of CartController
@@ -30,7 +34,7 @@ class UserController  extends Controller {
         ]);
     }
 
-    public function addresses(){
+    public function getAddresses(){
         return view('user.pages.addresses', [
             'showOffert' => false,
             'showBannerBottom' => false
@@ -44,11 +48,32 @@ class UserController  extends Controller {
             'showBannerBottom' => false
         ]);
     }
-}
+    public function getFormReset(){
+        return view('user.pages.resetPassword', [
+            'showOffert' => false,
+            'showBannerBottom' => false
+            // 'menuUser' => true
 
-// $products = \DwSetpoint\Models\Product::where('discount_percentage', '>', 0)->paginate(8);
-//         return view('public.pages.discountedProducts',[
-//             'showOffert' => true,
-//             'showBannerBottom' => true,
-//             'products' => $products
-//         ]);
+        ]);
+    }
+
+    public function resetPassword(Request $request){
+
+        $existingPassword=$request->input('existingPassword');
+        $newPassword=$request->input('newPassword');
+        $passwordConfirmed=$request->input('passwordConfirmed');
+
+        if(Hash::check($existingPassword,Auth::user()->password)){
+            if($newPassword==$passwordConfirmed){
+                Auth::user()->password=$newPassword;
+                Auth::user()->save();
+                Session::flash('message','Tu contraseña se ha actualizado exitosamente');
+            }else{
+                Session::flash('message','La nueva contraseña "'.$newPassword. '" no coincide con "'.$passwordConfirmed.'"');
+            }
+        }else{
+            Session::flash('message','La contraseña actual no coincide');
+        }
+        return redirect('restablecer/password');
+    }
+}

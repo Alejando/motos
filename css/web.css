@@ -715,3 +715,16 @@ button.sprite {
   line-height: 14px !important;
 }
 /*# sourceMappingURL=web.css.map */
+
+.danger {
+    color: #cc0000;
+}
+
+.danger:hover {
+    color: #990000;
+}
+
+.icon {
+    font-size: 1.5em;
+    margin-left: 0.8em;
+}

@@ -42,8 +42,8 @@
 	</div>
 	<div class="footer_message">
 		<p class="text_message">
-			Si no desea cambiar su contraseña o no ha solicitado este cambio, ignore y elimine este mensaje.<br /><br />
-			Gracias, <br />
+			Si no desea cambiar su contraseña o no ha solicitado este cambio, ignore y elimine este mensaje.<br/><br/>
+			Gracias, <br/>
 			El equipo de Bounce.
 		</p>
 	</div>
