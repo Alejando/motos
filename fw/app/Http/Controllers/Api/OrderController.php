@@ -8,12 +8,14 @@ class OrderController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     
     public function getDetails() {
         $order_id = Input::get('order_id'); // ? Input::get('order_id') : 2;
+        $order = \DwSetpoint\Models\Order::getById($order_id);
         $items = \DwSetpoint\Models\Order::getById($order_id)->items;
         foreach ($items as $item){ 
             $item->product;
         }
+        $order->items = $items;
         // $item = \DwSetpoint\Models\Item::getById(7)->product->name;
-        return $items;
+        return $order;
     }
     
     

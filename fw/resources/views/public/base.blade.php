@@ -12,16 +12,15 @@
         </script>
         @yield('headers')
         <!--Start of Zendesk Chat Script-->
-        <!-- <script type="text/javascript">
+        <script type="text/javascript">
         window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
         d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
         _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
         $.src="https://v2.zopim.com/?4AFML9HAB3twafcaCxwoyvHuxlRKb6jX";z.t=+new Date;$.
         type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-        </script> -->
+        </script>
         <!--End of Zendesk Chat Script-->
     </head>
-
     <body class="setpoint-public" ng-app="setpoint">
         <div class="main-conteiner">
             <header class="fontal">
@@ -31,6 +30,9 @@
                         <ul class="menu">
                             <div class="dropdown-cart" ng-controller="CartListItemCtrl">
                                 <li><a href="{{route('cart.list')}}" class="sprite icon-car-2" title="Mi Carrito">Mi Carrito</a></li>
+                                <span ng-show="items.length > 0" ng-cloak>
+                                    <strong class="cart_number">@{{items.length}}</strong>
+                                </span>
                               <div class="dropdown-content-cart">
                                 <ul class="list-cart" ng-repeat="item in items">
                                   <li>

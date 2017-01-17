@@ -39,6 +39,8 @@
         this.productos = function () {
             $scope.catalog = "Productos";
             $scope.model = Product;
+            $scope.hideExcelExport = false;
+            $scope.hideExcelImport = false;
             getTitle = function(){
                 return $scope.selectedItem.id ? 'Edición del producto ' + $scope.selectedItem.name : 'Nuevo producto';
             };
@@ -184,6 +186,14 @@
                     },100);
                     return false;
                 }
+            };
+
+
+            $scope.import = function () {
+                console.log('import');
+            };
+            $scope.export = function () {
+                console.log("export");
             };
 
         };
