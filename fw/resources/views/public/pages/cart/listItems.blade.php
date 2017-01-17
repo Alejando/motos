@@ -9,7 +9,7 @@
                 <a href="{{route('cart.list')}}" class="transicion activo"><span><b>1</b></span></a>
                 <a href="{{route('cart.shiping')}}" class="transicion"><span><b>2</b></span></a>
                 @if(\Auth::user()) 
-                    <a href="./pago" class="transicion"><span><b>3</b></span></a>
+                   <a href="{{route('cart.confirmCheckout')}}" ng-show="cart.getShippingAddress()" class="transicion"><span><b>3</b></span></a>
                 @endif
             </div>
             <div class="cajacarrito margentop30">
@@ -32,7 +32,8 @@
                             <div>
                                 <h3 class="productonombre">
                                     Precio Unitario
-                                    <b>@{{item.price|currency}}</b>
+                                    <sub ng-show="@{{item.hasDiscount()}}" style="text-decoration: line-through">@{{item.getRawPrice() | currency : '$' }}</sub> <sup> - @{{item.getDiscount()}}% </sup>
+                                    <b>@{{item.getPrice()|currency}}</b>
                                 </h3>
                             </div>
                         </div>
@@ -75,6 +76,7 @@
                                ng-change="couponChange()" 
                                class="hidden-xs"
                                ng-class="{error:errorCoupon}"
+                               on-enter="applyCoupon()"
                         />
                         <input type="text"
                                ng-model="couponCode" 
@@ -82,6 +84,7 @@
                                class="visible-xs" 
                                placeholder="Canjea Cupón" 
                                ng-class="{error:errorCoupon}"
+                               on-enter="applyCoupon()"
                         />
                         <a class="btncupon transicion" ng-click="applyCoupon()">Aplicar</a>
                         <div class="alert alert-danger" ng-show="errorCoupon"> 

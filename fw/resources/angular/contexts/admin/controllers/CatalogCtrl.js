@@ -20,9 +20,13 @@
             DTColumnBuilder,
             $interval,
             $timeout,
-            $filter 
+            $filter,
+            DtDialog,
+            DATETIME_FORMAT
             ) {
+        $scope.DATETIME_FORMAT = DATETIME_FORMAT;
         var currency = $filter('currency');
+        var date = $filter('date');
         var getTitle = function () {
             return "Titulo Por defecto";
         };
@@ -803,28 +807,96 @@
         //<editor-fold defaultstate="collapsed" desc="pedidos">
         this.pedidos = function () {
             $scope.model = Order;
-            $scope.catalog = "Ordenes";
+            $scope.catalog = "Ordeneseess";
             $scope.preprareForm = function () {};
             $scope.prepareItem = function () {};
-            $scope.validateForm = function () {};           
+            $scope.validateForm = function () {}; 
+            $scope.setBillNumber = function (order){
+                order.backup();
+                DtDialog.show($scope,
+                laroute.route('page',{'view':'form-set-bill'}),
+                ['Factura...', 'Factura del pedido {{order.id}}'],
+                undefined, [
+                    {
+                        label : 'Guardar',
+                        cssClass: 'btn-primary',
+                        action : function (dialog) {
+                            order.setBillNumber(order.bill_number).then(function() {
+                                order.backup();
+                                dialog.close();
+                            });
+                        }
+                    }, DtDialog.btns.cancel
+                ],{
+                    draggable: true,
+                    onhide : function () {
+                       $timeout(function() {
+                            order.rollback();
+                        }, 1);
+                    }
+                }
+            );                
+            }
+            $scope.sendOrder = function(order) {
+                order.backup();
+                console.log(order);
+                DtDialog.show(
+                    $scope,
+                    laroute.route('page',{'view':'form-send-order'}),
+                    ['Envió de pedido...', 'Envío del pedido {{order.id}}'],
+                    undefined, [
+                        {
+                            label : 'Envíar',
+                            cssClass: 'btn-primary',
+                            action : function (dialog) {
+                                order.send().then(function(){
+                                    order.backup();
+                                    dialog.close();
+                                });
+                            }
+                        }, DtDialog.btns.cancel
+                    ], {
+                        draggable: true,
+                        onhide : function () {
+                            $timeout(function() {
+                                order.rollback();
+                            }, 1);
+                        }
+                    }
+                );
+            };
+            $(document).ready(function() {
+                $(".catalogMenu").hide();  
+            });
+            
             $scope.detalle = function (id) {
-                Order.getById(id).then(function(order){
-                    console.log(order);
-                   // 
-                    order.items().then(function(items){
-                        console.log(items);
-                    });
-                    
-                   // Order.getItems(id).then(function (items) {
-                   //     console.log(items);
-                   // });
-                });
-                alert(id);
+                DtDialog.show(
+                    $scope,  
+                    laroute.route('page',{view : 'form-detail-order'}),                
+                    ['Detalle de pedido...', 'Detalle del pedido {{order.id}}'],
+                    function () {
+                        var $def = $q.defer();
+                        Order.getById(id,{
+                            with: 'user,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country,billing_information,billing_information.state,billing_information.country'
+                        }).then(function(order) {
+                            $scope.order = order; 
+                            var dOrder = order.items();
+                            var dUser = order.user();  
+                            $q.all([dOrder, dUser]).then(function(res) {
+                                console.log(order);
+                                $def.resolve();
+                            }); 
+                        });
+                        return $def.promise;
+                    }
+                );
             }
             getColumnBuilder = function () {
                 return [
                     DTColumnBuilder.newColumn('id').withTitle("ID"),
-                    DTColumnBuilder.newColumn('created_at').withTitle("Fecha de orden"), 
+                    DTColumnBuilder.newColumn('created_at').withTitle("Fecha de orden").renderWith(function(data){
+                        return date(data, DATETIME_FORMAT);
+                    }), 
                     DTColumnBuilder.newColumn('total').withTitle("Total"),
                     DTColumnBuilder.newColumn('user_id').withTitle("Usuario"),
                     DTColumnBuilder.newColumn('paid').withTitle('Pagada').renderWith(function(data){
@@ -836,7 +908,6 @@
                     DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
                             '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
-                            '<a href="#" class="on-default edit-row icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
                             '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
                     })
                 ];
@@ -870,7 +941,7 @@
             var $message = $('<div>Cargando...</div>');
             var defer = $q.defer();
             BootstrapDialog.show({
-                title: getTitle(),
+                title: getTitle(), 
                 message: $message,
                 onhide: function(dialog){
                     $scope.selectedItem.rollback();
@@ -888,7 +959,7 @@
                             $compile(angular.element($message).contents())($scope);
                             defer.resolve();
                         });
-                    } else {
+                    } else { 
                         $(this).html(txt).slideDown('slow');
                         $compile(angular.element($message).contents())($scope);
                         defer.resolve();
@@ -960,7 +1031,7 @@
                             dialogRef.close();
                         }
                     }]
-                });
+                }); 
             });
         };
         $scope.toggleOne = function (selectedItems) {

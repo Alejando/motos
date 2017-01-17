@@ -26,8 +26,24 @@ setpoint.factory('Address', function (ModelBase,$q,$http, State, Country) {
         relations : [
             ['state', State, 'belongsTo'],
             ['country', Country, 'belongsTo']
-        ]
+        ],
+        getShippingRules : function (address_id) {
+            var $def = $q.defer();
+            var url = laroute.route('address.get-shipping-rules', {
+                'address_id' : address_id
+            }); 
+            $http.get(url).then(
+                function(r) {
+                    $def.resolve(r.data);
+                } ,
+                function() {
+                    $def.reject();
+                }
+            );
+            return $def.promise;
+        }
     }, {
+        
     });
     return Address;
 });

@@ -1,4 +1,4 @@
-setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coupon) {
+setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInformation, IVA, Address) {
     var ls = localStorageService;
     this.appliedCode = false;
     this.discount = false;
@@ -6,13 +6,17 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     var _coupon = null;
     var couponStock = null;
     var cart = this;
-    this.onInvalidateCoupon = function (){
+    this.onInvalidateCoupon = function () {
         console.log("Quitar Cupon");
     };
-    this.coupon_id = ls.get('coupon');
+    this.coupon_id = ls.get('cart.coupon');
+    this.addess_id = ls.get('cart.address');
+    var sp = ls.get('cart.shipping');
+    this.shippingPrice = sp ? sp : 0;
     this.PSP_PAYPAL = 1;
-    this.PSP_CONEKTA = 2;
-    
+    this.PSP_TC_CONEKTA = 2; 
+    var currency = $filter('currency');
+    var self = this;
     //<editor-fold defaultstate="collapsed" desc="this.getIdStock">
     this.getIdStocks = function () {
         var cart = ls.get('items');
@@ -36,11 +40,19 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         return defer.promise;
     };
     //</editor-fold>
-
+    this.shipingRourles = null;
+    if(this.addess_id) {
+        Address.getShippingRules(this.addess_id).then(function(config) {
+            self.shipingRourles = config;
+        });
+    }
     this.getStocks().then(function(items) {
         var cart = ls.get('items');        
         angular.forEach(items, function(item) {
-            arrItems.push(new CartItem(item, cart[item.id]));
+            item['cart'] = self;
+            var cartItem = new CartItem(item, cart[item.id]);
+            arrItems.push(cartItem);
+            self.setCouponById(ls.get('cart.coupon'));
         });
     });
 
@@ -55,6 +67,12 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         angular.forEach(arrItems, function(item){
             subTotal += item.getSubTotal();
         });
+//        if(this.shippingPrice){
+//            Address.getShippingPrice(this.addess_id, subTotal).then(function(price) {
+//                console.log("-----", self);
+//               self.shippingPrice = price;
+//            });
+//        };
         return subTotal;
     };
     //</editor-fold>
@@ -87,7 +105,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         var discount = this.getDiscount();
         var shipping = this.getShippingAmount();
         var taxes = this.getTax();
-        return (subtotal - discount) + shipping + taxes;
+        return (subtotal - discount + shipping)  + taxes;
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="this.checkStock">
@@ -107,14 +125,14 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             persitItems[item.getStockId()] = item.quantity();
         });
         return persitItems;
-    }
+    };
     var cart = this;
     var cleanCoupon = function() {
         cart.discount = 0;
         cart.percentDiscount = 0;
-        if(_coupon.type == Coupon.types.FREE_PRODUCT_BY_AMMOUNT){
+        if(_coupon.type == Coupon.types.FREE_PRODUCT_BY_AMMOUNT) {
             var item = cart.getItemByStock(couponStock);
-            if(item){
+            if(item) {
                 var q = item.quantity();
                 if(q>1){
                     item.quantity(q-1);
@@ -123,8 +141,9 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
                 }
             }
         }
-         _coupon = null;
-    }
+        _coupon = null;
+        ls.remove('cart.coupon');
+    };
 //<editor-fold defaultstate="collapsed" desc="this.checkCoupon()">
     this.checkCoupon = function (){
         if(_coupon){
@@ -184,46 +203,55 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             });
         });
     }
+    var applyCoupon = function (coupon, defer) {
+        if(parseFloat(coupon.amount_min,10) > self.getSubTotal()) {
+            defer.reject("El Carrito no cuenta con el monto minimo (" + currency(coupon.amount_min) + ")");
+        } else {
+            try {
+                switch(coupon.type) { 
+                    case Coupon.types.PERSENT_BY_AMMOUNT:
+                        self.setPersentDiscountByMount(coupon);
+                    break;
+                    case Coupon.types.DISCOUNT_BY_AMMOUNT:
+                        self.setDiscountByMount(coupon);
+                    break;
+                    case Coupon.types.FREE_PRODUCT_BY_AMMOUNT:
+                        self.setProductByAmount(coupon);
+                    break;
+                }
+                _coupon = coupon;
+                ls.set('cart.coupon', coupon.id);
+                defer.resolve();
+            } catch(e) {
+                defer.reject(e.message);
+            }
+        }
+    };
     
+    this.setCouponById = function (id_coupon) {
+        var defer = $q.defer();
+        if(id_coupon){
+            Coupon.getById(id_coupon).then(function(coupon) {
+               applyCoupon(coupon, defer);
+            }, function(e) {
+                defer.reject(e.message);
+            });
+        } else {
+            $timeout(function() {
+                defer.reject();
+            }, 5);
+        }
+        return defer.promise;
+    }
     //<editor-fold defaultstate="collapsed" desc="this.applyCoupon">
     this.applyCoupon = function (couponCode) {
         var defer = $q.defer();
-        var self = this;
         Coupon.getByCode(couponCode).then(function(coupon) {
-            console.log(parseFloat(coupon.amount_min,10),self.getSubTotal());
-            if(parseFloat(coupon.amount_min,10) > self.getSubTotal()) {
-                defer.reject("El Carrito no cuenta con el monto minimo ($ " + coupon.amount_min + ")");
-            } else {
-                try{
-                    switch(coupon.type){ 
-                        case Coupon.types.PERSENT_BY_AMMOUNT:
-                            self.setPersentDiscountByMount(coupon);
-                        break;
-                        case Coupon.types.DISCOUNT_BY_AMMOUNT:
-                            self.setDiscountByMount(coupon);
-                        break;
-                        case Coupon.types.FREE_PRODUCT_BY_AMMOUNT:
-                            self.setProductByAmount(coupon);
-                        break;
-                    }
-                    _coupon = coupon;
-                    console.log(coupon);
-                    ls.set('coupon', coupon.id);
-                    defer.resolve();
-                }catch(e){
-                    defer.reject(e.message);
-                }
-            }
-        
+            applyCoupon(coupon, defer);
         },function(e){
             defer.reject(e.message);
         });
         return defer.promise;
-        if( (coupon = this.checkCoupon()) ) {
-            console.log(coupon);
-            return true;
-        }
-        return false;
     };
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="this.addProduct">
@@ -260,29 +288,32 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         }
     }
     //</editor-fold>
-    this.addStock = function (stock, quantity){
+    this.addStock = function (stock, quantity) {
         var item  = this.getItemByStock(stock);        
-        if(item){
-            console.log("Ya esta en el carrito", item);
+        if(item) {
             item.quantity(item.quantity()+1);
                 this.persistItems();
             return;
         }
-        console.log("El item aun no esta en el carrito");
-        arrItems.push(new CartItem({
+        var cartItem = new CartItem({
             id : stock.id,
-            price: stock.price, 
+            price: stock.price,
             color_id: stock.color_id,
             product : stock.relations.product,
-            size : stock.size_id 
-        },quantity));
+            size : stock.size_id,
+            cart : this
+        },quantity);
+        arrItems.push(cartItem);
         this.persistItems();
     }
     this.removeCoupon = function () {
         cleanCoupon();
     }
     this.setShippingAddress = function (address) {
-        this.shippingAddress = address;        
+        this.shippingAddress = address;  
+        if(address && address.id){
+            this.addess_id = address.id;
+        }
     };
     this.getShippingAddress = function () {
         return this.shippingAddress;
@@ -290,9 +321,31 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.setBillingInformation = function (billingInformation) {
         this.billingInformation = billingInformation;
     };
+    this.removeBillingInformation = function () {
+        this.billingInformation = undefined;
+        ls.remove('cart.billingInformation');
+    }
     this.getBillingInformation = function () {
         return this.billingInformation;
-    }; 
+    };  
+    this.requestBillig = function () {
+        return !!this.getBillingInformation();
+    };
+    this.getApportion = function (amount) {
+        if(this.requestBillig()) {
+            return amount / (1 + (IVA / 100));
+        }
+        return amount;
+    };
+    this.loadBillingInformation = function () {
+        var def = $q.defer();
+        BillingInformation.getById(this.getBillingInformation()).then(function(inst) {
+            def.resolve(inst);
+        }, function() {
+            def.reject(int);
+        });
+        return def.promise;
+    };
     this.persitInfo = function () {
         ls.set('cart.address', this.shippingAddress.id);  
         if( this.billingInformation){
@@ -302,11 +355,31 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
      
     this.setShippingAddress(ls.get('cart.address'));
     this.setBillingInformation(ls.get('cart.billingInformation'));
+    
     this.getShippingAmount = function () {
-        return 10;
+//        return 10;
+        if(this.shipingRourles){
+            var subtotal = this.getSubTotal();
+            var rules =this.shipingRourles;
+            if(subtotal >= rules.amountForFree){
+                return 0;
+            } else {
+                
+            }
+            return this.getSubTotal()
+        }
+        return 2000;
     }
-     
+    
+    
     this.getTax = function () {
+        if('billingInformation', this.billingInformation) {
+            var subtotal = this.getSubTotal();
+            var discount = this.getDiscount();
+            var shipping = this.getShippingAmount();
+            var total = (subtotal + discount + shipping) ;
+            return (total/100)*IVA;
+        }
         return 0;
     }
     
@@ -324,9 +397,6 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         };
         return data;
     };
-    
-    
-   
     var conekta = {
         conektaSuccessResponseHandler: function (def, token, context) {
             var data = cart.prepareData();
@@ -369,7 +439,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     }
     this.checkout = function () {
         var defer = $q.defer();
-        if(this.psp === this.PSP_CONEKTA) {
+        if(this.psp === this.PSP_TC_CONEKTA) {
            createConektaToken(defer);
         } else { 
             this.sendCheckout(
@@ -377,7 +447,6 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
                 defer
             );            
         }
-        return defer.promise;
+        return defer.promise;  
     };
-    
 });

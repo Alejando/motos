@@ -9,13 +9,26 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     const STATUS_CANCEL = 3;
     
     const PSP_PAYPAL = 1;
-    const PSP_CONEKTA = 2;
-    
+    const PSP_TC_CONEKTA = 2;
+    protected $dateFormat = 'Y-m-d H:i:s';
+    public $dates = ['created_at','end_date'];
     public $timestamps = true;
+    public function getCreatedAtAttribute() {
+        return $this->datetimeFormat('created_at');
+    }
+    public function send($guia, $url) {
+        $this->urlguia = $url;
+        $this->guia = $guia;
+        $this->sent = true;
+        $this->save();
+        //Enviar Correo
+        return $this;
+    }
     
     public function items() {
         return $this->hasMany(\DwSetpoint\Models\Item::class);
     }
+    
     public function sendMail($user) {
         \DwSetpoint\Libs\Helpers\Mail::order([
             'user' => $user,
@@ -38,6 +51,10 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function user() {
         return $this->belongsTo(\DwSetpoint\Models\User::class);
     }
+    public function billing_information() {
+        return $this->belongsTo(\DwSetpoint\Models\BillingInformation::class);
+    }
+    
     public function getAmount() {
         return 100;
     }

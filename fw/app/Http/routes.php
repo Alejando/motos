@@ -145,11 +145,24 @@ Route::group(['prefix' => 'api'], function () {
     //Catalogo de Paises, Estados, Direcciones
     $addAPI('country','Country');
     $addAPI('state','State');
-    $addAPI('address','Address');
+    $addAPI('configuration','Configuration');
+   
+    Route::get('address/{address_id}/shipping-rules', [
+        'as' => 'address.get-shipping-rules',
+        'uses' => 'Api\\AddressController@getShippingRules'
+    ]);
+     $addAPI('address','Address');
     $addAPI('postalCode','PostalCode');
     $addAPI('order','Order');
     $addAPI('postalCodeGroup','PostalCodeGroup');
-
+    Route::put('order/{order}/send',[
+        'as' => 'order.send',
+        'uses' => 'Api\\OrderController@send'
+    ]);
+    Route::put('order/{order}/set-bill',[
+        'as' => 'order.set-bill-number',
+        'uses' => 'Api\\OrderController@setBillNumber'
+    ]);
     Route::post('coupon/validate-code', [
         'as' => 'coupon.validateCode',
         'uses' => 'Api\\CouponController@validateCode'

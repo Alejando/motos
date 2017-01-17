@@ -3,22 +3,13 @@
 <div ng-controller="CartCheckoutCtrl">
     <div class="breadcrumbcustom">
         Inicio <span class="separador">-</span> <span class="current">Método de pago</span>
-    </div>
-
+    </div>    
     <div class="pasos">
-        <a href="./carrito" class="transicion"><span><b>1</b></span></a>
-        <a href="./envio" class="transicion"><span><b>2</b></span></a>
-        <a href="./pago" class="transicion activo"><span><b>3</b></span></a>
+        <a href="{{route('cart.list')}}" class="transicion"><span><b>1</b></span></a>
+        <a href="{{route('cart.shiping')}}" class="transicion"><span><b>2</b></span></a>
+        <a href="{{route('cart.confirmCheckout')}}"  class="transicion activo"><span><b>3</b></span></a>
     </div>
-    <div class="cajadatos margentop20 ng-hide" ng-show="pspError"  ng-cloak>
-        <h2 class="title text-center" style="color:red" >@{{pspError}}<i class="fa fa-times" aria-hidden="true"></i></h2>
-    </div>
-    @if(isset($checkout) && $checkout=='fail')
-    <div class="cajadatos margentop20">
-        <h2 class="title text-center" style="color:red" >Ocurrio un error al intentar procesar tu pago <i class="fa fa-times" aria-hidden="true"></i></h2>
-        <div class="nproductoh4">* Intenta nuevamente con otra forma de pago</div>
-    </div>
-    @endif
+    
     <div class="cajadatos margentop30">
         <h2 class="subtitulo">Forma de Pago</h2>
         <form id="formpago" method="post">
@@ -26,7 +17,15 @@
                 <h4>Web 100% confidencial</h4>
                 Toda la información de tus tarjetas viaja codificada con tecnología SSL, además BOUNCE Tennis Lifestyle está avalada por la Asociación Mexicana de Internet (AMIPCI) como empresa séria y de confianza. Ver sellos
             </div>
-
+            <div class="cajadatos margentop20 ng-hide" ng-show="pspError"  ng-cloak>
+                <h2 class="title text-center" style="color:red" >@{{pspError}}<i class="fa fa-times" aria-hidden="true"></i></h2>
+            </div>
+            @if(isset($checkout) && $checkout=='fail')
+                <div class="cajadatos margentop20">
+                    <h2 class="title text-center" style="color:red" >Ocurrio un error al intentar procesar tu pago <i class="fa fa-times" aria-hidden="true"></i></h2>
+                    <div class="nproductoh4">* Intenta nuevamente con otra forma de pago</div>
+                </div>
+            @endif
             <div class="row margentop20">
                 <div class="col-sm-4">
                     <h3 class="subtitulo">Elige tu método de pago:</h3>
@@ -75,19 +74,21 @@
                                 </h4>
                             </div>
                         </div>
-                        <div class="panel panel-default"  ng-click="setProvider(cart.PSP_CONEKTA)">
+                        <div class="panel panel-default"  ng-click="setProvider(cart.PSP_TC_CONEKTA)">
                             <div class="panel-heading" role="tab" id="headingTwo" ng-class="{
-                                bntProviederChekout: providerSelected == cart.PSP_CONEKTA
+                                bntProviederChekout: providerSelected == cart.PSP_TC_CONEKTA
                              }">
                                 <h4 class="panel-title">
                                     <a class="btnconekta" role="button" href="" aria-expanded="true" aria-controls="collapseTwo">
-                                        Pago con Conekta
+                                        Tarjeta de crédito
                                     </a>
                                 </h4>
                             </div>
                         </div>
                     </div>
-                    @include('public.pages.cart.form-conekta')
+                    <div ng-show="providerSelected == cart.PSP_TC_CONEKTA">
+                        @include('public.pages.cart.form-conekta')
+                    </div>
                 </div>
                 <div class="col-sm-5">
                     <h3 class="subtitulo2">Resúmen de Compra</h3>
@@ -97,11 +98,11 @@
                                 <div class="col-xs-8">
                                     <h4 class="nproductoh4">
                                         @{{item.product.name}}
-                                        <span>x @{{item.quantity()}}</span>
+                                        <span>@{{item.getPrice()|currency:'$'}} x @{{item.quantity()}}</span>
                                     </h4>
                                 </div>
                                 <div class="col-xs-4">
-                                    <h5 class="nproductoh5">@{{item.getSubTotal()|currency}}</h5>    
+                                    <h5 class="nproductoh5">@{{item.getSubTotal()|currency:'$'}}</h5>    
                                 </div>
                             </div>
                             
@@ -110,7 +111,7 @@
                                     Descuento cupón:
                                 </div>
                                 <div class="col-xs-6" >
-                                    @{{item.getDiscount()|currency}} MXP
+                                    @{{item.getDiscount()|currency:'$'}} MXP
                                 </div>
                             </div>
                             <div class="row cajon">
@@ -118,7 +119,15 @@
                                     Subtotal:
                                 </div>
                                 <div class="col-xs-6">
-                                    @{{cart.getSubTotal()|currency}}MXP
+                                    @{{cart.getSubTotal()|currency:'$'}}MXP
+                                </div>
+                            </div>
+                            <div class="row cajon" ng-show="cart.getDiscount()">
+                                <div class="col-xs-6">
+                                    Descuento cupón:
+                                </div>
+                                <div class="col-xs-6">
+                                   - @{{cart.getDiscount()|currency:'$'}}MXP
                                 </div>
                             </div>
                             <div class="row cajon">
@@ -126,7 +135,7 @@
                                     Paquetería:
                                 </div>
                                 <div class="col-xs-6">
-                                    @{{cart.getShippingAmount()|currency}} MXP
+                                    @{{cart.getShippingAmount()|currency:'$'}} MXP
                                 </div>
                             </div>
                             <div class="row cajon">
@@ -134,7 +143,7 @@
                                     Iva:
                                 </div>
                                 <div class="col-xs-6">
-                                    @{{cart.getTax()|currency}} MXP
+                                    @{{cart.getTax()|currency:'$'}} MXP
                                 </div>
                             </div>
                         </div>
@@ -142,7 +151,7 @@
                 </div>
                 <div class="col-sm-3">
                     <h2 class="checktotal margentop50">
-                        <span>Total:</span> <span>@{{cart.getTotal()|currency}}</span>
+                        <span>Total:</span> <span>@{{cart.getTotal()|currency:'$'}}</span>
                     </h2>
                     <div class="botonera margentop20">
                         <a href="" class="transicion" ng-click="checkout($event)">Comprar</a>

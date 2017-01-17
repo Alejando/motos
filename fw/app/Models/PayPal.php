@@ -59,6 +59,7 @@ class PayPal {
         $this->infoPspResponse;
         if($r = ($result->getState() == 'approved')) {
             $this->state = PSP::STATE_APPROVED;
+            $this->order->paid = true;
         } else {
             dd($r);
         }

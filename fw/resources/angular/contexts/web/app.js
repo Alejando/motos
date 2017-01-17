@@ -17,3 +17,5 @@ setpoint.config(function (localStorageServiceProvider, $httpProvider) {
 setpoint.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
 }]);
+
+setpoint.constant('IVA', '16');
