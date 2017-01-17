@@ -53,7 +53,7 @@ Route::get('/carrito/pago', [
     'as' => 'cart.confirmCheckout',
     'uses' =>  'CartController@confirmCheckout'
 ]);
-Route::post('carrito/checkout', [
+Route::post('carrito/checkout', [ 
     'as' => 'cart.checkout',
     'uses' => 'CartController@checkout'
 ]);

@@ -345,7 +345,12 @@
                         DTColumnBuilder.newColumn('code').withTitle('Código'),
                         DTColumnBuilder.newColumn('product.name').withTitle('Producto'),
                         DTColumnBuilder.newColumn('quantity').withTitle('Existencias'),
-                        DTColumnBuilder.newColumn('size.name').withTitle('Tamaño/Talla'),
+                        DTColumnBuilder.newColumn(null).withTitle('Tamaño/Talla').renderWith(function(data, type, full, meta){
+                           if(full.size && full.size.name){
+                               return full.size.name;
+                           }
+                           return "N/A";
+                        }),
                         DTColumnBuilder.newColumn('color.name').withTitle('Color').renderWith(function(data, type, full, meta){
                             if(full.color && full.color.rgb) {
                                 return  '<div class="box-color" style="background-color:' + full.color.rgb + ';"></div>' +
@@ -622,7 +627,7 @@
             $scope.catalog = "Cupones";
             $scope.model = Coupon;
             $scope.products = [];
-            $scope.coupontype = Coupon.types.FREE_PRODUCT_BY_AMMOUNT;
+            $scope.coupontype = Coupon.types.FREE_PRODUCT_BY_AMOUNT;
             $scope.selectedProduct = null;
             $scope.stocks = null;
             Color.getAll().then(function (colors) {
@@ -676,13 +681,13 @@
                 ];
             };
             $scope.types = [{
-                    type : Coupon.types.PERSENT_BY_AMMOUNT,
+                    type : Coupon.types.PERSENT_BY_AMOUNT,
                     text : 'Porcentaje por monto minimo',
                 },{
-                    type : Coupon.types.DISCOUNT_BY_AMMOUNT,
+                    type : Coupon.types.DISCOUNT_BY_AMOUNT,
                     text : 'Monto por monto minimo',
                 },{
-                    type : Coupon.types.FREE_PRODUCT_BY_AMMOUNT,
+                    type : Coupon.types.FREE_PRODUCT_BY_AMOUNT,
                     text : 'Producto gratis por monto minimo',
                 }
             ]; 
@@ -765,15 +770,15 @@
                     $scope.regForm.expreDate.$invalid = true;
                 } 
                 
-                if($scope.coupontype.type == Coupon.types.DISCOUNT_BY_AMMOUNT) {
+                if($scope.coupontype.type == Coupon.types.DISCOUNT_BY_AMOUNT) {
                     $scope.productInvalid = false;
                 }
-                if($scope.coupontype.type == Coupon.types.PERSENT_BY_AMMOUNT) {
+                if($scope.coupontype.type == Coupon.types.PERSENT_BY_AMOUNT) {
                     $scope.regForm.discount.$invalid = false;
                     $scope.productInvalid = false;
                      
                 }
-                if($scope.coupontype.type == Coupon.types.FREE_PRODUCT_BY_AMMOUNT){
+                if($scope.coupontype.type == Coupon.types.FREE_PRODUCT_BY_AMOUNT){
                     $scope.regForm.discount.$invalid = false;
                     $scope.productInvalid = $scope.selectedProduct === null;
                 }

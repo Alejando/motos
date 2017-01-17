@@ -29,7 +29,7 @@ class Address extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         $pc = \DwSetpoint\Models\PostalCode::getByCode($address->postal_code);
         if($pc && ($group = $pc->postal_code_group)) {
-            if($amount>=(double)$group->amount_free){
+            if($amount >= (double)$group->amount_free) {
                 return 0;
             }
             return (double)$group->price;
@@ -37,19 +37,19 @@ class Address extends \DevTics\LaravelHelpers\Model\ModelBase {
         return dbconfig::getDefaultPrice();
     }
     public static function getShippingRules($address_id) {
-        $address = Address::getById($address_id);        
+        $address = Address::getById($address_id); 
         $amount4Free = (double)dbconfig::getAmountForShppingFree();
         $pc = \DwSetpoint\Models\PostalCode::getByCode($address->postal_code);
         if($pc && ($group = $pc->postal_code_group)) {
-            $data = [
+            return [
+                'ads'=>1,
                 'amountForFree' => (double)$group->amount_free,
                 'price' => (double)$group->price,               
             ];
         }
-        $data = [
+        return [
             'amountForFree' => $amount4Free,
             'price' => (double)dbconfig::getDefaultPrice()
         ];
-        return $data;
     }
 }

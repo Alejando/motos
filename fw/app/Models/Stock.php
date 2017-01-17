@@ -35,4 +35,12 @@ class Stock extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return null;
     }
+    public function getPrice() {
+        $discount = $this->product->discount_percentage;
+        if($discount){
+           $price = $this->price;
+           return $price - (($price/100) * $discount);
+        }
+        return $this->price;
+    }
 }

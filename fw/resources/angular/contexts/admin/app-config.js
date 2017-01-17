@@ -11,7 +11,7 @@ setpoint.config(function ($routeProvider) {
             });
         });
     };
-    
+     
     pathAdmin([
         ['/', 'welcome', 'Home'],
         ['/catalogos/categorias', 'categories', 'Categories'],
@@ -29,7 +29,7 @@ setpoint.config(function (localStorageServiceProvider, $httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
     localStorageServiceProvider
         .setPrefix('estrasol')
-//        .setStorageType('sessionStorage')
+//       .setStorageType('sessionStorage')
     ;
 });
 

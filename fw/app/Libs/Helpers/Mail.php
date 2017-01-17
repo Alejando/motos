@@ -83,16 +83,30 @@ class Mail extends MailBase {
         return self::sendMail('contact', $args, $test, $send, $format);
     }
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="contact">
+    // <editor-fold defaultstate="collapsed" desc="order">
     public static function order($args = [], $test = false, $send = true, $format = 'html'){
         if(!isset($args['user'])) {
             $user = \DwSetpoint\Models\User::getRandom(); 
             $args['user'] = $user;
-            $args['order'] = \DwSetpoint\Models\Order::getRandom();
+            $inputOrder = \Illuminate\Support\Facades\Input::get('order');
+            $args['order'] = $inputOrder ? \DwSetpoint\Models\Order::getById($inputOrder) : \DwSetpoint\Models\Order::getRandom();
         }
         $args['to'] = $args['user']->email;
         $args['subject'] = "Confirmación de pedido";
         return self::sendMail('order', $args, $test, $send, $format);
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="order">
+    public static function shipping($args = [], $test = false, $send = true, $format = 'html'){
+        if(!isset($args['user'])) {
+            $user = \DwSetpoint\Models\User::getRandom(); 
+            $args['user'] = $user;
+            $inputOrder = \Illuminate\Support\Facades\Input::get('order');
+            $args['order'] = $inputOrder ? \DwSetpoint\Models\Order::getById($inputOrder) : \DwSetpoint\Models\Order::getRandom();
+        }
+        $args['to'] = $args['user']->email;
+        $args['subject'] = "Confirmación de envió de pedido";
+        return self::sendMail('shipping', $args, $test, $send, $format);
     }
     // </editor-fold>
 

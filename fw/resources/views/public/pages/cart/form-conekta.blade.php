@@ -15,6 +15,16 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-md-12 control-label" for="nombretarjetahabiente">Teléfono del Tarjetahabiente:</label>
+        <div class="col-md-12">
+            <input type="text"
+                class="form-control tel"
+                placeholder="Ej. 444223344"
+                required
+            >
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-md-12 control-label" for="tarjeta">Número de la tarjeta de crédito:</label>
         <div class="col-md-12">
             <input type="text"
@@ -32,7 +42,8 @@
             CVC
         </label>
         <div class="col-md-12">
-            <input type="text" id="cvc" size="4" style="width:6em" placeholder="xxx"  class="form-control" data-conekta="card[cvc]"/>
+            <input type="text" id="cvc" size="4" style="width:6em; float: left" placeholder="xxx"  class="form-control" data-conekta="card[cvc]" />
+            <img src="{{asset('img/cvc.png')}}" style="float: left; margin-left: 10px; margin-top: 5px">
         </div>
     </div>
     <div class="form-inline">

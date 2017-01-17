@@ -119,7 +119,7 @@
                                     Subtotal:
                                 </div>
                                 <div class="col-xs-6">
-                                    @{{cart.getSubTotal()|currency:'$'}}MXP
+                                    @{{cart.getSubTotal()|currency:'$'}} MXP
                                 </div>
                             </div>
                             <div class="row cajon" ng-show="cart.getDiscount()">
@@ -127,7 +127,7 @@
                                     Descuento cupón:
                                 </div>
                                 <div class="col-xs-6">
-                                   - @{{cart.getDiscount()|currency:'$'}}MXP
+                                   - @{{cart.getDiscount()|currency:'$'}} MXP
                                 </div>
                             </div>
                             <div class="row cajon">
@@ -138,7 +138,7 @@
                                     @{{cart.getShippingAmount()|currency:'$'}} MXP
                                 </div>
                             </div>
-                            <div class="row cajon">
+                            <div class="row cajon" ng-show="cart.requestBillig()">
                                 <div class="col-xs-6">
                                     Iva:
                                 </div>

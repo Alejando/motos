@@ -8,7 +8,7 @@ class DBConfig  extends \DevTics\LaravelHelpers\Model\ModelBase {
         if($conf->count()) {
             return $conf->get(0)->value;
         }
-        return $defaultValue;
+        throw new \Exception("No se encotro la configuracion $code ");
     }
     public static function __callStatic($method, $parameters) {
         if($method!='get' && strpos($method,'get')===0){

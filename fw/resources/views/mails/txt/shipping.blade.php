@@ -26,7 +26,7 @@
                         @foreach($order->items as $i => $item) 
                             <div  {!!($i%2 ? 'style="background: #ecf0f1;"' : '-')!!}> 
                                 <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
-                                     {{$item->product->name}} {!!($item->quantity > 1 ? "<sup>(".Helpers::formatCurrency($item->getPrice()) . ' x ' . $item->quantity.")</sup>" : '')!!}
+                                     {{$item->product->name}} {{($item->quantity>1 ? 'x'.$item->quantity:'')}}
                                 </div>
                                 <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
                                   {{Helpers::formatCurrency($item->getPrice() * $item->quantity)}}
@@ -34,7 +34,29 @@
                             </div>
                         @endforeach
                         {{-- *********** Fin Items ************ --}}
-                        
+                        {{-- *************** Cupon *************--}}
+                        @if($order->coupon)
+	                        <div style="border-top: solid 1px #CFE0EF; background: #C1D72E;">
+	                            <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #FFF;">
+	                                <span style="font-size: 13px; color: #FFF;">Descuento cupón</span>
+	                            </div>
+	                            <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
+	                                <span style="color: #FFF;">- {{Helpers::formatCurrency($order->getAmountCoupon())}}</span>
+	                            </div>
+	                        </div>
+                        @endif
+                        {{-- ********* Descuento de coupon ********** --}}
+                        @if($order->hasCoupon())
+                        <div style="border-top: solid 1px #CFE0EF;">
+                            <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #CFE0EF;">
+                                <span style="font-size: 13px;">Descuento por cupon</span>
+                            </div>
+                            <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
+                                {{ Helpers::formatCurrency($order->getShipping())}}
+                            </div>
+                        </div>
+                        @endif
+                        {{-- ******* Fin Descuento de coupon ******** --}}
                         {{-- *************** SubTotal ************* --}}
                         <div style="border-top: solid 1px #CFE0EF;">
                             <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #CFE0EF;">
@@ -45,23 +67,6 @@
                             </div>
                         </div>
                         {{-- *************** Fin SubTotal *********** --}}
-                        
-                        {{-- *************** Cupon *************--}}
-                        @if($order->hasCoupon())
-	                        <div style="border-top: solid 1px #CFE0EF; background: #C1D72E;">
-	                            <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #FFF;">
-	                                <span style="font-size: 13px; color: #FFF;">Descuento cupón</span>
-	                            </div>
-	                            <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
-	                                <span style="color: #FFF;">- {{Helpers::formatCurrency($order->getAmountCoupon())}}</span>
-	                            </div>
-	                        </div>
-                        @endif
-                        {{-- ******* Fin de coupon ******** --}}
-                        
-                        
-                       
-                        
                         {{-- ****************** Envio *************** --}}
                         <div style="border-top: solid 1px #CFE0EF;">
                             <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #CFE0EF;">
@@ -90,7 +95,7 @@
                                 <span style="font-size: 13px;">Total</span>
                             </div>
                             <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
-                                {{ Helpers::formatCurrency($order->getTotal())}}
+                                {{ Helpers::formatCurrency($order->getTotalWhitShpping())}}
                             </div>
                         </div>
                     </div>

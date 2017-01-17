@@ -104,8 +104,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         var subtotal = this.getSubTotal();
         var discount = this.getDiscount();
         var shipping = this.getShippingAmount();
-        var taxes = this.getTax();
-        return (subtotal - discount + shipping)  + taxes;
+        return (subtotal - discount + shipping);
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="this.checkStock">
@@ -130,7 +129,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     var cleanCoupon = function() {
         cart.discount = 0;
         cart.percentDiscount = 0;
-        if(_coupon.type == Coupon.types.FREE_PRODUCT_BY_AMMOUNT) {
+        if(_coupon.type == Coupon.types.FREE_PRODUCT_BY_AMOUNT) {
             var item = cart.getItemByStock(couponStock);
             if(item) {
                 var q = item.quantity();
@@ -145,15 +144,13 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         ls.remove('cart.coupon');
     };
 //<editor-fold defaultstate="collapsed" desc="this.checkCoupon()">
-    this.checkCoupon = function (){
+    this.checkCoupon = function () {
         if(_coupon){
             if(_coupon.amount_min) {
                 var priceProduct = 0;
                 if(couponStock){
                     priceProduct = parseFloat(couponStock.price);
                 }
-//                var min = _coupon.type != Coupon.types.FREE_PRODUCT_BY_AMMOUNT ? _coupon.amount_min : _coupon.amount_min + couponStock.price;
-                console.log(parseFloat(_coupon.amount_min) + parseFloat(priceProduct));
                 if( ( parseFloat(_coupon.amount_min) + parseFloat(priceProduct) ) > this.getSubTotal()){
                     cleanCoupon();
                     this.onInvalidateCoupon();
@@ -191,14 +188,15 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             
         }
         coupon.stock({
-            with : 'product'
-        }).then(function(stock){
+            with : 'product,color,size'
+        }).then(function(stock) {
             stock.product().then(function(product) {
                 var item = self.getItemByStock(stock);
-                if(!item){
-                    self.addStock(stock,1);
+                if(item === null) { //No esta agregado el item
+                    self.addStock(stock,1); 
                 }
-                self.setDiscount(stock.price);
+                console.log(stock);
+                self.setDiscount(stock.getPrice());
                 couponStock = stock;
             });
         });
@@ -209,13 +207,13 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         } else {
             try {
                 switch(coupon.type) { 
-                    case Coupon.types.PERSENT_BY_AMMOUNT:
+                    case Coupon.types.PERSENT_BY_AMOUNT:
                         self.setPersentDiscountByMount(coupon);
                     break;
-                    case Coupon.types.DISCOUNT_BY_AMMOUNT:
+                    case Coupon.types.DISCOUNT_BY_AMOUNT:
                         self.setDiscountByMount(coupon);
                     break;
-                    case Coupon.types.FREE_PRODUCT_BY_AMMOUNT:
+                    case Coupon.types.FREE_PRODUCT_BY_AMOUNT:
                         self.setProductByAmount(coupon);
                     break;
                 }
@@ -276,33 +274,37 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             });
         return defer.promise;
     };
-    this.getItemByStock = function(stock){
-        
-        var item;
-        for(var i = 0; (item = arrItems[i++]);){
-            console.log(stock.id);
+    this.getItemByStock = function(stock) {
+        var item = null;
+        for(var i = 0; (item = arrItems[i++]);) {
             if(item.stock_id == stock.id) {
                 //item.quantity(item.quantity()+1);
                 return item;
             }
         }
+        return null;
     }
     //</editor-fold>
     this.addStock = function (stock, quantity) {
         var item  = this.getItemByStock(stock);        
         if(item) {
-            item.quantity(item.quantity()+1);
-                this.persistItems();
+            item.quantity(item.quantity() + 1);
+                this.persistItems(); 
             return;
         }
-        var cartItem = new CartItem({
-            id : stock.id,
-            price: stock.price,
-            color_id: stock.color_id,
-            product : stock.relations.product,
-            size : stock.size_id,
-            cart : this
-        },quantity);
+        try { 
+            var cartItem = new CartItem({
+                id : stock.id,
+                price: stock.price,
+                color_id: stock.color_id,
+                color : stock.relations.color,
+                product : stock.relations.product,
+                size : stock.size_id,
+                cart : this
+            },quantity);
+         }catch(e) {
+             console.log("----Error .> %o ", e);
+         }
         arrItems.push(cartItem);
         this.persistItems();
     }
@@ -357,28 +359,21 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.setBillingInformation(ls.get('cart.billingInformation'));
     
     this.getShippingAmount = function () {
-//        return 10;
-        if(this.shipingRourles){
+        if(this.shipingRourles) {
             var subtotal = this.getSubTotal();
             var rules =this.shipingRourles;
             if(subtotal >= rules.amountForFree){
                 return 0;
-            } else {
-                
             }
-            return this.getSubTotal()
-        }
-        return 2000;
+            return this.shipingRourles.price;
+            }
+        return 0;
     }
     
     
     this.getTax = function () {
         if('billingInformation', this.billingInformation) {
-            var subtotal = this.getSubTotal();
-            var discount = this.getDiscount();
-            var shipping = this.getShippingAmount();
-            var total = (subtotal + discount + shipping) ;
-            return (total/100)*IVA;
+            return (this.getTotal()/100)*IVA;
         }
         return 0;
     }
@@ -386,15 +381,22 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.setPaymentServiceProvide = function (pspCodeName) {
         this.psp = pspCodeName;
     };
-    
+    this.getCouponId = function () {
+        return this.coupon_id;
+    };
     this.prepareData = function () {
         var items = this.getPersistItems();
+        
         var data = {
             billing_info : this.getBillingInformation(),
             shipping_address : this.getShippingAddress(),
+            coupon : this.getCouponId(),
             psp: this.psp,
             items : items
         };
+        if(this.psp === this.PSP_TC_CONEKTA) {
+           data.tel = conekta.form.find(".tel").val();
+        }
         return data;
     };
     var conekta = {

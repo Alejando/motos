@@ -5,7 +5,6 @@ use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
-use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
@@ -22,7 +21,7 @@ class PayPal {
     public function __construct($order) {
         $this->initContext();
         $this->order = $order;
-        $this->payer = new Payer();;
+        $this->payer = new Payer();
         $this->payer->setPaymentMethod('paypal');
         $this->currency = 'MXN';
     }
@@ -76,7 +75,7 @@ class PayPal {
 //        $subTotal = $order->getSubTotal();
         $paypalItems = [];
         foreach($order->items as  $orderItem){
-            $paypalItem = new Item();
+            $paypalItem = new \PayPal\Api\Item();
             $product = $orderItem->product;
             $paypalItem->setName($product->name);
             $paypalItem->setCurrency($this->currency);
@@ -85,23 +84,32 @@ class PayPal {
             $paypalItem->setPrice($orderItem->getPrice());
             $paypalItems[] = $paypalItem;
         }
-        if($order->requestBill()){
-            $itemIva = new Item();
-            $itemIva->setName('IVA');
-            $itemIva->setCurrency($this->currency);
-            $itemIva->setDescription('IVA');
-            $itemIva->setQuantity(1);
-            $itemIva->setPrice($order->getIva());
-            $paypalItems[] = $itemIva;
+        if($order->hasCoupon()) {
+            $paypalItem = new \PayPal\Api\Item();
+            $product = $orderItem->product;
+            $paypalItem->setName("Cupon");
+            $paypalItem->setCurrency($this->currency);
+            $paypalItem->setDescription("Descuento");
+            $paypalItem->setQuantity(1);
+            $paypalItem->setPrice($order->getAmountCoupon()*-1);
+            $paypalItems[] = $paypalItem;
         }
+//        if($order->requestBill()){
+//            $itemIva = new Item();
+//            $itemIva->setName('IVA');
+//            $itemIva->setCurrency($this->currency);
+//            $itemIva->setDescription('IVA');
+//            $itemIva->setQuantity(1);
+//            $itemIva->setPrice($order->getTaxs());
+//            $paypalItems[] = $itemIva;
+//        }
         $itemList = new ItemList();
         $itemList->setItems($paypalItems);
         $details = new Details();
-        $details->setSubtotal($order->getTotal());
+        $details->setSubtotal($order->getSubtotal()-$order->getAmountCoupon());
         $details->setShipping($order->getShipping());
-        $totalTransaction = $order->getTotalWhitShpping();
-        
-        
+        $totalTransaction = $order->getTotal();
+       
         $obAmount = new Amount();
         $obAmount->setCurrency($this->currency)
                 ->setTotal($totalTransaction)

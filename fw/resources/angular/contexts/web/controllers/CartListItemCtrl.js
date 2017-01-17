@@ -45,10 +45,10 @@ setpoint.controller('CartListItemCtrl', ['$scope', 'Cart',
                 }
             });
         }
-        $scope.removeItem = function (item) {
-            BootstrapDialog.confirm({
+        $scope.removeItem = function (item) { 
+            BootstrapDialog.confirm({ 
                 title: 'Confirmación',
-                message: '¡Deseas de eliminar el producto de tu carrito?',
+                message: '¿Deseas de eliminar el producto de tu carrito?', 
                 callback : function (ok) {
                     if(ok){
                         $scope.$apply(function() {

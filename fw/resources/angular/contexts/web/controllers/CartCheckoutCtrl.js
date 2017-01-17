@@ -21,7 +21,6 @@ setpoint.controller('CartCheckoutCtrl', [
             Cart.checkout().then(function (data) {
                 window.open(data.url, '_self'); 
             }, function (fail) {
-                
                 $scope.pspError = fail.message;
                 console.log($scope.pspError);
             });

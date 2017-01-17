@@ -74,6 +74,7 @@ class CartController  extends Controller {
         $order->user_id = $user->id;
         $order->psp = Input::get('psp');
         $order->billing_information_id = input::get('billing_info');
+        $order->coupon_id = Input::get('coupon');
         $itmes = Input::get('items');
         $order->save();
         foreach($itmes as $id => $quanty) {
@@ -86,6 +87,11 @@ class CartController  extends Controller {
                 'order_id' => $order->id
             ]);
         }
+        $order->subtotal = $order->getSubTotal();
+        $order->tax = $order->getTaxs();
+        $order->shipping = $order->getShipping();
+        $order->total = $order->getTotal();
+        $order->save();
         $psp = PSP::createByOrder($order);
         switch($order->psp){
             case PSP::PAYPAL:
@@ -94,7 +100,9 @@ class CartController  extends Controller {
             case PSP::CONEKTA:
                 $psp->setToken(Input::get('conektaToken'));
                 $psp->setUser($user);
-                $result = $psp->checkout();
+                $result = $psp->checkout([
+                    'tel' => \Illuminate\Support\Facades\Input::get('tel')
+                ]);
                 return is_array($result)?
                         $result : 
                         ['url' => $psp->getSuccessUrl()];

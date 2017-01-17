@@ -4,12 +4,16 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
     };
     ModelBase.createModel(Product, {
         alias: 'product',
-        setters: {},
-        attributes: [
-            'id',
+        setters : {
+            price_from : function (v) { 
+                return parseFloat(v, 10); 
+            }
+        },
+        attributes: [  
+            'id',  
             'name',
             'code',
-            'slug',
+            'slug',  
             'brand_id',
             'price_from',
             'description',

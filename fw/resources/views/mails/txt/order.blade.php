@@ -14,7 +14,7 @@
     @endif
         Subtotal: {{ Helpers::formatCurrency($order->getSubTotal())}}
         Envío: {{ Helpers::formatCurrency($order->getShipping())}}
-        Total:  {{ Helpers::formatCurrency($order->getTotalWhitShpping())}}
+        Total:  {{ Helpers::formatCurrency($order->getTotal())}}
 
     Dirección de Envío
             {{$order->address->street}} {{$order->address->street_number}} {{$order->address->suite_number}}

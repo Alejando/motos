@@ -65,29 +65,42 @@ class Conekta {
             $product = $orderItem->product;
             $item['name'] = $product->name;
             $item['description'] = $product->description;
-            $item['unit_price'] = $orderItem->getPrice();
+            $item['unit_price'] = self::getCents($orderItem->getPrice());
             $item['sku'] = $orderItem->stock->code;
             $item['quantity'] = $orderItem->quantity;
             $item['type'] = '';
             $data[] = $item;
         }
-        
-        if($this->order->requestBill()){
-            $itemIva = [];
-            $itemIva['name'] = 'IVA';
-            $itemIva['description'] = 'IVA';
-            $itemIva['quantity'] = 1;
-            $itemIva['unit_price'] = $this->order->getIva();
-            $itemIva['sku'] = 'iva';
-            $data[] = $itemIva;
+        if($this->order->hasCoupon()) {
+            $item = [];
+            $item['name'] = "Cupon de descuento";
+            $item['description'] = "Cupon ".$this->order->coupon->code;
+            $item['unit_price'] = self::getCents($this->order->getAmountCoupon());
+            $item['sku'] = '';
+            $item['quantity'] = 1;
+            $item['type'] = '';
+            $data[] = $item;
         }
+//        if($this->order->requestBill()){
+//            $itemIva = [];
+//            $itemIva['name'] = 'IVA';
+//            $itemIva['description'] = 'IVA';
+//            $itemIva['quantity'] = 1;
+//            $itemIva['unit_price'] = $this->order->getTaxs();
+//            $itemIva['sku'] = 'iva';
+//            $data[] = $itemIva;
+//        }
         return $data;
     }
     public function setUser($user) {
         $this->user = $user;
         return $this;
     }
-    public function checkout() {
+    private static function getCents($amount) {
+        return (int)round($amount * 100);
+    }
+    
+    public function checkout($data) {
         \Conekta\Conekta::setApiKey("key_eazzCz6tXkZy7t7TC1SbJQ");
         \Conekta\Conekta::setLocale('es');
         try {
@@ -96,10 +109,10 @@ class Conekta {
                 'reference_id'=> 'orden-' . $this->order->id,
                 'currency' => $this->currency,
                 'card' => $this->token,
-                'amount' => $this->order->getTotalWhitShpping(),
+                'amount' => self::getCents($this->order->getTotal()),
                 'details' => [
                     'name' => $this->order->address->getFullName(),
-                    'phone' => $this->order->address->tel,
+                    'phone' => $data['tel'],
                     'email' => $this->user->email,
                     'line_items' => $this->getListItems(),
                     'shipment' => $this->getShipmentInfo()
@@ -107,11 +120,14 @@ class Conekta {
             ];
             $charge = \Conekta\Charge::create($data);
         } catch(\Exception $e) {
-//            throw $e;
-             return  [
-                'error' => true,
-                'message' => $e->message_to_purchaser
-            ];
+            try{
+                return  [
+                   'error' => true,
+                   'message' => $e->message_to_purchaser
+               ];
+            } catch (\Exception $e2) {
+                throw $e;
+            }
         }
         if($charge->status == 'paid') {
             $this->order->pspinfo = $charge->__toJSON();

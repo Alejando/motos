@@ -13,6 +13,7 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $dateFormat = 'Y-m-d H:i:s';
     public $dates = ['created_at','end_date'];
     public $timestamps = true;
+    public static $IVA = false;
     public function getCreatedAtAttribute() {
         return $this->datetimeFormat('created_at');
     }
@@ -21,7 +22,10 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
         $this->guia = $guia;
         $this->sent = true;
         $this->save();
-        //Enviar Correo
+        \DwSetpoint\Libs\Helpers\Mail::shipping([
+            'user' => $this->user,
+            'order' => $this
+        ]);
         return $this;
     }
     
@@ -58,11 +62,17 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function getAmount() {
         return 100;
     }
-    public function getAmountCoupon() {
-        return 100;
+    public function getAmountCoupon() {        
+        if($this->hasCoupon()) {
+            return $this->coupon->getDiscount($this->getSubTotal());
+        } 
+        return 0;
     }
     public function getTotal() {
-        return $this->getSubTotal();
+        return $this->getSubTotal() - $this->getAmountCoupon() + $this->getShipping();
+    }
+    public function hasCoupon() {
+        return !!$this->coupon_id;
     }
     public function getSubTotal() {
         $total = 0;
@@ -73,12 +83,27 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
     
     public function requestBill() {
-        return false;
+        return !!$this->billing_information_id;
     }
+    public function getTaxs() {
+        $iva = DBConfig::getIVA();
+        $subTotal = (double)$this->getTotal();
+        return ($subTotal/100) * $iva;
+    }
+    
+    public function getApportion($amount) {
+        $iva = self::$IVA;
+        if($this->requestBill()) {
+            return $amount / (1 + ($iva / 100));
+        }
+        return $amount;
+    }
+    
     public function getShipping() {
-        return 100;
+        $shipping = Address::getShippingPrice($this->address_id, $this->getSubTotal());
+        return $shipping;
     }
-    public function getTotalWhitShpping() {
-        return $this->gettotal() + $this->getShipping();
-    }
+}
+if(Order::$IVA===false) {
+    Order::$IVA = DBConfig::getIVA();
 }
