@@ -10,7 +10,8 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         'price_from',
         'description',
         'multi_galeries',
-        'discount_percentage'
+        'discount_percentage',
+        'main_banner'
     ];
     // <editor-fold defaultstate="collapsed" desc="brand">
     public function brand() {
@@ -223,6 +224,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     public static function existsCode($code) {
         $n = self::where('code', '=', $code)->count();
         return $n>0;
+    }
+
+    public static function getMainProducts() {
+        $mainProducts = self::where('main_banner', 1)->get();
+        return($mainProducts);
     }
 
 }

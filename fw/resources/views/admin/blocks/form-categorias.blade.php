@@ -76,7 +76,8 @@
             <div class="col-md-8">
                 <br>
                 <div class="material-switch">
-                    <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox" ng-model="categoryTemp.type"/>
+                    <!-- <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox" ng-model="categoryTemp.type"/> -->
+                    <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox" ng-model="categoryTemp.type" ng-true-value="1" ng-false-value="0">
                     <label for="someSwitchOptionDefault" class="label-default"></label>
                 </div>
             </div>

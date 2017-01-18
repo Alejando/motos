@@ -43,8 +43,9 @@
         this.productos = function () {
             $scope.catalog = "Productos";
             $scope.model = Product;
-            $scope.hideExcelExport = false;
-            $scope.hideExcelImport = false;
+            $scope.hideExcelExport = true;
+            $scope.hideExcelImport = true;
+            $scope.icon_main_banner = 'fa fa-star-o';
             getTitle = function(){
                 return $scope.selectedItem.id ? 'Edición del producto ' + $scope.selectedItem.name : 'Nuevo producto';
             };
@@ -56,8 +57,14 @@
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type, full, meta){
+                            if(full.main_banner == 1){
+                                $scope.icon_main_banner = 'fa fa-star';
+                            }else{
+                                $scope.icon_main_banner = 'fa fa-star-o';
+                            }
                             return '<a href="#" class="on-default edit-row icon icon" uib-tooltip="Editar"  ng-click="editItem('+full.id+', $event)"><i class="fa fa-pencil"></i></a>'+
-                                '<a href="#" class="on-default remove-row icon icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                                '<a href="#" class="on-default remove-row icon icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>'+
+                                '<a class="on-default remove-row icon icon warning" uib-tooltip="Destacado" ng-click="addMainBanner('+full.id+', $event)"><i class="'+$scope.icon_main_banner+'"></i></a>';
                         })
                     ];
             };
@@ -199,6 +206,25 @@
             $scope.export = function () {
                 console.log("export");
             };
+
+            $scope.addMainBanner = function (id,$event) {
+                //alert(id);
+                console.log("Change main banner");
+                $scope.model.getById(id).then(function(product){
+                    $scope.selectedItem =  product;
+                    console.log($scope.selectedItem.main_banner);
+                    if($scope.selectedItem.main_banner == 1){
+                        $scope.selectedItem.main_banner = 0;
+                    }else{
+                        $scope.selectedItem.main_banner = 1;
+                    }
+                    $scope.selectedItem.save().then(function () {
+                        $scope.selectedItem.backup();
+                        $scope.dtInstance.reloadData(function(){
+                        }, !true);
+                    });
+                });
+            }
 
         };
         //</editor-fold>
@@ -807,7 +833,7 @@
         //<editor-fold defaultstate="collapsed" desc="pedidos">
         this.pedidos = function () {
             $scope.model = Order;
-            $scope.catalog = "Ordeneseess";
+            $scope.catalog = "Ordenes";
             $scope.preprareForm = function () {};
             $scope.prepareItem = function () {};
             $scope.validateForm = function () {}; 
@@ -903,7 +929,7 @@
                         return data ? 'Si' : 'No';
                     }),
                     DTColumnBuilder.newColumn('psp').withTitle('Forma de pago').renderWith(function(data, type, full) {
-                        return data + '<button ng-click="detalle(' + full.id + ')">Detalle</button>';
+                        return '<button ng-click="detalle(' + full.id + ')">Detalle</button>';
                     }),
                     DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
                             return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
@@ -930,7 +956,7 @@
                 $scope.prepareItem();
             }
             $scope.selectedItem.save().then(function () {
-                 $scope.selectedItem.backup();
+                $scope.selectedItem.backup();
                 var $dialog = $($event.target).closest('.modal');
                 $dialog.modal('hide')
                 $scope.dtInstance.reloadData(function(){

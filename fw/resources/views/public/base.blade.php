@@ -172,9 +172,9 @@
                                         <div class="cajacentermiddle">
                                             <div class="celdacentermiddle">
                                                 <div class="txtcenter">
-                                                    <a href="{{Config('app.social.twitter')}}" target="_blank" class="sprite logo-twitter" title="Twitter">Twitter</a>
+                                                    <!-- <a href="{{Config('app.social.twitter')}}" target="_blank" class="sprite logo-twitter" title="Twitter">Twitter</a> -->
                                                     <a href="{{Config('app.social.facebook')}}" target="_blank" class="sprite logo-fb" title="Facebook">Facebook</a>
-                                                    <a href="{{Config('app.social.youtube')}}" target="_blank" class="sprite logo-youtube" title="youtube">Youtube</a>
+                                                    <!-- <a href="{{Config('app.social.youtube')}}" target="_blank" class="sprite logo-youtube" title="youtube">Youtube</a> -->
                                                     <a href="{{Config('app.social.instagram')}}" target="_blank" class="sprite logo-instragram" title="Instragram">Instragram</a>
                                                 </div>
                                             </div>
@@ -210,7 +210,7 @@
                     <section class="info">
                         <nav>
                             <ul class="menu row">
-                                <li class="col-sm-3"><a href="{{url('/contacto')}}"><span class="sprite icon-ubicacion"></span>Contactanos</a></li>
+                                <li class="col-sm-3"><a href="{{url('/contacto')}}"><span class="sprite icon-ubicacion"></span>Contáctanos</a></li>
                                 <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención 9:00 a 20:00</a></li>
                                 <li class="col-sm-2"><a href="{{url('content/slug/aviso-de-privacidad')}}" class="aviso">Aviso de Privacidad</a></li>
                                 <li class="col-sm-4"><a class="sprite logo-bounce-2">Bounce Tennis Lifestyle</a></li>

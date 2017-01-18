@@ -12,11 +12,11 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
 
     $scope.newParent = false;
     $scope.categoryTemp;
-    $scope.type = false;
+    // $scope.type = false;
     $scope.newCategory = function () {
         $scope.categoryTemp = new Category({});
         $scope.showCategoryForm();
-        $scope.categoryTemp.type = false;
+        // $scope.categoryTemp.type = false;
         
     }
     $scope.edit = function () {
@@ -26,7 +26,8 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
             Category.getById(id).then(function(category){
                 $scope.categoryTemp = category;
                 $scope.showCategoryForm();
-                category.type ? $scope.categoryTemp.type = true : $scope.categoryTemp.type = false;
+                console.log($scope.categoryTemp.type);
+                // $scope.categoryTemp.type == 1 ? $scope.categoryTemp.type = true : $scope.categoryTemp.type = false;
             });
         } else {
             BootstrapDialog.alert("Selecciona la categoria a editar");
@@ -147,8 +148,9 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
             return defer.promise;
     }
     $scope.prepareItem = function(){
-        console.log("entro aqui");
-        if($scope.categoryTemp.type){
+        console.log("entro a addFile 1");
+        if($scope.categoryTemp.type == '1'){
+            console.log("entro a addFile 2");
             $scope.categoryTemp.addFile('icon', $scope.icon);
         }
     };
