@@ -15,9 +15,9 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         } 
         return null;
     }
-    public function setTypeAttribute($type){
-        $this->attributes['type'] = $type !== 'false';
-    }
+    // public function setTypeAttribute($type){
+    //     $this->attributes['type'] = $type !== 'false';
+    // }
     // <editor-fold defaultstate="collapsed" desc="getBySlug">
     public static function getBySlug($slug) {
         $expoSlug = explode("/", $slug);

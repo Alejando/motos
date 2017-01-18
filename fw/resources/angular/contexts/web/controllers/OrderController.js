@@ -88,10 +88,12 @@ setpoint.controller('OrderCtrl', function (
      $scope.getDetails = function(id){
         Order.getItems(id).then(function(result) {
           console.log(result);
-          $scope.items = result;
+          $scope.order = result;
         }, function(error) {
           console.log(error);
         });
+
+
 
         var $message = $('<div>Cargando...</div>');
         BootstrapDialog.show({
@@ -116,9 +118,5 @@ setpoint.controller('OrderCtrl', function (
                 });
             })
         });
-
      }
-
-
-    
 });
