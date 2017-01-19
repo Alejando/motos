@@ -55,7 +55,8 @@ class CartController  extends Controller {
             $psp->getPSPResult(Input::all());
             $result = $psp->getState();
             if($result) {
-                $order->sendMail(\Auth::user());                
+                $order->sendMail(\Auth::user());       
+                $order->deliverStock();
                 return view('public.pages.cart.success');
             } else {
                 return redirect(route('cart.confirmCheckout',[
@@ -64,7 +65,7 @@ class CartController  extends Controller {
             }
         }catch(\Exception $ex) {
             throw $ex;
-             return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
+            return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
         }
     }
     public function checkout() {
@@ -74,6 +75,7 @@ class CartController  extends Controller {
         $order->user_id = $user->id;
         $order->psp = Input::get('psp');
         $order->billing_information_id = input::get('billing_info');
+        $order->coupon_id = Input::get('coupon');
         $itmes = Input::get('items');
         $order->save();
         foreach($itmes as $id => $quanty) {
@@ -81,11 +83,17 @@ class CartController  extends Controller {
             $objItem = Item::create([
                 'product_id' => $stock->product_id,
                 'stock_id' => $stock->id,
-                'price' => $stock->price,
+                'price' => $stock->getPrice(),
                 'quantity' => $quanty,
                 'order_id' => $order->id
             ]);
         }
+        $order->subtotal = $order->getSubTotal();
+        $order->tax = $order->getTaxs();
+        $order->shipping = $order->getShipping();
+        $order->total = $order->getTotal();
+        $order->discount = $order->getAmountCoupon();
+        $order->save();
         $psp = PSP::createByOrder($order);
         switch($order->psp){
             case PSP::PAYPAL:
@@ -94,7 +102,9 @@ class CartController  extends Controller {
             case PSP::CONEKTA:
                 $psp->setToken(Input::get('conektaToken'));
                 $psp->setUser($user);
-                $result = $psp->checkout();
+                $result = $psp->checkout([
+                    'tel' => \Illuminate\Support\Facades\Input::get('tel')
+                ]);
                 return is_array($result)?
                         $result : 
                         ['url' => $psp->getSuccessUrl()];

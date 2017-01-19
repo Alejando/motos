@@ -22,6 +22,18 @@ setpoint.factory('Stock', function (ModelBase, $q, $http,
             ['size', Size, 'belongsTo']
         ]
     }, {
+        getPrice : function () {
+           var product = this.getRelation('product');
+           if(!product){
+               throw new Error("Carga la relación de producto (product()) antes de usar getPrice");
+           }
+           var discount = product.discount_percentage;
+           var price = this.price;
+           if(discount) {
+               return price - ((price / 100) * discount);
+           }
+           return price;
+        }
     });
     
     Product.addRelation('stocks',Stock,'hasMany');

@@ -6,6 +6,7 @@ Tennis Lifestyle
 @yield('message')
 
     Horario de atención: {{Config('app.schedule')}}
+    
     Aviso de privacidad: {{route('Content.slug',['slug'=>'aviso-de-privacidad'])}}
     
         - Twitter: {{Config('app.social.twitter')}}

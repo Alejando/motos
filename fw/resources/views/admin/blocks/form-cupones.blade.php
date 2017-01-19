@@ -28,7 +28,7 @@
             </div>
         </div> 
         <div></div>
-        <div ng-show="coupontype.type == Coupon.types.FREE_PRODUCT_BY_AMMOUNT">
+        <div ng-show="coupontype.type == Coupon.types.FREE_PRODUCT_BY_AMOUNT">
             <div class="form-group">
                 <label class="col-md-3 control-label">Product</label>
                 <div class="col-md-8">
@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-        <div ng-show="coupontype.type == Coupon.types.PERSENT_BY_AMMOUNT">
+        <div ng-show="coupontype.type == Coupon.types.PERSENT_BY_AMOUNT">
             <div class="form-group">
                 <label class="col-md-3 control-label">Descuento %</label>                
                 <div class="col-md-8">
@@ -121,7 +121,7 @@
             </div>
             
         </div> 
-        <div ng-show="coupontype.type == Coupon.types.DISCOUNT_BY_AMMOUNT">
+        <div ng-show="coupontype.type == Coupon.types.DISCOUNT_BY_AMOUNT">
             <div class="form-group"  class="form-control"  >
                 <label class="col-md-3 control-label">Descuento $</label>
                 <div class="col-md-8">

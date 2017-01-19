@@ -1,7 +1,6 @@
 setpoint.factory('CartItem', ['Color', 'Product', 'Size',
     function(Color, Product, Size) {
         var CartItem = function (info, selectedQuantity) {
-            console.log(info);
             this._quantity = selectedQuantity;
             this.stock_id = info.id;
             this.price = parseFloat(info.price, 10);
@@ -22,7 +21,8 @@ setpoint.factory('CartItem', ['Color', 'Product', 'Size',
         };
         CartItem.prototype = {
             quantity : function (q) {
-                if(q) {
+                if(q!==undefined) {
+                    console.log(q);
                     this._quantity = q;
                     return this;
                 }
@@ -36,8 +36,7 @@ setpoint.factory('CartItem', ['Color', 'Product', 'Size',
             }, 
             getPrice : function () { 
                 var price = this.getRawPrice();
-                var cart = this.getCart();
-                var finalPrice = this.hasDiscount() ?  cart.getApportion(price) * ( 1 - (this.getDiscount()/100) ) : cart.getApportion(price);
+                var finalPrice = this.hasDiscount() ?  price * ( 1 - (this.getDiscount()/100) ) : price;
                 return finalPrice;
             },
             getRawPrice : function () {  

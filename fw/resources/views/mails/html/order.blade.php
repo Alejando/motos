@@ -20,19 +20,34 @@
                 </div>
                 <p style="text-align: left;">
                     <b style="color: #1893D7;">Resúmen de Compra</b>
-                <div style="border-top: solid 3px #8DC63F;">
+                <div style="border-top: solid 3px #8DC63F;">                    
                     <div style="border: solid 1px #CFE0EF; margin: 3px 0 0 0;">
+                        {{-- ************* Items ************** --}}
                         @foreach($order->items as $i => $item) 
                             <div  {!!($i%2 ? 'style="background: #ecf0f1;"' : '-')!!}> 
                                 <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
-                                     {{$item->product->name}} {{($item->quantity>1 ? 'x'.$item->quantity:'')}}
+                                     {{$item->product->name}} {!!($item->quantity > 1 ? "<sup>(".Helpers::formatCurrency($item->getPrice()) . ' x ' . $item->quantity.")</sup>" : '')!!}
                                 </div>
                                 <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
-                                  {{Helpers::formatCurrency($item->price * $item->quantity)}}
+                                  {{Helpers::formatCurrency($item->getPrice() * $item->quantity)}}
                                 </div>
                             </div>
                         @endforeach
-                        @if($order->coupon)
+                        {{-- *********** Fin Items ************ --}}
+                        
+                        {{-- *************** SubTotal ************* --}}
+                        <div style="border-top: solid 1px #CFE0EF;">
+                            <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #CFE0EF;">
+                                <span style="font-size: 13px;">Subtotal</span>
+                            </div>
+                            <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
+                                {{ Helpers::formatCurrency($order->getSubTotal())}}
+                            </div>
+                        </div>
+                        {{-- *************** Fin SubTotal *********** --}}
+                        
+                        {{-- *************** Cupon *************--}}
+                        @if($order->hasCoupon())
 	                        <div style="border-top: solid 1px #CFE0EF; background: #C1D72E;">
 	                            <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #FFF;">
 	                                <span style="font-size: 13px; color: #FFF;">Descuento cupón</span>
@@ -42,14 +57,12 @@
 	                            </div>
 	                        </div>
                         @endif
-                        <div style="border-top: solid 1px #CFE0EF;">
-                            <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #CFE0EF;">
-                                <span style="font-size: 13px;">Subtotal</span>
-                            </div>
-                            <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
-                                {{ Helpers::formatCurrency($order->getSubTotal())}}
-                            </div>
-                        </div>
+                        {{-- ******* Fin de coupon ******** --}}
+                        
+                        
+                       
+                        
+                        {{-- ****************** Envio *************** --}}
                         <div style="border-top: solid 1px #CFE0EF;">
                             <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #CFE0EF;">
                                 <span style="font-size: 13px;">Envío</span>
@@ -58,12 +71,26 @@
                                 {{ Helpers::formatCurrency($order->getShipping())}}
                             </div>
                         </div>
+                        {{-- *************** Fin Envio *********** --}}
+                        
+                        {{-- ****************** Iva *************** --}}
+                        @if($order->requestBill())
+                        <div style="border-top: solid 1px #CFE0EF;">
+                            <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #CFE0EF;">
+                                <span style="font-size: 13px;">IVA</span>
+                            </div>
+                            <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
+                                {{ Helpers::formatCurrency($order->getTaxs()) }}
+                            </div>
+                        </div>
+                        @endif
+                        {{-- *************** Fin Iva *********** --}}
                         <div style="background: #ecf0f1;">
                             <div style="width: 45%; text-align: left; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%; border-right: solid 1px #CFE0EF;">
                                 <span style="font-size: 13px;">Total</span>
                             </div>
                             <div style="width: 45%; text-align: right; display: inline-block; vertical-align: top; color: #7F8082; padding: 2%;">
-                                {{ Helpers::formatCurrency($order->getTotalWhitShpping())}}
+                                {{ Helpers::formatCurrency($order->getTotal())}}
                             </div>
                         </div>
                     </div>

@@ -88,7 +88,6 @@
             });
         };  
         $scope.setGallery = function () {
-            console.log($scope.imgs);
             if($scope.imgs.length) {
                 $scope.selectedImg = $scope.imgs[0];
                 if($scope.imgs.length>1) {

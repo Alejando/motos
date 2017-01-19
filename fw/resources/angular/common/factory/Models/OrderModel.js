@@ -1,4 +1,4 @@
-setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address, User, BillingInformation) {    
+    setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address, User, BillingInformation) {    
     var Order = function (args) {
         ModelBase.apply(this, arguments);
     };
@@ -6,6 +6,9 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
         alias: 'order',
         PSP_PAYPAL : 1,
         PSP_TC_CONEKTA : 2,
+        STATUS_STAN_BY : 0,
+        STATUS_PAYMED : 1,
+        STATUS_CANCEL : 3,
         setters : {
             created_at : ModelBase.setDate,
         },
@@ -14,9 +17,10 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
             'subtotal',
             'tax',
             'shipping',
+            'status',
             'total',
             'user_id',
-            'coupon_id',
+            'coupon_id', 
             'created_at',
             'updated_at',
             'status',
@@ -24,11 +28,11 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
             'estimated_date',
             'billing_information_id',
             'psp',
-            'paid',
             'sent',
             'guia',
             'urlguia',
             'bill_number',
+            'discount'
         ],
         relations : [
             ['items', Item, 'hasMany'],
@@ -37,6 +41,7 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
             ['billing_information', BillingInformation, 'belongsTo'],
             ['user', User, 'belongsTo']
         ],
+        
         getItems: function(order_id){
             var def = $q.defer();
             var url = laroute.route('order.getDetails', {'order_id': order_id});
@@ -46,6 +51,9 @@ setpoint.factory('Order', function (ModelBase, $q, $http, Item, Coupon, Address,
             return def.promise;
         }
     }, {
+        paid : function () {
+            return this.status == Order.STATUS_PAYMED;
+        },
         setBillNumber : function (bill_number) {
             var self = this;
             var def = $q.defer();

@@ -4,11 +4,11 @@ setpoint.factory('Coupon', ['ModelBase', '$q', '$http', 'Product', 'Stock', func
     };
     ModelBase.createModel(Coupon, {
         types:{
-            PERSENT_BY_AMMOUNT : 1,
-            DISCOUNT_BY_AMMOUNT : 2,
-            FREE_PRODUCT_BY_AMMOUNT : 3
+            PERSENT_BY_AMOUNT : 1, 
+            DISCOUNT_BY_AMOUNT : 2,
+            FREE_PRODUCT_BY_AMOUNT : 3
         },
-        alias : 'coupon',
+        alias : 'coupon', 
         setter : {
             start_date : ModelBase.setDate,
             expire_date : ModelBase.setDate

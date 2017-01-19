@@ -27,6 +27,7 @@
         $scope.DATETIME_FORMAT = DATETIME_FORMAT;
         var currency = $filter('currency');
         var date = $filter('date');
+        var dtOptions = false;
         var getTitle = function () {
             return "Titulo Por defecto";
         };
@@ -381,7 +382,12 @@
                         DTColumnBuilder.newColumn('code').withTitle('Código'),
                         DTColumnBuilder.newColumn('product.name').withTitle('Producto'),
                         DTColumnBuilder.newColumn('quantity').withTitle('Existencias'),
-                        DTColumnBuilder.newColumn('size.name').withTitle('Tamaño/Talla'),
+                        DTColumnBuilder.newColumn(null).withTitle('Tamaño/Talla').renderWith(function(data, type, full, meta){
+                           if(full.size && full.size.name){
+                               return full.size.name;
+                           }
+                           return "N/A";
+                        }),
                         DTColumnBuilder.newColumn('color.name').withTitle('Color').renderWith(function(data, type, full, meta){
                             if(full.color && full.color.rgb) {
                                 return  '<div class="box-color" style="background-color:' + full.color.rgb + ';"></div>' +
@@ -658,7 +664,7 @@
             $scope.catalog = "Cupones";
             $scope.model = Coupon;
             $scope.products = [];
-            $scope.coupontype = Coupon.types.FREE_PRODUCT_BY_AMMOUNT;
+            $scope.coupontype = Coupon.types.FREE_PRODUCT_BY_AMOUNT;
             $scope.selectedProduct = null;
             $scope.stocks = null;
             Color.getAll().then(function (colors) {
@@ -712,13 +718,13 @@
                 ];
             };
             $scope.types = [{
-                    type : Coupon.types.PERSENT_BY_AMMOUNT,
+                    type : Coupon.types.PERSENT_BY_AMOUNT,
                     text : 'Porcentaje por monto minimo',
                 },{
-                    type : Coupon.types.DISCOUNT_BY_AMMOUNT,
+                    type : Coupon.types.DISCOUNT_BY_AMOUNT,
                     text : 'Monto por monto minimo',
                 },{
-                    type : Coupon.types.FREE_PRODUCT_BY_AMMOUNT,
+                    type : Coupon.types.FREE_PRODUCT_BY_AMOUNT,
                     text : 'Producto gratis por monto minimo',
                 }
             ]; 
@@ -801,15 +807,15 @@
                     $scope.regForm.expreDate.$invalid = true;
                 } 
                 
-                if($scope.coupontype.type == Coupon.types.DISCOUNT_BY_AMMOUNT) {
+                if($scope.coupontype.type == Coupon.types.DISCOUNT_BY_AMOUNT) {
                     $scope.productInvalid = false;
                 }
-                if($scope.coupontype.type == Coupon.types.PERSENT_BY_AMMOUNT) {
+                if($scope.coupontype.type == Coupon.types.PERSENT_BY_AMOUNT) {
                     $scope.regForm.discount.$invalid = false;
                     $scope.productInvalid = false;
                      
                 }
-                if($scope.coupontype.type == Coupon.types.FREE_PRODUCT_BY_AMMOUNT){
+                if($scope.coupontype.type == Coupon.types.FREE_PRODUCT_BY_AMOUNT){
                     $scope.regForm.discount.$invalid = false;
                     $scope.productInvalid = $scope.selectedProduct === null;
                 }
@@ -903,7 +909,7 @@
                     function () {
                         var $def = $q.defer();
                         Order.getById(id,{
-                            with: 'user,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country,billing_information,billing_information.state,billing_information.country'
+                            with: 'user,coupon,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country,billing_information,billing_information.state,billing_information.country'
                         }).then(function(order) {
                             $scope.order = order; 
                             var dOrder = order.items();
@@ -917,6 +923,9 @@
                     }
                 );
             }
+            dtOptions = function ($options) {
+                    $options.withOption('order', [[1, 'desc']]);
+            }
             getColumnBuilder = function () {
                 return [
                     DTColumnBuilder.newColumn('id').withTitle("ID"),
@@ -925,8 +934,15 @@
                     }), 
                     DTColumnBuilder.newColumn('total').withTitle("Total"),
                     DTColumnBuilder.newColumn('user_id').withTitle("Usuario"),
-                    DTColumnBuilder.newColumn('paid').withTitle('Pagada').renderWith(function(data){
-                        return data ? 'Si' : 'No';
+                    DTColumnBuilder.newColumn(null).withTitle('Estado').renderWith(function(data){
+                        switch(data.status){
+                            case Order.STATUS_STAN_BY:
+                                return "En espera";
+                            case Order.STATUS_PAYMED:
+                                return "Pagada";
+                            case Order.STATUS_CANCEL:
+                                return "Cancelada";
+                        }
                     }),
                     DTColumnBuilder.newColumn('psp').withTitle('Forma de pago').renderWith(function(data, type, full) {
                         return '<button ng-click="detalle(' + full.id + ')">Detalle</button>';
@@ -1092,6 +1108,9 @@
                 $compile(angular.element(header).contents())($scope);
             }
         }).withPaginationType('full_numbers');
+        if(dtOptions) {
+            dtOptions( $scope.dtOptions );
+        }
         $scope.dtInstance = {};
         $scope.dtColumns = getColumnBuilder();
     });

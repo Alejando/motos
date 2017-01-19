@@ -44,7 +44,7 @@
                   method: 'share',
                   display: 'popup',
                   picture: '{{asset("productos/".$product->id."/cover")}}',
-                  description: '{!!$product->description!!}',
+                  description: '{!!json_encode($product->description)!!}',
                   title: 'Tennis {!!$product->name!!}',
                   caption: 'Bounce:: Tennis Lifestyle',
                   href: window.document.URL,

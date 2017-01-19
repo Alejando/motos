@@ -32,8 +32,10 @@
                             <div>
                                 <h3 class="productonombre">
                                     Precio Unitario
-                                    <sub ng-show="@{{item.hasDiscount()}}" style="text-decoration: line-through">@{{item.getRawPrice() | currency : '$' }}</sub> <sup> - @{{item.getDiscount()}}% </sup>
-                                    <b>@{{item.getPrice()|currency}}</b>
+                                    <div ng-show="@{{item.hasDiscount()}}">
+                                        <sub" style="text-decoration: line-through">@{{item.getRawPrice() | currency : '$' }}</sub> <sup> - @{{item.getDiscount()}}% </sup>
+                                    </div>
+                                    <b>@{{item.getPrice()|currency:'$'}}</b>
                                 </h3>
                             </div>
                         </div>
@@ -43,7 +45,7 @@
                             <div>
                                 <h3 class="productonombre">
                                     Cantidad
-                                    <input type="number" name="cantidad" ng-model="item.quantity" ng-change="cart.persistItems()" ng-model-options="{ getterSetter: true }" min="1">
+                                    <input type="number" min="1" name="cantidad" ng-model="item.quantity" ng-change="cart.persistItems()" ng-model-options="{ getterSetter: true }"> 
                                 </h3>
                             </div>
                         </div>
@@ -53,7 +55,7 @@
                             <div>
                                 <h3 class="productonombre">
                                     Subtotal
-                                    <b>@{{item.getSubTotal()|currency}}</b>
+                                    <b>@{{item.getSubTotal()|currency:'$'}}</b>
                                 </h3>
                             </div>
                         </div>
@@ -96,20 +98,21 @@
                     <div class="cuenta">
                         <div class="row">
                             <div class="col-xs-6"><span class="cgris">Subtotal</span></div>
-                            <div class="col-xs-6"><span class="cgris">@{{cart.getSubTotal()|currency}}</span></div>
+                            <div class="col-xs-6"><span class="cgris">@{{cart.getSubTotal()|currency:'$'}}</span></div>
                         </div>
                         <div class="row descuento" ng-show="cart.getDiscount()"> 
                             <div style="float: right"><a href="" ng-click="removeCoupon()" class="danger fa fa-times drager" style="color: red; font-size: 14px; position:relative; top: -6px; left: -2px"></a></div>
                             <div class="col-xs-6"><span>Descuento cupón</span></div>
-                            <div class="col-xs-6"><span>- @{{cart.getDiscount()|currency}}</span></div>
+                            <div class="col-xs-6"><span>- @{{cart.getDiscount()|currency:'$'}}</span></div>
                         </div>
-                        <div class="row envio">
+                        
+                        <div class="row envio" ng-show="cart.getShippingAddress()">
                             <div class="col-xs-6"><span>Envío</span></div>
-                            <div class="col-xs-6"><span>$000.00</span></div>
+                            <div class="col-xs-6"><span> @{{cart.getShippingAmount()|currency:'$'}} </span></div>
                         </div>
                         <div class="row total">
                             <div class="col-xs-6"><span>Total</span></div>
-                            <div class="col-xs-6"><span>@{{cart.getTotal()|currency}}</span></div>
+                            <div class="col-xs-6"><span>@{{cart.getTotal()|currency:'$'}}</span></div>
                         </div>
                     </div>
 

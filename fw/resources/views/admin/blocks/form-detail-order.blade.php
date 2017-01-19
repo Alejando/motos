@@ -2,10 +2,10 @@
 <div>
     <b>Usuario: </b> @{{order.relations.user.name}} (@{{order.relations.user.email}}) <br>
         <span class="label" ng-class="{
-            'label-success' : order.paid==1,
-            'label-danger' : order.paid!=1
+            'label-success' : order.paid(),
+            'label-danger' : !order.paid()
         }">Pagado</span>
-        <a href="" class="label label-danger" ng-show="order.sent!=1 && order.paid" ng-click="sendOrder(order)">
+        <a href="" class="label label-danger" ng-show="order.sent!=1 && order.paid()" ng-click="sendOrder(order)">
             <span class="fa fa-send-o" ></span> Enviar</a>
             <a href="" class="label label-success" ng-show="order.sent==1" ng-click="sendOrder(order)">
             <span class="fa fa-send-o" ></span> Enviado</a> 
@@ -25,7 +25,7 @@
     <table class="table table-striped">
         <tr>
             <th>Producto</th>
-            <th>Catindad</th>
+            <th>Cantidad</th>
             <th>Color</th>
             <th>Tamaño</th>
             <th>Precio C/U</th>
@@ -37,14 +37,15 @@
             <td>@{{item.relations.stock.relations.color.name}}</td>
             <td>@{{item.relations.stock.relations.size.name}}</td>
             <td>@{{item.price|currency}}</td>
-            <td>@{{(item.price * item.quantity) |currency}}</td>
+            <td>@{{(item.price * item.quantity) | currency : "$"}}</td>
         </tr>
     </table>   
     <table class="table table-striped  pull-right" style="width: auto;">
-        <tr><th>Subtotal:</th><td>@{{order.subtotal | currency}}</td></tr>
-        <tr><th>Iva:</th><td>@{{order.tax|currency}}</td></tr>
-        <tr><th>Envio:</th><td>@{{order.shipping|currency}}</td></tr>
-        <tr style="background-color: silver; color:black"><th>Total:</th><td>@{{order.total|currency}}</td></tr>
+        <tr><th>Subtotal:</th><td>@{{order.subtotal | currency:"$"}}</td></tr>
+        <tr ng-show="order.coupon_id"><th>Descuento: (@{{order.getRelation('coupon').code}})</th><td> - @{{order.discount | currency:"$"}}</td></tr> 
+        <tr ng-show="order.billing_information_id"><th>Iva:</th><td>@{{order.tax|currency:"$"}}</td></tr>
+        <tr><th>Envio:</th><td>@{{order.shipping|currency:"$"}}</td></tr>
+        <tr style="background-color: silver; color:black"><th>Total:</th><td>@{{order.total|currency:"$"}}</td></tr>
     </table>
     <div style="clear: both"></div>
 </div>
