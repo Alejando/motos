@@ -55,7 +55,8 @@ class CartController  extends Controller {
             $psp->getPSPResult(Input::all());
             $result = $psp->getState();
             if($result) {
-                $order->sendMail(\Auth::user());                
+                $order->sendMail(\Auth::user());       
+                $order->deliverStock();
                 return view('public.pages.cart.success');
             } else {
                 return redirect(route('cart.confirmCheckout',[
@@ -64,7 +65,7 @@ class CartController  extends Controller {
             }
         }catch(\Exception $ex) {
             throw $ex;
-             return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
+            return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
         }
     }
     public function checkout() {
@@ -82,7 +83,7 @@ class CartController  extends Controller {
             $objItem = Item::create([
                 'product_id' => $stock->product_id,
                 'stock_id' => $stock->id,
-                'price' => $stock->price,
+                'price' => $stock->getPrice(),
                 'quantity' => $quanty,
                 'order_id' => $order->id
             ]);
@@ -91,6 +92,7 @@ class CartController  extends Controller {
         $order->tax = $order->getTaxs();
         $order->shipping = $order->getShipping();
         $order->total = $order->getTotal();
+        $order->discount = $order->getAmountCoupon();
         $order->save();
         $psp = PSP::createByOrder($order);
         switch($order->psp){

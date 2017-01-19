@@ -131,7 +131,7 @@ class Conekta {
         }
         if($charge->status == 'paid') {
             $this->order->pspinfo = $charge->__toJSON();
-            $this->order->paid = true;
+            $this->order->status = Order::STATUS_PAYMED;
             $this->order->save();
         }
         return $charge->status == 'paid';

@@ -373,7 +373,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     
     this.getTax = function () {
         if('billingInformation', this.billingInformation) {
-            return (this.getTotal()/100)*IVA;
+            return ((this.getTotal()-this.getShippingAmount())/100)*IVA;
         }
         return 0;
     }

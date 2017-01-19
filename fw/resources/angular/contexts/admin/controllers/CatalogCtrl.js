@@ -27,6 +27,7 @@
         $scope.DATETIME_FORMAT = DATETIME_FORMAT;
         var currency = $filter('currency');
         var date = $filter('date');
+        var dtOptions = false;
         var getTitle = function () {
             return "Titulo Por defecto";
         };
@@ -908,7 +909,7 @@
                     function () {
                         var $def = $q.defer();
                         Order.getById(id,{
-                            with: 'user,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country,billing_information,billing_information.state,billing_information.country'
+                            with: 'user,coupon,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country,billing_information,billing_information.state,billing_information.country'
                         }).then(function(order) {
                             $scope.order = order; 
                             var dOrder = order.items();
@@ -922,6 +923,9 @@
                     }
                 );
             }
+            dtOptions = function ($options) {
+                    $options.withOption('order', [[1, 'desc']]);
+            }
             getColumnBuilder = function () {
                 return [
                     DTColumnBuilder.newColumn('id').withTitle("ID"),
@@ -930,8 +934,15 @@
                     }), 
                     DTColumnBuilder.newColumn('total').withTitle("Total"),
                     DTColumnBuilder.newColumn('user_id').withTitle("Usuario"),
-                    DTColumnBuilder.newColumn('paid').withTitle('Pagada').renderWith(function(data){
-                        return data ? 'Si' : 'No';
+                    DTColumnBuilder.newColumn(null).withTitle('Estado').renderWith(function(data){
+                        switch(data.status){
+                            case Order.STATUS_STAN_BY:
+                                return "En espera";
+                            case Order.STATUS_PAYMED:
+                                return "Pagada";
+                            case Order.STATUS_CANCEL:
+                                return "Cancelada";
+                        }
                     }),
                     DTColumnBuilder.newColumn('psp').withTitle('Forma de pago').renderWith(function(data, type, full) {
                         return '<button ng-click="detalle(' + full.id + ')">Detalle</button>';
@@ -1097,6 +1108,9 @@
                 $compile(angular.element(header).contents())($scope);
             }
         }).withPaginationType('full_numbers');
+        if(dtOptions) {
+            dtOptions( $scope.dtOptions );
+        }
         $scope.dtInstance = {};
         $scope.dtColumns = getColumnBuilder();
     });

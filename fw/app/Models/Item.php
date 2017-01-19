@@ -26,5 +26,10 @@ class Item extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return $price;
     }
+    public function deliverStock() {
+        $this->stock->quantity -= $this->quantity;
+        $this->stock->save();
+        return true;
+    }
     
 }

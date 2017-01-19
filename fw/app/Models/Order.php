@@ -5,9 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     const STATUS_PAYMED = 1;
-    const STATUS_STAN_BY = 2;
+    const STATUS_STAN_BY = 0;
     const STATUS_CANCEL = 3;
-    
+   
     const PSP_PAYPAL = 1;
     const PSP_TC_CONEKTA = 2;
     protected $dateFormat = 'Y-m-d H:i:s';
@@ -16,6 +16,13 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     public static $IVA = false;
     public function getCreatedAtAttribute() {
         return $this->datetimeFormat('created_at');
+    }
+    public function deliverStock() {
+        $items = $this->items;
+        foreach ($items as $item){
+            $item->deliverStock();
+        }
+        return $this;
     }
     public function send($guia, $url) {
         $this->urlguia = $url;
@@ -27,6 +34,9 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
             'order' => $this
         ]);
         return $this;
+    }
+    public static function getAllForDataTables() {
+        return self::orderBy('created_at','DESC')->get();
     }
     
     public function items() {
@@ -87,7 +97,7 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
     public function getTaxs() {
         $iva = DBConfig::getIVA();
-        $subTotal = (double)$this->getTotal();
+        $subTotal = (double)$this->getSubTotal() - (double)$this->getAmountCoupon();
         return ($subTotal/100) * $iva;
     }
     
