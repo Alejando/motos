@@ -75,6 +75,10 @@
                 $scope.brands = brands;
                 $('[data-toggle="tooltip"]').tooltip();
             });
+            $scope.defaultColor = null;
+            $scope.selectDefaultColor = function() {
+                $scope.selectedItem.relate('defaultColor', $scope.defaultColor);
+            }
             $scope.addColor = function ($event, color) {
                 $event.target.checked;
                 if($scope.selectedItem) {
@@ -128,7 +132,7 @@
                 $scope.files = [];
                 $def = $q.defer();
                 $scope.selectedItem.backup();
-                $scope.selectedBrand = null;
+                $scope.selectedBrand = null;               
                 $scope.selectedItem.clearFiles();
                 var defCategories = $scope.selectedItem.categories().then(function(categories) {
                     if(categories.length) {
@@ -869,6 +873,9 @@
                 }
             );                
             }
+            $scope.cancelOrder = function (order) {
+//                DtDialog.confirm();
+            };
             $scope.sendOrder = function(order) {
                 order.backup();
                 console.log(order);
@@ -881,9 +888,11 @@
                             label : 'Envíar',
                             cssClass: 'btn-primary',
                             action : function (dialog) {
-                                order.send().then(function(){
-                                    order.backup();
-                                    dialog.close();
+                                order.send().then(function() {
+                                    $scope.dtInstance.reloadData(function() {
+                                        order.backup();
+                                        dialog.close();
+                                    }, !true);
                                 });
                             }
                         }, DtDialog.btns.cancel
@@ -901,13 +910,14 @@
                 $(".catalogMenu").hide();  
             });
             
-            $scope.detalle = function (id) {
+            $scope.detalle = function (id, event) {
+                event.preventDefault();
                 DtDialog.show(
                     $scope,  
                     laroute.route('page',{view : 'form-detail-order'}),                
                     ['Detalle de pedido...', 'Detalle del pedido {{order.id}}'],
                     function () {
-                        var $def = $q.defer();
+                        var $def = $q.defer(); 
                         Order.getById(id,{
                             with: 'user,coupon,items,items.product,items.stock,items.stock.color,items.stock.size,address,address.state,address.country,billing_information,billing_information.state,billing_information.country'
                         }).then(function(order) {
@@ -926,34 +936,51 @@
             dtOptions = function ($options) {
                     $options.withOption('order', [[1, 'desc']]);
             }
+            var linkDetails = function (id, text) { 
+                return '<a href="#" ng-click="detalle(' + id + ',$event)">' + text + '</a>'
+            };
             getColumnBuilder = function () {
                 return [
-                    DTColumnBuilder.newColumn('id').withTitle("ID"),
-                    DTColumnBuilder.newColumn('created_at').withTitle("Fecha de orden").renderWith(function(data){
-                        return date(data, DATETIME_FORMAT);
+                    DTColumnBuilder.newColumn('id').withTitle("ID").renderWith(function(data){
+                        return linkDetails(data,data);
+                    }),
+                    DTColumnBuilder.newColumn('created_at').withTitle("Fecha de orden").renderWith(function(data, type, full) {
+                        return linkDetails(full.id, date(data, DATETIME_FORMAT));
                     }), 
-                    DTColumnBuilder.newColumn('total').withTitle("Total"),
-                    DTColumnBuilder.newColumn('user_id').withTitle("Usuario"),
-                    DTColumnBuilder.newColumn(null).withTitle('Estado').renderWith(function(data){
+                    DTColumnBuilder.newColumn('total').withTitle("Total").renderWith(function(data, type, full) {
+                        return linkDetails(full.id, currency(full.total, "$"));
+                    }),
+                    DTColumnBuilder.newColumn('user_id').withTitle("Usuario").renderWith(function (data, type, full) {
+                       return linkDetails(full.id, full.user.email); 
+                    }),
+                    DTColumnBuilder.newColumn(null).withTitle('Pago').renderWith(function(data, type, full) {
+                        var txt = '';
                         switch(data.status){
                             case Order.STATUS_STAN_BY:
-                                return "En espera";
+                                txt = '<span style="color:orange">En espera</span>';;
+                                break;
                             case Order.STATUS_PAYMED:
-                                return "Pagada";
-                            case Order.STATUS_CANCEL:
-                                return "Cancelada";
+                                txt = '<span style="color:green">Pagado</span>';
+                                break;
+                            case Order.STATUS_CANCEL: 
+                                txt = '<span style="color:red">Cancelada</span>';
+                                break;
                         }
+                        return linkDetails(full.id, txt); 
                     }),
-                    DTColumnBuilder.newColumn('psp').withTitle('Forma de pago').renderWith(function(data, type, full) {
-                        return '<button ng-click="detalle(' + full.id + ')">Detalle</button>';
-                    }),
-                    DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
-                            return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
-                            '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
-                            '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+                    DTColumnBuilder.newColumn(null).withTitle("Enviado").renderWith(function (data, type, full) {
+                       return linkDetails(full.id, full.sent ? 
+                            '<span style="color:green">Si</span>'
+                           :'<span style="color:red">No</span>'); 
                     })
+//                    DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type,full,meta){
+//                            return '<a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>'+
+//                            '<a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>'+
+//                            '<a href="#" class="on-default remove-row icon danger" uib-tooltip="Eliminar" ng-click="removeItem('+full.id+', $event)"><i class="fa fa-trash-o"></i></a>';
+//                    })
                 ];
             };
+            console.log( DTColumnBuilder.newColumn(null).withTitle(''));
             //console.log(Order.getAll());
         }
         //</editor-fold>
