@@ -78,7 +78,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Precio desde:</label>
             <div class="col-md-8">
-                <input  type="number" 
+                <input  type="text"
                         ng-model="selectedItem.price_from" 
                         class="form-control" 
                         placeholder="Precio desde"

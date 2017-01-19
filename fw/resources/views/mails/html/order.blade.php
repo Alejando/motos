@@ -92,14 +92,14 @@
             <div style="background: #002B53; padding: 10px;">
                 <div style="width: 49%; text-align: left; display: inline-block; vertical-align: top; color: #FFF;">
                     <span style="display: block; padding: 10px 0 0 0;">
-                        Horario de atención: 00:00 a 00:00<br />
+                        Horario de atención: {{Config('app.schedule')}}<br />
                         <a href="" style="font-size: 12px; color: #FFF; text-decoration: none;">Aviso de privacidad</a>
                     </span>
                 </div>
                 <div style="width: 49%; text-align: right; display: inline-block; vertical-align: top;">
-                    <a href="{{Config('app.social.twitter')}}" target="_blank"><img src="{{asset('img/mail/01icono.jpg')}}"/></a>
+                    <!-- <a href="{{Config('app.social.twitter')}}" target="_blank"><img src="{{asset('img/mail/01icono.jpg')}}"/></a> -->
                     <a href="{{Config('app.social.facebook')}}" target="_blank"><img src="{{asset('img/mail/02icono.jpg')}}"/></a>
-                    <a href="{{Config('app.social.youtube')}}" target="_blank"><img src="{{asset('img/mail/03icono.jpg')}}"/></a>
+                    <!-- <a href="{{Config('app.social.youtube')}}" target="_blank"><img src="{{asset('img/mail/03icono.jpg')}}"/></a> -->
                     <a href="{{Config('app.social.instagram')}}" target="_blank"><img src="{{asset('img/mail/04icono.jpg')}}"/></a>
                 </div>
             </div>

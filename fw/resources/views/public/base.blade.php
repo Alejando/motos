@@ -41,12 +41,14 @@
                                             <img class="item_img" src="@{{item.product.getURLCover()}}" alt="" />
                                             <span class="item-info">
                                                 <span><b>@{{item.product.name}}</b></span>
-                                                <span>@{{item.getSubTotal()|currency}}</span>
+                                                <div  class="item_price">
+                                                    @{{item.getSubTotal()|currency}} &nbsp;<span class="item_quantity" ng-show="item._quantity > 1"> x @{{item._quantity}}</span>
+                                                </div>
                                             </span>
                                         </span>
-                                        <span class="item-right">
+                                        <!-- <span class="item-right">
                                             <button ng-click="removeItem(item)" class="btn_delete pull-right">X</button>
-                                        </span>
+                                        </span> -->
                                     </span>
                                   </li>
                                 </ul>

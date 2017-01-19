@@ -47,6 +47,15 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-md-3 control-label">Delegación</label>
+            <div class="col-md-8">
+                <input  type="text" 
+                        ng-model="selectedItem.delegation" 
+                        class="form-control" 
+                        name="delegation">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-md-3 control-label">Codigo Postal</label>
             <div class="col-md-4">
                 <input  type="text" 

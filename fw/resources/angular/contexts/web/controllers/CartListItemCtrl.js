@@ -1,7 +1,7 @@
 setpoint.controller('CartListItemCtrl', ['$scope', 'Cart',
     function($scope, Cart){
-        $scope.test = "test cart item";
         $scope.items = Cart.getItems();
+        console.log($scope.items);
         $scope.cart = Cart;
         $scope.couponCode='';
         Cart.onInvalidateCoupon = function () {

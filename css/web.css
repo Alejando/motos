@@ -724,32 +724,9 @@ button.sprite {
     color: #990000;
 }
 
-.warning {
-    color: #f4e218;
-}
-
-.warning:hover {
-    color: #d3c315;
-}
-
 .icon {
     font-size: 1.5em;
     margin-left: 0.8em;
 }
 
-.cart_number{
-    position: absolute;
-    top: 10px;
-    left: 50px;
-    text-align: center;
-    padding-top: 2px;
-    background-color: #c1d72e;
-    width: 28px;
-    height: 28px;
-    font-size: 15px;
-    border-radius: 50%;
-    border-style: dotted;
-    border-color: #2e4d6a;
-    border-width: 2px;
-}
 

@@ -2,7 +2,7 @@
 
 namespace DwSetpoint\Models;
 class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
-    protected $fillable = ['name','parent_category_id', 'type'];
+    protected $fillable = ['name','parent_category_id', 'type', 'hidden'];
 
     public static function findChildrenBySlug($parent, $categorySlug) {
         $query = \DwSetpoint\Models\Category::where('name', 'like',  ucwords(str_replace('-', " ", $categorySlug)));
@@ -40,8 +40,9 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="subcategories">
+        // Condicion where es para filtrar las categorias que estan ocultas
     public function subcategories(){
-        return $this->hasMany(Category::class,'parent_category_id');
+        return $this->hasMany(Category::class,'parent_category_id')->where('hidden', 0);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getParents}">
@@ -71,7 +72,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getRoots">
     public static function getRoots($returnQuery = false) {
-        $query = self::whereNull('parent_category_id')->where('type', 0)->get();
+        $query = self::whereNull('parent_category_id')->where('type', 0)->where('hidden', 0)->get();
         if($returnQuery){
             return $query;
         }
@@ -82,6 +83,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         return route('category.validateCategory');
     }
 
+    //Esta funcion no se esta ejecutando y se quedo en pruebas
     public static function existsCategory($category) {
         $n = self::where('name', '=', $category)->where('parent_category_id', '=', 17)->count();
         return $n>0;
@@ -98,7 +100,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
 
     public static function getPlayersTennis() {
-        $players = self::where('parent_category_id', '!=', NULL)->where('type', 1)->get();
+        $players = self::where('parent_category_id', '!=', NULL)->where('type', 1)->where('hidden', 0)->get();
         return($players);
     }
 

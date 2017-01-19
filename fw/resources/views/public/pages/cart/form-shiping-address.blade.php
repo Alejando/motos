@@ -30,10 +30,10 @@
                                 name="label" 
                                 id="label" 
                                 class="form-control" 
-                                placeholder="Etiqueta"
+                                placeholder="Ejemplos: Oficina, Casa"
                                 required/>
                                 <br/>
-                        <i>*Nombre de la dirección, Ejemplos: Oficina, Casa</i>
+                        <!-- <i>*Nombre de la dirección, Ejemplos: Oficina, Casa</i> -->
                         <div class="alert alert-danger" role="alert" ng-show="shippingForm.label.$touched && shippingForm.label.$invalid">
                             <div ng-show="shippingForm.label.$error.required">Campo obligatorio</div>
                             <!-- <div ng-show="brandForm.name.$error.ngRemoteValidate">* Ya existe la marca" </div> -->

@@ -10,7 +10,8 @@ setpoint.factory('Category', function (ModelBase,$q,$http) {
             'id',
             'name',
             'parent_category_id',
-            'type'
+            'type',
+            'hidden'
         ],
         relations : []
     }, {

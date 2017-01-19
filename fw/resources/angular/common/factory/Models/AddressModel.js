@@ -21,7 +21,8 @@ setpoint.factory('Address', function (ModelBase,$q,$http, State, Country) {
             'label',
             'first_name',
             'last_name',
-            'tel'
+            'tel',
+            'delegation'
         ],
         relations : [
             ['state', State, 'belongsTo'],

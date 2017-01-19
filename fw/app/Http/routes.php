@@ -413,9 +413,9 @@ Route::get('/categoria/{id}/estrella-{width}x{heigth}.png', [
     ]
 );
 
-Route::get('players/tennis', [
-        'as' => 'tennis.players',
-        'uses' => 'Api\\CategoryController@getPlayersTennis'
+Route::get('test/ocultas', [
+        'as' => 'test.ocultas',
+        'uses' => 'Api\\CategoryController@subcategories'
     ]
 );
 

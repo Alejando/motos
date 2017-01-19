@@ -55,7 +55,7 @@
                         <div class="col-sm-9 col-xs-12">
                             <input type="password" ng-model="password" required="" name="confirm" id="nombre" class="form-control" style="width: 100%"/>
                         </div>
-                    </div> @{{registrationForm.$valid}}
+                    </div>
                     <div class="alert alert-danger" ng-show="
                         (registrationForm.confirm.$touched && registrationForm.confirm.$invalid) || 
                         (registrationForm.confirm.$touched && user.password!=password)

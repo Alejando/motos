@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddHiddenToCategoriesTable extends Migration
+class AddVotesDelegationToAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddHiddenToCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->boolean('hidden');
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->string('delegation');
         });
     }
 
@@ -24,8 +24,8 @@ class AddHiddenToCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('hidden');
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->dropColumn("delegation");
         });
     }
 }

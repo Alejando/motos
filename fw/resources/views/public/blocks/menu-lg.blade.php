@@ -35,15 +35,17 @@ $getWidthSubs = function ($subs) {
                     
                     <div class="row">
                         @foreach($subs as $sub)
-                            @if($sub->subcategories->count())                                
+                                                            
                                 <div style="width:{{$width}}em; float:left;">
                                     <ul>
+                                    @if($sub->subcategories->count())
                                         @foreach($sub->subcategories as $subc)
                                             <li><a href="{{$subc->getURL()}}">{{$subc->name}}</a></li> 
-                                        @endforeach                                        
+                                        @endforeach 
+                                    @endif                                        
                                     </ul>
                                 </div>
-                            @endif                            
+                                                       
                         @endforeach                        
                     </div>
                 </div>
