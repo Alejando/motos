@@ -107,7 +107,7 @@
                 <div class="cajadetalle">
                     <img  src="{{ $product->brand->getImgURL(120,66) }}" class="pull-right" />
                     <h2 class="titulo">{{$product->name}}</h2>
-                    <div class="serie">Num. Serie {{$product->code}}</div>
+                    <div class="serie">Código: {{$product->code}}</div>
                     <div class="row margentop50">
                         <div class="col-sm-6">
                             <h3 class="precioazul">{{Helpers::formatCurrency($product->priceFrom-$product->getClculateDiscount())}}</h3>
