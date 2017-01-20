@@ -35,8 +35,13 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
         ]);
         return $this;
     }
+    public function cancel() {
+        $this->status = self::STATUS_CANCEL;
+        $this->save();
+        return $this;
+    }
     public static function getAllForDataTables() {
-        return self::orderBy('created_at','DESC')->get();
+        return self::with('user')->orderBy('created_at','DESC')->get();
     }
     
     public function items() {

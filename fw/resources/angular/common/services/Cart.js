@@ -15,6 +15,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     this.shippingPrice = sp ? sp : 0;
     this.PSP_PAYPAL = 1;
     this.PSP_TC_CONEKTA = 2; 
+    this.PSP_OXXO_CONEKTA = 3;
     var currency = $filter('currency');
     var self = this;
     //<editor-fold defaultstate="collapsed" desc="this.getIdStock">

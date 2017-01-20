@@ -7,13 +7,14 @@
             $q, $http,
             Size,
             Color,
-            Brand,
+            Brand, 
             User,
             Stock,
             Product,
             Category,
             Coupon,
             Order,
+            DBConfig,
             PostalCodeGroup,
             PostalCode, 
             DTOptionsBuilder,
@@ -840,6 +841,75 @@
         };
         //</editor-fold>
         
+        //<editor-fold defaultstate="collapsed" desc="configuraciones">
+        this.configuraciones = function(){
+            $scope.model = DBConfig;
+            $scope.catalog = "Configuraciones";
+            $scope.prepareForm = function () {};
+            $scope.prepareItem = function () {};  
+            $scope.validateForm = function () {};
+            $(document).ready(function() {
+                $(".catalogMenu").hide();  
+            });
+            
+            var getDoms= function ($event) {
+                $event.preventDefault();
+                var $a = $($event.target).closest("td").find('a');
+                var $formConfig = $a.closest("td").find('.form-config');
+                var $spanConfig = $a.closest("td").find('.conf-label');
+                return {
+                    $a : $a,
+                    $formConfig : $formConfig,
+                    $spanConfig : $spanConfig
+                };
+            };
+            
+            $scope.edit = function($event, id) {
+                var doms = getDoms($event);
+                doms.$spanConfig.hide(100,function(){
+                    doms.$formConfig.find('input').val(doms.$a.html());
+                    doms.$formConfig.show(200);
+                });
+            };
+            
+            $scope.cancel = function($event){
+                var doms = getDoms($event);
+                doms.$formConfig.hide(100,function(){
+                    doms.$spanConfig.show(200);
+                });
+            };
+            
+            $scope.save = function ($event, id) {
+                DBConfig.getById(id).then(function(conf) {
+                    var doms = getDoms($event);
+                    var value = doms.$formConfig.find('input').val();
+                    conf.value = value;
+                    conf.save().then(function() {
+                        doms.$a.html(value);
+                        $scope.cancel($event); 
+                    });
+                });
+            };
+            getColumnBuilder = function () {
+              return [
+                  DTColumnBuilder.newColumn('id').withTitle("ID"),
+                  DTColumnBuilder.newColumn('name').withTitle("Configuración").renderWith(function(data, type, full) {
+                      return data;
+                  }),   
+                  DTColumnBuilder.newColumn('value').withTitle("Valor").renderWith(function(data, type, full) {
+                      return '<span class="conf-label"><a href="" ng-click="edit($event,'+ full.id +')" >' + data + '</a></span>' +
+                        '<span class="form-config form-inline" style="display:none">'+
+                            '<input type="text" class="form-control">' +
+                            ' <button class="btn btn-primary" ng-click="save($event,'+ full.id +')"><span class="fa fa-save"></span></button>' +
+                            ' <button class="btn btn-danger" ng-click="cancel($event)"><span class="md  md-cancel"></span></button>' +
+                        '</span>';
+                  })
+              ];
+          }; 
+        }
+        //</editor-fold>
+
+        
         //<editor-fold defaultstate="collapsed" desc="pedidos">
         this.pedidos = function () {
             $scope.model = Order;
@@ -865,16 +935,30 @@
                     }, DtDialog.btns.cancel
                 ],{
                     draggable: true,
-                    onhide : function () {
+                    onhide : function () { 
                        $timeout(function() {
                             order.rollback();
                         }, 1);
                     }
-                }
+                } 
             );                
             }
-            $scope.cancelOrder = function (order) {
-//                DtDialog.confirm();
+            $scope.cancelOrder = function () {
+                DtDialog.confirm({
+                    $scope : $scope,
+                    title : 'Confirmación de cancelación',
+                    message : '¿Esta seguro de eliminar la orden {{order.id}} del usuario {{order.relations.user.email}}?',
+                    yes : function (dialog) {
+                        $scope.order.cancel().then(function () { 
+                            $scope.dtInstance.reloadData(function() {                                
+                                order.backup();
+                                dialog.close();
+                            }, !true);
+                            
+                        });
+                    },
+                    
+                });
             };
             $scope.sendOrder = function(order) {
                 order.backup();
@@ -981,7 +1065,6 @@
                 ];
             };
             console.log( DTColumnBuilder.newColumn(null).withTitle(''));
-            //console.log(Order.getAll());
         }
         //</editor-fold>
 
@@ -995,7 +1078,7 @@
                     return;
                 }
             }
-            if($scope.prepareItem){
+            if($scope.prepareItem) {
                 $scope.prepareItem();
             }
             $scope.selectedItem.save().then(function () {
@@ -1138,7 +1221,7 @@
         if(dtOptions) {
             dtOptions( $scope.dtOptions );
         }
-        $scope.dtInstance = {};
+        $scope.dtInstance = {}; 
         $scope.dtColumns = getColumnBuilder();
     });
 }();

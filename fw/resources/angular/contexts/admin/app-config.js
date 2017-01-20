@@ -17,7 +17,6 @@ setpoint.config(function ($routeProvider) {
         ['/catalogos/categorias', 'categories', 'Categories'],
         ['/catalogos/:catalog', 'catalog', 'Catalog'],
         ['/contenidos/:content', 'content-form', 'Content'],
-        ['/configuracion/:config', 'config', 'Config']
     ]);
 });
 

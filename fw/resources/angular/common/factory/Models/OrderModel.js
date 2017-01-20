@@ -53,10 +53,39 @@
     }, {
         paid : function () {
             return this.status == Order.STATUS_PAYMED;
+        }, 
+        cancel : function () {
+            var self = this; 
+            var def = $q.defer();
+            var url = laroute.route('order.cancel', {
+                'order' : self.id 
+            }); 
+            $http.put(url, {}).then(
+                function(result) {   
+                    if(result.data.status) {
+                        self.status = result.data.status;
+                    }
+                    def.resolve(result.data);
+                }, function () {
+                    def.reject();
+                }
+            );
+            return def.promise;
+        },
+        isCanceled : function () {
+            return this.status == Order.STATUS_CANCEL; 
+        },
+        isCancelable : function () {
+           if(!this.paid()) {
+               if(!this.isCanceled()) {
+                    return true;
+               }
+           }
+           return false;
         },
         setBillNumber : function (bill_number) {
             var self = this;
-            var def = $q.defer();
+            var def = $q.defer(); 
             var url = laroute.route('order.set-bill-number', {
                 order : this.id
             });

@@ -11,9 +11,6 @@ class Conekta {
     public function __construct($order) {
         $this->initContext();
         $this->order = $order;
-        if($order->paid){
-            $this->state = true;
-        }
         $this->currency = 'MXN';
     }
     
@@ -25,7 +22,7 @@ class Conekta {
     private $infoPspResponse;
     
     public function getState() {
-        return $this->state;
+        return $this->order->status;
     }
     
     public function infoResult() {
@@ -101,7 +98,7 @@ class Conekta {
     }
     
     public function checkout($data) {
-        \Conekta\Conekta::setApiKey("key_eazzCz6tXkZy7t7TC1SbJQ");
+        \Conekta\Conekta::setApiKey(DBConfig::getConektaPrivateKey());
         \Conekta\Conekta::setLocale('es');
         try {
             $data = [
@@ -131,8 +128,10 @@ class Conekta {
         }
         if($charge->status == 'paid') {
             $this->order->pspinfo = $charge->__toJSON();
-            $this->order->status = Order::STATUS_PAYMED;
+            $this->order->status = PSP::STATE_APPROVED;
             $this->order->save();
+        } else {
+            //$this->order->status = PSP::STATE_REJECT;
         }
         return $charge->status == 'paid';
     }
