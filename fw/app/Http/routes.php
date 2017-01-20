@@ -96,7 +96,7 @@ Route::group(['prefix' => 'api'], function () {
     };
     $addAPI = function ($name, $controller){
                 Route::get($name.'/all-for-datatables',[
-                   'as' => $name.'.all-for-datatables',
+                    'as' => $name.'.all-for-datatables',
                     'uses' => 'Api\\'.$controller.'Controller@getAllForDatatables'
                 ]);
                 Route::resource($name, "Api\\{$controller}Controller", [ 'names' => [
@@ -154,10 +154,15 @@ Route::group(['prefix' => 'api'], function () {
      $addAPI('address','Address');
     $addAPI('postalCode','PostalCode');
     $addAPI('order','Order');
+    $addAPI('dbconfig','DBConfig');
     $addAPI('postalCodeGroup','PostalCodeGroup');
     Route::put('order/{order}/send',[
         'as' => 'order.send',
         'uses' => 'Api\\OrderController@send'
+    ]);
+    Route::put('order/{order}/cancel',[ 
+        'as' => 'order.cancel',
+        'uses' => 'Api\\OrderController@cancel'
     ]);
     Route::put('order/{order}/set-bill',[
         'as' => 'order.set-bill-number',
@@ -241,11 +246,7 @@ Route::group(['prefix' => 'api'], function () {
         'uses'=>'Api\\UserController@getBookmarks'
     ]);
     $addAPI('user','User');
-
-
 });
-
-
 Route::get('/home', 'HomeController@index');
 Route::get('/regitro', 'CartController@registrationForm');
 

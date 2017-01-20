@@ -111,7 +111,7 @@
 
 <div class="form-group">
     <div class="col-xs-12 text-right">
-        <button class="btn btn-danger btn-sm text-center">
+        <button class="btn btn-danger btn-sm text-center" ng-click="cancelOrder()" ng-show="order.isCancelable()">
             <span class="fa fa-times"></span> Cancelar Pedido</button>    
     </div>
 </div>

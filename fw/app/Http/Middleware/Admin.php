@@ -20,9 +20,9 @@ class Admin {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        if($this->auth->user()->profile_id === \DwSetpoint\Models\Profile::ADMIN){
+        if($this->auth->user()->profile_id === \DwSetpoint\Models\Profile::ADMIN) {
             return $next($request);
-        }
-        return redirect()->guest('login');
+        } 
+        return redirect()->guest('/');
     }
 }

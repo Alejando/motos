@@ -74,6 +74,18 @@
                                 </h4>
                             </div>
                         </div>
+                        <div class="panel panel-default " ng-click="setProvider(cart.PSP_OXXO_CONEKTA)">
+                            <div class="panel-heading" role="tab" id="headingTwo"  ng-class="{
+                                bntProviederChekout: providerSelected == cart.PSP_OXXO_CONEKTA
+                             }"                        
+                            >
+                                <h4 class="panel-title">
+                                    <a class="btnoxxo" role="button" href="" aria-expanded="true" aria-controls="collapseTwo">
+                                        Pago en OXXO
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
                         <div class="panel panel-default"  ng-click="setProvider(cart.PSP_TC_CONEKTA)">
                             <div class="panel-heading" role="tab" id="headingTwo" ng-class="{
                                 bntProviederChekout: providerSelected == cart.PSP_TC_CONEKTA

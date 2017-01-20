@@ -28,6 +28,14 @@ class OrderController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         return ['success' => true];
     }
 
+    public function cancel ($order) {
+        $objOrder = Order::getById($order);        
+        $objOrder->cancel();
+        return [
+            'success' => true, 
+            'status' => $objOrder->status
+        ];
+    }
     public function send($order) {
         $guia = Input::get('guia');
         $url = Input::get('url');

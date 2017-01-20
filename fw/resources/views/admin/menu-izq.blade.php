@@ -42,10 +42,7 @@
                                 </ul>
                             </li>
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect waves-light"><i class="md  md-settings"></i> <span> Configuración </span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="#!/configuracion/contacto"><i class="md  md-email"></i>Contacto</a></li>
-                                </ul>
+                                <a  href="#!/catalogos/configuraciones" class="waves-effect waves-light"><i class="md  md-settings"></i> <span> Configuración </span></a>
                             </li>
                             <li class="has_sub">
                                 <a href="#!/catalogos/usuarios" class="waves-effect waves-light"><i class="icon-people m-r-5"></i> <span> Usuarios </span></a>
