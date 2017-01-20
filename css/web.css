@@ -416,12 +416,20 @@ footer {
   outline: none;
 }
 
-.setpoint-public footer .marcas {
+.setpoint-public footer .metodos {
   width: 80%;
   left: 0;
   right: 0;
   margin: 0 auto 0 auto;
   padding: 0 0 15px 0; 
+}
+
+.setpoint-public footer .marcas {
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: 0 auto 0 auto;
+  padding: 15px 0 15px 0; 
 }
 
 #owl-marcas .item {

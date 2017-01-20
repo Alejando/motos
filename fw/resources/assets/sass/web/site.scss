@@ -468,4 +468,19 @@ ul.list-cart li .item-right button{
     display: inline-flex;
 }
 
+.text_newlines{
+    white-space: pre-wrap;
+}
 
+.content_text{
+    padding: 10px 40px;
+}
+
+.image-circle{
+    border-radius: 50%;
+    width: 265px;
+    height: 265px;
+    border: 3px solid #FFF;
+    margin: 10px;
+    border-style: dotted;
+}

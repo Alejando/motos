@@ -4,10 +4,10 @@
             
     </div>
     <div  class="form-group" ng-show="!newParent">
-        <span><span class="label label-primary">Damas</span> /</span>
+        <!-- <span><span class="label label-primary">Damas</span> /</span>
         <span><span class="label label-primary">Zapatos</span> /</span>
-        <span><span class="label label-primary">xsas</span> /</span>
-        <span ng-show="categoryTemp.name"><span class="label label-primary">@{{categoryTemp.name}}</span> /</span>
+        <span><span class="label label-primary">xsas</span> /</span> -->
+        <!-- <span ng-show="categoryTemp.name"><span class="label label-primary">@{{categoryTemp.name}}</span> /</span> -->
     </div>
         <div class="form-group">
             <label class="col-md-2 control-label">Nombre</label>
@@ -40,8 +40,8 @@
             <div class="col-md-8">
                 <br>
                 <div class="material-switch">
-                    <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox" ng-model="categoryTemp.type" ng-true-value="1" ng-false-value="0">
-                    <label for="someSwitchOptionDefault" class="label-default"></label>
+                    <input id="SwitchOptionStar" name="SwitchOptionStar" type="checkbox" ng-model="categoryTemp.type" ng-true-value="1" ng-false-value="0">
+                    <label for="SwitchOptionStar" class="label-default"></label>
                 </div>
             </div>
         </div>

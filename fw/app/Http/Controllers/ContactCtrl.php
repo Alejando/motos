@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use DwSetpoint\Http\Requests;
 use Mail;
 use \stdClass;
+use Validator;
 
 class ContactCtrl extends Controller {
     public function index(){
@@ -34,24 +35,46 @@ class ContactCtrl extends Controller {
 
     public function sendInfoContact(Request $request){
 
-    	$contacto_info = new stdClass;;
-     	$contacto_info->nombre = $request->input('nombre');
-     	$contacto_info->movil = $request->input('movil');
-     	$contacto_info->correo = $request->input('correo');
-     	$contacto_info->forma = $request->input('forma');
-     	$contacto_info->hora_inicio = $request->input('hora_inicio');
-     	$contacto_info->hora_final = $request->input('hora_final');
-     	$contacto_info->mensaje = $request->input('mensaje');
+        $messages = array(
+            'required'      => 'El campo ":attribute" es obligatorio.',
+            'numeric'       => 'El campo ":attribute" debe ser numerico.',
+            'email'         => 'El campo ":attribute" debe tener formato de e-mail.',
+            'min'           => 'El campo ":attribute" debe tener un mínimo de :min caracteres'
+        );
 
-        Mail::send('mails.html.info_contacto', ['contacto_info' => $contacto_info], function ($m) use ($request) {
-            $m->from('webtest@estrasol.com.mx', 'Administración Contacto Bounce');
+        $validator = Validator::make($request->all(), [
+            'Nombre' => 'required',
+            'Movil' => 'required|numeric|min:10',
+            'Correo' => 'required|email',
+            'Mensaje' => 'required',
 
-            $m->to('hola@bounce.com.mx', 'Bounce Admin')->subject('Solicitud de informes Bounce');
-        });
-        return view('public.pages.contact',[
-            'showOffert' => false,
-            'showBannerBottom' => false,
-            'Mge_sent' => true
-        ]);
+        ], $messages);
+
+        if ($validator->fails()) {
+            $messages = $validator->messages();
+            return redirect('contacto')
+                ->withErrors($validator);
+        }else{
+
+        	$contacto_info = new stdClass;;
+         	$contacto_info->nombre = $request->input('nombre');
+         	$contacto_info->movil = $request->input('movil');
+         	$contacto_info->correo = $request->input('correo');
+         	$contacto_info->forma = $request->input('forma');
+         	$contacto_info->hora_inicio = $request->input('hora_inicio');
+         	$contacto_info->hora_final = $request->input('hora_final');
+         	$contacto_info->mensaje = $request->input('mensaje');
+
+            Mail::send('mails.html.info_contacto', ['contacto_info' => $contacto_info], function ($m) use ($request) {
+                $m->from('webtest@estrasol.com.mx', 'Administración Contacto Bounce');
+
+                $m->to('hola@bounce.com.mx', 'Bounce Admin')->subject('Solicitud de informes Bounce');
+            });
+            return view('public.pages.contact',[
+                'showOffert' => false,
+                'showBannerBottom' => false,
+                'Mge_sent' => true
+            ]); 
+        }
     }
 }

@@ -209,6 +209,15 @@
                 </div>
                 <div class="row margentop20">
                     <div class="col-sm-2">
+                        <label for="delegation" class="pull-right">Delegación</label>
+                    </div>
+                    
+                    <div class="col-sm-4">
+                        <input type="text" name="delegation" required="" id="delegation" class="form-control" ng-model="address.delegation" />
+                        <br>
+                    </div>
+               
+                    <div class="col-sm-2">
                         <label for="telefono" class="pull-right">Teléfono Contacto</label>
                     </div>
                     
@@ -216,7 +225,7 @@
                         <input type="text" name="tel" required="" id="tel" class="form-control" ng-model="address.tel" />
                         <br>
                         <div class="alert alert-danger" role="alert" ng-show="shippingForm.tel.$touched && shippingForm.tel.$invalid">
-                        <div ng-show="shippingForm.tel.$error.required">Campo obligatorio</div>
+                            <div ng-show="shippingForm.tel.$error.required">Campo obligatorio</div>
                         </div>
                     </div>
                 </div>

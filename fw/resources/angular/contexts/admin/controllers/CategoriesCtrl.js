@@ -20,18 +20,22 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
         
     }
     $scope.edit = function () {
+       
         var selecteds = ($tree.jstree('get_selected'));
+        console.log(selecteds);
         var id = selecteds[0];
         if(id && id!="root"){
             Category.getById(id).then(function(category){
                 $scope.categoryTemp = category;
                 $scope.showCategoryForm();
-                console.log($scope.categoryTemp.type);
+                console.log($scope.categoryTemp);
                 // $scope.categoryTemp.type == 1 ? $scope.categoryTemp.type = true : $scope.categoryTemp.type = false;
             });
         } else {
             BootstrapDialog.alert("Selecciona la categoria a editar");
         }
+        console.log($scope.categoryTemp.parent_category_id);
+        window.categoria = $scope.categoryTemp;
     }
     $scope.remove = function ($event) {
         var selecteds = ($tree.jstree('get_selected'));

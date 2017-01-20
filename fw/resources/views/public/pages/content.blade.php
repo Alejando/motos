@@ -4,7 +4,7 @@
 <div class="row col-md-12 col-sm-12">
 	<br>
 	<h2 class="titulo text-center">{{$content->title}}</h2>
-    <blockquote class="text-justify">{!!$content->content!!}</blockquote>
+    <blockquote class="text-justify content_text">{!!$content->content!!}</blockquote>
 </div>
 </nav>
 

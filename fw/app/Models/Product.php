@@ -231,4 +231,8 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return($mainProducts);
     }
 
+    public static function getRandomProducts() {
+        $randomProducts = self::all()->random(4);
+        return($randomProducts);
+    }
 }
