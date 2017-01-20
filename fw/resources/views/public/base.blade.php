@@ -56,7 +56,6 @@
                                     <div class="col-sm-6"><b>Subtotal:</b></div>
                                     <div class="col-sm-6 pull-right">@{{cart.getSubTotal()|currency}}MXP</div> 
                                 </div>
-                                
                               </div>
                             </div>
                             <li><a id="btnmenuemergente" href="" class="sprite icon-menu" title="Menú">Menú</a></li>
@@ -227,9 +226,11 @@
                                 <div class="item"><a href="" class="sprite logo-paypal">PayPal</a></div>
                                 <div class="item"><a href="" class="sprite logo-oxxo">Oxxo</a></div>
                                 <div class="item"><a href="" class="sprite logo-seven">Seven</a></div>
-                                <div class="item"><a href="" class="sprite logo-bbva">Bbva</a></div>
-                                <div class="item"><a href="" class="sprite logo-scotiabank">Scotiabank</a></div>
-                                <div class="item"><a href="" class="sprite logo-santander">Santander</a></div>
+                                <div class="item"><a href="" class="sprite logo-visa">Visa</a></div>
+                                <div class="item"><a href="" class="sprite logo-master-card">Master Card</a></div>
+                                <div class="item"><a href="" class="sprite logo-paypal">PayPal</a></div>
+                                <div class="item"><a href="" class="sprite logo-oxxo">Oxxo</a></div>
+                                <div class="item"><a href="" class="sprite logo-seven">Seven</a></div>
                             </div>
                         </div>
                     </section>

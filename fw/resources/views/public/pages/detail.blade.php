@@ -107,7 +107,7 @@
                 <div class="cajadetalle">
                     <img  src="{{ $product->brand->getImgURL(120,66) }}" class="pull-right" />
                     <h2 class="titulo">{{$product->name}}</h2>
-                    <div class="serie">Num. Serie {{$product->serialNumber}}</div>
+                    <div class="serie">Num. Serie {{$product->serial_number}}</div>
                     <div class="row margentop50">
                         <div class="col-sm-6">
                             <h3 class="precioazul">{{Helpers::formatCurrency($product->priceFrom-$product->getClculateDiscount())}}</h3>
@@ -185,86 +185,12 @@
                     <div class="barraverde margentop30">
                         <a class="btndescripcion">Descripción</a>
                     </div>
-                    <div>{{url("")}}<br>{{$product->description}}</div>
+                    <div class="text_newlines">{{$product->description}}</div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-    <div class="margentop30 cajatextura">
-        <!-- <a class="btnlike"></a> -->
-        <div class="margentop30">
-            <div id="owl-otros" class="owl-carousel owl-theme">
-                <div class="item">
-                    <div class="producto">
-                        <div class="productohover">
-                            <div class="productotable">
-                                <div>
-                                    <!-- <a href="" class="btnk"></a> -->
-                                    <h3>$000.00</h3>
-                                    <a href="" class="btnc"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
-                        <h3>Zapatos Verdes Bonitos</h3>
-                        <h2>$000.00</h2>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="producto">
-                        <div class="productohover">
-                            <div class="productotable">
-                                <div>
-                                    <!-- <a href="" class="btnk"></a> -->
-                                    <h3>$000.00</h3>
-                                    <a href="" class="btnc"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
-                        <h3>Zapatos Verdes Bonitos</h3>
-                        <h2>$000.00</h2>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="producto">
-                        <div class="productohover">
-                            <div class="productotable">
-                                <div>
-                                    <!-- <a href="" class="btnk"></a> -->
-                                    <h3>$000.00</h3>
-                                    <a href="" class="btnc"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
-                        <h3>Zapatos Verdes Bonitos</h3>
-                        <h2>$000.00</h2>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="producto">
-                        <div class="productohover">
-                            <div class="productotable">
-                                <div>
-                                    <!-- <a href="" class="btnk"></a> -->
-                                    <h3>$000.00</h3>
-                                    <a href="" class="btnc"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="{{ asset('img/template/productoejemplo.jpg') }}" class="img-responsive" />
-                        <h3>Zapatos Verdes Bonitos</h3>
-                        <h2>$000.00</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('public.blocks.randomProducts')
     @include('public.blocks.bannerBottom')
 @stop
 
