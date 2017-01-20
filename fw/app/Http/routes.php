@@ -419,4 +419,10 @@ Route::get('test/ocultas', [
     ]
 );
 
+Route::get('/marca/{id}/marca-{width}x{heigth}.png', [
+        'as' => 'marca.getImage',
+        'uses' => 'Api\\BrandController@getImage'
+    ]
+);
+
 

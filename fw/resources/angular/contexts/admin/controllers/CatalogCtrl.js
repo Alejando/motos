@@ -458,7 +458,7 @@
                 reader.readAsDataURL(changeEvent.target.files[0]);
             };
             getTitle = function() {
-                return $scope.selectedItem.id ? 'Edición de la marca "' + $scope.selectedItem.name + '"' : 'Talla Marca';
+                return $scope.selectedItem.id ? 'Edición de la marca "' + $scope.selectedItem.name + '"' : 'Marca Nueva';
             };
             getRemoveTitle = function() {
                 return "¿Seguro que desea eliminar la marca '" + $scope.selectedItem.name + "' ?";

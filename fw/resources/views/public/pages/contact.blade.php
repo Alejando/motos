@@ -10,6 +10,13 @@
             ¡Nos pondremos en contacto contigo en la brevedad, Gracias!.
           </div>
         @endif
+        @if ($errors->has())
+          <div class="alert alert-danger">
+              @foreach ($errors->all() as $error)
+                  {{ $error }}<br>        
+              @endforeach
+          </div>
+        @endif
         
         <h2 class="subtitulo">Forma de Contacto</h2>
         <form id="formcontacto" class="margentop40" action="{{ url('request/contact') }}" method="POST">
@@ -17,7 +24,7 @@
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-5">
-                            <label for="nombre">NOMBRE Y APELLIDO</label>
+                            <label for="nombre">*NOMBRE Y APELLIDO</label>
                         </div>
                         <div class="col-sm-7">
                             <input type="text" name="nombre" id="nombre" data-required="1" data-tipo="txt" class="form-control" />
@@ -26,7 +33,7 @@
 
                     <div class="row margentop20">
                         <div class="col-sm-5">
-                            <label for="nombre">MOVIL</label>
+                            <label for="nombre">*MOVIL</label>
                         </div>
                         <div class="col-sm-7">
                             <input type="text" name="movil" ng-model="checked" id="movil" data-required="1" data-tipo="txt" class="form-control" />
@@ -36,7 +43,7 @@
 
                     <div class="row margentop20">
                         <div class="col-sm-5">
-                            <label for="nombre">CORREO ELECTRÓNICO</label>
+                            <label for="nombre">*CORREO ELECTRÓNICO</label>
                         </div>
                         <div class="col-sm-7">
                             <input type="e-mail" name="correo" id="correo" data-required="1" data-tipo="mail" class="form-control" />
@@ -45,7 +52,7 @@
 
                     <div class="row margentop20">
                         <div class="col-sm-5">
-                            <label for="nombre">MENSAJE</label>
+                            <label for="nombre">*MENSAJE</label>
                         </div>
                         <div class="col-sm-7">
                             <textarea name="mensaje" id="mensaje" data-required="1" data-tipo="txt" class="form-control" cols="10" rows="6" /></textarea>

@@ -33,8 +33,8 @@
                                 <span ng-show="items.length > 0" ng-cloak>
                                     <strong class="cart_number">@{{items.length}}</strong>
                                 </span>
-                              <div class="dropdown-content-cart">
-                                <ul class="list-cart" ng-repeat="item in items">
+                              <div class="dropdown-content-cart" ng-cloak>
+                                <ul class="list-cart" ng-repeat="item in items" >
                                   <li>
                                       <span class="item">
                                         <span class="item-left">
@@ -143,20 +143,7 @@
                 @endif
             </div>
             <footer>
-                <div class="marcas">
-                    <div id="owl-marcas" class="owl-carousel owl-theme">
-                        <div class="item"><a class="sprite logo-king-of-tennis">King of tenis</a></div>
-                        <div class="item"><a class="sprite logo-adidas">Adidas</a></div>
-                        <div class="item"><a class="sprite logo-wilson">Wilson</a></div>
-                        <div class="item"><a class="sprite logo-tennis-advisor">TennisAdvisor</a></div>
-                        <div class="item"><a class="sprite logo-nike">Nike</a></div>
-                        <div class="item"><a class="sprite logo-king-of-tennis">King of tenis</a></div>
-                        <div class="item"><a class="sprite logo-adidas">Adidas</a></div>
-                        <div class="item"><a class="sprite logo-wilson">Wilson</a></div>
-                        <div class="item"><a class="sprite logo-tennis-advisor">TennisAdvisor</a></div>
-                        <div class="item"><a class="sprite logo-nike">Nike</a></div>
-                    </div>
-                </div>
+                @include('public.blocks.bannerBrands')
                 <div class="social">
                     <section class="redes row">
                         <div  class="row cajaredes">
@@ -219,7 +206,7 @@
                         </nav>
                     </section>
                     <section class="metodos-pago">
-                        <div class="marcas">
+                        <div class="metodos">
                             <div id="owl-metodos" class="owl-carousel owl-theme">
                                 <div class="item"><a href="" class="sprite logo-visa">Visa</a></div>
                                 <div class="item"><a href="" class="sprite logo-master-card">Master Card</a></div>

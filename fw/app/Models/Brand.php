@@ -32,4 +32,8 @@ class Brand  extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $n>0;
     }
     
+    public static function getBrands() {
+        $brands = self::all();
+        return($brands);
+    }
 }
