@@ -3,6 +3,7 @@ $products = DwSetpoint\Models\Product::getRandomProducts();
 ?>
 
 <div class="margentop30 cajatextura">
+    <h3 class="subtitulo "> &nbsp&nbsp También te puede interesar...</h3>
     <div class="margentop30">
         <div id="owl-otros" class="owl-carousel owl-theme">
             @foreach($products as $product)
