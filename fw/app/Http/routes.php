@@ -11,6 +11,14 @@
 |
 */
 Route::get("{msj}/holamundo/", "HomeController@holamundo");
+
+Route::post('process/conekta/webhook', function (){
+//    echo "ok";
+    $body = @file_get_contents('php://input');
+//    $data = json_decode($body); 
+    http_response_code(200); // Return 200 OK
+    file_put_contents("upload/webhook/test.txt", $body);
+});
 Route::get('carrito/success', [
     'as' => 'cart.success',
     'uses' => 'CartController@success'
@@ -425,5 +433,7 @@ Route::get('/marca/{id}/marca-{width}x{heigth}.png', [
         'uses' => 'Api\\BrandController@getImage'
     ]
 );
+
+
 
 

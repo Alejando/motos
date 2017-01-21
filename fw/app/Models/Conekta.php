@@ -7,7 +7,13 @@ class Conekta {
     private $currency;
     private $order;
     private $token;
-    
+    private $charge;
+    protected function getOrder() {
+        return $this->order;
+    }
+    protected function getCharge() {
+        return $this->charge;
+    }
     public function __construct($order) {
         $this->initContext();
         $this->order = $order;
@@ -96,8 +102,10 @@ class Conekta {
     private static function getCents($amount) {
         return (int)round($amount * 100);
     }
-    
-    public function checkout($data) {
+    protected function setExtraData (&$data) {
+        
+    }
+    public function checkout($extraInfo) {
         \Conekta\Conekta::setApiKey(DBConfig::getConektaPrivateKey());
         \Conekta\Conekta::setLocale('es');
         try {
@@ -109,13 +117,14 @@ class Conekta {
                 'amount' => self::getCents($this->order->getTotal()),
                 'details' => [
                     'name' => $this->order->address->getFullName(),
-                    'phone' => $data['tel'],
                     'email' => $this->user->email,
                     'line_items' => $this->getListItems(),
                     'shipment' => $this->getShipmentInfo()
                 ]
             ];
+            $this->setExtraData($data, $extraInfo);
             $charge = \Conekta\Charge::create($data);
+            $this->charge = $charge;
         } catch(\Exception $e) {
             try{
                 return  [

@@ -95,10 +95,15 @@ class CartController  extends Controller {
         $order->discount = $order->getAmountCoupon();
         $order->save();
         $psp = PSP::createByOrder($order);
-        switch($order->psp){
+        switch($order->psp) {
             case PSP::PAYPAL:
                 $url = $psp->getCheckoutURL();
                 return ['url' => $url];
+            case PSP::CONEKTA_OXXO:
+                $psp->setUser($user);
+                $psp->checkout([]);
+                return ['url', $psp->getReferenceUrl()];
+                break;
             case PSP::CONEKTA:
                 $psp->setToken(Input::get('conektaToken'));
                 $psp->setUser($user);

@@ -401,6 +401,10 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         return data;
     };
     var conekta = {
+        getOxxoReference : function (def){
+            var data = cart.prepareData();
+            
+        },
         conektaSuccessResponseHandler: function (def, token, context) {
             var data = cart.prepareData();
             data['conektaToken'] = token.id;
@@ -428,6 +432,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             }
         );
     };
+   
     this.sendCheckout = function (data,defer) {
         var url = laroute.route("cart.checkout");
         $http.post(url, data).then(function (request) {
@@ -444,7 +449,9 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         var defer = $q.defer();
         if(this.psp === this.PSP_TC_CONEKTA) {
            createConektaToken(defer);
-        } else { 
+        } if(this.php === this.PSP_OXXO_CONEKTA) {
+           conekta.getOxxoReference(defer);
+        }else { 
             this.sendCheckout(
                 this.prepareData(),
                 defer
