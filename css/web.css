@@ -225,13 +225,21 @@ ul.menu li {
     padding: 8px 5px 8px 5px;
     cursor: pointer;
 }
-
+.menumain li .lineaencabezado a{
+    color:#FFF;
+}
+.menumain li .lineaencabezado a:hover{
+    color:#C1D72E;
+}
 .menumain li:hover a.transicion {
     text-decoration: none;
     color: #FFF;
     background: rgba(37, 46, 54, 0.8);
     -webkit-border-radius: 4px 4px 0px 0px;
     border-radius: 4px 4px 0px 0px;
+}
+.menumain li>a.transicion:hover {
+    color: #C1D72E;
 }
 
 .cajasubmenu {
@@ -289,7 +297,11 @@ ul.menu li {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
   color: #C1D72E;
-  font-size: 
+  /*font-size:*/ 
+}
+
+.cajasubmenu ul li a:hover {
+  color: #FFF;
 }
 
 .search-form-2 {
