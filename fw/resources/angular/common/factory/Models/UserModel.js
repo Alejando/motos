@@ -13,7 +13,8 @@ setpoint.factory('User', function (ModelBase, $q, $http, Product, Address, Profi
             'password',
             'profile_id',
             'cellphone',
-            'homephone'
+            'homephone',
+            'birthdate'
         ],
         relations : [ 
             ['bookmarks', Product, 'hasMany'],

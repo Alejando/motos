@@ -12,7 +12,9 @@ setpoint.controller('ProfileUserCtrl', function (
     $scope.model = User;
 
     $scope.user = AuthSevice.user();
-    console.log($scope.user.id);
+
+    $scope.user.birthdate = new Date($scope.user.birthdate);
+    console.log($scope.user.birthdate);
     // $scope.model.getById($scope.user.id).then(function(data){
     //              $scope.selectedItem = data;
     //              $scope.user.email = "ffdgdf";
