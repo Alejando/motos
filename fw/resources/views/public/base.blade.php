@@ -25,7 +25,7 @@
         <div class="main-conteiner">
             <header class="fontal">
                 <div class="menu-top">
-                    <a href="{{url("/")}}" class="sprite logo-bounce home-logo" title="Bounce Tenis Lifestyle">Home</a>
+                    <a href="{{url("/")}}" class="logo-bounce home-logo" title="Bounce Tenis Lifestyle"><img src="{{asset('/css/logo-bounce.svg')}}"/></a>
                     <nav class="menu-right">
                         <ul class="menu">
                             <div class="dropdown-cart" ng-controller="CartListItemCtrl">
