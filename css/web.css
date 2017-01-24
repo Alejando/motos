@@ -304,20 +304,24 @@ ul.menu li {
   color: #FFF;
 }
 
-.search-form-2 {
+
+/*.search-form-2 {
   display: inline-block;
   float: right;
   position: relative;
-  top: -12px; }
-  .search-form-2 button {
-    margin-top: 10px;
-    display: inline-block;
-    position: relative;
-    top: 10px; }
-  .search-form-2 input {
-    font-size: 20px;
-    height: 42px;
-    width: 195px; }
+  top: -12px; 
+}
+.search-form-2 button {
+  margin-top: 10px;
+  display: inline-block;
+  position: relative;
+  top: 10px; 
+  }
+.search-form-2 input {
+  font-size: 20px;
+  height: 42px;
+  width: 195px; 
+  }*/
 
 .setpoint-public .div-main-content {
   background-image: url(../img/bgbody.jpg);
@@ -370,6 +374,8 @@ footer {
 
 .cajaredes {
   border-bottom: #e1eaa3 2px solid;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .cajacentermiddle {
@@ -405,7 +411,11 @@ footer {
   font-size: 18px;
   font-family: 'Open Sans' !important;
   margin-left: -10px; 
-  margin-right: 15px;
+  /*margin-right: 15px;*/
+}
+
+.cajamiddle_newsletter{
+  margin-top: 9px;
 }
 
 .contenedorfield {
@@ -418,7 +428,7 @@ footer {
 
 .fieldnewsletter {
   font-size: 15px;
-  height: 34px;
+  height: 40px;
   padding: 5px;
   position: relative;
   border-radius: 5px;
@@ -426,6 +436,7 @@ footer {
   color:black;
   margin: 0 0 0 5px;
   outline: none;
+  width: 80%;
 }
 
 .setpoint-public footer .metodos {

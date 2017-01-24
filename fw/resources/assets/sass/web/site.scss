@@ -86,12 +86,14 @@ ul.menu {
     display: inline-block;
     float: right;
     position: relative;
-    top: -12px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-right: 20px;
     button {
-        margin-top: 10px;
+        
         display: inline-block;
         position: relative;
-        top: 10px;
+        
     }
     input {
         font-size: 20px;

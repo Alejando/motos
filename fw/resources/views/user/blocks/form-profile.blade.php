@@ -23,21 +23,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-2 control-label">Celular</label>
-            <div class="col-md-8">
-                <input  type="text" 
-                        ng-model="user.cellphone" 
-                        class="form-control" 
-                        placeholder="Nueva Marca"
-                        name="cellphone"
-                        >
-            </div>
-        </div>
-        <div class="form-group">
             <label class="col-md-2 control-label">Teléfono</label>
             <div class="col-md-8">
                 <input  type="text" 
                         ng-model="user.homephone" 
+                        class="form-control" 
+                        placeholder="Nueva Marca"
+                        name="homephone"
+                        >
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Fecha de Nacimiento</label>
+            <div class="col-md-8">
+                <input  type="date" 
+                        ng-model="user.birthdate" 
                         class="form-control" 
                         placeholder="Nueva Marca"
                         name="homephone"

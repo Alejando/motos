@@ -35,7 +35,7 @@ tr:nth-child(even) {
     <table class="table table-striped">
         <tr>
             <th>Producto</th>
-            <th>Catindad</th>
+            <th>Cantidad</th>
 <!--             <th>Color</th>
             <th>Tamaño</th> -->
             <th>Precio C/U</th>
