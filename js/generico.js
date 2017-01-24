@@ -2,21 +2,48 @@ var main = function () {
     var menuMovil = function() {
         var $lastSub;
         $('.menumain li').each(function() {
-            $(this).find('a').on('click', function(e) {
-                if($lastSub){
-                    $lastSub.hide();
+            var $this = $(this);
+            $this.find('a').on('click', function(e) {
+                var $li = $this.find(">div");
+                if($li.is(':visible')){
+                    window.open(this.href, '_self');
+                } else {
+                    if($lastSub){
+                        $lastSub.hide();
+                    }
+                    if($(this).next().hasClass('cajasubmenu')) {
+                        e.preventDefault();
+                        $lastSub = $(this).siblings('.cajasubmenu').slideToggle('fast');
+                    }
                 }
-                if($(this).next().hasClass('cajasubmenu')) {
-                    e.preventDefault();
-                    $lastSub = $(this).siblings('.cajasubmenu').slideToggle('fast');
+            });
+            var time;
+            $this.mouseenter(function() {
+                var $self = $(this);
+                var $miSubmenu = $self.find('.cajasubmenu');
+                if(!$miSubmenu.is(':visible')){
+                    clearTimeout(time);
+                    time = setTimeout(function() {
+                        clearTimeout(time);
+                        $self.closest('ul').find('.cajasubmenu').slideUp(100);
+                        $self.find('.cajasubmenu').slideDown(150); 
+                    },200);
                 }
             });
         });
-
+        var time2;
         $('.cajasubmenu').mouseleave(function() {
-            $('.cajasubmenu').slideUp('fast');
+            var $self = $(this);
+            clearTimeout(time2);
+            var time2 = setTimeout(function(){
+                clearTimeout(time2);
+                if(!$self.closest("li").find("a:hover").length){
+                    $('.cajasubmenu').slideUp('fast');
+                }
+            },50);
+            
         });
-
+        
         $('#btnmenuemergente').on('click', function(e) {
             e.preventDefault();
             $('.menuemergente').slideDown('fast');

@@ -92,7 +92,7 @@
                              }">
                                 <h4 class="panel-title">
                                     <a class="btnconekta" role="button" href="" aria-expanded="true" aria-controls="collapseTwo">
-                                        Tarjeta de crédito
+                                        Pago con Tarjeta
                                     </a>
                                 </h4>
                             </div>
