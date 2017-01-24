@@ -57,7 +57,10 @@ class CartController  extends Controller {
             if($result) {
                 $order->sendMail(\Auth::user());       
                 $order->deliverStock();
-                return view('public.pages.cart.success');
+                //return view('public.pages.cart.success');
+                return view('public.pages.cart.success',[
+                            'order' => $order
+                        ]);
             } else {
                 return redirect(route('cart.confirmCheckout',[
                     'checkout' => 'fail'

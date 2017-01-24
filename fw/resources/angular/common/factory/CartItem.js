@@ -13,6 +13,7 @@ setpoint.factory('CartItem', ['Color', 'Product', 'Size',
                 this.product = Product.build(info.product);
                 this.product_id = info.product_id;
                 this.product_discount = this.product.discount_percentage;
+                this.product_code = this.product.code;
             }
             if(info.size) {
                 this.size_id = info.size_id;

@@ -167,7 +167,8 @@
                             C.P. 45067<br><br>
                         </div>
                         <div class="col-xs-12 col-sm-6">
-                            <strong>Teléfono: (33) 3336 7487</strong>
+                            <strong>Teléfono: (33) 3336 7487</strong><br>
+                            <strong><i class="fa fa-whatsapp fa-lg"></i> (33) 3336 7487 </strong>
                             <br><br>
                             <strong>Horario:</strong> Lunes a Viernes<br>
                             de 9:00  a 20:00<br>

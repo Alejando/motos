@@ -15,14 +15,16 @@
             <div class="cajacarrito margentop30">
                 <div class="row fila" ng-repeat="item in items">
                     <div class="col-sm-2 hidden-xs">
-                        <div class="btnvista" style="background: url('@{{item.product.getURLCover()}}') center center;"></div>
+                        <div class="btnvista">
+                            <img src="@{{item.product.getURLCover()}}" class="img_cart"/>
+                        </div>
                     </div>
                     <div class="col-sm-2 col-xs-4">
                         <div class="cajatxt">
                             <div>
                                 <h3 class="productonombre">
                                     @{{item.product.name}}
-                                    <span>Num. Serie @{{item.product.serial_number}}</span>
+                                    <span>Código: @{{item.product.code}}</span>
                                 </h3>
                             </div>
                         </div>

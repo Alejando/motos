@@ -151,6 +151,19 @@
                 </div>
             </div>
         </div>
+        <div class="form-group" ng-show="selectedColors.length > 0">
+            <label class="col-md-3 control-label">Color por defecto</label>
+            <div class="col-md-8">
+                <select 
+                    name="colorDefault"  
+                    id="colorDefault"
+                    ng-change="selectDefaultColor()" 
+                    ng-model="defaultColor"
+                    ng-options="color.name for color in selectedColors track by color.id"
+                    class="form-control">
+                </select>  
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-md-12 control-label text-left" style="text-align: left;" >
                  Catalogo(s)
