@@ -390,7 +390,7 @@
             getColumnBuilder = function () {
                 return [
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
-                        DTColumnBuilder.newColumn('code').withTitle('Código'),
+                        DTColumnBuilder.newColumn('code').withTitle('Código de marca'),
                         DTColumnBuilder.newColumn('product.name').withTitle('Producto'),
                         DTColumnBuilder.newColumn('quantity').withTitle('Existencias'),
                         DTColumnBuilder.newColumn(null).withTitle('Tamaño/Talla').renderWith(function(data, type, full, meta){
