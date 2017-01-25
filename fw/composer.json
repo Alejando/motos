@@ -14,7 +14,8 @@
         "torann/currency": "^0.3.0",
         "paypal/rest-api-sdk-php": "^1.7",
         "laravel/socialite": "^2.0",
-        "conekta/conekta-php": "dev-master"
+        "conekta/conekta-php": "dev-master",
+        "barryvdh/laravel-dompdf": "0.6.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

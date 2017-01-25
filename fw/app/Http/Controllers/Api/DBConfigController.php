@@ -8,4 +8,7 @@ class DBConfigController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
         $this->middleware('auth');
         $this->middleware('admin');
     }
+    public function destroy($id) {
+        abort(404);
+    }
 }

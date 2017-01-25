@@ -39,8 +39,7 @@ class CartController  extends Controller {
             'showOffert' => false,
             'showBannerBottom' => false
         ]);
-    }
-    
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
     public function confirmCheckout() {
         return view('public.pages.checkout', [
             'showOffert' => false,
@@ -55,8 +54,6 @@ class CartController  extends Controller {
             $psp->getPSPResult(Input::all());
             $result = $psp->getState();
             if($result) {
-                $order->sendMail(\Auth::user());       
-                $order->deliverStock();
                 return view('public.pages.cart.success');
             } else {
                 return redirect(route('cart.confirmCheckout',[
@@ -67,7 +64,8 @@ class CartController  extends Controller {
             throw $ex;
             return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
         }
-    }
+    }    
+    
     public function checkout() {
         $user = \Auth::user();
         $order = new \DwSetpoint\Models\Order();        
@@ -102,7 +100,7 @@ class CartController  extends Controller {
             case PSP::CONEKTA_OXXO:
                 $psp->setUser($user);
                 $psp->checkout([]);
-                return ['url', $psp->getReferenceUrl()];
+                return ['url' => $psp->getReferenceUrl()];
                 break;
             case PSP::CONEKTA:
                 $psp->setToken(Input::get('conektaToken'));

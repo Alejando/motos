@@ -17,6 +17,23 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function getCreatedAtAttribute() {
         return $this->datetimeFormat('created_at');
     }
+    
+    public function reject() {
+        $this->status = PSP::STATE_REJECT;
+    }
+    public function sendFormatOxxo() {
+        \DwSetpoint\Libs\Helpers\Mail::formatOxxo([
+            'user' => $this->user,
+            'order' => $this
+        ]);
+//        die("adsf");
+    }
+    public function setPaid($user) {
+        $this->status = self::STATUS_PAYMED;
+        $this->sendMail(); 
+        $this->deliverStock();
+        $this->save();
+    }
     public function deliverStock() {
         $items = $this->items;
         foreach ($items as $item){
@@ -50,7 +67,7 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     
     public function sendMail($user) {
         \DwSetpoint\Libs\Helpers\Mail::order([
-            'user' => $user,
+            'user' => $this->user,
             'order' => $this
         ]);
         return $this;
@@ -100,6 +117,20 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function requestBill() {
         return !!$this->billing_information_id;
     }
+    
+    public function getViewOxxo(){
+        $view = \View::make('public.pages.cart.format-conekta-oxxo', [
+            'order' => $this
+        ]);
+        return $view;
+    }
+    
+    public function getPDFOxxo() {
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($this->getViewOxxo());
+        return $pdf;
+    }
+    
     public function getTaxs() {
         $iva = DBConfig::getIVA();
         $subTotal = (double)$this->getSubTotal() - (double)$this->getAmountCoupon();
@@ -112,6 +143,13 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
             return $amount / (1 + ($iva / 100));
         }
         return $amount;
+    }
+    
+    public function getInfoPsp($raw = false) {
+        if($raw) {
+            return $this->pspinfo;
+        }
+        return json_decode($this->pspinfo);
     }
     
     public function getShipping() {

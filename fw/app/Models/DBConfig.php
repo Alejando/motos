@@ -6,7 +6,7 @@ class DBConfig  extends \DevTics\LaravelHelpers\Model\ModelBase {
     public static function getValue($code, $defaultValue = '') {
         $conf = self::where('code', '=', $code)->get();
         if($conf->count()) {
-            return $conf->get(0)->value;
+            return $conf->get(0)->attributes['value'];
         }
         throw new \Exception("No se encotro la configuracion $code ");
     }
@@ -16,5 +16,12 @@ class DBConfig  extends \DevTics\LaravelHelpers\Model\ModelBase {
             return self::getValue($code);
         }
         return parent::__callStatic($method, $parameters);
+    }
+    public function getValueAttribute() {
+        if($this->type=="secret"){
+            $value = $this->attributes['value'];
+            return substr($value,0,3)."...".substr($value, strlen($value)-4);
+        }
+        return $this->attributes['value'];
     }
 }   

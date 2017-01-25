@@ -12,17 +12,27 @@
 */
 Route::get("{msj}/holamundo/", "HomeController@holamundo");
 
-Route::post('process/conekta/webhook', function (){
-//    echo "ok";
-    $body = @file_get_contents('php://input');
-//    $data = json_decode($body); 
-    http_response_code(200); // Return 200 OK
-    file_put_contents("upload/webhook/test.txt", $body);
-});
+Route::post('process/conekta/webhook', [
+    'as' => 'cart.success',
+    'uses' => 'ConektaController@webhook'
+]);
+
+Route::get('/carrito/conekta-oxxo/order-{order}.{format}', [
+    'as' => 'cart.conecta-oxxo-format',
+    'uses' => 'ConektaController@getOxxoFormat'
+]);
+
+Route::get('/carrito/conekta-oxxo/order-{order}', [
+    'as' => 'cart.conecta-oxxo',
+    'uses' => 'ConektaController@oxxoConfirm'
+]);
+
+
+
 Route::get('carrito/success', [
     'as' => 'cart.success',
     'uses' => 'CartController@success'
-] );
+]);
 Route::get('/detalle', function() {
     return view('public.pages.detail', [
         'showOffert' => false,

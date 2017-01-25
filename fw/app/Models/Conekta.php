@@ -61,6 +61,7 @@ class Conekta {
         ];
         return $data;
     }
+    protected function checkOutCallback() {}
     private function getListItems(){
         $data = [];
         foreach($this->order->items as  $orderItem){
@@ -137,15 +138,16 @@ class Conekta {
         }
         if($charge->status == 'paid') {
             $this->order->pspinfo = $charge->__toJSON();
-            $this->order->status = PSP::STATE_APPROVED;
+            $this->order->setPaid();
             $this->order->save();
         } else {
-            //$this->order->status = PSP::STATE_REJECT;
+            $this->order->reject();
         }
+        $this->checkOutCallback();
         return $charge->status == 'paid';
     }
     public function getSuccessUrl () {
-        return route('cart.success',[
+        return route('cart.success', [
             'success' => true,
             'order' => $this->order->id
         ]);

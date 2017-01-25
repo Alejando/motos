@@ -897,9 +897,9 @@
                       return data;
                   }),   
                   DTColumnBuilder.newColumn('value').withTitle("Valor").renderWith(function(data, type, full) {
-                      return '<span class="conf-label"><a href="" ng-click="edit($event,'+ full.id +')" >' + data + '</a></span>' +
+                      return '<span class="conf-label"><a href="" ng-click="edit($event,' + full.id + ')" >' + data + '</a></span>' +
                         '<span class="form-config form-inline" style="display:none">'+
-                            '<input type="text" class="form-control">' +
+                            '<input type="' + (full.type == 'secret' ? 'password' : 'text') + '" class="form-control">' + 
                             ' <button class="btn btn-primary" ng-click="save($event,'+ full.id +')"><span class="fa fa-save"></span></button>' +
                             ' <button class="btn btn-danger" ng-click="cancel($event)"><span class="md  md-cancel"></span></button>' +
                         '</span>';

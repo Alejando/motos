@@ -96,7 +96,7 @@ class Mail extends MailBase {
         return self::sendMail('order', $args, $test, $send, $format);
     }
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="order">
+    // <editor-fold defaultstate="collapsed" desc="shipping">
     public static function shipping($args = [], $test = false, $send = true, $format = 'html'){
         if(!isset($args['user'])) {
             $user = \DwSetpoint\Models\User::getRandom(); 
@@ -109,5 +109,26 @@ class Mail extends MailBase {
         return self::sendMail('shipping', $args, $test, $send, $format);
     }
     // </editor-fold>
-
+    // <editor-fold defaultstate="collapsed" desc="shipping">
+    public static function formatOxxo($args = [], $test = false, $send = true, $format = 'html'){
+        if(!isset($args['user'])) {
+            $user = \DwSetpoint\Models\User::getRandom(); 
+            $args['user'] = $user;
+            $inputOrder = \Illuminate\Support\Facades\Input::get('order');
+            $args['order'] = $inputOrder ? \DwSetpoint\Models\Order::getById($inputOrder) : \DwSetpoint\Models\Order::getRandom();
+        }
+//        $args['to'] = $args['user']->email;
+        $args['to'] = 'wariodiaz@gmail.com';
+        $order = $args['order'];
+        $args['subject'] = "Formato de pago en tiendas OXXO del pedido {$order->id}";        
+        $pdf = $order->getPDFOxxo();
+        $args['files-stream'] = [
+            [
+                'stream'=> $pdf->stream()->content(),
+                'name' => "pago-oxo-".$order->id.'.pdf'
+            ]
+        ];
+        return self::sendMail('format-oxxo', $args, $test, $send, $format);
+    }
+    // </editor-fold>
 }
