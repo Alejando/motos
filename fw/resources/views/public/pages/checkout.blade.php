@@ -26,7 +26,7 @@
                 </div>
             @endif
             
-            <div class="row margentop20">
+            <div class="row margentop20" ng-cloak>
                 <div class="col-sm-4">
                     <h3 class="subtitulo">Elige tu método de pago:</h3>
                     <div class="panel-group margentop20 widthlimit" id="accordion" role="tablist" aria-multiselectable="true">
@@ -105,7 +105,7 @@
                 <div class="col-sm-5">
                     <h3 class="subtitulo2">Resúmen de Compra</h3>
                     <div class="cajaresumen margentop20">
-                        <div class="contenidoresumen" ng-cloak>
+                        <div class="contenidoresumen">
                             <div class="row nproducto" ng-repeat="item in items">
                                 <div class="col-xs-8">
                                     <h4 class="nproductoh4">
@@ -162,11 +162,11 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <h2 class="checktotal margentop50" ng-cloak>
+                    <h2 class="checktotal margentop50">
                         <span>Total:</span> <span>@{{cart.getTotal()|currency:'$'}}</span>
                     </h2>
                     <div class="botonera margentop20">
-                        <a href="" class="transicion" ng-click="checkout($event)">Comprar</a>
+                        <a href="" class="transicion" ng-hide="sending" ng-click="checkout($event)">Comprar</a>
                         <div ng-show="sending">
                             <img src="{{asset('/css/loadingModalInfo.gif')}}"/>
                         </div>

@@ -1,6 +1,9 @@
 <div method="POST" id="conektaCardForm" role="form">
      <span class="card-errors"></span>
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="row">
+        <div class="col-md-12"><img style="width:90%;" src="{{asset('/css/creditcards.png')}}"/></div>
+    </div>
     <div class="form-group">
         <label class="col-md-12 control-label" for="nombretarjetahabiente">Nombre del tarjetahabiente:</label>
         <div class="col-md-12">
