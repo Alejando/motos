@@ -66,7 +66,7 @@
             <div class="alert alert-danger" role="alert" ng-show="productInvalid">
                 <div>Selecciona un producto</div>                
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-show="$parent.selectedProduct">
                 <label class="col-md-3 control-label">Stock</label> 
                 <div class="col-md-8">
                     <ui-select ng-model="$root.selectedStock">

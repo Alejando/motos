@@ -690,17 +690,12 @@
                 $scope.$root.selectedStock = null;
                 $scope.selectedStock = null;
                 if(product) {
-                   product.stocks({
+                   product.stocks({ 
                        'with':[
                            'stocks.color',
                            'stocks.size'
                        ]
-                   }).then(function(stocks){
-                        stocks.unshift({
-                                id : null,
-                                code : "Cualquiera con existencia",
-                        });
-                        console.log(stocks);
+                   }).then(function(stocks) {
                         $scope.stocks = stocks;
                    });
                 } else {                    

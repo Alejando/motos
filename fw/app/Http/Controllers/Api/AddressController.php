@@ -17,4 +17,19 @@ class AddressController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         );
         return $data;
     }
+    
+    public function show($id) {
+        $user = auth()->user();
+        if($user) {
+            if(!$user->isAdmin()){
+                return parent::show($id);
+            } else {
+                $address = parent::show($id);
+                if($address->user == $user) {
+                    return $address;
+                }
+            }
+        }
+        abort(404,"No se encontro la direccion o bien no corresponde al usuario");
+    }
 }
