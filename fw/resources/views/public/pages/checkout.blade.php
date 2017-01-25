@@ -177,6 +177,6 @@
 @section('scripts')
     <script type="text/javascript" src="https://conektaapi.s3.amazonaws.com/v0.3.0/js/conekta.js"></script>
     <script type="text/javascript">
-        Conekta.setPublishableKey({!!json_encode(Config('app.conekta.publicKey'))!!});
+        Conekta.setPublishableKey({!!json_encode(DwSetpoint\Models\DBConfig::getConektaPublicKey())!!});
     </script>
 @stop

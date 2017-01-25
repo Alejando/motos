@@ -29,6 +29,11 @@ class MailBase {
                       $to[] = env('EMAIL_TEST_DEVELOPER');
                     }
                     $message->subject(isset($args['subject'])?$args['subject']:'No Subject');
+                    if(isset($args['files-stream']) && is_array($args['files-stream'])){
+                        foreach ($args['files-stream'] as $file){
+                            $message->attachData($file['stream'], $file['name']);
+                        }
+                    }
                     $message->to($to);
                  }
             );

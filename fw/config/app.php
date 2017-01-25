@@ -176,6 +176,7 @@ return [
         DwSetpoint\Providers\EventServiceProvider::class,
         DwSetpoint\Providers\RouteServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -225,7 +226,7 @@ return [
         'Currency' => \Torann\Currency\Facades\Currency::class,
         'Helpers' => DwSetpoint\Libs\Facades\Helpers::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

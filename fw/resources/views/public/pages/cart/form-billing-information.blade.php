@@ -29,7 +29,7 @@
                         id="rfc"
                         name="rfc"
                         required=""
-                        pattern="[A-Za-z]{4}[0-9]{6}[a-zA-Z0-9]{3}"
+                        pattern="[A-Za-z]{3,4}[0-9]{6}[a-zA-Z0-9]{3}"
                         style="text-transform: uppercase"
                     />
                     <br>
