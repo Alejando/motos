@@ -15,8 +15,7 @@
         <form id="formpago" method="post">
             <div class="infox margentop20">
                 <h4>Web 100% confidencial</h4>
-                Toda la información de tus tarjetas viaja codificada con tecnología SSL, además BOUNCE Tennis Lifestyle está avalada por la Asociación Mexicana de Internet (AMIPCI) como empresa séria y de confianza. Ver sellos
-            </div>
+                    Con BOUNCE tu información de tus tarjetas viaja segura codificada con tecnología SSL.
             <div class="cajadatos margentop20 ng-hide" ng-show="pspError"  ng-cloak>
                 <h2 class="title text-center" style="color:red" >@{{pspError}}<i class="fa fa-times" aria-hidden="true"></i></h2>
             </div>
@@ -26,6 +25,7 @@
                     <div class="nproductoh4">* Intenta nuevamente con otra forma de pago</div>
                 </div>
             @endif
+            
             <div class="row margentop20">
                 <div class="col-sm-4">
                     <h3 class="subtitulo">Elige tu método de pago:</h3>
@@ -105,7 +105,7 @@
                 <div class="col-sm-5">
                     <h3 class="subtitulo2">Resúmen de Compra</h3>
                     <div class="cajaresumen margentop20">
-                        <div class="contenidoresumen">
+                        <div class="contenidoresumen" ng-cloak>
                             <div class="row nproducto" ng-repeat="item in items">
                                 <div class="col-xs-8">
                                     <h4 class="nproductoh4">
@@ -162,11 +162,14 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <h2 class="checktotal margentop50">
+                    <h2 class="checktotal margentop50" ng-cloak>
                         <span>Total:</span> <span>@{{cart.getTotal()|currency:'$'}}</span>
                     </h2>
                     <div class="botonera margentop20">
                         <a href="" class="transicion" ng-click="checkout($event)">Comprar</a>
+                        <div ng-show="sending">
+                            <img src="{{asset('/css/loadingModalInfo.gif')}}"/>
+                        </div>
                     </div>
                 </div>
             </div>
