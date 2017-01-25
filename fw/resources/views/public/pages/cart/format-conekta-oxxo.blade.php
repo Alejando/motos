@@ -53,7 +53,7 @@ extract(get_object_vars($pm));
                         </tr>
                         <tr>
                             <td class="label">Fecha de emisión</td>
-                            <td class="value">{{$order->created_at}}</td>
+                            <td class="value">{{$order->getStringDateCreateAt()}}</td>
                         </tr>
                         <tr>
                             <td class="label">Orden</td>
@@ -61,7 +61,7 @@ extract(get_object_vars($pm));
                         </tr>
                         <tr>
                             <td class="label">Pagar antes del</td>
-                            <td class="value">{{12}}</td>
+                            <td class="value">{{$order->getStrDateOxxoExpireAt()}}</td>
                         </tr>
                         <tr>
                             <td class="label">Monto a pagar</td>

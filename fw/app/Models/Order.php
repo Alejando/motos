@@ -72,6 +72,12 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
         ]);
         return $this;
     }
+    public function getStringDateCreateAt($format=false, $strTimeZone = false) {
+        return "{dia pedido}";
+    }
+    public function getStrDateOxxoExpireAt($format = false, $strTimeZone = false) {
+        return "{dia que expira}";
+    }
     public function getDateTiemeCreateAt($strTimeZone = 'America/Mexico_City') {
         $timeZone = new \DateTimeZone($strTimeZone);
         $objDate = new \DateTime($this->attributes['created_at']);
