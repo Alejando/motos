@@ -53,12 +53,17 @@ setpoint.controller('CartClientInfoCtrl', [
                 $scope.addressesBill.unshift($scope.defaultBillAddress);
                 if($scope.addresses.length) {
                     if (selectedAddress) {
-                        Address.getById(selectedAddress).then(function(address){
-                            $scope.address = address;
-                            $scope.selectAddress();
+                        var selectAddressId = null;
+                        angular.forEach($scope.addresses, function(address) {
+                           if(address.id === selectedAddress) {
+                                $scope.address = address;
+                                $scope.selectAddress();
+                                selectAddressId = address.id;
+                           }
                         });
-//                        alert("selecionar la fecha");
-                    } else {
+                        Cart.setShippingAddress(selectAddressId);                        
+                   } 
+                   if(!$scope.address){
                         $scope.address = $scope.addresses[0];
                         console.log($scope.addresses[0]);
                         $scope.selectAddress();

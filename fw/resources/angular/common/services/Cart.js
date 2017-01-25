@@ -316,6 +316,8 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         this.shippingAddress = address;  
         if(address && address.id){
             this.addess_id = address.id;
+        }else{
+           ls.remove('cart.address'); 
         }
     };
     this.getShippingAddress = function () {
@@ -355,7 +357,6 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             ls.set('cart.billingInformation', this.billingInformation.id);  
         }
     } 
-     
     this.setShippingAddress(ls.get('cart.address'));
     this.setBillingInformation(ls.get('cart.billingInformation'));
     
