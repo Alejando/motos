@@ -27,8 +27,8 @@
                   <td ng-cloak>@{{ user.email }}</td>
                 </tr>
                 <tr>
-                  <th>Celular:</th>
-                	<td ng-cloak>@{{ user.cellphone }}</td>
+                  <th>Teléfono:</th>
+                	<td ng-cloak>@{{ user.homephone }}</td>
                 </tr>
                 <tr>
                   <th>Fecha de nacimiento:</th>
