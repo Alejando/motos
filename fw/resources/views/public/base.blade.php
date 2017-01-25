@@ -203,8 +203,8 @@
                         <nav>
                             <ul class="menu row">
                                 <li class="col-sm-3"><a href="{{url('/contacto')}}"><span class="sprite icon-ubicacion"></span>Contáctanos</a></li>
-                                <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención 9:00 a 20:00</a></li>
-                                <li class="col-sm-2"><a href="{{url('content/slug/aviso-de-privacidad')}}" class="aviso">Aviso de Privacidad</a></li>
+                                <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención <br> 9:00 a 20:00</a></li>
+                                <li class="col-sm-2"><a href="{{route('Content.slug',['slug'=>'aviso-de-privacidad'])}}" class="aviso">Aviso de Privacidad</a></li>
                                 <li class="col-sm-4"><a class="sprite logo-bounce-2">Bounce Tennis Lifestyle</a></li>
                             </ul>
                         </nav>
