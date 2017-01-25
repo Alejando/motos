@@ -11,7 +11,9 @@ setpoint.controller('CartCheckoutCtrl', [
         };
         $scope.phpError = false;
         Cart.setConektaCardForm($('#formpago')); 
+        $scope.sending = false;
         $scope.checkout = function (evt) {
+            $scope.sending = true;
             $scope.pspError = false;
             if(!$scope.providerSelected) {
                 $scope.pspError = "Selecciona una forma de pago";
@@ -21,6 +23,7 @@ setpoint.controller('CartCheckoutCtrl', [
             Cart.checkout().then(function (data) {
                 window.open(data.url, '_self'); 
             }, function (fail) {
+                 $scope.sending = true;
                 $scope.pspError = fail.message;
                 console.log($scope.pspError);
             });
