@@ -79,16 +79,22 @@
             $scope.defaultColor = null;
             $scope.selectDefaultColor = function() {
                 $scope.selectedItem.relate('defaultColor', $scope.defaultColor);
+                $scope.selectedItem.default_color_id = $scope.defaultColor.id;
             }
+            $scope.selectedColors = [];
             $scope.addColor = function ($event, color) {
                 $event.target.checked;
                 if($scope.selectedItem) {
                     if($event.target.checked) {
                         $scope.selectedItem.relate('colors', color);
+                        $scope.selectedColors = $scope.selectedItem.relations.colors;
+                        console.log($scope.selectedColors);
+                        console.log($scope.selectedColors.length);
                     } else {
                         $scope.selectedItem.detach('colors', color);
                     }
                 }
+                window.producto = $scope.selectedItem;
             };
             $scope.inColors = function(color) {
                 if($scope.selectedItem && $scope.selectedItem.colors_ids) {
@@ -384,7 +390,7 @@
             getColumnBuilder = function () {
                 return [
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
-                        DTColumnBuilder.newColumn('code').withTitle('Código'),
+                        DTColumnBuilder.newColumn('code').withTitle('Código de marca'),
                         DTColumnBuilder.newColumn('product.name').withTitle('Producto'),
                         DTColumnBuilder.newColumn('quantity').withTitle('Existencias'),
                         DTColumnBuilder.newColumn(null).withTitle('Tamaño/Talla').renderWith(function(data, type, full, meta){
@@ -1081,6 +1087,7 @@
             if($scope.prepareItem) {
                 $scope.prepareItem();
             }
+            console.log($scope.selectedItem);
             $scope.selectedItem.save().then(function () {
                 $scope.selectedItem.backup();
                 var $dialog = $($event.target).closest('.modal');
@@ -1104,6 +1111,7 @@
             });
             $.get($scope.form,{},'html').done(function(txt){
                 $message.fadeOut('fast', function(){
+
                     if($scope.preprareForm) {
                         var self = this;
                         $scope.preprareForm().then(function(){

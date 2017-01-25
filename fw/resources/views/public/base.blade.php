@@ -25,7 +25,7 @@
         <div class="main-conteiner">
             <header class="fontal">
                 <div class="menu-top">
-                    <a href="{{url("/")}}" class="sprite logo-bounce home-logo" title="Bounce Tenis Lifestyle">Home</a>
+                    <a href="{{url("/")}}" class="logo-bounce home-logo" title="Bounce Tenis Lifestyle"><img src="{{asset('/css/logo-bounce.svg')}}"/></a>
                     <nav class="menu-right">
                         <ul class="menu">
                             <div class="dropdown-cart" ng-controller="CartListItemCtrl">
@@ -110,7 +110,7 @@
                     </nav>
                     <div style="clear: both"></div>
                 </div>
-                <nav>
+                <div>
                 <!--{{-- @if($menuUser)
                     <ul class="menumain hidden-sm hidden-xs">
                         <li><a href="" class="transicion">PERFIL</a></li>
@@ -123,13 +123,17 @@
                 <!--{{-- @endif --}}-->
                 
                 <div class="search-form-2">
-                    <form action="{{ url('busqueda/personalizada/') }}" method="POST">
-                        <input type="text" class="input-border" name="search"><button class="sprite search-2" type="submit"></button> 
+                    <form class="row" action="{{ url('busqueda/personalizada/') }}" method="POST">
+                       
+                        <input type="text" class="input-border col-md-8" name="search">
+                        <button class="sprite search-2 col-md-4" type="submit"></button> 
+                     
+                        
                     </form>
                 </div>
                
                     <div style="clear: both"></div>
-                </nav>
+                </div>
                 @if($showOffert)
                 @include('public.blocks.offerts')
                 @endif
@@ -172,23 +176,23 @@
                             </div>
                             <div  class="col-sm-6">
                                 <div class="row cajanewsletter">
-                                    <div class="col-md-5">
-                                        <div class="cajacentermiddle">
-                                            <div class="celdacentermiddle">
-                                                <i class="txtright"><b>Suscríbete para recibir</b><br/>nuestras promociones</i>
-                                            </div>
+                                    <div class="col-md-12">
+                                        <div class="cajamiddle_newsletter">
+                                            
+                                                <i class="txtcenter"><b>Suscríbete para recibir nuestras promociones</b></i>
+                                            
                                         </div>
                                     </div>
-                                    <div class="col-md-7">
-                                        <div class="cajacentermiddle">
-                                            <div class="celdacentermiddle">
+                                    <div class="col-md-12">
+                                        <div class="cajamiddle_newsletter txtcenter">
+                                            
                                                 <div class="contenedorfield">
                                                     <form action="//bounce.us14.list-manage.com/subscribe/post?u=0b2a08cfc6c1b1143dfc9d1be&amp;id=d9de74fb08" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                                                         <input type="text" class="fieldnewsletter required email" type="email" value="" name="EMAIL" id="mce-EMAIL"/>
                                                         <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="sprite icon-correo">Coreo</button>
                                                     </form>
                                                 </div>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>

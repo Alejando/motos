@@ -35,7 +35,7 @@ tr:nth-child(even) {
     <table class="table table-striped">
         <tr>
             <th>Producto</th>
-            <th>Catindad</th>
+            <th>Cantidad</th>
 <!--             <th>Color</th>
             <th>Tamaño</th> -->
             <th>Precio C/U</th>
@@ -52,7 +52,7 @@ tr:nth-child(even) {
     </table>   
     <table class="table table-striped  pull-right" style="width: auto;">
         <tr><th>Subtotal:</th><td>@{{order.subtotal | currency}}</td></tr>
-        <tr><th>Iva:</th><td>@{{order.tax|currency}}</td></tr>
+        <!-- <tr><th>Iva:</th><td>@{{order.tax|currency}}</td></tr> -->
         <tr><th>Envio:</th><td>@{{order.shipping|currency}}</td></tr>
         <tr style="background-color: silver; color:black"><th>Total:</th><td>@{{order.total|currency}}</td></tr>
     </table>

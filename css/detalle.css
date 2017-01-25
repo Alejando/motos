@@ -557,10 +557,10 @@ a.in {
 	outline: none;
 	color: #7F8082;
 	display: block;
-	font-size: 20px;
+	font-size: 18px;
 	width: 50%;
 	text-align: center;
-	padding: 8px;
+	/*padding: 8px;*/
 	left: 0;
 	right: 0;
 	margin: 0 auto 0 auto;

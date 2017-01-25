@@ -20,19 +20,19 @@
               <tbody>
                 <tr>
                   <th>Nombre:</th>
-                  <td>@{{ user.name }}</td>
+                  <td ng-cloak>@{{ user.name }}</td>
                 </tr>
                 <tr>
                   <th>Correo:</th>
-                  <td>@{{ user.email }}</td>
+                  <td ng-cloak>@{{ user.email }}</td>
                 </tr>
                 <tr>
                   <th>Celular:</th>
-                	<td>@{{ user.cellphone }}</td>
+                	<td ng-cloak>@{{ user.cellphone }}</td>
                 </tr>
                 <tr>
-                  <th>Teléfono:</th>
-                 	<td>@{{ user.homephone }}</td>
+                  <th>Fecha de nacimiento:</th>
+                 	<td ng-cloak>@{{ user.birthdate | date:"dd/MM/yyyy" }}</td>
                 </tr>
 
               </tbody>

@@ -43,10 +43,10 @@ class ContactCtrl extends Controller {
         );
 
         $validator = Validator::make($request->all(), [
-            'Nombre' => 'required',
-            'Movil' => 'required|numeric|min:10',
-            'Correo' => 'required|email',
-            'Mensaje' => 'required',
+            'nombre' => 'required',
+            'movil' => 'required|numeric|min:10',
+            'correo' => 'required|email',
+            'mensaje' => 'required',
 
         ], $messages);
 

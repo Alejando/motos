@@ -11,7 +11,8 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         'description',
         'multi_galeries',
         'discount_percentage',
-        'main_banner'
+        'main_banner',
+        'default_color_id'
     ];
     // <editor-fold defaultstate="collapsed" desc="brand">
     public function brand() {
@@ -20,7 +21,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="defaultColor">
     public function defaultColor() {
-        return $this->belongsTo(\DwSetpoint\Models\Colors::class, 'default_color_id');
+        return $this->belongsTo(\DwSetpoint\Models\Product::class, 'default_color_id');
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="categories">

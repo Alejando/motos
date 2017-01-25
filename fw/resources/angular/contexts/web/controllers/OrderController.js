@@ -66,12 +66,10 @@ setpoint.controller('OrderCtrl', function (
                 });
 
     $scope.dtColumns =   [
-                       DTColumnBuilder.newColumn('created_at').withTitle('Fecha'),
-                       DTColumnBuilder.newColumn('subtotal').withTitle('Subtotal'),
-                       DTColumnBuilder.newColumn('tax').withTitle('Impuesto'),
-                       DTColumnBuilder.newColumn('shipping').withTitle('Envio'),
-                       DTColumnBuilder.newColumn('total').withTitle('Total'),
-                       DTColumnBuilder.newColumn('status').withTitle('Estatus').renderWith(function(data, type, full){
+                        DTColumnBuilder.newColumn('id').withTitle('No. Pedido'),
+                        DTColumnBuilder.newColumn('created_at').withTitle('Fecha'),
+                        DTColumnBuilder.newColumn('total').withTitle('Total'),
+                        DTColumnBuilder.newColumn('status').withTitle('Estatus').renderWith(function(data, type, full){
                             switch(data) {
                                 case 1 : return "Pagado";
                                 case 2 : return "Pendiente";                             
@@ -79,9 +77,7 @@ setpoint.controller('OrderCtrl', function (
                                 default: return "N/A";
                             }
                         }),
-                       DTColumnBuilder.newColumn('tracking_code').withTitle('Codigo de rastreo'),
-                       DTColumnBuilder.newColumn('estimated_date').withTitle('Fecha estimada'),
-                       DTColumnBuilder.newColumn(null).withTitle("Lista Productos").notSortable().renderWith(function(data, type, full, meta){
+                        DTColumnBuilder.newColumn(null).withTitle("Lista Productos").notSortable().renderWith(function(data, type, full, meta){
                            return '<a href="#" class="on-default edit-row icon icon" uib-tooltip="Editar"  ng-click="getDetails('+full.id+')"><i class="fa fa-list"></i></a>';
                        })
                    ];

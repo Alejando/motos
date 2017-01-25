@@ -11,7 +11,7 @@ class StockController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         $ids = \DwSetpoint\Models\Stock::
             with([
                 'product' => function($query) {
-                    $query->select('id','name','slug','serial_number', 'discount_percentage');
+                    $query->select('id','name','slug','code', 'discount_percentage');
                 },
                 'size',
                 'color'
