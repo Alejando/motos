@@ -2,7 +2,9 @@
      <span class="card-errors"></span>
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="row">
-        <div class="col-md-12"><img style="width:90%;" src="{{asset('/css/creditcards.png')}}"/></div>
+        <div class="col-md-4"><img style="width:80%;" src="{{asset('/css/aceptadas_mastercard.svg')}}"/></div>
+        <div class="col-md-4"><img style="width:80%;" src="{{asset('/css/aceptadas_visa.svg')}}"/></div>
+        <div class="col-md-4"><img style="width:80%;" src="{{asset('/css/aceptadas_amex.svg')}}"/></div>
     </div>
     <div class="form-group">
         <label class="col-md-12 control-label" for="nombretarjetahabiente">Nombre del tarjetahabiente:</label>
