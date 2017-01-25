@@ -28,7 +28,7 @@ class CartController  extends Controller {
         return view('public.pages.cart.user-info', [
             'showOffert' => false,
             'showBannerBottom' => false
-        ]);     
+        ]);
     }
     public function registrationForm () {
         $user = auth()->user();
@@ -39,7 +39,7 @@ class CartController  extends Controller {
             'showOffert' => false,
             'showBannerBottom' => false
         ]);
-    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+    }
     public function confirmCheckout() {
         return view('public.pages.checkout', [
             'showOffert' => false,
@@ -48,7 +48,7 @@ class CartController  extends Controller {
         ]);
     }
     public function success() {
-        try { 
+        try {
             $order = \DwSetpoint\Models\Order::getById(Input::get('order'));
             $psp = \DwSetpoint\Models\PSP::createByOrder($order);
             $psp->getPSPResult(Input::all());
@@ -64,11 +64,11 @@ class CartController  extends Controller {
             throw $ex;
             return redirect(route('cart.confirmCheckout',['checkout' => 'fail']));
         }
-    }    
-    
+    }
+
     public function checkout() {
         $user = \Auth::user();
-        $order = new \DwSetpoint\Models\Order();        
+        $order = new \DwSetpoint\Models\Order();
         $order->address_id = Input::get('shipping_address');
         $order->user_id = $user->id;
         $order->psp = Input::get('psp');
@@ -99,8 +99,10 @@ class CartController  extends Controller {
                 return ['url' => $url];
             case PSP::CONEKTA_OXXO:
                 $psp->setUser($user);
-                $psp->checkout([]);
-                return ['url' => $psp->getReferenceUrl()];
+                $result = $psp->checkout([]);
+                return is_array($result)?
+                        $result :
+                        ['url' => $psp->getReferenceUrl()];
                 break;
             case PSP::CONEKTA:
                 $psp->setToken(Input::get('conektaToken'));
@@ -109,7 +111,7 @@ class CartController  extends Controller {
                     'tel' => \Illuminate\Support\Facades\Input::get('tel')
                 ]);
                 return is_array($result)?
-                        $result : 
+                        $result :
                         ['url' => $psp->getSuccessUrl()];
         }
         die();
