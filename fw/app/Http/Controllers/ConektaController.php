@@ -23,7 +23,7 @@ class ConektaController  extends Controller {
     public function getOxxoFormat($order, $format) {
         $objOrder = \DwSetpoint\Models\Order::getById($order);
         
-        $objOrder->sendFormatOxxo();
+//        $objOrder->sendFormatOxxo();
         if($format=='pdf') {
             $pdf = $objOrder->getPDFOxxo();           
             if(Input::get('download')!==null) {
@@ -43,6 +43,7 @@ class ConektaController  extends Controller {
         }
         abort(404);
     }
+    
     public function webhook(){
         $response_json = @file_get_contents('php://input');
         $response = json_decode($response_json);
@@ -59,6 +60,6 @@ class ConektaController  extends Controller {
             'order_id' => $webhook->order->id,
             'charge_id' => $chargeId
         ]);
-        file_put_contents("upload/webhook/test.txt", $response_json);
+//        file_put_contents("upload/webhook/test.txt", $response_json);
     }
 }
