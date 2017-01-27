@@ -40,11 +40,39 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="subcategories">
-        // Condicion where es para filtrar las categorias que estan ocultas
+    // Condicion where es para filtrar las categorias que estan ocultas
     public function subcategories(){
         return $this->hasMany(Category::class,'parent_category_id')->where('hidden', 0);
     }
     // </editor-fold>
+    public function hasSubcategories() {
+        return self::where('parent_category_id','=', $this->id)->count() > 0;
+    }
+    
+    public function getSubcategoriesIds(&$ids, $idCategory = false) {
+        if($idCategory==false) {
+            $idCategory = $this->id;
+        }
+        $d = Category::where('parent_category_id', '=', $idCategory);
+        foreach($d->lists('id') as $subId){
+            $ids[] = $subId;
+            $this->getSubcategoriesIds($ids, $subId);
+        }
+        return $this;
+    }
+    
+    public function getRecursiveProducts($returnQuery=false) {
+        $ids = [];
+        $this->getSubcategoriesIds($ids);
+       
+        $products = Product::whereHas('categories', function($q) use ($ids){
+            $q->whereIn('category_id',$ids);
+        });
+        if($returnQuery){
+            return $products;
+        }
+        return $products->get();
+    }
     // <editor-fold defaultstate="collapsed" desc="getParents}">
     public static function getParents($category, &$parents) {        
         if($category){

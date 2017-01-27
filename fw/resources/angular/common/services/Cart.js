@@ -28,6 +28,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         return ids;
     };
     //</editor-fold>
+    var gettingStock;
     //<editor-fold defaultstate="collapsed" desc="this.getStocks">
     this.getStocks = function () {
         var defer = $q.defer();
@@ -35,7 +36,12 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         var url = laroute.route('stock.getStocks', {
             'stocks' : stocks
         });
-        $http.get(url).then(function(response) {
+        gettingStock = $q.defer();
+        $http({
+            url : url,
+            timeout: gettingStock.promise,
+            method :'GET'
+        }).then(function(response) {
             defer.resolve(response.data);
         });
         return defer.promise;
@@ -86,8 +92,11 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             cleanCoupon();
         }
         return this;
-    }
+    };
     //</editor-fold>
+    this.removeItems = function () {
+        arrItems.splice(0, arrItems.length);
+    };
     //<editor-fold defaultstate="collapsed" desc="this.checkIsSupported">
     var checkIsSupported = function () {
         if(!localStorageService.isSupported) {
@@ -130,7 +139,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     var cleanCoupon = function() {
         cart.discount = 0;
         cart.percentDiscount = 0;
-        if(_coupon.type == Coupon.types.FREE_PRODUCT_BY_AMOUNT) {
+        if(_coupon && (_coupon.type == Coupon.types.FREE_PRODUCT_BY_AMOUNT)) {
             var item = cart.getItemByStock(couponStock);
             if(item) {
                 var q = item.quantity();
@@ -313,10 +322,13 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         cleanCoupon();
     }
     this.setShippingAddress = function (address) {
+        console.log(address);
         this.shippingAddress = address;  
-        if(address && address.id){
+        if(address && address.id) {
             this.addess_id = address.id;
-        }else{
+        } if(address) {
+            this.addess_id = address;
+        } else {
            ls.remove('cart.address'); 
         }
     };
@@ -365,13 +377,22 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             var subtotal = this.getSubTotal();
             var rules =this.shipingRourles;
             if(subtotal >= rules.amountForFree){
-                return 0;
+                return 0; 
             }
             return this.shipingRourles.price;
             }
         return 0;
     }
     
+    this.clean = function () {
+        this.setShippingAddress(null);
+        this.removeCoupon();
+        this.removeItems();
+        this.persistItems(); 
+        if(gettingStock){
+            gettingStock.resolve()
+        }
+    };
     
     this.getTax = function () {
         if('billingInformation', this.billingInformation) {
@@ -457,7 +478,17 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
                 this.prepareData(),
                 defer
             );            
-        }
+        } 
+        defer.promise.then(function(response) {
+            if(self.psp !== self.PSP_PAYPAL ) {
+                console.log("Response", response);
+                if(response.url) {      
+                    self.clean();
+                }
+            }
+        },function() {
+            console.log("fail");
+        });
         return defer.promise;  
     };
 });

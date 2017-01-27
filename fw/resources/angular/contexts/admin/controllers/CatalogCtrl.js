@@ -59,7 +59,7 @@
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
                         DTColumnBuilder.newColumn('name').withTitle('Nombre'),
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type, full, meta){
-                            if(full.main_banner == 1){
+                            if(full.main_banner === 1) {
                                 $scope.icon_main_banner = 'fa fa-star';
                             }else{
                                 $scope.icon_main_banner = 'fa fa-star-o';
@@ -80,7 +80,7 @@
             $scope.selectDefaultColor = function() {
                 $scope.selectedItem.relate('defaultColor', $scope.defaultColor);
                 $scope.selectedItem.default_color_id = $scope.defaultColor.id;
-            }
+            };
             $scope.selectedColors = [];
             $scope.addColor = function ($event, color) {
                 $event.target.checked;
@@ -119,16 +119,18 @@
             $scope.inSize = function(size) {
                 if($scope.selectedItem && $scope.selectedItem.sizes_ids) {
                     return $scope.selectedItem.sizes_ids.indexOf(size.id) !== -1;
-                }
+                } 
             };
             $scope.prepareItem = function () {
                 var $jstree = $('.div-js-tree js-tree');
-                var checkeds = $jstree.jstree("get_checked",null,true);
+                var checkeds = $jstree.jstree("get_checked", null, true);
+                console.log(checkeds);
                 angular.forEach(checkeds, function(category){
                     $scope.selectedItem.relate("categories", {
                         id : category
                     });
                 });
+                console.log(checkeds);
                 $scope.selectedItem.brand_id = $scope.selectedBrand.id;
                 $scope.selectedItem.multi_galeries = $scope.selectedItem.multi_galeries === true ? 1 : 0;
                 angular.forEach($scope.files,function(file, i){
@@ -222,10 +224,10 @@
             $scope.addMainBanner = function (id,$event) {
                 //alert(id);
                 console.log("Change main banner");
-                $scope.model.getById(id).then(function(product){
+                $scope.model.getById(id).then(function(product) {
                     $scope.selectedItem =  product;
                     console.log($scope.selectedItem.main_banner);
-                    if($scope.selectedItem.main_banner == 1){
+                    if($scope.selectedItem.main_banner === 1) {
                         $scope.selectedItem.main_banner = 0;
                     }else{
                         $scope.selectedItem.main_banner = 1;
@@ -236,7 +238,7 @@
                         }, !true);
                     });
                 });
-            }
+            };
 
         };
         //</editor-fold>

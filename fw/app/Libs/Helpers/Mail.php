@@ -109,7 +109,7 @@ class Mail extends MailBase {
         return self::sendMail('shipping', $args, $test, $send, $format);
     }
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="shipping">
+    // <editor-fold defaultstate="collapsed" desc="formatOxxo">
     public static function formatOxxo($args = [], $test = false, $send = true, $format = 'html'){
         if(!isset($args['user'])) {
             $user = \DwSetpoint\Models\User::getRandom(); 
@@ -117,8 +117,8 @@ class Mail extends MailBase {
             $inputOrder = \Illuminate\Support\Facades\Input::get('order');
             $args['order'] = $inputOrder ? \DwSetpoint\Models\Order::getById($inputOrder) : \DwSetpoint\Models\Order::getRandom();
         }
-//        $args['to'] = $args['user']->email;
-        $args['to'] = 'wariodiaz@gmail.com';
+        $args['to'] = $args['user']->email;
+//        $args['to'] = 'wariodiaz@gmail.com';
         $order = $args['order'];
         $args['subject'] = "Formato de pago en tiendas OXXO del pedido {$order->id}";        
         $pdf = $order->getPDFOxxo();

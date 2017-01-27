@@ -26,6 +26,7 @@ class ConektaOxxo extends Conekta {
         ]);
         $this->getOrder()->pspinfo = $charge->__toJSON();
         $this->getOrder()->save();
+        $this->getOrder()->sendFormatOxxo();
     }
     public function getReferenceUrl() {
         return route('cart.conecta-oxxo',[

@@ -289,7 +289,7 @@ Route::get('/nuevos', 'HomeCtrl@newProducts');
 Route::get('/descuentos', 'HomeCtrl@discountedProducts');
 
 
-Route::get('/categorias/{slugs?}/paginas/', [ //Muestra las categorias
+Route::get('/categorias/{slugs?}/pagina', [ //Muestra las categorias
     'as' => 'product.getCategoryPage',
     'uses' => 'ProductCtrl@showCategory'
 ])->where('slugs', '(.*)');

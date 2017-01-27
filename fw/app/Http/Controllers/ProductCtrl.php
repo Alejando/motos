@@ -13,23 +13,30 @@ use Illuminate\Support\Facades\Input;
 
 /**
  * Description of ProductCtrl
- *
+ *••••••
  * @author jdiaz
  */
 class ProductCtrl extends Controller{
     // <editor-fold defaultstate="collapsed" desc="showCategory">
     public function showCategory($slug, $page = 1) {
-        $page = Input::get('no'); //Pendiente a revision
-        $currentPage = $page;
-        Paginator::currentPageResolver(function () use ($page) {
-            return $page;
-        });
+        $page = Input::get('paginate'); //Pendiente a revision
+//        $currentPage = $page;
+//        Paginator::currentPageResolver(function () use ($page) {
+//            return $page;
+//        });
 
         $category = \DwSetpoint\Models\Category::getBySlug($slug);
+       
         /* @var $paginator \Illuminate\Pagination\LengthAwarePaginator */
-        $paginator = $category->products()->paginate(4);
-        $paginator->setPageName("no");
+//        echo dd($category->hasSubcategories());
 
+        if($category->hasSubcategories()){
+            $paginator = $category->getRecursiveProducts(true)->paginate(12);
+        } else {
+            $paginator = $category->products()->paginate(12);
+        }
+        $paginator->setPageName("no");
+//        return $paginator;
         if($category) {
             return view('public.pages.products-page', [
                 'products' => $paginator,

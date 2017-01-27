@@ -14,6 +14,8 @@
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
+$env = include_once __DIR__.'/../../fw/config/enviroments.php';
+$app->loadEnvironmentFrom("enviroments/" . ($env ? $env : ".env") );
 
 /*
 |--------------------------------------------------------------------------

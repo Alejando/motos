@@ -28,7 +28,7 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
         ]);
 //        die("adsf");
     }
-    public function setPaid($user) {
+    public function setPaid() {
         $this->status = self::STATUS_PAYMED;
         $this->sendMail(); 
         $this->deliverStock();
@@ -65,7 +65,7 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->hasMany(\DwSetpoint\Models\Item::class);
     }
     
-    public function sendMail($user) {
+    public function sendMail() {
         \DwSetpoint\Libs\Helpers\Mail::order([
             'user' => $this->user,
             'order' => $this

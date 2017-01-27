@@ -49,12 +49,14 @@ class CartController  extends Controller {
     }
     public function success() {
         try {
-            $order = \DwSetpoint\Models\Order::getById(Input::get('order'));
+            $order = \DwSetpoint\Models\Order::getById(Input::get('order'));            
             $psp = \DwSetpoint\Models\PSP::createByOrder($order);
             $psp->getPSPResult(Input::all());
             $result = $psp->getState();
             if($result) {
-                return view('public.pages.cart.success');
+                return view('public.pages.cart.success',[
+                    'order' => $order
+                ]);
             } else {
                 return redirect(route('cart.confirmCheckout',[
                     'checkout' => 'fail'
