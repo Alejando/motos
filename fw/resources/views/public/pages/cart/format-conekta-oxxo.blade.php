@@ -37,18 +37,23 @@ extract(get_object_vars($pm));
         </style>
     </head>
     <body>
+        <div style="width: 20px; height: 10px; background-color: #002B53; position: fixed; top: 50%; transform: translateX(2735%);"></div>
+        <div style="width: 20px; height: 10px; background-color: #002B53; position: fixed; top: 50%; transform: translateX(-170%);"></div>
         <table style="width: 100% margin: auto; padding: 20px 0 0 0; font-family: Tahoma, Geneva, sans-serif; background: #f9f9f9;"">
             <tr>
-                <td><img src="{{asset('img/mail/oxxo_v1/bounce.png')}}"></td> 
-                <td><img src="{{asset('img/mail/oxxo_v1/conekta.jpg')}}"></td>
+                <td>
+                    <div style="margin: auto;">
+                        <img src="{{asset('img/mail/oxxo_v1/bounce.png')}}">
+                    </div>
+                </td> 
             </tr>
             <tr> 
                 <td colspan="2">
                     <div style="border-top: solid 3px #8DC63F;">
                     <p style="font-size: 20px; color: #1893D7; text-align: center;">Forma de pago</p>
-                    <p>En horabuena "{{$order->user->name}}"</p>
-                    <p>Imprime esta forma de pago, ve a la sucursal de Oxxo más cercana a pagar y ¡listo!.</p>
-                    <p>Eso es todo, nuestro sistema detecta el pago y procederá tu orden en automático (Éste proceso puede tardar hasta 24 hrs)</p>
+                    <p>Enhorabuena "{{$order->user->name}}"</p>
+                    <p>Imprime esta forma de pago, ve a la sucursal de OXXO más cercana a pagar y ¡listo!.</p>
+                    <p>Eso es todo, nuestro sistema detecta el pago y procederá tu orden en automático. Éste proceso puede tardar hasta 24 hrs.</p>
                     <div class="info">
                         <table>
                         <tr style="border: solid 1px #CFE0EF; margin: 3px 0 0 0;">
@@ -74,7 +79,7 @@ extract(get_object_vars($pm));
                     </table>
                     </div>
                     
-                    <p>Al instante en que Oxxo nos acredita tu pago recibirás la confirmación de tu orden, a partir de ese momento tu pedido se surte y es enviado al domiciolio que estableciste.</p>
+                    <p>Cuando OXXO acredite tu pago recibirás la confirmación de tu orden, a partir de ese momento tu pedido se surte y es enviado al domicilio que estableciste.</p>
                 </td>
             </tr>
             <tr>
@@ -86,21 +91,19 @@ extract(get_object_vars($pm));
             </tr>
             <tr>
                 <td colspan="2">
-                    <p>El presente cupón debe imprimirse de forma legibley clara, preferentemente con impresora láser y conservase en buen estado sin tachaduras y/o dobleces. De lo contrario, puede que la tienda no pueda capturarlo.</p>
-                    <p>El establecimiento cobrará una cuota de {{Helpers::formatCurrency($couta)}} por concepto de cobranza</p>
+                    <p>El presente cupón debe imprimirse de forma legible y clara, sin tachaduras y/o dobleces. De lo contrario,  podrá suceder que la tienda tenga problemas al capturarlo.</p>
+                    <p>El establecimiento cobrará una cuota de {{Helpers::formatCurrency($couta)}} por concepto de cobranza.</p>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" style="background: #002B53; padding: 10px;">
-                    <div style="width: 49%; text-align: left; display: inline-block; vertical-align: top; color: #FFF;">
-                        <p>Contáctanos a: <br>
-                        hola@bounce.com.mx <br>
-                        (33) 3336 7487</p>
+                <td colspan="2" style="color: #002B53; padding: 10px;">
+                <footer style="position: fixed; bottom: 50px; left: 10px; ">
+                    <div style="text-align: right">
+                        <img src="{{asset('img/mail/oxxo_v1/by_conekta.png')}}">
                     </div>
-                    <div style="width: 49%; text-align: right; display: inline-block; vertical-align: top; color: #FFF;">
-                        <p>Horario de atención:<br>
-                        9:00 a 20:00</p>
-                    </div>
+                    <p style="font-size: 12px;">Prol. Mariano Otero 680, Col. Mariano Otero, CP. 45067, Zapopan, Jal. México, T +52 (33) 3336 7487 / www.bounce.com.mx</p>
+                </footer>
+                    
                 </td>
             </tr>
         </table>

@@ -159,21 +159,31 @@
                 if($scope.selectedItem.id) {
                     var defLoadImg = $scope.selectedItem.getImgs();
                 }
-                var defLoadProductsColors = $scope.selectedItem.colors();
+                var defLoadProductsColors = $scope.selectedItem.colors().then(function(colors){
+                    $scope.selectedColors = colors;
+                });
+                $scope.selectedItem.defaultColor().then(function(color){
+                    $scope.defaultColor = color;
+                    // console.log(color);
+                });
+
                 var defLoadBrand = $scope.selectedItem.brand().then(function(brand){
                     $scope.selectedBrand = brand;
-                    console.log(brand);
+                    //console.log(brand);
                 });
+                
                 $scope.selectedItem.sizes();
                 var defColors = Color.getAll().then(function(colores){
                     $scope.colors = colores;
+                    //console.log(colores);
                 });
                 var defSizes = Size.getAll().then(function(sizes){
                     $scope.sizes = sizes;
                 });
                 $q.all([defCategories, defColors, defLoadProductsColors, defLoadImg, defSizes]).then(function(){
-                    $def.resolve();
+                    $def.resolve(); 
                 });
+                
                 return $def.promise;
             };
 

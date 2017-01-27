@@ -19,7 +19,7 @@ $products = DwSetpoint\Models\Product::getMainProducts();
                     </div>
                 </a>
                 @if ($product->discount_percentage > 0)
-                    <div class="offert sprite globo-{{rand(1, 2)}} text-center">%{{$product->discount_percentage}}</div>
+                    <div class="offert sprite globo-2 text-center">%{{$product->discount_percentage}}</div>
                 @endif
                 <img src="{{$product->getURLCover()}}" class="img-responsive"/>
                 <h3>{{$product->name}}</h3>
