@@ -15,7 +15,7 @@
         <form id="formpago" method="post">
             <div class="infox margentop20">
                 <h4>Web 100% confidencial</h4>
-                    Con BOUNCE tu información de tus tarjetas viaja segura codificada con tecnología SSL.
+                    En Bounce protegemos tus datos, toda la información de tus tarjetas viaja codificada con tecnología SSL, es decir, tus datos viajan encriptados y nadie tiene acceso a ellos.
             <div class="cajadatos margentop20 ng-hide" ng-show="pspError"  ng-cloak>
                 <h2 class="title text-center" style="color:red" >@{{pspError}}<i class="fa fa-times" aria-hidden="true"></i></h2>
             </div>

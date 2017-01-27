@@ -159,27 +159,25 @@
                     <br>
                     <br>
                     <div class="col-sm-12">
-                        <div class="col-xs-12 col-sm-6">
-                            <strong>Dirección:</strong><br><br>
-                            Prol. Mariano Otero 680<br>
-                            Zapopan, Jalisco<br>
-                            México<br>
-                            C.P. 45067<br><br>
+                        <div class="col-xs-12 col-sm-5">
+                            <strong><i class="fa fa-map-marker fa-lg" style="color: #cb2027;"></i> Dirección:</strong><br><br>
+                            {{DwSetpoint\Models\DBConfig::getAddressStreet()}}<br>
+                            {{DwSetpoint\Models\DBConfig::getAddressCity()}}<br>
+                            {{DwSetpoint\Models\DBConfig::getAddressCountry()}}<br>
+                            {{DwSetpoint\Models\DBConfig::getAddressPc()}}<br><br>
                         </div>
-                        <div class="col-xs-12 col-sm-6">
-                            <strong>Teléfono: (33) 3336 7487</strong><br>
-                            <strong><i class="fa fa-whatsapp fa-lg"></i> (33) 3336 7487 </strong>
+                        <div class="col-xs-12 col-sm-7">
+                            <strong><i class="fa fa-phone fa-lg" style="color: #125688;"></i> Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{DwSetpoint\Models\DBConfig::getTelContact()}}<br>
+                            <strong><i class="fa fa-whatsapp fa-lg" style="color: #4dc247;"></i> WhatsApp:&nbsp;</strong> {{DwSetpoint\Models\DBConfig::getTelWhatsapp()}}
                             <br><br>
-                            <strong>Horario:</strong> Lunes a Viernes<br>
-                            de 9:00  a 20:00<br>
-                            (horario corrido)
+                            <strong><i class="fa fa-clock-o fa-lg" style="color: #ce7c02;"></i> Horario:</strong> {{DwSetpoint\Models\DBConfig::getSchedule()}}
                             <br>
                             <br>
                         </div>
                     </div>
                 </div>
-
-            <div id="mapa" class="margentop30"></div>
+           
+              <div id="mapa" class="margentop30"></div>
         </form>
     </div>
 

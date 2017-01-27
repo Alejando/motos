@@ -165,9 +165,9 @@
                                             <div class="celdacentermiddle">
                                                 <div class="txtcenter">
                                                     <!-- <a href="{{Config('app.social.twitter')}}" target="_blank" class="sprite logo-twitter" title="Twitter">Twitter</a> -->
-                                                    <a href="{{Config('app.social.facebook')}}" target="_blank" class="sprite logo-fb" title="Facebook">Facebook</a>
+                                                    <a href="{{DwSetpoint\Models\DBConfig::getUrlFacebook()}}" target="_blank" class="sprite logo-fb" title="Facebook">Facebook</a>
                                                     <!-- <a href="{{Config('app.social.youtube')}}" target="_blank" class="sprite logo-youtube" title="youtube">Youtube</a> -->
-                                                    <a href="{{Config('app.social.instagram')}}" target="_blank" class="sprite logo-instragram" title="Instragram">Instragram</a>
+                                                    <a href="{{DwSetpoint\Models\DBConfig::getUrlInstragram()}}" target="_blank" class="sprite logo-instragram" title="Instragram">Instragram</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -183,16 +183,18 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-xs-12 col-md-12">
                                         <div class="cajamiddle_newsletter txtcenter">
-                                            
                                                 <div class="contenedorfield">
                                                     <form action="//bounce.us14.list-manage.com/subscribe/post?u=0b2a08cfc6c1b1143dfc9d1be&amp;id=d9de74fb08" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                                    <div class="col-xs-12 ">
+                                                        
+                                                    
                                                         <input type="text" class="fieldnewsletter required email" type="email" value="" name="EMAIL" id="mce-EMAIL"/>
                                                         <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="sprite icon-correo">Coreo</button>
+                                                    </div>
                                                     </form>
                                                 </div>
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -203,9 +205,11 @@
                         <nav>
                             <ul class="menu row">
                                 <li class="col-sm-3"><a href="{{url('/contacto')}}"><span class="sprite icon-ubicacion"></span>Contáctanos</a></li>
-                                <li class="col-sm-3"><a href=""><span class="sprite icon-reloj"></span>Hora de atención <br> 9:00 a 20:00</a></li>
+                                <li class="col-sm-3">
+                                    <a href="">
+                                        <span class="sprite icon-reloj"></span>{{DwSetpoint\Models\DBConfig::getSchedule()}}</a></li>
                                 <li class="col-sm-2"><a href="{{route('Content.slug',['slug'=>'aviso-de-privacidad'])}}" class="aviso">Aviso de Privacidad</a></li>
-                                <li class="col-sm-4"><a class="sprite logo-bounce-2">Bounce Tennis Lifestyle</a></li>
+                                <li class="col-sm-4"><a class="logo-bounce-2"><img src="{{asset('/css/logo-bounce-invert.svg')}}"/></a></li>
                             </ul>
                         </nav>
                     </section>

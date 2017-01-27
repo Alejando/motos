@@ -232,8 +232,13 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return($mainProducts);
     }
 
-    public static function getRandomProducts() {
-        $randomProducts = self::all()->random(4);
-        return($randomProducts);
+    public static function getRandomProducts($id) {
+        $products = self::where('id', '!=', $id)->get();
+        if(count($products) <= 4){
+            return $products;
+        }else{
+            $randomProducts = $products->random(4);
+            return($randomProducts); 
+        }
     }
 }
