@@ -14,7 +14,12 @@ $products = DwSetpoint\Models\Product::getRandomProducts($product->id);
                             <div class="productotable">
                                 <div>
                                     <!-- <span  ng-class="{btnkon: checkFav({{$product->id}})}" class="btnk" ng-click="addBookmark($event, {{$product->id}})"></span> -->
-                                    <h3>${{$product->price_from}}</h3>
+                                    @if ($product->discount_percentage > 0)
+                                        <h3 style="text-decoration: line-through;">${{$product->price_from}}</h3>
+                                        <h2 style="color: #ffffff;">{{Helpers::formatCurrency($product->priceFrom-$product->getClculateDiscount())}}</h2> 
+                                    @else
+                                        <h2 style="color: #ffffff;">${{$product->price_from}}</h2> 
+                                    @endif
                                 <span href="" class="btnc"></span>
                                 </div>
                             </div>
@@ -25,7 +30,12 @@ $products = DwSetpoint\Models\Product::getRandomProducts($product->id);
                     @endif
                     <img src="{{$product->getURLCover()}}" class="img-responsive"/>
                     <h3>{{$product->name}}</h3>
-                    <h2>${{$product->price_from}}</h2>
+                    @if ($product->discount_percentage > 0)
+                        <h3 style="text-decoration: line-through;">${{$product->price_from}}</h3>
+                        <h2 style="color: #ff0000;">{{Helpers::formatCurrency($product->priceFrom-$product->getClculateDiscount())}}</h2> 
+                    @else
+                        <h2>${{$product->price_from}}</h2> 
+                    @endif
                 </div>
             </div>
             @endforeach

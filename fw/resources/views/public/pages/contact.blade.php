@@ -4,6 +4,9 @@
 <script src="{{asset('/js/contacto.js')}}" type="text/javascript"></script>
 @stop
 @section('body')
+    <div id="lat" style="display: none" value="{{DwSetpoint\Models\DBConfig::getMapaLatitud()}}"></div>
+    <div id="lng" style="display: none" value="{{DwSetpoint\Models\DBConfig::getMapaLongitud()}}"></div>
+    <div id="zoom" style="display: none" value="{{DwSetpoint\Models\DBConfig::getMapaZoom()}}"></div>
     <div class="cajadatos">
         @if ($Mge_sent)
           <div class="alert alert-success">
@@ -83,7 +86,11 @@
 
                     
                     <div class="row margentop20">
-                    <label>¿DURANTE QUE HORARIO TE GUSTARÍA QUE TE LLAMEMOS?</label>
+                    <div class="col-sm-12">
+                      <label>¿DURANTE QUE HORARIO TE GUSTARÍA QUE TE LLAMEMOS?</label>
+                    </div>
+                    
+                        <br>
                         <div class="col-sm-2">
                             <label class="text-center">DE:</label>
                         </div>
@@ -176,8 +183,8 @@
                         </div>
                     </div>
                 </div>
-           
               <div id="mapa" class="margentop30"></div>
+              
         </form>
     </div>
 
