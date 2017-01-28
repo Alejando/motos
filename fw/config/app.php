@@ -2,7 +2,6 @@
 
 return [
     'schedule' => '09:00 a 20:00',
-    'fb_IdApp' => '1577066222589528',
     'currency' => 'MXN',
     'permissionFiles' => 0777,
     'config-images' => [

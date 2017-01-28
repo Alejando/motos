@@ -87,6 +87,12 @@ class AuthController extends Controller
                 'message' => 'Password o usuario incorrectos'
             ];
         }
-        return $this->parentLogin($request);
+        $res = $this->parentLogin($request);
+        $user = auth()->user();
+//        dd(route('admin.index'));
+        if( $user && $user->isAdmin()) {            
+            return redirect(route('admin.index'));
+        }
+        return $res;
     }
 }

@@ -233,8 +233,10 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     }
 
     public static function getRandomProducts($id) {
-        $products = self::where('id', '!=', $id)->get();
-        if(count($products) <= 4){
+        $nProducts = self::where('id', '!=', $id)->lists("id")->count();  
+        if($nProducts==0) {
+            return false;
+        }else if(count($products) <= 4){
             return $products;
         }else{
             $randomProducts = $products->random(4);
