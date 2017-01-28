@@ -90,9 +90,4 @@ class ProductCtrl extends Controller{
         abort(404);
     }
 
-    public function cacharAlgo(Request $request){
-        // return "tumama";
-        return $request->input('search');
-    }
-
 }

@@ -178,23 +178,19 @@
                                 <div class="row cajanewsletter">
                                     <div class="col-md-12">
                                         <div class="cajamiddle_newsletter">
-                                            
-                                                <i class="txtcenter"><b>Suscríbete para recibir nuestras promociones</b></i>
-                                            
+                                            <i class="txtcenter"><b>Suscríbete para recibir nuestras promociones</b></i> 
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-md-12">
+                                    <div class="row">
                                         <div class="cajamiddle_newsletter txtcenter">
-                                                <div class="contenedorfield">
-                                                    <form action="//bounce.us14.list-manage.com/subscribe/post?u=0b2a08cfc6c1b1143dfc9d1be&amp;id=d9de74fb08" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                                                    <div class="col-xs-12 ">
-                                                        
-                                                    
-                                                        <input type="text" class="fieldnewsletter required email" type="email" value="" name="EMAIL" id="mce-EMAIL"/>
-                                                        <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="sprite icon-correo">Coreo</button>
-                                                    </div>
-                                                    </form>
+                                            <form action="//bounce.us14.list-manage.com/subscribe/post?u=0b2a08cfc6c1b1143dfc9d1be&amp;id=d9de74fb08" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1">
+                                                    <input type="text" class="fieldnewsletter required email" type="email" value="" name="EMAIL" id="mce-EMAIL"/>
+                                                    <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="sprite icon-correo">Coreo</button>
                                                 </div>
+                                            </div>
+                                            </form> 
                                         </div>
                                     </div>
                                 </div>

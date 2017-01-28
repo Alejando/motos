@@ -27,8 +27,6 @@ Route::get('/carrito/conekta-oxxo/order-{order}', [
     'uses' => 'ConektaController@oxxoConfirm'
 ]);
 
-
-
 Route::get('carrito/success', [
     'as' => 'cart.success',
     'uses' => 'CartController@success'
@@ -43,13 +41,6 @@ Route::get('/carrito', [
     'as' => 'cart.list',
     'uses' => 'CartController@listItems'
 ]);
-
-Route::get('/direccion', function() {
-    return view('public.pages.location', [
-        'showOffert' => false,
-        'showBannerBottom' => false
-    ]);
-});
 
 Route::get('/contacto', function() {
     return view('public.pages.contact', [
@@ -343,14 +334,6 @@ Route::get('contenidos/{slug}', [
     return ($result);
  });
 
-
-Route::get('/x', function() {
-    return view('public.pages.detail', [
-        'showOffert' => false,
-        'showBannerBottom' => false
-    ]);
-});
-
 Route::get('user/pedidos',[
         'as'=>'user.getOrders',
         'uses'=>'UserController@getOrders'
@@ -398,11 +381,6 @@ Route::get('facebook-checkin/', [
 Route::post('busqueda/personalizada/',[
         'as'=>'search.custom',
         'uses'=>'ProductCtrl@getSearch'
-    ]);
-
-Route::post('busqueda/personalizada2/',[
-        'as'=>'search.custom2',
-        'uses'=>'ProductCtrl@cacharAlgo'
     ]);
 
 Route::post('request/contact',[
