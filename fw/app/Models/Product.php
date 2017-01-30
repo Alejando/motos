@@ -236,11 +236,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         $nProducts = self::where('id', '!=', $id)->lists("id")->count();  
         if($nProducts==0) {
             return false;
-        }else if(count($products) <= 4){
-            return $products;
+        }else if($nProducts <= 4){
+            return self::getRandom($nProducts);
         }else{
-            $randomProducts = $products->random(4);
-            return($randomProducts); 
+            $randomProducts = self::getRandom(4);
+            return $randomProducts ; 
         }
     }
 }

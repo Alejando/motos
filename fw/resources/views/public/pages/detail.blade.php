@@ -190,7 +190,7 @@
             </div>
         </div>
     </div>
-    @include('public.blocks.randomProducts')
+    @include('public.blocks.randomProducts',['product'=>$product])
     @include('public.blocks.bannerBottom')
 @stop
 

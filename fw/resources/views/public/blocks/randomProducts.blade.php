@@ -1,7 +1,7 @@
 <?php
 $products = DwSetpoint\Models\Product::getRandomProducts($product->id);
 ?>
-@if($products)
+@if(false && $products)
     <div class="margentop30 cajatextura">
         <h3 class="subtitulo "> &nbsp&nbsp TAMBIÉN TE PUEDEN INTERESAR...</h3>
         <div class="margentop30">
