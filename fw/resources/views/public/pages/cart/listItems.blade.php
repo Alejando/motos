@@ -16,7 +16,7 @@
                 <div class="row fila" ng-repeat="item in items">
                     <div class="col-sm-2 hidden-xs">
                         <div class="btnvista">
-                            <img src="@{{item.product.getURLCover()}}" class="img_cart"/>
+                            <img ng-src="@{{item.product.getURLCover()}}" class="img_cart"/>
                         </div>
                     </div>
                     <div class="col-sm-2 col-xs-4">

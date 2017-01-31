@@ -38,7 +38,7 @@
                                   <li>
                                       <span class="item">
                                         <span class="item-left">
-                                            <img class="item_img" src="@{{item.product.getURLCover()}}" alt="" />
+                                            <img class="item_img" ng-src="@{{item.product.getURLCover()}}" alt="" />
                                             <span class="item-info">
                                                 <span><b>@{{item.product.name}}</b></span>
                                                 <div  class="item_price">

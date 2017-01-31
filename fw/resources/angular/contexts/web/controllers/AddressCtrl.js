@@ -10,11 +10,11 @@ setpoint.controller('AddressesCtrl', function (
     DTOptionsBuilder,
     DTColumnBuilder,
     $timeout,
-    AuthSevice
+    AuthService
     ) {
     $scope.model = Address;
 
-    var user = AuthSevice.user();
+    var user = AuthService.user();
 
     var loadCountry = Country.getAll().then(function(countries){
         $scope.countries = countries,

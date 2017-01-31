@@ -1,7 +1,6 @@
 setpoint.controller('CartListItemCtrl', ['$scope', 'Cart',
     function($scope, Cart){
         $scope.items = Cart.getItems();
-        console.log($scope.items);
         $scope.cart = Cart;
         $scope.couponCode='';
         Cart.onInvalidateCoupon = function () {
@@ -36,7 +35,6 @@ setpoint.controller('CartListItemCtrl', ['$scope', 'Cart',
                 title : 'Confirmación',
                 message : '¿Desea retirar el cupón?',
                 callback : function(ok){
-                    console.log(ok);
                     if(ok) {
                         $scope.$apply(function(){
                             Cart.removeCoupon();

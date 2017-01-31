@@ -26,7 +26,7 @@ class ProductCtrl extends Controller{
 //        });
 
         $category = \DwSetpoint\Models\Category::getBySlug($slug);
-       
+
         /* @var $paginator \Illuminate\Pagination\LengthAwarePaginator */
 //        echo dd($category->hasSubcategories());
 
