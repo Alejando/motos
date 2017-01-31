@@ -88,4 +88,13 @@ class User extends Authenticatable {
             'rawPassword' => $rawPassword
         ]);
     }
+
+    public static function getValidateUniqueUserURL() {
+        return route('user.validateUser');
+    }
+
+    public static function existsUser($user) {
+        $n = self::where('email', '=', $user)->count();
+        return $n>0;
+    }
 }

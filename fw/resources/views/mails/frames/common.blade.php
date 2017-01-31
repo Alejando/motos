@@ -48,7 +48,7 @@
         <!--HEADER inicio-->
             <div class="header">
                 <div class="logo_header">
-                    <img src="{{asset('img/mail/logo.png')}}" />
+                    <img src="{{asset('/css/logo-bounce.svg')}}" />
                 </div>
         <!--HEADER fin-->
 

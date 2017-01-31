@@ -3,6 +3,7 @@ var setpoint = angular.module('setpoint', [
     'angular-owl-carousel',
     'LocalStorageModule',
     'devtics-angular-modelbase',
+    'remoteValidation',
     'datatables'
 ]);
 

@@ -15,5 +15,6 @@
 <script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js')}}" type="text/javascript"></script>
 <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script> 
+<script src="{{asset('js/bower_components/ng-remote-validate/release/ngRemoteValidate.0.6.1.min.js')}}"  type="text/javascript"></script>
 @yield('scripts')
 <script src="{{asset('js/estrasol/web-angular.js')}}" type="text/javascript"></script>

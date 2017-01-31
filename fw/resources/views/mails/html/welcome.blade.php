@@ -6,7 +6,7 @@
     <body>
         <div style="min-width: 300px; max-width: 600px; margin: auto; text-align: center;font-family: Tahoma, Geneva, sans-serif; background: #f9f9f9;">
             <div style="padding: 2%; text-align: left; background: #FFF; box-shadow: 0 1px 3px #ddd;">
-                <img src="{{asset('img/mail/logo.png')}}" />
+                <img src="{{asset('/css/logo-bounce.svg')}}" />
             </div>
             <div style="padding: 10px 60px 10px 60px;">
                 <p style="font-size: 20px; color: #1893D7;">¡Gracias por registrarse!</p>

@@ -34,12 +34,21 @@
                     <div class="form-group row">
                         <label for="nombre" class="col-form-label col-sm-2">Email</label>
                         <div class="col-sm-9">
-                            <input type="email" name="email" required="" ng-model="user.email" id="nombre" class="form-control" style="width: 100%"/>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                required="" 
+                                ng-model="user.email" 
+                                id="nombre" 
+                                class="form-control" 
+                                style="width: 100%"
+                                ng-remote-validate="{{\DwSetpoint\Models\User::getValidateUniqueUserURL()}}">
                         </div>
                     </div>
                     <div class=" alert alert-danger" ng-show="registrationForm.email.$touched && registrationForm.email.$invalid">
                         <div ng-show="registrationForm.email.$error.required"> - Email Obligatorio </div>
                         <div ng-show="registrationForm.email.$error.email"> - Escribe un email valido </div>
+                        <div ng-show="registrationForm.email.$error.ngRemoteValidate"> - Ya existe el correo </div>
                     </div>
                     <div class="form-group row">
                         <label for="nombre" class="col-form-label col-sm-2">Contraseña</label>

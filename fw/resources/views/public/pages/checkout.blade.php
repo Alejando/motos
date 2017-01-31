@@ -14,8 +14,14 @@
         <h2 class="subtitulo">Forma de Pago</h2>
         <form id="formpago" method="post">
             <div class="infox margentop20">
-                <h4>Web 100% confidencial</h4>
+                <div class="col-xs-10 col-sm-10 col-md-10">
+                     <h4>Web 100% confidencial</h4>
                     En Bounce protegemos tus datos, toda la información de tus tarjetas viaja codificada con tecnología SSL, es decir, tus datos viajan encriptados y nadie tiene acceso a ellos.
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                    <img style="width:100%; padding-top: 10%" src="{{asset('/css/McAfee_Secure.svg')}}"/>
+                </div>
+               
             <div class="cajadatos margentop20 ng-hide" ng-show="pspError"  ng-cloak>
                 <h2 class="title text-center" style="color:red" >@{{pspError}}<i class="fa fa-times" aria-hidden="true"></i></h2>
             </div>
@@ -28,6 +34,7 @@
             
             <div class="row margentop20" ng-cloak>
                 <div class="col-sm-4">
+                <br>
                     <h3 class="subtitulo">Elige tu método de pago:</h3>
                     <div class="panel-group margentop20 widthlimit" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default" style="display: none">
@@ -103,6 +110,7 @@
                     </div>
                 </div>
                 <div class="col-sm-5">
+                <br>
                     <h3 class="subtitulo2">Resúmen de Compra</h3>
                     <div class="cajaresumen margentop20">
                         <div class="contenidoresumen">
@@ -162,6 +170,7 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
+                    <br>
                     <h2 class="checktotal margentop50">
                         <span>Total:</span> <span>@{{cart.getTotal()|currency:'$'}}</span>
                     </h2>

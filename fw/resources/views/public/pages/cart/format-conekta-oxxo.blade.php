@@ -39,17 +39,13 @@ extract(get_object_vars($pm));
     <body>
         <div style="width: 20px; height: 10px; background-color: #002B53; position: fixed; top: 50%; transform: translateX(2735%);"></div>
         <div style="width: 20px; height: 10px; background-color: #002B53; position: fixed; top: 50%; transform: translateX(-170%);"></div>
+        <div style="text-align:center">
+            <img style="width: 140px; height: 100px;" src="{{asset('img/mail/oxxo_v1/logo-bounce-ver.png')}}">
+        </div>
         <table style="width: 100% margin: auto; padding: 20px 0 0 0; font-family: Tahoma, Geneva, sans-serif; background: #f9f9f9;"">
-            <tr>
-                <td>
-                    <div style="margin: auto;">
-                        <img src="{{asset('img/mail/oxxo_v1/bounce.png')}}">
-                    </div>
-                </td> 
-            </tr>
+
             <tr> 
                 <td colspan="2">
-                    <div style="border-top: solid 3px #8DC63F;">
                     <p style="font-size: 20px; color: #1893D7; text-align: center;">Forma de pago</p>
                     <p>Enhorabuena "{{$order->user->name}}"</p>
                     <p>Imprime esta forma de pago, ve a la sucursal de OXXO más cercana a pagar y ¡listo!.</p>
@@ -99,9 +95,9 @@ extract(get_object_vars($pm));
                 <td colspan="2" style="color: #002B53; padding: 10px;">
                 <footer style="position: fixed; bottom: 50px; left: 10px; ">
                     <div style="text-align: right">
-                        <img src="{{asset('img/mail/oxxo_v1/by_conekta.png')}}">
+                        <img style="width: 182px; height: 50px" src="{{asset('img/mail/oxxo_v1/conekta_color.png')}}">
                     </div>
-                    <p style="font-size: 12px;">Prol. Mariano Otero 680, Col. Mariano Otero, CP. 45067, Zapopan, Jal. México, T +52 (33) 3336 7487 / www.bounce.com.mx</p>
+                    <p style="font-size: 10px;">Prol. Mariano Otero 680, Col. Mariano Otero, CP. 45067, Zapopan, Jal. México, T +52 (33) 3336 7487 / www.bounce.com.mx / hola@bounce.com.mx</p>
                 </footer>
                     
                 </td>

@@ -45,4 +45,13 @@ class UserController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         return $addresses;
     }
+
+    public function validateUser() {//productValid
+        $user = Input::get('value');
+        // Log::info('Showing user profile for user: '.$category);
+        return [
+            'isValid' => !\DwSetpoint\Models\User::existsUser($user),
+            'value' => $user
+        ];
+    }
 }

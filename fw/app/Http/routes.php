@@ -190,6 +190,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('postalCode/save-group', [
         'as' => 'postalCode.saveGroup',
         'uses' => 'Api\\PostalCodeController@saveGroup'
+    ]);
+
+    Route::post('user/validate-user', [
+        'as' => 'user.validateUser',
+        'uses' => 'Api\\UserController@validateUser'
     ]); 
 
     Route::post('category/validate-category', [
