@@ -5,7 +5,6 @@
             <label class="col-md-3 control-label">Nombre</label>
             <div class="col-md-8">
                 <input  type="text"
-                        ng-maxlength="40" 
                         ng-model="selectedItem.name" 
                         class="form-control" 
                         placeholder="Nuevo Producto"
@@ -16,11 +15,8 @@
         </div>
         <div class="alert alert-danger" role="alert" ng-show="productForm.name.$touched && productForm.name.$invalid">
             <div ng-show="productForm.name.$error.required">* Campo obligatorio</div>
-            <div ng-show="productForm.name.$error.maxlength"> Limite de máximo 40 caracteres </div>
-            
-
+            <!-- <div ng-show="productForm.name.$error.maxlength"> Limite de máximo 40 caracteres </div> -->
         </div>
-
         <div class="form-group">
             <label class="col-md-3 control-label">Código:</label>
             <div class="col-md-8">

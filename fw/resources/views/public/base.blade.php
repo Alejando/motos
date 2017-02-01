@@ -207,11 +207,6 @@
                                 <div class="item"><a href="" class="sprite logo-paypal">PayPal</a></div>
                                 <div class="item"><a href="" class="sprite logo-oxxo">Oxxo</a></div>
                                 <div class="item"><a href="" class="sprite logo-seven">Seven</a></div>
-                                <div class="item"><a href="" class="sprite logo-visa">Visa</a></div>
-                                <div class="item"><a href="" class="sprite logo-master-card">Master Card</a></div>
-                                <div class="item"><a href="" class="sprite logo-paypal">PayPal</a></div>
-                                <div class="item"><a href="" class="sprite logo-oxxo">Oxxo</a></div>
-                                <div class="item"><a href="" class="sprite logo-seven">Seven</a></div>
                             </div>
                         </div>
                     </section>

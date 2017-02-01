@@ -3,8 +3,11 @@
 <link href="{{asset('js/bower_components/bootstrap/dist/css/bootstrap-theme.min.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('js/bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('js/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css')}}" rel="stylesheet" type="text/css"/>
-<link href="{{asset('js/bower_components/owlcarousel/owl-carousel/owl.carousel.css')}}" rel="stylesheet" type="text/css"/>
-<link href="{{asset('js/bower_components/owlcarousel/owl-carousel/owl.theme.css')}}" rel="stylesheet" type="text/css"/>
+<!-- <link href="{{asset('js/bower_components/owlcarousel/owl-carousel/owl.carousel.css')}}" rel="stylesheet" type="text/css"/>
+<link href="{{asset('js/bower_components/owlcarousel/owl-carousel/owl.theme.css')}}" rel="stylesheet" type="text/css"/> -->
+<link href="{{asset('js/bower_components/owl.carousel/dist/assets/owl.carousel.css')}}" rel="stylesheet" type="text/css"/>
+<link href="{{asset('js/bower_components/owl.carousel/dist/assets/owl.theme.default.min.css')}}" rel="stylesheet" type="text/css"/>
+
 <link href="{{asset('css/web.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('css/web2.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{asset('css/web-movil.css')}}" rel="stylesheet" type="text/css"/>

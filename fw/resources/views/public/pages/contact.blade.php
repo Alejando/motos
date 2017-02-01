@@ -177,7 +177,7 @@
                             <strong><i class="fa fa-phone fa-lg" style="color: #125688;"></i> Teléfono:&nbsp;&nbsp;&nbsp;&nbsp;</strong> {{DwSetpoint\Models\DBConfig::getTelContact()}}<br>
                             <strong><i class="fa fa-whatsapp fa-lg" style="color: #4dc247;"></i> WhatsApp:&nbsp;</strong> {{DwSetpoint\Models\DBConfig::getTelWhatsapp()}}
                             <br><br>
-                            <strong><i class="fa fa-clock-o fa-lg" style="color: #ce7c02;"></i> Horario:</strong> {{DwSetpoint\Models\DBConfig::getSchedule()}}
+                            <strong><i class="fa fa-clock-o fa-lg" style="color: #ce7c02;"></i> Horario:</strong> {!!DwSetpoint\Models\DBConfig::getSchedule()!!}
                             <br>
                             <br>
                         </div>

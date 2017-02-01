@@ -322,7 +322,6 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
         cleanCoupon();
     }
     this.setShippingAddress = function (address) {
-        console.log(address);
         this.shippingAddress = address;  
         if(address && address.id) {
             this.addess_id = address.id;

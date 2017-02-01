@@ -68,7 +68,7 @@ class ContactCtrl extends Controller {
             Mail::send('mails.html.info_contacto', ['contacto_info' => $contacto_info], function ($m) use ($request) {
                 $m->from('webtest@estrasol.com.mx', 'Administración Contacto Bounce');
 
-                $m->to('hola@bounce.com.mx', 'Bounce Admin')->subject('Solicitud de informes Bounce');
+                $m->to(\DwSetpoint\Models\DBConfig::getContactEmail(), 'Bounce Admin')->subject('Solicitud de informes Bounce');
             });
             return view('public.pages.contact',[
                 'showOffert' => false,
