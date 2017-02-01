@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use DwSetpoint\Http\Requests;
 class HomeCtrl extends Controller {
     public function index(){
-        $products = \DwSetpoint\Models\Product::where('id','!=','')->paginate(8);
+        $products = \DwSetpoint\Models\Product::where('id','!=','')->orderByRaw("RAND()")->paginate(8);
         return view('public.pages.home',[
             'showOffert' => true,
             'showBannerBottom' => true,

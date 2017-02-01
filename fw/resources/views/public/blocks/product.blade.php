@@ -20,7 +20,7 @@
             @if ($product->discount_percentage > 0)
                 <div class="offert sprite globo-2 text-center">%{{$product->discount_percentage}}</div>
             @endif
-            <img src="{{$product->getURLCover()}}" class="img-responsive"/>
+            <img ng-src="{{$product->getURLCover()}}" class="img-responsive"/>
             <h3>{{$product->name}}</h3>
             @if ($product->discount_percentage > 0)
                 <h3 style="text-decoration: line-through;">{{Helpers::formatCurrency($product->price_from)}}</h3>

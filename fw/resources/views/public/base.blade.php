@@ -111,24 +111,14 @@
                     <div style="clear: both"></div>
                 </div>
                 <div>
-                <!--{{-- @if($menuUser)
-                    <ul class="menumain hidden-sm hidden-xs">
-                        <li><a href="" class="transicion">PERFIL</a></li>
-                        <li><a href="" class="transicion">PEDIDOS</a></li>
-                        <li><a href="" class="transicion">DIRECCIONES</a></li>
-                    </ul>
-                @else --}} -->
+
                     @include('public.blocks.menu-lg')
                     @include('public.blocks.menu-sm')
-                <!--{{-- @endif --}}-->
                 
                 <div class="search-form-2">
                     <form class="row" action="{{ url('busqueda/personalizada/') }}" method="POST">
-                       
                         <input type="text" class="input-border col-md-8" name="search">
                         <button class="sprite search-2 col-md-4" type="submit"></button> 
-                     
-                        
                     </form>
                 </div>
                
@@ -203,7 +193,7 @@
                                 <li class="col-sm-3"><a href="{{url('/contacto')}}"><span class="sprite icon-ubicacion"></span>Contáctanos</a></li>
                                 <li class="col-sm-3">
                                     <a href="">
-                                        <span class="sprite icon-reloj"></span>{{DwSetpoint\Models\DBConfig::getSchedule()}}</a></li>
+                                        <span class="sprite icon-reloj"></span>{!!DwSetpoint\Models\DBConfig::getSchedule()!!}</a></li>
                                 <li class="col-sm-2"><a href="{{route('Content.slug',['slug'=>'aviso-de-privacidad'])}}" class="aviso">Aviso de Privacidad</a></li>
                                 <li class="col-sm-4"><a class="logo-bounce-2"><img src="{{asset('/css/logo-bounce-invert.svg')}}"/></a></li>
                             </ul>
@@ -226,7 +216,7 @@
                         </div>
                     </section>
                     <section class="copyrigth">
-                        <div>Copyright © BOUNCE, SA de CV. TODOS LOS DERECHOS RESERVADOS</div>
+                        <div>Copyright © Comercializadora BOUNCE S.A. de C.V. TODOS LOS DERECHOS RESERVADOS</div>
                         <div><b>©  D. R. 2016</b></div>
                     </section>
                 </div>
