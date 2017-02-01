@@ -92,7 +92,10 @@ class Mail extends MailBase {
             $args['order'] = $inputOrder ? \DwSetpoint\Models\Order::getById($inputOrder) : \DwSetpoint\Models\Order::getRandom();
         }
         $args['to'] = $args['user']->email;
-        $args['subject'] = "Confirmación de pedido";
+        $args['subject'] = "Confirmación de pedido " . $args['order']->id;
+        $args['fnPrepare'] =  function (\Illuminate\Mail\Message $message) {
+            $message->bcc(\DwSetpoint\Models\DBConfig::getOrderEmail());
+        };
         return self::sendMail('order', $args, $test, $send, $format);
     }
     // </editor-fold>
@@ -128,6 +131,9 @@ class Mail extends MailBase {
                 'name' => "pago-oxo-".$order->id.'.pdf'
             ]
         ];
+        $args['fnPrepare'] =  function (\Illuminate\Mail\Message $message) {
+            $message->bcc(\DwSetpoint\Models\DBConfig::getOrderEmail());
+        };
         return self::sendMail('format-oxxo', $args, $test, $send, $format);
     }
     // </editor-fold>

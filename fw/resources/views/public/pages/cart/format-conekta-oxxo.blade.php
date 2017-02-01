@@ -7,10 +7,7 @@ extract(get_object_vars($pm));
         <style>
            
             body, table {
-                /*font-size: 12pt;
-                font-family: Arial;
-                color: #7F8082;*/
-             
+               
             }
             td .label {
                 font-weight: bold;

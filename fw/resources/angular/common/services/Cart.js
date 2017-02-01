@@ -255,7 +255,7 @@ $q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInfo
             Coupon.getById(id_coupon).then(function(coupon) {
                applyCoupon(coupon, defer);
             }, function(e) {
-                defer.reject(e.message);
+                self.removeCoupon();                
             });
         } else {
             $timeout(function() {

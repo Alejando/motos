@@ -35,6 +35,9 @@ class MailBase {
                         }
                     }
                     $message->to($to);
+                    if($args['fnPrepare']){
+                        $args['fnPrepare']($message);
+                    }
                  }
             );
         }
