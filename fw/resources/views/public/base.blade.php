@@ -38,7 +38,7 @@
                                   <li>
                                       <span class="item">
                                         <span class="item-left">
-                                            <img class="item_img" src="@{{item.product.getURLCover()}}" alt="" />
+                                            <img class="item_img" ng-src="@{{item.product.getURLCover()}}" alt="" />
                                             <span class="item-info">
                                                 <span><b>@{{item.product.name}}</b></span>
                                                 <div  class="item_price">
@@ -111,24 +111,14 @@
                     <div style="clear: both"></div>
                 </div>
                 <div>
-                <!--{{-- @if($menuUser)
-                    <ul class="menumain hidden-sm hidden-xs">
-                        <li><a href="" class="transicion">PERFIL</a></li>
-                        <li><a href="" class="transicion">PEDIDOS</a></li>
-                        <li><a href="" class="transicion">DIRECCIONES</a></li>
-                    </ul>
-                @else --}} -->
+
                     @include('public.blocks.menu-lg')
                     @include('public.blocks.menu-sm')
-                <!--{{-- @endif --}}-->
                 
                 <div class="search-form-2">
                     <form class="row" action="{{ url('busqueda/personalizada/') }}" method="POST">
-                       
                         <input type="text" class="input-border col-md-8" name="search">
                         <button class="sprite search-2 col-md-4" type="submit"></button> 
-                     
-                        
                     </form>
                 </div>
                
@@ -226,7 +216,7 @@
                         </div>
                     </section>
                     <section class="copyrigth">
-                        <div>Copyright © BOUNCE, SA de CV. TODOS LOS DERECHOS RESERVADOS</div>
+                        <div>Copyright © Comercializadora BOUNCE S.A. de C.V. TODOS LOS DERECHOS RESERVADOS</div>
                         <div><b>©  D. R. 2016</b></div>
                     </section>
                 </div>
