@@ -5,13 +5,13 @@ setpoint.controller('ProfileUserCtrl', function (
     $http,
     User, 
     $timeout,
-    AuthSevice
+    AuthService
     ) {
 
     $scope.test = "Profile user";
     $scope.model = User;
 
-    $scope.user = AuthSevice.user();
+    $scope.user = AuthService.user();
 
     $scope.user.birthdate = new Date($scope.user.birthdate);
     console.log($scope.user.birthdate);

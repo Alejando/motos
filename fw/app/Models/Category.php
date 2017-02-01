@@ -8,6 +8,8 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         $query = \DwSetpoint\Models\Category::where('name', 'like',  ucwords(str_replace('-', " ", $categorySlug)));
         if($parent!==null){
             $query->where('parent_category_id','=', $parent->id);
+        } else {
+            $query->whereNull('parent_category_id');
         }
         $category = $query->get();
         if($category->count()) {
@@ -18,14 +20,26 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     // public function setTypeAttribute($type){
     //     $this->attributes['type'] = $type !== 'false';
     // }
+    public static function fixSlug($slug){
+        $slugs = [
+            'squash-fronton' => 'Squash + Fronton',
+            'faldasshorts' => 'Faldas/Shorts'
+        ];
+        if(isset($slugs[$slug])) {
+            return $slugs[$slug];
+        }
+        return $slug;
+    }
     // <editor-fold defaultstate="collapsed" desc="getBySlug">
     public static function getBySlug($slug) {
         $expoSlug = explode("/", $slug);
         $category = null;
         foreach($expoSlug as $categoryslug) {
+            $categoryslug = self::fixSlug($categoryslug);
             $r = self::findChildrenBySlug($category,$categoryslug);
-            $category = $r;
+            $category = $r; 
         }
+//        dd($category->toArray()  );
         return $category;
     }
     // </editor-fold>

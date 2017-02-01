@@ -35,7 +35,6 @@ setpoint.controller('CartListItemCtrl', ['$scope', 'Cart',
                 title : 'Confirmación',
                 message : '¿Desea retirar el cupón?',
                 callback : function(ok){
-                    console.log(ok);
                     if(ok) {
                         $scope.$apply(function(){
                             Cart.removeCoupon();

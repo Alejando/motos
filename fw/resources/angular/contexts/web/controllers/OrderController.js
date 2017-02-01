@@ -10,12 +10,12 @@ setpoint.controller('OrderCtrl', function (
     DTOptionsBuilder,
     DTColumnBuilder,
     $timeout,
-    AuthSevice
+    AuthService
     ) {
 
     $scope.test = "Pedidos Users";
 
-    var user = AuthSevice.user();
+    var user = AuthService.user();
 
     console.log(user.orders());
     console.log("direcciones");

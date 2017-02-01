@@ -3,9 +3,22 @@
 namespace DwSetpoint\Models;
 
 class ConektaOxxo extends Conekta {
+    
+    protected $expireDate = null;
+    
+    
+    
     protected function setExtraData(&$data) {
+        $days = DBConfig::getDaysToExpireOrder();
+        $today = new \DateTime();
+        $today->setTimezone(new \DateTimeZone('America/Mexico_City'));
+        $today->setTime(0, 0, 0);
+        $today->add(new \DateInterval('P1D'));
+        $today->add(new \DateInterval('P' . $days . 'DT0S'));
+        $this->expireDate = $today;
         $data['cash'] = [
             'type'=>'oxxo',
+            'expires_at' => $today->getTimestamp(),
             'details' => [
                 'orden' => $this->getOrder()
             ]

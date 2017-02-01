@@ -72,11 +72,16 @@ class Order extends \DevTics\LaravelHelpers\Model\ModelBase {
         ]);
         return $this;
     }
-    public function getStringDateCreateAt($format=false, $strTimeZone = false) {
-        return "{dia pedido}";
+    public function getStringDateCreateAt($format = false, $strTimeZone = false) {
+        $date = new \DateTime($this->attributes['created_at']);
+        $date->setTimezone(new \DateTimeZone("America/Mexico_City"));
+        return $date->format('d/m/Y');
     }
     public function getStrDateOxxoExpireAt($format = false, $strTimeZone = false) {
-        return "{dia que expira}";
+        $dateCarbon = \Carbon\Carbon::createFromTimestamp($this->getInfoPsp()->payment_method->expires_at);
+        $dateCarbon->sub(new \DateInterval('PT1S'));
+        $dateCarbon->setTimezone(new \DateTimeZone('America/Mexico_City'));
+        return $dateCarbon->format('d/m/Y');
     }
     public function getDateTiemeCreateAt($strTimeZone = 'America/Mexico_City') {
         $timeZone = new \DateTimeZone($strTimeZone);

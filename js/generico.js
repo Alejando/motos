@@ -30,6 +30,10 @@ var main = function () {
                     },200);
                 }
             });
+           
+        });
+        $('.menumain>li').mouseleave(function(){
+            $(this).find('.cajasubmenu').slideUp(100);
         });
         var time2;
         $('.cajasubmenu').mouseleave(function() {
@@ -43,6 +47,7 @@ var main = function () {
             },50);
             
         });
+        
         
         $('#btnmenuemergente').on('click', function(e) {
             e.preventDefault();

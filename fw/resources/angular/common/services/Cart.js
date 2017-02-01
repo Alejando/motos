@@ -1,4 +1,6 @@
-setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInformation, IVA, Address) {
+setpoint.service('Cart', function(AuthService, 
+User, Country,
+$q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInformation, IVA, Address) {
     var ls = localStorageService;
     this.appliedCode = false;
     this.discount = false;
@@ -6,11 +8,20 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
     var _coupon = null;
     var couponStock = null;
     var cart = this;
+    window.User = User;
+    window.Country = Country;
     this.onInvalidateCoupon = function () {
         console.log("Quitar Cupon");
     };
-    this.coupon_id = ls.get('cart.coupon');
-    this.addess_id = ls.get('cart.address');
+    var user = AuthService.user();
+    if(user) {
+        this.coupon_id = ls.get('cart.coupon');
+        this.addess_id = ls.get('cart.address');
+    } else {
+        this.coupon_id = null;
+        this.addess_id = null;
+    }
+    
     var sp = ls.get('cart.shipping');
     this.shippingPrice = sp ? sp : 0;
     this.PSP_PAYPAL = 1;
@@ -59,7 +70,9 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             item['cart'] = self;
             var cartItem = new CartItem(item, cart[item.id]);
             arrItems.push(cartItem);
-            self.setCouponById(ls.get('cart.coupon'));
+            if(user) {
+                self.setCouponById(ls.get('cart.coupon'));
+            }
         });
     });
 
@@ -205,7 +218,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
                 if(item === null) { //No esta agregado el item
                     self.addStock(stock,1); 
                 }
-                console.log(stock);
+//                console.log(stock);
                 self.setDiscount(stock.getPrice());
                 couponStock = stock;
             });
@@ -242,7 +255,7 @@ setpoint.service('Cart', function($q, $http, localStorageService, CartItem, Coup
             Coupon.getById(id_coupon).then(function(coupon) {
                applyCoupon(coupon, defer);
             }, function(e) {
-                defer.reject(e.message);
+                self.removeCoupon();                
             });
         } else {
             $timeout(function() {
