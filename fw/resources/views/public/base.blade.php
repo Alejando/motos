@@ -193,7 +193,7 @@
                                 <li class="col-sm-3"><a href="{{url('/contacto')}}"><span class="sprite icon-ubicacion"></span>Contáctanos</a></li>
                                 <li class="col-sm-3">
                                     <a href="">
-                                        <span class="sprite icon-reloj"></span>{{DwSetpoint\Models\DBConfig::getSchedule()}}</a></li>
+                                        <span class="sprite icon-reloj"></span>{!!DwSetpoint\Models\DBConfig::getSchedule()!!}</a></li>
                                 <li class="col-sm-2"><a href="{{route('Content.slug',['slug'=>'aviso-de-privacidad'])}}" class="aviso">Aviso de Privacidad</a></li>
                                 <li class="col-sm-4"><a class="logo-bounce-2"><img src="{{asset('/css/logo-bounce-invert.svg')}}"/></a></li>
                             </ul>

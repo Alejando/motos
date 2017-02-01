@@ -57,6 +57,7 @@ var main = function () {
         $('.btncatalogo').on('click', function(e) {
             e.preventDefault();
             $('.menumainmovil').toggle('slide', 'fast');
+            $('body').css('overflow', 'hidden');
         });
 
         $('.menumainmovil [data-btnsub]').each(function() {
@@ -73,6 +74,9 @@ var main = function () {
             $(this).on('click', function(e) {
                 e.preventDefault();
                 $(this).parent().parent().toggle('slide', 'fast');
+                if(!$('.submenumovil:visible').length){
+                    $('body').css('overflow', 'scroll');    
+                }
             });
         });
     };
