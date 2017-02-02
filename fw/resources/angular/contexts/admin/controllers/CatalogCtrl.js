@@ -1,5 +1,55 @@
 /* global BootstrapDialog, setpoint */
 !function () { 
+//    alert("ok");
+    setpoint.directive('inputSlug', function(Slug){
+        return {
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModelCtrl) {                            
+                ngModelCtrl.$parsers.push(function (text) {
+                    if (text) {
+                        var transformedInput = Slug.slugify(text);
+                        if (transformedInput !== text) {
+                            ngModelCtrl.$setViewValue(transformedInput);
+                            ngModelCtrl.$render();
+                        }
+                        return transformedInput;
+                    }
+                    return "";
+                });
+            }
+        };
+    });
+    setpoint.directive('inputToSlug', function(Slug) {
+        console.log("Se contruye la directiva ", Slug);
+        return {
+            require: 'ngModel',
+            scope : {
+                slugModel : "="
+            },
+            link: function (scope, element, attrs, ngModelCtrl) {
+                var OrgSlugModel = scope.slugModel;
+                var OrgSlugModelBk = OrgSlugModel;
+                ngModelCtrl.$parsers.push(function(text) {
+                    if(text) {
+                        if(OrgSlugModel !== scope.slugModel) {
+                            OrgSlugModel=undefined;
+                        }
+                        if(!OrgSlugModel) {
+                            scope.slugModel=Slug.slugify(text);
+                        }
+                        
+                        return text;
+                    } else {
+                        scope.slugModel = OrgSlugModelBk;
+                        OrgSlugModel = OrgSlugModelBk;
+                    }
+                    return "";
+                });
+                
+            }
+        };
+    });
+    
     setpoint.controller('CatalogCtrl', function (
             $scope,
             $compile,
@@ -1084,10 +1134,16 @@
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         $scope.saveItem = function ($event) {
-            console.log("guardado...");
-            if($scope.validateForm){
-                console.log("validando...");
+            if($scope.validateForm) {
                 if($scope.validateForm() === false) {
+                    setTimeout(function(){
+                    var $alert = $('.alert.alert-danger:visible:eq(0)')
+                    $alert
+                        .closest(".modal.bootstrap-dialog")
+                        .scrollTo($alert, 500, {  
+                           offset: -$(window).height() /2
+                    });    
+                    }, 100);
                     return;
                 }
             }

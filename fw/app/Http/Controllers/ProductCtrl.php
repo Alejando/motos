@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Input;
 class ProductCtrl extends Controller{
     // <editor-fold defaultstate="collapsed" desc="showCategory">
     public function showCategory($slug, $page = 1) {
-        $page = Input::get('paginate'); //Pendiente a revision
-//        $currentPage = $page;
-//        Paginator::currentPageResolver(function () use ($page) {
-//            return $page;
-//        });
+        $page = Input::get('no'); //Pendiente a revision
+        $currentPage = $page;
+        Paginator::currentPageResolver(function () use ($page) {
+            return $page;
+        });
 
         $category = \DwSetpoint\Models\Category::getBySlug($slug);
 
