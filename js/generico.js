@@ -127,73 +127,179 @@ var main = function () {
 
     var ofertas = function() {
         $('#owl-offerts').owlCarousel({
-            autoPlay: 5000,
-            pagination: true,
             items: 3,
-            itemsDesktop: [1024, 3],
-            itemsDesktopSmall: [960, 3],
-            itemsTablet: [768, 2],
-            itemsMobile: [480, 1] 
+            autoplay: true,
+            dots: false,
+            loop: false,
+            nav: false,
+            touchDrag: false,
+            mouseDrag: false,
+            responsive:{
+                 0:{
+                    items:1,
+                    autoplay: true,
+                    dots: true,
+                    loop: true
+                },
+                480:{
+                    items:1,
+                    autoplay: true,
+                    dots: true,
+                    loop: true
+                },
+                768:{
+                    items:3
+                },
+                960:{
+                    items:3
+                },
+                1024:{
+                    items:3
+                }
+            } 
         });
     };
 
     var marcas = function() {
         $('#owl-marcas').owlCarousel({
-            autoPlay: 5000,
-            pagination: false,
             items: 5,
-            itemsDesktop: [1024, 5],
-            itemsDesktopSmall: [960, 4],
-            itemsTablet: [768, 2],
-            itemsMobile: [480, 1] 
+            autoplay: true,
+            dots: false,
+            loop:true,
+            nav:false,
+            margin: 50,
+            responsive:{
+                0:{
+                    items:3
+                },
+                480:{
+                    items:3
+                },
+                768:{
+                    items:4
+                },
+                960:{
+                    items:4
+                },
+                1024:{
+                    items:5
+                }
+            }
         });
     };
 
     var metodos = function() {
         $('#owl-metodos').owlCarousel({
-            autoPlay: 5000,
-            pagination: false,
             items: 5,
-            itemsDesktop: [1024, 5],
-            itemsDesktopSmall: [960, 4],
-            itemsTablet: [768, 2],
-            itemsMobile: [480, 1] 
+            autoplay: true,
+            dots: false,
+            loop: true,
+            nav: false,
+            responsive:{
+                0:{
+                    items:3
+                },                
+                480:{
+                    items:3
+                },
+                768:{
+                    items:3
+                },
+                960:{
+                    items:4
+                },
+                1024:{
+                    items:5
+                }
+            } 
         });
     };
 
     var detalle = function() {
         $('#owl-detalle').owlCarousel({
-            autoPlay: 5000,
-            pagination: true,
             items: 4,
-            itemsDesktop: [1024, 4],
-            itemsDesktopSmall: [960, 3],
-            itemsTablet: [768, 2],
-            itemsMobile: [480, 1] 
+            autoplay: true,
+            dots: false,
+            loop: true,
+            nav: false,
+            responsive:{
+                0:{
+                    items:1
+                },                
+                480:{
+                    items:1
+                },
+                768:{
+                    items:2
+                },
+                960:{
+                    items:3
+                },
+                1024:{
+                    items:4
+                }
+            } 
         });
     };
 
     var otrosproductos = function() {
         $('#owl-otros').owlCarousel({
-            autoPlay: 5000,
-            pagination: true,
             items: 4,
-            itemsDesktop: [1024, 4],
-            itemsDesktopSmall: [960, 3],
-            itemsTablet: [768, 2],
-            itemsMobile: [480, 1] 
+            autoplay: false,
+            dots: false,
+            loop: false,
+            nav: false,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    dots: true,
+                    loop: true
+                },                
+                480:{
+                    items:1
+                },
+                768:{
+                    items:3,
+                    dots: true,
+                    loop: true
+                },
+                960:{
+                    items:3,
+                    dots: true,
+                    loop: true
+                },
+                1024:{
+                    items:4
+                }
+            } 
         });
     };
 
     var estrellas = function() {
         $('#owl-estrellas').owlCarousel({
-            autoPlay: 5000,
-            pagination: false,
             items: 1,
-            itemsDesktop: [1024, 5],
-            itemsDesktopSmall: [960, 4],
-            itemsTablet: [768, 2],
-            itemsMobile: [480, 1] 
+            autoplay: true,
+            dots: false,
+            loop:true,
+            nav:false,
+            responsive:{
+                0:{
+                    items:1
+                },                
+                480:{
+                    items:1
+                },
+                768:{
+                    items:1
+                },
+                960:{
+                    items:1
+                },
+                1024:{
+                    items:1
+                }
+            }
         });
     };
 

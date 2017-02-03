@@ -5,7 +5,7 @@
      border-radius: 10px;
      padding: 15px;
      ">
-    <form name="formLogin" novalidate="">
+    <form name="formLogin" novalidate="" ng-cloak>
         <h2 class="subtitulo">Ingresar a mi cuenta</h2>
         <div style="clear: both"></div>
         <div class="text-center" style="margin: 10px">
