@@ -39,7 +39,7 @@ extract(get_object_vars($pm));
         <div style="text-align:center">
             <img style="width: 140px; height: 100px;" src="{{asset('img/mail/oxxo_v1/logo-bounce-ver.png')}}">
         </div>
-        <table style="width: 100% margin: auto; padding: 20px 0 0 0; font-family: Tahoma, Geneva, sans-serif; background: #f9f9f9;"">
+        <table style="width: 100% margin: auto; padding: 20px 0 0 0; font-family: Tahoma, Geneva, sans-serif;">
 
             <tr> 
                 <td colspan="2">

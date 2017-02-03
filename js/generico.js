@@ -128,7 +128,7 @@ var main = function () {
     var ofertas = function() {
         $('#owl-offerts').owlCarousel({
             items: 3,
-            autoplay: false,
+            autoplay: true,
             dots: false,
             loop: false,
             nav: false,
@@ -167,7 +167,7 @@ var main = function () {
             dots: false,
             loop:true,
             nav:false,
-            margin: 20,
+            margin: 50,
             responsive:{
                 0:{
                     items:3

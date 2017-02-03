@@ -11,14 +11,14 @@
             <a href="./pago" class="transicion"><span><b>3</b></span></a> 
         @endif
     </div>
-<div class="cajadatos margentop30">       
+<div class="cajadatos margentop30" ng-cloak>       
             <div ng-controller="RegistrationFormCtrl" class="container col-sm-8 col-sm-offset-2" style="
                     background-color: rgba(250,250, 250, .5); 
                     border: solid 1px #8DC53E;
                     border-radius: 10px;
                     padding: 15px;
                 ">
-                <form ng-submit="submit()" novalidate="" name="registrationForm">
+                <form ng-submit="submit()" novalidate="" name="registrationForm" ng-cloak>
                     <h2 class="subtitulo">Registro</h2>
                     <div style="clear: both"></div>
                     <div class="text-center"><a href="{{route('facebook.login')}}"><img src="{{asset('img/facebook-login.png')}}" height="40"></a></div>
