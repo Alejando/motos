@@ -231,7 +231,10 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'product.validateCode',
         'uses' => 'Api\\ProductController@validateCode'
     ]);
-
+    Route::post('product/validate-slug/{edit?}',[
+        'as' => 'product.validateSlug',
+        'uses' => 'Api\\ProductController@validateSlug'
+    ]);
     Route::get('product/{id}/images', [
         'as' => 'product.getImgs',
         'uses' => 'Api\\ProductController@getImgs'

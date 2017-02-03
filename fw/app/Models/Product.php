@@ -228,12 +228,19 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     public static function getValidateUniqueCodeURL() {
         return route('product.validateCode');
     }
-
+    public static function getValidateUniqueSlugURL($edit=false) {
+        return route('product.validateSlug', [ 
+            'edit' => $edit 
+        ]);
+    }
     public static function existsCode($code) {
         $n = self::where('code', '=', $code)->count();
         return $n>0;
     }
-
+    public static function existsSlug($slug) {
+        $n = self::where('slug', '=', $slug)->count();
+        return $n>0;
+    }
     public static function getMainProducts() {
         $mainProducts = self::where('main_banner', 1)->get();
         return($mainProducts);

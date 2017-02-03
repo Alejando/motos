@@ -111,5 +111,12 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
             'value' => $code
         ];
     }
+    public function validateSlug($edit=false) {
+        $slug = Input::get('value');
+        return [
+            'isValid' => !\DwSetpoint\Models\Product::existsSlug($slug),
+            'valude' => $slug
+        ];
+    }
 
 }
