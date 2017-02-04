@@ -187,6 +187,9 @@
                     $scope.selectedItem.addFile('img[' + i + ']', file);
                 });
             };
+            $scope.onRemoveError = function () {
+                alert("ups");
+            };
             $scope.preprareForm = function () {
                 $scope.files = [];
                 $def = $q.defer();
@@ -400,10 +403,7 @@
                 var def = $q.defer();
                 $scope.selectedColor = null;
                 $scope.selectedSize = null;
-//                console.log($scope.selectedItem, $scope.selectedProduct);
-//                if(!$scope.selectedItem.price){
-                    $scope.selectedItem.price = $scope.selectedProduct.price_from;
-//                }
+                $scope.selectedItem.price = $scope.selectedProduct.price_from;
                 var loadColors = $scope.selectedProduct.colors().then(function(colors) {
                     $scope.colors = colors;
                 });
@@ -1241,11 +1241,16 @@
                         label: 'SI',
                         cssClass: 'btn btn-primary waves-effect waves-light',
                         action: function(dialogRef) {
-                            $scope.selectedItem.remove().then(function(){
+                            $scope.selectedItem.remove().then(function(res){
+                                    console.log(res);
                                 $scope.dtInstance.reloadData(function(){
                                     $.noop();
                                 }, !true);
                                 dialogRef.close();
+                            }, function (result) {
+                                if($scope.onRemoveError) {
+                                    $scope.onRemoveError(result);
+                                }
                             });
                             dialogRef.setClosable(false);
                         }

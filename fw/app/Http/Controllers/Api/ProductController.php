@@ -59,6 +59,14 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     public function destroy($id) {
         $product = \DwSetpoint\Models\Product::getById($id);
         $product->removePath();
+        if($product->hasOrders()){
+            $res = [
+                'error' => true,
+                'message' => "El producto ha sido comprado, no se pueden eliminar productos con ordenes",
+                'no_error' => 1
+            ];
+             abort(404, $res );
+        }
         return parent::destroy($id);
     }
 

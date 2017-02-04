@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Input;
 
 /**
  * Description of ProductCtrl
- *••••••
+ *
  * @author jdiaz
  */
 class ProductCtrl extends Controller{

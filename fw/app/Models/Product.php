@@ -122,6 +122,9 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return [];
     }
+    public function hasOrders() {
+        return Item::where('product_id','=', $this->id)->count() > 0;
+    }
     public function getCover(){
 
     }
