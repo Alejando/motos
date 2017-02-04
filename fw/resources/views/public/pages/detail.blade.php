@@ -84,7 +84,12 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="cajaimagen">
-                    <img ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}" class="img-responsive" />
+                    <!-- <img id="fancy-zoom" ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}" class="img-responsive" data-zoom-image="@{{selectedImg ? product.getZoomImg(selectedImg, 1000, 1000):''}}" /> -->
+                    <img ng-elevate-zoom zoom-events-object="objEventsZoom" 
+                        ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}"
+                        zoom-image="@{{selectedImg ? product.getImg(selectedImg, 1000, 1000):''}}" 
+                    />
+                    
                     <!-- <span class="zoom"></span> -->
                 </div>
                 <div class="margentop30">

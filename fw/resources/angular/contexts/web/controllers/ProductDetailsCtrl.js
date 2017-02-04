@@ -1,12 +1,20 @@
 !function() {
-    setpoint.controller("ProductDetailsCtrl", function($scope, Product, Color, $q, Cart) {
+    setpoint.controller("ProductDetailsCtrl", function($scope, Product, Color, $q, Cart, $timeout) {
         $scope.cart = Cart;
         console.log('window.product', window.product);
         var loadProduct = Product.getById(window.product);
+
+        $( document ).ready(function() {
+            $('#native').elevateZoom();
+        });
         
         $scope.selectImg = function(img) {
-            
             $scope.selectedImg = img;
+            $timeout(function() {
+                $scope.objEventsZoom.changeImgs(
+                $scope.product.getImg($scope.selectedImg, 468, 438),
+                $scope.product.getImg($scope.selectedImg, 1000, 1000));
+            },50);
         }
         
         $scope.selectedColor = null;
@@ -63,10 +71,10 @@
         };
         
         $scope.selectColor = function (id_color,stopRecursive) {
-            console.log(id_color);
+            console.log( $scope.selectImg);
             if(stopRecursive === undefined) {
                 $scope.selectedColor = id_color;
-                console.log($scope.selectedColor);
+                //console.log($scope.selectedColor);
             }
             Color.getById(id_color).then(function(color) {
                 var selectedImgs = [];
@@ -83,7 +91,6 @@
                     if(stopRecursive === undefined) {
                         $scope.selectColor($scope.defaultColor.id, true);
                     }
-                    
                 }
             });
         };  
@@ -94,7 +101,8 @@
                     $scope.selectedImgs  = $scope.imgs;
                 }
             }
-        }
+        };
+        $scope.objEventsZoom = {};
         loadProduct.then(function(product) {
             $scope.product = product;
             var loadColors = $scope.product.colors();

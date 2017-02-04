@@ -401,7 +401,7 @@ Route::get('vista/info_contacto',[
 
 Route::post('reset/password',[
     'as' => 'reset.password',
-     'uses'=>'UserController@resetPassword'
+    'uses'=>'UserController@resetPassword'
 ]);
 
 Route::get('restablecer/password',[
