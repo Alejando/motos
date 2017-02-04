@@ -32,7 +32,7 @@ var main = function () {
             });
            
         });
-        $('.menumain>li').mouseleave(function(){
+        $('.menumain>li, .menumain').mouseleave(function(){
             $(this).find('.cajasubmenu').slideUp(100);
         });
         var time2;

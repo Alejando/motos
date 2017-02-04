@@ -14,6 +14,9 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         'main_banner',
         'default_color_id'
     ];
+    
+    public $timestamps = true;
+    
     // <editor-fold defaultstate="collapsed" desc="brand">
     public function brand() {
         return $this->belongsTo(\DwSetpoint\Models\Brand::class, 'brand_id');
@@ -133,11 +136,15 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
             'id'=>$this->id
         ]);
     }
-    public function updatePathUpload($oldCode) {
-        $newPath = $this->getImgPath();
+    public function updatePathUpload($oldCode) {        
+        $newPath = $this->getImgPath();        
         $filename = config("app.paths.products") . $oldCode;
-        rename($filename, $newPath);
-        chmod($newPath, config('app.permissionFiles'));
+        if(file_exists($filename)){
+            rename($filename, $newPath);
+            chmod($newPath, config('app.permissionFiles'));
+        } else {
+            $this->makeImgPath();
+        }
         return $this;
     }
     public function removePath(){
@@ -221,12 +228,19 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     public static function getValidateUniqueCodeURL() {
         return route('product.validateCode');
     }
-
+    public static function getValidateUniqueSlugURL($edit=false) {
+        return route('product.validateSlug', [ 
+            'edit' => $edit 
+        ]);
+    }
     public static function existsCode($code) {
         $n = self::where('code', '=', $code)->count();
         return $n>0;
     }
-
+    public static function existsSlug($slug) {
+        $n = self::where('slug', '=', $slug)->count();
+        return $n>0;
+    }
     public static function getMainProducts() {
         $mainProducts = self::where('main_banner', 1)->get();
         return($mainProducts);

@@ -1,5 +1,55 @@
 /* global BootstrapDialog, setpoint */
 !function () { 
+//    alert("ok");
+    setpoint.directive('inputSlug', function(Slug){
+        return {
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModelCtrl) {                            
+                ngModelCtrl.$parsers.push(function (text) {
+                    if (text) {
+                        var transformedInput = Slug.slugify(text);
+                        if (transformedInput !== text) {
+                            ngModelCtrl.$setViewValue(transformedInput);
+                            ngModelCtrl.$render();
+                        }
+                        return transformedInput;
+                    }
+                    return "";
+                });
+            }
+        };
+    });
+    setpoint.directive('inputToSlug', function(Slug) {
+        console.log("Se contruye la directiva ", Slug);
+        return {
+            require: 'ngModel',
+            scope : {
+                slugModel : "="
+            },
+            link: function (scope, element, attrs, ngModelCtrl) {
+                var OrgSlugModel = scope.slugModel;
+                var OrgSlugModelBk = OrgSlugModel;
+                ngModelCtrl.$parsers.push(function(text) {
+                    if(text) {
+                        if(OrgSlugModel !== scope.slugModel) {
+                            OrgSlugModel=undefined;
+                        }
+                        if(!OrgSlugModel) {
+                            scope.slugModel=Slug.slugify(text);
+                        }
+                        
+                        return text;
+                    } else {
+                        scope.slugModel = OrgSlugModelBk;
+                        OrgSlugModel = OrgSlugModelBk;
+                    }
+                    return "";
+                });
+                
+            }
+        };
+    });
+    
     setpoint.controller('CatalogCtrl', function (
             $scope,
             $compile,
@@ -30,19 +80,19 @@
         var date = $filter('date');
         var dtOptions = false;
         var getTitle = function () {
-            return "Titulo Por defecto";
+            return "Titulo Por defecto"; 
         };
         var getRemoveTitle = function() {
             return "Título por defecto";
         };
-        var getColumnBuilder = [];
+        var getColumnBuilder = []; 
 
         // hide export/import buttons by default
         $scope.hideExcelExport = true;
         $scope.hideExcelImport = true;
 
         //<editor-fold defaultstate="collapsed" desc="catalogo de productos">
-        this.productos = function () {
+        this.productos = function () { 
             $scope.catalog = "Productos";
             $scope.model = Product;
             $scope.hideExcelExport = true;
@@ -57,7 +107,8 @@
             getColumnBuilder = function () {
                 return [
                         DTColumnBuilder.newColumn('id').withTitle('ID'),
-                        DTColumnBuilder.newColumn('name').withTitle('Nombre'),
+                        DTColumnBuilder.newColumn('code').withTitle('Código'),
+                        DTColumnBuilder.newColumn('name').withTitle('Nombre'), 
                         DTColumnBuilder.newColumn(null).withTitle("").notSortable().renderWith(function(data, type, full, meta){
                             if(full.main_banner === 1) {
                                 $scope.icon_main_banner = 'fa fa-star';
@@ -130,7 +181,6 @@
                         id : category
                     });
                 });
-                console.log(checkeds);
                 $scope.selectedItem.brand_id = $scope.selectedBrand.id;
                 $scope.selectedItem.multi_galeries = $scope.selectedItem.multi_galeries === true ? 1 : 0;
                 angular.forEach($scope.files,function(file, i){
@@ -201,7 +251,6 @@
                    }
                 });
             };
-
             $scope.validateForm = function() {
                 $scope.productForm.name.$touched =
                 $scope.productForm.code.$touched =
@@ -222,8 +271,6 @@
                     return false;
                 }
             };
-
-
             $scope.import = function () {
                 console.log('import');
             };
@@ -232,7 +279,6 @@
             };
 
             $scope.addMainBanner = function (id,$event) {
-                //alert(id);
                 console.log("Change main banner");
                 $scope.model.getById(id).then(function(product) {
                     $scope.selectedItem =  product;
@@ -244,7 +290,7 @@
                     }
                     $scope.selectedItem.save().then(function () {
                         $scope.selectedItem.backup();
-                        $scope.dtInstance.reloadData(function(){
+                        $scope.dtInstance.reloadData(function() {
                         }, !true);
                     });
                 });
@@ -347,12 +393,17 @@
                 $scope.products = products;
             });
             $scope.colors = [];
-
             $scope.selectedProduct = null;
             $scope.selectedColor = null;
             $scope.selectedSize = null;
             $scope.onSelectProduct = function() {
                 var def = $q.defer();
+                $scope.selectedColor = null;
+                $scope.selectedSize = null;
+//                console.log($scope.selectedItem, $scope.selectedProduct);
+//                if(!$scope.selectedItem.price){
+                    $scope.selectedItem.price = $scope.selectedProduct.price_from;
+//                }
                 var loadColors = $scope.selectedProduct.colors().then(function(colors) {
                     $scope.colors = colors;
                 });
@@ -364,7 +415,7 @@
                 });
                 return def.promise;
             };
-            $scope.preprareForm = function() {
+            $scope.preprareForm = function(dialog) {
                 var def = $q.defer();
                 if($scope.selectedItem.id) {
                     $scope.selectedItem.backup();
@@ -380,15 +431,16 @@
                         });
                     }).catch(function(e) {
                         console.log(e);
-                        console.log("Algo no furula");
                     });
                 } else {
                     $timeout(function() {
+                        console.log(dialog);
+                        dialog.setSize(BootstrapDialog.SIZE_WIDE);
                         $scope.selectedProduct = null;
                         $scope.selectedColor = null;
                         $scope.selectedSize = null;
                         def.resolve();
-                    },10);
+                    }, 10);
                 }
                 return def.promise;
             }
@@ -1082,12 +1134,18 @@
         //</editor-fold>
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+      
         $scope.saveItem = function ($event) {
-            console.log("guardado...");
-            if($scope.validateForm){
-                console.log("validando...");
+            if($scope.validateForm) {
                 if($scope.validateForm() === false) {
+                    setTimeout(function(){
+                    var $alert = $('.alert.alert-danger:visible:eq(0)')
+                    $alert
+                        .closest(".modal.bootstrap-dialog")
+                        .scrollTo($alert, 500, {  
+                           offset: -$(window).height() /2
+                    });    
+                    }, 100);
                     return;
                 }
             }
@@ -1106,7 +1164,7 @@
         $scope.showFormDialog = function(){
             var $message = $('<div>Cargando...</div>');
             var defer = $q.defer();
-            BootstrapDialog.show({
+            var dialog = BootstrapDialog.show({
                 title: getTitle(), 
                 message: $message,
                 onhide: function(dialog){
@@ -1121,7 +1179,7 @@
 
                     if($scope.preprareForm) {
                         var self = this;
-                        $scope.preprareForm().then(function(){
+                        $scope.preprareForm(dialog).then(function(){
                             $(self).html(txt).slideDown('slow');
                             $compile(angular.element($message).contents())($scope);
                             defer.resolve();

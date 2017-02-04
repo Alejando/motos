@@ -5,18 +5,40 @@
             <label class="col-md-3 control-label">Nombre</label>
             <div class="col-md-8">
                 <input  type="text"
+                        input-to-slug
+                        slug-model="selectedItem.slug"
+                        ng-maxlength="40" 
                         ng-model="selectedItem.name" 
                         class="form-control" 
                         placeholder="Nuevo Producto"
                         name="name"
                         required
                         ng-class="{error:productForm.name.$isvalid && productForm.name.$touched}">
-            </div>
+            </div> 
         </div>
         <div class="alert alert-danger" role="alert" ng-show="productForm.name.$touched && productForm.name.$invalid">
             <div ng-show="productForm.name.$error.required">* Campo obligatorio</div>
-            <!-- <div ng-show="productForm.name.$error.maxlength"> Limite de máximo 40 caracteres </div> -->
+            <div ng-show="productForm.name.$error.maxlength"> Limite de máximo 40 caracteres </div>
         </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Slug</label>
+            <div class="col-md-8">
+                <input type="text"
+                    ng-model="selectedItem.slug"
+                    name="slug"
+                    class="form-control"
+                    required
+                    pattern="^[a-z0-9-]+$"
+                    input-slug
+                >
+            </div>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="productForm.slug.$touched && productForm.slug.$invalid">
+            <div ng-show="productForm.slug.$error.required">* Campo obligatorio</div>
+            <div ng-show="productForm.slug.$error.pattern">* El Slug no cumple con la estructura estadar de un slug, solo minusculas y numeros separadas por "-"</div>
+            <div ng-show="productForm.slug.$error.remoteNew">* Ya existe el slug "@{{selectedItem.slug}}" </div>
+        </div>
+        
         <div class="form-group">
             <label class="col-md-3 control-label">Código:</label>
             <div class="col-md-8">
@@ -44,19 +66,19 @@
                             ng-class="{error:productForm.brand.$isvalid && productForm.brand.$touched}" >
                     <ui-select-match>
                         <span style="
-                              background-image: url(@{{$select.selected.getLogo(20,20)}});
-                                  display: block;
-                                    margin: 0px;
-                                    padding: 0px;
-                                    background-repeat: no-repeat;
-                                    width: 20px;
-                                    height: 20px;
-                                    float: left;
-                                    margin-right: 10px;"
+                                background-image: url(@{{$select.selected.getLogo(20,20)}});
+                                display: block;
+                                margin: 0px;
+                                padding: 0px;
+                                background-repeat: no-repeat;
+                                width: 20px;
+                                height: 20px;
+                                float: left;
+                                margin-right: 10px;"
                         ></span>
                         <span>@{{$select.selected.name}} </span>
                     </ui-select-match>
-                    <ui-select-choices repeat="brand in brands track by (brand.name + brand.id)">
+                    <ui-select-choices repeat="brand in brands  | filter: $select.search track by (brand.name + brand.id)">
                         <span style="
                               background-image: url(@{{brand.getLogo(20,20)}});
                                   display: block;
@@ -67,7 +89,8 @@
                                     height: 20px;
                                     float: left;
                                     margin-right: 10px;"
-                        ></span><span> @{{brand.name}} </span>
+                        ></span>
+                        <span ng-bind-html="brand.name | highlight: $select.search"></span>
                     </ui-select-choices>
                 </ui-select>
             </div>
