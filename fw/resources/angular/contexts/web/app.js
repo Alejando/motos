@@ -7,6 +7,35 @@ var setpoint = angular.module('setpoint', [
     'datatables'
 ]);
 
+setpoint.directive('ngElevateZoom', function() {
+          return {
+            restrict: 'A',
+            scope: {
+                zoomEventsObject : '='
+            },
+            link: function(scope, element, attrs) {
+                var $element, ez;
+                scope.zoomEventsObject.changeImgs = function(smallImage, largeImage) {                    
+                    ez.swaptheimage(smallImage, largeImage);
+                };
+                //Will watch for changes on the attribute
+                attrs.$observe('zoomImage',function(){
+                    linkElevateZoom();
+                });
+                function linkElevateZoom() {
+                    if (!attrs.zoomImage) return;
+                    element.attr('data-zoom-image',attrs.zoomImage);
+                    $element = $(element);
+                    $element.elevateZoom({
+                        scrollZoom : true
+                    });
+                    ez = $element.data('elevateZoom');
+                };
+                linkElevateZoom();
+            }
+          };
+        });
+
 setpoint.config(function (localStorageServiceProvider, $httpProvider) {
     $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
     localStorageServiceProvider

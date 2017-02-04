@@ -1,4 +1,4 @@
-setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Brand, Size) {
+setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Brand, Size, $location) {
     var Product = function(args) {
         ModelBase.apply(this, arguments);
     };
@@ -58,16 +58,35 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
             $defer.promise;
         },
         getImg: function(img, width, height, absoluteURL) {
+            
             var url = laroute.route('product.img', {
                 id: this.id,
                 width: width,
                 height: height,
                 img: img
             });
+           
             if(absoluteURL){
                 return laroute.url(url,[]);
             }
             return url;
+        },
+        getZoomImg: function(img, width, height, absoluteURL) {
+            //var img2 = encodeURIComponent(img.trim());
+            var host = $location.host();
+            var url = laroute.route('product.img', {
+                id: this.id,
+                width: width,
+                height: height,
+                img: img
+            });
+           
+            var urlAbsolute = host+url;
+            console.log(urlAbsolute);
+            if(absoluteURL){
+                return laroute.url(url,[]);
+            }
+            return urlAbsolute;
         },
         getURLCoverSize : function (width, height) {
             return laroute.route('product.getURLCoverSize', {

@@ -34,7 +34,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="sizes">
     public function sizes() {
-        return $this->belongsToMany(Size::class);
+        return $this->belongsToMany(Size::class)->orderBy('id');
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="colors">

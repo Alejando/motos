@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="form-group row text-right" style="padding-right: 15px;">
-            <a href="">Recuperar contraseña</a><br>
+            <a href="{{ url('/password/reset') }}">Recuperar contraseña</a><br>
             <a href="{{route('cart.registration-form')}}">Aun no tengo una cuenta</a>
         </div>
     </form>

@@ -32,7 +32,11 @@
                 </tr>
                 <tr>
                   <th>Fecha de nacimiento:</th>
-                 	<td ng-cloak>@{{ user.birthdate | date:"dd/MM/yyyy" }}</td>
+                 	<td ng-cloak>
+                  
+                      @{{ user.birthdate | date:"dd/MM/yyyy" }}
+                    
+                  </td>
                 </tr>
 
               </tbody>
