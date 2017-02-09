@@ -345,12 +345,14 @@ Route::get('contenidos/{slug}', [
 Route::get('user/pedidos',[
         'as'=>'user.getOrders',
         'uses'=>'UserController@getOrders'
-    ]);
+    ])->middleware('auth')
+    ->middleware('client');
 
 Route::get('user/direcciones',[
         'as'=>'user.getAddresses',
         'uses'=>'UserController@getAddresses'
-    ]);
+    ])->middleware('auth')
+    ->middleware('client');
 
 Route::get('user/orders',[
         'as'=>'user.getOrdersUser',
@@ -376,7 +378,8 @@ Route::get('mi-perfil/compras',[
 Route::get('user/perfil',[
         'as'=>'user.profile',
         'uses'=>'UserController@profile'
-    ]);
+    ])->middleware('auth')
+    ->middleware('client');
 
 Route::get('/loginFacebook', [
     'as'=>'facebook.login',
@@ -390,7 +393,6 @@ Route::post('busqueda/personalizada/',[
         'as'=>'search.custom',
         'uses'=>'ProductCtrl@getSearch'
     ]);
-
 Route::post('request/contact',[
     'as' => 'contact.request',
     'uses' => 'ContactCtrl@sendInfoContact'
