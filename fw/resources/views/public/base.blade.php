@@ -68,7 +68,7 @@
                             </li>
                             @if(Auth::check())
                                 
-                                <li><a href="" class="transicion">Cuenta ({{Auth::user()->email}})</a></li>
+                                <li><a href="" disabled="disabled" class="transicion">Cuenta ({{Auth::user()->email}})</a></li>
                                 <li><span class="separador"></span></li>
                                 @if(Auth::user()->isAdmin())
                                 <li>

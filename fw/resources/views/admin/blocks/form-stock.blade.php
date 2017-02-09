@@ -69,7 +69,7 @@
                         <ui-select-match>
                             <span>@{{$select.selected.name}} </span>
                         </ui-select-match>
-                        <ui-select-choices repeat="size in sizes | orderBy:['name','id'] | filter: $select.search">
+                        <ui-select-choices repeat="size in sizes | orderBy:['id'] | filter: $select.search">
                             <span ng-bind-html="size.name | highlight: $select.search"></span>
                         </ui-select-choices>
                     </ui-select>

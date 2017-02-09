@@ -45,7 +45,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="products">
     public function products() {
-        return $this->belongsToMany(\DwSetpoint\Models\Product::class);
+        return $this->belongsToMany(\DwSetpoint\Models\Product::class)->orderBy('id', 'desc');
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="parent">

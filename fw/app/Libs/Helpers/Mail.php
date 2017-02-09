@@ -128,7 +128,7 @@ class Mail extends MailBase {
         $args['files-stream'] = [
             [
                 'stream'=> $pdf->stream()->content(),
-                'name' => "pago-oxo-".$order->id.'.pdf'
+                'name' => "pago-oxxo-".$order->id.'.pdf'
             ]
         ];
         $args['fnPrepare'] =  function (\Illuminate\Mail\Message $message) {
