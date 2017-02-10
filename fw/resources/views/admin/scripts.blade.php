@@ -55,8 +55,13 @@
         <script src="{{asset('js/bower_components/angular-slugify/angular-slugify.js')}}"  type="text/javascript"></script>
         <script src="{{asset('js/bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js')}}"  type="text/javascript"></script>    
         <script src="{{asset('js/bower_components/angularjs-slider/dist/rzslider.min.js')}}"  type="text/javascript"></script>
-        <script src="{{asset('js/bower_components/ng-remote-validate/release/ngRemoteValidate.0.6.1.min.js')}}"  type="text/javascript"></script>
+        <script src="{{asset('js/bower_components/ng-remote-validate/release/ngRemoteValidate.0.6.1.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/bower_components/devticstools-ng-factory-modelbase-for-laravel/src/baseModel.js')}}"  type="text/javascript"></script>
+        <script src="{{asset('js/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js')}}"  type="text/javascript"></script>
+        
+        
+        <script src="{{asset('assets/plugins/notifyjs/dist/notify.min.js')}}"  type="text/javascript"></script>
+        <script src="{{asset('assets/plugins/notifyjs/dist/styles/bootstrap/notify-bootstrap.js')}}"  type="text/javascript"></script>
         
         <script src="{{asset('js/bower_components/angular-local-storage/dist/angular-local-storage.min.js')}}"  type="text/javascript"></script>
         

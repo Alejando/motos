@@ -14,9 +14,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         'main_banner',
         'default_color_id'
     ];
-    
-    public $timestamps = true;
-    
+    public $timestamps = true;    
     // <editor-fold defaultstate="collapsed" desc="brand">
     public function brand() {
         return $this->belongsTo(\DwSetpoint\Models\Brand::class, 'brand_id');
@@ -92,16 +90,58 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this;
     }
     // </editor-fold>
-    //
+    // <editor-fold defaultstate="collapsed" desc="setNameAttribute">
     public function setNameAttribute($name){
         $this->attributes['name'] = $name;
         $this->slug = str_slug($name);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="validateImgName">
+    private function validateImgName ($img) {
+        $validator = \Illuminate\Support\Facades\Validator::make(
+                ['img' => $img],
+                ['img' => 'regex:/^[a-z0-9\.\-\ \_]+$/'],
+                ['img.regex' => "Nombre de archivo no valido"]);        
+        if($validator->fails()){
+            throw new \Exception($validator->errors()->all()[0],1001);
+        }
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getFileRoute">
+    public function getFileRoute($img) {
+        return $this->getImgPath() . $img;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="removeImg">
+    public function removeImg($img) {
+        $this->validateImgName($img);
+        $file = $this->getFileRoute($img);
+        if(file_exists($file)) {
+            unlink($this->getImgPath().$img);
+            return true;
+        }
+        throw new \Exception("El fichero no existe",1002);        
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="editImg">
+    public function editImg($img, $newName) {
+        $this->validateImgName($img);
+        $this->validateImgName($newName);
+        $file = $this->getFileRoute($img);
+        $newName = $this->getFileRoute($newName);
+        if(file_exists($file)) {
+            rename($file, $newName);
+            return true;
+        }
+        throw new \Exception("El fichero no existe",1002);        
+    }
+    // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="setColorsById">
     public function setSizesByIds($ids) {
         $this->sizes()->sync((array)$ids);
         return $this;
     }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="setColorsById">
     public function setColorsByIds($ids) {
         $this->colors()->sync((array)$ids);
@@ -114,6 +154,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this;
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getImgsAttribute">
     public function getImgsAttribute() {
         $path = $this->getImgPath();
         if(file_exists($path)){
@@ -122,23 +163,33 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return [];
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="hasOrders">
     public function hasOrders() {
         return Item::where('product_id','=', $this->id)->count() > 0;
     }
+    // </editor-fold>    
+    // <editor-fold defaultstate="collapsed" desc="getCover">
     public function getCover(){
 
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getURL">
     public function getURL($category = false) {
         return route('product.showDetails', [
             'categorySlug' => $category,
             'productSlug' =>$this->slug
         ]);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getURLCover">
     public function getURLCover() {
         return route('product.getCover',[
             'id'=>$this->id
         ]);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="updatePathUpload">
     public function updatePathUpload($oldCode) {        
         $newPath = $this->getImgPath();        
         $filename = config("app.paths.products") . $oldCode;
@@ -150,6 +201,8 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return $this;
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="removePath">
     public function removePath(){
         $dirname = $this->getImgPath();
         if(file_exists($dirname)){
@@ -158,6 +211,8 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return $this;
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="image">
     public function image($image, $width, $height) {
         $path = $this->getImgPath().$image;
         if(file_exists($path)){
@@ -172,6 +227,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return false;
     }
+    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getSerialNumberAttribute">
     public function getSerialNumberAttribute() {
         return $this->attributes['serial_number'];
@@ -182,13 +238,17 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->attributes['price_from'];
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getDiscountPercentageAttribute">
     public function getDiscountPercentageAttribute() {
         return $this->attributes['discount_percentage'];
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getClculateDiscount">
     public function getClculateDiscount() {
        return $this->priceFrom * ($this->discountPercentage / 100);
     }
-
+    // </editor-fold>    
+    // <editor-fold defaultstate="collapsed" desc="checkStock">
     public function checkStock($quantity, $size, $color) {
         /* @var $query \Illuminate\Database\Query\Builder */
         $query = Stock::where('product_id', '=' , $this->id);
@@ -197,13 +257,11 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         } else {
             $query->where('size_id', '=', $size);
         }
-
         if($color===null) {
             $query->whereNull('color_id');
         } else {
             $query->where('color_id', '=', $color);
         }
-
         $stocks = $query->get();
         if($stocks->count()) {
             $stock = $stocks->get(0);
@@ -214,10 +272,12 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         throw new \Exception("Lo sentimos actualmente no tenemos esa talla en el color seleccionado");
     }
-
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="hasDiscount">
     public function hasDiscount() {
         return (float) $this->discountPercentage > 0;
     }
+    // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="getBySlug">
     public static function getBySlug($slug, $returQuery = false) {
         $query = self::where('slug', '=', $slug);
@@ -227,28 +287,37 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $query->get()->get(0);
     }
     // </editor-fold>
-
+    // <editor-fold defaultstate="collapsed" desc="getValidateUniqueCodeURL">
     public static function getValidateUniqueCodeURL() {
         return route('product.validateCode');
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getValidateUniqueSlugURL">
     public static function getValidateUniqueSlugURL($edit=false) {
         return route('product.validateSlug', [ 
             'edit' => $edit 
         ]);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="existsCode">
     public static function existsCode($code) {
         $n = self::where('code', '=', $code)->count();
         return $n>0;
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="existsSlug">
     public static function existsSlug($slug) {
         $n = self::where('slug', '=', $slug)->count();
         return $n>0;
     }
+    // </editor-fold>    
+    // <editor-fold defaultstate="collapsed" desc="getMainProducts">
     public static function getMainProducts() {
         $mainProducts = self::where('main_banner', 1)->get();
         return($mainProducts);
     }
-
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getRandomProducts">
     public static function getRandomProducts($id) {
         $nProducts = self::where('id', '!=', $id)->lists("id")->count();  
         if($nProducts==0) {
@@ -260,4 +329,5 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
             return $randomProducts ; 
         }
     }
+    // </editor-fold>
 }

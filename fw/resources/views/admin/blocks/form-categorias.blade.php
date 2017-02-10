@@ -13,6 +13,8 @@
             <label class="col-md-2 control-label">Nombre</label>
             <div class="col-md-8">
                 <input  type="text" 
+                        input-to-slug
+                        slug-model="categoryTemp.slug"
                         ng-model="categoryTemp.name"    
                         class="form-control" 
                         placeholder="Nueva Categoria/Sub-Categoria"
@@ -23,6 +25,26 @@
         </div>
         <div class="alert alert-danger" role="alert" ng-show="categoryForm.name.$touched && categoryForm.name.$invalid">
             <div ng-show="categoryForm.name.$error.required">* Campo obligatorio</div>
+            <!-- <div ng-show="categoryForm.name.$error.ngRemoteValidate">* Ya existe la categoría" </div> -->
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Slug</label>
+            <div class="col-md-8">
+                <input 
+                    type="text"
+                    class="form-control"
+                    placeholder="Slug"
+                    name="slug"
+                    required
+                    ng-model="categoryTemp.slug"
+                    pattern="^[a-z0-9-]+$"
+                    input-slug
+                    >
+            </div>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="categoryForm.slug.$touched && categoryForm.slug.$invalid">
+            <div ng-show="categoryForm.slug.$error.required">* Campo obligatorio</div>
+            <div ng-show="categoryForm.slug.$errorServer">* @{{categoryForm.slug.$errorServer}}</div>
             <!-- <div ng-show="categoryForm.name.$error.ngRemoteValidate">* Ya existe la categoría" </div> -->
         </div>
         <div class="form-group">

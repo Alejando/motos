@@ -16,25 +16,19 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
     $scope.newCategory = function () {
         $scope.categoryTemp = new Category({});
         $scope.showCategoryForm();
-        // $scope.categoryTemp.type = false;
-        
     }
     $scope.edit = function () {
-       
         var selecteds = ($tree.jstree('get_selected'));
-        console.log(selecteds);
+//        console.log(selecteds);
         var id = selecteds[0];
         if(id && id!="root"){
             Category.getById(id).then(function(category){
                 $scope.categoryTemp = category;
                 $scope.showCategoryForm();
-                console.log($scope.categoryTemp);
-                // $scope.categoryTemp.type == 1 ? $scope.categoryTemp.type = true : $scope.categoryTemp.type = false;
             });
         } else {
             BootstrapDialog.alert("Selecciona la categoria a editar");
         }
-        console.log($scope.categoryTemp.parent_category_id);
         window.categoria = $scope.categoryTemp;
     }
     $scope.remove = function ($event) {
@@ -128,6 +122,10 @@ setpoint.controller('CategoriesCtrl', function ($scope,$q, $http, $compile, Cate
                 $tree.jstree('rename_node',node, name);
                 $dialog.modal('hide');
             }
+        }, function(e){
+            $scope.categoryForm.slug.$touched = true;
+            $scope.categoryForm.slug.$invalid = true;
+            $scope.categoryForm.slug.$errorServer = e.data.message;
         });
     };
 
