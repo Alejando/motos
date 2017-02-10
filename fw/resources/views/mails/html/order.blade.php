@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <a href="{{route('user.getOrder',['order'=>$order->id])}}" style="background: #1893D7; color: #FFF; display: inline-block; padding: 8px 15px 8px 15px; text-decoration: none; margin: 20px 0 20px 0;">Consultar Pedido en Línea</a>
+                <a href="{{route('user.getOrders')}}" style="background: #1893D7; color: #FFF; display: inline-block; padding: 8px 15px 8px 15px; text-decoration: none; margin: 20px 0 20px 0;">Consultar Pedidos en Línea</a>
                 </p>
             </div>
             <div style="background: #002B53; padding: 10px;">

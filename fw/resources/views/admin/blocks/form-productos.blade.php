@@ -145,7 +145,7 @@
         </div>
         <div class="form-group">
             <div id="" class="col-md-12">
-                <div class="col-md-6" ng-repeat="size in sizes | orderBy:['name','id']">
+                <div class="col-md-6" ng-repeat="size in sizes | orderBy:['id']">
                     <div class="col-md-12 text-left">
                         <label>
                             <input type="checkbox" name="" ng-checked="inSizes(size)" ng-click="addSize($event, size)">

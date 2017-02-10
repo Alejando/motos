@@ -80,7 +80,7 @@ class ProductCtrl extends Controller{
 
     public function getSearch(Request $request, $page = 1) {
         $search = $request->input('search');
-        $paginator = \DwSetpoint\Models\Product::where('name', 'like', '%'.$search.'%')->paginate(4);
+        $paginator = \DwSetpoint\Models\Product::where('name', 'like', '%'.$search.'%')->orWhere('code', 'like', '%'.$search.'%')->get();
 
         if($paginator) {
             return view('public.pages.products-search', [

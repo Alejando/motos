@@ -27,7 +27,10 @@ setpoint.directive('ngElevateZoom', function() {
                     element.attr('data-zoom-image',attrs.zoomImage);
                     $element = $(element);
                     $element.elevateZoom({
-                        scrollZoom : true
+                        //scrollZoom : true
+                        // zoomType                : "lens",
+                        // lensShape : "round",
+                        // lensSize    : 200
                     });
                     ez = $element.data('elevateZoom');
                 };
