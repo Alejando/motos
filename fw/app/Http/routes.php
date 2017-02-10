@@ -239,7 +239,14 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'product.getImgs',
         'uses' => 'Api\\ProductController@getImgs'
     ]);
-
+    Route::delete('product/{id}/images/{img}',[
+        'as' => 'product.img.remove',
+        'uses' => 'Api\\ProductController@deleteImg'
+    ]);
+    route::put('product/{product}/images/{img}', [
+        'as' => 'product.img.edit',
+        'uses' => 'Api\\ProductController@editImg'
+    ]);
     Route::get('product/{id}/images/{width}x{height}/{img}',[
         'as' => 'product.img',
         'uses' => 'Api\\ProductController@img'

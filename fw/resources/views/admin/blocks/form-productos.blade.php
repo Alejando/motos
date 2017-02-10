@@ -208,8 +208,7 @@
         </div>
         <div class="form-group">
             <div ng-repeat="img in selectedItem.imgs">
-                <img ng-src="@{{selectedItem.getImg(img, 50, 50)}}">
-                <span>@{{img}}</span>
+                <management-product-img img="img"  selected-product="selectedItem"></management-product-img>
             </div>
         </div>
         <button class="btn btn-primary waves-effect waves-light">Guardar</button>
