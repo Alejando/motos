@@ -52,13 +52,13 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="fixSlug">
     public static function fixSlug($slug){
-        $slugs = [
-            'squash-fronton' => 'Squash + Fronton',
-            'faldasshorts' => 'Faldas/Shorts'
-        ];
-        if(isset($slugs[$slug])) {
-            return $slugs[$slug];
-        }
+//        $slugs = [
+//            'squash-fronton' => 'Squash + Fronton',
+//            'faldasshorts' => 'Faldas/Shorts'
+//        ];
+//        if(isset($slugs[$slug])) {
+//            return $slugs[$slug];
+//        }
         return $slug;
     }
     // </editor-fold>    
@@ -123,7 +123,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $products->get();
     }
     // </editor-fold>    
-    // <editor-fold defaultstate="collapsed" desc="getParents}">
+    // <editor-fold defaultstate="collapsed" desc="getParents">
     public static function getParents($category, &$parents) {        
         if($category){
             $parent = $category->parent;

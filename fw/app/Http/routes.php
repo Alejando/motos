@@ -12,7 +12,7 @@
 */
 Route::get("{msj}/holamundo/", "HomeController@holamundo");
 
-Route::post('process/conekta/webhook', [
+Route::post('process/conekta/webhook/40949bfc19feaefa27b64737d28b3ea5aa49ca461f8ea08a1637c705e69fade4', [
     'as' => 'cart.success',
     'uses' => 'ConektaController@webhook'
 ]);

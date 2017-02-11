@@ -13,6 +13,7 @@ use DwSetpoint\Models\Stock;
 use DwSetpoint\Models\Item;
 use \DwSetpoint\Models\PSP; 
 use\DwSetpoint\Models\Order;
+use Illuminate\Support\Facades\Mail;
 /**
  * Description of CartController
  *
@@ -22,16 +23,17 @@ class ConektaController  extends Controller {
     
     public function getOxxoFormat($order, $format) {
         $objOrder = \DwSetpoint\Models\Order::getById($order);
-        
-//        $objOrder->sendFormatOxxo();
-        if($format=='pdf') {
-            $pdf = $objOrder->getPDFOxxo();           
-            if(Input::get('download')!==null) {
-                return $pdf->download();
+        if(auth()->user() == $objOrder->user){
+            if($format=='pdf') {
+                $pdf = $objOrder->getPDFOxxo();           
+                if(Input::get('download')!==null) {
+                    return $pdf->download('bounce-orden-'.$objOrder->id.'.pdf');
+                }
+                return $pdf->stream();
             }
-            return $pdf->stream();
+            return $objOrder->getViewOxxo();
         }
-        return $objOrder->getViewOxxo();
+        abort(404);
     }
     
     public function oxxoConfirm($order) {
@@ -45,21 +47,35 @@ class ConektaController  extends Controller {
     }
     
     public function webhook(){
-        $response_json = @file_get_contents('php://input');
-        $response = json_decode($response_json);
-        $chargeId = $response->data->object->id;
-        $webhook = \DwSetpoint\Models\ConektaWebhook::getByIdCharge($chargeId);
-        if($response->type=='charge.paid'){
-            $webhook->processed = true;
-            $webhook->order->setPaid();
-            $webhook->save();
+        try{
+            $response_json = @file_get_contents('php://input');
+            $response = json_decode($response_json);
+            $chargeId = $response->data->object->id;
+            $webhook = \DwSetpoint\Models\ConektaWebhook::getByIdCharge($chargeId);
+            if($webhook) {
+                if($response->type=='charge.paid'){
+                    $webhook->processed = true;
+                    $webhook->order->setPaid();
+                    $webhook->save();
+                }
+                \DwSetpoint\Models\ConektaWebhookEvent::create([
+                    'event_id' => $response->id,
+                    'response_info' => $response_json,
+                    'order_id' => $webhook->order->id,
+                    'charge_id' => $chargeId,
+                    'type' => $response->type
+                ]);
+            }else {
+                throw new \Exception("No se encontro el webhook");
+            }
+        }catch(\Exception $ex){
+            Mail::raw(json_encode($response,JSON_PRETTY_PRINT)."\n\n\n".$ex->getMessage()."\n\n".$ex->getTraceAsString(), function($m){
+                $m->getSwiftMessage()->setContentType('text/plain');
+                $m->to(env('EMAIL_DEVELOER'));
+                $m->subject('fail en webhook conekta bounce ['. (\Carbon\Carbon::now("America/Mexico_City")->toDateTimeString()).']');
+            });
         }
-        \DwSetpoint\Models\ConektaWebhookEvent::create([
-            'event_id' => $response->id,
-            'response_info' => $response_json,
-            'order_id' => $webhook->order->id,
-            'charge_id' => $chargeId
-        ]);
+        
 //        file_put_contents("upload/webhook/test.txt", $response_json);
     }
 }
