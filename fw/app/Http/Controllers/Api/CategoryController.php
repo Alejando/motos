@@ -3,10 +3,11 @@ use Illuminate\Support\Facades\Log;
 namespace DwSetpoint\Http\Controllers\Api;
 use Illuminate\Support\Facades\Input;
 use Log;
+use  \DwSetpoint\Models\Category;
 class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
-    protected static $model = \DwSetpoint\Models\Category::class;
+    protected static $model = Category::class;
+    // <editor-fold defaultstate="collapsed" desc="tree">
     public function tree () {
-        
         $all = \DwSetpoint\Models\Category::getAll();
         $res = [[
                 'id' => 'root',
@@ -28,13 +29,14 @@ class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
                 'parent' => $paret ? $paret : 'root' ,
                 'state' => [
                     'selected' => false,
-                    'opened' => true
+                    'opened' => false
                 ]
             ];
         }
         return $res;
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="destroy">
     public function destroy($id) {
         $category = \DwSetpoint\Models\Category::where('parent_category_id', $id);
         if($category->count()){
@@ -46,38 +48,54 @@ class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
         }
         return parent::destroy($id);
     }
-
-    public function validateCategory() {//productValid
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="validateCategory">
+    public function validateCategory() {
         $category = Input::get('value');
-        // Log::info('Showing user profile for user: '.$category);
         return [
             'isValid' => !\DwSetpoint\Models\Category::existsCategory($category),
             'value' => $category
         ];
     }
-
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="store">
     public function store(\Illuminate\Http\Request $request) {
-
-        if(Input::get('id')){
-            $res = $this->update($request,  Input::get('id'));
-        } else {
-           $res = parent::store($request);
+        $id = Input::get('id');
+        try {
+            $validate = Category::validate(Input::all(), $id);
+            if($id) {
+                $res = $this->update($request,  Input::get('id'));
+            } else {
+               $res = parent::store($request);
+            }
+            if($res['success']) {
+                $res['model']->saveImg(Input::file('icon'));
+            }
+            return $res;
+        } catch(\Exception $ex) {            
+            return response()->json([
+                'error' => true,
+                'message' => $ex->getMessage(),
+                'no_error' => $ex->getCode()
+            ], 400);         
         }
-        if($res['success']) {
-           // dd($res['model']);
-            $res['model']->saveImg(Input::file('icon'));
-           // $this->saveImage(->id);
-        }
-        return $res;
-       // print_r(Input::all()); 
-       //  phpinfo();
-       //  die();
-       
-       // print_r($_POST);
-       // die();
-       // parent::store($request);
     }
-
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="update">
+    public function update(\Illuminate\Http\Request $request, $id) {
+        try {
+            $validate = Category::validate(Input::all(), $id);
+            parent::update($request, $id);
+        } catch(\Exception $ex) {            
+            return response()->json([
+                'error' => true,
+                'message' => $ex->getMessage(),
+                'no_error' => $ex->getCode()
+            ], 400);         
+        }
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getImage">
     public function getImage($id, $width, $height){
         $png = $source = Config('app.paths.categories').$id.".png";
         $jpg = $source = Config('app.paths.categories').$id.".jpg";
@@ -104,11 +122,12 @@ class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
         $data = $preverse->get('png');  
         return \Illuminate\Support\Facades\Response::make($data, 200, ['Content-Type'=>'image/png']);
     }
-
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getPlayersTennis">
     public function getPlayersTennis(){
         $players = \DwSetpoint\Models\Category::where('parent_category_id', '!=', NULL)->where('type', 1)->get();
 
         return($players);
-        // return "players";
     }
+    // </editor-fold>
 }

@@ -3,10 +3,10 @@
 
 namespace DwSetpoint\Http\Controllers\Api;
 use Illuminate\Support\Facades\Input;
-
+use \DwSetpoint\Models\Brand;
 class BrandController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Brand::class;
-    
+    // <editor-fold defaultstate="collapsed" desc="fitToSize">
     public function fitToSize($id, $slugSEO, $width, $height) {
         $png = $source = Config('app.paths.brads').$id.".png";
         $jpg = $source = Config('app.paths.brads').$id.".jpg";
@@ -33,7 +33,8 @@ class BrandController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         $data = $preverse->get('png');  
         return \Illuminate\Support\Facades\Response::make($data, 200, ['Content-Type'=>'image/png']);
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getImg">
     public function getImg($id) {
         $path = Config('app.paths.brads').$id;
         $jpg = $path.'.jpg';
@@ -51,7 +52,9 @@ class BrandController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         return response()->file($file);
     }
-    public function destroy($id) {
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="destroy">
+        public function destroy($id) {
         $res = parent::destroy($id);
         $path = Config('app.paths.brads').$id;
         $jpg = $path.'.jpg';
@@ -67,36 +70,31 @@ class BrandController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         return $res;
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="store">
     public function store(\Illuminate\Http\Request $request) {
-//        print_r(Input::file('icon')); 
-        if(Input::get('id')){
+        $id = Input::get('id');
+        if($id){
             $res = $this->update($request,  Input::get('id'));
         } else {
            $res = parent::store($request);
         }
         if($res['success']) {
-//            dd($res['model']);
             $res['model']->saveImg(Input::file('icon'));
-//            $this->saveImage(->id);
         }
         return $res;
-//        print_r(Input::all()); 
-//         phpinfo();
-//         die();
-//        
-//        print_r($_POST);
-//        die();
-//        parent::store($request);
     }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="validateBrand">
     public function validateBrand() {//productValid
         $brand = Input::get('value');
-        // Log::info('Showing user profile for user: '.$category);
         return [
-            'isValid' => !\DwSetpoint\Models\Brand::existsBrand($brand),
+            'isValid' => !Brand::existsBrand($brand),
             'value' => $brand
         ];
     }
-
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getImage">
     public function getImage($id, $width, $height){
         $png = $source = Config('app.paths.brads').$id.".png";
         $jpg = $source = Config('app.paths.brads').$id.".jpg";
@@ -123,4 +121,5 @@ class BrandController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         $data = $preverse->get('png');  
         return \Illuminate\Support\Facades\Response::make($data, 200, ['Content-Type'=>'image/png']);
     }
+    // </editor-fold>
 }

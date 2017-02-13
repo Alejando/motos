@@ -5,8 +5,8 @@
     </div>
 
     <div class="pasos">
-        <a href="./carrito" class="transicion"><span><b>1</b></span></a>
-        <a href="./envio" class="transicion activo"><span><b>2</b></span></a>
+        <a href="{{route('cart.list')}}" class="transicion"><span><b>1</b></span></a>
+        <a href="{{route('cart.shiping')}}" class="transicion activo"><span><b>2</b></span></a>
         @if(\Auth::user()) 
             <a href="./pago" class="transicion"><span><b>3</b></span></a> 
         @endif

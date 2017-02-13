@@ -20,7 +20,6 @@
         };
     });
     setpoint.directive('inputToSlug', function(Slug) {
-        console.log("Se contruye la directiva ", Slug);
         return {
             require: 'ngModel',
             scope : {
@@ -36,8 +35,7 @@
                         }
                         if(!OrgSlugModel) {
                             scope.slugModel=Slug.slugify(text);
-                        }
-                        
+                        }                        
                         return text;
                     } else {
                         scope.slugModel = OrgSlugModelBk;
@@ -49,7 +47,50 @@
             }
         };
     });
-    
+    setpoint.directive('managementProductImg', function(DtDialog){
+        return {
+            scope : {
+                img : '=',
+                selectedProduct: '='
+            },
+            controller: function ($scope, $element, $attrs) {
+                $scope.edit = false;
+                $scope.imgTemp = $scope.img;   
+                $scope.removeFile = function(img) {
+                    DtDialog.tryDo($scope.selectedProduct.removeImg(img));
+                };
+                $scope.cancelEdit = function () {
+                    $scope.edit = false;
+                };
+                $scope.editName =  function () {
+                    $scope.edit = true;
+                }
+                $scope.save = function (img,imgTemp) {
+                    DtDialog.tryDo(
+                        $scope.selectedProduct.renameImg(img, imgTemp)).then(function() {
+                            $scope.edit = false;
+                        });
+                };
+            },
+            link : function (scope, element, attrs) {
+                     
+            },
+            template:'<div>' + 
+                        '<img ng-src="{{selectedProduct.getImg(img, 50, 50)}}">' + 
+                        '<span ng-if="edit">' +
+                            '<input type="text" ng-model="imgTemp">' +
+                            '<span><a href="" ng-click="save(img, imgTemp)" class="fa fa-save icon icon" style="color:#808080"></a></span>' +
+                            '<span><a href="" ng-click="cancelEdit()" class="fa fa-undo icon icon danger"></a></span>' +
+                        '</span>' +
+                        '<span ng-if="!edit">' +
+                            '<span ng-if="!edit">{{img}}</span>' +
+                            '<span><a href="" ng-click="editName(img)" class="fa fa-pencil icon icon primary"></a></span>' +
+                            '<span><a href="" ng-click="removeFile(img)" class="fa fa-times icon icon danger"></a></span>' +
+                        '</span>' +
+                     '</div>',
+            replace : true
+        }        
+    });
     setpoint.controller('CatalogCtrl', function (
             $scope,
             $compile,
@@ -175,7 +216,6 @@
             $scope.prepareItem = function () {
                 var $jstree = $('.div-js-tree js-tree');
                 var checkeds = $jstree.jstree("get_checked", null, true);
-                console.log(checkeds);
                 angular.forEach(checkeds, function(category){
                     $scope.selectedItem.relate("categories", {
                         id : category
@@ -187,8 +227,14 @@
                     $scope.selectedItem.addFile('img[' + i + ']', file);
                 });
             };
-            $scope.onRemoveError = function () {
-                alert("ups");
+            $scope.onRemoveError = function (response, dialog) {
+                DtDialog.alert({
+                    'title' : 'Error',
+                    'txtMessage' : response.data.message,
+                    'callback' : function (ok, d) {                       
+                        dialog.close();
+                    }
+                });
             };
             $scope.preprareForm = function () {
                 $scope.files = [];
@@ -200,10 +246,14 @@
                     if(categories.length) {
                        var whaitJsTree = $interval(function(){
                            var $jstree = $('.div-js-tree js-tree');
+                           $jstree.jstree('open_all');
                            if($jstree.find("#" + categories[0].id).size()) {
                                 $interval.cancel(whaitJsTree);
+                                $jstree.jstree('close_all');
                                 angular.forEach(categories, function(category) {
-                                    $jstree.jstree('check_node', "#" + category.id);
+                                    var id = "#" + category.id;
+                                    $jstree.jstree('check_node', id);
+                                    $jstree.jstree("_open_to", id);
                                 });
                             }
                         }, 10);
@@ -1152,7 +1202,6 @@
             if($scope.prepareItem) {
                 $scope.prepareItem();
             }
-            console.log($scope.selectedItem);
             $scope.selectedItem.save().then(function () {
                 $scope.selectedItem.backup();
                 var $dialog = $($event.target).closest('.modal');
@@ -1234,7 +1283,7 @@
             $event.preventDefault();
             $scope.model.getById(id).then(function(item){
                 $scope.selectedItem = item;
-                BootstrapDialog.show({
+                var dialog = BootstrapDialog.show({
                     message: getRemoveTitle(),
                     title: 'Eliminar',
                     buttons: [{
@@ -1249,7 +1298,7 @@
                                 dialogRef.close();
                             }, function (result) {
                                 if($scope.onRemoveError) {
-                                    $scope.onRemoveError(result);
+                                    $scope.onRemoveError(result, dialog);
                                 }
                             });
                             dialogRef.setClosable(false);

@@ -9,12 +9,13 @@ setpoint.factory('Category', function (ModelBase,$q,$http) {
         attributes: [
             'id',
             'name',
-            'parent_category_id',
+            'parent_category_id', 
             'type',
-            'hidden'
+            'hidden', 
+            'slug'
         ],
         relations : []
-    }, {
+    }, {  
     });
     return Category;
 });

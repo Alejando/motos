@@ -2,10 +2,42 @@
 
 namespace DwSetpoint\Models;
 class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
-    protected $fillable = ['name','parent_category_id', 'type', 'hidden'];
-
+    protected $fillable = ['name','parent_category_id', 'type', 'hidden','slug'];
+    // <editor-fold defaultstate="collapsed" desc="validate">
+    public static function validate($data, $id = false) {
+        if($id) {
+            $category = self::getById($id);
+            $existSlug = self::existsSlug($data['slug'], $category->parent_category_id, $category->id);            
+        } else {
+            $existSlug = self::existsSlug(
+                $data['slug'], 
+                false, 
+                isset($data['parent_category_id']) ? $data['parent_category_id'] : false
+            );
+        }
+        if($existSlug) {
+            throw new \Exception("El slug \"".$data['slug']. "\" ya existe", 401);
+        }
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="existsSlug">
+    public static function existsSlug($slug, $parent_id = false, $category_id = false) {
+        $query = self::where('slug', '=' ,$slug);
+        if($parent_id) {
+            $query->where('parent_category_id', '=', $parent_id);
+        } else {
+            $query->whereNull('parent_category_id');
+        }
+        if($category_id){
+            $query->where('id', '!=', $category_id);
+        }
+        $res = $query->count();
+        return $res>0;
+    }
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="findChildrenBySlug">
     public static function findChildrenBySlug($parent, $categorySlug) {
-        $query = \DwSetpoint\Models\Category::where('name', 'like',  ucwords(str_replace('-', " ", $categorySlug)));
+        $query = \DwSetpoint\Models\Category::where('slug', '=', $categorySlug);
         if($parent!==null){
             $query->where('parent_category_id','=', $parent->id);
         } else {
@@ -17,19 +49,19 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         } 
         return null;
     }
-    // public function setTypeAttribute($type){
-    //     $this->attributes['type'] = $type !== 'false';
-    // }
+    // </editor-fold>    
+    // <editor-fold defaultstate="collapsed" desc="fixSlug">
     public static function fixSlug($slug){
-        $slugs = [
-            'squash-fronton' => 'Squash + Fronton',
-            'faldasshorts' => 'Faldas/Shorts'
-        ];
-        if(isset($slugs[$slug])) {
-            return $slugs[$slug];
-        }
+//        $slugs = [
+//            'squash-fronton' => 'Squash + Fronton',
+//            'faldasshorts' => 'Faldas/Shorts'
+//        ];
+//        if(isset($slugs[$slug])) {
+//            return $slugs[$slug];
+//        }
         return $slug;
     }
+    // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="getBySlug">
     public static function getBySlug($slug) {
         $expoSlug = explode("/", $slug);
@@ -59,10 +91,12 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this->hasMany(Category::class,'parent_category_id')->where('hidden', 0);
     }
     // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="hasSubcategories">
     public function hasSubcategories() {
         return self::where('parent_category_id','=', $this->id)->count() > 0;
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getSubcategoriesIds">
     public function getSubcategoriesIds(&$ids, $idCategory = false) {
         if($idCategory==false) {
             $idCategory = $this->id;
@@ -74,7 +108,8 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return $this;
     }
-    
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="getRecursiveProducts">
     public function getRecursiveProducts($returnQuery=false) {
         $ids = [];
         $this->getSubcategoriesIds($ids);
@@ -87,7 +122,8 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return $products->get();
     }
-    // <editor-fold defaultstate="collapsed" desc="getParents}">
+    // </editor-fold>    
+    // <editor-fold defaultstate="collapsed" desc="getParents">
     public static function getParents($category, &$parents) {        
         if($category){
             $parent = $category->parent;
@@ -104,7 +140,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         if(is_array($parents)) {
             $parents = array_reverse($parents);
         }
-        $parents[] =  str_slug($this->name);
+        $parents[] =  $this->slug;
         $url = implode("/", $parents);
         return route('product.getCategoryPage', [
             'slug' => $url,

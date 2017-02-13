@@ -2,7 +2,7 @@
 namespace DwSetpoint\Http\Controllers\Api;
 
 use \Illuminate\Support\Facades\Input;
-
+use \DwSetpoint\Models\Product;
 class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     protected static $model = \DwSetpoint\Models\Product::class;
 
@@ -13,7 +13,22 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         abort(404);
     }
-
+    
+    public function deleteImg(Product $id, $img) {
+        return self::tryDo(function() use ($id, $img) {
+//            $id->removeImg($img);
+            return "La imagen $img fue eliminada";
+        }, 400);
+    }
+    
+    public function editImg(Product $product, $img) {      
+        return self::tryDo(function() use ($product, $img) {
+            $newName = Input::get("newName");
+            $product->editImg($img, $newName);
+            return "La imagen \"$img\" fue renombrada a \"$newName\"";
+        });
+    }
+    
     public function checkStock($id) {
         $size = Input::get('size');
         $color = Input::get('color');
@@ -59,13 +74,13 @@ class ProductController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
     public function destroy($id) {
         $product = \DwSetpoint\Models\Product::getById($id);
         $product->removePath();
-        if($product->hasOrders()){
+        if($product->hasOrders()) {
             $res = [
                 'error' => true,
                 'message' => "El producto ha sido comprado, no se pueden eliminar productos con ordenes",
                 'no_error' => 1
             ];
-             abort(404, $res );
+            return response()->json($res, 400);
         }
         return parent::destroy($id);
     }

@@ -31,31 +31,45 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
             ['brand', Brand, 'belongsTo']
 //            ['stocks', Stock, 'belongTo'],
         ],
-    }, {
-        renameImg: function() {
+        }, {
+        renameImg: function(img, newName) {
             var $defer = $q.defer();
-            var url = laroute.route('product.renameImg', {
-                'id': this.id
+            var self = this;
+            var url = laroute.route('product.img.edit', {
+                'product': this.id,
+                'img' : img
             });
-            $http.put(url, {
-                img: img,
-                name: name
-            }).then(function(request) {
-                //                console.log(request);
-            });
-            $defer.promise;
+            $http.put(url, {                
+                'newName': newName
+            }).then(
+                function(request){
+                    var index = self.imgs.indexOf(img);
+                    self.imgs[index] = newName;
+                    $defer.resolve(request);
+                },
+                function(request) {
+                    $defer.reject(request); 
+                }
+            );
+            return $defer.promise;
         },
         removeImg: function(img) {
             var $defer = $q.defer();
-            var url = laroute.route('product.getImgs', {
-                'id': this.id
+            var self = this;
+            var url = laroute.route('product.img.remove', {
+                'id' : this.id,
+                'img' : img 
             });
-            $http.delete(url, {
-                img: img
-            }).then(function(request) {
-                //                console.log(request);
+            $http.delete(url, { 
+                img : img
+            }).then(function(request) { 
+                var index = self.imgs.indexOf(img);
+                self.imgs.splice(index, 1); 
+                $defer.resolve(request);
+            }, function (request) {
+                $defer.reject(request); 
             });
-            $defer.promise;
+            return $defer.promise;
         },
         getImg: function(img, width, height, absoluteURL) {
             
@@ -80,9 +94,7 @@ setpoint.factory('Product', function(ModelBase, $q, $http, Category, Color, Bran
                 height: height,
                 img: img
             });
-           
             var urlAbsolute = host+url;
-            console.log(urlAbsolute);
             if(absoluteURL){
                 return laroute.url(url,[]);
             }
