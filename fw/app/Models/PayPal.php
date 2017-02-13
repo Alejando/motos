@@ -128,7 +128,7 @@ class PayPal {
                 'order' => $order->id,
                 'success' => true
             ]))
-            ->setCancelUrl('http://demo.estrasol.com.mx/setpoint/carrito/paypal-success?order=' . $order->id . '&success=false');
+            ->setCancelUrl('http://bounce.com.mx/carrito/paypal-success?order=' . $order->id . '&success=false');
         $payment = new Payment();
         $payment->setIntent('Sale')
                 ->setPayer($this->payer)
