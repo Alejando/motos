@@ -1,6 +1,6 @@
 setpoint.controller('CartCheckoutCtrl', [
-    '$scope', 'Cart',
-    function($scope, Cart) {
+    '$scope', 'Cart', 'dtErrorHelpers',
+    function($scope, Cart, dtErrorHelpers) {
         $scope.cart = Cart;
         $scope.items = Cart.getItems();
         $scope.provider = null;
@@ -21,12 +21,13 @@ setpoint.controller('CartCheckoutCtrl', [
                 return;
             }
             evt.preventDefault();
-            Cart.checkout().then(function (data) {
+            var promCheckout = Cart.checkout();
+            dtErrorHelpers.goToElementOnReject(promCheckout,'.pspError');
+            promCheckout.then(function (data) {
                 window.open(data.url, '_self'); 
             }, function (fail) {
-                $scope.sending = true;
+                $scope.sending = false;
                 $scope.pspError = fail.message;
-                console.log($scope.pspError);
             });
         };
     }

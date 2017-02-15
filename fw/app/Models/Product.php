@@ -1,6 +1,7 @@
 <?php
 
 namespace DwSetpoint\Models;
+use Illuminate\Support\Facades\File;
 class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $fillable = [
         'name',
@@ -75,6 +76,9 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $this;
     }
     // </editor-fold>
+    public static function getImgCacheName($slugProduct, $img, $w,$h,$ext) {
+        return config('app.paths.img-products-cache')."$slugProduct/$img/v{$w}x{$h}.$ext";
+    }
     // <editor-fold defaultstate="collapsed" desc="getImgPath">
     public function getImgPath() {
         return config("app.paths.products") . "{$this->code}/";
@@ -184,8 +188,16 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getURLCover">
     public function getURLCover() {
+        if(isset($this->imgs[0]) && File::extension($this->imgs[0])){
+            $ext = File::extension($this->imgs[0]);
+            return route('product.getCover',[
+                'slug'=>$this->slug,
+                'ext'=> 'png'
+            ]);
+        }
         return route('product.getCover',[
-            'id'=>$this->id
+            'slug'=>'default',
+            'ext'=> 'png'
         ]);
     }
     // </editor-fold>
@@ -216,7 +228,7 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function image($image, $width, $height) {
         $path = $this->getImgPath().$image;
         if(file_exists($path)){
-            return \DwSetpoint\Libs\Helpers\Image::toFit($path,
+            return \DevTics\LaravelHelpers\Utils\Image::toFit($path,
                 $width,
                 $height,
                 'png',

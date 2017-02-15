@@ -20,7 +20,10 @@ setpoint.factory('Stock', function (ModelBase, $q, $http,
             ['product', Product, 'belongsTo'],
             ['color', Color, 'belongsTo'],
             ['size', Size, 'belongsTo']
-        ]
+        ],
+        setters : {
+            quantity : ModelBase.setInt
+        }
     }, {
         getPrice : function () {
            var product = this.getRelation('product');

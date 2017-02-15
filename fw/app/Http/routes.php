@@ -309,11 +309,15 @@ Route::get('/categorias/{slugs?}', [ //Muestra las categorias
     'as' => 'product.getCategory',
     'uses' => 'ProductCtrl@showCategory'
 ])->where('slugs', '(.*)');
+
+
 Route::get('/productos/{id}/cover-{width}x{height}',[
     'as' => 'product.getURLCoverSize',
     'uses' => 'Api\\ProductController@getCoverSize'
 ]);
-Route::get('/productos/{id}/cover',[
+
+
+Route::get('/productos/covers/{slug}.{ext}',[
     'as' => 'product.getCover',
     'uses' => 'Api\\ProductController@getCover'
 ]);
@@ -421,7 +425,7 @@ Route::get('restablecer/password',[
     'uses'=>'UserController@getFormReset'
 ]);
 
-Route::get('/categoria/{id}/estrella-{width}x{heigth}.png', [
+Route::get('/categoria/{id}/{name}_{width}x{heigth}.png', [
         'as' => 'estrella.getImage',
         'uses' => 'Api\\CategoryController@getImage'
     ]

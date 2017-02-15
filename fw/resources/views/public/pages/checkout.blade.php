@@ -19,12 +19,12 @@
                     En Bounce protegemos tus datos, toda la información de tus tarjetas viaja codificada con tecnología SSL, es decir, tus datos viajan encriptados y nadie tiene acceso a ellos.
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
-                    <img style="width:100%; padding-top: 10%" src="{{asset('/css/McAfee_Secure.svg')}}"/>
+                    <a href="https://www.mcafeesecure.com/verify?host=bounce.com.mx&popup=1" target="_blank"><img style="width:100%; padding-top: 10%" alt="certificado McAfee" src="{{asset('/css/McAfee_Secure.svg')}}"/></a>
                 </div>
-               
-            <div class="cajadatos margentop20 ng-hide" ng-show="pspError"  ng-cloak>
-                <h2 class="title text-center" style="color:red" >@{{pspError}}<i class="fa fa-times" aria-hidden="true"></i></h2>
-            </div>
+                <div style="clear: both"></div>
+                <div class="cajadatos margentop20 ng-hide pspError" ng-show="pspError"  ng-cloak>
+                    <h2 class="title text-center" style="color:red" >@{{pspError}}<i class="fa fa-times" aria-hidden="true"></i></h2>
+                </div>
             @if(isset($checkout) && $checkout=='fail')
                 <div class="cajadatos margentop20">
                     <h2 class="title text-center" style="color:red" >Ocurrio un error al intentar procesar tu pago <i class="fa fa-times" aria-hidden="true"></i></h2>
@@ -33,9 +33,69 @@
             @endif
             
             <div class="row margentop20" ng-cloak>
+                <div class="col-sm-5">
+                    <br>
+                    <h3 class="subtitulo">Resúmen de Compra</h3>
+                    <div class="cajaresumen margentop20">
+                        <div class="contenidoresumen">
+                            <div class="row nproducto" ng-repeat="item in items">
+                                <div class="col-xs-8">
+                                    <h4 class="nproductoh4">
+                                        @{{item.product.name}}
+                                        <span>@{{item.getPrice()|currency:'$'}} x @{{item.quantity()}}</span>
+                                    </h4>
+                                </div>
+                                <div class="col-xs-4">
+                                    <h5 class="nproductoh5">@{{item.getSubTotal()|currency:'$'}}</h5>    
+                                </div>
+                            </div>
+                            
+                            <div class="row cajon" ng-show="item.getDiscount()">
+                                <div class="col-xs-6">
+                                    Descuento cupón:
+                                </div>
+                                <div class="col-xs-6" >
+                                    @{{item.getDiscount()|currency:'$'}} MXP
+                                </div>
+                            </div>
+                            <div class="row cajon">
+                                <div class="col-xs-6">
+                                    Subtotal:
+                                </div>
+                                <div class="col-xs-6">
+                                    @{{cart.getSubTotal()|currency:'$'}} MXP
+                                </div>
+                            </div>
+                            <div class="row cajon" ng-show="cart.getDiscount()">
+                                <div class="col-xs-6">
+                                    Descuento cupón:
+                                </div>
+                                <div class="col-xs-6">
+                                   - @{{cart.getDiscount()|currency:'$'}} MXP
+                                </div>
+                            </div>
+                            <div class="row cajon">
+                                <div class="col-xs-6">
+                                    Paquetería:
+                                </div>
+                                <div class="col-xs-6">
+                                    @{{cart.getShippingAmount()|currency:'$'}} MXP
+                                </div>
+                            </div>
+                            <div class="row cajon" ng-show="cart.requestBillig()">
+                                <div class="col-xs-6">
+                                    Iva:
+                                </div>
+                                <div class="col-xs-6">
+                                    @{{cart.getTax()|currency:'$'}} MXP
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm-4">
-                <br>
-                    <h3 class="subtitulo">Elige tu método de pago:</h3>
+                    <br>
+                    <h3 class="subtitulo2">Elige tu método de pago:</h3>
                     <div class="panel-group margentop20 widthlimit" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default" style="display: none">
                             <div class="panel-heading" role="tab" id="headingOne" >
@@ -105,85 +165,34 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="providerSelected == cart.PSP_TC_CONEKTA">
-                        @include('public.pages.cart.form-conekta')
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                <br>
-                    <h3 class="subtitulo2">Resúmen de Compra</h3>
-                    <div class="cajaresumen margentop20">
-                        <div class="contenidoresumen">
-                            <div class="row nproducto" ng-repeat="item in items">
-                                <div class="col-xs-8">
-                                    <h4 class="nproductoh4">
-                                        @{{item.product.name}}
-                                        <span>@{{item.getPrice()|currency:'$'}} x @{{item.quantity()}}</span>
-                                    </h4>
-                                </div>
-                                <div class="col-xs-4">
-                                    <h5 class="nproductoh5">@{{item.getSubTotal()|currency:'$'}}</h5>    
-                                </div>
-                            </div>
-                            
-                            <div class="row cajon" ng-show="item.getDiscount()">
-                                <div class="col-xs-6">
-                                    Descuento cupón:
-                                </div>
-                                <div class="col-xs-6" >
-                                    @{{item.getDiscount()|currency:'$'}} MXP
-                                </div>
-                            </div>
-                            <div class="row cajon">
-                                <div class="col-xs-6">
-                                    Subtotal:
-                                </div>
-                                <div class="col-xs-6">
-                                    @{{cart.getSubTotal()|currency:'$'}} MXP
-                                </div>
-                            </div>
-                            <div class="row cajon" ng-show="cart.getDiscount()">
-                                <div class="col-xs-6">
-                                    Descuento cupón:
-                                </div>
-                                <div class="col-xs-6">
-                                   - @{{cart.getDiscount()|currency:'$'}} MXP
-                                </div>
-                            </div>
-                            <div class="row cajon">
-                                <div class="col-xs-6">
-                                    Paquetería:
-                                </div>
-                                <div class="col-xs-6">
-                                    @{{cart.getShippingAmount()|currency:'$'}} MXP
-                                </div>
-                            </div>
-                            <div class="row cajon" ng-show="cart.requestBillig()">
-                                <div class="col-xs-6">
-                                    Iva:
-                                </div>
-                                <div class="col-xs-6">
-                                    @{{cart.getTax()|currency:'$'}} MXP
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-sm-3">
                     <br>
                     <h2 class="checktotal margentop50">
                         <span>Total:</span> <span>@{{cart.getTotal()|currency:'$'}}</span>
                     </h2>
-                    <div class="botonera margentop20">
+                    
+                    <div class="botonera margentop20"  ng-show="providerSelected && (providerSelected !== cart.PSP_TC_CONEKTA)">
                         <a href="" class="transicion" ng-hide="sending" ng-click="checkout($event)">Comprar</a>
                         <div ng-show="sending">
                             <img src="{{asset('/css/loadingModalInfo.gif')}}"/>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
+                <div class="col-sm-offset-3 col-sm-6" ng-show="providerSelected == cart.PSP_TC_CONEKTA">
+                    @include('public.pages.cart.form-conekta')                     
+                </div>
+                <div class="col-sm-12">
+                    <div class="botonera margentop20"  ng-show="providerSelected === cart.PSP_TC_CONEKTA">
+                        <a href="" class="transicion" ng-hide="sending" ng-click="checkout($event)">Comprar</a>
+                        <div ng-show="sending">
+                            <img src="{{asset('/css/loadingModalInfo.gif')}}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </form>
 </div>
 @stop
 @section('scripts')

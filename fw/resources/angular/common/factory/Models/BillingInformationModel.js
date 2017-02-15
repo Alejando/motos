@@ -6,9 +6,7 @@ setpoint.factory('BillingInformation', function (ModelBase, $q, $http, User, Cou
     ModelBase.createModel(BillingInformation , {   
         alias: 'billingInformation',
         setters : {
-            postal_code : function (cp) {
-                return parseInt(cp, 10);
-            }
+            postal_code : ModelBase.setInt
         },
         preparers : {
             rfc : function (rfc) {

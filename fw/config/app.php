@@ -9,8 +9,9 @@ return [
         'fillopacity' => 0
     ],
     'paths' => [
+        'img-products-cache' => __DIR__.'/../../upload/products-cache/',
         'products' => __DIR__.'/../../upload/products/',
-        'brads' => __DIR__.'/../../upload/brands/',
+        'brads' => __DIR__.'/../../upload/brands/',        
         'categories' => __DIR__.'/../../upload/categories/'
     ],
     'social' => [

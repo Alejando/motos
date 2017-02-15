@@ -10,7 +10,7 @@ class HelperMail {
     }
 }
 
-class Mail extends MailBase {
+class Mail extends \DevTics\LaravelHelpers\Utils\Mail {
     // <editor-fold defaultstate="collapsed" desc="welcome">
     public static function welcome($args, $test = false, $send = true, $format = 'html') {
         if(!isset($args['user'])) {

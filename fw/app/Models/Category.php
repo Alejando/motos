@@ -3,7 +3,7 @@
 namespace DwSetpoint\Models;
 class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $fillable = ['name','parent_category_id', 'type', 'hidden','slug'];
-    // <editor-fold defaultstate="collapsed" desc="validate">
+    // <editor-fold defaultstate="collapsed" desc="+:: validate($data, $id = false):bolean">
     public static function validate($data, $id = false) {
         if($id) {
             $category = self::getById($id);
@@ -20,7 +20,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
     }
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="existsSlug">
+    // <editor-fold defaultstate="collapsed" desc="+:: existsSlug($slug, $parent_id = false, $category_id = false):boolean">
     public static function existsSlug($slug, $parent_id = false, $category_id = false) {
         $query = self::where('slug', '=' ,$slug);
         if($parent_id) {
@@ -35,7 +35,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         return $res>0;
     }
     // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="findChildrenBySlug">
+    // <editor-fold defaultstate="collapsed" desc="+:: findChildrenBySlug(Category|null $parent, string $categorySlug): Category|null <deprecated>">
     public static function findChildrenBySlug($parent, $categorySlug) {
         $query = \DwSetpoint\Models\Category::where('slug', '=', $categorySlug);
         if($parent!==null){

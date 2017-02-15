@@ -31,7 +31,8 @@ class BrandController extends \DevTics\LaravelHelpers\Rest\ApiRestController {
         }
         $preverse->paste($resizeImg, new \Imagine\Image\Point($startX, $startY));
         $data = $preverse->get('png');  
-        return \Illuminate\Support\Facades\Response::make($data, 200, ['Content-Type'=>'image/png']);
+        \DevTics\LaravelHelpers\Utils\Response::dataWithCacheHeaders($data,'image/png');
+//        return \Illuminate\Support\Facades\Response::make($data, 200, ['Content-Type'=>]);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getImg">

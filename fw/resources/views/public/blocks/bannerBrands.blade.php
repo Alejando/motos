@@ -5,7 +5,7 @@ $brands = DwSetpoint\Models\Brand::getBrands();
     <div id="owl-marcas" class="owl-carousel owl-theme">
     	@foreach($brands as $brand)
     		<div class="item">
-    			<img src="{{ asset('marca/'.$brand->id.'/marca-143x80.png') }}">
+                    <img src="{{$brand->getImgURL(143,80)}}" alt="Productos {{$brand->name}}">
     		</div>
     	@endforeach
     </div>

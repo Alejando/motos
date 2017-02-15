@@ -7,7 +7,12 @@ $players = DwSetpoint\Models\Category::getPlayersTennis();
 	<div class="item">
     	<div class="cajaestrella margentop30">
             <a href="{!!$player->getURL()!!}">
-		    	<img src="{{ asset('/categoria/'.$player->id.'/estrella-265x265.png') }}" class="image-circle" style="width: 265px;" />
+		    	<img src="{{ route('estrella.getImage',[
+                            'name' => str_slug($player->name), 
+                            'id' => $player->id, 
+                            'width' => 265, 
+                            'height'=>265]
+                        )}}" class="image-circle" style="width: 265px;" />
 		    </a>
 		    <h2>{{$player->name}}</h2>
 		</div>

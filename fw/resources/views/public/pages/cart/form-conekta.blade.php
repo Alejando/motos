@@ -2,9 +2,9 @@
      <span class="card-errors"></span>
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="row">
-        <div class="col-md-4"><img style="width:80%;" src="{{asset('/css/aceptadas_mastercard.svg')}}"/></div>
-        <div class="col-md-4"><img style="width:80%;" src="{{asset('/css/aceptadas_visa.svg')}}"/></div>
-        <div class="col-md-4"><img style="width:80%;" src="{{asset('/css/aceptadas_amex.svg')}}"/></div>
+        <div class="col-xs-4"><img style="width:80%;" src="{{asset('/css/aceptadas_mastercard.svg')}}"/></div>
+        <div class="col-xs-4"><img style="width:80%;" src="{{asset('/css/aceptadas_visa.svg')}}"/></div>
+        <div class="col-xs-4"><img style="width:80%;" src="{{asset('/css/aceptadas_amex.svg')}}"/></div>
     </div>
     <div class="form-group">
         <label class="col-md-12 control-label" for="nombretarjetahabiente">Nombre del tarjetahabiente:</label>
@@ -57,10 +57,12 @@
                 <span>Fecha de expiración (MM/AAAA)</span>            
             </label>
             <div class="col-xs-12" style="padding-left: 15px">
-                <input type="text"  class="form-control" style="width:4em" placeholder="MM" size="2" maxlength="2" data-conekta="card[exp_month]"/>
-                <span class="">/</span>
-                <input type="text"  class="form-control" style="width:6em" placeholder="AAAA" size="4" maxlength="4" data-conekta="card[exp_year]"/>
+                <input type="text" class="form-control" style="width:4em; float:left" placeholder="MM" size="2" maxlength="2" data-conekta="card[exp_month]"/>
+                <span class="" style="float:left; padding: 10px">/</span>
+                <input type="text"  class="form-control" style="width:6em; float:left" placeholder="AAAA" size="4" maxlength="4" data-conekta="card[exp_year]"/>
+              
             </div>
+            <div style="clear: both"></div>
         </div>
     </div>
 </div>

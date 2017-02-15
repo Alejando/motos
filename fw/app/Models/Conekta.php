@@ -103,7 +103,7 @@ class Conekta {
     private static function getCents($amount) {
         return (int)round($amount * 100);
     }
-    protected function setExtraData (&$data) {
+    protected function setExtraData (&$data, $extraInfo) {
         
     }
     public function checkout($extraInfo) {
@@ -131,7 +131,7 @@ class Conekta {
                 return  [
                    'error' => true,
                    'message' => $e->message_to_purchaser
-               ];
+               ]; 
             } catch (\Exception $e2) {
                 throw $e;
             }

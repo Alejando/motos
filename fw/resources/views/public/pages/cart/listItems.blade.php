@@ -35,7 +35,7 @@
                                 <h3 class="productonombre">
                                     Precio Unitario
                                     <div ng-show="@{{item.hasDiscount()}}">
-                                        <sub" style="text-decoration: line-through">@{{item.getRawPrice() | currency : '$' }}</sub> <sup> - @{{item.getDiscount()}}% </sup>
+                                        <sub style="text-decoration: line-through">@{{item.getRawPrice() | currency : '$' }}</sub> <sup> - @{{item.getDiscount()}}% </sup>
                                     </div>
                                     <b>@{{item.getPrice()|currency:'$'}}</b>
                                 </h3>
@@ -47,7 +47,7 @@
                             <div>
                                 <h3 class="productonombre">
                                     Cantidad
-                                    <input type="number" min="1" name="cantidad" ng-model="item.quantity" ng-change="cart.persistItems()" ng-model-options="{ getterSetter: true }"> 
+                                    <input type="number" min="1" maxlength="10" name="cantidad" ng-model="item.quantity" ng-change="cart.persistItems()" ng-model-options="{ getterSetter: true }"> 
                                 </h3>
                             </div>
                         </div>

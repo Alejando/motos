@@ -8,7 +8,7 @@ class ConektaOxxo extends Conekta {
     
     
     
-    protected function setExtraData(&$data) {
+    protected function setExtraData(&$data, $extraInfo) {
         $days = DBConfig::getDaysToExpireOrder();
         $today = new \DateTime();
         $today->setTimezone(new \DateTimeZone('America/Mexico_City'));

@@ -1,6 +1,6 @@
 setpoint.service('Cart', function(AuthService, 
 User, Country,
-$q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInformation, IVA, Address) {
+$q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInformation, IVA, Address, Stock) {
     var ls = localStorageService;
     this.appliedCode = false;
     this.discount = false;
@@ -279,22 +279,38 @@ $q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInfo
     this.addProduct = function(product, quantity, size, color) {
         checkIsSupported();
         var defer = $q.defer();
+        var fail =  function(message) {
+            BootstrapDialog.alert({
+                title : 'Error',
+                message: message
+            });
+        };
         product.checkStock(quantity, size, color)
-            .then(function(x) {
-                var stock_id = x.stock;
+            .then(function(response) { 
+                var stock = Stock.build(response.stock);
+                var stock_id = stock.id;
                 var cart = ls.get('items');                    
                 if(!cart) {
                     cart = {};
                 }
-                cart[stock_id] = parseInt(quantity, 10);
+                if(cart[stock_id]) {
+                    var newTotal = cart[stock_id] + parseInt(quantity, 10);
+                    if(newTotal<= response.stock.quantity){
+                        cart[stock_id] = newTotal;
+                        self.getItemByStock(stock).quantity(newTotal);
+                    }else{
+                        fail("Lo sentimos actualmente solo contamos con "+ stock.quantity+" artículos en existencia ");
+                        return;
+                    }
+                } else {
+                    cart[stock_id] = parseInt(quantity, 10);
+                    stock.product().then(function() {
+                        self.addStock(stock,cart[stock_id]);
+                    });
+                }
                 ls.set('items', cart);                
                 defer.resolve(stock_id, quantity);
-            }, function(message) {
-                BootstrapDialog.alert({
-                    title : 'Error',
-                    message: message
-                });
-            });
+            }, fail);
         return defer.promise;
     };
     this.getItemByStock = function(stock) {
@@ -434,28 +450,36 @@ $q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInfo
         }
         return data;
     };
+    //<editor-fold defaultstate="collapsed" desc="- conekta {}">
     var conekta = {
-        getOxxoReference : function (def){
-            var data = cart.prepareData();
-            
+        //<editor-fold defaultstate="collapsed" desc="+ getOxxoReference($q.promise def)">
+        getOxxoReference : function (def) {
+            var data = cart.prepareData();            
         },
+        //</editor-fold>
+        //<editor-fold defaultstate="collapsed" desc="+ conektaSuccessResponseHandler($q.promise def, string token, Object context): udefined">
         conektaSuccessResponseHandler: function (def, token, context) {
             var data = cart.prepareData();
             data['conektaToken'] = token.id;
             cart.sendCheckout(data, def); 
         },
+        //</editor-fold>
+        //<editor-fold defaultstate="collapsed" desc="+ conektaErrorResponseHandler($q.promise defer, Object fail, Object context): undefined">
         conektaErrorResponseHandler : function (defer, fail, context) {
             defer.reject({
                 message : fail.message_to_purchaser,
                 pspInfo : fail
             });
         }
+        //</editor-fold>
     };
-    
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="+ setConektaCardForm(jQuery form): undefined ">
     this.setConektaCardForm = function (form) { 
         conekta.form = form;
     };
-    
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="-:: createConektaToken(defer): udefined">
     var createConektaToken = function (defer) { 
         Conekta.token.create( conekta.form, 
             function (token) {  
@@ -466,7 +490,8 @@ $q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInfo
             }
         );
     };
-   
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="+ sendCheckout(Object data, $q.defer defer): undefined">
     this.sendCheckout = function (data,defer) {
         var url = laroute.route("cart.checkout");
         $http.post(url, data).then(function (request) {
@@ -479,13 +504,15 @@ $q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInfo
             defer.reject(fail);
         });
     }
-    this.checkout = function () {
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="+ checkout(): promise">
+    this.checkout = function () { 
         var defer = $q.defer();
         if(this.psp === this.PSP_TC_CONEKTA) {
-           createConektaToken(defer);
-        } if(this.php === this.PSP_OXXO_CONEKTA) {
+           createConektaToken(defer); 
+        }else if(this.psp === this.PSP_OXXO_CONEKTA) {
            conekta.getOxxoReference(defer);
-        }else { 
+        } else { 
             this.sendCheckout(
                 this.prepareData(),
                 defer
@@ -496,11 +523,14 @@ $q, $http, localStorageService, CartItem, Coupon, $timeout, $filter, BillingInfo
                 console.log("Response", response);
                 if(response.url) {      
                     self.clean();
-                }
+                } 
             }
-        },function() {
+        },function() { 
             console.log("fail");
         });
         return defer.promise;  
     };
+    //</editor-fold>
+
+    
 });

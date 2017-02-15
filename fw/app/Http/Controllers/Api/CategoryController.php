@@ -96,7 +96,7 @@ class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getImage">
-    public function getImage($id, $width, $height){
+    public function getImage($id, $name, $width, $height){
         $png = $source = Config('app.paths.categories').$id.".png";
         $jpg = $source = Config('app.paths.categories').$id.".jpg";
         $source = file_exists($png) ? $png : $jpg;
@@ -120,7 +120,8 @@ class CategoryController extends \DevTics\LaravelHelpers\Rest\ApiRestController 
         }
         $preverse->paste($resizeImg, new \Imagine\Image\Point($startX, $startY));
         $data = $preverse->get('png');  
-        return \Illuminate\Support\Facades\Response::make($data, 200, ['Content-Type'=>'image/png']);
+        \DevTics\LaravelHelpers\Utils\Response::dataWithCacheHeaders($data,'image/png');
+//        return \Illuminate\Support\Facades\Response::make($data, 200, ['Content-Type'=>'image/png']);
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getPlayersTennis">
