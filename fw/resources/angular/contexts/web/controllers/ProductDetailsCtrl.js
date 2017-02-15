@@ -1,20 +1,30 @@
 !function() {
-    setpoint.controller("ProductDetailsCtrl", function($scope, Product, Color, $q, Cart, $timeout) {
+    setpoint.controller("ProductDetailsCtrl", function($scope, Product, Color, $q, Cart, $timeout,deviceDetector) {
         $scope.cart = Cart;
-        console.log('window.product', window.product);
+        //console.log('window.product', window.product);
         var loadProduct = Product.getById(window.product);
+        $scope.deviceDetector=deviceDetector;
 
         $( document ).ready(function() {
             $('#native').elevateZoom();
         });
         
         $scope.selectImg = function(img) {
-            $scope.selectedImg = img;
-            $timeout(function() {
-                $scope.objEventsZoom.changeImgs(
-                $scope.product.getImg($scope.selectedImg, 468, 438),
-                $scope.product.getImg($scope.selectedImg, 1000, 1000));
-            },50);
+            if(deviceDetector.isMobile()){
+                var url = laroute.route('zoom-mobile',{
+                    'product': $scope.product.id,
+                    'img' : img
+                });
+                window.open(url, '_blank');  
+            }else{
+                $scope.selectedImg = img;
+                $timeout(function() {
+                    $scope.objEventsZoom.changeImgs(
+                    $scope.product.getImg($scope.selectedImg, 468, 438),
+                    $scope.product.getImg($scope.selectedImg, 1000, 1000));
+                },50);  
+            }
+            
         }
         
         $scope.selectedColor = null;
@@ -71,7 +81,7 @@
         };
         
         $scope.selectColor = function (id_color,stopRecursive) {
-            console.log( $scope.selectImg);
+            //console.log( $scope.selectImg);
             if(stopRecursive === undefined) {
                 $scope.selectedColor = id_color;
                 //console.log($scope.selectedColor);
@@ -102,6 +112,22 @@
                 }
             }
         };
+
+        $scope.getImgZoom = function () {
+            console.log("Zoooooooooooooom!");
+
+
+            // console.log(isMobile);
+            // if(deviceDetector.isMobile()){
+                var url = laroute.route('zoom-mobile',{
+                    'product': $scope.product.id,
+                    'img' : $scope.selectedImg
+                });
+                window.open(url, '_blank');  
+            // }
+            
+        };
+
         $scope.objEventsZoom = {};
         loadProduct.then(function(product) {
             $scope.product = product;

@@ -1,5 +1,6 @@
 @extends('public.base')
 @section('headers')
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <script>
         var product = {{$product->id}};
         {!!$categoryURL ? 'var CATEGORYS_URL='.json_encode($categoryURL).';' : ''!!}
@@ -7,7 +8,8 @@
 @stop
 @section('scripts')
 <script type="text/javascript" src="{{asset('js/thirdparty/zoom/jquery.elevatezoom.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/config_zoom.js')}}"></script>
+
+
 <!-- Facebook pixel code -->
         <script>
             !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -83,20 +85,22 @@
 
         <div class="row">
             <div class="col-sm-6">
-                <div class="cajaimagen">
+                <div class="cajaimagen" ng-hide="deviceDetector.isMobile()">
                     <!-- <img id="fancy-zoom" ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}" class="img-responsive" data-zoom-image="@{{selectedImg ? product.getZoomImg(selectedImg, 1000, 1000):''}}" /> -->
-                    <img ng-elevate-zoom zoom-events-object="objEventsZoom" 
+                
+                    <img id="img_detail" ng-elevate-zoom zoom-events-object="objEventsZoom" 
                         ng-src="@{{selectedImg ? product.getImg(selectedImg, 468, 438):''}}"
-                        zoom-image="@{{selectedImg ? product.getImg(selectedImg, 1000, 1000):''}}" 
+                        zoom-image="@{{selectedImg ? product.getImg(selectedImg, 1000, 1000):''}}"
+                        ng-click="getImgZoom()"
                     />
                     
                     <!-- <span class="zoom"></span> -->
                 </div>
-                <div class="margentop30">
-                    <div>
+                <div class="margentop30" style="margin-left: 20px">
+                    <div ng-hide="deviceDetector.isMobile()">
                         <div class="item"  ng-repeat="item in selectedImgs" class="item" style="float: left;
                                 width:95px;
-                                height: 95px;">
+                                height:95px;">
                             <a class="btnvista"
                                 ng-click="selectImg(item)"
                                 style="
@@ -106,11 +110,24 @@
                         </div>
                         <div style="clear: both"></div>
                     </div>
+                    <div ng-show="deviceDetector.isMobile()" style="width: 90%; margin-left: 5%;">
+                        <div class="item"  ng-repeat="item in selectedImgs" class="item" style="float: left;
+                                width:145px;
+                                height:145px;">
+                            <a class="btnvista-movil"
+                                ng-click="selectImg(item)"
+                                style="
+                                cursor: pointer;
+                                background: url('@{{product ? product.getImg(item,140,140) : ''}}') center center;
+                            "></a>
+                        </div>
+                        <div style="clear: both"></div>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="cajadetalle">
-                    <img  src="{{ $product->brand->getImgURL(120,66) }}" class="pull-right" />
+                    <img  ng-src="{{ $product->brand->getImgURL(120,66) }}" class="pull-right" />
                     <h2 class="titulo">{{$product->name}}</h2>
                     <div class="serie">Código: {{$product->code}}</div>
                     <div class="row margentop50">

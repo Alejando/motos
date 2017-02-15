@@ -322,6 +322,19 @@ a.in {
 	margin: 0 auto 0 auto;
 }
 
+.btnvista-movil {
+	display: block;
+	width: 145px;
+	height: 145px;
+	left: 0;
+	right: 0;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	border-radius: 8px 8px 8px 8px;
+	overflow: hidden;
+	background-size: 134px 124px, cover;
+	margin: 0 auto 0 auto;
+}
+
 .cajatextura {
 	background: url('../img/template/bgtextura.png') no-repeat;
 	border-top: solid 1px #8DC53E;
