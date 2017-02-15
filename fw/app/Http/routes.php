@@ -444,5 +444,12 @@ Route::get('/marca/{id}/marca-{width}x{heigth}.png', [
 );
 
 
+Route::get('/zoom-mobile/{product}/{img}', [
+    'as' => 'zoom-mobile',
+    'uses' => function($product, $img) {
+        return view("public.zoom-mobile",['product'=>$product, 'img' => $img]);
+    }
+]);
+
 
 

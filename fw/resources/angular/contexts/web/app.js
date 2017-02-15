@@ -4,7 +4,8 @@ var setpoint = angular.module('setpoint', [
     'LocalStorageModule',
     'devtics-angular-modelbase',
     'remoteValidation',
-    'datatables'
+    'datatables',
+    "ng.deviceDetector"
 ]);
 
 setpoint.directive('ngElevateZoom', function() {
@@ -28,7 +29,7 @@ setpoint.directive('ngElevateZoom', function() {
                     $element = $(element);
                     $element.elevateZoom({
                         //scrollZoom : true
-                        // zoomType                : "lens",
+                        // zoomType : "lens",
                         // lensShape : "round",
                         // lensSize    : 200
                     });

@@ -12,7 +12,7 @@ $players = DwSetpoint\Models\Category::getPlayersTennis();
                             'id' => $player->id, 
                             'width' => 265, 
                             'height'=>265]
-                        )}}" class="image-circle" style="width: 265px;" />
+                        )}}" class="image-circle" style="width: 265px;" alt="{{$player->name}}" />
 		    </a>
 		    <h2>{{$player->name}}</h2>
 		</div>

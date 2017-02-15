@@ -37,6 +37,7 @@
     "angular-money-directive": "^1.2.5",
     "ng-remote-validate": "^0.6.1",
     "devticstools-ng-factory-modelbase-for-laravel": "*",
-    "owl.carousel": "^2.2.0"
+    "owl.carousel": "^2.2.0",
+    "ng-device-detector": "^3.0.1"
   }
 }
