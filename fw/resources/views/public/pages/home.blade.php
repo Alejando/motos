@@ -1,6 +1,6 @@
 @extends('public.base')
 @section('body')
-<nav id="mostrar">
+{{-- <nav id="mostrar">
     <ul class="menu sub-menu-productos">
         <li><a class="secction_active" href="{{url('/#mostrar')}}">PRODUCTOS</a></li>
         <li><a href="{{url('descuentos#mostrar')}}">DESCUENTOS</a></li>
@@ -15,5 +15,5 @@
     ])
     @endforeach
 </div>
-<div class="text-center">{!!$products->render();!!}</div>
+<div class="text-center">{!!$products->render();!!}</div> --}}
 @stop
