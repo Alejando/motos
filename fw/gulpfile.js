@@ -12,14 +12,15 @@ require('laravel-elixir-livereload');
  */
 elixir.config.assetsDir = '../'; //trailing slash required.
 elixir(function(mix) {
-    mix.sass([
-        'admin/*.scss',
-        'admin/**/*.scss'
-    ],'../css/app.css');
+    // mix.sass([
+    //     'admin/*.scss',
+    //     'admin/**/*.scss'
+    // ],'../css/app.css');
     mix.sass([
         'web/*.scss',
         'web/**/*.scss'
-    ], '../css/web2.css');
+    ], '../css/web.css');
+    
 //    mix.copy('resources/assets/sass/sprites.png', 'public/css/sprites.png');
 //    mix.less('ubold-template/components.less','public/assets/css/components.css');
 //    mix.less('ubold-template/core.less','public/assets/css/core.css');
@@ -28,18 +29,18 @@ elixir(function(mix) {
 //    mix.less('ubold-template/pages.less','public/assets/css/pages.css');
 //    mix.less('ubold-template/responsive.less','public/assets/css/responsive.css');
 //    mix.less('ubold-template/variables.less', 'public/assets/cssvariables.css');
-    mix.scripts([
-        '../../angular/contexts/admin/app.js',
-        '../../angular/contexts/admin/app-config.js',
-        '../../angular/common/*.js',
-        '../../angular/common/**/*.js',
-        '../../angular/contexts/admin/controllers/*.js'
-    ], '../js/estrasol/app.js');
-    mix.scripts([
-        '../../angular/contexts/web/app.js',
-        '../../angular/common/*.js',
-        '../../angular/common/**/*.js',
-        '../../angular/contexts/web/controllers/*.js'
-    ], '../js/estrasol/web-angular.js');
-    mix.livereload();
+    // mix.scripts([
+    //     '../../angular/contexts/admin/app.js',
+    //     '../../angular/contexts/admin/app-config.js',
+    //     '../../angular/common/*.js',
+    //     '../../angular/common/**/*.js',
+    //     '../../angular/contexts/admin/controllers/*.js'
+    // ], '../js/estrasol/app.js');
+    // mix.scripts([
+    //     '../../angular/contexts/web/app.js',
+    //     '../../angular/common/*.js',
+    //     '../../angular/common/**/*.js',
+    //     '../../angular/contexts/web/controllers/*.js'
+    // ], '../js/estrasol/web-angular.js');
+    // mix.livereload();
 });
