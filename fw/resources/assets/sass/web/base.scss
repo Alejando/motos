@@ -7,5 +7,19 @@
 	width: 90%;
 	margin-left: 5%;
 }
+figure img{
+	width: 100%;
+}
+
+.ktm-btn-primay{
+	background: $ktm-orange;
+	color: white;
+	padding: 8px 10px 8px 10px;
+	text-decoration: none;
+}
+
+.ktm-btn-primay:hover{
+	background: $ktm-orange-dark;
+}
 
 
