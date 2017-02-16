@@ -3,6 +3,7 @@ $env = [
     '/var/www/html/jfcodiaz/dw.setpoint/fw' => 'demo-host-remoto.env',
 //    '/var/www/html/jfcodiaz/dw.setpoint/fw' => '.env',
     '/home/demoemx/public_html/setpoint/fw' => 'demo.env',
-    'C:\wamp\www\dw.setpoint\fw' => 'gael.env'
+    'C:\wamp\www\dw.setpoint\fw' => 'gael.env',
+    'C:\xampp\htdocs\dw.ktm-motos\fw'=>'alex.env'
 ][base_path()];  
 return $env;
