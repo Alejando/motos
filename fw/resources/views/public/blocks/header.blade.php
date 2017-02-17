@@ -1,15 +1,15 @@
 <header class="header">
-	<figure class="ktm-header-logo">
+	<figure class="header_logo">
 		<img src="img/KTMM_logo-ktm.svg" alt="">
 	</figure>
-	<a id="menuMovilButton"  title="" class="ktm-header-menu"><i class="fa fa-bars fa-lg"></i></a>
-	<nav class="ktm-header-nav" id="menuMovil">
-		<ul class="ktm-header-ul">
+	<a id="menuMovilButton"  title="" class="header_menu"><i class="fa fa-bars "></i></a>
+	<nav class="header_nav" id="menuMovil">
+		<ul class="header_ul">
 			<li><a href="">INICIO</a></li>
 			<li><a href="">NOSOTROS</a></li>
 		    <li>
-		        <a href="">MOTOS<i class="fa fa-caret-right fa-lg"></i></a>
-		        <ul class="ktm-header-sub-ul">
+		        <a href="">MOTOS<i class="fa fa-caret-right "></i></a>
+		        <ul class="header_sub_ul">
 		            <li><a href="">MOTOCROSS</a></li>
 		            <li><a href="">ENDURO</a></li>
 		            <li><a href="">FREERIDE</a></li>
@@ -21,7 +21,7 @@
 		    </li>
 		    <li>
 		        <a href="">BOUTIQUE</a>
-		        <ul class="ktm-header-sub-ul">
+		        <ul class="header_sub_ul">
 		            <li><a href="">POWERPARTS</a></li>
 		            <li><a href="">POWERWEAR</a></li>
 		        </ul>
