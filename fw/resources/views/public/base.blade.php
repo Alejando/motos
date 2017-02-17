@@ -13,5 +13,4 @@
 @include('public.scripts')
 </body>
 </html>
-@include('public.scripts')
 
