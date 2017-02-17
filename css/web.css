@@ -8054,6 +8054,19 @@ button.close {
 figure img {
   width: 100%; }
 
+.ktm-btn-primay {
+  background: #e25100;
+  color: white;
+  padding: 8px 10px 8px 10px;
+  text-decoration: none; }
+
+.ktm-btn-primay:hover {
+  background: #bd4400; }
+
+.separator_line {
+  color: #e25100;
+  height: 10px;
+  width: 100%; }
 .ktm_btn_primay {
   background: #e25100;
   color: white;
