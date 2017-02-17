@@ -1,70 +1,69 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 @import "variables";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "node_modules/font-awesome/scss/font-awesome";
+@import "../js/bower_components/font-awesome/scss/font-awesome";
 
-
-.ktm-container{
+   
+.ktm_container{
 	width: 90%;
 	margin-left: 5%;
 }
-figure img{
+figure img{ 
 	width: 100%;
 }
-.ktm-btn-primay{
-	background: $ktm-orange;
+.ktm_btn_primay{
+	background: $orange;
 	color: white;
 	padding: 8px 10px 8px 10px;
 	text-decoration: none;
-}
-
-.ktm-btn-primay:hover{
-	background: $ktm-orange-dark;
+ }
+.ktm_btn_primay:hover{
+	background: $orange_dark;
 }
 
 .header{
-	background: $ktm-gray-dark;
+	background: $gray_dark;
 }
 
-.ktm-header-logo{
+.header_logo{
 	width: 50%;
 	margin-left: -1px;
 }
-.ktm-header-menu{
+.header_menu{
 	position: absolute;
     top: 5px;
     right: 10px;
     color:white;
 }
-.ktm-header-menu:hover{
-    color:$ktm-orange;
+.header_menu:hover{
+    color:$orange;
 }
-.ktm-header-nav{
+.header_nav{
 	margin-top: -1px;
-	background: $ktm-orange-dark;
+	background: $orange_dark;
 	display: none;
 }
 .header ul{
 	list-style: none;
 	padding-left: 0px;
 }
-.ktm-header-ul li{
+.header_ul li{
 
 
 	padding: 5px 0px 5px 0px;
 }
-.ktm-header-ul a{
-	color: $ktm-white-ligth;
+.header_ul a{
+	color: $white_ligth;
 	text-decoration: none;
 	margin-left: 10px;
 }
-.ktm-header-ul a:hover{
+.header_ul a:hover{
 	color: white;
 	text-decoration: none;
 	font-weight: bold;
 }
-.ktm-header-ul .ktm-header-sub-ul {
-	background: $ktm-orange;
+.header_ul .header_sub_ul {
+	background: $orange;
 	padding-left: 15px;
 }	
 .separator_line{

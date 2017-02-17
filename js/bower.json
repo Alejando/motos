@@ -38,6 +38,8 @@
     "ng-remote-validate": "^0.6.1",
     "devticstools-ng-factory-modelbase-for-laravel": "*",
     "owl.carousel": "^2.2.0",
-    "ng-device-detector": "^3.0.1"
+    "ng-device-detector": "^3.0.1",
+    "jquery-rotate": "^0.1.0",
+    "font-awesome": "^4.7.0"
   }
 }
