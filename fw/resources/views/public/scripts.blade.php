@@ -1,4 +1,4 @@
-<script src="{{asset('/js/bower_components/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
+ <script src="{{asset('/js/bower_components/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>{{--
 <script src="{{asset('/js/bower_components/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/js/bower_components/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
 <!-- <script src="{{asset('/js/bower_components/owlcarousel/owl-carousel/owl.carousel.min.js')}}" type="text/javascript"></script> -->
@@ -21,6 +21,7 @@
 <script src="{{asset('js/bower_components/re-tree/re-tree.min.js')}}"  type="text/javascript"></script>
 <script src="{{asset('js/bower_components/ng-device-detector/ng-device-detector.min.js')}}"  type="text/javascript"></script>
 <script src="{{asset('assets/plugins/notifyjs/dist/notify.min.js')}}"  type="text/javascript"></script>
-<script src="{{asset('js/estrasol/web-angular.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/estrasol/web-angular.js')}}" type="text/javascript"></script> --}}
+<script src="{{asset('js/bower_components/jquery-rotate/jquery.rotate.js')}}"></script>
 @yield('scripts')
 
