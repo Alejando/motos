@@ -20,23 +20,25 @@ figure img{
 .ktm_btn_primay:hover{
 	background: $orange_dark;
 }
-
 .header{
 	background: $gray_dark;
 }
-
 .header_logo{
 	width: 50%;
 	margin-left: -1px;
 }
+
 .header_menu{
 	position: absolute;
-    top: 5px;
-    right: 10px;
+    right: 2%;
+    top:0.5%;
     color:white;
+    width:   10%;
 }
+
+
 .header_menu:hover{
-    color:$orange;
+    color:white;
 }
 .header_nav{
 	margin-top: -1px;
@@ -61,25 +63,69 @@ figure img{
 	text-decoration: none;
 	font-weight: bold;
 }
+
 .header_ul .header_sub_ul {
 	background: $orange;
 	padding-left: 15px;
+	display: none;
+}
 .separator_line{
 	color: $brand-primary;
 	height: 10px;
 	width: 100%;
 }
-
+.icon_caret{
+	font-size: 1.5em;
+	float: right;
+	margin-right: 10px;
+}
+li.li_separator{
+	border: 1px solid;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+li.li_search{
+	margin-left: 5%;
+	width: 90%;
+	padding-top:15px;
+	padding-bottom: 15px;
+	color: white;
+}
+li.li_search a{
+	position: absolute;
+    right: 7%;
+    margin-top: -39px;
+    font-size: 1.5em;
+}
+#menuSearch{
+	width: 100%;
+	background:  transparentize($white_ligth, .3);
+	color: white;
+	border: none;
+	padding: 5px 10px 5px 10px;
+}
+#menuSearch:focus{
+	outline: none !important;
+    border-color: white;
+    box-shadow: 0 0 10px white;
+}
+.hide{
+	display: none;
+}
 body{
 	font-size: 16px;
 	background-color: #E95B5B;
 	position: relative;
 
 }
+::-webkit-input-placeholder {
+   color: $white_ligth;
+}
 
 @media screen and (min-width: 480px){
 	body{
 		background: #E59B1B;
+		
 	}
 }
 
@@ -98,11 +144,89 @@ body{
 @media screen and (min-width: 950px){
 	body{
 		background: #21D5E0;
+		font-size: 20px;
 	}
+	.header_logo{
+		width: 30%;
+		margin-left: -1px;
+		margin-bottom: 1px;
+	}
+
+	#menuMovilButton{
+		display: none;
+	}
+	.icon_caret{
+		display: none;
+	}
+	.header_nav{
+		display: block;
+		background: none;
+		position: absolute;
+		top: 1%;
+		right: 2%;	
+	}
+	.header_ul {
+		
+	}
+
+	.header_ul li{
+		display: inline-block;
+	}
+	.header_ul .header_sub_ul{
+		position: absolute;
+		background: $gray_dark;
+		padding-left: 0px;
+	}
+	.header_sub_ul li{
+		display: block;
+		padding-right: 15px;
+	}
+	.header_sub_ul li:hover{
+		background: $orange;
+	}
+	.div_search{
+		display: none;
+	}
+	li.li_separator{
+		display: none;
+	}
+	li.li_search{
+		margin-left: 0%;
+		width: auto;
+		padding-top:10px;
+		padding-bottom: 10px;
+	}
+	li.li_search a{
+		position: relative;
+	    right: 0px;
+	    margin-top: -0px;
+	    font-size: 1em;
+	}
+	.header_logo {
+		max-height: 80px;
+	}
+	.header_logo img{
+		width: auto;
+	}
+	.submenu_img{
+		position: absolute;
+		height: 294px;
+		left: -465px;
+    	top: 0px;
+	}
+
+	.submenu_img  img{
+		height: 100%;
+	}
+	#subMenuBoutique{
+		height: 294px;
+	}
+
 }
 
 @media screen and (min-width: 1240px){
 	body{
 		background: #9241F6;
 	}
+
 }
