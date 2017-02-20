@@ -1,8 +1,10 @@
- <script src="{{asset('/js/bower_components/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>{{--
+ <script src="{{asset('/js/bower_components/jquery/dist/jquery.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/js/bower_components/owl.carousel/dist/owl.carousel.min.js')}}" type="text/javascript"></script>
+ {{--
 <script src="{{asset('/js/bower_components/bootstrap/dist/js/bootstrap.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/js/bower_components/jquery-ui/jquery-ui.min.js')}}" type="text/javascript"></script>
 <!-- <script src="{{asset('/js/bower_components/owlcarousel/owl-carousel/owl.carousel.min.js')}}" type="text/javascript"></script> -->
-<script src="{{asset('/js/bower_components/owl.carousel/dist/owl.carousel.min.js')}}" type="text/javascript"></script>
+
 <script src="{{asset('js/bower_components/angular/angular.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('js/bower_components/angular-slugify/angular-slugify.js')}}"  type="text/javascript"></script>
 <script src="{{asset('js/bower_components/angular-owl-carousel/src/angular-owl-carousel.js')}}"  type="text/javascript"></script>
@@ -23,5 +25,7 @@
 <script src="{{asset('assets/plugins/notifyjs/dist/notify.min.js')}}"  type="text/javascript"></script>
 <script src="{{asset('js/estrasol/web-angular.js')}}" type="text/javascript"></script> --}}
 <script src="{{asset('js/bower_components/jquery-rotate/jquery.rotate.js')}}"></script>
+
+<script src="{{asset('js/generico.js')}}" type="text/javascript"></script>
 @yield('scripts')
 

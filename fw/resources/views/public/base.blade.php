@@ -8,7 +8,7 @@
 </head>
 <body>
 @include('public.blocks.header')
-
+@yield('body')
 @include('public.blocks.footer')
 @include('public.scripts')
 </body>

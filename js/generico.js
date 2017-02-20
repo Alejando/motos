@@ -1,89 +1,70 @@
 var main = function () {
     var menuMovil = function() {
-        var $lastSub;
-        $('.menumain li').each(function() {
-            var $this = $(this);
-            $this.find('a').on('click', function(e) {
-                var $li = $this.find(">div");
-                if($li.is(':visible')){
-                    window.open(this.href, '_self');
-                } else {
-                    if($lastSub){
-                        $lastSub.hide();
-                    }
-                    if($(this).next().hasClass('cajasubmenu')) {
-                        e.preventDefault();
-                        $lastSub = $(this).siblings('.cajasubmenu').slideToggle('fast');
-                    }
+        var menuMovil=false;
+        var menuBike=false;
+        var menuBoutique=false;
+
+        //Función para mostrar y ocultar menu
+        if($(window).width()<950){
+            $( "#menuMovilButton" ).click(function() {
+                console.log(menuMovil);
+                if(menuMovil){
+                     $('#menuMovil').slideUp();
+                     menuMovil=false;
+                     $('#iconMenu').attr("src","img/svg/menu.svg")
+                    
+                }else{
+                    closeAllSubMenus()
+                     menuMovil=true;
+                     $('#menuMovil').slideDown( "slow", function() {
+                      });
+                     $('#iconMenu').attr("src","img/svg/close.svg")
                 }
             });
-            var time;
-            $this.mouseenter(function() {
-                var $self = $(this);
-                var $miSubmenu = $self.find('.cajasubmenu');
-                if(!$miSubmenu.is(':visible')){
-                    clearTimeout(time);
-                    time = setTimeout(function() {
-                        clearTimeout(time);
-                        $self.closest('ul').find('.cajasubmenu').slideUp(100);
-                        $self.find('.cajasubmenu').slideDown(150); 
-                    },200);
+            //Función para mostrar y ocultar menu Motos
+            $( "#menuMotos" ).click(function() {
+                if(menuMotos){
+                     $('#subMenuMotos').slideUp();
+                     menuMotos=false;
+                     $('#menuMotos i').removeClass( "fa-caret-down" ).addClass( "fa-caret-right" );
+                }else{
+                    closeAllSubMenus();
+                    menuMotos=true;
+                    $('#subMenuMotos').slideDown( "slow", function() {
+                      });
+                    $('#menuMotos i').removeClass( "fa-caret-right" ).addClass( "fa-caret-down" );
                 }
             });
-           
-        });
-        $('.menumain>li, .menumain').mouseleave(function(){
-            $(this).find('.cajasubmenu').slideUp(100);
-        });
-        var time2;
-        $('.cajasubmenu').mouseleave(function() {
-            var $self = $(this);
-            clearTimeout(time2);
-            var time2 = setTimeout(function(){
-                clearTimeout(time2);
-                if(!$self.closest("li").find("a:hover").length){
-                    $('.cajasubmenu').slideUp('fast');
-                }
-            },50);
-            
-        });
-        
-        
-        $('#btnmenuemergente').on('click', function(e) {
-            e.preventDefault();
-            $('.menuemergente').slideDown('fast');
-        });
-
-        $('.iconocierre').on('click', function(e) {
-            e.preventDefault();
-            $('.menuemergente').slideUp('fast');
-        });
-
-        $('.btncatalogo').on('click', function(e) {
-            e.preventDefault();
-            $('.menumainmovil').toggle('slide', 'fast');
-            $('body').css('overflow', 'hidden');
-        });
-
-        $('.menumainmovil [data-btnsub]').each(function() {
-            $(this).on('click', function(e) {
-                e.preventDefault();
-                var elemento = $(this).data('btnsub');
-                if(elemento !== '') {
-                    $('[data-mnusub="'+elemento+'"]').toggle('slide', 'fast');
+            //Función para mostrar y ocultar menu BOUTIQUE
+            $( "#menuBoutique" ).click(function() {
+                if(menuBoutique){
+                     $('#subMenuBoutique').slideUp();
+                     menuBoutique=false;
+                    $('#menuBoutique i').removeClass( "fa-caret-down" ).addClass( "fa-caret-right" );
+                }else{
+                    closeAllSubMenus();
+                    menuBoutique=true;
+                    $('#subMenuBoutique').slideDown( "slow", function() {
+                     });
+                    $('#menuBoutique i').removeClass( "fa-caret-right" ).addClass( "fa-caret-down" );
                 }
             });
-        });
-
-        $('.menumainmovil .btncerrar').each(function() {
-            $(this).on('click', function(e) {
-                e.preventDefault();
-                $(this).parent().parent().toggle('slide', 'fast');
-                if(!$('.submenumovil:visible').length){
-                    $('body').css('overflow', 'scroll');    
-                }
+        }
+        else{
+            $('.submenu_img').removeClass('hide');
+            $( "#menuMotosWeb" ).mouseover(function() {
+                $('#subMenuMotos').slideDown('fast');
+            });     
+            $("#menuMotosWeb").mouseleave(function () {
+                $('#subMenuMotos').slideUp('fast');
             });
-        });
+            $( "#menuBoutiqueWeb" ).mouseover(function() {
+                $('#subMenuBoutique').slideDown('fast');
+            });     
+            $("#menuBoutiqueWeb").mouseleave(function () {
+                $('#subMenuBoutique').slideUp('fast');
+            });
+        }
     };
 
     var botones = function() {
@@ -125,197 +106,48 @@ var main = function () {
         });
     };
 
-    var ofertas = function() {
-        $('#owl-offerts').owlCarousel({
-            items: 3,
-            autoplay: true,
-            dots: false,
-            loop: false,
-            nav: false,
-            touchDrag: false,
-            mouseDrag: false,
-            responsive:{
-                 0:{
-                    items:1,
-                    autoplay: true,
-                    dots: true,
-                    loop: true
-                },
-                480:{
-                    items:1,
-                    autoplay: true,
-                    dots: true,
-                    loop: true
-                },
-                768:{
-                    items:3
-                },
-                960:{
-                    items:3
-                },
-                1024:{
-                    items:3
-                }
-            } 
-        });
-    };
-
-    var marcas = function() {
-        $('#owl-marcas').owlCarousel({
-            items: 5,
-            autoplay: true,
-            dots: false,
+    var slidePrincipal = function() {
+       $('#owlSliderPrincipal').owlCarousel({
             loop:true,
-            nav:false,
-            margin: 50,
-            responsive:{
-                0:{
-                    items:3
-                },
-                480:{
-                    items:3
-                },
-                768:{
-                    items:4
-                },
-                960:{
-                    items:4
-                },
-                1024:{
-                    items:5
+            responsiveClass: true,
+            autoPlay: 5000,
+            pagination: false,
+            responsive: {
+                  0: {
+                    items: 1,
+                    nav: false,
+                    dots: true
+                  },
+                  600: {
+                    items: 1,
+                    nav: false
+                  },
+                  1000: {
+                    items: 1,
+                    nav: false,
+                  }
                 }
-            }
         });
     };
 
-    var metodos = function() {
-        $('#owl-metodos').owlCarousel({
-            items: 5,
-            autoplay: true,
-            dots: false,
-            loop: true,
-            nav: false,
-            responsive:{
-                0:{
-                    items:3
-                },                
-                480:{
-                    items:3
-                },
-                768:{
-                    items:3
-                },
-                960:{
-                    items:4
-                },
-                1024:{
-                    items:5
-                }
-            } 
-        });
-    };
+   
 
-    var detalle = function() {
-        $('#owl-detalle').owlCarousel({
-            items: 4,
-            autoplay: true,
-            dots: false,
-            loop: true,
-            nav: false,
-            responsive:{
-                0:{
-                    items:1
-                },                
-                480:{
-                    items:1
-                },
-                768:{
-                    items:2
-                },
-                960:{
-                    items:3
-                },
-                1024:{
-                    items:4
-                }
-            } 
-        });
-    };
-
-    var otrosproductos = function() {
-        $('#owl-otros').owlCarousel({
-            items: 4,
-            autoplay: false,
-            dots: false,
-            loop: false,
-            nav: false,
-            responsive:{
-                0:{
-                    items:1,
-                    autoplay: true,
-                    dots: true,
-                    loop: true
-                },                
-                480:{
-                    items:1
-                },
-                768:{
-                    items:3,
-                    dots: true,
-                    loop: true
-                },
-                960:{
-                    items:3,
-                    dots: true,
-                    loop: true
-                },
-                1024:{
-                    items:4
-                }
-            } 
-        });
-    };
-
-    var estrellas = function() {
-        $('#owl-estrellas').owlCarousel({
-            items: 1,
-            autoplay: true,
-            dots: false,
-            loop:true,
-            nav:false,
-            responsive:{
-                0:{
-                    items:1
-                },                
-                480:{
-                    items:1
-                },
-                768:{
-                    items:1
-                },
-                960:{
-                    items:1
-                },
-                1024:{
-                    items:1
-                }
-            }
-        });
-    };
 
     return {
         init: function () {
             menuMovil();
-            botones();
-            ofertas();
-            marcas();
-            estrellas();
-            metodos();
-            detalle();
-            otrosproductos();
+            slidePrincipal();
         }
     };
 }();
+
+
+    function closeAllSubMenus() {
+        $('.header_sub_ul').slideUp( "slow");
+        $('.icon_caret').removeClass( "fa-caret-down" ).addClass( "fa-caret-right" );
+        menuBoutique=false;
+        menuMotos=false;
+    }
 
 (function($) {
     main.init();

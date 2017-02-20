@@ -2,7 +2,7 @@
 @import "variables";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../js/bower_components/font-awesome/scss/font-awesome";
-
+@import "../js/bower_components/owl.carousel/src/scss/owl.carousel";
    
 .ktm_container{
 	width: 90%;
@@ -11,124 +11,35 @@
 figure img{ 
 	width: 100%;
 }
-.ktm_btn_primay{
+.ktm_btn_primary{
 	background: $orange;
 	color: white;
 	padding: 8px 10px 8px 10px;
 	text-decoration: none;
  }
-.ktm_btn_primay:hover{
+.ktm_btn_primary:hover{
 	background: $orange_dark;
-}
-
-.header{
-	background: $gray_dark;
-}
-
-.header_logo{
-	width: 50%;
-	margin-left: -1px;
-}
-.header_menu{
-	position: absolute;
-    top: 5px;
-    right: 10px;
-    color:white;
-}
-.header_menu:hover{
-    color:$orange;
-}
-.header_nav{
-	margin-top: -1px;
-	background: $orange_dark;
-	display: none;
-}
-.header ul{
-	list-style: none;
-	padding-left: 0px;
-}
-.header_ul li{
-
-
-	padding: 5px 0px 5px 0px;
-}
-.header_ul a{
-	color: $white_ligth;
-	text-decoration: none;
-	margin-left: 10px;
-}
-.header_ul a:hover{
 	color: white;
 	text-decoration: none;
-	font-weight: bold;
 }
-.header_ul .header_sub_ul {
-	background: $orange;
-	padding-left: 15px;
-}	
-.separator_line{
+.ktm_btn_primary:active{
+	background: $orange_dark;
+	color: white;
+	text-decoration: none;
+}
+.ktm_orange{
 	color: $orange;
-	height: 10px;
-	width: 100%;
 }
-
-body{
-	font-size: 16px;
-	background-color: #E95B5B;
-	position: relative;
-
-}
-
-@media screen and (min-width: 480px){
-	body{
-		background: #E59B1B;
-	}
-}
-
-@media screen and (min-width: 600px){
-	body{
-		background: #FFFC1A;
-	}
-}
-
-@media screen and (min-width: 767px){
-	body{
-		background: #9DEF5A;
-	}
-}
-
-@media screen and (min-width: 950px){
-	body{
-		background: #21D5E0;
-	}
-}
-
-@media screen and (min-width: 1240px){
-	body{
-		background: #9241F6;
-	}
-}
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import "variables";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "../js/bower_components/font-awesome/scss/font-awesome";
-
-   
-.ktm_container{
-	width: 90%;
-	margin-left: 5%;
-}
-figure img{ 
-	width: 100%;
-}
-.ktm_btn_primay{
-	background: $orange;
+.ktm_white{
 	color: white;
-	padding: 8px 10px 8px 10px;
-	text-decoration: none;
- }
-.ktm_btn_primay:hover{
-	background: $orange_dark;
+}
+.ktm_center{
+	text-align: center;
+}
+.ktm_shadon_5{
+	-webkit-box-shadow: 5px 5px 5px -1px rgba(0,0,0,0.75);
+	-moz-box-shadow: 5px 5px 5px -1px rgba(0,0,0,0.75);
+	box-shadow: 5px 5px 5px -1px rgba(0,0,0,0.75);
 }
 .header{
 	background: $gray_dark;
@@ -141,11 +52,10 @@ figure img{
 .header_menu{
 	position: absolute;
     right: 2%;
-    top:0.5%;
+    top: 3px;
     color:white;
     width:   10%;
 }
-
 
 .header_menu:hover{
     color:white;
@@ -158,10 +68,12 @@ figure img{
 .header ul{
 	list-style: none;
 	padding-left: 0px;
+	margin-bottom: 0px
 }
 .header_ul li{
 
 	padding: 5px 0px 5px 0px;
+
 }
 .header_ul a{
 	color: $white_ligth;
@@ -200,12 +112,15 @@ li.li_search{
 	padding-top:15px;
 	padding-bottom: 15px;
 	color: white;
+	position: relative;
+
 }
 li.li_search a{
 	position: absolute;
     right: 7%;
     margin-top: -39px;
     font-size: 1.5em;
+
 }
 #menuSearch{
 	width: 100%;
@@ -231,17 +146,51 @@ body{
 ::-webkit-input-placeholder {
    color: $white_ligth;
 }
-
-@media screen and (min-width: 480px){
-	body{
-		background: #E59B1B;
-		
-	}
+ 
+.slider_content_text{
+	text-align: center;
+	width: 90%;
+	margin-left:5%;
+	font-size: 11px;
+	bottom: 0px;
+	position: absolute;
+	margin-bottom: 60px;
 }
+.slider_content_text  *{
+    margin-bottom: 15px;
+}
+.slider_content_text >h2{
+   	font-size:2.5em;
+   	line-height: 1.3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* number of lines to show */
+	-webkit-box-orient: vertical;
+	text-shadow: black 0.1em 0.1em 0.2em
+}
+.slider_content_text >h3{
+   	font-size: 2em;
+   	text-shadow: black 0.1em 0.1em 0.2em
+   	
+}
+
+.slider_principal >.owl-theme .owl-nav.disabled + .owl-dots {
+	margin-top: -33px;
+    position: relative;
+    z-index: 5;
+}
+
+ 
+
 
 @media screen and (min-width: 600px){
 	body{
 		background: #FFFC1A;
+	}
+	.slider_content_text{
+		font-size: 16px;
+		margin-bottom: 25%;
 	}
 }
 
@@ -249,9 +198,13 @@ body{
 	body{
 		background: #9DEF5A;
 	}
+	.slider_content_text{
+		font-size: 16px;
+		margin-bottom: 30%;
+	}
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 992px){
 	body{
 		background: #21D5E0;
 		font-size: 20px;
@@ -275,9 +228,6 @@ body{
 		top: 1%;
 		right: 2%;	
 	}
-	.header_ul {
-		
-	}
 
 	.header_ul li{
 		display: inline-block;
@@ -286,6 +236,7 @@ body{
 		position: absolute;
 		background: $gray_dark;
 		padding-left: 0px;
+		z-index: 20;
 	}
 	.header_sub_ul li{
 		display: block;
@@ -328,9 +279,24 @@ body{
 	.submenu_img  img{
 		height: 100%;
 	}
-	#subMenuBoutique{
+	.header_sub_ul{
 		height: 294px;
 	}
+	.slider_img{
+		max-height: 750px;
+	}
+	.slider_img img{
+		object-fit: cover;
+		max-height: 750px;
+	}
+	.slider_content_text{
+		font-size: 18px;
+		margin-bottom: 10%;
+	}
+	.slider_content_text  *{
+	    margin-bottom: 70px;
+	}
+
 
 }
 
