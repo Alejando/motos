@@ -8054,6 +8054,61 @@ button.close {
 figure img {
   width: 100%; }
 
+.ktm-btn-primay {
+  background: #e25100;
+  color: white;
+  padding: 8px 10px 8px 10px;
+  text-decoration: none; }
+
+.ktm-btn-primay:hover {
+  background: #bd4400; }
+
+.header {
+  background: #333333; }
+
+.ktm-header-logo {
+  width: 50%;
+  margin-left: -1px; }
+
+.ktm-header-menu {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: white; }
+
+.ktm-header-menu:hover {
+  color: #e25100; }
+
+.ktm-header-nav {
+  margin-top: -1px;
+  background: #bd4400;
+  display: none; }
+
+.header ul {
+  list-style: none;
+  padding-left: 0px; }
+
+.ktm-header-ul li {
+  padding: 5px 0px 5px 0px; }
+
+.ktm-header-ul a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  margin-left: 10px; }
+
+.ktm-header-ul a:hover {
+  color: white;
+  text-decoration: none;
+  font-weight: bold; }
+
+.ktm-header-ul .ktm-header-sub-ul {
+  background: #e25100;
+  padding-left: 15px; }
+
+.separator-line {
+  color: #e25100;
+  height: 10px;
+  width: 100%; }
 .ktm_btn_primay {
   background: #e25100;
   color: white;
@@ -8226,6 +8281,31 @@ body {
     height: 100%; }
   #subMenuBoutique {
     height: 294px; } }
+
+@media screen and (min-width: 1240px) {
+  body {
+    background: #9241F6; } }
+
+body {
+  font-size: 16px;
+  background-color: #E95B5B;
+  position: relative; }
+
+@media screen and (min-width: 480px) {
+  body {
+    background: #E59B1B; } }
+
+@media screen and (min-width: 600px) {
+  body {
+    background: #FFFC1A; } }
+
+@media screen and (min-width: 767px) {
+  body {
+    background: #9DEF5A; } }
+
+@media screen and (min-width: 950px) {
+  body {
+    background: #21D5E0; } }
 
 @media screen and (min-width: 1240px) {
   body {
