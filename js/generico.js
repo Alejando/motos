@@ -53,16 +53,16 @@ var main = function () {
         else{
             $('.submenu_img').removeClass('hide');
             $( "#menuMotosWeb" ).mouseover(function() {
-                $('#subMenuMotos').slideDown('fast');
+                $('#subMenuMotos').stop().slideDown('fast');
             });     
             $("#menuMotosWeb").mouseleave(function () {
-                $('#subMenuMotos').slideUp('fast');
+                $('#subMenuMotos').stop().slideUp('fast');
             });
             $( "#menuBoutiqueWeb" ).mouseover(function() {
-                $('#subMenuBoutique').slideDown('fast');
+                $('#subMenuBoutique').stop().slideDown('fast');
             });     
             $("#menuBoutiqueWeb").mouseleave(function () {
-                $('#subMenuBoutique').slideUp('fast');
+                $('#subMenuBoutique').stop().slideUp('fast');
             });
         }
     };
@@ -129,6 +129,29 @@ var main = function () {
                 }
         });
     };
+    var slideMotos = function() {
+       $('#owlSlideMotos').owlCarousel({
+            loop:true,
+            responsiveClass: true,
+            autoPlay: 5000,
+            pagination: false,
+            responsive: {
+                  0: {
+                    items: 1,
+                    nav: false,
+                    dots: true
+                  },
+                  600: {
+                    items: 1,
+                    nav: false
+                  },
+                  1000: {
+                    items: 1,
+                    nav: false,
+                  }
+                }
+        });
+    };
 
    
 
@@ -137,6 +160,7 @@ var main = function () {
         init: function () {
             menuMovil();
             slidePrincipal();
+            slideMotos();
         }
     };
 }();
