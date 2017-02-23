@@ -1,0 +1,176 @@
+@import "variables";
+
+.separator_line{
+	// margin-top: 100px; Solo para efectos de prueba
+	background-color: $orange;
+	height: 10px;
+	width: 100%;
+}
+
+.icons_social{
+	margin: 5% 0%;
+	width: 100%; 
+}
+
+.icon_social{
+	width: 15.33%;
+	display: inline-block;
+	margin-left: 2.5%;
+}
+
+.text_copy_right{
+	text-align: center;
+	margin: 5% 0%;
+}
+
+.section_main{
+	background-color: $gray_dark_ligth;
+}
+
+.section_newsletter{
+	margin: 5% 5%;	
+}
+
+.form_newletter{
+	border-radius: 0px;
+}
+
+#address{
+	display: flex;
+}
+
+#address:before{
+	content:  url(../img/bikes_ubicacion.svg);
+	margin-right: 10px;
+}
+
+#phone:before{
+	content:  url(../img/bikes_telefono.svg);
+	margin-right: 10px;
+}
+
+#email:before{
+	content:  url(../img/bikes_email.svg);
+	margin-right: 10px;
+}
+
+footer ul li {
+	margin-top: 15px;
+}
+
+footer ul li{
+	list-style-type: none;
+}
+
+.belt_footer{
+	background-color: $gray_dark;
+}
+
+body{
+	font-size: 16px;
+	background-color: #FFCECE; /* Solo para efectos de prueba */
+	position: relative;
+
+}
+
+@media screen and (min-width: 600px){
+	body{
+		background: #FFFC1A; /* Solo para efectos de prueba */
+	}
+}
+
+@media screen and (min-width: 767px){
+	body{
+		background: #9DEF5A; /* Solo para efectos de prueba */
+	}
+	.footer_section{
+		/* 3 col */
+		//width: 100%;
+	}
+
+	.section_contact{
+		width: 44.2%;
+	}
+
+	.section_newsletter{
+		width: 44.2%;
+	}
+
+	.icons_social{
+		//margin-left: 2%;
+		margin: 0% 0%;
+	}
+}
+
+@media screen and (min-width: 992px){
+	body{
+		background: #21D5E0; /* Solo para efectos de prueba */
+	}
+
+	.footer_box{
+		width: 18%;
+	}
+
+	.icons_social{
+		width: 60%;
+	}
+
+	.text_copy_right{
+
+	}
+}
+
+@media screen and (min-width: 1240px){
+	body{
+		background: #F5EDFF; /* Solo para efectos de prueba */
+	}
+	.container_center{
+		width: 98%;
+		margin-left: 1%;
+	}
+
+	.footer_box{
+		width: 18%;
+		margin: 1% auto;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.icons_social{
+		//margin-left: 2%;
+		margin: 0% 0%;
+		width: 32.26%;
+	}
+
+	.icon_social{
+		width: 15.33%;
+		display: inline-block;
+	}
+
+	.text_copy_right{
+		text-align: right;
+		//margin-right: 30px;
+		margin: 0px 30px 0px 0px;
+	}
+
+	.footer_section{
+		width: 18.72%;
+	}
+
+	.ktm_visibility{
+		display: block;
+	}
+
+	.section_contact{
+		width: 100%;
+	}
+
+	.section_newsletter{
+		width: 100%;
+	}
+
+	.col_5 { 
+		margin: 0;
+	}
+
+}

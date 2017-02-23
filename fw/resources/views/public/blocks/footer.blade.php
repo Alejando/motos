@@ -1,82 +1,89 @@
 <footer>
 	<div class="separator_line"></div>
-	<div class="section group">
-		<div class="col span_1_of_5">
-			<ul>
-				<li><a href="">Motos</a></li>
-				<li><a href="">Supersport</a></li>
-				<li><a href="">Motocross</a></li>
-				<li><a href="">Freeride</a></li>
-				<li><a href="">Enduro</a></li>
-				<li><a href="">Naked</a></li>
-				<li><a href="">Travel</a></li>
+	<div class="section group section_main">
+		<div class="col footer_section ktm_visibility">
+			<ul >
+				<li><a href="" class="ktm_orange">Motos</a></li>
+				<li><a href="" class="ktm_white">Supersport</a></li>
+				<li><a href="" class="ktm_white">Motocross</a></li>
+				<li><a href="" class="ktm_white">Freeride</a></li>
+				<li><a href="" class="ktm_white">Enduro</a></li>
+				<li><a href="" class="ktm_white">Naked</a></li>
+				<li><a href="" class="ktm_white">Travel</a></li>
 			</ul>
 		</div>
-		<div class="col span_1_of_5">
+		<div class="col footer_section ktm_visibility">
 			<ul>
-				<li><a href="">Boutique</a></li>
-				<li><a href="">Accesorios</a></li>
-				<li><a href="">Zapatos</a></li>
-				<li><a href="">Cascos</a></li>
-				<li><a href="">Ropa</a></li>
+				<li><a href="" class="ktm_orange">Boutique</a></li>
+				<li><a href="" class="ktm_white">Accesorios</a></li>
+				<li><a href="" class="ktm_white">Zapatos</a></li>
+				<li><a href="" class="ktm_white">Cascos</a></li>
+				<li><a href="" class="ktm_white">Ropa</a></li>
 			</ul>
 		</div>
-		<div class="col span_1_of_5">
+		<div class="col footer_section ktm_visibility">
 			<ul>
-				<li><a href="">Servicio</a></li>
-				<li><a href="">Agenda cita</a></li>
+				<li><a href="" class="ktm_orange">Servicio</a></li>
+				<li><a href="" class="ktm_white">Agenda cita</a></li>
 			</ul>
 		</div>
-		<div class="col span_1_of_5">
+		<div class="col footer_section ktm_visibility">
 			<ul>
-				<li><a href="">Mas</a></li>
-				<li><a href="">Noticias Populares</a></li>
-				<li><a href="">Últimas noticias</a></li>
+				<li><a href="" class="ktm_orange">Mas</a></li>
+				<li><a href="" class="ktm_white">Noticias Populares</a></li>
+				<li><a href="" class="ktm_white">Últimas noticias</a></li>
+				<li><a href="" class="ktm_white">Aviso de privacidad</a></li>
 			</ul>
 		</div>
-		<div class="col span_1_of_5">
-			<ul>
-				<li>Contacto</li>
-				<li>Av. Patria #5435 Col. Patria Country CP. 54234 Zapopan, Jalisco</li>
-				<li>(45) 35324 45345</li>
-				<li>conact@eusero.mx</li>
-			</ul>
-			<div>Suscribete a nuestro newsletter</div>
-			<form>
-				<input type="text" name="correo">
-				<input type="submit" name="Suscribirme">
-			</form>
+		<div class="col footer_section col_5">
+			<div class="col section_contact">
+				<ul>
+					<li class="ktm_orange">Contacto</li>
+					<li class="ktm_white" id="address">Av. Patria #5435 Col. Patria Country CP. 54234 Zapopan, Jalisco</li>
+					<li class="ktm_white" id="phone">(45) 35324 45345</li>
+					<li class="ktm_white" id="email">conact@eusero.mx</li>
+				</ul>
+			</div>
+			<div class="col section_newsletter">
+				<div class="ktm_orange">Suscribete a nuestro newsletter</div>
+				<form>
+					<div class="input-group">
+						<input type="text" name="correo" class="form-control form_newletter">
+						<span class="input-group-btn">
+							<input type="submit" value="Suscribirme" class="btn btn-primary form_newletter">
+						</span>
+					</div>
+				</form>
+			</div>
+			
+			
 		</div>
 	</div>
 	<div class="section group belt_footer">
 		<div class="col span_1_of_2">
-			<div class="col span_1_of_3">
+		
 				<div class="icons_social">
 					<figure class="icon_social">
 						<img src="{{asset('img/bikes_facebook.svg')}}">
 					</figure>
 					<figure class="icon_social">
-						<img src="{{asset('img/bikes_facebook.svg')}}">
+						<img src="{{asset('img/bikes_twitter.svg')}}">
 					</figure>
 					<figure class="icon_social">
-						<img src="{{asset('img/bikes_facebook.svg')}}">
+						<img src="{{asset('img/bikes_google.svg')}}">
 					</figure>
 					<figure class="icon_social">
-						<img src="{{asset('img/bikes_facebook.svg')}}">
+						<img src="{{asset('img/bikes_instagram.svg')}}">
 					</figure>
 					<figure class="icon_social">
-						<img src="{{asset('img/bikes_facebook.svg')}}">
+						<img src="{{asset('img/bikes_pinterest.svg')}}">
 					</figure>	
-					<figure class="icon_social">
-						<img src="{{asset('img/bikes_facebook.svg')}}">
-					</figure>
 				</div>
-			</div>
-			<div class="col span_1_of_3"><a href="">Aviso de privacidad</a></div>
-			<div class="col span_1_of_3"><a href="">Sitio del mapa</a></div>	
+		
+				
 		</div>
 		<div class="col span_1_of_2">
-			<div class="copy_right">Todos los derechos reservados | <b>KTM Motos</b></div>
+			<div class="text_copy_right ktm_white">Todos los derechos reservados | <b>KTM Motos</b></div>
 		</div>
 	</div>
 </footer>

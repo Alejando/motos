@@ -15,8 +15,6 @@ and open the template in the editor.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Oswald);
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -8050,52 +8048,6 @@ button.close {
   clip: auto; }
 
 /*
- * 	Default theme - Owl Carousel CSS File
- */
-.owl-theme .owl-nav {
-  margin-top: 10px;
-  text-align: center;
-  -webkit-tap-highlight-color: transparent; }
-  .owl-theme .owl-nav [class*='owl-'] {
-    color: #FFF;
-    font-size: 14px;
-    margin: 5px;
-    padding: 4px 7px;
-    background: rgba(0, 0, 0, 0.5);
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 3px; }
-    .owl-theme .owl-nav [class*='owl-']:hover {
-      background: #e25100;
-      color: #FFF;
-      text-decoration: none; }
-  .owl-theme .owl-nav .disabled {
-    opacity: 0.5;
-    cursor: default; }
-
-.owl-theme .owl-nav.disabled + .owl-dots {
-  margin-top: 10px; }
-
-.owl-theme .owl-dots {
-  text-align: center;
-  -webkit-tap-highlight-color: transparent; }
-  .owl-theme .owl-dots .owl-dot {
-    display: inline-block;
-    zoom: 1;
-    *display: inline; }
-    .owl-theme .owl-dots .owl-dot span {
-      width: 15px;
-      height: 15px;
-      margin: 5px 7px;
-      background: rgba(0, 0, 0, 0.5);
-      display: block;
-      -webkit-backface-visibility: visible;
-      transition: opacity 200ms ease;
-      border-radius: 30px; }
-    .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
-      background: #e25100; }
-
-/*
  *  Owl Carousel - Core
  */
 .owl-carousel {
@@ -8207,6 +8159,52 @@ button.close {
 
 .owl-carousel .owl-item img.owl-lazy {
   transform-style: preserve-3d; }
+
+/*
+ * 	Owl Carousel - Video Plugin
+ */
+.owl-carousel .owl-video-wrapper {
+  position: relative;
+  height: 100%;
+  background: #000; }
+
+.owl-carousel .owl-video-play-icon {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+  background: url("owl.video.play.png") no-repeat;
+  cursor: pointer;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  transition: transform 100ms ease; }
+
+.owl-carousel .owl-video-play-icon:hover {
+  transform: scale(1.3, 1.3); }
+
+.owl-carousel .owl-video-playing .owl-video-tn,
+.owl-carousel .owl-video-playing .owl-video-play-icon {
+  display: none; }
+
+.owl-carousel .owl-video-tn {
+  opacity: 0;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity 400ms ease; }
+
+.owl-carousel .owl-video-frame {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%; }
+
+.ktm_visibility {
+  display: none; }
 
 .ktm_container {
   width: 90%;
@@ -8441,13 +8439,25 @@ body {
     top: 0px; }
   .submenu_img img {
     height: 100%; }
-  #subMenuBoutique {
-    height: 294px; } }
+  .header_sub_ul {
+    height: 294px; }
+  .slider_img {
+    max-height: 750px; }
+  .slider_img img {
+    object-fit: cover;
+    max-height: 750px; }
+  .slider_content_text {
+    font-size: 18px;
+    margin-bottom: 10%; }
+  .slider_content_text * {
+    margin-bottom: 70px; } }
 
 @media screen and (min-width: 1240px) {
   body {
     background: #9241F6; } }
 
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Oswald);
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -16525,7 +16535,7 @@ button.close {
 
 /* all browsers except IE6 and lower */
 /*  REMOVE MARGINS AS ALL GO FULL WIDTH AT 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .col {
     margin: 1% 0 1% 0%; } }
 
@@ -16537,7 +16547,7 @@ button.close {
   width: 49.2%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_2_of_2 {
     width: 100%; }
   .span_1_of_2 {
@@ -16554,7 +16564,7 @@ button.close {
   width: 32.26%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_3_of_3 {
     width: 100%; }
   .span_2_of_3 {
@@ -16576,7 +16586,7 @@ button.close {
   width: 23.8%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_4_of_4 {
     width: 100%; }
   .span_3_of_4 {
@@ -16603,7 +16613,7 @@ button.close {
   width: 18.72%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_5_of_5 {
     width: 100%; }
   .span_4_of_5 {
@@ -16635,7 +16645,7 @@ button.close {
   width: 15.33%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_6_of_6 {
     width: 100%; }
   .span_5_of_6 {
@@ -16672,7 +16682,7 @@ button.close {
   width: 12.91%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_7_of_7 {
     width: 100%; }
   .span_6_of_7 {
@@ -16714,7 +16724,7 @@ button.close {
   width: 11.1%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_8_of_8 {
     width: 100%; }
   .span_7_of_8 {
@@ -16758,7 +16768,7 @@ button.close {
   width: 11.1%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_8_of_8 {
     width: 100%; }
   .span_7_of_8 {
@@ -16808,7 +16818,7 @@ button.close {
   width: 8.56%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_10_of_10 {
     width: 100%; }
   .span_9_of_10 {
@@ -16865,7 +16875,7 @@ button.close {
   width: 7.63%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_11_of_11 {
     width: 100%; }
   .span_10_of_11 {
@@ -16927,7 +16937,7 @@ button.close {
   width: 6.86%; }
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
   .span_12_of_12 {
     width: 100%; }
   .span_11_of_12 {
@@ -16953,116 +16963,104 @@ button.close {
   .span_1_of_12 {
     width: 100%; } }
 
-.ktm_container {
-  width: 90%;
-  margin-left: 5%; }
-
-figure img {
-  width: 100%; }
-
-.ktm_btn_primay {
-  background: #e25100;
-  color: white;
-  padding: 8px 10px 8px 10px;
-  text-decoration: none; }
-
-.ktm_btn_primay:hover {
-  background: #bd4400; }
-
-.header {
-  background: #333333; }
-
-.header_logo {
-  width: 50%;
-  margin-left: -1px; }
-
-.header_menu {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  color: white; }
-
-.header_menu:hover {
-  color: #e25100; }
-
-.header_nav {
-  margin-top: -1px;
-  background: #bd4400;
-  display: none; }
-
-.header ul {
-  list-style: none;
-  padding-left: 0px; }
-
-.header_ul li {
-  padding: 5px 0px 5px 0px; }
-
-.header_ul a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  margin-left: 10px; }
-
-.header_ul a:hover {
-  color: white;
-  text-decoration: none;
-  font-weight: bold; }
-
-.header_ul .header_sub_ul {
-  background: #e25100;
-  padding-left: 15px; }
-
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/02/2017, 01:47:42 PM
+    Author     : aprado
+*/
 .separator_line {
-  margin-top: 100px;
-  /* Solo para efectos de prueba */
   background-color: #e25100;
   height: 10px;
   width: 100%; }
 
 .icons_social {
-  margin-left: 2%; }
+  margin: 5% 0%;
+  width: 100%; }
 
 .icon_social {
   width: 15.33%;
-  display: inline-block; }
+  display: inline-block;
+  margin-left: 2.5%; }
+
+.text_copy_right {
+  text-align: center;
+  margin: 5% 0%; }
+
+.section_main {
+  background-color: #303030; }
+
+.section_newsletter {
+  margin: 5% 5%; }
+
+.form_newletter {
+  border-radius: 0px; }
+
+#address {
+  display: -ms-flexbox;
+  display: flex; }
+
+#address:before {
+  content: url(../img/bikes_ubicacion.svg);
+  margin-right: 10px; }
+
+#phone:before {
+  content: url(../img/bikes_telefono.svg);
+  margin-right: 10px; }
+
+#email:before {
+  content: url(../img/bikes_email.svg);
+  margin-right: 10px; }
+
+footer ul li {
+  margin-top: 15px; }
+
+footer ul li {
+  list-style-type: none; }
+
+.belt_footer {
+  background-color: #333333; }
 
 body {
   font-size: 16px;
   background-color: #FFCECE;
+  /* Solo para efectos de prueba */
   position: relative; }
-
-@media screen and (min-width: 480px) {
-  body {
-    background: #E59B1B; } }
 
 @media screen and (min-width: 600px) {
   body {
-    background: #FFFC1A; } }
+    background: #FFFC1A;
+    /* Solo para efectos de prueba */ } }
 
 @media screen and (min-width: 767px) {
   body {
-    background: #9DEF5A; } }
+    background: #9DEF5A;
+    /* Solo para efectos de prueba */ }
+  .footer_section {
+    /* 3 col */ }
+  .section_contact {
+    width: 44.2%; }
+  .section_newsletter {
+    width: 44.2%; }
+  .icons_social {
+    margin: 0% 0%; } }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 992px) {
   body {
-    background: #21D5E0; }
+    background: #21D5E0;
+    /* Solo para efectos de prueba */ }
   .footer_box {
-    width: 18%; } }
-  .header_sub_ul {
-    height: 294px; }
-  .slider_img {
-    max-height: 750px; }
-  .slider_img img {
-    object-fit: cover;
-    max-height: 750px; }
-  .slider_content_text {
-    font-size: 18px;
-    margin-bottom: 10%; }
-  .slider_content_text * {
-    margin-bottom: 70px; } }
+    width: 18%; }
+  .icons_social {
+    width: 60%; } }
 
 @media screen and (min-width: 1240px) {
   body {
-    background: #F5EDFF; }
+    background: #F5EDFF;
+    /* Solo para efectos de prueba */ }
   .container_center {
     width: 98%;
     margin-left: 1%; }
@@ -17071,18 +17069,25 @@ body {
     margin: 1% auto;
     display: inline-block;
     vertical-align: top; }
-  .belt_footer {
-    background-color: #333333;
-    height: 100px; }
   .icons_social {
-    margin-left: 2%; }
+    margin: 0% 0%;
+    width: 32.26%; }
   .icon_social {
     width: 15.33%;
     display: inline-block; }
-  .copy_right {
-    text-align: right; }
-  footer ul li {
-    color: green; } }
+  .text_copy_right {
+    text-align: right;
+    margin: 0px 30px 0px 0px; }
+  .footer_section {
+    width: 18.72%; }
+  .ktm_visibility {
+    display: block; }
+  .section_contact {
+    width: 100%; }
+  .section_newsletter {
+    width: 100%; }
+  .col_5 {
+    margin: 0; } }
 
 
 /*# sourceMappingURL=web.css.map */
