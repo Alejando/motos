@@ -3,6 +3,10 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../js/bower_components/font-awesome/scss/font-awesome";
 @import "../js/bower_components/owl.carousel/src/scss/owl.carousel";
+
+.ktm_visibility{
+	display: none;
+}
 @import "../css/responsive-grid-system";
    
 .ktm_container{
