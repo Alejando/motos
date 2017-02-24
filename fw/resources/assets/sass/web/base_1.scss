@@ -2,5 +2,105 @@
 @import "variables";
    
 
+.sub_header{
+	//background-color: pink;
+	background-image: url("../img/motos/ktm_background_img.jpg");
+	height: 150px;
+
+	/* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.section_map_site{
+	height: 30%;
+	display: table;
+    margin-left: 2%;
+    width: 90%;
+
+}
+
+.text_map_site{
+	margin: 0% 0% 0% 2%;
+	vertical-align:bottom;
+	display: table-cell;
+	font-size: 1em;
+}
+
+.section_main_title{
+	height: 70%;
+	display: table;
+    margin-left: 2%;
+    width: 90%;
+
+}
+
+.text_main_title{
+	margin: 0% 0% 0% 2%;
+	vertical-align:top;
+	display: table-cell;
+	font-size: 2.4em;
+}
+
+.container_text{
+	width: 95%;
+	margin-left: 2%;
+	position: relative;
+	background-color: $gray_ligth;
+	margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: justify;
+}
+
+/*--------------------------------------------------------------------------------------*/
+.container_us{
+	//background-color: pink;
+	background-image: url("../img/motos/ktm-freeride.png");
+	height: 789px;
+
+	/* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+   
+@media screen and (min-width: 600px){
+	.text_map_site{
+		font-size: 1em;
+	}
+	.text_main_title{
+		font-size: 3em;
+	}
+}
+
+@media screen and (min-width: 767px){
+	.text_map_site{
+		font-size: 1.1em;
+	}
+	.text_main_title{
+		font-size: 3em;
+	}
+}
+
+@media screen and (min-width: 992px){
+	.text_map_site{
+		font-size: 1.2em;
+	}
+	.text_main_title{
+		font-size: 4em;
+	}
+}
+
+@media screen and (min-width: 1240px){
+	.text_map_site{
+		font-size: 1.4em;
+	}
+	.text_main_title{
+		font-size: 5em;
+	}
+}
 
 

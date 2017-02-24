@@ -1,13 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 @import "variables";
+@import "../css/responsive-grid-system";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../js/bower_components/font-awesome/scss/font-awesome";
 @import "../js/bower_components/owl.carousel/src/scss/owl.carousel";
-@import "../css/responsive-grid-system";
- 
+
+
 .ktm_visibility{
 	display: none;
 }
+
 .ktm_container{
 	width: 90%;
 	margin-left: 5%;
@@ -54,6 +56,10 @@ figure img{
 }
 .link_white:hover{
 	color: white
+}
+
+.ktm_shadon_title{
+    text-shadow: 1px 1px 1px black;
 }
 
 body{
