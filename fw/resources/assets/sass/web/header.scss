@@ -42,7 +42,7 @@
 .header_ul a:hover{
 	color: white;
 	text-decoration: none;
-	font-weight: bold;
+	//font-weight: bold;
 }
 
 .header_ul .header_sub_ul {
@@ -143,6 +143,8 @@ li.li_search a{
 		background: $gray_dark;
 		padding-left: 0px;
 		z-index: 20;
+		height: 294px;
+		margin-top: 21px;
 	}
 	.header_sub_ul li{
 		display: block;
@@ -179,22 +181,18 @@ li.li_search a{
 		position: absolute;
 		height: 294px;
 		left: -465px;
+		background-color: white;
     	top: 0px;
 	}
 	.submenu_img  img{
 		height: 100%;
-	}9+
-	.header_sub_ul{
-		height: 294px;
 	}
 	
 
 }
 
 @media screen and (min-width: 1240px){
-	body{
-		background: #9241F6;
-	}
+	
 	
 
 }
