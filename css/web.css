@@ -8905,8 +8905,7 @@ and open the template in the editor.
 
 .header_ul a:hover {
   color: white;
-  text-decoration: none;
-  font-weight: bold; }
+  text-decoration: none; }
 
 .header_ul .header_sub_ul {
   background: #e25100;
@@ -8986,7 +8985,9 @@ li.li_search a {
     position: absolute;
     background: #333333;
     padding-left: 0px;
-    z-index: 20; }
+    z-index: 20;
+    height: 294px;
+    margin-top: 21px; }
   .header_sub_ul li {
     display: block;
     padding-right: 15px; }
@@ -9014,16 +9015,10 @@ li.li_search a {
     position: absolute;
     height: 294px;
     left: -465px;
+    background-color: white;
     top: 0px; }
   .submenu_img img {
-    height: 100%; }
-  9 +
-.header_sub_ul {
-    height: 294px; } }
-
-@media screen and (min-width: 1240px) {
-  body {
-    background: #9241F6; } }
+    height: 100%; } }
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -9185,7 +9180,9 @@ and open the template in the editor.
 
 .slider_content_text > h3 {
   font-size: 2em;
-  text-shadow: black 0.1em 0.1em 0.2em; }
+  background: rgba(255, 255, 255, 0.8);
+  display: initial;
+  padding: 10px; }
 
 .slider_principal > .owl-theme .owl-nav.disabled + .owl-dots {
   margin-top: -33px;
@@ -9268,7 +9265,7 @@ and open the template in the editor.
   position: relative; }
 
 .slider_motos .content_img {
-  background-color: #D66113;
+  background-color: #ff6a16;
   margin-bottom: 0px;
   padding-bottom: 30px; }
 
@@ -9277,7 +9274,7 @@ and open the template in the editor.
   margin-left: 5%; }
 
 .slider_motos .content_text {
-  background-color: #ED7830;
+  background-color: #ff8a49;
   margin-top: 0px;
   padding-top: 15px;
   padding-bottom: 20px;
@@ -9299,9 +9296,48 @@ and open the template in the editor.
   content: url(../img/svg/star.svg);
   margin-right: 10px; }
 
+.news_home {
+  margin-top: -10px;
+  padding-top: 10px;
+  background-color: #333333; }
+
+.news_content {
+  position: relative;
+  padding: 0px;
+  margin: 0px; }
+
+.news_content .content_text {
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  top: 0;
+  height: 100%; }
+
+.news_content .content_text .label_content {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  width: 80%; }
+
+.news_content .content_text .label_content .label_img {
+  top: 0px; }
+
+.news_content .content_text .label_content .label_text {
+  font-size: 1em;
+  top: 2px; }
+
+.news_content .content_text .news_text {
+  position: relative;
+  top: 30%;
+  width: 90%;
+  left: 10%; }
+
+.news_content .news_img img {
+  object-fit: cover;
+  max-height: 300px;
+  min-height: 230px; }
+
 @media screen and (min-width: 600px) {
-  body {
-    background: #FFFC1A; }
   .slider_content_text {
     font-size: 16px;
     margin-bottom: 25%; }
@@ -9310,7 +9346,17 @@ and open the template in the editor.
   .label_text_multi {
     font-size: 1.5em; }
   .category_img {
-    min-height: 190px; } }
+    min-height: 190px; }
+  .news_div {
+    display: inline-table;
+    width: 100%;
+    display: -moz-groupbox; }
+  .news_content {
+    width: 50%;
+    display: inline-block; }
+  .news_content .news_img img {
+    object-fit: cover;
+    min-height: 250px; } }
 
 @media screen and (min-width: 767px) {
   body {
@@ -9318,14 +9364,26 @@ and open the template in the editor.
   .slider_content_text {
     font-size: 16px;
     margin-bottom: 30%; }
+  .label_img {
+    width: 45%; }
+  .label_img_multi {
+    width: 60%;
+    top: 5px; }
   .label_text {
     font-size: 2.2em; }
   .label_text_multi {
     font-size: 2em; }
   .category_img {
-    min-height: 310px; } }
+    min-height: 310px; }
+  .news_content .content_text .news_text {
+    top: 40%; }
+  .news_content .news_img img {
+    min-height: 260px;
+    max-height: 265px; } }
 
 @media screen and (min-width: 992px) {
+  .slider_principal {
+    margin-top: -1px; }
   .slider_img {
     max-height: 750px; }
   .slider_img img {
@@ -9335,9 +9393,17 @@ and open the template in the editor.
     font-size: 18px;
     margin-bottom: 10%; }
   .slider_content_text * {
-    margin-bottom: 70px; } }
+    margin-bottom: 70px; }
+  .label_img {
+    width: 35%; }
+  .label_img_multi {
+    width: 50%; }
+  .news_content, .news_content .news_img {
+    max-height: 300px; } }
 
 @media screen and (min-width: 1240px) {
+  .slider_principal {
+    margin-top: -10px; }
   .element_category {
     width: 65%;
     margin-right: 1.5%;
@@ -9361,16 +9427,41 @@ and open the template in the editor.
     min-height: 220px;
     max-height: 220px; }
   .category_img_big {
-    min-height: 550px;
-    max-height: 650px; }
-  .category_img_big img {
-    height: 550px; }
+    width: 80%;
+    margin: 0 auto; }
   .category_img img {
     height: 175px; }
   .category_img {
     min-height: 200px;
     max-height: 200px; }
+  .label_text {
+    top: 2px; }
+  .label_img_multi {
+    width: 65%;
+    top: 2px; }
   .label_text_multi {
-    font-size: 1.2em; } }
+    font-size: 1.2em; }
+  #owlSlideMotos .content_img {
+    width: 50%;
+    display: inline-block; }
+  #owlSlideMotos .content_text {
+    width: 50%;
+    display: inline-block; }
+  #owlSlideMotos .item {
+    display: -ms-inline-flexbox;
+    display: inline-flex; }
+  .slider_motos .content_text * {
+    margin-top: 5%;
+    margin-bottom: 5%; }
+  .news_home .news_content {
+    width: 25%; }
+  .news_content .content_text .news_text {
+    top: 30%; }
+  .news_content .news_img img {
+    object-fit: cover;
+    max-height: 250px; }
+  .news_div {
+    display: -ms-inline-flexbox;
+    display: inline-flex; } }
 
 /*# sourceMappingURL=web.css.map */

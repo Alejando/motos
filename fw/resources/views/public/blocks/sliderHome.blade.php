@@ -2,7 +2,6 @@
     <div id="owlSliderPrincipal" class="owl-carousel owl-theme">
     	@for($i=0;$i<4;$i++)
     		<div class="item">
-	           
 	            <div class="slider_content">
 	            	<figure class="slider_img">
 	            		<img src="{{ asset('img/motos/KTMM_slider-img.jpg') }}">

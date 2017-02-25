@@ -21,7 +21,7 @@
 		            <li><a href="">NAKED</a></li>
 		            <li><a href="">SUPERSPORT</a></li>
 		            <li><a href="">SEMINUEVAS</a></li>
-		            <figure class="submenu_img hide">
+		            <figure class="submenu_img ">
 	            		<img src="img/motos/KTMM_destacados.jpg">
 	            	</figure>
 		        </ul> 
@@ -31,7 +31,7 @@
 		        <ul id="subMenuBoutique" class="header_sub_ul">
 		            <li><a href="">POWERPARTS</a></li>
 		            <li><a href="">POWERWEAR</a></li>
-		            <figure class="submenu_img hide">
+		            <figure class="submenu_img ">
 	            		<img src="img/motos/KTMM_destacados.jpg">
 	            	</figure>
 		        </ul>
