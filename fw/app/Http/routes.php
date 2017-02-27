@@ -24,3 +24,6 @@ Route::get('vision', function () {
 Route::get('compromiso', function () {
     return view('public/pages/notice-privacy');
 });
+Route::get('detalles-de-producto', function () {
+    return view('public/pages/product-details');
+});

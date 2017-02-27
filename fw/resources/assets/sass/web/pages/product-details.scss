@@ -1,0 +1,138 @@
+@import "../variables";
+
+.details_description{
+	background-color: white;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	position: relative;
+}
+.details_description .description a.ktm_btn_primary{
+	
+	margin-top: 30px;
+}
+
+.details_description .description *{
+	margin-bottom: 15px;
+}
+.details_description .description {
+	padding-bottom: 30px;
+
+}
+.details_share {
+	  position: absolute;
+    z-index: 5;
+    top: 5%;
+    right: 5%;
+}
+.details_share a.ktm_btn_primary{
+	padding: 14px 10px 14px 10px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.details_share a.ktm_btn_primary > img{
+	width: 30px;
+        margin-right: 2px;
+    margin-bottom: 2px;
+}
+.details_principal{
+	background-color: $orange-ligth-2;
+	    padding-top: 10px;
+    padding-bottom: 10px;
+    display: inline-table;
+}
+.details_principal .col_feacture{
+	display: inline-block;
+}
+.details_principal .content_number{
+	border: 2px solid;
+    border-color: white;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 17px 40px 17px 40px;
+    margin-bottom: 15px;
+    width: 100px;
+    height: 100px;
+}
+.details_principal .content_number .number_feacture{
+	font-weight: bold;
+	color: white;
+	font-size: 2.5em;
+	margin: 0px;
+}
+.details_principal .text_feacture{
+	font-size: 1.2em;
+	width: 80%;
+	margin-left: 10%;
+}
+.details_principal .col_feacture{
+	width: 100%;
+}
+.details_characteristics .characteristic_1{
+	background-color: $gray_dark;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.details_characteristics .characteristic_2{
+	background-color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.details_characteristics .text_characteristic *{
+	margin: 0px;
+}
+.details_characteristics .text_characteristic {
+	padding-bottom: 20px;
+	margin-top: 15px;
+	display: inline-block;
+}
+
+.details_characteristics .text_characteristic div.ktm_separator_gray{
+	margin-top: 10px;
+}
+.details_characteristics .text_characteristic .col_characteristic{
+	width: 100%
+}
+
+
+@media screen and (min-width: 600px){
+	.details_principal .col_feacture{
+		width: 49.7%;
+	}
+}
+
+@media screen and (min-width: 767px){
+	.details_characteristics .text_characteristic *{
+		float: left;
+	}
+	.details_characteristics .text_characteristic .col_characteristic{
+		width: 50%
+	}
+		
+}
+
+@media screen and (min-width: 992px){
+	#owDetailsMoto  figure.slider_img{
+		width: 80%;
+		margin-left: 10%;
+	}
+	.details_principal .col_feacture{
+		width: 33.1%;
+	}
+	.details_description .description {
+		width: 80%;
+		margin-left: 10%;
+
+	}
+
+
+}
+
+@media screen and (min-width: 1240px){
+	#owDetailsMoto  figure.slider_img{
+		width: 60%;
+		margin-left: 20%;
+	}
+}

@@ -8681,6 +8681,11 @@ figure img {
   padding: 8px 10px 8px 10px;
   text-decoration: none; }
 
+.ktm_separator_gray {
+  background-color: #f2f2f2;
+  height: 2px;
+  width: 100%; }
+
 .ktm_btn_primary:hover {
   background: #bd4400;
   color: white;
@@ -8700,8 +8705,20 @@ figure img {
 .ktm_white_light {
   color: rgba(255, 255, 255, 0.8); }
 
+.ktm_gray_dark {
+  color: #333333; }
+
+.ktm_gray_middle {
+  color: #b3b3b3; }
+
+.ktm_gray_light {
+  color: #f2f2f2; }
+
 .ktm_center {
   text-align: center; }
+
+.ktm_margin_20 {
+  margin: 20px 0px 20px 0px; }
 
 .ktm_shadon_5 {
   box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 0.75); }
@@ -8714,30 +8731,6 @@ figure img {
 
 .ktm_shadon_title {
   text-shadow: 1px 1px 1px black; }
-
-body {
-  font-size: 16px;
-  background-color: #E95B5B;
-  position: relative; }
-
-::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.8); }
-
-@media screen and (min-width: 600px) {
-  body {
-    background: #FFFC1A; } }
-
-@media screen and (min-width: 767px) {
-  body {
-    background: #9DEF5A; } }
-
-@media screen and (min-width: 992px) {
-  body {
-    background: #21D5E0; } }
-
-@media screen and (min-width: 1240px) {
-  body {
-    background: #9241F6; } }
 
 /*
 To change this license header, choose License Headers in Project Properties.
@@ -9428,5 +9421,126 @@ and open the template in the editor.
   .news_div {
     display: -ms-inline-flexbox;
     display: inline-flex; } }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/02/2017, 01:47:42 PM
+    Author     : aprado
+*/
+.details_description {
+  background-color: white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  position: relative; }
+
+.details_description .description a.ktm_btn_primary {
+  margin-top: 30px; }
+
+.details_description .description * {
+  margin-bottom: 15px; }
+
+.details_description .description {
+  padding-bottom: 30px; }
+
+.details_share {
+  position: absolute;
+  z-index: 5;
+  top: 5%;
+  right: 5%; }
+
+.details_share a.ktm_btn_primary {
+  padding: 14px 10px 14px 10px;
+  border-radius: 50%; }
+
+.details_share a.ktm_btn_primary > img {
+  width: 30px;
+  margin-right: 2px;
+  margin-bottom: 2px; }
+
+.details_principal {
+  background-color: #ff8a49;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: inline-table; }
+
+.details_principal .col_feacture {
+  display: inline-block; }
+
+.details_principal .content_number {
+  border: 2px solid;
+  border-color: white;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 17px 40px 17px 40px;
+  margin-bottom: 15px;
+  width: 100px;
+  height: 100px; }
+
+.details_principal .content_number .number_feacture {
+  font-weight: bold;
+  color: white;
+  font-size: 2.5em;
+  margin: 0px; }
+
+.details_principal .text_feacture {
+  font-size: 1.2em;
+  width: 80%;
+  margin-left: 10%; }
+
+.details_principal .col_feacture {
+  width: 100%; }
+
+.details_characteristics .characteristic_1 {
+  background-color: #333333;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.details_characteristics .characteristic_2 {
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+.details_characteristics .text_characteristic * {
+  margin: 0px; }
+
+.details_characteristics .text_characteristic {
+  padding-bottom: 20px;
+  margin-top: 15px;
+  display: inline-block; }
+
+.details_characteristics .text_characteristic div.ktm_separator_gray {
+  margin-top: 10px; }
+
+.details_characteristics .text_characteristic .col_characteristic {
+  width: 100%; }
+
+@media screen and (min-width: 600px) {
+  .details_principal .col_feacture {
+    width: 49.7%; } }
+
+@media screen and (min-width: 767px) {
+  .details_characteristics .text_characteristic * {
+    float: left; }
+  .details_characteristics .text_characteristic .col_characteristic {
+    width: 50%; } }
+
+@media screen and (min-width: 992px) {
+  #owDetailsMoto figure.slider_img {
+    width: 80%;
+    margin-left: 10%; }
+  .details_principal .col_feacture {
+    width: 33.1%; }
+  .details_description .description {
+    width: 80%;
+    margin-left: 10%; } }
+
+@media screen and (min-width: 1240px) {
+  #owDetailsMoto figure.slider_img {
+    width: 60%;
+    margin-left: 20%; } }
 
 /*# sourceMappingURL=web.css.map */
