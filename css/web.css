@@ -8791,31 +8791,69 @@ and open the template in the editor.
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  overflow: hidden; }
+
+.menu_us {
+  width: 95%;
+  margin-left: 2%; }
+
+.menu_us ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; }
+
+.menu_us li {
+  float: left; }
+
+.menu_us li a {
+  display: block;
+  color: white;
+  margin: 20px 20px 10px 0px;
+  font-size: 22px; }
+
+.text_us {
+  width: 95%;
+  margin-left: 2%;
+  position: relative;
+  color: white;
+  text-align: justify; }
+
+.ktm_active {
+  color: #e25100; }
 
 @media screen and (min-width: 600px) {
   .text_map_site {
     font-size: 1em; }
   .text_main_title {
-    font-size: 3em; } }
+    font-size: 3em; }
+  .text_us {
+    width: 53%; } }
 
 @media screen and (min-width: 767px) {
   .text_map_site {
     font-size: 1.1em; }
   .text_main_title {
-    font-size: 3em; } }
+    font-size: 3em; }
+  .text_us {
+    width: 53%; } }
 
 @media screen and (min-width: 992px) {
   .text_map_site {
     font-size: 1.2em; }
   .text_main_title {
-    font-size: 4em; } }
+    font-size: 4em; }
+  .text_us {
+    width: 53%; } }
 
 @media screen and (min-width: 1240px) {
   .text_map_site {
     font-size: 1.4em; }
   .text_main_title {
-    font-size: 5em; } }
+    font-size: 5em; }
+  .text_us {
+    width: 53%; } }
 
 /*
 To change this license header, choose License Headers in Project Properties.
