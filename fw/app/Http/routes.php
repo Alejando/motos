@@ -14,13 +14,17 @@ Route::get('acerca-de', function () {
 });
 
 Route::get('filosofia', function () {
-    return view('public/pages/notice-privacy');
+    return view('public/pages/about-ktm');
 });
 
 Route::get('vision', function () {
-    return view('public/pages/notice-privacy');
+    return view('public/pages/about-ktm');
 });
 
 Route::get('compromiso', function () {
-    return view('public/pages/notice-privacy');
+    return view('public/pages/about-ktm');
+});
+
+Route::get('contacto', function () {
+    return view('public/pages/contact');
 });

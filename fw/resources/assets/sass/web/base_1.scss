@@ -1,7 +1,7 @@
 
 @import "variables";
    
-
+/*------------------------------------AVISO DE PRIVACIDAD--------------------------------------------------*/
 .sub_header{
 	//background-color: pink;
 	background-image: url("../img/motos/ktm_background_img.jpg");
@@ -12,6 +12,8 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
+    margin-top: -1px;
 }
 
 .section_map_site{
@@ -54,7 +56,13 @@
     text-align: justify;
 }
 
-/*--------------------------------------------------------------------------------------*/
+/*-------------------------------------NOSOTROS-------------------------------------------------*/
+
+.ktm_active{
+	color: $orange;
+}
+
+
 .container_us{
 	//background-color: pink;
 	background-image: url("../img/motos/ktm-freeride.png");
@@ -98,10 +106,6 @@
 	position: relative;
 	color: white;
 	text-align: justify
-}
-
-.ktm_active{
-	color: $orange;
 }
    
 @media screen and (min-width: 600px){
@@ -152,5 +156,164 @@
 		width: 53%;
 	}
 }
+
+/*------------------------------------CONTACTO----------------------------------------*/
+
+.contact_container{
+	//background-color: $gray_ligth;
+}
+
+
+.section_visit{
+	margin-right: 2%;
+}
+
+.section_visit ul {
+	list-style-type: none;
+}
+
+.section_visit ul{
+	//-webkit-padding-start: 2%;
+	padding: 0;
+	margin-left: 2%
+}
+
+.social_figure{
+	width: 32.26%;
+	display: inline-block;
+}
+
+.social_figure img {
+	width: 32%;
+	margin: 2% 0%;
+}
+
+.section_follow{
+	//margin-left: 40px;
+}
+
+.subtitle_contact{
+	font-size: 22px;
+	margin: 10px 0px 10px 0px;
+	padding: 0;
+}
+
+.dividing_line{
+	background-color: $gray_middle;
+    height: 1px;
+    width: 98%;
+    //margin-left: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.form_contact{
+	margin: 2% 4% 0% 4%;
+}
+
+.form_contact input, textarea {
+	border-radius: 0px;
+}
+
+.form_contact textarea {
+	border-radius: 0px;
+}
+
+.clean_form{
+	display: inline-block;
+}
+
+.btn_contact{
+	display: inline-block;
+	float: right;
+}
+
+.map_contact{
+	margin-bottom: -6px; /*ESTE ES PARA EFECTOS DE PRUEBA*/
+	margin-top: 10%;
+}
+
+.map_mge{
+	margin: 0% 0% 2% 4%
+}
+
+.main_container{
+	width: 90%;
+    margin: 0 auto;	
+}
+
+
+    
+
+@media screen and (min-width: 600px){
+	.map_contact{
+		margin-top: 8%;
+	}
+	.section_visit ul{
+		-webkit-padding-start: 6%;
+	}
+	.section_follow{
+		margin-left: 4%
+	}
+
+}
+
+@media screen and (min-width: 767px){
+	.section_visit{
+		width: 45%;
+	}
+	.section_follow{
+		width: 45%;
+	}
+	.social_figure img {
+		width: 35%;
+	}
+
+	.map_contact{
+		margin-top: 6%;
+	}
+}
+
+@media screen and (min-width: 992px){
+	.row_3{
+		display: block;
+		float:left;
+		margin: 1% 1% 1% 0;
+		width: 32.26%; 
+	}
+
+	.form_contact input{
+		width: 98%;
+	}
+
+	.form_contact textarea{
+		width: 98%;
+	}
+
+	.btn_contact{
+		margin-right: 2%;
+	}
+
+	.map_contact{
+		margin-top: 4%;
+	}
+}
+
+@media screen and (min-width: 1240px){
+	.social_figure img {
+		width: 18%;
+	}
+
+	.dividing_line{
+	    //width: 95%;
+	    //margin-left: 2%;
+	}
+
+	.map_contact{
+		margin-top: 2%;
+	}
+}
+    
+
 
 
