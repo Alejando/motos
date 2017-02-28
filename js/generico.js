@@ -152,6 +152,29 @@ var main = function () {
                 }
         });
     };
+    var detailsMoto = function() {
+       $('#owDetailsMoto').owlCarousel({
+            loop:true,
+            responsiveClass: true,
+            autoPlay: 5000,
+            pagination: false,
+            responsive: {
+                  0: {
+                    items: 1,
+                    nav: false,
+                    dots: true
+                  },
+                  600: {
+                    items: 1,
+                    nav: false
+                  },
+                  1000: {
+                    items: 1,
+                    nav: false,
+                  }
+                }
+        });
+    };
 
    
 
@@ -161,6 +184,7 @@ var main = function () {
             menuMovil();
             slidePrincipal();
             slideMotos();
+            detailsMoto();
         }
     };
 }();

@@ -24,6 +24,12 @@ figure img{
 	padding: 8px 10px 8px 10px;
 	text-decoration: none;
  }
+ .ktm_separator_gray{
+ 	background-color: $gray_ligth;
+	height: 2px;
+	width: 100%;
+ }
+
 .ktm_btn_primary:hover{
 	background: $orange_dark;
 	color: white;
@@ -47,8 +53,20 @@ figure img{
 .ktm_white_light{
 	color: $white_ligth;
 }
+.ktm_gray_dark{
+	color: $gray_dark;
+}
+.ktm_gray_middle{
+	color: $gray_middle;
+}
+.ktm_gray_light{
+	color: $gray_ligth;
+}
 .ktm_center{
 	text-align: center;
+} 
+.ktm_margin_20{
+	margin: 20px 0px 20px 0px;
 }
 .ktm_shadon_5{
 	-webkit-box-shadow: 5px 5px 5px -1px rgba(0,0,0,0.75);
@@ -67,47 +85,24 @@ figure img{
 }
 
 
-body{
-	font-size: 16px;
-	background-color: #E95B5B;
-	position: relative;
-
-}
-::-webkit-input-placeholder {
-   color: $white_ligth;
-}
- 
 
 @media screen and (min-width: 600px){
-	body{
-		background: #FFFC1A;
-	}
-	
+
 }
 
 @media screen and (min-width: 767px){
-	body{
-		background: #9DEF5A;
-	}
-	
+
 
 }
 
 @media screen and (min-width: 992px){
-	body{
-		background: #21D5E0;
-		
-	}
+
 	
 
 
 }
 
 @media screen and (min-width: 1240px){
-	body{
-		background: #9241F6;
-	}
-	
 
 }
 
