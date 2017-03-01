@@ -471,7 +471,6 @@ Route::get('compromiso', function () {
 Route::get('detalles-de-producto', function () {
     return view('public/pages/product-details');
 });
-
 Route::get('contacto', function () {
     return view('public/pages/contact');
 });    
