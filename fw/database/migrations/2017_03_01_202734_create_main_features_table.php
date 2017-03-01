@@ -13,7 +13,7 @@ class CreateMainFeaturesTable extends Migration
     public function up()
     {
         Schema::create('main_features', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->string('name');
             $table->integer('n_order');
             $table->string('description');                        
