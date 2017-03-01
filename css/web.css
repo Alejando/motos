@@ -1620,7 +1620,7 @@ h1, h2, h3, h4, h5, h6,
   .h6 .small {
     font-weight: normal;
     line-height: 1;
-    color: #777777; }
+    color: #f2f2f2; }
 
 h1, .h1,
 h2, .h2,
@@ -1718,7 +1718,7 @@ mark,
   text-transform: capitalize; }
 
 .text-muted {
-  color: #777777; }
+  color: #f2f2f2; }
 
 .text-primary {
   color: #e25100; }
@@ -1857,7 +1857,7 @@ dd {
 abbr[title],
 abbr[data-original-title] {
   cursor: help;
-  border-bottom: 1px dotted #777777; }
+  border-bottom: 1px dotted #f2f2f2; }
 
 .initialism {
   font-size: 90%; }
@@ -1877,7 +1877,7 @@ blockquote {
     display: block;
     font-size: 80%;
     line-height: 1.6;
-    color: #777777; }
+    color: #f2f2f2; }
     blockquote footer:before,
     blockquote small:before,
     blockquote .small:before {
@@ -2486,7 +2486,7 @@ table {
 caption {
   padding-top: 8px;
   padding-bottom: 8px;
-  color: #777777;
+  color: #f2f2f2;
   text-align: left; }
 
 th {
@@ -3514,7 +3514,7 @@ fieldset[disabled] a.btn {
   .btn-link[disabled]:hover, .btn-link[disabled]:focus,
   fieldset[disabled] .btn-link:hover,
   fieldset[disabled] .btn-link:focus {
-    color: #777777;
+    color: #f2f2f2;
     text-decoration: none; }
 
 .btn-lg, .btn-group-lg > .btn {
@@ -3638,7 +3638,7 @@ tbody.collapse.in {
   background-color: #e25100; }
 
 .dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
-  color: #777777; }
+  color: #f2f2f2; }
 
 .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
   text-decoration: none;
@@ -3666,7 +3666,7 @@ tbody.collapse.in {
   padding: 3px 20px;
   font-size: 14px;
   line-height: 1.6;
-  color: #777777;
+  color: #f2f2f2;
   white-space: nowrap; }
 
 .dropdown-backdrop {
@@ -3993,9 +3993,9 @@ tbody.collapse.in {
         text-decoration: none;
         background-color: #eeeeee; }
     .nav > li.disabled > a {
-      color: #777777; }
+      color: #f2f2f2; }
       .nav > li.disabled > a:hover, .nav > li.disabled > a:focus {
-        color: #777777;
+        color: #f2f2f2;
         text-decoration: none;
         background-color: transparent;
         cursor: not-allowed; }
@@ -4432,14 +4432,14 @@ tbody.collapse.in {
   background-color: #222;
   border-color: #090909; }
   .navbar-inverse .navbar-brand {
-    color: #9d9d9d; }
+    color: white; }
     .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
       color: #fff;
       background-color: transparent; }
   .navbar-inverse .navbar-text {
-    color: #9d9d9d; }
+    color: white; }
   .navbar-inverse .navbar-nav > li > a {
-    color: #9d9d9d; }
+    color: white; }
     .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
       color: #fff;
       background-color: transparent; }
@@ -4467,7 +4467,7 @@ tbody.collapse.in {
     .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
       background-color: #090909; }
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-      color: #9d9d9d; }
+      color: white; }
       .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
         color: #fff;
         background-color: transparent; }
@@ -4478,11 +4478,11 @@ tbody.collapse.in {
       color: #444;
       background-color: transparent; } }
   .navbar-inverse .navbar-link {
-    color: #9d9d9d; }
+    color: white; }
     .navbar-inverse .navbar-link:hover {
       color: #fff; }
   .navbar-inverse .btn-link {
-    color: #9d9d9d; }
+    color: white; }
     .navbar-inverse .btn-link:hover, .navbar-inverse .btn-link:focus {
       color: #fff; }
     .navbar-inverse .btn-link[disabled]:hover, .navbar-inverse .btn-link[disabled]:focus,
@@ -4503,7 +4503,7 @@ tbody.collapse.in {
       padding: 0 5px;
       color: #ccc; }
   .breadcrumb > .active {
-    color: #777777; }
+    color: #f2f2f2; }
 
 .pagination {
   display: inline-block;
@@ -4554,7 +4554,7 @@ tbody.collapse.in {
   .pagination > .disabled > a,
   .pagination > .disabled > a:hover,
   .pagination > .disabled > a:focus {
-    color: #777777;
+    color: #f2f2f2;
     background-color: #fff;
     border-color: #ddd;
     cursor: not-allowed; }
@@ -4624,7 +4624,7 @@ tbody.collapse.in {
   .pager .disabled > a:hover,
   .pager .disabled > a:focus,
   .pager .disabled > span {
-    color: #777777;
+    color: #f2f2f2;
     background-color: #fff;
     cursor: not-allowed; }
 
@@ -4651,9 +4651,9 @@ a.label:hover, a.label:focus {
   cursor: pointer; }
 
 .label-default {
-  background-color: #777777; }
+  background-color: #f2f2f2; }
   .label-default[href]:hover, .label-default[href]:focus {
-    background-color: #5e5e5e; }
+    background-color: #d9d9d9; }
 
 .label-primary {
   background-color: #e25100; }
@@ -4691,7 +4691,7 @@ a.label:hover, a.label:focus {
   vertical-align: middle;
   white-space: nowrap;
   text-align: center;
-  background-color: #777777;
+  background-color: #f2f2f2;
   border-radius: 10px; }
   .badge:empty {
     display: none; }
@@ -4978,12 +4978,12 @@ button.list-group-item {
 
 .list-group-item.disabled, .list-group-item.disabled:hover, .list-group-item.disabled:focus {
   background-color: #eeeeee;
-  color: #777777;
+  color: #f2f2f2;
   cursor: not-allowed; }
   .list-group-item.disabled .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading {
     color: inherit; }
   .list-group-item.disabled .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text {
-    color: #777777; }
+    color: #f2f2f2; }
 
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   z-index: 2;
@@ -8699,6 +8699,9 @@ figure img {
 .ktm_orange {
   color: #e25100; }
 
+.ktm_black {
+  color: black; }
+
 .ktm_white {
   color: white; }
 
@@ -9459,6 +9462,173 @@ and open the template in the editor.
   .news_div {
     display: -ms-inline-flexbox;
     display: inline-flex; } }
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/02/2017, 01:47:42 PM
+    Author     : aprado
+*/
+.motos {
+  background-color: white;
+  padding-top: 5%;
+  padding-bottom: 5%; }
+
+.motos .motos_content_1, .motos .motos_content_2 {
+  margin-top: 30px;
+  width: 90%;
+  margin-left: 5%;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.24);
+  margin-bottom: 15px;
+  position: relative; }
+
+.motos .motos_content_1 .img_background {
+  background-color: white;
+  padding-bottom: 20px; }
+
+.motos .motos_content_1 .text_background {
+  padding-top: 10px;
+  background-color: #f2f2f2;
+  padding-bottom: 10px; }
+
+.motos .motos_content_2 .img_background {
+  background-color: white;
+  padding-bottom: 20px; }
+
+.motos .motos_content_2 .text_background {
+  padding-top: 10px;
+  background-color: #ffece2;
+  padding-bottom: 10px; }
+
+.motos .text_background .text_content {
+  width: 90%;
+  margin-left: 5%; }
+
+.motos .text_background .text_content * {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.motos .text_background .text_content .feacture {
+  margin-bottom: 0px; }
+
+.motos .text_background .text_content .feacture_description {
+  margin-top: 0px; }
+
+.motos .motos_share {
+  position: absolute;
+  top: 5%;
+  right: 5%; }
+
+.motos .motos_share a.ktm_btn_primary {
+  border-radius: 50%;
+  padding: 10px 10px 10px 10px; }
+
+.motos .motos_share a.ktm_btn_primary img {
+  margin-bottom: 2px;
+  margin-right: 2px; }
+
+.motos .motos_content_2:hover .img_background, .motos_content_1:hover .img_background {
+  background-color: #e25100; }
+
+.motos .motos_content_2:hover .text_background, .motos_content_1:hover .text_background {
+  background-color: #ff8a49; }
+
+.motos_content_2:hover a, .motos_content_1:hover a {
+  text-decoration: none; }
+
+.motos_content_2:hover .text_content > *, .motos_content_1:hover .text_content > * {
+  color: white; }
+
+@media screen and (min-width: 767px) {
+  .motos .motos_share a.ktm_btn_primary {
+    border-radius: 50%;
+    padding: 30px 15px 30px 15px; }
+  .motos .motos_share a.ktm_btn_primary img {
+    margin-bottom: 2px;
+    margin-right: 2px;
+    width: 50px; } }
+
+@media screen and (min-width: 992px) {
+  .motos .motos_content_2 .text_background,
+  .motos .motos_content_2 .img_background {
+    width: 50%;
+    display: block;
+    float: left;
+    min-height: 460px;
+    padding: 0px; }
+  .motos .motos_content_1 .text_background,
+  .motos .motos_content_1 .img_background {
+    width: 50%;
+    display: block;
+    float: right;
+    min-height: 460px;
+    padding: 0px; }
+  .motos .motos_content_2 .text_content {
+    text-align: right;
+    margin-top: 28px; }
+  .motos .motos_content_1,
+  .motos .motos_content_2 {
+    clear: both;
+    display: table;
+    max-height: 450px; }
+  .motos_content_2 .img_content {
+    position: absolute;
+    width: 60%;
+    left: 10%; }
+  .motos_content_1 .img_content {
+    position: absolute;
+    width: 60%;
+    right: 10%; }
+  
+  .motos .img_background .img_content img {
+    width: auto;
+    max-height: 400px; }
+  .motos .motos_content_2 .motos_share {
+    position: absolute;
+    top: 10%;
+    left: 10%; }
+  .motos .motos_content_1 .text_content {
+    margin-top: 28px; }
+  .motos .motos_content_1 .motos_share {
+    position: absolute;
+    top: 10%;
+    right: 10%; } }
+
+@media screen and (min-width: 1240px) {
+  .motos .motos_content_2 .text_background,
+  .motos .motos_content_2 .img_background,
+  .motos .motos_content_1 .text_background,
+  .motos .motos_content_1 .img_background {
+    min-height: 550px; }
+  .motos_content_2 .img_content {
+    position: absolute;
+    width: 65%;
+    left: 15%; }
+  .motos .img_background .img_content img {
+    width: auto;
+    max-height: 500px; }
+  .motos .text_background .text_content {
+    margin-top: 61px;
+    width: 90%;
+    font-size: 18px; }
+  .motos_content_1 .img_content {
+    position: absolute;
+    width: 65%;
+    right: 5%; } }
+
+@media screen and (min-width: 1450px) {
+  .motos .motos_content_2,
+  .motos .motos_content_1 {
+    width: 85%;
+    margin-left: 7.5%; }
+  .motos .text_background .text_content {
+    margin-top: 37px;
+    font-size: 20px; }
+  .motos .text_background .text_content h2 {
+    font-size: 2.4em; } }
 
 /*
 To change this license header, choose License Headers in Project Properties.

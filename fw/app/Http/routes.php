@@ -27,3 +27,9 @@ Route::get('compromiso', function () {
 Route::get('detalles-de-producto', function () {
     return view('public/pages/product-details');
 });
+Route::get('motos', function () {
+    return view('public/pages/motos');
+});
+Route::get('noticias', function () {
+    return view('public/pages/news');
+});

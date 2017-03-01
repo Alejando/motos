@@ -25,7 +25,7 @@ figure img{
 	text-decoration: none;
  }
  .ktm_separator_gray{
- 	background-color: $gray_ligth;
+ 	background-color: $gray_light;
 	height: 2px;
 	width: 100%;
  }
@@ -43,11 +43,14 @@ figure img{
 .ktm_orange{
 	color: $orange;
 }
+.ktm_black{
+	color: black;
+}
 .ktm_white{
 	color: white;
 }
 .ktm_white_light{
-	color: $white_ligth;
+	color: $white_light;
 }
 .ktm_gray_dark{
 	color: $gray_dark;
@@ -56,7 +59,7 @@ figure img{
 	color: $gray_middle;
 }
 .ktm_gray_light{
-	color: $gray_ligth;
+	color: $gray_light;
 }
 .ktm_center{
 	text-align: center;
