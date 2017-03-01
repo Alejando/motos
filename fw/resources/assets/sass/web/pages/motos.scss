@@ -1,0 +1,199 @@
+@import "../variables";
+
+
+.motos{
+	background-color: white;
+	padding-top: 5%;
+	padding-bottom: 5%;
+
+}
+.motos .motos_content_1,.motos  .motos_content_2{
+	margin-top: 30px;
+	width: 90%;
+	margin-left: 5%;
+	-webkit-box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.24);
+	-moz-box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.24);
+	box-shadow: 3px 3px 10px 6px rgba(0,0,0,0.24);
+	margin-bottom: 15px;
+	position: relative;
+}
+.motos .motos_content_1 .img_background{
+	background-color: white;
+	padding-bottom: 20px;
+}
+.motos .motos_content_1 .text_background{
+	padding-top: 10px;
+	background-color: $gray_light;
+	padding-bottom: 10px;
+}
+.motos .motos_content_2 .img_background{
+	background-color: white;
+	padding-bottom: 20px;
+}
+.motos .motos_content_2 .text_background{
+	padding-top: 10px;
+	background-color: $orange-light-4;
+	padding-bottom: 10px;
+}
+.motos .text_background .text_content{
+	width: 90%;
+	margin-left: 5%;
+}
+.motos .text_background .text_content *{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
+}
+.motos .text_background .text_content .feacture{
+	margin-bottom: 0px;
+}
+.motos .text_background .text_content .feacture_description{
+	margin-top: 0px;
+}
+.motos .motos_share{
+	position: absolute;
+	top: 5%;
+	right: 5%;
+	
+}
+.motos .motos_share a.ktm_btn_primary{
+	border-radius: 50%;
+	padding: 10px 10px 10px 10px;
+}
+.motos .motos_share a.ktm_btn_primary img{
+	margin-bottom: 2px;
+	margin-right: 2px;
+}
+
+.motos .motos_content_2:hover .img_background,.motos_content_1:hover .img_background{
+	background-color: $orange;
+}
+.motos .motos_content_2:hover .text_background,.motos_content_1:hover .text_background{
+	background-color: $orange-light-2;
+}
+.motos_content_2:hover a,.motos_content_1:hover a{
+	text-decoration: none;
+}
+.motos_content_2:hover .text_content>*,.motos_content_1:hover .text_content>*{
+	color: white;
+}
+@media screen and (min-width: 600px){
+	
+}
+
+
+@media screen and (min-width: 767px){
+	.motos .motos_share a.ktm_btn_primary{
+		border-radius: 50%;
+		padding: 30px 15px 30px 15px;
+	}
+	.motos .motos_share a.ktm_btn_primary img{
+		margin-bottom: 2px;
+		margin-right: 2px;
+		width: 50px;
+	}
+		
+}
+
+@media screen and (min-width: 992px){
+	.motos .motos_content_2 .text_background,
+	.motos .motos_content_2 .img_background{
+		width: 50%;
+		display: block;
+		float:left;
+		min-height: 460px;
+		padding: 0px;
+	}
+	.motos .motos_content_1 .text_background,
+	.motos .motos_content_1 .img_background{
+		width: 50%;
+		display: block;
+		float:right;
+		min-height: 460px;
+		padding: 0px;
+	}
+	.motos .motos_content_2 .text_content{
+		text-align: right;
+		margin-top: 28px;
+	}
+	.motos .motos_content_1,
+	.motos .motos_content_2 {
+		clear: both;
+		display: table;
+		max-height: 450px;
+	}
+	.motos_content_2 .img_content {
+		position: absolute;
+		width: 60%;
+		left:10%;
+	}
+	.motos_content_1 .img_content {
+		position: absolute;
+		width: 60%;
+		right:10%;
+	}
+	,
+	.motos .img_background .img_content img{
+		width: auto;
+		max-height: 400px;
+	}
+	.motos .motos_content_2 .motos_share{
+		position: absolute;
+		top: 10%;
+		left:  10%;
+	}
+	.motos .motos_content_1 .text_content{
+		margin-top: 28px;
+	}
+	.motos .motos_content_1 .motos_share{
+		position: absolute;
+		top: 10%;
+		right:  10%;
+	}
+	
+}
+
+@media screen and (min-width: 1240px){
+	.motos .motos_content_2 .text_background,
+	.motos .motos_content_2 .img_background,
+	.motos .motos_content_1 .text_background,
+	.motos .motos_content_1 .img_background{
+		min-height: 550px;
+	}
+	.motos_content_2 .img_content {
+		position: absolute;
+		width: 65%;
+		left:15%;
+	}
+	.motos .img_background .img_content img{
+		width: auto;
+		max-height: 500px;
+	}
+	.motos .text_background .text_content{
+		margin-top: 61px;
+		width: 90%;
+		font-size: 18px;
+	}
+	.motos_content_1 .img_content {
+		position: absolute;
+		width: 65%;
+		right:5%;
+	}
+
+}
+@media screen and (min-width: 1450px){
+	.motos .motos_content_2,
+	.motos .motos_content_1{
+		width: 85%;
+		margin-left:7.5%;
+	}
+	.motos .text_background .text_content{
+		margin-top: 37px;
+		font-size: 20px;
+	}
+	.motos .text_background .text_content h2{
+
+		font-size: 2.4em;
+	}
+
+}

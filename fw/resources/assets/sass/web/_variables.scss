@@ -29,13 +29,13 @@ $orange:#e25100;
 $orange_dark:#bd4400;
 $gray_dark:#333333;
 $gray_middle:#b3b3b3;
-$gray_ligth:#f2f2f2;
+$gray_light:#f2f2f2;
 $gray:#cccccc;
-$white_ligth:rgba(255,255,255,.8);
-$gray_dark_ligth : #303030;
-$orange-ligth-1:lighten($orange, 10%);
-$orange-ligth-2:lighten($orange, 20%);
-$orange-ligth-4:lighten($orange, 40%);
+$white_light:rgba(255,255,255,.8);
+$gray_dark_light : #303030;
+$orange-light-1:lighten($orange, 10%);
+$orange-light-2:lighten($orange, 20%);
+$orange-light-4:lighten($orange, 50%);
  
 // Typography
 $font-family-sans-serif: "Oswald", sans-serif;
