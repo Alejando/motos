@@ -163,6 +163,22 @@
 	//background-color: $gray_ligth;
 }
 
+#address_contact:before{
+	content:  url(../img/bikes_ubicacion.svg);
+	margin-right: 10px;
+	fill: $orange;
+}
+
+#phone:before{
+	content:  url(../img/bikes_telefono.svg);
+	margin-right: 10px;
+}
+
+#email:before{
+	content:  url(../img/bikes_email.svg);
+	margin-right: 10px;
+}
+
 
 .section_visit{
 	margin-right: 2%;
@@ -201,7 +217,7 @@
 .dividing_line{
 	background-color: $gray_middle;
     height: 1px;
-    width: 98%;
+    width: 100%;
     //margin-left: 5%;
     margin-top: 10px;
     margin-bottom: 10px
@@ -225,7 +241,8 @@
 
 .btn_contact{
 	display: inline-block;
-	float: right;
+	//float: right;
+	margin-left: 15px;
 }
 
 .map_contact{
@@ -244,8 +261,8 @@
 
 
     
-
-@media screen and (min-width: 600px){
+/*AMARILLO*/
+@media screen and (min-width: 600px){ 
 	.map_contact{
 		margin-top: 8%;
 	}
@@ -257,7 +274,7 @@
 	}
 
 }
-
+/*VERDE*/
 @media screen and (min-width: 767px){
 	.section_visit{
 		width: 45%;
@@ -273,7 +290,7 @@
 		margin-top: 6%;
 	}
 }
-
+/*AZUL*/
 @media screen and (min-width: 992px){
 	.row_3{
 		display: block;
@@ -298,7 +315,7 @@
 		margin-top: 4%;
 	}
 }
-
+/*GRIS LIGHT*/
 @media screen and (min-width: 1240px){
 	.social_figure img {
 		width: 18%;
@@ -313,7 +330,73 @@
 		margin-top: 2%;
 	}
 }
+
+/*----------------------------------SERVICIO----------------------------------------------*/
     
+.form-horizontal .form-group input, .form-horizontal .form-group select, .form-horizontal .form-group textarea{
+	border-radius: 0px;
+}
 
+.form-group .control-label {
+	text-align: inherit;
+}
 
+.container_form_horizontal{
+	width: 80%;
+    margin: 0 auto;
+    margin-top: 35px;
+    margin-bottom: 35px;	
+}
 
+.ktm_margin_input{
+	margin-bottom: 2%;
+}
+
+.section_visit ul {
+    -webkit-padding-start: 0%;
+}
+
+.btn_service{
+	display: inline-block;
+	//float: right;
+	margin-right: 15px;
+	margin-left: 15px;
+}
+.section_btns{
+	text-align: right;
+}
+/*AMARILLO*/
+@media screen and (min-width: 600px){ 
+
+}
+/*VERDE*/
+@media screen and (min-width: 767px){
+	.ktm_margin_input{
+		margin-bottom: 0%;
+	}
+}
+/*AZUL*/
+@media screen and (min-width: 992px){
+	.ktm_margin_input{
+		margin-bottom: 0%;
+	}
+}
+/*GRIS LIGHT*/
+@media screen and (min-width: 1240px){
+	.ktm_margin_input{
+		margin-bottom: 0%;
+	}
+}
+
+/*--------------------------MENSAJE DE CONFIRMACIÓN-----------------------------------------*/
+.text_response{
+	background-color: $orange-ligth-4;
+    border: 1px solid $gray_middle;
+    margin: 2% 0% 2% 0%;
+    padding: 2% 2% 2% 2%;
+}
+
+.text_response p span 
+{
+    display: block;
+}

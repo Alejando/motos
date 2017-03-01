@@ -31,3 +31,11 @@ Route::get('detalles-de-producto', function () {
 Route::get('contacto', function () {
     return view('public/pages/contact');
 });
+
+Route::get('servicio', function () {
+    return view('public/pages/service');
+});
+
+Route::get('confirmacion-servicio', function () {
+    return view('public/pages/confirmation-service');
+});
