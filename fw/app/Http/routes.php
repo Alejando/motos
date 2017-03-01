@@ -30,6 +30,7 @@ Route::get('detalles-de-producto', function () {
 
 Route::get('contacto', function () {
     return view('public/pages/contact');
+});    
 Route::get('motos', function () {
     return view('public/pages/motos');
 });
