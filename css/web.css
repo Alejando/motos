@@ -8738,6 +8738,7 @@ figure img {
 .ktm_shadon_title {
   text-shadow: 1px 1px 1px black; }
 
+@charset "UTF-8";
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -8864,6 +8865,19 @@ and open the template in the editor.
     width: 53%; } }
 
 /*------------------------------------CONTACTO----------------------------------------*/
+#address_contact:before {
+  content: url(../img/bikes_ubicacion.svg);
+  margin-right: 10px;
+  fill: #e25100; }
+
+#phone:before {
+  content: url(../img/bikes_telefono.svg);
+  margin-right: 10px; }
+
+#email:before {
+  content: url(../img/bikes_email.svg);
+  margin-right: 10px; }
+
 .section_visit {
   margin-right: 2%; }
 
@@ -8890,7 +8904,7 @@ and open the template in the editor.
 .dividing_line {
   background-color: #b3b3b3;
   height: 1px;
-  width: 98%;
+  width: 100%;
   margin-top: 10px;
   margin-bottom: 10px; }
 
@@ -8908,7 +8922,7 @@ and open the template in the editor.
 
 .btn_contact {
   display: inline-block;
-  float: right; }
+  margin-left: 15px; }
 
 .map_contact {
   margin-bottom: -6px;
@@ -8922,6 +8936,7 @@ and open the template in the editor.
   width: 90%;
   margin: 0 auto; }
 
+/*AMARILLO*/
 @media screen and (min-width: 600px) {
   .map_contact {
     margin-top: 8%; }
@@ -8930,6 +8945,7 @@ and open the template in the editor.
   .section_follow {
     margin-left: 4%; } }
 
+/*VERDE*/
 @media screen and (min-width: 767px) {
   .section_visit {
     width: 45%; }
@@ -8940,6 +8956,7 @@ and open the template in the editor.
   .map_contact {
     margin-top: 6%; } }
 
+/*AZUL*/
 @media screen and (min-width: 992px) {
   .row_3 {
     display: block;
@@ -8955,11 +8972,65 @@ and open the template in the editor.
   .map_contact {
     margin-top: 4%; } }
 
+/*GRIS LIGHT*/
 @media screen and (min-width: 1240px) {
   .social_figure img {
     width: 18%; }
   .map_contact {
     margin-top: 2%; } }
+
+/*----------------------------------SERVICIO----------------------------------------------*/
+.form-horizontal .form-group input, .form-horizontal .form-group select, .form-horizontal .form-group textarea {
+  border-radius: 0px; }
+
+.form-group .control-label {
+  text-align: inherit; }
+
+.container_form_horizontal {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 35px;
+  margin-bottom: 35px; }
+
+.ktm_margin_input {
+  margin-bottom: 2%; }
+
+.section_visit ul {
+  -webkit-padding-start: 0%; }
+
+.btn_service {
+  display: inline-block;
+  margin-right: 15px;
+  margin-left: 15px; }
+
+.section_btns {
+  text-align: right; }
+
+/*AMARILLO*/
+/*VERDE*/
+@media screen and (min-width: 767px) {
+  .ktm_margin_input {
+    margin-bottom: 0%; } }
+
+/*AZUL*/
+@media screen and (min-width: 992px) {
+  .ktm_margin_input {
+    margin-bottom: 0%; } }
+
+/*GRIS LIGHT*/
+@media screen and (min-width: 1240px) {
+  .ktm_margin_input {
+    margin-bottom: 0%; } }
+
+/*--------------------------MENSAJE DE CONFIRMACIÓN-----------------------------------------*/
+.text_response {
+  background-color: #ffccaf;
+  border: 1px solid #b3b3b3;
+  margin: 2% 0% 2% 0%;
+  padding: 2% 2% 2% 2%; }
+
+.text_response p span {
+  display: block; }
 
 /*
 To change this license header, choose License Headers in Project Properties.
