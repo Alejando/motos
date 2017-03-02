@@ -82,11 +82,23 @@ figure img{
 .link_white:hover{
 	color: white
 }
+.link_orange{
+	color: $orange;
+}
+.link_orange:hover{
+	color: $orange;
+}
 
 .ktm_shadon_title{
     text-shadow: 1px 1px 1px black;
 }
-
+.ktm_banner_orange{
+	background:$orange;
+    display: initial;
+    padding: 0px 5px 2px 5px;
+    border-radius: 5px;
+    color: white;
+}
 
 
 @media screen and (min-width: 600px){

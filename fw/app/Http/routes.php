@@ -488,4 +488,7 @@ Route::get('servicio', function () {
 Route::get('confirmacion-servicio', function () {
     return view('public/pages/confirmation-service');
 });
+Route::get('detalle-de-noticia', function () {
+    return view('public/pages/news-details');
+});
 /*---------------------FIN RUTAS DE MAQUETACION (TEST)-------------------------------------*/
