@@ -23,11 +23,12 @@ class CreateSlidersAndSliderItemsTable extends Migration
             $table->string('title');
             $table->integer('n_order');
             $table->string('description');
+            $table->string('link');
             $table->timestamps();
-            $table->integer('group_product_feature_id')->unsigned();
-            $table->foreign('group_product_feature_id')
+            $table->integer('sliders_id')->unsigned();
+            $table->foreign('sliders_id')
                 ->references('id')
-                ->on('group_product_features')
+                ->on('sliders')
                 ->onDelete('cascade');
         });
     }

@@ -11,29 +11,20 @@ class CategoriesSeeder extends Seeder {
      */
     public function run() {
         $defualtCategories = [
-            ['name'=> 'Damas', 'subs'=> [
-                    ['name' => 'Marcas', 'subs' => [
-                        ['name' => 'Nike'],
-                        ['name' => 'Adidas'],
-                        ['name' => 'Wilson']
-                    ]],
-                    ['name' => 'Ropa', 'subs' => [
-                            ['name' => 'Blusas'],
-                            ['name' => 'Chamarras'],
-                            ['name' => 'Faldas'],
-                            ['name' => 'Gorras'],
-                            ['name' => 'Ropa interior'],
-                            ['name' => 'Short'],
-                            ['name' => 'Vestidos']
-                        ]
-                    ]
+            ['name' => 'Motos','slug'=>'motos', 'subs' => [
+                ['name' => 'Motocross'],
+                ['name' => 'Enduro'],
+                ['name' => 'Freeride'],
+                ['name' => 'Travel'],
+                ['name' => 'Naked'],
+                ['name' => 'Supersport'],
+                ['name' => 'Semminuevas']
+            ]],
+            ['name'=> 'Boutique','slug'=>'boutique','subs'=> [
+                ['name' => 'Poweparts'],
+                ['name' => 'Powerwear']
                 ]
-            ],
-            ['name'=> 'Caballeros'],
-            ['name'=> 'Zapatos'],
-            ['name'=> 'Raquetas'],
-            ['name'=> 'Bolsas'],
-            ['name'=> 'Pelotas']
+            ]
         ];
         $this->createCategories($defualtCategories);
     }

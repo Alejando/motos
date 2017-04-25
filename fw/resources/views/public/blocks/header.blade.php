@@ -1,53 +1,61 @@
 <header class="header">
-	<figure class="header_logo">
-		<img src="img/KTMM_logo-ktm.svg" alt="">
-	</figure>
-	<a id="menuMovilButton"  title="" class="header_menu">
-		<figure class="icon_menu">
-			<img src="img/svg/menu.svg" id="iconMenu" alt="Menú">	
-		</figure>
-	</a>
-	<nav class="header_nav" id="menuMovil">
-		<ul class="header_ul">
-			<li><a href="">INICIO</a></li>
+	
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#"><img src="{{	asset('img/KTMM_logo-ktm.svg')}}" id="iconMenu" alt="Menú"></a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+
+	        <li><a href="">INICIO</a></li>
 			<li><a href="">NOSOTROS</a></li>
-		    <li id="menuMotosWeb">
-		        <a  id="menuMotos" >MOTOS<i class="fa fa-caret-right icon_caret"></i></a>
-	        	<ul id="subMenuMotos" class="header_sub_ul">
-		            <li><a href="">MOTOCROSS</a></li>
-		            <li><a href="">ENDURO</a></li>
-		            <li><a href="">FREERIDE</a></li>
-		            <li><a href="">TRAVEL</a></li>
-		            <li><a href="">NAKED</a></li>
-		            <li><a href="">SUPERSPORT</a></li>
-		            <li><a href="">SEMINUEVAS</a></li>
-		            <figure class="submenu_img ktm_visibility">
+		    <li class="dropdown">
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MOTOS <span class="caret"></span>
+		        <ul class="dropdown-menu">
+		        	@foreach(\DwSetpoint\Models\Category::getChildrenBySlug('motos') as $subcategory)
+                        <li><a href="">{{strtoupper($subcategory->name)}}</a></li>                                
+                    @endforeach
+		          
+		           {{--  <figure class="submenu_img ktm_visibility">
 	            		<img src="img/motos/KTMM_destacados.jpg">
-	            	</figure>
+	            	</figure> --}}
+
 		        </ul> 
 		    </li>
-		    <li id="menuBoutiqueWeb">
-		        <a id="menuBoutique" >BOUTIQUE<i class="fa fa-caret-right icon_caret"></i></a>
-		        <ul id="subMenuBoutique" class="header_sub_ul">
-		            <li><a href="">POWERPARTS</a></li>
-		            <li><a href="">POWERWEAR</a></li>
-		            <figure class="submenu_img ktm_visibility">
+		    <li class="dropdown">
+		        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">BOUTIQUE <span class="caret"></span>
+		        <ul class="dropdown-menu">
+		            @foreach(\DwSetpoint\Models\Category::getChildrenBySlug('boutique') as $subcategory)
+                        <li><a href="">{{strtoupper($subcategory->name)}}</a></li>                                
+                    @endforeach
+		            {{-- <figure class="submenu_img ktm_visibility">
 	            		<img src="img/motos/KTMM_destacados.jpg">
-	            	</figure>
+	            	</figure> --}}
 		        </ul>
 		    </li>
 		    <li><a href="">SERVICIO</a></li>
 		    <li><a href="">NOTICIAS</a></li>
 		    <li><a href="">CONTACTO</a></li>
-		    <li class="li_separator" ></li>
-		    <li  class="li_search">
-				<div class="div_search">
-					<input type="search" name="" value="" id="menuSearch"  placeholder="Buscar...">
-				
-				</div>
-				<a href="" class="link_search"><i class="fa fa-search"></i></a>
-		    </li>
-		</ul>
+		     <li role="separator" class="divider"></li>
+	      </ul>
+	       <form class="navbar-form navbar-left  hidden-lg hidden-md >
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="Buscar..">
+	        </div>
+	      </form>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
 	</nav>
 </header>
+
 

@@ -4,7 +4,7 @@ namespace DwSetpoint\Models;
 class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     protected $fillable = ['name','parent_category_id', 'type', 'hidden','slug'];
     // <editor-fold defaultstate="collapsed" desc="+:: validate($data, $id = false):bolean">
-    public static function validate($data, $id = false) {
+    public static function validateCategory($data, $id = false) {
         if($id) {
             $category = self::getById($id);
             $existSlug = self::existsSlug($data['slug'], $category->parent_category_id, $category->id);            
@@ -77,7 +77,7 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="products">
     public function products() {
-        return $this->belongsToMany(\DwSetpoint\Models\Product::class)->orderBy('id', 'desc');
+        return $this->belongsToMany(\DwSetpoint\Models\Product::class)->orderBy('created_at', 'desc')->orderBy('id', 'desc');;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="parent">
@@ -120,20 +120,32 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         if($returnQuery){
             return $products;
         }
-        return $products->get();
+        return $products->get()->orderBy('id', 'desc');
     }
     // </editor-fold>    
     // <editor-fold defaultstate="collapsed" desc="getParents">
     public static function getParents($category, &$parents) {        
-        if($category){
+        if($category) {
             $parent = $category->parent;
             if($parent){
-                $parents[]=  str_slug($parent->name);
+                $parents[] = $parent->slug;
                 self::getParents($parent, $parents);
             }
-        }        
+        } 
+        return $parents;
     }
     // </editor-fold>
+    // 
+    public function getslug(){
+        $parents = [];
+        self::getParents($this, $parents);
+        if(is_array($parents)) {
+            $parents = array_reverse($parents);
+        }
+        $parents[] =  $this->slug;
+        $url = implode("/", $parents);
+        return $url;
+    }
     // <editor-fold defaultstate="collapsed" desc="getURL">
     public function getURL() {        
         self::getParents($this, $parents);
@@ -142,10 +154,11 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         $parents[] =  $this->slug;
         $url = implode("/", $parents);
-        return route('product.getCategoryPage', [
-            'slug' => $url,
-            'pages'=>1
-        ]);
+        $url = route('product.getCategoryPage', [
+            'slug' => $url
+//            'pages'=>1
+        ], false);
+        return env('LAROUTE_PREFIX').$url;
     }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="getRoots">
@@ -156,7 +169,24 @@ class Category  extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return $query;
     }
-
+    public static function getChildrenBySlug($slug) {
+        $category = self::getBySlug($slug);
+        return $category->subcategories;
+    }
+    public function getTitleAttribute() {
+        $names = [];
+        $categoryTemp = $this;
+        while($parent = $categoryTemp->parent){
+            $names[] = $categoryTemp->name;
+            $categoryTemp = $parent;
+        }
+        if(count($names)) {
+            return join(" / ",$names);
+        }
+        return $this->name;
+        
+    }
+    
     public static function getValidateUniqueCategoryURL() {
         return route('category.validateCategory');
     }
