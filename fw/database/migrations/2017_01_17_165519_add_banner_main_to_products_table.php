@@ -13,7 +13,7 @@ class AddBannerMainToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->boolean('main_banner');
+            $table->boolean('main_banner')->nullable();
         });
     }
 

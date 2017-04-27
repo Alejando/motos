@@ -12,7 +12,7 @@ class AddColumnPricefromToProducts extends Migration
      */
     public function up() {
         Schema::table('products', function (Blueprint $table) {
-            $table->decimal('price_from', 10, 2);
+            $table->decimal('price_from', 10, 2)->nullable();
         });
     }
 

@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
         });
 
         Schema::table('products', function (Blueprint $table) {
+            $table->boolean('favorite')->default(false);
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')
                 ->references('id')

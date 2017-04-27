@@ -16,7 +16,7 @@ class ChangeCodeAndCodebarFromProductToStock extends Migration
                 $table->dropColumn('codebar');
             }
             if(Schema::hasColumn('products', 'code')) {
-                $table->dropColumn('code');
+                $table->dropColumn('code')->nullable();
             }
         });
 

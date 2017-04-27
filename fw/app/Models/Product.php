@@ -55,6 +55,10 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
         }
         return $this;
     }
+    public function favorites(){
+        $products = \DwSetpoint\Models\Product::where('favorite')->get();
+        return $products;
+    }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="saveUploadImg">
     public function saveUploadImg(\Illuminate\Http\UploadedFile $img) {

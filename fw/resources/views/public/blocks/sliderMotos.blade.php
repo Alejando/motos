@@ -1,6 +1,6 @@
 <section class="slider_motos">
     <div id="owlSlideMotos" class="owl-carousel owl-theme">
-    	@for($i=0;$i<4;$i++)
+    	@foreach(\DwSetpoint\Models\Product::where('favorite',1)->get() as $key=>$product)
     		<div class="item">
 	            <div class="content_img">
 	            	<figure class="slider_img">
@@ -9,9 +9,9 @@
 		        </div>
 		         <div class="content_text ">
 		         	<div class="ktm_container">
-		         		<h2 class="ktm_white">690 ENDURO R</h2>
+		         		<h2 class="ktm_white">{{$product->name}}</h2>
 		         		<p class="ktm_white_light">
-		         			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non tellus id metus ultrices facilisis. Fusce ut metus quis nibh tempor lacinia et sit amet risus. Aliquam sit amet sem pulvinar, faucibus risus non, feugiat nunc. Nunc malesuada nunc a justo fermentum, eget posuere justo auctor. Praesent sed consequat mauris, in luctus magna. Sed dui lacus, vehicula et libero et, semper egestas ante. Quisque id condimentum lorem.
+		         			{{$product->description}}
 		         		</p>
 		         		<div class=" ">
 		         			<h5 class="star ktm_white">Dato destacado 1</h5>
@@ -29,7 +29,7 @@
 	            	
 		        </div>
 	        </div> 
-	    @endfor
+	    @endforeach
         
     </div>
     

@@ -12,7 +12,7 @@ class AddCodeToProductAgain extends Migration
      */
     public function up() {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('code', 15);
+            $table->string('code', 15)->nullable();
         });
         DwSetpoint\Models\Product::get()->each(function($product){
             $product->code = uniqid();

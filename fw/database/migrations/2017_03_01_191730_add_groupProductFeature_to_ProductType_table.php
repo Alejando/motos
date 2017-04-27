@@ -18,7 +18,7 @@ class AddGroupProductFeatureToProductTypeTable extends Migration
         });
 
         Schema::table('product_types', function (Blueprint $table) {
-            $table->integer('group_product_feature_id')->unsigned();
+            $table->integer('group_product_feature_id')->unsigned()->nullable();
             $table->foreign('group_product_feature_id')
                 ->references('id')
                 ->on('group_product_features')
