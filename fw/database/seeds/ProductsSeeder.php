@@ -25,6 +25,7 @@ class ProductsSeeder extends Seeder {
     		  	'slug'=>'Moto-Agradable'.$i,
     		  	'code'=>'moto-'.$i,
     		  	'serial_number' =>$faker->numberBetween(1000,9000),
+            'color'=>$faker->colorName;
     		  	'type_id'=> 1,
           	]);
   		}

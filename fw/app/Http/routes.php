@@ -474,13 +474,15 @@ Route::get('detalles-de-producto', function () {
 Route::get('contacto', function () {
     return view('public/pages/contact');
 });    
-Route::get('motos', function () {
-    return view('public/pages/motos');
-});
-Route::get('noticias', function () {
-    return view('public/pages/news');
-});
 
+// Route::get('motos', function () {
+//     return view('public/pages/motos');
+// });
+//------------Rutas Motos-----------------//
+Route::get('motos','ProductCtrl@getAllMotos');
+Route::get('motosCategory/{$category}',function () {
+    return$category;
+});
 Route::get('servicio', function () {
     return view('public/pages/service');
 });

@@ -1,10 +1,11 @@
 <?php
+
 return [
 
     /*
      * The destination path for the javascript file.
      */
-    'path' => '../js',
+    'path' => 'public/js',
 
     /*
      * The destination filename for the javascript file.
@@ -47,11 +48,11 @@ return [
      * with them.
      */
     'template' => 'vendor/lord/laroute/src/templates/laroute.js',
-
+    
     /*
      * Appends a prefix to URLs. By default the prefix is an empty string.
     *
     */
-    'prefix' => env('LAROUTE_PREFIX', '/'),
+    'prefix' => '',
 
 ];

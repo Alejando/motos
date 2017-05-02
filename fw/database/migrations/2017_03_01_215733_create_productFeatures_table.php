@@ -14,6 +14,7 @@ class CreateProductFeaturesTable extends Migration
     {
         Schema::create('product_features', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->string('name');
             $table->string('value');
             $table->integer('n_order');
             $table->timestamps();

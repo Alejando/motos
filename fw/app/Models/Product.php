@@ -30,6 +30,15 @@ class Product extends \DevTics\LaravelHelpers\Model\ModelBase {
     public function categories() {
         return $this->belongsToMany(\DwSetpoint\Models\Category::class);
     }
+    public function category() {
+        return $this->belongsTo(\DwSetpoint\Models\Category::class);
+    }
+    public function features(){
+        return $this->hasMany(\DwSetpoint\Models\ProductFeature::class);
+    }
+    // public function type_feature(){
+    //     return $this->belongsTo(\DwSetpoint\Models\TypeProductFeature::class,'type_id');
+    // }
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="sizes">
     public function sizes() {

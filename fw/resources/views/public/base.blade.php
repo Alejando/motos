@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     @include('public.style-sheets')
 </head>
-<body>
+<body ng-app="setpoint">
 @include('public.blocks.header')
 @yield('body')
 @include('public.blocks.footer')

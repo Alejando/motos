@@ -13,14 +13,15 @@
 		         		<p class="ktm_white_light">
 		         			{{$product->description}}
 		         		</p>
-		         		<div class=" ">
-		         			<h5 class="star ktm_white">Dato destacado 1</h5>
-		         			<h5 class="star ktm_white">Dato destacado 2</h5>
-		         		</div>
-		         		<div class=" ktm_visibility">
-		         			<h5 class="star ktm_white ">Dato destacado 3</h5>
-		         			<h5 class="star ktm_white ">Dato destacado 4</h5>
-		         		</div>
+						<div class=" ">
+			         		@foreach($product->features as $key => $feature)
+			         			@if($feature->type->name=="Principales")
+			         				<h5 class="star ktm_white">{{$feature->value}}</h5>
+			         			@endif
+			         		@endforeach
+						</div>
+
+		         		
 		         		<div class="">
 		         			<a href="" class="link_white">Ver detalles</a>
 		         		</div>

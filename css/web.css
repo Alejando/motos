@@ -9542,6 +9542,11 @@ and open the template in the editor.
   background-color: white;
   padding-top: 5%;
   padding-bottom: 5%; }
+  .motos .motos_filter {
+    width: 90%;
+    margin-left: 5%; }
+    .motos .motos_filter .pagination {
+      margin: 0; }
 
 .motos .motos_content_1, .motos .motos_content_2 {
   margin-top: 30px;

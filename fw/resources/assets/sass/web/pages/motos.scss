@@ -4,7 +4,14 @@
 .motos{
 	background-color: white;
 	padding-top: 5%;
-	padding-bottom: 5%;
+	padding-bottom: 5%; 
+	.motos_filter{
+		width: 90%;
+		margin-left: 5%;
+		.pagination{
+			margin: 0;
+		}
+	}
 
 }
 .motos .motos_content_1,.motos  .motos_content_2{
@@ -32,7 +39,7 @@
 }
 .motos .motos_content_2 .text_background{
 	padding-top: 10px;
-	background-color: $orange-light-4;
+	background-color: $orange-light-4; 
 	padding-bottom: 10px;
 }
 .motos .text_background .text_content{

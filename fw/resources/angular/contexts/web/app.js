@@ -53,3 +53,4 @@ setpoint.config(['$qProvider', function ($qProvider) {
 }]);
 
 setpoint.constant('IVA', '16');
+

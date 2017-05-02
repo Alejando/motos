@@ -1,12 +1,46 @@
+
+
 @extends('public.base')
 @section('body')
     @include('public.blocks.main-title')
 
     <section class="motos">
-    	<div class="motos_filter">
+    	<div class= "motos_filter" ng-controller="PaginatorCtrl">
+    		<div class="row">
+    			<div class="col-xs-6 col-md-3">
+    				{{$paginator->total()}} resultados
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				<div class="form-group">
+    					<label  class="col-sm-6 control-label" for="per_page">Por página: </label>
+    					<div class="col-sm-6">
+		    				<select class="form-control" id="per_page" ng-model="per_page" ng-change="changePagination()">		    <option value="6">6</option>
+		    					<option value="12">12</option>
+		    					<option value="18">18</option>
+		    				</select>
+	    				
+					    </div>
+    				</div>
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				<div class="form-group">
+    					<label  class="col-sm-4 control-label" for="order">Orden: </label>
+    					<div class="col-sm-8">
+		    				<select class="form-control" id="order" ng-model="order" ng-change="changePagination()">
+		    					<option value="asc" ="">Ascendente (Nombre)</option>
+		    					<option value="desc" ="">Descendente (Nombre)</option>
+		    				</select>
+	    				
+					    </div>
+    				</div>
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				@include('public.blocks.pagination')
+    			</div>
+    		</div>
 	    </div>
-	    @for($i=0;$i<4;$i++)
-	    	@if($i%2==0)
+	    @foreach($paginator as $key=>$product)
+	    	@if($key%2==0)
 		    	<div class="motos_content_2">
 		    @else
 		    	<div class="group motos_content_1">
@@ -19,13 +53,16 @@
 			    	</div>
 			    	<div class="text_background">
 			    		<div class="text_content">
-			    			<h2 class="ktm_orange">450 SX-F FACTORY EDITION</h2>
-				    		<h5 class="ktm_gray_middle">NARANJA / BLANCO</h5>
+			    			<h2 class="ktm_orange">{{$product->name}}</h2>
+				    		<h5 class="ktm_gray_middle">{{$product->color}} NARANJA / BLANCO</h5>
 				    		<h3 class="ktm_orange">FUNCIONES PRINCIPALES</h3>
-				    		@for($j=0;$j<4;$j++)
-				    			<p class="feacture ktm_black"> <strong>TRANSMISIÓN: </strong></p>
-				    			<P class="feacture_description ktm_gray_dark" >5 VELOCIDADES</P>
-				    		@endfor
+				    		@foreach($product->features as $key=> $feature)
+				    			@if($feature->type->name=="Principales")
+			         				<p class="feacture ktm_black"> <strong>{{$feature->name}}: </strong></p>
+				    				<P class="feacture_description ktm_gray_dark" >{{$feature->value}}</P>
+			         			@endif
+				    			
+				    		@endforeach
 			    		</div>
 			    	</div>
 			   	</a>
@@ -35,7 +72,41 @@
 					</a>
 			    </div>
 		    </div>
-	    @endfor
+	    @endforeach
+	    <div class= "motos_filter" ng-controller="PaginatorCtrl">
+    		<div class="row">
+    			<div class="col-xs-6 col-md-3">
+    				{{$paginator->total()}} resultados
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				<div class="form-group">
+    					<label  class="col-sm-6 control-label" for="per_page">Por página: </label>
+    					<div class="col-sm-6">
+		    				<select class="form-control" id="per_page" ng-model="per_page" ng-change="changePagination()">		    <option value="6">6</option>
+		    					<option value="12">12</option>
+		    					<option value="18">18</option>
+		    				</select>
+	    				
+					    </div>
+    				</div>
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				<div class="form-group">
+    					<label  class="col-sm-4 control-label" for="order">Orden: </label>
+    					<div class="col-sm-8">
+		    				<select class="form-control" id="order" ng-model="order" ng-change="changePagination()">
+		    					<option value="asc" ="">Ascendente (Nombre)</option>
+		    					<option value="desc" ="">Descendente (Nombre)</option>
+		    				</select>
+	    				
+					    </div>
+    				</div>
+    			</div>
+    			<div class="col-xs-6 col-md-3">
+    				@include('public.blocks.pagination')
+    			</div>
+    		</div>
+	    </div>
     </section>
 
  @stop
