@@ -17,13 +17,15 @@ class ProductTypesSeeder extends Seeder {
             ],
             [//1
              'name'=>"boutique"
-            ],
+            ]
         ];
+
         foreach($items as $item){
-            DwSetpoint\Models\ProductType::create($item);
+            $type =DwSetpoint\Models\ProductType::create($item);
         }
        
         
     }
 
 }
+
