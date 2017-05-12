@@ -11,9 +11,9 @@ setpoint.controller('PaginatorCtrl',['$scope','$location', function($scope,$loca
     if(per_page.length>2){
         $scope.per_page="6";
     }else{
-        
+
         $scope.per_page=per_page;
-    }
+    } 
     $scope.changePagination=function () {
         window.location=url+'&order='+$scope.order+'&per_page='+$scope.per_page;
     }

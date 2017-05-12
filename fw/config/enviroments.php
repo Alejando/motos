@@ -5,6 +5,6 @@ $env = [
 // //    '/var/www/html/jfcodiaz/dw.setpoint/fw' => '.env',
 //     '/home/demoemx/public_html/setpoint/fw' => 'demo.env',
 //     'C:\wamp\www\dw.ktm-motos\fw' => 'gael.env',
-    'C:\xampp\htdocs\dw.ktm-motos\fw'=>'alex.env'
+    '/Applications/XAMPP/xamppfiles/htdocs/dw.ktm-motos/fw' =>'alex.env'
 ][base_path()];
 return $env;

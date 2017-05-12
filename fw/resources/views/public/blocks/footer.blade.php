@@ -4,27 +4,23 @@
 		<div class="col footer_section ktm_visibility">
 			<ul >
 				<li><a href="" class="ktm_orange">Motos</a></li>
-				<li><a href="" class="ktm_white">Supersport</a></li>
-				<li><a href="" class="ktm_white">Motocross</a></li>
-				<li><a href="" class="ktm_white">Freeride</a></li>
-				<li><a href="" class="ktm_white">Enduro</a></li>
-				<li><a href="" class="ktm_white">Naked</a></li>
-				<li><a href="" class="ktm_white">Travel</a></li>
+				@foreach(\DwSetpoint\Models\Category::getChildrenBySlug('motos') as $key=>$subcategory)
+					<li><a href="{{url('/motos/'.$subcategory->name)}}" class="ktm_white">{{$subcategory->name}}</a></li>
+				@endforeach
 			</ul>
 		</div>
 		<div class="col footer_section ktm_visibility">
 			<ul>
 				<li><a href="" class="ktm_orange">Boutique</a></li>
-				<li><a href="" class="ktm_white">Accesorios</a></li>
-				<li><a href="" class="ktm_white">Zapatos</a></li>
-				<li><a href="" class="ktm_white">Cascos</a></li>
-				<li><a href="" class="ktm_white">Ropa</a></li>
+				@foreach(\DwSetpoint\Models\Category::getChildrenBySlug('boutique') as $key=>$subcategory)
+					<li><a href="{{url('/motos/'.$subcategory->name)}}" class="ktm_white">{{$subcategory->name}}</a></li>
+				@endforeach
 			</ul>
 		</div>
 		<div class="col footer_section ktm_visibility">
 			<ul>
-				<li><a href="" class="ktm_orange">Servicio</a></li>
-				<li><a href="" class="ktm_white">Agenda cita</a></li>
+				<li><a  class="ktm_orange">Servicio</a></li>
+				<li><a href="{{url('/servicio')}}" class="ktm_white">Agenda cita</a></li>
 			</ul>
 		</div>
 		<div class="col footer_section ktm_visibility">
@@ -32,7 +28,7 @@
 				<li><a href="" class="ktm_orange">Mas</a></li>
 				<li><a href="" class="ktm_white">Noticias Populares</a></li>
 				<li><a href="" class="ktm_white">Últimas noticias</a></li>
-				<li><a href="" class="ktm_white">Aviso de privacidad</a></li>
+				<li><a href="{{url('/aviso-de-privacidad')}}" class="ktm_white">Aviso de privacidad</a></li>
 			</ul>
 		</div>
 		<div class="col footer_section col_5">
@@ -55,13 +51,13 @@
 					</div>
 				</form>
 			</div>
-			
-			
+
+
 		</div>
 	</div>
 	<div class="section group belt_footer">
 		<div class="col span_1_of_2">
-		
+
 				<div class="icons_social">
 					<figure class="icon_social">
 						<img src="{{asset('img/bikes_facebook.svg')}}">
@@ -77,10 +73,10 @@
 					</figure>
 					<figure class="icon_social">
 						<img src="{{asset('img/bikes_pinterest.svg')}}">
-					</figure>	
+					</figure>
 				</div>
-		
-				
+
+
 		</div>
 		<div class="col span_1_of_2">
 			<div class="text_copy_right ktm_white">Todos los derechos reservados | <b>KTM Motos</b></div>

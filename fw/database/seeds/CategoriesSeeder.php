@@ -31,7 +31,9 @@ class CategoriesSeeder extends Seeder {
     public function createCategories($categories, $parent = false) {
         foreach($categories as $i => $item) {
             $data = [
-                'name' => $item['name']
+                'name' => $item['name'],
+                'slug' => $item['slug']
+
             ];
             if($parent) {
                 $data['parent_category_id'] = $parent->id;

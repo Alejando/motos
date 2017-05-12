@@ -21,17 +21,17 @@
 			         		@endforeach
 						</div>
 
-		         		
+
 		         		<div class="">
-		         			<a href="" class="link_white">Ver detalles</a>
+		         			<a href="{{route('details-moto',$product->id)}}" class="link_white">Ver detalles</a>
 		         		</div>
-		         		
+
 		         	</div>
-	            	
+
 		        </div>
-	        </div> 
+	        </div>
 	    @endforeach
-        
+
     </div>
-    
+
 </section>

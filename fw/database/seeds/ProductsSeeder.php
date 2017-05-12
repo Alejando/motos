@@ -10,16 +10,16 @@ class ProductsSeeder extends Seeder {
      *
      * @return void
      */
-    
+
     public function run() {
        $faker = Faker::create();
-        for($i=1; $i<20; $i++)
-  		{ 
+        for($i=1; $i<100; $i++)
+  		{
   			DB::table('products')->insert([
   				'id' => $i,
   				'name' => "moto ".$i,
   				'brand_id' => 1,
-  				'description'=> $faker->text(200), 				
+  				'description'=> $faker->text(200),
   				'created_at' => $faker->dateTime,
     		  	'updated_at' => $faker->dateTime,
     		  	'slug'=>'Moto-Agradable'.$i,
@@ -27,10 +27,12 @@ class ProductsSeeder extends Seeder {
     		  	'serial_number' =>$faker->numberBetween(1000,9000),
             'color'=>$faker->colorName,
     		  	'type_id'=> 1,
+            'category_id'=> rand(2,8),
+            'favorite'=> rand(0,1),
           	]);
   		}
-       
-        
+
+
     }
 
 }

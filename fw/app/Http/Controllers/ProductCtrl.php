@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Input;
-
+use \DwSetpoint\Models\Product;
 /**
  * Description of ProductCtrl
  *
@@ -105,11 +105,18 @@ class ProductCtrl extends Controller{
         }else{
             $per_page=6;
         }
-        $paginator=\DwSetpoint\Models\Product::where('type_id',1)->orderBy('name',$order)->paginate($per_page);
+
+            $paginator=\DwSetpoint\Models\Product::where('type_id',1)->orderBy('name',$order)->paginate($per_page);
 
         return  view('public/pages/motos',compact('paginator'));
 
     }
+    public function getMoto(Product $product){
+      $typeFeatures=\DwSetpoint\Models\TypeProductFeature::getAll();
+      return  view('public/pages/product-details',compact('product','typeFeatures'));
+
+    }
+
     public function getCategoryMotos($category, Request $request){
         $category=\DwSetpoint\Models\Category::where('name',$category)->get();
         if($category){
@@ -126,13 +133,13 @@ class ProductCtrl extends Controller{
             }else{
                 $per_page=6;
             }
-            $paginator=\DwSetpoint\Models\Product::where('type_id',1)->where('category_id',$category[0]->id)->orderBy('name',$order)->paginate($per_page);    
+            $paginator=\DwSetpoint\Models\Product::where('type_id',1)->where('category_id',$category[0]->id)->orderBy('name',$order)->paginate($per_page);
         }
         else{
             $paginator=[];
         }
 
-        return  view('public/pages/motos',compact('paginator'));
+        return  view('public/pages/motos',compact('paginator','categoria'));
 
     }
 

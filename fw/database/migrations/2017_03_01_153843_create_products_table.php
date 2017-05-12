@@ -24,6 +24,11 @@ class CreateProductsTable extends Migration
                 ->references('id')
                 ->on('product_types')
                 ->onDelete('cascade');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
         });
     }
 
@@ -35,7 +40,7 @@ class CreateProductsTable extends Migration
     public function down()
     {
         Schema::drop('product_types');
-        
+
         Schema::table('products', function(Blueprint $table){
             $table->dropForeign('products_type_id_foreign');
         });

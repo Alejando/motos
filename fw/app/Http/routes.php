@@ -43,18 +43,18 @@ Route::get('/contacto', function() {
 
 Route::get('/carrito/envio', [
     'as'=> 'cart.shiping',
-    'uses' => 'CartController@shippingForm' 
+    'uses' => 'CartController@shippingForm'
 ]);
 Route::get('/carrito/registro', [
     'as'=> 'cart.registration-form',
     'uses' => 'CartController@registrationForm'
-    
+
 ]);
 Route::get('/carrito/pago', [
     'as' => 'cart.confirmCheckout',
     'uses' =>  'CartController@confirmCheckout'
 ]);
-Route::post('carrito/checkout', [ 
+Route::post('carrito/checkout', [
     'as' => 'cart.checkout',
     'uses' => 'CartController@checkout'
 ]);
@@ -129,7 +129,7 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('brand','Brand');
     Route::get('stock/get-stocks',[
         'as' => 'stock.getStocks',
-        'uses' => 'Api\\StockController@getStocks'  
+        'uses' => 'Api\\StockController@getStocks'
     ]);
     Route::get('coupon/validate-code/{code}',[
         'as' => 'coupon.getValdateByCode',
@@ -147,7 +147,7 @@ Route::group(['prefix' => 'api'], function () {
     $addAPI('country','Country');
     $addAPI('state','State');
     $addAPI('configuration','Configuration');
-   
+
     Route::get('address/{address_id}/shipping-rules', [
         'as' => 'address.get-shipping-rules',
         'uses' => 'Api\\AddressController@getShippingRules'
@@ -161,7 +161,7 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'order.send',
         'uses' => 'Api\\OrderController@send'
     ]);
-    Route::put('order/{order}/cancel',[ 
+    Route::put('order/{order}/cancel',[
         'as' => 'order.cancel',
         'uses' => 'Api\\OrderController@cancel'
     ]);
@@ -173,12 +173,12 @@ Route::group(['prefix' => 'api'], function () {
         'as' => 'coupon.validateCode',
         'uses' => 'Api\\CouponController@validateCode'
     ]);
-    
+
     Route::get('postalCode/by-group/{id}', [
         'as' => 'postalCode.by-group',
         'uses' => 'Api\\PostalCodeController@byCpGroup'
     ]);
-    
+
     Route::post('postalCode/save-group', [
         'as' => 'postalCode.saveGroup',
         'uses' => 'Api\\PostalCodeController@saveGroup'
@@ -187,7 +187,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('user/validate-user', [
         'as' => 'user.validateUser',
         'uses' => 'Api\\UserController@validateUser'
-    ]); 
+    ]);
 
     Route::post('category/validate-category', [
         'as' => 'category.validateCategory',
@@ -304,7 +304,7 @@ Route::get('/categorias/{slugs?}', [ //Muestra las categorias
 
 
 Route::get('/productos/covers/{slug}_{width}x{height}.{ext}',[
-    'as' => 'product.getURLCoverSize', 
+    'as' => 'product.getURLCoverSize',
     'uses' => 'Api\\ProductController@getCoverSize'
 ]);
 
@@ -473,16 +473,19 @@ Route::get('detalles-de-producto', function () {
 });
 Route::get('contacto', function () {
     return view('public/pages/contact');
-});    
+});
 
 // Route::get('motos', function () {
 //     return view('public/pages/motos');
 // });
 //------------Rutas Motos-----------------//
 Route::get('motos','ProductCtrl@getAllMotos');
-Route::get('motosCategory/{$category}',function () {
-    return$category;
-});
+Route::get('motos/{category}','ProductCtrl@getCategoryMotos');
+Route::get('detalle-de-moto/{product}',['as'=>'details-moto', 'uses'=> 'ProductCtrl@getMoto']);
+
+
+///
+
 Route::get('servicio', function () {
     return view('public/pages/service');
 });
