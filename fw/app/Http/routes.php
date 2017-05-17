@@ -493,7 +493,8 @@ Route::get('servicio', function () {
 Route::get('confirmacion-servicio', function () {
     return view('public/pages/confirmation-service');
 });
-Route::get('detalle-de-noticia', function () {
-    return view('public/pages/news-details');
+Route::get('noticias', function () {
+    return view('public/pages/news');
 });
+Route::get('detalle-de-noticia/{post}',['as'=>'details-news', 'uses'=> 'PostController@getPost']);
 /*---------------------FIN RUTAS DE MAQUETACION (TEST)-------------------------------------*/

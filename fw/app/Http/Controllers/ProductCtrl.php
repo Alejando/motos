@@ -14,7 +14,7 @@ use \DwSetpoint\Models\Product;
 /**
  * Description of ProductCtrl
  *
- * @author jdiaz
+ * @author AlexPrado
  */
 class ProductCtrl extends Controller{
     // <editor-fold defaultstate="collapsed" desc="showCategory">
@@ -118,6 +118,60 @@ class ProductCtrl extends Controller{
     }
 
     public function getCategoryMotos($category, Request $request){
+        $category=\DwSetpoint\Models\Category::where('name',$category)->get();
+        if($category){
+            $order=$request->input('order');
+            $per_page=$request->input('per_page');
+
+            if($request->input('order')){
+                $order=$request->input('order');
+            }else{
+                $order="asc";
+            }
+            if($request->input('per_page')){
+                  $per_page=$request->input('per_page');
+            }else{
+                $per_page=6;
+            }
+            $paginator=\DwSetpoint\Models\Product::where('type_id',1)->where('category_id',$category[0]->id)->orderBy('name',$order)->paginate($per_page);
+        }
+        else{
+            $paginator=[];
+        }
+
+        return  view('public/pages/motos',compact('paginator','categoria'));
+
+    }
+
+
+
+    public function getAllBoutique(Request $request){
+        $order=$request->input('order');
+        $per_page=$request->input('per_page');
+
+        if($request->input('order')){
+            $order=$request->input('order');
+        }else{
+            $order="asc";
+        }
+        if($request->input('per_page')){
+              $per_page=$request->input('per_page');
+        }else{
+            $per_page=6;
+        }
+
+            $paginator=\DwSetpoint\Models\Product::where('type_id',1)->orderBy('name',$order)->paginate($per_page);
+
+        return  view('public/pages/motos',compact('paginator'));
+
+    }
+    public function getBoutique(Product $product){
+      $typeFeatures=\DwSetpoint\Models\TypeProductFeature::getAll();
+      return  view('public/pages/product-details',compact('product','typeFeatures'));
+
+    }
+
+    public function getCategoryBoutique($category, Request $request){
         $category=\DwSetpoint\Models\Category::where('name',$category)->get();
         if($category){
             $order=$request->input('order');

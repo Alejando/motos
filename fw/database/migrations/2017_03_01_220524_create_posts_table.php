@@ -26,11 +26,17 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->longText('body');
             $table->string('slug');
+            $table->boolean('favorite');
             $table->timestamps();
-            $table->integer('seo_id')->unsigned();
+            $table->integer('seo_id')->unsigned()->nullable();
             $table->foreign('seo_id')
                 ->references('id')
                 ->on('seos')
+                ->onDelete('cascade');
+            $table->integer('post_category_id')->unsigned();
+            $table->foreign('post_category_id')
+                ->references('id')
+                ->on('post_categories')
                 ->onDelete('cascade');
         });
     }

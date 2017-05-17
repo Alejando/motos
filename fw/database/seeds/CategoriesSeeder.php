@@ -12,17 +12,17 @@ class CategoriesSeeder extends Seeder {
     public function run() {
         $defualtCategories = [
             ['name' => 'Motos','slug'=>'motos', 'subs' => [
-                ['name' => 'Motocross'],
-                ['name' => 'Enduro'],
-                ['name' => 'Freeride'],
-                ['name' => 'Travel'],
-                ['name' => 'Naked'],
-                ['name' => 'Supersport'],
-                ['name' => 'Semminuevas']
+                ['name' => 'Motocross','slug'=>''],
+                ['name' => 'Enduro','slug'=>''],
+                ['name' => 'Freeride','slug'=>''],
+                ['name' => 'Travel','slug'=>''],
+                ['name' => 'Naked','slug'=>''],
+                ['name' => 'Supersport','slug'=>''],
+                ['name' => 'Semminuevas','slug'=>'']
             ]],
             ['name'=> 'Boutique','slug'=>'boutique','subs'=> [
-                ['name' => 'Poweparts'],
-                ['name' => 'Powerwear']
+                ['name' => 'Poweparts','slug'=>''],
+                ['name' => 'Powerwear','slug'=>'']
                 ]
             ]
         ];
