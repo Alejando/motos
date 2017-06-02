@@ -1,6 +1,6 @@
 
 @import "variables";
-   
+
 /*------------------------------------AVISO DE PRIVACIDAD--------------------------------------------------*/
 .sub_header{
 	//background-color: pink;
@@ -21,7 +21,11 @@
 	display: table;
     margin-left: 2%;
     width: 90%;
-
+    .breadcrumb{
+    margin-bottom: 0px;
+    padding-top: 30px;
+    background-color: transparent;
+    }
 }
 
 .text_map_site{
@@ -29,6 +33,7 @@
 	vertical-align:bottom;
 	display: table-cell;
 	font-size: 1em;
+
 }
 
 .section_main_title{
@@ -80,34 +85,38 @@
 .menu_us{
 	width: 95%;
 	margin-left: 2%;
+  li{
+    a{
+    	display: block;
+    	color: white;
+        margin: 20px 0 10px 0px;
+        font-size: 22px;
+    }
+    a:hover{
+      background-color: transparent;
+      text-decoration: none;
+      color: $orange;
+      border: none;
+    }
+  }
+  li.active{
+    a,a:hover,a:focus{
+      color: $orange;
+      border: none;
+      background-color: transparent;
+    }
+  }
 }
 
-.menu_us ul{
-	list-style-type: none;
-	margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.menu_us li {
-	float: left;
-}
-
-.menu_us li a{
-	display: block;
-	color: white;
-    margin: 20px 20px 10px 0px;
-    font-size: 22px;
-}
 
 .text_us{
 	width: 95%;
 	margin-left: 2%;
 	position: relative;
 	color: white;
-	text-align: justify
+	text-align: justify;
 }
-   
+
 @media screen and (min-width: 600px){
 	.text_map_site{
 		font-size: 1em;
@@ -256,13 +265,13 @@
 
 .main_container{
 	width: 90%;
-    margin: 0 auto;	
+    margin: 0 auto;
 }
 
 
-    
+
 /*AMARILLO*/
-@media screen and (min-width: 600px){ 
+@media screen and (min-width: 600px){
 	.map_contact{
 		margin-top: 8%;
 	}
@@ -296,7 +305,7 @@
 		display: block;
 		float:left;
 		margin: 1% 1% 1% 0;
-		width: 32.26%; 
+		width: 32.26%;
 	}
 
 	.form_contact input{
@@ -332,7 +341,7 @@
 }
 
 /*----------------------------------SERVICIO----------------------------------------------*/
-    
+
 .form-horizontal .form-group input, .form-horizontal .form-group select, .form-horizontal .form-group textarea{
 	border-radius: 0px;
 }
@@ -345,7 +354,7 @@
 	width: 80%;
     margin: 0 auto;
     margin-top: 35px;
-    margin-bottom: 35px;	
+    margin-bottom: 35px;
 }
 
 .ktm_margin_input{
@@ -366,7 +375,7 @@
 	text-align: right;
 }
 /*AMARILLO*/
-@media screen and (min-width: 600px){ 
+@media screen and (min-width: 600px){
 
 }
 /*VERDE*/
@@ -396,7 +405,7 @@
     padding: 2% 2% 2% 2%;
 }
 
-.text_response p span 
+.text_response p span
 {
     display: block;
 }

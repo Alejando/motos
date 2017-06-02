@@ -1,5 +1,5 @@
 @import "variables";
-   
+
 .header{
 	background: $gray_dark;
 	.navbar{
@@ -31,11 +31,16 @@
 					color:white;
 				}
 				.dropdown-menu{
-					li:hover{
-						background:$orange;
-					}
+          background: $gray_dark;
+          .dropdown-toggle{
+            display: none;
+          }
 					a{
 						color:white;
+					}
+          a:hover{
+            background:white;
+						color:$orange;
 					}
 				}
 			}
@@ -51,5 +56,3 @@
 
 
 }
-
-

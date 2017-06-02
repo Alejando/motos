@@ -453,8 +453,8 @@ Route::get('aviso-de-privacidad', function () {
     return view('public/pages/notice-privacy');
 });
 
-Route::get('acerca-de', function () {
-    return view('public/pages/about-ktm');
+Route::get('nosotros', function () {
+    return view('public/pages/us');
 });
 
 Route::get('filosofia', function () {
@@ -468,9 +468,6 @@ Route::get('vision', function () {
 Route::get('compromiso', function () {
     return view('public/pages/about-ktm');
 });
-Route::get('detalles-de-producto', function () {
-    return view('public/pages/product-details');
-});
 Route::get('contacto', function () {
     return view('public/pages/contact');
 });
@@ -483,9 +480,13 @@ Route::get('motos','ProductCtrl@getAllMotos');
 Route::get('motos/{category}','ProductCtrl@getCategoryMotos');
 Route::get('detalle-de-moto/{product}',['as'=>'details-moto', 'uses'=> 'ProductCtrl@getMoto']);
 
-
 ///
 
+//------------Rutas Boutique----------//
+Route::get('boutique','ProductCtrl@getAllBoutique');
+Route::get('boutique/{category}','ProductCtrl@getCategoryBoutique');
+//Route::get('detalle-de-producto/{product}',['as'=>'details-boutique', 'uses'=> 'ProductCtrl@getProduct']);
+////////////
 Route::get('servicio', function () {
     return view('public/pages/service');
 });

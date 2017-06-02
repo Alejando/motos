@@ -1,4 +1,4 @@
-
+@extends('public.base')
 @section('body')
     @include('public.blocks.main-title')
 

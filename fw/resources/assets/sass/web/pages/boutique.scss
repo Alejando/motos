@@ -1,0 +1,88 @@
+@import "../variables";
+.boutique{
+  background-color: white;	padding-top: 5%;
+  padding-bottom: 5%;
+  width: 90%;
+  margin-left: 5%;
+  @media screen and (min-width: 992px){
+    width: 85%;
+    margin-left: 7,5%;
+  }
+  .filters{
+    .panel-heading{
+      background:$orange;
+      color: $white_light;
+    }
+    .panel-body{
+      ul{
+        list-style: none;
+        padding-left: 15px;
+      }
+    }
+    .catalog-downloads{
+      h3{
+        font-size: 18px;
+      }
+      a{
+        color: $white_light;
+        margin-bottom: 15px;
+        background: $orange;
+      }
+    }
+  }
+  .product{
+    background: rgb(242,242,242);
+    -webkit-box-shadow: 6px 7px 15px 0px rgba(0,0,0,0.66);
+    -moz-box-shadow: 6px 7px 15px 0px rgba(0,0,0,0.66);
+    box-shadow: 6px 7px 15px 0px rgba(0,0,0,0.66);
+    padding: 0px;
+    padding-bottom: 20px;
+    margin-top: 15px;
+    width: 90%;
+    margin-left: 5%;
+    padding-top: 1%;
+    @media screen and (min-width: 600px){
+      width: 44%;
+      display: inline-block;
+    }
+    @media screen and (min-width: 1256px){
+      width: 28%;
+      display: inline-block;
+    }
+
+
+    .imgProduct{
+      width: 96%;
+      margin-left: 2%;
+      margin-top: 1%;
+      img{
+        background: white;
+      }
+
+    }
+    h3{
+      text-decoration: none;
+      padding-left: 15px;
+    }
+    h5{
+      text-decoration: none;
+      padding-left: 15px;
+      color: gray_dark;
+    }
+
+  }
+  .product:hover{
+
+    background: $orange;
+    a:hover{
+      text-decoration: none;
+      h3{
+        color: white;
+      }
+      h5{
+        color: white;
+      }
+    }
+
+  }
+}

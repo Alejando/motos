@@ -1,7 +1,7 @@
 <div class="section group info_contact">
 	<div class="col  section_visit">
 		<ul>
-			<li class="ktm_orange subtitle_contact">/* Mensaje editable */</li>
+			<li class="ktm_orange subtitle_contact">Dirreción</li>
 			<li class="ktm_gray_dark" id="address_contact">Av. Patria #5435 Col. Patria Country CP. 54234 Zapopan, Jalisco</li>
 			<li class="ktm_gray_dark" id="phone">(45) 35324 45345</li>
 			<li class="ktm_gray_dark" id="email">conact@eusero.mx</li>
@@ -23,6 +23,6 @@
 		</figure>
 		<figure class="social_figure">
 			<img src="{{asset('img/bikes_pinterest.svg')}}"> Pinterest
-		</figure>	
+		</figure>
 	</div>
 </div>

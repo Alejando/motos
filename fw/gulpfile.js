@@ -20,8 +20,8 @@ elixir(function(mix) {
         'web/*.scss',
         'web/**/*.scss'
     ], '../css/web.css');
-    
-   
+
+
     mix.scripts([
         '../../angular/contexts/admin/app.js',
         '../../angular/contexts/admin/app-config.js',

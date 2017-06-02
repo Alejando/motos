@@ -1,44 +1,9 @@
-
-
 @extends('public.base')
 @section('body')
     @include('public.blocks.main-title')
 
     <section class="motos">
-    	<div class= "motos_filter" ng-controller="PaginatorCtrl">
-    		<div class="row">
-    			<div class="col-xs-6 col-md-3">
-    				{{$paginator->total()}} resultados
-    			</div>
-    			<div class="col-xs-6 col-md-3">
-    				<div class="form-group">
-    					<label  class="col-sm-6 control-label" for="per_page">Por página: </label>
-    					<div class="col-sm-6">
-		    				<select class="form-control" id="per_page" ng-model="per_page" ng-change="changePagination()">		    <option value="6">6</option>
-		    					<option value="12">12</option>
-		    					<option value="18">18</option>
-		    				</select>
-
-					    </div>
-    				</div>
-    			</div>
-    			<div class="col-xs-6 col-md-3">
-    				<div class="form-group">
-    					<label  class="col-sm-4 control-label" for="order">Orden: </label>
-    					<div class="col-sm-8">
-		    				<select class="form-control" id="order" ng-model="order" ng-change="changePagination()">
-		    					<option value="asc" ="">Ascendente (Nombre)</option>
-		    					<option value="desc" ="">Descendente (Nombre)</option>
-		    				</select>
-
-					    </div>
-    				</div>
-    			</div>
-    			<div class="col-xs-6 col-md-3">
-    				@include('public.blocks.pagination')
-    			</div>
-    		</div>
-	    </div>
+    	@include('public.blocks.pagination')
 	    @foreach($paginator as $key=>$product)
 	    	@if($key%2==0)
 		    	<div class="motos_content_2">
@@ -73,40 +38,7 @@
 			    </div>
 		    </div>
 	    @endforeach
-	    <div class= "motos_filter" ng-controller="PaginatorCtrl">
-    		<div class="row">
-    			<div class="col-xs-6 col-md-3">
-    				{{$paginator->total()}} resultados
-    			</div>
-    			<div class="col-xs-6 col-md-3">
-    				<div class="form-group">
-    					<label  class="col-sm-6 control-label" for="per_page">Por página: </label>
-    					<div class="col-sm-6">
-		    				<select class="form-control" id="per_page" ng-model="per_page" ng-change="changePagination()">		    <option value="6">6</option>
-		    					<option value="12">12</option>
-		    					<option value="18">18</option>
-		    				</select>
-
-					    </div>
-    				</div>
-    			</div>
-    			<div class="col-xs-6 col-md-3">
-    				<div class="form-group">
-    					<label  class="col-sm-4 control-label" for="order">Orden: </label>
-    					<div class="col-sm-8">
-		    				<select class="form-control" id="order" ng-model="order" ng-change="changePagination()">
-		    					<option value="asc" ="">Ascendente (Nombre)</option>
-		    					<option value="desc" ="">Descendente (Nombre)</option>
-		    				</select>
-
-					    </div>
-    				</div>
-    			</div>
-    			<div class="col-xs-6 col-md-3">
-    				@include('public.blocks.pagination')
-    			</div>
-    		</div>
-	    </div>
+	    @include('public.blocks.pagination')
     </section>
 
  @stop

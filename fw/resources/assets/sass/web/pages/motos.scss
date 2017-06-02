@@ -4,7 +4,7 @@
 .motos{
 	background-color: white;
 	padding-top: 5%;
-	padding-bottom: 5%; 
+	padding-bottom: 5%;
 	.motos_filter{
 		width: 90%;
 		margin-left: 5%;
@@ -12,7 +12,6 @@
 			margin: 0;
 		}
 	}
-
 }
 .motos .motos_content_1,.motos  .motos_content_2{
 	margin-top: 30px;
@@ -39,7 +38,7 @@
 }
 .motos .motos_content_2 .text_background{
 	padding-top: 10px;
-	background-color: $orange-light-4; 
+	background-color: $orange-light-4;
 	padding-bottom: 10px;
 }
 .motos .text_background .text_content{
@@ -49,7 +48,7 @@
 .motos .text_background .text_content *{
 	margin-top: 20px;
 	margin-bottom: 20px;
-	
+
 }
 .motos .text_background .text_content .feacture{
 	margin-bottom: 0px;
@@ -61,7 +60,7 @@
 	position: absolute;
 	top: 5%;
 	right: 5%;
-	
+
 }
 .motos .motos_share a.ktm_btn_primary{
 	border-radius: 50%;
@@ -85,7 +84,7 @@
 	color: white;
 }
 @media screen and (min-width: 600px){
-	
+
 }
 
 
@@ -99,7 +98,7 @@
 		margin-right: 2px;
 		width: 50px;
 	}
-		
+
 }
 
 @media screen and (min-width: 992px){
@@ -157,7 +156,7 @@
 		top: 10%;
 		right:  10%;
 	}
-	
+
 }
 
 @media screen and (min-width: 1240px){

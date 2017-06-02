@@ -70,13 +70,6 @@ class ProductCtrl extends Controller{
     }
     // </editor-fold>
 
-    public function renameImg($path, $previousName, $newName) {
-
-    }
-
-    public function removeImg($path) {
-
-    }
 
     public function getSearch(Request $request, $page = 1) {
         $search = $request->input('search');
@@ -113,7 +106,7 @@ class ProductCtrl extends Controller{
     }
     public function getMoto(Product $product){
       $typeFeatures=\DwSetpoint\Models\TypeProductFeature::getAll();
-      return  view('public/pages/product-details',compact('product','typeFeatures'));
+      return  view('public/pages/moto-details',compact('product','typeFeatures'));
 
     }
 
@@ -160,14 +153,14 @@ class ProductCtrl extends Controller{
             $per_page=6;
         }
 
-            $paginator=\DwSetpoint\Models\Product::where('type_id',1)->orderBy('name',$order)->paginate($per_page);
+            $paginator=\DwSetpoint\Models\Product::where('type_id',2)->orderBy('name',$order)->paginate($per_page);
 
-        return  view('public/pages/motos',compact('paginator'));
+        return  view('public/pages/boutique',compact('paginator'));
 
     }
     public function getBoutique(Product $product){
       $typeFeatures=\DwSetpoint\Models\TypeProductFeature::getAll();
-      return  view('public/pages/product-details',compact('product','typeFeatures'));
+      return  view('public/pages/moto-details',compact('product','typeFeatures'));
 
     }
 
@@ -185,15 +178,15 @@ class ProductCtrl extends Controller{
             if($request->input('per_page')){
                   $per_page=$request->input('per_page');
             }else{
-                $per_page=6;
+                $per_page=2;
             }
-            $paginator=\DwSetpoint\Models\Product::where('type_id',1)->where('category_id',$category[0]->id)->orderBy('name',$order)->paginate($per_page);
+            $paginator=\DwSetpoint\Models\Product::where('type_id',2)->where('category_id',$category[0]->id)->orderBy('name',$order)->paginate($per_page);
         }
         else{
             $paginator=[];
         }
 
-        return  view('public/pages/motos',compact('paginator','categoria'));
+        return  view('public/pages/boutique',compact('paginator','categoria'));
 
     }
 

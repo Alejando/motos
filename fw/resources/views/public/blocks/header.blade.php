@@ -25,11 +25,6 @@
 		        	@foreach(\DwSetpoint\Models\Category::getChildrenBySlug('motos') as $subcategory)
                         <li><a href="{{url('/motos/'.$subcategory->name)}}">{{strtoupper($subcategory->name)}}</a></li>
                     @endforeach
-
-		           {{--  <figure class="submenu_img ktm_visibility">
-	            		<img src="img/motos/KTMM_destacados.jpg">
-	            	</figure> --}}
-
 		        </ul>
 		    </li>
 		    <li class="dropdown">
@@ -38,14 +33,11 @@
 		            @foreach(\DwSetpoint\Models\Category::getChildrenBySlug('boutique') as $subcategory)
                         <li><a href="">{{strtoupper($subcategory->name)}}</a></li>
                     @endforeach
-		            {{-- <figure class="submenu_img ktm_visibility">
-	            		<img src="img/motos/KTMM_destacados.jpg">
-	            	</figure> --}}
 		        </ul>
 		    </li>
 		    <li><a href="{{url('/servicio')}}">SERVICIO</a></li>
 		    <li><a href="{{url('/noticias')}}">NOTICIAS</a></li>
-		    <li><a href=""{{url('/contacto')}}>CONTACTO</a></li>
+		    <li><a href="{{url('/contacto')}}">CONTACTO</a></li>
 		     <li role="separator" class="divider"></li>
 	      </ul>
 	       <form class="navbar-form navbar-left  hidden-lg hidden-md " >

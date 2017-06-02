@@ -29,7 +29,7 @@
     background: rgba(255,255,255,.8);
     display: initial;
     padding: 10px;
-   	
+
 }
 
 .slider_principal >.owl-theme .owl-nav.disabled + .owl-dots {
@@ -51,12 +51,12 @@
 .category_motos  h3{
 	margin-top: 0px;
 }
-	
+
 .element_category{
 	position: relative;
 	background-color: white;
 	width: 100%;
-} 
+}
 .element_category_left{
 	position: relative;
 	margin-right: 1%;
@@ -87,7 +87,7 @@
 	color: white;
 	font-size: 1.2em;
 	font-weight: bold;
-} 
+}
 .label_img_multi{
 	position: relative;
 	top: 0px;
@@ -104,7 +104,7 @@
 	color: white;
 	font-size: .9em;
 	font-weight: bold;
-} 
+}
 
 .label_content{
 	vertical-align: middle;
@@ -115,7 +115,7 @@
 
 .slider_motos{
 	position: relative;
-	
+
 }
 .slider_motos .content_img{
 	background-color: $orange-light-1;
@@ -132,6 +132,8 @@
 	padding-top: 15px;
 	padding-bottom: 20px;
 	display: inline-block;
+  min-height: 360px;
+  width: 100%;
 }
 .slider_motos .content_text *{
 
@@ -155,7 +157,7 @@
 	margin-top: -10px;
 	padding-top: 10px;
 	background-color: $gray_dark;
-			
+
 }
 .news_content{
 	position: relative;
@@ -173,7 +175,6 @@
 	position: relative;
 	top:20px;
 	left: 20px;
-	width: 80%;
 }
 .news_content .content_text .label_content .label_img{
 	top:0px;
@@ -194,23 +195,23 @@
 		object-fit: cover;
 		max-height: 300px;
 		min-height: 230px;
-} 
+}
 
 
 
- 
+
 @media screen and (min-width: 600px){
-	
+
 	.slider_content_text{
 		font-size: 16px;
 		margin-bottom: 25%;
 	}
 	.label_text{
 		font-size: 1.8em;
-	} 
+	}
 	.label_text_multi{
 		font-size: 1.5em;
-	} 
+	}
 	.category_img{
 		min-height: 190px;
 	}
@@ -228,9 +229,9 @@
 	.news_content .news_img img{
 		object-fit: cover;
 		min-height: 250px;
-	} 
-	
-		
+	}
+
+
 }
 
 @media screen and (min-width: 767px){
@@ -238,20 +239,16 @@
 		font-size: 16px;
 		margin-bottom: 30%;
 	}
-	.label_img{
-		
-		width: 45%;
-	}
 	.label_img_multi{
 		width: 60%;
 		top: 5px;
 	}
 	.label_text{
 		font-size: 2.2em;
-	} 
+	}
 	.label_text_multi{
 		font-size: 2em;
-	} 
+	}
 	.category_img{
 		min-height: 310px;
 	}
@@ -261,14 +258,12 @@
 	.news_content .news_img img{
 		min-height: 260px;
 		max-height: 265px;
-	} 
+	}
 }
 
 @media screen and (min-width: 992px){
-	
-	.slider_principal{
-		margin-top: -1px;
-	}
+
+
 	.slider_img{
 		max-height: 750px;
 	}
@@ -283,26 +278,20 @@
 	.slider_content_text  *{
 	    margin-bottom: 70px;
 	}
-	.label_img{
-		
-		width: 35%;
-	}
 	.label_img_multi{
-		
+
 		width: 50%;
 	}
 	.news_content,.news_content .news_img{
 		max-height: 300px;
 	}
-	.news_div{	
-		
-	}
+  .slider_motos .content_text{
+    min-height: 340px;
+  }
 }
 
 @media screen and (min-width: 1240px){
-	.slider_principal{
-		margin-top: -10px;
-	}
+
 	.element_category{
 		width: 65%;
 		margin-right: 1.5%;
@@ -313,7 +302,7 @@
 		min-height: 690px;
 		max-height: 690px;
 
-	} 
+	}
 	.element_category_left{
 		width: 16%;
 		margin-right: .75%;
@@ -344,7 +333,7 @@
 		max-height: 200px
 	}
 	.label_text{
-		
+
 		top: 2px;
 	}
 	.label_img_multi{
@@ -353,7 +342,7 @@
 	}
 	.label_text_multi{
 		font-size: 1.2em;
-	} 
+	}
 	#owlSlideMotos .content_img{
 		width: 50%;
 		display: inline-block;
@@ -363,7 +352,7 @@
 		display: inline-block;
 	}
 	#owlSlideMotos .item{
-		
+
 		display: inline-flex;
 	}
 	.slider_motos .content_text *{
@@ -383,12 +372,8 @@
 		max-height: 250px;
 	}
 	.news_div{
-		display: inline-flex; 
+		display: inline-flex;
 	}
-	
+
 
 }
-
-
-
- 

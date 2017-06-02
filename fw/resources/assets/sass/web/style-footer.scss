@@ -9,7 +9,7 @@
 
 .icons_social{
 	margin: 5% 0%;
-	width: 100%; 
+	width: 100%;
 }
 
 .icon_social{
@@ -28,7 +28,7 @@
 }
 
 .section_newsletter{
-	margin: 5% 5%;	
+	margin: 5% 5%;
 }
 
 .form_newletter{
@@ -66,23 +66,14 @@ footer ul li{
 	background-color: $gray_dark;
 }
 
-body{
-	font-size: 16px;
-	background-color: #FFCECE; /* Solo para efectos de prueba */
-	position: relative;
 
-}
 
 @media screen and (min-width: 600px){
-	body{
-		background: #FFFC1A; /* Solo para efectos de prueba */
-	}
+
 }
 
 @media screen and (min-width: 767px){
-	body{
-		background: #9DEF5A; /* Solo para efectos de prueba */
-	}
+
 	.footer_section{
 		/* 3 col */
 		//width: 100%;
@@ -103,9 +94,7 @@ body{
 }
 
 @media screen and (min-width: 992px){
-	body{
-		background: #21D5E0; /* Solo para efectos de prueba */
-	}
+	
 
 	.footer_box{
 		width: 18%;
@@ -121,9 +110,6 @@ body{
 }
 
 @media screen and (min-width: 1240px){
-	body{
-		background: #F5EDFF; /* Solo para efectos de prueba */
-	}
 	.container_center{
 		width: 98%;
 		margin-left: 1%;
@@ -169,7 +155,7 @@ body{
 		width: 100%;
 	}
 
-	.col_5 { 
+	.col_5 {
 		margin: 0;
 	}
 

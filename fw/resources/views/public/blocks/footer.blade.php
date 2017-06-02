@@ -13,7 +13,7 @@
 			<ul>
 				<li><a href="" class="ktm_orange">Boutique</a></li>
 				@foreach(\DwSetpoint\Models\Category::getChildrenBySlug('boutique') as $key=>$subcategory)
-					<li><a href="{{url('/motos/'.$subcategory->name)}}" class="ktm_white">{{$subcategory->name}}</a></li>
+					<li><a href="{{url('/boutique/'.$subcategory->name)}}" class="ktm_white">{{$subcategory->name}}</a></li>
 				@endforeach
 			</ul>
 		</div>
@@ -40,20 +40,23 @@
 					<li class="ktm_white" id="email">conact@eusero.mx</li>
 				</ul>
 			</div>
-			<div class="col section_newsletter">
+			<div  id="mc_embed_signup" class="col section_newsletter">
 				<div class="ktm_orange">Suscribete a nuestro newsletter</div>
-				<form>
-					<div class="input-group">
-						<input type="text" name="correo" class="form-control form_newletter">
-						<span class="input-group-btn">
-							<input type="submit" value="Suscribirme" class="btn btn-primary form_newletter">
-						</span>
-					</div>
-				</form>
-			</div>
+				  <form action="//ktmguadalajara.us15.list-manage.com/subscribe/post?u=e8a3c3068ebffc6959bedba41&amp;id=ba11e67223" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
+          <div class="input-group">
+              <input type="email" value="" name="EMAIL" class="required email form-control form_newletter" id="mce-EMAIL" placeholder="example@ktm.com">
+              <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary form_newletter">
+              </div>
+          </form>
+				</div>
 
-		</div>
+        {{-- <div class="input-group">
+          <input type="text" name="correo" class="form-control form_newletter">
+          <span class="input-group-btn">
+            <input type="submit" value="Suscribirme" class="btn btn-primary form_newletter">
+          </span>
+        </div> --}}
 	</div>
 	<div class="section group belt_footer">
 		<div class="col span_1_of_2">

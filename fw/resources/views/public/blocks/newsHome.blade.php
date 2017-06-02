@@ -1,4 +1,6 @@
-
+@php
+setlocale(LC_ALL,"es_ES");
+@endphp
 <section class="news_home ">
 
 		<div class="ktm_container">
@@ -19,7 +21,7 @@
 						<p class="label_text">{{$post->category->name}}</p>
 					</div>
 					<div class="news_text">
-						<h5 class="ktm_white_light">{{$post->created_at}}</h5>
+						<h5 class="ktm_white_light">{{\Carbon\Carbon::parse($post->created_at)->formatLocalized('%A %d, %B %Y')}}</h5>
 						<h3 class="ktm_white">{{$post->title}}</h3>
 					</div>
 				</div></a>
